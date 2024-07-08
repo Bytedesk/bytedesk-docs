@@ -2,7 +2,7 @@
  * @Author: jack ning github@bytedesk.com
  * @Date: 2024-05-05 13:49:10
  * @LastEditors: jackning 270580156@qq.com
- * @LastEditTime: 2024-05-05 16:37:40
+ * @LastEditTime: 2024-07-08 16:00:51
  * @FilePath: /docs-ts/src/pages/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -47,7 +47,6 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      // title={`${siteConfig.title} - 基于AI的开源企业IM和在线客服系统`}
       title={translate({ id: 'homepage.title', message: 'ByteDesk' })}
       description="企业即时通讯、在线客服系统、大模型AI助手三位一体">
       <HomepageHeader />

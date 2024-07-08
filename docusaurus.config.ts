@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: "Bytedesk",
-  tagline: "基于AI的开源企业IM和在线客服系统",
+  tagline: "微语",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
