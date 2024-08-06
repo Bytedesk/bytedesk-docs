@@ -2,7 +2,7 @@
  * @Author: jack ning github@bytedesk.com
  * @Date: 2024-05-05 13:49:10
  * @LastEditors: jackning 270580156@qq.com
- * @LastEditTime: 2024-05-05 16:41:03
+ * @LastEditTime: 2024-08-06 18:21:00
  * @FilePath: /docs-ts/src/components/HomepageFeatures/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -21,7 +21,7 @@ const FeatureList: FeatureItem[] = [
   {
     title: translate({
       id: 'homepage.feature.im.title',
-      message: '即时通讯',
+      message: '企业IM',
     }),
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
@@ -45,11 +45,46 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: '大模型AI助手',
+    title: 'AI助手',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
         支持国内、国外主流大模型，如ChatGPT、Bing、OpenAI、智谱、文心一言、通义千问等.
+      </>
+    ),
+  },
+  {
+    title: '知识库',
+    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    description: (
+      <>
+        知识库AI问答.
+      </>
+    ),
+  },
+  {
+    title: '帮助中心',
+    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    description: (
+      <>
+        帮助中心.
+      </>
+    ),
+  },
+  {
+    title: translate({
+      id: 'homepage.feature.ticket.title',
+      message: '工单系统',
+    }),
+    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    description: (
+      <>
+        {
+          translate({
+            id: 'homepage.feature.ticket.description'
+            , message: '工单系统等'
+          })
+        }
       </>
     ),
   },
