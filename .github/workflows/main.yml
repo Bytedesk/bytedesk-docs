@@ -1,0 +1,17 @@
+name: mycicd
+on:
+  # 代码push的时候触发
+  push:
+    # main分支的时候触发
+    branches: main
+jobs:
+  build:
+    runs-on: ubuntu-latest # 运行环境
+    steps:
+      - name: 安装nodejs
+        uses: actions/setup-node@v4.0.3
+      - name: 安装依赖
+        run: npm install
+      - name: 打包
+        run: npm build
+          
