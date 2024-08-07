@@ -1,6 +1,6 @@
 ---
-sidebar_label: Plugin
+sidebar_label: 插件开发
 sidebar_position: 4
 ---
 
-# Plugin
+# 插件开发

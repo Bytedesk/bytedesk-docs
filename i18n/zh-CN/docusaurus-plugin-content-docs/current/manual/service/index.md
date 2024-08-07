@@ -1,7 +1,7 @@
 ---
-sidebar_label: Service
+sidebar_label: 客服
 sidebar_position: 2
 ---
 
-# Service
+# 客服
 

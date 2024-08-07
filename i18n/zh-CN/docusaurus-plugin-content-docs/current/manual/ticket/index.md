@@ -1,5 +1,5 @@
 ---
-sidebar_label: Ticket
+sidebar_label: 工单
 sidebar_position: 6
 ---
 

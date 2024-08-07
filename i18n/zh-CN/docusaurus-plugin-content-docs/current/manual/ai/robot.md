@@ -1,6 +1,6 @@
 ---
-sidebar_label: Robot
+sidebar_label: 机器人
 sidebar_position: 1
 ---
 
-# Robot
+# 机器人

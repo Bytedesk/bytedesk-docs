@@ -1,6 +1,6 @@
 ---
-sidebar_label: Workgroup
+sidebar_label: 技能组
 sidebar_position: 2
 ---
 
-# Workgroup
+# 技能组
