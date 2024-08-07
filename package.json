@@ -9,6 +9,7 @@
     "start-cn": "docusaurus start --port 9005 --locale zh-CN",
     "start-tw": "docusaurus start --port 9005 --locale zh-TW",
     "build": "docusaurus build",
+    "release": "sh cicd/scripts/release.sh",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

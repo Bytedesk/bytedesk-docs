@@ -53,12 +53,12 @@ chmod a+x certbot-auto
 ./certbot-auto certonly  -d "*.bytedesk.org" --manual --preferred-challenges dns-01  --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
-- [Letsencrypt](./nginx/letsencrypt/readme.md)
+- [Letsencrypt](./letsencrypt)
 
-## 配置
+<!-- ## 配置 -->
 
-- [nginx.conf](./nginx/nginx.conf)
-- [sites-available](./nginx/sites-available/default)
+<!-- - [nginx.conf](./nginx/nginx.conf) -->
+<!-- - [sites-available](./nginx/sites-available/default) -->
 
 ``` bash
 # 重新加载配置文件
