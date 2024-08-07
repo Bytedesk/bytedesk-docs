@@ -28,14 +28,17 @@ const config: Config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "zh-CN"],
+    locales: ["en", "zh-CN", "zh-TW"],
     localeConfigs: {
       en: {
         label: "English", // 英文语言标签
       },
       "zh-CN": {
-        label: "中文", // 中文语言标签
+        label: "简体中文", // 中文语言标签
       },
+      "zh-TW": {
+        label: "繁体中文", // 繁体中文标签
+      }
     },
     // 配置国际化文件的路径
     // path: "./i18n",

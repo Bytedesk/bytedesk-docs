@@ -1,11 +1,13 @@
 {
   "name": "docs-ts",
-  "version": "0.0.0",
+  "version": "0.3.5",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
     "dev": "docusaurus start --port 9005",
     "start": "docusaurus start --port 9005",
+    "start-cn": "docusaurus start --port 9005 --locale zh-CN",
+    "start-tw": "docusaurus start --port 9005 --locale zh-TW",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
@@ -20,6 +22,7 @@
     "@docusaurus/core": "3.3.2",
     "@docusaurus/preset-classic": "3.3.2",
     "@mdx-js/react": "^3.0.0",
+    "bytedesk-react": "^0.0.5",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
