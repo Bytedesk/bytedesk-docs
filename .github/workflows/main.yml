@@ -16,4 +16,24 @@ jobs:
         run: yarn
       - name: 前端打包
         run: yarn build
+        # 部署到服务器
+      - name: 上传到服务器
+        uses: appleboy/scp-action@master
+        with:
+          # 服务器域名
+          host: ${{ secrets.SERVER_HOST }}
+          # 服务器用户名
+          username: ${{ secrets.SERVER_USERNAME }}
+          # 服务器密码
+          password: ${{ secrets.SERVER_PASSWORD }}
+          # 服务器端口22
+          port: ${{ secrets.SERVER_PORT }}
+          # 指定上传的文件目录(项目配置的打包目录名称)
+          source: './build/*'
+          # 指定上传服务器目录
+          target: '/var/www/weiyuai/docs'
+          # 解压时覆盖现有文件
+          overwrite: true
+          # 删除指定数量的前导路径元素
+          strip_components: 1
 
