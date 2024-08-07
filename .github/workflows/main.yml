@@ -31,7 +31,7 @@ jobs:
           # 指定上传的文件目录(项目配置的打包目录名称)
           source: './build/*'
           # 指定上传服务器目录
-          target: '/var/www/weiyuai/docs'
+          target: '/var/www/html/weiyuai/docs'
           # 解压时覆盖现有文件
           overwrite: true
           # 删除指定数量的前导路径元素
