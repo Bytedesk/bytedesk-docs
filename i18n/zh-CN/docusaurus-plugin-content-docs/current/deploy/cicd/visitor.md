@@ -1,5 +1,5 @@
 ---
-sidebar_label: Visitor
+sidebar_label: 访客端
 sidebar_position: 4
 ---
 

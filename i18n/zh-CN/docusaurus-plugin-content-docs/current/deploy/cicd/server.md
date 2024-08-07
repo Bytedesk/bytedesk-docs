@@ -1,5 +1,5 @@
 ---
-sidebar_label: Server
+sidebar_label: 服务器
 sidebar_position: 1
 ---
 
