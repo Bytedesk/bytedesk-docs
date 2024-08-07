@@ -1,5 +1,5 @@
 ---
-sidebar_label: 开发文档
+sidebar_label: 文档部署
 sidebar_position: 5
 ---
 
