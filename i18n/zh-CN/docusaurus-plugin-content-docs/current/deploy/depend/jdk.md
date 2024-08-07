@@ -16,7 +16,7 @@ sudo tar -zxvf jdk-17_linux-x64_bin.tar.gz
 
 解压后文件夹 jdk-17.0.10
 
-### 先在 /usr 下新建文件夹 java ，然后将文件夹jdk1.8.0_351移动到目录/usr/java下
+### 先在 /usr 下新建文件夹 java ，然后将文件夹jdk-17.0.10移动到目录/usr/java下
 
 ``` bash
 mkdir /usr/java

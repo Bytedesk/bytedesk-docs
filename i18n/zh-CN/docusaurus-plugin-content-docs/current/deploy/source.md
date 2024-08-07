@@ -16,13 +16,46 @@ sidebar_position: 1
 # java 17.0.4 2022-07-19 LTS
 ```
 
+### [Mysql 8.0](./depend/mysql)
+
+```bash
+# 修改application.properties
+spring.profiles.active=dev-mysql
+# 修改application-dev-mysql.properties
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
+spring.datasource.username=root
+spring.datasource.password=密码
+```
+
+### 或 [PostgreSQL 16](./depend/postgresql)
+
+```bash
+# 修改application.properties
+spring.profiles.active=dev-pg
+# 修改application-dev-pg.properties
+spring.datasource.url=jdbc:postgresql://127.0.0.1:5433/bytedesk_im
+spring.datasource.username=postgres
+spring.datasource.password=密码
+```
+
 ### [Redis](./depend/redis)
 
-### [Mysql 8.0](./depend/mysql) 或 [PostgreSQL 16](./depend/postgresql)
+```bash
+# 修改application-dev-mysql.properties
+# 或 修改application-dev-pg.properties
+spring.data.redis.database=0
+spring.data.redis.host=127.0.0.1
+spring.data.redis.port=6379
+spring.data.redis.password=密码
+```
+
+### [Ollama](./depend/ollama)可选
+
+## 下载源码，并编译
 
 ```bash
 git clone https://github.com/Bytedesk/bytedesk.git
-# 配置文件: bytedesk/starter/src/main/resources/application-dev.properties
+# 配置文件: bytedesk/starter/src/main/resources/application.properties
 # 推荐开发环境：vscode + maven
 
 # mvn --version
@@ -47,5 +80,5 @@ web: http://127.0.0.1:9003/
 访客: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
 api文档: http://127.0.0.1:9003/swagger-ui/index.html
 actuator: http://127.0.0.1:9003/actuator
-h2数据库: http://127.0.0.1:9003/h2-console, 路径: ./h2db/weiyuim, 用户名: sa, 密码: sa
+# h2数据库: http://127.0.0.1:9003/h2-console, 路径: ./h2db/weiyuim, 用户名: sa, 密码: sa
 ```

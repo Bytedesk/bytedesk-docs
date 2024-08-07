@@ -5,10 +5,11 @@ sidebar_position: 2
 
 # Redis-stack-server
 
-## 首先需要安装[Docker](./docker)
+### 参考[redis官方安装说明](https://redis.io/docs/install/install-stack/docker/)
+
+### Docker方式安装
 
 ```bash
-# https://redis.io/docs/install/install-stack/docker/
 # 首先本地启动docker, 如果没有安装，会自动安装redis/redis-stack-server
 # 线上环境：安装redis/redis-stack-server
 # 密码参数：-e REDIS_ARGS="--requirepass 密码"
@@ -37,9 +38,9 @@ docker exec -it redis-stack-server redis-cli
 #
 ```
 
+### Mac 安装 非docker版 redis-stack
+
 ```bash
-# 打开 RedisInsight 客户端
-# mac 安装 非docker版 redis-stack
 # https://redis.io/docs/install/install-stack/mac-os/
 arch -arm64 brew tap redis-stack/redis-stack
 arch -arm64 brew install redis-stack
@@ -47,7 +48,6 @@ arch -arm64 brew install redis-stack
 # 修改 ~/.zshrc
 # export PATH=/opt/homebrew/Caskroom/redis-stack-server/<VERSION>/bin:$PATH
 # 找到安装目录，修改conf文件，密码
-
 # 启动
 redis-stack-server
 redisinsight
@@ -56,8 +56,9 @@ brew uninstall redis-stack-redisinsight redis-stack-server redis-stack
 brew untap redis-stack/redis-stack
 ```
 
+### ubuntu 安装非docker版 redis-stack-server
+
 ```bash
-# ubuntu
 # https://redis.io/docs/install/install-stack/linux/
 curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
 sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
