@@ -107,6 +107,10 @@ const config: Config = {
               label: "Tutorial",
               to: "docs/intro",
             },
+            {
+              label: "Contact",
+              href: "https://www.weiyuai.cn/contact.html",
+            },
           ],
         },
         {
