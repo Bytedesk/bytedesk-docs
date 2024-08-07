@@ -30,10 +30,10 @@
     "message": "支持国内、国外主流大模型，如ChatGPT、Bing、OpenAI、智谱、文心一言、通义千问等"
   },
   "homepage.feature.kb.title": {
-    "message": "知识库"
+    "message": "AI知识库问答"
   },
   "homepage.feature.kb.description": {
-    "message": "知识库AI问答"
+    "message": "本地知识库AI问答"
   },
   "homepage.feature.helpcenter.title": {
     "message": "帮助中心"

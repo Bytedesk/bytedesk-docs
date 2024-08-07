@@ -7,24 +7,24 @@ sidebar_position: 1
 
 ## 前期准备
 
-### jdk 17
+### [Jdk17](./depend/jdk)
 
 因项目依赖spring boot 3, 最低要求 jdk17, 请确保已安装
 
-### redis-stack-server
+```bash
+# java --version
+# java 17.0.4 2022-07-19 LTS
+```
 
+### [Redis](./depend/redis)
 
-### mysql 或 postgresql
-
+### [Mysql 8.0](./depend/mysql) 或 [PostgreSQL 16](./depend/postgresql)
 
 ```bash
 git clone https://github.com/Bytedesk/bytedesk.git
 # 配置文件: bytedesk/starter/src/main/resources/application-dev.properties
 # 推荐开发环境：vscode + maven
-#
-# java --version
-# java 17.0.4 2022-07-19 LTS
-# 
+
 # mvn --version
 # Apache Maven 3.8.4 (9b656c72d54e5bacbed989b64718c159fe39b537)
 # OS name: "mac os x", version: "14.2.1", arch: "aarch64", family: "mac"
