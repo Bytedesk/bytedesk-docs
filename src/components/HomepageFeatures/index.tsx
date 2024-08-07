@@ -2,88 +2,77 @@
  * @Author: jack ning github@bytedesk.com
  * @Date: 2024-05-05 13:49:10
  * @LastEditors: jackning 270580156@qq.com
- * @LastEditTime: 2024-08-06 18:21:00
+ * @LastEditTime: 2024-08-07 12:11:28
  * @FilePath: /docs-ts/src/components/HomepageFeatures/index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 import Translate, { translate } from '@docusaurus/Translate';
 
 type FeatureItem = {
-  title: string;
+  title: JSX.Element;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: translate({
-      id: 'homepage.feature.im.title',
-      message: '企业IM',
-    }),
+    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.im.title', message: 'Team Chat', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
+        {translate({id: 'homepage.feature.im.description', message: 'Team Chat'})}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.cs.title', message: 'Customer Service', })}</Link>,
+    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.cs.description', message: 'OmniChannel Customer Service' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.ai.title', message: 'AI Asistant', })}</Link>,
+    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.ai.description', message: 'OmniChannel Customer Service' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.kb.title', message: 'Knowledge Base', })}</Link>,
+    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.kb.description', message: 'Knowledge Base' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.helpcenter.title', message: 'Help Center', })}</Link>,
+    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    description: (
+      <>
         {
-          translate({
-            id: 'homepage.feature.im.description'
-            , message: '支持即时通讯、聊天、群聊、文件传输、视频通话、语音通话等'
-          })
+          translate({ id: 'homepage.feature.helpcenter.description', message: 'Help Center', })
         }
       </>
     ),
   },
   {
-    title: '在线客服',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        支持人工客服、知识库、客服机器人等.
-      </>
-    ),
-  },
-  {
-    title: 'AI助手',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        支持国内、国外主流大模型，如ChatGPT、Bing、OpenAI、智谱、文心一言、通义千问等.
-      </>
-    ),
-  },
-  {
-    title: '知识库',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        知识库AI问答.
-      </>
-    ),
-  },
-  {
-    title: '帮助中心',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        帮助中心.
-      </>
-    ),
-  },
-  {
-    title: translate({
-      id: 'homepage.feature.ticket.title',
-      message: '工单系统',
-    }),
+    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.ticket.title', message: 'Ticket System', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
         {
-          translate({
-            id: 'homepage.feature.ticket.description'
-            , message: '工单系统等'
-          })
+          translate({id: 'homepage.feature.ticket.description', message: 'Ticket System'})
         }
       </>
     ),

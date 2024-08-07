@@ -5,6 +5,12 @@
   "homepage.tagline": {
     "message": "AI powered customer service & team im"
   },
+  "homepage.quickstart": {
+    "message": "Quick Start"
+  },
+  "homepage.description": {
+    "message": "IM、Customer Service、AI ChatBot、Knowledge Base、Help Center"
+  },
   "homepage.feature.im.title": {
     "message": "IM"
   },

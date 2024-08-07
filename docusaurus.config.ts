@@ -3,10 +3,12 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
+  // https://docusaurus.io/zh-CN/docs/configuration
   title: "Bytedesk",
   tagline: "微语",
   favicon: "img/favicon.ico",
 
+  // https://docusaurus.io/zh-CN/docs/deployment
   // Set the production url of your site here
   url: "https://www.weiyuai.cn/",
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -38,7 +40,7 @@ const config: Config = {
       },
       "zh-TW": {
         label: "繁体中文", // 繁体中文标签
-      }
+      },
     },
     // 配置国际化文件的路径
     // path: "./i18n",

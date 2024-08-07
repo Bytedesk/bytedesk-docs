@@ -5,11 +5,47 @@
   "homepage.tagline": {
     "message": "对话即服务"
   },
+  "homepage.quickstart": {
+    "message": "快速开始"
+  },
+  "homepage.description": {
+    "message": "企业IM、在线客服、AI助手、知识库、帮助中心"
+  },
   "homepage.feature.im.title": {
     "message": "即时通讯"
   },
   "homepage.feature.im.description": {
-    "message": "支持企业组织架构、角色、权限管理、群组管理、聊天记录审计等。支持国产操作系统、支持国产数据库"
+    "message": "支持企业组织架构、角色、权限管理、群组管理、聊天记录审计等"
+  },
+  "homepage.feature.cs.title": {
+    "message": "在线客服"
+  },
+  "homepage.feature.cs.description": {
+    "message": "全渠道在线客服"
+  },
+  "homepage.feature.ai.title": {
+    "message": "AI助手"
+  },
+  "homepage.feature.ai.description": {
+    "message": "支持国内、国外主流大模型，如ChatGPT、Bing、OpenAI、智谱、文心一言、通义千问等"
+  },
+  "homepage.feature.kb.title": {
+    "message": "知识库"
+  },
+  "homepage.feature.kb.description": {
+    "message": "知识库AI问答"
+  },
+  "homepage.feature.helpcenter.title": {
+    "message": "帮助中心"
+  },
+  "homepage.feature.helpcenter.description": {
+    "message": "帮助中心"
+  },
+  "homepage.feature.ticket.title": {
+    "message": "工单系统"
+  },
+  "homepage.feature.ticket.description": {
+    "message": "工单系统"
   },
   "theme.ErrorPageContent.title": {
     "message": "页面已崩溃。",
