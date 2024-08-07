@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "dev": "docusaurus start --port 9005",
     "start": "docusaurus start --port 9005",
     "start-cn": "docusaurus start --port 9005 --locale zh-CN",
     "start-tw": "docusaurus start --port 9005 --locale zh-TW",

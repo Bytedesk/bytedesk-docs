@@ -2,7 +2,7 @@
  * @Author: jackning 270580156@qq.com
  * @Date: 2024-05-05 13:49:10
  * @LastEditors: jackning 270580156@qq.com
- * @LastEditTime: 2024-08-07 09:52:42
+ * @LastEditTime: 2024-08-07 20:53:32
  * @Description: bytedesk.com https://github.com/Bytedesk/bytedesk
  *   Please be aware of the BSL license restrictions before installing Bytedesk IM – 
  *  selling, reselling, or hosting Bytedesk IM as a service is a breach of the terms and automatically terminates your rights under the license. 
@@ -20,8 +20,10 @@
 npx create-docusaurus@latest my-website classic --typescript
 # 安装依赖
 yarn
-# 打包发布
+# 打包
 yarn build
+# 打包上传到服务器，需要手动输入密码
+yarn release
 # 翻译
 yarn write-translations
 # https://docusaurus.io/zh-CN/docs/i18n/git
