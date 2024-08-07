@@ -1,6 +1,6 @@
 ---
-sidebar_label: 组织
+sidebar_label: Robot
 sidebar_position: 1
 ---
 
-# Team
+# Robot

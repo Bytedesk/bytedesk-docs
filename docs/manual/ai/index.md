@@ -1,6 +1,6 @@
 ---
-sidebar_label: Robot
+sidebar_label: Ai
 sidebar_position: 3
 ---
 
-# Robot
+# Ai
