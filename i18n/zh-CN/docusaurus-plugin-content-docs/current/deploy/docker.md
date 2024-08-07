@@ -8,5 +8,5 @@ sidebar_position: 2
 ## 安装[Docker](./depend/docker)
 
 ```bash
-# TODO:
+# TODO: 安装docker
 ```
