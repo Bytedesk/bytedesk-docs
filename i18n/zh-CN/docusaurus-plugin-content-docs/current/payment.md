@@ -8,3 +8,8 @@ sidebar_label: "费用相关"
 - 仅支持企业内部员工自用，销售、二次销售或者部署 SaaS 方式销售需要获得授权
 - [联系](/img/wechat.png)
 <!-- - <img src="/img/wechat.png" width="150"></img> -->
+
+## TODO: 功能对比
+
+| 功能 | 免费版 | SaaS | 企业版 |
+
