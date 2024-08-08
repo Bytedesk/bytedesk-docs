@@ -2,8 +2,9 @@ name: mycicd
 on:
   # 代码push的时候触发
   push:
-    # main分支的时候触发
-    branches: main
+    # branches: main
+    tags:
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest # 运行环境
