@@ -1,3 +1,11 @@
+# 
+# github：依次添加以下变量，
+# 路径：Settings -> Secrets And Variables -> Actions
+# SERVER_HOST / Secret：服务器公网IP
+# SERVER_USERNAME / Secret：服务器用户名
+# SERVER_PASSWORD / Secret：服务器密码
+# SERVER_PORT / Secret：服务器端口
+
 name: mycicd
 on:
   push:
@@ -9,17 +17,18 @@ jobs:
   build:
     runs-on: ubuntu-latest # 运行环境
     steps:
-      - name: 检查代码
-        uses: actions/checkout@v4.1.7
+      - name: 检出代码
+        uses: actions/checkout@v4
       - name: 安装nodejs
-        uses: actions/setup-node@v4.0.3
+        uses: actions/setup-node@v4
       - name: 安装依赖
         run: yarn
       - name: 前端打包
         run: yarn build
         # 部署到服务器
+        # https://github.com/appleboy/scp-action
       - name: 上传到服务器
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.7
         with:
           # 服务器域名
           host: ${{ secrets.SERVER_HOST }}
@@ -36,5 +45,5 @@ jobs:
           # 解压时覆盖现有文件
           overwrite: true
           # 删除指定数量的前导路径元素
-          strip_components: 1
+          # strip_components: 1
 
