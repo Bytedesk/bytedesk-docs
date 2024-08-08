@@ -1,8 +1,8 @@
 name: mycicd
 on:
-  # 代码push的时候触发
   push:
     # branches: main
+    # 打标签的时候触发
     tags:
       - '*'
 jobs:
