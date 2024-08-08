@@ -14,5 +14,10 @@
 -->
 # ci/cd 持续化部署
 
+```bash
+# 打包上传到服务器，需要手动输入密码
+yarn release
+```
+
 - [参考](https://juejin.cn/post/7057776355450028045)
 - [参考](https://blog.csdn.net/weixin_43233914/article/details/134186796)
