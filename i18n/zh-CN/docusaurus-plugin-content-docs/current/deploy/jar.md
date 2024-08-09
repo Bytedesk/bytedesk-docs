@@ -67,3 +67,15 @@ chmod +x stop.sh
 # 停止
 ./stop.sh
 ```
+
+## 本地预览
+
+```bash
+开发者入口: http://127.0.0.1:9003/dev
+web: http://127.0.0.1:9003/
+管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
+客服端: http://127.0.0.1:9003/agent, 用户名: admin@email.com, 密码: admin
+访客: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
+api文档: http://127.0.0.1:9003/swagger-ui/index.html
+actuator: http://127.0.0.1:9003/actuator
+```

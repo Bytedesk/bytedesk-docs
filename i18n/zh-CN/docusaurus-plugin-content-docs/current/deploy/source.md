@@ -43,7 +43,7 @@ spring.data.redis.password=密码
 
 ### [Ollama](./depend/ollama)可选
 
-## 下载源码，并编译
+## [下载源码](https://github.com/Bytedesk/bytedesk)，并编译
 
 ```bash
 git clone https://github.com/Bytedesk/bytedesk.git
@@ -63,8 +63,11 @@ mvn install -Dmaven.test.skip=true
 # 
 cd starter
 mvn spring-boot:run
-# 
-# 本地预览
+```
+
+## 本地预览
+
+```bash
 开发者入口: http://127.0.0.1:9003/dev
 web: http://127.0.0.1:9003/
 管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
@@ -72,5 +75,4 @@ web: http://127.0.0.1:9003/
 访客: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
 api文档: http://127.0.0.1:9003/swagger-ui/index.html
 actuator: http://127.0.0.1:9003/actuator
-# h2数据库: http://127.0.0.1:9003/h2-console, 路径: ./h2db/weiyuim, 用户名: sa, 密码: sa
 ```
