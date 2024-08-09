@@ -92,6 +92,11 @@ const config: Config = {
           position: "right",
         },
         {
+          href: "https://www.weiyuai.cn/contact.html",
+          label: "联系",
+          position: "right",
+        },
+        {
           type: "localeDropdown",
           position: "right",
         },
