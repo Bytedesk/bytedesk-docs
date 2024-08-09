@@ -5,6 +5,10 @@ sidebar_position: 1
 
 # 源码部署
 
+:::tip
+服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+:::
+
 ## 前期准备
 
 ### [Jdk17](./depend/jdk)
