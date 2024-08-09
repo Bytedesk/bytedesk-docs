@@ -1,6 +1,6 @@
 ---
-sidebar_label: Member
+sidebar_label: 成员
 sidebar_position: 1
 ---
 
-# Member
+# 成员

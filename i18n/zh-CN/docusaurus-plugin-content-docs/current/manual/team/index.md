@@ -1,6 +1,0 @@
----
-sidebar_label: 组织
-sidebar_position: 1
----
-
-# Team

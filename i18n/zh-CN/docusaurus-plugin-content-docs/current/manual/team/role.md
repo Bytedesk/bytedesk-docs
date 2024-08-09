@@ -1,6 +1,6 @@
 ---
-sidebar_label: Role
+sidebar_label: 角色
 sidebar_position: 2
 ---
 
-# Role
+# 角色

@@ -1,6 +1,6 @@
 ---
-sidebar_label: HelpCenter
+sidebar_label: 帮助中心
 sidebar_position: 1
 ---
 
-# HelpCenter
+# 帮助中心
