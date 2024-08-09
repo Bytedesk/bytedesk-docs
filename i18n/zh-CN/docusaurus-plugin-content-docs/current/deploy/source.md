@@ -20,6 +20,8 @@ sidebar_position: 1
 # java 17.0.4 2022-07-19 LTS
 ```
 
+### [MySQL 8](./depend/mysql)
+
 ```bash
 # 修改application.properties
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
