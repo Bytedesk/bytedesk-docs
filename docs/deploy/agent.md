@@ -1,6 +1,6 @@
 ---
-sidebar_label: CI/CD
+sidebar_label: Agent
 sidebar_position: 5
 ---
 
-# CI/CD
+# Agent

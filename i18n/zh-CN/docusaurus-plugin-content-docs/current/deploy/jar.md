@@ -20,8 +20,6 @@ sidebar_position: 3
 
 ```bash
 # 修改application.properties
-spring.profiles.active=dev-mysql
-# 修改application-dev-mysql.properties
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
 spring.datasource.username=root
 spring.datasource.password=密码
@@ -31,8 +29,6 @@ spring.datasource.password=密码
 
 ```bash
 # 修改application.properties
-spring.profiles.active=dev-pg
-# 修改application-dev-pg.properties
 spring.datasource.url=jdbc:postgresql://127.0.0.1:5433/bytedesk_im
 spring.datasource.username=postgres
 spring.datasource.password=密码
@@ -41,8 +37,6 @@ spring.datasource.password=密码
 ### [Redis](./depend/redis)
 
 ```bash
-# 修改application-dev-mysql.properties
-# 或 修改application-dev-pg.properties
 spring.data.redis.database=0
 spring.data.redis.host=127.0.0.1
 spring.data.redis.port=6379
@@ -51,7 +45,25 @@ spring.data.redis.password=密码
 
 ### [Ollama](./depend/ollama)可选
 
-## TODO:下载jar包，并运行
+## 下载 [server](https://cdn.weiyuai.cn/server.zip)
 
 ```bash
+# 因jar包太大, 从这里下载: https://cdn.weiyuai.cn/server.zip
+# 编辑配置文件：config/application.properties
+# 修改数据库连接信息
+spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
+spring.datasource.username=root
+spring.datasource.password=password
+# 修改redis连接信息
+spring.data.redis.database=0
+spring.data.redis.host=127.0.0.1
+spring.data.redis.port=6379
+spring.data.redis.password=password
+# 赋予权限
+chmod +x start.sh
+chmod +x stop.sh
+# 启动
+./start.sh
+# 停止
+./stop.sh
 ```
