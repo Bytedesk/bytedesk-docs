@@ -16,7 +16,7 @@ sidebar_position: 1
 因项目依赖spring boot 3, 最低要求 jdk17, 请确保已安装
 
 ```bash
-# java --version
+java --version
 # java 17.0.4 2022-07-19 LTS
 ```
 

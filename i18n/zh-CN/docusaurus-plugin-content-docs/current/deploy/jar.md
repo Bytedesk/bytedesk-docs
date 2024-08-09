@@ -16,7 +16,7 @@ sidebar_position: 3
 因项目依赖spring boot 3, 最低要求 jdk17, 请确保已安装
 
 ```bash
-# java --version
+java --version
 # java 17.0.4 2022-07-19 LTS
 ```
 
@@ -63,13 +63,20 @@ spring.data.redis.database=0
 spring.data.redis.host=127.0.0.1
 spring.data.redis.port=6379
 spring.data.redis.password=password
+
 # 赋予权限
 chmod +x start.sh
 chmod +x stop.sh
 # 启动
+# 在Mac或Linux上运行
 ./start.sh
+# 在Windows上运行
+start.bat
 # 停止
+# 在Mac或Linux上运行
 ./stop.sh
+# 在Windows上运行
+stop.bat
 ```
 
 ## 本地预览
