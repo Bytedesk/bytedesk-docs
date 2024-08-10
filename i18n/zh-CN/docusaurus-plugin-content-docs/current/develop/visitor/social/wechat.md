@@ -5,16 +5,14 @@ sidebar_position: 6
 
 # 微信
 
-首先登录[管理后台](https://www.weiyuai.cn/admin)，然后参考下面截图获取相关代码。
+:::tip
+微语不直接提供与微信对话的功能，仅提供通用AI问答API，微信对接需要借助第三方实现。
+:::
 
-## 机器人对话
+## 方式一： [WechatFerry](https://github.com/lich0821/WeChatFerry)
 
-- ![robot](/img/develop/robot-web.png)
+TODO: 待补充
 
-## 一对一客服
+## 方式二： [Wxauto](https://github.com/cluic/wxauto)
 
-- ![agent](/img/develop/agent-web.png)
-
-## 技能组客服
-
-- ![wgroup](/img/develop/wgroup-web.png)
+TODO: 待补充
