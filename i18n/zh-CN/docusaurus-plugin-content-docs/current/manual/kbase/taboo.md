@@ -3,4 +3,4 @@ sidebar_label: 敏感词
 sidebar_position: 7
 ---
 
-# Taboo
+# 敏感词
