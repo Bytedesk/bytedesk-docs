@@ -49,10 +49,10 @@ spring.data.redis.password=密码
 
 ### [Ollama](./depend/ollama)可选
 
-## 下载 [server](https://cdn.weiyuai.cn/server.zip)
+## 下载 [server](https://www.weiyuai.cn/download/server.zip)
 
 ```bash
-# 因jar包太大, 从这里下载: https://cdn.weiyuai.cn/server.zip
+# 因jar包太大, 从这里下载: https://www.weiyuai.cn/download/server.zip
 # 编辑配置文件：config/application.properties
 # 修改数据库连接信息
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
