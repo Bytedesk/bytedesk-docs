@@ -31,6 +31,8 @@ spring.datasource.password=密码
 
 ### 或 [PostgreSQL 16](./depend/postgresql)
 
+mysql或postgresql任选其一, 默认使用mysql
+
 ```bash
 # 修改application.properties
 spring.datasource.url=jdbc:postgresql://127.0.0.1:5433/bytedesk_im
@@ -47,7 +49,7 @@ spring.data.redis.port=6379
 spring.data.redis.password=密码
 ```
 
-### [Ollama](./depend/ollama)可选
+<!-- ### [Ollama](./depend/ollama)可选 -->
 
 ## 下载 [server](https://www.weiyuai.cn/download/server.zip)
 
