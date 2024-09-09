@@ -1,12 +1,15 @@
 ---
 sidebar_label: Jar包部署
-sidebar_position: 3
+sidebar_position: 1
 ---
 
 # Jar包部署
 
 :::tip
-服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+
+- 操作系统：Ubuntu 20.04 LTS
+- 服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+
 :::
 
 ## 前期准备
@@ -21,6 +24,8 @@ java --version
 ```
 
 ### [Mysql 8.0](./depend/mysql)
+
+默认使用mysql
 
 ```bash
 # 修改application.properties
@@ -48,6 +53,10 @@ spring.data.redis.host=127.0.0.1
 spring.data.redis.port=6379
 spring.data.redis.password=密码
 ```
+
+## [Nginx](./depend/nginx)
+
+nginx做反向代理
 
 <!-- ### [Ollama](./depend/ollama)可选 -->
 

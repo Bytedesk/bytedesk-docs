@@ -5,6 +5,13 @@ sidebar_position: 7
 
 # JDK17
 
+:::tip
+
+- 操作系统：Ubuntu 20.04 LTS
+- 服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+
+:::
+
 - [Oracle官网](https://www.oracle.com/java/technologies/downloads/)
 - [下载](https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz)JDK17
 

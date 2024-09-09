@@ -5,6 +5,13 @@ sidebar_position: 2
 
 # Redis-stack-server
 
+:::tip
+
+- 操作系统：Ubuntu 20.04 LTS
+- 服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+
+:::
+
 ### 参考[redis官方安装说明](https://redis.io/docs/install/install-stack/docker/)
 
 ### Docker方式安装
@@ -38,6 +45,17 @@ docker exec -it redis-stack-server redis-cli
 #
 ```
 
+### ubuntu 安装非docker版 redis-stack-server
+
+```bash
+# https://redis.io/docs/install/install-stack/linux/
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+sudo apt-get update
+sudo apt-get install redis-stack-server
+```
+
 ### Mac 安装 非docker版 redis-stack
 
 ```bash
@@ -56,13 +74,3 @@ brew uninstall redis-stack-redisinsight redis-stack-server redis-stack
 brew untap redis-stack/redis-stack
 ```
 
-### ubuntu 安装非docker版 redis-stack-server
-
-```bash
-# https://redis.io/docs/install/install-stack/linux/
-curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
-sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-sudo apt-get update
-sudo apt-get install redis-stack-server
-```

@@ -5,6 +5,13 @@ sidebar_position: 1
 
 # Mysql 8.0
 
+:::tip
+
+- 操作系统：Ubuntu 20.04 LTS
+- 服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+
+:::
+
 ## 安装配置
 
 - [下载mysql-apt-config_0.8.29-1_all.deb](https://dev.mysql.com/downloads/repo/apt/)
