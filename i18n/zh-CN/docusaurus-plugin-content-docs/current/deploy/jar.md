@@ -64,7 +64,14 @@ nginx做反向代理
 
 ```bash
 # 因jar包太大, 从这里下载: https://www.weiyuai.cn/download/server.zip
-# 编辑配置文件：config/application.properties
+# 解压
+unzip server.zip
+```
+
+## 配置
+
+```bash
+# 编辑配置文件：server/config/application.properties
 # 修改数据库连接信息
 spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
 spring.datasource.username=root
