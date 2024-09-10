@@ -58,6 +58,14 @@ spring.data.redis.password=密码
 
 nginx做反向代理
 
+## [AI](./depend/ai)
+
+对话大模型
+
+```bash
+下载地址： https://github.com/Bytedesk/bytedesk-ai
+```
+
 <!-- ### [Ollama](./depend/ollama)可选 -->
 
 ## 下载 [server](https://www.weiyuai.cn/download/server.zip)
