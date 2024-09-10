@@ -13,7 +13,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.im.title', message: 'Team Chat', })}</Link>,
+    title: <Link to="docs/category/组织">{translate({ id: 'homepage.feature.im.title', message: 'Team Chat', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
@@ -22,7 +22,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.cs.title', message: 'Customer Service', })}</Link>,
+    title: <Link to="docs/category/客服">{translate({ id: 'homepage.feature.cs.title', message: 'Customer Service', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
@@ -31,7 +31,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.ai.title', message: 'AI Asistant', })}</Link>,
+    title: <Link to="docs/category/ai助手">{translate({ id: 'homepage.feature.ai.title', message: 'AI Asistant', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
@@ -40,7 +40,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.kb.title', message: 'Knowledge Base', })}</Link>,
+    title: <Link to="docs/category/知识库">{translate({ id: 'homepage.feature.kb.title', message: 'Knowledge Base', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
@@ -49,7 +49,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.helpcenter.title', message: 'Help Center', })}</Link>,
+    title: <Link to="docs/manual/kbase/helpcenter">{translate({ id: 'homepage.feature.helpcenter.title', message: 'Help Center', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
@@ -60,7 +60,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/intro">{translate({ id: 'homepage.feature.ticket.title', message: 'Ticket System', })}</Link>,
+    title: <Link to="docs/category/工单">{translate({ id: 'homepage.feature.ticket.title', message: 'Ticket System', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>

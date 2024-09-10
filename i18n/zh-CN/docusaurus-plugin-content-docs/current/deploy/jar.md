@@ -63,7 +63,7 @@ nginx做反向代理
 ## 下载 [server](https://www.weiyuai.cn/download/server.zip)
 
 ```bash
-# 因jar包太大, 从这里下载: https://www.weiyuai.cn/download/server.zip
+# 更多下载: https://www.weiyuai.cn/download
 # 解压
 unzip server.zip
 ```
@@ -95,6 +95,10 @@ start.bat
 ./stop.sh
 # 在Windows上运行
 stop.bat
+# 启动之后，稍等片刻。查看端口号，如果有 9003端口，则启动成功
+netstat -ntlp
+# 查看日志
+tail -f logs/bytedeskim.log
 ```
 
 ## 本地预览
