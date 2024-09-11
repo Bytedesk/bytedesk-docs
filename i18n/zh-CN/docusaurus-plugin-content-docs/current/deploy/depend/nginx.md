@@ -48,6 +48,11 @@ nginx -s reload
 service nginx restart
 ```
 
+## 准备
+
+- 将下载的 [server](https://www.weiyuai.cn/download/server.zip) 文件解压。
+- 将其中的 admin，agent，chat 三个文件夹复制到 /var/www/html/weiyuai/ 文件夹下。
+
 ## nginx.conf
 
 ```bash
@@ -492,9 +497,6 @@ ulimit -a
 ```shell
 # 查看nginx log
 cd /var/log/nginx
-# 2020/12/16 08:11:44 [error] 11023#11023: *8510657 connect() failed (111: Connection refused) while connecting to upstream, client: ipXXX, server: 0.0.0.0:13883, upstream: "47.98.54.86:3883", bytes from/to client:0/0, bytes from/to upstream:0/0
-# 解决方案
-
 ```
 
 ## 参考

@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
+import { ChatFloat } from "bytedesk-react";
 
 import styles from './index.module.css';
 // import React from 'react';
@@ -46,6 +47,9 @@ export default function Home(): JSX.Element {
       <main>
         <HomepageFeatures />
       </main>
+      <ChatFloat
+        chatUrl="https://kf.weiyuai.cn/chat?org=df_org_uid&t=1&sid=df_wg_uid&"
+      />
     </Layout>
   );
 }
