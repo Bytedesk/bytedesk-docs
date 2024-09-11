@@ -52,6 +52,22 @@ service nginx restart
 
 - 将下载的 [server](https://www.weiyuai.cn/download/server.zip) 文件解压。
 - 将其中的 admin，agent，chat 三个文件夹复制到 /var/www/html/weiyuai/ 文件夹下。
+- 其中：admin 为管理后台，agent 为客服端，chat 为访客端
+- 三者默认访问的服务器地址为: http://127.0.0.1:9003, 发布到线上时需要修改才能够正常使用，具体修改方法如下：
+- 找到 admin/config.json 、 agent/config.json 和 chat/config.json 三个文件
+- config.json 文件内容如下：
+
+```json
+{
+    "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
+    "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
+    "htmlHost": "www.weiyuai.cn" // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
+}
+```
+
+- enabled 字段为是否启用自定义服务器地址，默认为false。这里需要将 false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
+- apiHost 字段为 api 地址，默认为：api.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
+- htmlHost 字段为静态网页地址，默认为：www.weiyuai.cn。请替换为自己的域名，不能够以 http 开头
 
 ## nginx.conf
 
