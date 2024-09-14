@@ -13,7 +13,12 @@ sidebar_label: "费用相关"
 
 ## 收费标准
 
+- 授权修改’微语‘及Logo： 1w
+- Web管理后台源码（技术栈：react+typescript+antd）： 1w
+- 桌面客户端源码（技术栈：electron+react+typescript+antd，支持：web/windows/mac/linux）： 3w
+- 手机客户端源码（技术栈：flutter，支持：android/ios）： 3w
 - 定制按 2500人/天 计算
+- [联系](/img/wechat.png)
 
 ## 其他
 
@@ -22,5 +27,4 @@ sidebar_label: "费用相关"
 - 代理合作：您负责销售，我方负责售后，维护等，五五分成
 - 此软件可能存在bug或不完善的地方，如造成损失，需自行负责
 - 严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务，否则我司将暂停或终止其服务，并协助有关行政机关等进行追索和查处
-- [联系](/img/wechat.png)
 <!-- - <img src="/img/wechat.png" width="150"></img> -->
