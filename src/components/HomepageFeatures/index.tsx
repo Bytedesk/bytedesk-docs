@@ -49,7 +49,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/manual/kbase/helpcenter">{translate({ id: 'homepage.feature.helpcenter.title', message: 'Help Center', })}</Link>,
+    title: <Link to="docs/category/知识库">{translate({ id: 'homepage.feature.helpcenter.title', message: 'Help Center', })}</Link>,
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
