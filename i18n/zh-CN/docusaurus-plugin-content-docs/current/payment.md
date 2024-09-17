@@ -14,7 +14,7 @@ sidebar_label: "费用相关"
 ## 收费标准
 
 - 授权修改’微语‘及 Logo： 1w
-- [Web 管理后台源码](https://www.weiyuai.cn/download/weiyu-server.zip)（技术栈：react+typescript+antd）： 1w
+- [Web 管理后台源码](https://www.weiyuai.cn/download/weiyu-server.zip)（技术栈：react+typescript+antd）： 3w
 - 桌面客户端源码（技术栈：electron+react+typescript+antd，支持：web/windows/mac/linux）： 3w, [windows](https://www.weiyuai.cn/download/weiyu-windows.exe), [macOS](https://www.weiyuai.cn/download/weiyu-mac.dmg), [linux](https://www.weiyuai.cn/download/weiyu-linux.AppImage)
 - 手机客户端源码（技术栈：flutter，支持：android/ios）： 3w, [android](https://www.weiyuai.cn/download/weiyu-android.apk), [ios](https://apps.apple.com/cn/app/%E5%BE%AE%E8%AF%AD/id6470106586)
 - [全部下载](https://www.weiyuai.cn/download)
