@@ -6,19 +6,19 @@ sidebar_label: "费用相关"
 
 ## 功能对比
 
-| 功能         | 开源        | SaaS        | 企业版       |
-| ----------- | ----------- | ----------- | ----------- |
-| Header      | Title       | Title       | Title       |
-| Paragraph   | Text        | Text        | Text        |
+| 功能      | 开源  | SaaS  | 企业版 |
+| --------- | ----- | ----- | ------ |
+| Header    | Title | Title | Title  |
+| Paragraph | Text  | Text  | Text   |
 
 ## 收费标准
 
-- 授权修改’微语‘及Logo： 1w
-- [Web管理后台源码](https://www.weiyuai.cn/download/server.zip)（技术栈：react+typescript+antd）： 1w
+- 授权修改’微语‘及 Logo： 1w
+- [Web 管理后台源码](https://www.weiyuai.cn/download/weiyu-server.zip)（技术栈：react+typescript+antd）： 1w
 - 桌面客户端源码（技术栈：electron+react+typescript+antd，支持：web/windows/mac/linux）： 3w, [windows](https://www.weiyuai.cn/download/weiyu-windows.exe), [macOS](https://www.weiyuai.cn/download/weiyu-mac.dmg), [linux](https://www.weiyuai.cn/download/weiyu-linux.AppImage)
 - 手机客户端源码（技术栈：flutter，支持：android/ios）： 3w, [android](https://www.weiyuai.cn/download/weiyu-android.apk), [ios](https://apps.apple.com/cn/app/%E5%BE%AE%E8%AF%AD/id6470106586)
 - [全部下载](https://www.weiyuai.cn/download)
-- 定制按 2500人/天 计算
+- 定制按 2500 人/天 计算
 - [联系](/img/wechat.png)
 
 ## 其他
@@ -26,6 +26,6 @@ sidebar_label: "费用相关"
 - 在保留原有商标 logo 等信息前提下，支持免费商用。如需移除，需要获得授权
 - 仅支持企业内部员工自用，销售、二次销售或者部署 SaaS 方式销售需要获得授权
 - 代理合作：您负责销售，我方负责售后，维护等，五五分成
-- 此软件可能存在bug或不完善的地方，如造成损失，需自行负责
+- 此软件可能存在 bug 或不完善的地方，如造成损失，需自行负责
 - 严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务，否则我司将暂停或终止其服务，并协助有关行政机关等进行追索和查处
 <!-- - <img src="/img/wechat.png" width="150"></img> -->

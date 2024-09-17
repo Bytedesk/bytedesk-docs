@@ -3,12 +3,12 @@ sidebar_label: Jar包部署
 sidebar_position: 1
 ---
 
-# Jar包部署
+# Jar 包部署
 
 :::tip
 
 - 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+- 服务器最低配置 2 核 4G 内存，推荐配置 4 核 8G 内存。如果本地运行 Ollama，则最低 8G 内存起
 
 :::
 
@@ -16,7 +16,7 @@ sidebar_position: 1
 
 ### [Jdk17](./depend/jdk)
 
-因项目依赖spring boot 3, 最低要求 jdk17, 请确保已安装
+因项目依赖 spring boot 3, 最低要求 jdk17, 请确保已安装
 
 ```bash
 java --version
@@ -25,7 +25,7 @@ java --version
 
 ### [Mysql 8.0](./depend/mysql)
 
-默认使用mysql
+默认使用 mysql
 
 ```bash
 # 修改application.properties
@@ -36,7 +36,7 @@ spring.datasource.password=密码
 
 ### 或 [PostgreSQL 16](./depend/postgresql)
 
-mysql或postgresql任选其一, 默认使用mysql
+mysql 或 postgresql 任选其一, 默认使用 mysql
 
 ```bash
 # 修改application.properties
@@ -56,7 +56,7 @@ spring.data.redis.password=密码
 
 ## [Nginx](./depend/nginx)
 
-nginx做反向代理
+nginx 做反向代理
 
 ## [AI](./depend/ai)
 
@@ -68,7 +68,7 @@ nginx做反向代理
 
 <!-- ### [Ollama](./depend/ollama)可选 -->
 
-## 下载 [server](https://www.weiyuai.cn/download/server.zip)
+## 下载 [server](https://www.weiyuai.cn/download/weiyu-server.zip)
 
 ```bash
 # 更多下载: https://www.weiyuai.cn/download

@@ -8,13 +8,13 @@ sidebar_position: 4
 :::tip
 
 - 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置2核4G内存，推荐配置4核8G内存。如果本地运行Ollama，则最低8G内存起
+- 服务器最低配置 2 核 4G 内存，推荐配置 4 核 8G 内存。如果本地运行 Ollama，则最低 8G 内存起
 
 :::
 
 ## 安装
 
-``` bash
+```bash
 sudo apt update
 sudo apt install nginx
 # 查看是否安装成功
@@ -50,7 +50,7 @@ service nginx restart
 
 ## 准备
 
-- 将下载的 [server](https://www.weiyuai.cn/download/server.zip) 文件解压，解压后的文件结构如下
+- 将下载的 [server](https://www.weiyuai.cn/download/weiyu-server.zip) 文件解压，解压后的文件结构如下
 
 ```bash
 (base) server % tree -L 1
@@ -80,13 +80,13 @@ service nginx restart
 
 ```json
 {
-    "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-    "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
-    "htmlHost": "www.weiyuai.cn" // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
+  "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
+  "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
+  "htmlHost": "www.weiyuai.cn" // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
 }
 ```
 
-- enabled 字段为是否启用自定义服务器地址，默认为false。这里需要将 false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
+- enabled 字段为是否启用自定义服务器地址，默认为 false。这里需要将 false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
 - apiHost 字段为 api 地址，默认为：api.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
 - htmlHost 字段为静态网页地址，默认为：www.weiyuai.cn。请替换为自己的域名，不能够以 http 开头
 
@@ -97,7 +97,7 @@ service nginx restart
 mkdir -p /var/www/html/nginx/cache/webserver
 ```
 
-可直接拷贝到nginx.conf中，路径 /etc/nginx/nginx.conf
+可直接拷贝到 nginx.conf 中，路径 /etc/nginx/nginx.conf
 
 ```conf
 # nginx.conf 模板
@@ -216,9 +216,9 @@ stream {
 mkdir -p /var/www/html/weiyuai/download
 ```
 
-- 如需https访问，需要提前准备证书，并修改此配置。参考[ssl证书](./letsencrypt.md)
-- 可直接拷贝到sites-available/default中，路径 /etc/nginx/sites-available/default
-- 注意替换其中的域名和ip地址，以及相关路径
+- 如需 https 访问，需要提前准备证书，并修改此配置。参考[ssl 证书](./letsencrypt.md)
+- 可直接拷贝到 sites-available/default 中，路径 /etc/nginx/sites-available/default
+- 注意替换其中的域名和 ip 地址，以及相关路径
 
 ```conf
 # 2024-03-12 weiyuai.cn
@@ -271,7 +271,7 @@ server {
     location @springboot {
         # 将nginx所有请求均跳转到9003端口
         proxy_pass http://weiyuai;
-        
+
         # 为记录真实ip地址，而不是反向代理服务器地址
         proxy_set_header  Host            $host;
         #  X-Real-IP 让日志的IP显示真实的客户端的IP
@@ -322,7 +322,7 @@ server {
         proxy_max_temp_file_size 4048M;
         proxy_send_timeout 600; #后端服务器数据回传时间(代理发送超时)
         proxy_read_timeout 600; #连接成功后，后端服务器响应时间(代理接收超时)
-        
+
         #符合条件，直接下载
         if ($request_filename ~* ^.*?\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$){
             add_header Content-Disposition attachment;
@@ -461,7 +461,7 @@ server {
         proxy_max_temp_file_size 4048M;
         proxy_send_timeout 600; #后端服务器数据回传时间(代理发送超时)
         proxy_read_timeout 600; #连接成功后，后端服务器响应时间(代理接收超时)
-        
+
         #符合条件，直接下载
         if ($request_filename ~* ^.*?\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$){
             add_header Content-Disposition attachment;
@@ -507,11 +507,11 @@ redis：6379
 9885
 ```
 
-## TCP连接数修改（可选）
+## TCP 连接数修改（可选）
 
 ```bash
 # 查看Linux系统用户最大打开的文件限制
-ulimit -n 
+ulimit -n
 # 65535
 # 修改打开文件限制
 vi /etc/security/limits.conf
@@ -539,5 +539,5 @@ cd /var/log/nginx
 ## 参考
 
 - [letsencrypt](https://letsencrypt.org/)
-- [LetsEncrypt通配符证书](https://www.jianshu.com/p/c5c9d071e395)
+- [LetsEncrypt 通配符证书](https://www.jianshu.com/p/c5c9d071e395)
 - [Ubuntu /etc/security/limits.conf 不生效问题](https://www.cnblogs.com/xiao987334176/p/11008812.html)
