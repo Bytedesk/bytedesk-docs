@@ -14,12 +14,13 @@ sidebar_label: "费用相关"
 ## 收费标准
 
 - 授权修改’微语‘及 Logo： 1w
-- [Web 管理后台源码](https://www.weiyuai.cn/download/weiyu-server.zip)（技术栈：react+typescript+antd）： 3w
-- 桌面客户端源码（技术栈：electron+react+typescript+antd，支持：web/windows/mac/linux）： 3w, [windows](https://www.weiyuai.cn/download/weiyu-windows.exe), [macOS](https://www.weiyuai.cn/download/weiyu-mac.dmg), [linux](https://www.weiyuai.cn/download/weiyu-linux.AppImage)
-- 手机客户端源码（技术栈：flutter，支持：android/ios）： 3w, [android](https://www.weiyuai.cn/download/weiyu-android.apk), [ios](https://apps.apple.com/cn/app/%E5%BE%AE%E8%AF%AD/id6470106586)
+- 服务器基本功能开源免费, [码云](https://gitee.com/270580156/weiyu.im),[github](https://github.com/Bytedesk/bytedesk)
+- 服务器高级功能，如：数据统计、敏感词、会话转接、自动回复、满意度、质检等，3w
+- Web 管理后台源码（技术栈：react+typescript+antd）： 3w，[下载](https://www.weiyuai.cn/download/weiyu-server.zip)
+- 桌面客户端源码（技术栈：electron+react+typescript+antd，支持：web/[windows](https://www.weiyuai.cn/download/weiyu-windows.exe)/[macOS](https://www.weiyuai.cn/download/weiyu-mac.dmg)/[linux](https://www.weiyuai.cn/download/weiyu-linux.AppImage)）： 3w
+- 手机客户端源码（技术栈：flutter，支持：[android](https://www.weiyuai.cn/download/weiyu-android.apk)/[ios](https://apps.apple.com/cn/app/%E5%BE%AE%E8%AF%AD/id6470106586)）： 3w
 - [全部下载](https://www.weiyuai.cn/download)
-- 定制按 2500 人/天 计算
-- [联系](/img/wechat.png)
+- 如有定制需求，请[联系微信](/img/wechat.png)，发送您的需求，评估开发周期/定价
 
 ## 其他
 
@@ -29,3 +30,4 @@ sidebar_label: "费用相关"
 - 此软件可能存在 bug 或不完善的地方，如造成损失，需自行负责
 - 严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务，否则我司将暂停或终止其服务，并协助有关行政机关等进行追索和查处
 <!-- - <img src="/img/wechat.png" width="150"></img> -->
+<!-- - 定制按 2500 人/天 计算 -->
