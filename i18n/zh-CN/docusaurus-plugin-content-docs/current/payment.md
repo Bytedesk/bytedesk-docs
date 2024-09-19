@@ -13,7 +13,7 @@ sidebar_label: "费用相关"
 
 ## 收费标准
 
-- 授权修改’微语‘及 Logo： 1w
+- 保留logo的前提下，可以免费安装使用，不收取任何费用。授权修改’微语‘及 Logo： 1w
 - 服务器基本功能开源免费, [码云](https://gitee.com/270580156/weiyu.im),[github](https://github.com/Bytedesk/bytedesk)
 - 服务器高级功能，如：数据统计、敏感词、会话转接、自动回复、满意度、质检等，3w
 - Web 管理后台源码（技术栈：react+typescript+antd）： 3w，[下载](https://www.weiyuai.cn/download/weiyu-server.zip)
