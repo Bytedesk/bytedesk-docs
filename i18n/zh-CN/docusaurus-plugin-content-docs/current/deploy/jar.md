@@ -56,11 +56,11 @@ spring.data.redis.password=密码
 
 ## [Nginx](./depend/nginx)
 
-nginx 做反向代理
+本地部署可不需要，仅在生产环境推荐安装nginx，nginx做反向代理，
 
 ## [AI](./depend/ai)
 
-对话大模型
+对话大模型，AI server跟im server是分离的，通过redis进行数据交互
 
 ```bash
 下载地址： https://github.com/Bytedesk/bytedesk-ai
@@ -68,12 +68,12 @@ nginx 做反向代理
 
 <!-- ### [Ollama](./depend/ollama)可选 -->
 
-## 下载 [server](https://www.weiyuai.cn/download/weiyu-server.zip)
+## 下载 [im server](https://www.weiyuai.cn/download/weiyu-server.zip)
 
 ```bash
 # 更多下载: https://www.weiyuai.cn/download
 # 解压
-unzip server.zip
+unzip weiyu-server.zip
 ```
 
 ## 配置
