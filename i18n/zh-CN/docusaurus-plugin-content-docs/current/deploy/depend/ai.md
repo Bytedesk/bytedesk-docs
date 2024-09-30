@@ -55,7 +55,7 @@ mkdir files
 # source .venv/bin/activate
 poetry install --no-root
 # 前台启动，仅用于测试，Ctrl+C 停止
-# http://127.0.0.1:9007/
+# http://127.0.0.1:9008/
 # python main.py
 # 后台运行
 # nohup python main.py > output.log 2>&1 &

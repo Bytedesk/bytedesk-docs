@@ -108,7 +108,7 @@ user www-data;
 # user root;
 worker_processes auto;
 pid /run/nginx.pid;
-# https://blog.csdn.net/liupeifeng3514/article/details/79007079
+# https://blog.csdn.net/liupeifeng3514/article/details/79008079
 # 报错500: nginx too many open files
 worker_rlimit_nofile 65535;
 

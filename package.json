@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "docusaurus start --port 9005",
-    "start-cn": "docusaurus start --port 9005 --locale zh-CN",
-    "start-tw": "docusaurus start --port 9005 --locale zh-TW",
+    "start": "docusaurus start --port 9008",
+    "start-cn": "docusaurus start --port 9008 --locale zh-CN",
+    "start-tw": "docusaurus start --port 9008 --locale zh-TW",
     "build": "docusaurus build",
     "release": "sh cicd/scripts/release.sh",
     "swizzle": "docusaurus swizzle",
