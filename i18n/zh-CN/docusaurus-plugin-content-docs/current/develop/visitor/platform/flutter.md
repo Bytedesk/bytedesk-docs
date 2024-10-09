@@ -30,6 +30,11 @@ sidebar_position: 6
 <!-- - 提交工单 -->
 <!-- - 意见反馈 -->
 
+## Demo 下载
+
+- [Gitee Demo](https://gitee.com/270580156/bytedesk-flutter)
+- [Github Demo](https://github.com/Bytedesk/bytedesk-flutter)
+
 ## 集成步骤
 
 ### 第一步
@@ -65,13 +70,13 @@ BytedeskKefu.init(orgUid);
 - 获取技能组workGroupWid：登录后台->客服管理->技能组->唯一wid
 - BytedeskKefu.startWorkGroupChat(context, workGroupWid, "技能组客服wid");
 
-### 集成完毕
+<!-- ### 集成完毕
 
 | image1 | image2 | image3 |
 | :----------: | :----------: | :----------: |
 | <img src="./images/home.jpeg" width="250"> | <img src="./images/robot1.jpeg" width="250"> | <img src="./images/robot2.jpeg" width="250"> |
 | <img src="./images/chat.png" width="250"> | <img src="./images/shop.png" width="250"> |<img src="./images/postscript.png" width="250"> |
-| <img src="./images/feedback.png" width="250"> |<img src="./images/faq.png" width="250"> |<img src="./images/notice.jpeg" width="250"> |
+| <img src="./images/feedback.png" width="250"> |<img src="./images/faq.png" width="250"> |<img src="./images/notice.jpeg" width="250"> | -->
 
 ## 以下步骤为非必须步骤，开发者可根据需要调用
 
