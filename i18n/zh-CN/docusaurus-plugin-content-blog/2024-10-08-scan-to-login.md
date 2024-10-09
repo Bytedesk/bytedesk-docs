@@ -1,11 +1,13 @@
 ---
-sidebar_label: 扫码登录
-sidebar_position: 5
+slug: scan-to-login
+title: 扫码登录实现流程
+authors:
+  name: Jack Ning
+  title: Maintainer of Bytedesk
+  url: https://github.com/pengjinning
+  image_url: https://www.kefux.com/assets/img/qrcode/qiye.png
+tags: [developer, bytedesk]
 ---
-
-# 扫码登录
-
-记录下扫码登录实现流程
 
 - 桌面客户端生成唯一设备uid：deviceUid
 - 将此deviceUid发送给服务端，服务端返回随机码：randomCode
