@@ -6,7 +6,6 @@ sidebar_position: 6
 # Flutter
 
 - [pub.dev](https://pub.dev/packages/bytedesk_kefu)
-- [萝卜丝->请切换此分支](https://gitee.com/270580156/bytedesk-flutter/tree/luobosi/)
 
 ## 部分功能
 
