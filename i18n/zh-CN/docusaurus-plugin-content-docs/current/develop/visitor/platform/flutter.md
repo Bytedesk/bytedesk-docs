@@ -29,7 +29,7 @@ sidebar_position: 6
 <!-- - 提交工单 -->
 <!-- - 意见反馈 -->
 
-## Demo 下载
+## SDK源码及Demo下载
 
 - [Gitee Demo](https://gitee.com/270580156/bytedesk-flutter)
 - [Github Demo](https://github.com/Bytedesk/bytedesk-flutter)

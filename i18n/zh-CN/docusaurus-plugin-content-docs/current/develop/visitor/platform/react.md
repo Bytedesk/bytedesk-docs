@@ -17,7 +17,7 @@ sidebar_position: 2
 - 支持消息撤回
 - 对接第三方账号系统/多用户切换
 
-## Demo 下载
+## SDK源码及Demo下载
 
 - [Gitee Demo](https://gitee.com/270580156/bytedesk-react)
 - [Github Demo](https://github.com/Bytedesk/bytedesk-react)

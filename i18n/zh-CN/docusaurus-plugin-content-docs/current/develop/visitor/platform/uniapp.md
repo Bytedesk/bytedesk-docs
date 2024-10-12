@@ -22,7 +22,7 @@ sidebar_position: 3
 <!-- - 未读消息数查询接口 -->
 <!-- - 支持视频客服 -->
 
-## Demo 下载
+## SDK源码及Demo下载
 
 - bytedesk_demo_vue2 和 bytedesk_demo_vue3 的分别是vue2和vue3的demo，请选择其中一个即可
 - [Gitee Demo](https://gitee.com/270580156/bytedesk-uniapp)

@@ -3,7 +3,7 @@ sidebar_label: Android
 sidebar_position: 5
 ---
 
-# 微语 Android SDK
+# Android
 
 ## 部分功能
 
@@ -17,7 +17,7 @@ sidebar_position: 5
 - 支持消息撤回
 - 对接第三方账号系统/多用户切换
 
-## Demo 下载
+## SDK Demo 下载
 
 - [Gitee Demo](https://gitee.com/270580156/bytedesk-android)
 - [Github Demo](https://github.com/Bytedesk/bytedesk-android)

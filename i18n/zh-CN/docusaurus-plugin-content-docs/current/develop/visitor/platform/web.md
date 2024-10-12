@@ -1,9 +1,9 @@
 ---
-sidebar_label: Web
+sidebar_label: Web/H5
 sidebar_position: 1
 ---
 
-# Web
+# Web/H5
 
 首先登录[管理后台](https://www.weiyuai.cn/admin)，然后参考下面截图获取相关代码。
 
