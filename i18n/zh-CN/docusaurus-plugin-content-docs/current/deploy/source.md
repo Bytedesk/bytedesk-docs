@@ -79,11 +79,11 @@ mvn spring-boot:run
 ## 本地预览
 
 ```bash
-开发者入口: http://127.0.0.1:9003/dev
 web: http://127.0.0.1:9003/
+开发者入口: http://127.0.0.1:9003/dev
 管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
-客服端: http://127.0.0.1:9003/agent, 用户名: admin@email.com, 密码: admin
-访客: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
+客户端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
+访客端: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
 api文档: http://127.0.0.1:9003/swagger-ui/index.html
 actuator: http://127.0.0.1:9003/actuator
 ```
