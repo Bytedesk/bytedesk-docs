@@ -43,7 +43,8 @@ sidebar_position: 5
 {
   "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
   "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
-  "htmlHost": "www.weiyuai.cn" // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
+  "htmlHost": "www.weiyuai.cn", // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
+  "protocol": "https" // 自定义协议，默认为 https，也可以改为 http
 }
 ```
 
