@@ -25,14 +25,39 @@ sidebar_position: 1
 - 同事对话
 - 群组管理
 
-### 2. 人工客服 + AI
+### 2. 在线客服
 
-- 基于大模型 LLM && RAG 的智能客服
+- 人工客服
+- AI智能客服，基于大模型LLM && RAG
 - 支持多渠道：
-  - 平台渠道：Web/H5/React/Android/iOS/Uniapp/Flutter、
-  - 社交渠道：微信公众号/小程序/企业微信/小红书/抖音/快手/百度/微博/知乎、
-  - 电商渠道：淘宝/天猫/京东/千牛/抖店
-  - 海外渠道：Facebook/Instagram//Whatsapp/Line
+  - [平台渠道](category/平台渠道)：
+    - [Web/H5](develop/visitor/platform/web)
+    - [React](develop/visitor/platform/react)
+    - [Android](develop/visitor/platform/android)
+    - [iOS](develop/visitor/platform/ios)
+    - [Uniapp](develop/visitor/platform/uniapp)
+    - [Flutter](develop/visitor/platform/flutter)
+  - [社交渠道](category/社交渠道)
+    - 微信公众号
+    - 小程序
+    - 企业微信
+    - 小红书
+    - 抖音
+    - 快手
+    - 百度
+    - 微博
+    - 知乎
+  - [电商渠道](category/电商渠道)
+    - 淘宝
+    - 天猫
+    - 京东
+    - 千牛
+    - 抖店
+  - [海外渠道](category/海外渠道)
+    - Facebook
+    - Instagram
+    - Whatsapp
+    - Line
 - 多种路由策略、
 - 详细考核指标
 - 坐席工作台、
@@ -46,7 +71,6 @@ sidebar_position: 1
 - 敏感词、
 - CRM、
 - 报表功能，
-- 为客户提供一体化客服工作台服务
 
 ### 3. AI助手
 
