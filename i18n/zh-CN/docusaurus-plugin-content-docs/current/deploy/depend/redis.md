@@ -12,6 +12,10 @@ sidebar_position: 2
 
 :::
 
+:::warning
+因AI知识库问答用到向量搜索，需要安装redis-stack-server，而不是普通redis，否则无法正常使用AI知识库问答
+:::
+
 ### 参考[redis官方安装说明](https://redis.io/docs/install/install-stack/docker/)
 
 ### Docker方式安装
