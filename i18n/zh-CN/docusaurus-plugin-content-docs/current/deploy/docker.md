@@ -14,7 +14,7 @@ sidebar_position: 3
 
 ## 安装[Docker](./depend/docker)
 
-### 创建docker-compose.yaml文件
+## 创建docker-compose.yaml文件
 
 内容如下:
 
@@ -56,7 +56,7 @@ services:
       - 9003:9003
 ```
 
-### 拉取镜像并启动容器
+## 拉取镜像并启动容器
 
 ```bash
 # 从阿里云拉取镜像
@@ -65,4 +65,17 @@ docker pull registry.cn-hangzhou.aliyuncs.com/weiyuai/bytedesk:0.4.6
 docker compose -f docker-compose.yaml up -d
 # 停止容器
 docker compose -f docker-compose.yaml stop
+```
+
+## 本地预览
+
+```bash
+web: http://127.0.0.1:9003/
+开发者入口: http://127.0.0.1:9003/dev
+管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
+客户端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
+访客端: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
+api文档: http://127.0.0.1:9003/swagger-ui/index.html
+数据库监控: http://127.0.0.1:9003/druid，用户名: admin@email.com, 密码: admin
+actuator: http://127.0.0.1:9003/actuator
 ```

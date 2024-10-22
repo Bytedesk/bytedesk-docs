@@ -8,7 +8,7 @@ sidebar_position: 1
 :::tip
 
 - 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置 2 核 4G 内存，推荐配置 4 核 8G 内存。如果本地运行 Ollama，则最低 8G 内存起
+- 服务器最低配置 2 核 4G 内存，推荐配置 4 核 8G 内存。
 
 :::
 
@@ -60,7 +60,7 @@ spring.data.redis.password=密码
 
 ## [AI](./depend/ai)
 
-对话大模型，AI server跟im server是分离的，通过redis进行数据交互
+可选，仅用于知识库对话，可跳过
 
 ```bash
 下载地址： https://github.com/Bytedesk/bytedesk-ai
@@ -118,5 +118,6 @@ web: http://127.0.0.1:9003/
 客服端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
 访客: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
 api文档: http://127.0.0.1:9003/swagger-ui/index.html
+数据库监控: http://127.0.0.1:9003/druid，用户名: admin@email.com, 密码: admin
 actuator: http://127.0.0.1:9003/actuator
 ```
