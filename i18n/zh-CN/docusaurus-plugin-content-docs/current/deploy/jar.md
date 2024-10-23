@@ -60,7 +60,7 @@ spring.data.redis.password=密码
 
 ## [AI](./depend/ai)
 
-可选，仅用于知识库对话，可跳过
+可选，仅用于知识库对话，可跳过。如果仅仅是对话大模型，则直接在配置文件里面填写智谱AI的key就行
 
 ```bash
 下载地址： https://github.com/Bytedesk/bytedesk-ai
