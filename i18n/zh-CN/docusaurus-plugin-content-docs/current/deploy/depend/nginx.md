@@ -95,7 +95,7 @@ service nginx restart
 
 在nginx.conf文件中http模块添加如下内容：
 
-```conf
+```bash
 #...
 http {
     ##...
@@ -147,25 +147,6 @@ server {
         try_files $uri $uri/ /index.html; # 这里应该指向根目录的index.html，而不是特定路径下的index.html
     }
 
-    # 下载文件，不需要修改owner，修改了也没用，只需要修改nginx.conf的user为root即可
-    location /download/ {
-        # alias /root/weiyuai/download/;
-        alias /var/www/html/weiyuai/download/;
-        autoindex on;
-        autoindex_format html; #以html风格将目录展示在浏览器中
-        autoindex_exact_size off; #切换为 off 后，以可读的方式显示文件大小，单位为 KB、MB 或者 GB
-        autoindex_localtime on; #以服务器的文件时间作为显示的时间
-        client_max_body_size 4048M;
-        proxy_max_temp_file_size 4048M;
-        proxy_send_timeout 600; #后端服务器数据回传时间(代理发送超时)
-        proxy_read_timeout 600; #连接成功后，后端服务器响应时间(代理接收超时)
-        
-        #符合条件，直接下载
-        if ($request_filename ~* ^.*?\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$){
-            add_header Content-Disposition attachment;
-        }
-    }
-
     # 如果需要为每个子路径提供特定的index.html，您可以添加额外的location块
     location /admin/ {
         try_files $uri $uri/ /admin/index.html;
@@ -181,16 +162,6 @@ server {
 
     location /frame/ {
         try_files $uri $uri/ /chat/index.html;
-    }
-
-    location /docs/ {
-        try_files $uri $uri/ /docs/index.html;
-    }
-
-    # 添加或修改以下location块，支持.php文件
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;  # 假设你使用的是PHP 7.4版本
     }
 }
 ```
@@ -221,26 +192,6 @@ server {
         try_files $uri $uri/ /index.html; # 这里应该指向根目录的index.html，而不是特定路径下的index.html
     }
 
-    # 下载文件，不需要修改owner，修改了也没用，只需要修改nginx.conf的user为root即可
-    # sudo chown -R www-data:www-data /root/weiyuai/download/
-    location /download/ {
-        # alias /root/weiyuai/download/;
-        alias /var/www/html/weiyuai/download/;
-        autoindex on;
-        autoindex_format html; #以html风格将目录展示在浏览器中
-        autoindex_exact_size off; #切换为 off 后，以可读的方式显示文件大小，单位为 KB、MB 或者 GB
-        autoindex_localtime on; #以服务器的文件时间作为显示的时间
-        client_max_body_size 4048M;
-        proxy_max_temp_file_size 4048M;
-        proxy_send_timeout 600; #后端服务器数据回传时间(代理发送超时)
-        proxy_read_timeout 600; #连接成功后，后端服务器响应时间(代理接收超时)
-        
-        #符合条件，直接下载
-        if ($request_filename ~* ^.*?\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$){
-            add_header Content-Disposition attachment;
-        }
-    }
-
     # 如果需要为每个子路径提供特定的index.html，您可以添加额外的location块
     location /admin/ {
         try_files $uri $uri/ /admin/index.html;
@@ -261,18 +212,12 @@ server {
     location /docs/ {
         try_files $uri $uri/ /docs/index.html;
     }
-
-    # 添加或修改以下location块，支持.php文件
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;  # 假设你使用的是PHP 7.4版本
-    }
 }
 ```
 
 ### weiyuai_cn_api_80.conf
 
-- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
+- 需要修将 server_name api.weiyuai.cn; 改为自己的域名或者IP地址
 
 ```bash
 # weiyuai_cn_api_80.conf内容
@@ -350,7 +295,7 @@ server {
 ### weiyuai_cn_api_443.conf
 
 - 可选，仅有启用ssl的情况下需要
-- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
+- 需要修将 server_name api.weiyuai.cn; 改为自己的域名或者IP地址
 - 443端口配置，需要ssl证书，这里使用的是Let's Encrypt的免费SSL证书
 - 需要修改ssl证书的路径
 
