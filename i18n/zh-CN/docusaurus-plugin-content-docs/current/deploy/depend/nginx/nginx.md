@@ -2,7 +2,7 @@
  * @Author: jackning 270580156@qq.com
  * @Date: 2024-06-19 22:51:02
  * @LastEditors: jackning 270580156@qq.com
- * @LastEditTime: 2024-06-19 23:16:09
+ * @LastEditTime: 2024-10-24 09:48:21
  * @Description: bytedesk.com https://github.com/Bytedesk/bytedesk
  *   Please be aware of the BSL license restrictions before installing Bytedesk IM – 
  *  selling, reselling, or hosting Bytedesk IM as a service is a breach of the terms and automatically terminates your rights under the license. 
@@ -31,6 +31,10 @@ netstat -ntlp
 # systemctl restart nginx
 # 重新加载：
 # service nginx force-reload
+# 测试 Nginx 配置文件，确保所做的修改没有错误
+# sudo nginx -t
+# 如果没有错误，运行以下命令让 Nginx 重新载入修改后的配置文件
+# sudo nginx -s reload
 ```
 
 ```bash
@@ -47,15 +51,47 @@ mysql：3306
 redis：6379
 # spring boot 端口：
 9003
-9883
+# 9883
 9885
 ```
 
 ## 配置
 
 ``` bash
+# 如果下载文件报错：
+ open() "/root/weiyuai/uploader/20240821080529_weiyuai.exe" failed (13: Permission denied),
+# 修改 nginx.conf 的 
+# user www-data;
+# 为
+# user root;
+# 然后重启
+# 查看nginx进程
+ps -aux | grep nginx
 # 将 nginx.conf和sites-available文件夹，直接上传到/etc/nginx/目录下覆盖原有文件
 # 重新加载配置文件
 nginx -s reload
 # 或者 重启nginx
+service nginx restart
+sudo systemctl restart nginx
+```
+
+```bash
+# 创建软连接
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_80.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_443.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_80.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_443.conf /etc/nginx/sites-enabled/
+# 删除软连接
+sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_80.conf
+sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_443.conf
+sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_api_80.conf
+sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_api_443.conf
+# 
+sudo unlink /etc/nginx/sites-enabled/default
+# 查看软连接
+ls -l /etc/nginx/sites-enabled/
+# 重新加载nginx配置
+sudo nginx -s reload
+# 或
+sudo systemctl reload nginx
 ```

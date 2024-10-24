@@ -93,91 +93,14 @@ service nginx restart
 
 ## nginx.conf
 
-```bash
-# 创建缓存文件夹，在nginx.conf文件中用到
-mkdir -p /var/www/html/nginx/cache/webserver
-```
-
-可直接拷贝到 nginx.conf 中，路径 /etc/nginx/nginx.conf
+在nginx.conf文件中http模块添加如下内容：
 
 ```conf
-# nginx.conf 模板
-# 记得添加，否则会报错：unknown directive "stream" in /etc/nginx/nginx.conf
-load_module /usr/lib/nginx/modules/ngx_stream_module.so;
-#
-user www-data;
-# user root;
-worker_processes auto;
-pid /run/nginx.pid;
-# https://blog.csdn.net/liupeifeng3514/article/details/79008079
-# 报错500: nginx too many open files
-worker_rlimit_nofile 65535;
-
-events {
-    use epoll;
-    worker_connections 65535;
-    accept_mutex off;
-    multi_accept on;
-}
-
+#...
 http {
-    ##
-    # Basic Settings
-    ##
-    sendfile on;
-    tcp_nopush on;
-    tcp_nodelay on;
-    keepalive_timeout 65;
-    types_hash_max_size 2048;
-    # server_tokens off;
-
-    # server_names_hash_bucket_size 64;
-    # server_name_in_redirect off;
-
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-    # 禁止ip黑名单访问服务器
-    # include blackip.conf;
-
-    ##
-    # SSL Settings
-    ##
-    ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
-    ssl_prefer_server_ciphers on;
-
-    ##
-    # Logging Settings
-    ##
-    access_log /var/log/nginx/access.log;
-    error_log /var/log/nginx/error.log;
-
-    ##
-    # Gzip Settings
-    ##
-
-    gzip on;
-    gzip_disable "msie6";
-
-    # gzip_vary on;
-    # gzip_proxied any;
-    # gzip_comp_level 6;
-    # gzip_buffers 16 8k;
-    # gzip_http_version 1.1;
-    # gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
-
-    ##
-    # Virtual Host Configs
-    ##
-    ## http://blog.51cto.com/freeloda/1288553
-    ## 设置缓存
-    ## 注意：要放在/var/www/html目录下，否则会permission denied
-    ## mkdir -p /var/www/html/nginx/cache/webserver
-    proxy_cache_path /var/www/html/nginx/cache/webserver levels=1:2 keys_zone=webserver:20m max_size=1g;
-    # use_temp_path=off;
-    # nginx 出现413 Request Entity Too Large问题的解决方法
-    client_max_body_size 1024m;
-
-    ## 负载均衡
+    ##...
+    
+    ## restapi-负载均衡
     upstream weiyuai {
         # round_robin; # 默认，轮流分配
         ip_hash; # 同一个ip访问同一台服务器, 这样来自同一个IP的访客固定访问一个后端服务器
@@ -186,6 +109,7 @@ http {
         server 127.0.0.1:9003 weight=2 max_fails=10 fail_timeout=60s;
     }
 
+    # websocket-负载均衡
     upstream weiyuaiwss {
         # round_robin; # 默认，轮流分配
         ip_hash; # 同一个ip访问同一台服务器, 这样来自同一个IP的访客固定访问一个后端服务器
@@ -197,113 +121,25 @@ http {
     include /etc/nginx/conf.d/*.conf;
     include /etc/nginx/sites-enabled/*;
 }
-
-# 配置tcp ssl代理
-stream {
-    #tcp
-    upstream weiyuaitcp {
-        # 不能使用，否则无法启动nginx
-        #ip_hash; # 同一个ip访问同一台服务器
-        # server 172.16.81.2:9883     weight=2 max_fails=10 fail_timeout=60s;
-        server 127.0.0.1:9883 weight=2 max_fails=10 fail_timeout=60s;
-    }
-}
 ```
 
-## sites-available/default
+## sites-available
+
+在sites-available文件夹下创建4个文件，如下：
+
+### weiyuai_cn_80.conf
+
+- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
 
 ```bash
-# 创建目录
-mkdir -p /var/www/html/weiyuai/download
-```
-
-- 如需 https 访问，需要提前准备证书，并修改此配置。参考[ssl 证书](./letsencrypt.md)
-- 可直接拷贝到 sites-available/default 中，路径 /etc/nginx/sites-available/default
-- 注意替换其中的域名和 ip 地址，以及相关路径
-
-```conf
-# 2024-03-12 weiyuai.cn
+# weiyuai_cn_80.conf内容
 server {
     listen 80;
     listen [::]:80;
 
-    # 注意：提前创建此目录路径
     root /var/www/html/weiyuai/;
-    index index.html index.htm index.nginx-debian.html;
+    index index.html index.htm index.nginx-debian.html index.php;
 
-    # 注意：这里需要替换域名
-    server_name api.weiyuai.cn;
-
-    ## 反向代理
-    # https代理stomp连接
-    location /stomp {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_pass http://weiyuai/stomp;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-    }
-
-    ## 反向代理
-    # https代理websocket连接
-    location /websocket {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_pass http://weiyuaiwss/websocket;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-    }
-
-    #增加两头部
-    add_header X-Via $server_addr;
-    add_header X-Cache $upstream_cache_status;
-
-    ## 反向代理
-    location @springboot {
-        # 将nginx所有请求均跳转到9003端口
-        proxy_pass http://weiyuai;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        #  X-Real-IP 让日志的IP显示真实的客户端的IP
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-
-        # 设置缓存
-        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
-        #proxy_cache webserver;
-        # proxy_cache_valid  200 302  10m;
-        proxy_cache_valid  404      10m;
-    }
-
-    location / {
-        # First attempt to serve request as file, then
-        # as directory, then fall back to displaying a 404.
-        # try_files $uri $uri/ =404;
-        try_files $uri $uri/ @springboot;
-    }
-}
-
-server {
-    listen 80;
-    listen [::]:80;
-
-    # 注意：提前创建该目录
-    root /var/www/html/weiyuai/;
-    index index.html index.htm index.nginx-debian.html;
-
-    # 注意：修改为自己的域名
     server_name weiyuai.cn *.weiyuai.cn;
 
     location / {
@@ -323,7 +159,7 @@ server {
         proxy_max_temp_file_size 4048M;
         proxy_send_timeout 600; #后端服务器数据回传时间(代理发送超时)
         proxy_read_timeout 600; #连接成功后，后端服务器响应时间(代理接收超时)
-
+        
         #符合条件，直接下载
         if ($request_filename ~* ^.*?\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$){
             add_header Content-Disposition attachment;
@@ -350,101 +186,37 @@ server {
     location /docs/ {
         try_files $uri $uri/ /docs/index.html;
     }
-}
 
-server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-
-    # 注意：修改为自己的证书路径和私钥路径
-    ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # managed by Certbot
-
-    # 注意：修改为自己的域名
-    server_name api.weiyuai.cn;
-
-    # 注意：修改为自己的根目录或创建此目录
-    root /var/www/html/weiyuai;
-    index index.html index.htm index.nginx-debian.html;
-
-    ## 反向代理
-    # https代理stomp连接
-    location /stomp {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_pass http://weiyuai/stomp;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-    }
-
-    ## 反向代理
-    # https代理websocket连接
-    location /websocket {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_pass http://weiyuaiwss/websocket;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-    }
-
-    #增加两头部
-    add_header X-Via $server_addr;
-    add_header X-Cache $upstream_cache_status;
-
-    ## 反向代理
-    location @springboot {
-        # 将nginx所有请求均跳转到9003端口
-        proxy_pass http://weiyuai;
-
-        # add_header Access-Control-Allow-Origin *; # 报错，不能添加，需要在spring boot中去掉相应的origin
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        #  X-Real-IP 让日志的IP显示真实的客户端的IP
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-
-        # 设置缓存
-        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
-        #proxy_cache webserver;
-        #proxy_cache_valid  200 302  10m;
-        proxy_cache_valid  404      10m;
-    }
-
-    location / {
-            # First attempt to serve request as file, then
-    # as directory, then fall back to displaying a 404.
-    # try_files $uri $uri/ =404;
-    try_files $uri $uri/ @springboot;
+    # 添加或修改以下location块，支持.php文件
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;  # 假设你使用的是PHP 7.4版本
     }
 }
+```
 
+### weiyuai_cn_443.conf
+
+- 可选，仅有启用ssl的情况下需要
+- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
+- 443端口配置，需要ssl证书，这里使用的是Let's Encrypt的免费SSL证书
+- 需要修改ssl证书的路径
+
+```bash
+# weiyuai_cn_443.conf内容
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
+	listen 443 ssl;
+	listen [::]:443 ssl;
 
-    # 注意：修改为自己的证书路径和私钥路径
-    ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
+	ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # managed by Certbot
 
-    # 注意：修改为自己的域名
-    server_name weiyuai.cn *.weiyuai.cn;
+	server_name weiyuai.cn *.weiyuai.cn;
 
-    # 注意：需要提前创建此路径，否则会报错
-    root /var/www/html/weiyuai;
-    index index.html index.htm index.nginx-debian.html;
+	root /var/www/html/weiyuai;
+	index index.html index.htm index.nginx-debian.html index.php;
 
-    location / {
+	location / {
         # 匹配所有路径，并尝试首先提供文件，然后目录，最后回退到index.html
         try_files $uri $uri/ /index.html; # 这里应该指向根目录的index.html，而不是特定路径下的index.html
     }
@@ -462,7 +234,7 @@ server {
         proxy_max_temp_file_size 4048M;
         proxy_send_timeout 600; #后端服务器数据回传时间(代理发送超时)
         proxy_read_timeout 600; #连接成功后，后端服务器响应时间(代理接收超时)
-
+        
         #符合条件，直接下载
         if ($request_filename ~* ^.*?\.(txt|doc|pdf|rar|gz|zip|docx|exe|xlsx|ppt|pptx)$){
             add_header Content-Disposition attachment;
@@ -490,7 +262,192 @@ server {
         try_files $uri $uri/ /docs/index.html;
     }
 
+    # 添加或修改以下location块，支持.php文件
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;  # 假设你使用的是PHP 7.4版本
+    }
 }
+```
+
+### weiyuai_cn_api_80.conf
+
+- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
+
+```bash
+# weiyuai_cn_api_80.conf内容
+server {
+	listen 80;
+	listen [::]:80;
+
+	root /var/www/html/weiyuai/;
+	index index.html index.htm index.nginx-debian.html;
+
+    server_name api.weiyuai.cn;
+
+    ## 反向代理
+    # https代理stomp连接
+    location /stomp {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://weiyuai/stomp;
+
+        # 为记录真实ip地址，而不是反向代理服务器地址
+        proxy_set_header  Host            $host;
+        proxy_set_header  X-Real-IP       $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        include           fastcgi_params;
+    }
+
+    ## 反向代理
+    # https代理websocket连接
+    location /websocket {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://weiyuaiwss/websocket;
+
+        # 为记录真实ip地址，而不是反向代理服务器地址
+        proxy_set_header  Host            $host;
+        proxy_set_header  X-Real-IP       $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        include           fastcgi_params;
+    }
+
+    #增加两头部
+    add_header X-Via $server_addr;
+    add_header X-Cache $upstream_cache_status;
+
+    ## 反向代理
+    location @springboot {
+		# 将nginx所有请求均跳转到9003端口
+        proxy_pass http://weiyuai;
+        
+        # 为记录真实ip地址，而不是反向代理服务器地址
+        proxy_set_header  Host            $host;
+        #  X-Real-IP 让日志的IP显示真实的客户端的IP
+        proxy_set_header  X-Real-IP       $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        include           fastcgi_params;
+
+        # 设置缓存
+        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
+        #proxy_cache webserver;
+        # proxy_cache_valid  200 302  10m;
+        proxy_cache_valid  404      10m;
+	}
+
+	location / {
+        # First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		# try_files $uri $uri/ =404;
+		try_files $uri $uri/ @springboot;
+	}
+}
+```
+
+### weiyuai_cn_api_443.conf
+
+- 可选，仅有启用ssl的情况下需要
+- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
+- 443端口配置，需要ssl证书，这里使用的是Let's Encrypt的免费SSL证书
+- 需要修改ssl证书的路径
+
+```bash
+# weiyuai_cn_api_443.conf内容
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+
+	ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # managed by Certbot
+
+	server_name api.weiyuai.cn;
+
+	root /var/www/html/weiyuai;
+	index index.html index.htm index.nginx-debian.html;
+
+    ## 反向代理
+    # https代理stomp连接
+    location /stomp {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://weiyuai/stomp;
+
+        # 为记录真实ip地址，而不是反向代理服务器地址
+        proxy_set_header  Host            $host;
+        proxy_set_header  X-Real-IP       $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        include           fastcgi_params;
+    }
+
+    ## 反向代理
+    # https代理websocket连接
+    location /websocket {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://weiyuaiwss/websocket;
+
+        # 为记录真实ip地址，而不是反向代理服务器地址
+        proxy_set_header  Host            $host;
+        proxy_set_header  X-Real-IP       $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        include           fastcgi_params;
+    }
+
+    #增加两头部
+    add_header X-Via $server_addr;
+    add_header X-Cache $upstream_cache_status;
+
+    ## 反向代理
+    location @springboot {
+		# 将nginx所有请求均跳转到9003端口
+        proxy_pass http://weiyuai;
+
+        # add_header Access-Control-Allow-Origin *; # 报错，不能添加，需要在spring boot中去掉相应的origin
+        # 为记录真实ip地址，而不是反向代理服务器地址
+        proxy_set_header  Host            $host;
+        #  X-Real-IP 让日志的IP显示真实的客户端的IP
+        proxy_set_header  X-Real-IP       $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        include           fastcgi_params;
+
+        # 设置缓存
+        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
+        #proxy_cache webserver;
+        #proxy_cache_valid  200 302  10m;
+        proxy_cache_valid  404      10m;
+	}
+
+	location / {
+        # First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		# try_files $uri $uri/ =404;
+		try_files $uri $uri/ @springboot;
+	}
+}
+```
+
+## 创建软链接
+
+```bash
+# 创建软连接
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_80.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_443.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_80.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_443.conf /etc/nginx/sites-enabled/
+```
+
+## 使配置生效
+
+```bash
+# 重新加载nginx配置
+sudo nginx -s reload
+# 或
+sudo systemctl reload nginx
 ```
 
 ## 对外开放端口
@@ -499,14 +456,16 @@ server {
 # 对外开放端口号
 http：80
 https：443
-# 另外
+# 可选，可不对外开放
 mysql：3306
 redis：6379
-# spring boot 端口：
-9003
-9883
-9885
+rest api：9003
+websocket：9885
 ```
+
+<!-- 
+
+-->
 
 ## TCP 连接数修改（可选）
 
