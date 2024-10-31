@@ -56,6 +56,14 @@ services:
       - 9003:9003
 ```
 
+## 创建docker.env文件
+
+内容如下:
+
+```bash
+REDIS_HOST_PASSWORD=qfRxz3tVT8Nh
+```
+
 ## 拉取镜像并启动容器
 
 ```bash
