@@ -68,7 +68,7 @@ REDIS_HOST_PASSWORD=qfRxz3tVT8Nh
 
 ```bash
 # 从阿里云拉取镜像
-docker pull registry.cn-hangzhou.aliyuncs.com/weiyuai/bytedesk:0.4.6
+docker pull registry.cn-hangzhou.aliyuncs.com/weiyuai/bytedesk:0.4.7
 # 启动docker compose容器, -f标志来指定文件路径, -d标志表示在后台模式下启动容器
 docker compose -f docker-compose.yaml up -d
 # 停止容器
