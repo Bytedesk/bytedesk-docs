@@ -57,7 +57,7 @@ sidebar_label: "费用相关"
 - Web管理后台（技术栈：react+typescript+antd）： 源码价格5w
 - 聊天Web/桌面客户端（技术栈：electron+react+typescript+antd），支持：[web](https://www.weiyuai.cn/agent)/[windows](https://www.weiyuai.cn/download/weiyu-windows.exe)/[macOS](https://www.weiyuai.cn/download/weiyu-mac.dmg)/[linux](https://www.weiyuai.cn/download/weiyu-linux.AppImage)）： 源码价格5w
 - 手机客户端（技术栈：flutter，支持：[android](https://www.weiyuai.cn/download/weiyu-android.apk)/[ios](https://apps.apple.com/cn/app/%E5%BE%AE%E8%AF%AD/id6470106586)）： 源码价格5w
-- 访客端（技术栈：react+typescript）： 源码价格2w
+- Web访客端（技术栈：react+typescript）： 源码价格2w
 - 如有定制需求，请[联系微信](/img/wechat.png)，发送您的需求，评估开发周期/定价
 
 ## 其他
