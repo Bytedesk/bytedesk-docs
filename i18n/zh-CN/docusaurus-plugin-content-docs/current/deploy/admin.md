@@ -49,5 +49,19 @@ sidebar_position: 4
 ```
 
 - enabled 字段为是否启用自定义服务器地址，默认为 false。这里需要将 false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-- apiHost 字段为 api 地址，默认为：api.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
-- htmlHost 字段为静态网页地址，默认为：www.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
+- apiHost 字段为 api 地址，默认为：api.weiyuai.cn，请替换为自己的域名，不能够以 http/https 开头
+- htmlHost 字段为静态网页地址，默认为：www.weiyuai.cn，请替换为自己的域名，不能够以 http/https 开头
+
+## 替换为ip实例
+
+- 将域名替换为ip
+- 将https替换为http
+
+```json
+{
+  "enabled": true,
+  "apiHost": "192.168.0.1",
+  "htmlHost": "192.168.0.1",
+  "protocol": "http"
+}
+```

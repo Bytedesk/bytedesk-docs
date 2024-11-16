@@ -91,6 +91,20 @@ service nginx restart
 - apiHost 字段为 api 地址，默认为：api.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
 - htmlHost 字段为静态网页地址，默认为：www.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
 
+## 替换为ip实例
+
+- 将域名替换为ip
+- 将https替换为http
+
+```json
+{
+  "enabled": true,
+  "apiHost": "192.168.0.1",
+  "htmlHost": "192.168.0.1",
+  "protocol": "http"
+}
+```
+
 ## nginx.conf
 
 在nginx.conf文件中http模块添加如下内容：
