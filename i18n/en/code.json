@@ -326,5 +326,35 @@
   "theme.unlistedContent.message": {
     "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
     "description": "The unlisted content banner message"
+  },
+  "homepage.feature.cs.title": {
+    "message": "Customer Service"
+  },
+  "homepage.feature.cs.description": {
+    "message": "OmniChannel Customer Service"
+  },
+  "homepage.feature.ai.title": {
+    "message": "AI Asistant"
+  },
+  "homepage.feature.ai.description": {
+    "message": "OmniChannel Customer Service"
+  },
+  "homepage.feature.kb.title": {
+    "message": "Knowledge Base"
+  },
+  "homepage.feature.kb.description": {
+    "message": "Knowledge Base"
+  },
+  "homepage.feature.helpcenter.title": {
+    "message": "Help Center"
+  },
+  "homepage.feature.helpcenter.description": {
+    "message": "Help Center"
+  },
+  "homepage.feature.ticket.title": {
+    "message": "Ticket System"
+  },
+  "homepage.feature.ticket.description": {
+    "message": "Ticket System"
   }
 }
