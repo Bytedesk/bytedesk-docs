@@ -30,7 +30,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "bytedesk", // Usually your GitHub org/user name.
-  projectName: "bytedesk", // Usually your repo name.
+  projectName: "bytedesk-docs", // Usually your repo name.
 
   onBrokenLinks: "warn",
   // onBrokenLinks: "warn",

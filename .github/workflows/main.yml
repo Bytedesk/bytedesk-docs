@@ -17,7 +17,7 @@ on:
 permissions:
   contents: write
   packages: write
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest # 运行环境
@@ -51,4 +51,17 @@ jobs:
           overwrite: true
           # 删除指定数量的前导路径元素
           # strip_components: 1
+          
+      # 创建GitHub Release
+      - name: 创建Release
+        uses: softprops/action-gh-release@v1
+        with:
+          # 使用标签名称作为Release标题
+          name: ${{ github.ref_name }}
+          # 是否为草稿版本
+          draft: false
+          # 是否为预发布版本
+          prerelease: false
+          # 可以自动生成Release说明
+          generate_release_notes: true
 
