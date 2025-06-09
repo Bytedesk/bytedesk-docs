@@ -6,13 +6,18 @@
 # SERVER_PASSWORD / Secret：服务器密码
 # SERVER_PORT / Secret：服务器端口
 
-name: mycicd
+name: bytedesk
 on:
   push:
-    # branches: main
-    # 打标签的时候触发
     tags:
-      - '*'
+      # v0.8.2
+      - 'v*' # 在推送的标签以"v"开头时执行
+
+# 添加权限配置，确保有足够权限创建release
+permissions:
+  contents: write
+  packages: write
+  
 jobs:
   build:
     runs-on: ubuntu-latest # 运行环境
