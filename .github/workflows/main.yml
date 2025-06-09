@@ -49,6 +49,10 @@ jobs:
           target: '/var/www/html/weiyuai/docs'
           # 解压时覆盖现有文件
           overwrite: true
+          # 设置较长的连接超时时间（单位：秒）
+          timeout: 120
+          # 设置较长的命令执行超时时间（单位：秒）
+          command_timeout: 60
           # 删除指定数量的前导路径元素
           # strip_components: 1
           
