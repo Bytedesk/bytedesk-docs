@@ -1,6 +1,6 @@
 ---
-sidebar_label: Mysql-Cluster
+sidebar_label: MySQL Cluster
 sidebar_position: 1
 ---
 
-# Mysql-Cluster
+# MySQL Cluster

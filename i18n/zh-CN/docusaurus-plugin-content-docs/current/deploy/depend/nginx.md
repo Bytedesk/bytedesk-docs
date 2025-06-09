@@ -3,133 +3,155 @@ sidebar_label: Nginx
 sidebar_position: 4
 ---
 
-# Nginx
+# Nginx配置微语前端反向代理
 
 :::tip
+本文介绍如何使用Nginx配置微语系统的反向代理，实现访问管理后台(admin)、客服工作台(agent)和访客端(chat)。
+微语Docker镜像中已经包含了admin/agent/chat三个模块，默认可以直接使用。下面要说明的是使用前后分离的方式部署前端，
+后端可以是Docker镜像部署、源码部署、jar包部署、宝塔部署均可，为方便升级，建议使用前后分离的方式。
+下面介绍中使用到两个二级域名：api.weiyuai.cn和www.weiyuai.cn（**重要：请在实际部署时替换为自己的域名**），其中：api.weiyuai.cn 用于Api请求，指向后端服务器，www.weiyuai.cn 用于访问前端html页面，
+二者可以部署在相同或不同服务器均可。
 
-- 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置 2 核 4G 内存，推荐配置 4 核 8G 内存。
+- 操作系统：Ubuntu 22.04 LTS
+- 推荐配置：4 核 CPU，8G 内存
+
+> **特别注意**：本文档中所有出现的 `weiyuai.cn` 域名仅作为示例，在实际部署中必须替换为你自己的域名。
+<!-- > 查看[域名替换说明](./domain_notice.md)获取完整替换指南。 -->
 
 :::
 
-## 安装
+## 安装Nginx
+
+首先需要在服务器上安装Nginx：
 
 ```bash
 sudo apt update
 sudo apt install nginx
-# 查看是否安装成功
+
+# 验证安装是否成功(查看80端口是否启动)
 netstat -ntlp
-# 如果80端口正常启动，则证明安装成功
-# 停止nginx
-# service nginx stop
-# 启动nginx
-# service nginx start
-# 重启nginx:
-# service nginx restart
-# systemctl restart nginx
-# 重新加载：
-# service nginx force-reload
+
+# 常用命令参考
+# sudo service nginx start    # 启动nginx
+# sudo service nginx stop     # 停止nginx
+# sudo service nginx restart  # 重启nginx
+# sudo nginx -s reload        # 重新加载配置
 ```
 
+安装完成后，检查stream模块是否已安装（用于TCP和UDP代理）：
+
 ```bash
-# 查看是否安装stream模块
-nginx -V | grep stream # 注意是大写V
-# 有输出内容证明已经安装
-nginx version: nginx/1.18.0 (Ubuntu)
-# ...
-# 可以看到参数：--with-stream=dynamic，说明已经安装stream模块
-# 对应报错：unknown directive "stream" in /etc/nginx/nginx.conf，需要在nginx.conf的第一行插入
-load_module /usr/lib/nginx/modules/ngx_stream_module.so;
-# 缓存路径，创建文件夹，在nginx.conf文件中用到
+# 检查stream模块
+nginx -V | grep stream  # 注意是大写V
+
+# 如有需要，创建缓存文件夹
 mkdir -p /var/www/html/nginx/cache/webserver
-# 重新加载配置文件
-nginx -s reload
-# 或者 重启nginx
-service nginx restart
 ```
 
-## 准备
+## 准备前端文件
 
-- 将下载的 [server](https://www.weiyuai.cn/download/weiyu-server.zip) 文件解压，解压后的文件结构如下
+### 1. 下载微语前端文件
+
+有两种方式获取前端文件：
+
+- 方式一：从[Github仓库](https://github.com/Bytedesk/bytedesk/tree/main/starter/src/main/resources/static)下载，最新，推荐
+- 方式二：从[Github Release](https://github.com/Bytedesk/bytedesk/releases) 下载
+- 方式三：下载[server压缩包](https://www.weiyuai.cn/download/weiyu-server.zip) 并解压
+- 方式四：从[Gitee仓库](https://gitee.com/270580156/weiyu/tree/main/starter/src/main/resources/static)下载
+
+下载解压后的文件结构如下：
 
 ```bash
-(base) server % tree -L 1
-.
-├── admin
-├── agent
-├── bytedesk-starter-0.4.0.jar
-├── chat
-├── config
-├── logs
-├── readme.md
-├── readme.zh.md
-├── start.bat
-├── start.sh
-├── stop.bat
-├── stop.sh
-└── uploader
-
-7 directories, 7 files
+server/
+├── admin         # 管理后台
+├── agent         # 客服工作台
+├── agenticflow   # AI代理流程模块，用于编辑工作流和工单流程
+├── notebase      # 知识库模块，用于知识库编辑
+├── kanban        # 看板模块，用于项目看板
+├── chat          # 访客端
+├── bytedesk-starter-xxx.jar  # 后端服务
+└── ...其他文件
 ```
 
-- 将其中的 admin，agent，chat 三个文件夹复制到 /var/www/html/weiyuai/ 文件夹下。
-- 其中：admin 为管理后台，agent 为客户端，chat 为访客端
-- 三者默认访问的服务器地址为: http://127.0.0.1:9003, 发布到线上时需要修改才能够正常使用，具体修改方法如下：
-- 找到 admin/config.json 、 agent/config.json 和 chat/config.json 三个文件
-- config.json 文件内容如下：
+### 2. 配置前端文件
+
+1. 将各个前端模块复制到`/var/www/html/weiyuai/`文件夹下
+   - `admin`：管理后台模块，用于系统管理员配置和监控整个系统
+   - `agent`：客服工作台模块，客服人员使用的操作界面
+   - `agenticflow`：AI代理流程模块，用于编辑工作流和工单流程
+   - `notebase`：知识库模块，用于知识库编辑
+   - `kanban`：看板模块，用于项目看板管理
+   - `chat`：访客端模块，供最终用户访问的聊天界面
+2. 修改各个模块的配置文件，使其指向正确的服务器地址
+
+每个模块都有一个`config.json`配置文件，配置方式有以下几种情况（**根据实际环境二选一**）。注意，`agenticflow`、`notebase`和`kanban`这三个模块的配置文件与`agent`文件夹中的`config.json`配置相同：
+
+### 方式一：使用域名（线上环境）
+
+如果您使用域名部署，配置如下：
 
 ```json
+// admin和agent的config.json内容
 {
-  "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-  "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
-  "htmlHost": "www.weiyuai.cn", // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
-  "protocol": "https" // 自定义协议，默认为 https，也可以改为 http
+    "enabled": true,         // 必须设置为true才能启用模块
+    "apiUrl": "https://api.weiyuai.cn",      // API服务器地址 (请替换为自己的域名)
+    "websocketUrl": "wss://api.weiyuai.cn/websocket", // WebSocket连接地址 (请替换为自己的域名)
+    "htmlUrl": "https://www.weiyuai.cn"      // 网站根地址 (请替换为自己的域名)
+}
+
+// chat的config.json内容
+{
+    "enabled": true,         // 必须设置为true才能启用模块
+    "apiUrl": "https://api.weiyuai.cn",      // (请替换为自己的域名)
+    "websocketUrl": "wss://api.weiyuai.cn/stomp", // 注意：chat使用stomp协议 (请替换为自己的域名)
+    "htmlUrl": "https://www.weiyuai.cn"      // (请替换为自己的域名)
 }
 ```
 
-- enabled 字段为是否启用自定义服务器地址，默认为 false。这里需要将 false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-- apiHost 字段为 api 地址，默认为：api.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
-- htmlHost 字段为静态网页地址，默认为：www.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
+### 方式二：使用服务器IP（无域名环境）
 
-## 替换为ip实例
-
-- 将域名替换为ip
-- 将https替换为http
+如果您没有域名或者在使用服务器IP部署，需要将配置中的域名替换为服务器IP地址，https替换为http：
 
 ```json
+// admin、agent模块的config.json配置示例
 {
-  "enabled": true,
-  "apiHost": "192.168.0.1",
-  "htmlHost": "192.168.0.1",
-  "protocol": "http"
+    "enabled": true,          // 必须设置为true才能启用模块
+    "apiUrl": "http://服务器IP:9003",           // API地址改为服务器IP
+    "websocketUrl": "ws://服务器IP:9885/websocket", // WebSocket改为ws协议
+    "htmlUrl": "http://服务器IP:9003"           // HTML地址改为服务器IP
+}
+
+// chat模块的config.json配置示例
+{
+    "enabled": true,          // 必须设置为true才能启用模块
+    "apiUrl": "http://服务器IP:9003",
+    "websocketUrl": "ws://服务器IP:9003/stomp", // chat模块使用stomp协议
+    "htmlUrl": "http://服务器IP:9003"
 }
 ```
 
-## nginx.conf
+## Nginx主配置文件
 
-在nginx.conf文件中http模块添加如下内容：
+首先配置Nginx的主配置文件，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/nginx.conf`的http块中添加负载均衡配置：
 
 ```bash
-#...
+# 在nginx.conf文件中的http模块中添加
 http {
-    ##...
+    # ... 已有配置 ...
     
-    ## restapi-负载均衡
+    # 配置REST API服务的负载均衡（可以根据需要修改upstream名称，例如替换"weiyuai"为你的系统名称）
     upstream weiyuai {
-        # round_robin; # 默认，轮流分配
-        ip_hash; # 同一个ip访问同一台服务器, 这样来自同一个IP的访客固定访问一个后端服务器
-        # least_conn; # 公平分配
-        # server 172.16.81.2:9003     weight=2 max_fails=10 fail_timeout=60s;
+        ip_hash;  # 同一IP访问同一服务器，保持会话一致性
         server 127.0.0.1:9003 weight=2 max_fails=10 fail_timeout=60s;
+        # 如有多台服务器，可添加更多server行
+        # server 172.16.81.2:9003 weight=2 max_fails=10 fail_timeout=60s;
     }
 
-    # websocket-负载均衡
+    # 配置WebSocket服务的负载均衡（可以根据需要修改upstream名称，例如替换"weiyuaiwss"为你的系统名称+wss）
     upstream weiyuaiwss {
-        # round_robin; # 默认，轮流分配
-        ip_hash; # 同一个ip访问同一台服务器, 这样来自同一个IP的访客固定访问一个后端服务器
-        # least_conn; # 公平分配
-        # server 172.16.81.2:9885     weight=2 max_fails=10 fail_timeout=60s;
+        ip_hash;  # WebSocket连接必须保持会话一致性
         server 127.0.0.1:9885 weight=2 max_fails=10 fail_timeout=60s;
+        # 如有多台服务器，可添加更多server行
     }
 
     include /etc/nginx/conf.d/*.conf;
@@ -137,326 +159,381 @@ http {
 }
 ```
 
-## sites-available
+## 网站配置文件
 
-在sites-available文件夹下创建4个文件，如下：
+接下来，我们需要创建网站配置文件。去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/sites-available/`目录下创建以下配置文件：
 
-### weiyuai_cn_80.conf
+### 1. 主站点HTTP配置 (weiyuai_cn_80.conf)
 
-- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
+此配置用于处理访问微语前端的HTTP请求：
 
 ```bash
-# weiyuai_cn_80.conf内容
+# weiyuai_cn_80.conf - 主站点HTTP配置（文件名中的weiyuai_cn可替换为你的域名）
 server {
     listen 80;
     listen [::]:80;
 
+    # 网站根目录，存放前端文件
     root /var/www/html/weiyuai/;
-    index index.html index.htm index.nginx-debian.html index.php;
+    index index.html index.htm;
 
+    # 将域名替换为你自己的域名或IP地址（重要提示：必须替换为自己的域名！）
     server_name weiyuai.cn *.weiyuai.cn;
 
+    # 主路径配置
     location / {
-        # 匹配所有路径，并尝试首先提供文件，然后目录，最后回退到index.html
-        try_files $uri $uri/ /index.html; # 这里应该指向根目录的index.html，而不是特定路径下的index.html
+        # 尝试提供文件或目录，如果不存在则返回根index.html
+        try_files $uri $uri/ /index.html;
     }
 
-    # 如果需要为每个子路径提供特定的index.html，您可以添加额外的location块
+    # 管理后台配置
     location /admin/ {
         try_files $uri $uri/ /admin/index.html;
     }
 
+    # 客服工作台配置
     location /agent/ {
         try_files $uri $uri/ /agent/index.html;
     }
+    
+    # AI代理流程模块配置
+    location /agenticflow/ {
+        try_files $uri $uri/ /agenticflow/index.html;
+    }
+    
+    # 知识库模块配置
+    location /notebase/ {
+        try_files $uri $uri/ /notebase/index.html;
+    }
+    
+    # 看板模块配置
+    location /kanban/ {
+        try_files $uri $uri/ /kanban/index.html;
+    }
 
+    # 访客端聊天界面配置
     location /chat/ {
         try_files $uri $uri/ /chat/index.html;
     }
 
+    # 嵌入式聊天框架配置
     location /frame/ {
         try_files $uri $uri/ /chat/index.html;
     }
 }
 ```
 
-### weiyuai_cn_443.conf
+### 2. 主站点HTTPS配置 (weiyuai_cn_443.conf)
 
-- 可选，仅有启用ssl的情况下需要
-- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
-- 443端口配置，需要ssl证书，这里使用的是Let's Encrypt的免费SSL证书
-- 需要修改ssl证书的路径
+如果需要启用HTTPS，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
 
 ```bash
-# weiyuai_cn_443.conf内容
+# weiyuai_cn_443.conf - 主站点HTTPS配置（文件名中的weiyuai_cn可替换为你的域名）
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+    listen 443 ssl;
+    listen [::]:443 ssl;
 
-	ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # managed by Certbot
+    # SSL证书配置（必须替换为你自己的证书路径和域名）
+    ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem;  # 替换weiyuai.cn为你的域名
+    ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # 替换weiyuai.cn为你的域名
 
-	server_name weiyuai.cn *.weiyuai.cn;
+    # 将域名替换为你自己的域名（重要提示：必须替换为自己的域名！）
+    server_name weiyuai.cn *.weiyuai.cn;
 
-	root /var/www/html/weiyuai;
-	index index.html index.htm index.nginx-debian.html index.php;
+    root /var/www/html/weiyuai;
+    index index.html index.htm;
 
-	location / {
-        # 匹配所有路径，并尝试首先提供文件，然后目录，最后回退到index.html
-        try_files $uri $uri/ /index.html; # 这里应该指向根目录的index.html，而不是特定路径下的index.html
+    # 主路径配置
+    location / {
+        try_files $uri $uri/ /index.html;
     }
 
-    # 如果需要为每个子路径提供特定的index.html，您可以添加额外的location块
+    # 管理后台配置
     location /admin/ {
         try_files $uri $uri/ /admin/index.html;
     }
 
+    # 客服工作台配置
     location /agent/ {
         try_files $uri $uri/ /agent/index.html;
     }
+    
+    # AI代理流程模块配置
+    location /agenticflow/ {
+        try_files $uri $uri/ /agenticflow/index.html;
+    }
+    
+    # 知识库模块配置
+    location /notebase/ {
+        try_files $uri $uri/ /notebase/index.html;
+    }
+    
+    # 看板模块配置
+    location /kanban/ {
+        try_files $uri $uri/ /kanban/index.html;
+    }
 
+    # 访客端聊天界面配置
     location /chat/ {
         try_files $uri $uri/ /chat/index.html;
     }
 
+    # 嵌入式聊天框架配置
     location /frame/ {
         try_files $uri $uri/ /chat/index.html;
     }
 
+    # 文档配置
     location /docs/ {
         try_files $uri $uri/ /docs/index.html;
     }
 }
 ```
 
-### weiyuai_cn_api_80.conf
+### 3. API服务HTTP配置 (weiyuai_cn_api_80.conf)
 
-- 需要修将 server_name api.weiyuai.cn; 改为自己的域名或者IP地址
+去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，此配置用于处理API请求和WebSocket连接：
 
 ```bash
-# weiyuai_cn_api_80.conf内容
+# weiyuai_cn_api_80.conf - API服务HTTP配置（文件名中的weiyuai_cn可替换为你的域名）
 server {
-	listen 80;
-	listen [::]:80;
+    listen 80;
+    listen [::]:80;
 
-	root /var/www/html/weiyuai/;
-	index index.html index.htm index.nginx-debian.html;
-
+    # 将域名替换为你自己的API域名（重要提示：必须替换为自己的域名！）
     server_name api.weiyuai.cn;
 
-    ## 反向代理
-    # https代理stomp连接
-    location /stomp {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_pass http://weiyuai/stomp;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-    }
-
-    ## 反向代理
-    # https代理websocket连接
-    location /websocket {
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_pass http://weiyuaiwss/websocket;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-    }
-
-    #增加两头部
-    add_header X-Via $server_addr;
-    add_header X-Cache $upstream_cache_status;
-
-    ## 反向代理
-    location @springboot {
-		# 将nginx所有请求均跳转到9003端口
+    # API请求代理配置
+    location / {
+        # 将请求代理到后端服务
         proxy_pass http://weiyuai;
         
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        #  X-Real-IP 让日志的IP显示真实的客户端的IP
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
+        # 传递请求头，保留客户端信息
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
+    }
 
-        # 设置缓存
-        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
-        #proxy_cache webserver;
-        # proxy_cache_valid  200 302  10m;
-        proxy_cache_valid  404      10m;
-	}
-
-	location / {
-        # First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		# try_files $uri $uri/ =404;
-		try_files $uri $uri/ @springboot;
-	}
-}
-```
-
-### weiyuai_cn_api_443.conf
-
-- 可选，仅有启用ssl的情况下需要
-- 需要修将 server_name api.weiyuai.cn; 改为自己的域名或者IP地址
-- 443端口配置，需要ssl证书，这里使用的是Let's Encrypt的免费SSL证书
-- 需要修改ssl证书的路径
-
-```bash
-# weiyuai_cn_api_443.conf内容
-server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
-
-	ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # managed by Certbot
-
-	server_name api.weiyuai.cn;
-
-	root /var/www/html/weiyuai;
-	index index.html index.htm index.nginx-debian.html;
-
-    ## 反向代理
-    # https代理stomp连接
+    # 访客WebSocket连接(STOMP协议)
     location /stomp {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_pass http://weiyuai/stomp;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
+        
+        # 传递客户端信息
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
     }
 
-    ## 反向代理
-    # https代理websocket连接
+    # 客服WebSocket连接
     location /websocket {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_pass http://weiyuaiwss/websocket;
-
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
+        
+        # 传递客户端信息
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
     }
 
-    #增加两头部
+    # 添加响应头信息
     add_header X-Via $server_addr;
     add_header X-Cache $upstream_cache_status;
 
-    ## 反向代理
+    # 默认路径处理
     location @springboot {
-		# 将nginx所有请求均跳转到9003端口
         proxy_pass http://weiyuai;
-
-        # add_header Access-Control-Allow-Origin *; # 报错，不能添加，需要在spring boot中去掉相应的origin
-        # 为记录真实ip地址，而不是反向代理服务器地址
-        proxy_set_header  Host            $host;
-        #  X-Real-IP 让日志的IP显示真实的客户端的IP
-        proxy_set_header  X-Real-IP       $remote_addr;
-        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-        include           fastcgi_params;
-
-        # 设置缓存
-        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
-        #proxy_cache webserver;
-        #proxy_cache_valid  200 302  10m;
-        proxy_cache_valid  404      10m;
-	}
-
-	location / {
-        # First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		# try_files $uri $uri/ =404;
-		try_files $uri $uri/ @springboot;
-	}
+        
+        # 传递客户端信息
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
+        
+        # 缓存配置
+        proxy_cache_valid 404 10m;
+    }
 }
 ```
 
-## 创建软链接
+### 4. API服务HTTPS配置 (weiyuai_cn_api_443.conf)
+
+如果需要启用API的HTTPS访问，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
 
 ```bash
-# 创建软连接
+# weiyuai_cn_api_443.conf - API服务HTTPS配置（文件名中的weiyuai_cn可替换为你的域名）
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    # SSL证书配置（必须替换为你自己的证书路径和域名）
+    ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem;  # 替换weiyuai.cn为你的域名
+    ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # 替换weiyuai.cn为你的域名
+
+    # 将域名替换为你自己的API域名（重要提示：必须替换为自己的域名！）
+    server_name api.weiyuai.cn;
+
+    # API请求代理配置
+    location / {
+        proxy_pass http://weiyuai;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
+    }
+
+    # 访客WebSocket连接(STOMP协议)
+    location /stomp {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://weiyuai/stomp;
+        
+        # 传递客户端信息
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
+    }
+
+    # 客服WebSocket连接
+    location /websocket {
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://weiyuaiwss/websocket;
+        
+        # 传递客户端信息
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
+    }
+
+    # 添加响应头信息
+    add_header X-Via $server_addr;
+    add_header X-Cache $upstream_cache_status;
+
+    # 默认路径处理
+    location @springboot {
+        proxy_pass http://weiyuai;
+        
+        # 传递客户端信息
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        include fastcgi_params;
+        
+        # 缓存配置
+        proxy_cache_valid 404 10m;
+    }
+}
+```
+
+## 启用配置
+
+### 1. 创建符号链接
+
+将配置文件链接到`sites-enabled`目录，使其生效：
+
+```bash
+# 创建符号链接（注意：如果你修改了配置文件名称，这里也需要相应修改）
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_80.conf /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/weiyuai_cn_443.conf /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_80.conf /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_443.conf /etc/nginx/sites-enabled/
+
+# 如果启用HTTPS，还需要链接这两个文件
+# sudo ln -s /etc/nginx/sites-available/weiyuai_cn_443.conf /etc/nginx/sites-enabled/
+# sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_443.conf /etc/nginx/sites-enabled/
 ```
 
-## 使配置生效
+### 2. 重新加载Nginx配置
 
 ```bash
-# 重新加载nginx配置
+# 检查配置是否有语法错误
+sudo nginx -t
+
+# 重新加载配置
 sudo nginx -s reload
-# 或
-sudo systemctl reload nginx
+# 或使用systemd命令
+# sudo systemctl reload nginx
 ```
 
-## 对外开放端口
+### 3. 配置防火墙
+
+确保服务器防火墙开放必要的端口：
 
 ```bash
-# 对外开放端口号
-http：80
-https：443
-# 可选，可不对外开放
-mysql：3306
-redis：6379
-rest api：9003
-websocket：9885
+# 必须开放的端口
+- 80端口：HTTP访问
+- 443端口：HTTPS访问（如果配置了SSL）
+
+# 以下端口通常仅在内网开放，无需对外
+- 9003端口：后端服务API端口
+- 9885端口：WebSocket服务端口
+- 3306端口：MySQL数据库（可选）
+- 6379端口：Redis缓存（可选）
 ```
 
-<!-- 
+## 优化配置（可选）
 
--->
+### 增加TCP连接数限制
 
-## TCP 连接数修改（可选）
+对于高并发场景，需要增加系统文件描述符限制：
 
 ```bash
-# 查看Linux系统用户最大打开的文件限制
+# 查看当前最大打开文件数限制
 ulimit -n
-# 65535
-# 修改打开文件限制
-vi /etc/security/limits.conf
+
+# 修改系统限制，编辑/etc/security/limits.conf文件
+sudo vi /etc/security/limits.conf
+
+# 添加以下内容
 root soft nofile 655350
 root hard nofile 655350
 nginx soft nofile 6553500
 nginx hard nofile 6553500
 * soft nofile 655350
 * hard nofile 655350
-# 其中root指定了要修改哪个用户的打开文件数限制。
-# 可用'*'号表示修改所有用户的限制；soft或hard指定要修改软限制还是硬限制；
-# 102400则指定了想要修改的新的限制值，即最大打开文件数(请注意软限制值要小于或等于硬限制)
-# 注意：修改了/etc/security/limits.conf，关闭Terminal重新登录或重启服务器生效
-# 查看 open files数
+
+# 说明:
+# - 设置root用户和nginx用户的文件描述符限制
+# - * 表示所有用户都适用的限制
+# - soft是软限制，hard是硬限制
+# - 修改后需要重新登录或重启服务器才能生效
+
+# 验证修改是否生效
 ulimit -a
 ```
 
-## 常见问题
+## 故障排查
 
-```shell
-# 查看nginx log
-cd /var/log/nginx
+如果配置后无法正常访问，可以通过以下方式排查问题：
+
+```bash
+# 检查Nginx配置是否有语法错误
+sudo nginx -t
+
+# 查看Nginx日志
+sudo tail -f /var/log/nginx/error.log
+sudo tail -f /var/log/nginx/access.log
+
+# 检查服务是否正常运行
+sudo systemctl status nginx
+
+# 检查端口是否正常监听
+sudo netstat -tulpn | grep nginx
 ```
 
-## 参考
+## 更多参考资料
 
-- [letsencrypt](https://letsencrypt.org/)
-- [LetsEncrypt 通配符证书](https://www.jianshu.com/p/c5c9d071e395)
-- [Ubuntu /etc/security/limits.conf 不生效问题](https://www.cnblogs.com/xiao987334176/p/11008812.html)
+- [Nginx官方文档](https://nginx.org/en/docs/)
+- [Let's Encrypt免费SSL证书](https://letsencrypt.org/)
+- [LetsEncrypt通配符证书申请教程](https://www.jianshu.com/p/c5c9d071e395)
+- [Ubuntu系统文件描述符限制配置](https://www.cnblogs.com/xiao987334176/p/11008812.html)

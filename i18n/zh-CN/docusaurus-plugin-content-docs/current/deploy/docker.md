@@ -7,83 +7,65 @@ sidebar_position: 3
 
 :::tip
 
-- 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置2核4G内存，推荐配置4核8G内存
+- 操作系统：Ubuntu 22.04 LTS
+- 服务器最低配置8核16G内存
 
 :::
 
-## 安装[Docker](./depend/docker)
+## 宝塔面板部署
 
-## 创建docker-compose.yaml文件
+- [宝塔面板部署](./baota)
+- [部署Docker](./depend/docker)
 
-内容如下:
-
-```bash
-services:
-  bytedesk-db:
-    image: mysql:latest
-    container_name: mysql-bytedesk
-    environment:
-      MYSQL_DATABASE: "bytedesk_im"
-      MYSQL_ROOT_PASSWORD: "r8FqfdbWUaN3"
-    ports:
-      - "3306:3306"
-  bytedesk-redis:
-    image: redis/redis-stack-server:latest
-    container_name: redis-bytedesk
-    command: /bin/sh -c "redis-server --requirepass $$REDIS_HOST_PASSWORD"
-    env_file:
-      - docker.env
-    ports:
-      - "6379:6379"
-  bytedesk:
-    # image: bytedesk/bytedesk:latest
-    image: registry.cn-hangzhou.aliyuncs.com/weiyuai/bytedesk:0.4.6
-    container_name: bytedesk
-    depends_on:
-      - bytedesk-db
-      - bytedesk-redis
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-bytedesk:3306/bytedesk_im
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=r8FqfdbWUaN3
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_DATA_REDIS_HOST=redis-bytedesk
-      - SPRING_DATA_REDIS_PORT=6379
-      - SPRING_DATA_REDIS_PASSWORD=qfRxz3tVT8Nh
-      - SPRING_DATA_REDIS_DATABASE=0
-    ports:
-      - 9003:9003
-```
-
-## 创建docker.env文件
-
-内容如下:
+## 方法一：一行命令启动，需要另行安装ollama
 
 ```bash
-REDIS_HOST_PASSWORD=qfRxz3tVT8Nh
+git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose.yaml up -d
 ```
 
-## 拉取镜像并启动容器
+### 因项目默认使用ollama qwen3:0.6b模型，所以需要另外拉取模型
 
 ```bash
-# 从阿里云拉取镜像
-docker pull registry.cn-hangzhou.aliyuncs.com/weiyuai/bytedesk:0.4.8
-# 启动docker compose容器, -f标志来指定文件路径, -d标志表示在后台模式下启动容器
-docker compose -f docker-compose.yaml up -d
-# 停止容器
-docker compose -f docker-compose.yaml stop
+# 对话模型
+ollama pull qwen3:0.6b
+# 向量模型
+ollama pull bge-m3:latest
 ```
 
-## 本地预览
+## 方法二： 使用 docker compose ollama，默认集成ollama
 
 ```bash
-web: http://127.0.0.1:9003/
-开发者入口: http://127.0.0.1:9003/dev
-管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
-客户端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
-访客端: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
-api文档: http://127.0.0.1:9003/swagger-ui/index.html
-数据库监控: http://127.0.0.1:9003/druid，用户名: admin@email.com, 密码: admin
-actuator: http://127.0.0.1:9003/actuator
+git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose-ollama.yaml up -d
+# 对话模型
+docker exec ollama-bytedesk ollama pull qwen3:0.6b
+# 向量模型
+docker exec ollama-bytedesk ollama pull bge-m3:latest
 ```
+
+## 停止容器
+
+```bash
+docker compose -p weiyu -f docker-compose.yaml stop
+# 或者
+docker compose -p weiyu -f docker-compose-ollama.yaml stop
+```
+
+## 演示
+
+本地预览
+
+```bash
+# 请将127.0.0.1替换为你的服务器ip
+http://127.0.0.1:9003/
+```
+
+## 配置域名访问
+
+对于生产环境，建议配置域名访问和HTTPS：
+
+1. **安装配置Nginx**：参考[Nginx配置指南](./depend/nginx.md)
+2. **配置SSL证书**：建议使用[Let's Encrypt](./depend/letsencrypt.md)免费证书
+
+## 常见问题
+
+- 参考 [常见问题](/docs/faq)

@@ -2,7 +2,7 @@
  * @Author: jackning 270580156@qq.com
  * @Date: 2024-06-18 10:46:11
  * @LastEditors: jackning 270580156@qq.com
- * @LastEditTime: 2024-08-08 08:00:14
+ * @LastEditTime: 2025-05-28 16:34:42
  * @Description: bytedesk.com https://github.com/Bytedesk/bytedesk
  *   Please be aware of the BSL license restrictions before installing Bytedesk IM – 
  *  selling, reselling, or hosting Bytedesk IM as a service is a breach of the terms and automatically terminates your rights under the license. 
@@ -12,11 +12,18 @@
  *  技术/商务联系：270580156@qq.com
  * Copyright (c) 2024 by bytedesk.com, All Rights Reserved. 
 -->
-# ci/cd 持续化部署
+# CI/CD
 
 ```bash
-# 打包上传到服务器，需要手动输入密码
-yarn release
+# 打包上传到服务器
+pnpm release
+# 赋予执行权限
+chmod +x cicd/scripts/build-upload.sh
+chmod +x cicd/scripts/build-open.sh
+# 执行
+sh cicd/scripts/build-upload.sh
+# 
+sh cicd/scripts/build-open.sh
 ```
 
 - [参考](https://juejin.cn/post/7057776355450028045)

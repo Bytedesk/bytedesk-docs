@@ -1,6 +1,6 @@
 ---
-sidebar_label: 技能组
+sidebar_label: Workgroup
 sidebar_position: 2
 ---
 
-# 技能组客服
+# Workgroup Customer Service

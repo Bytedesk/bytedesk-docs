@@ -1,6 +1,6 @@
 ---
-sidebar_label: 大模型
+sidebar_label: Large Language Model
 sidebar_position: 2
 ---
 
-# 大模型
+# Large Language Model

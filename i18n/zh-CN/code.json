@@ -2,26 +2,56 @@
   "homepage.title": {
     "message": "微语"
   },
+  "footer.docs.title": {
+    "message": "文档"
+  },
+  "footer.docs.tutorial": {
+    "message": "教程"
+  },
+  "footer.docs.contact": {
+    "message": "联系我们"
+  },
+  "footer.community.title": {
+    "message": "社区"
+  },
+  "footer.community.wechat": {
+    "message": "微信公众号"
+  },
+  "footer.community.zhihu": {
+    "message": "知乎专栏"
+  },
+  "footer.community.forum": {
+    "message": "技术社区"
+  },
+  "footer.more.title": {
+    "message": "更多"
+  },
+  "footer.more.pricing": {
+    "message": "价格方案"
+  },
+  "footer.more.privacy": {
+    "message": "隐私政策"
+  },
   "homepage.tagline": {
-    "message": "对话即服务"
+    "message": "重复工作自动化"
   },
   "homepage.quickstart": {
     "message": "快速开始"
   },
   "homepage.description": {
-    "message": "企业IM、在线客服、AI助手、知识库、帮助中心"
+    "message": "企业IM、在线客服、AI Agent、知识库、帮助中心"
   },
   "homepage.feature.im.title": {
     "message": "企业IM"
   },
   "homepage.feature.im.description": {
-    "message": "支持企业组织架构、角色、权限管理、群组管理、聊天记录审计等"
+    "message": "支持企业组织架构、角色、权限管理、群组管理、聊天记录审计，按照中大型团队架构使用规模设计，支持数万人同时在线"
   },
   "homepage.feature.cs.title": {
     "message": "在线客服"
   },
   "homepage.feature.cs.description": {
-    "message": "全渠道在线客服"
+    "message": "AI客服助手，AI意图识别，AI智能质检、支持人工坐席兜底，数十项在线客服通用功能"
   },
   "homepage.feature.ai.title": {
     "message": "AI助手"
@@ -29,23 +59,53 @@
   "homepage.feature.ai.description": {
     "message": "支持国内、国外主流大模型，如ChatGPT、Bing、OpenAI、智谱、文心一言、通义千问等"
   },
-  "homepage.feature.kb.title": {
-    "message": "AI知识库问答"
+  "homepage.feature.voc.title": {
+    "message": "客户之声"
   },
-  "homepage.feature.kb.description": {
-    "message": "本地知识库AI问答"
+  "homepage.feature.voc.description": {
+    "message": "AI回复助手，社交媒体评论抓取、第三方平台评论同步、意见反馈、服务投诉、调查问卷"
   },
   "homepage.feature.helpcenter.title": {
     "message": "帮助中心"
   },
   "homepage.feature.helpcenter.description": {
-    "message": "帮助中心"
+    "message": "内部客服中心，AI写作助手，AI知识库问答，自动撰写内容，内部知识库管理、文档管理、对外知识库、帮助文档、内容公告"
   },
   "homepage.feature.ticket.title": {
     "message": "工单系统"
   },
   "homepage.feature.ticket.description": {
-    "message": "工单系统"
+    "message": "AI工单助手，自动创建工单，自动分配工单，自动关闭工单"
+  },
+  "homepage.feature.workflow.title": {
+    "message": "工作流"
+  },
+  "homepage.feature.workflow.description": {
+    "message": "可视化流程设计与执行，支持自定义审批流程、任务分配，状态跟踪，提高团队协作效率"
+  },
+  "homepage.feature.callcenter.title": {
+    "message": "呼叫中心"
+  },
+  "homepage.feature.callcenter.description": {
+    "message": "基于FreeSwitch的专业呼叫平台，支持来电弹屏、自动分配、通话录音，数据统计，语音与文字服务无缝集成"
+  },
+  "homepage.feature.videocs.title": {
+    "message": "视频客服"
+  },
+  "homepage.feature.videocs.description": {
+    "message": "基于WebRTC技术的高清视频通话，支持一键视频对话与屏幕共享，适用于需要直观展示的服务场景"
+  },
+  "homepage.feature.conference.title": {
+    "message": "视频会议"
+  },
+  "homepage.feature.conference.description": {
+    "message": "集成Jitsi的专业会议平台，支持多人在线会议、屏幕共享，会议录制等功能，满足远程协作需求"
+  },
+  "homepage.feature.project.title": {
+    "message": "项目管理"
+  },
+  "homepage.feature.project.description": {
+    "message": "支持任务创建、分配、进度监控，文件共享与团队协作功能，帮助团队高效完成项目目标"
   },
   "theme.ErrorPageContent.title": {
     "message": "页面已崩溃。",

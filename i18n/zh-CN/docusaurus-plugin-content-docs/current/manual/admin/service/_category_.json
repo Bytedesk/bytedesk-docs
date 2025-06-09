@@ -1,8 +1,4 @@
 {
-  "label": "客服",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "5分钟快速上手使用 微语客服."
-  }
+  "label": "客服管理",
+  "position": 3
 }

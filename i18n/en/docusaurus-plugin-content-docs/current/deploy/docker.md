@@ -1,89 +1,82 @@
 ---
-sidebar_label: Docker部署
-sidebar_position: 3
+sidebar_label: Docker
+sidebar_position: 2
 ---
 
-# Docker部署
+# Docker Deployment
 
 :::tip
 
-- 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置2核4G内存，推荐配置4核8G内存
+- Operating System: Ubuntu 20.04 LTS
+- Server Requirements: Minimum 2 cores 4GB RAM, Recommended 4 cores 8GB RAM
 
 :::
 
-## 安装[Docker](./depend/docker)
+## Dependencies
 
-## 创建docker-compose.yaml文件
+- [Docker](/docs/deploy/depend/docker)
+- [MySQL](/docs/deploy/depend/mysql) or [PostgreSQL](/docs/deploy/depend/postgresql)
+- [Redis](/docs/deploy/depend/redis)
+- [Nginx](/docs/deploy/depend/nginx)
+- [Let's Encrypt](/docs/deploy/depend/letsencrypt)
 
-内容如下:
+## Download
 
 ```bash
-services:
-  bytedesk-db:
-    image: mysql:latest
-    container_name: mysql-bytedesk
-    environment:
-      MYSQL_DATABASE: "bytedesk_im"
-      MYSQL_ROOT_PASSWORD: "r8FqfdbWUaN3"
-    ports:
-      - "3306:3306"
-  bytedesk-redis:
-    image: redis/redis-stack-server:latest
-    container_name: redis-bytedesk
-    command: /bin/sh -c "redis-server --requirepass $$REDIS_HOST_PASSWORD"
-    env_file:
-      - docker.env
-    ports:
-      - "6379:6379"
-  bytedesk:
-    # image: bytedesk/bytedesk:latest
-    image: registry.cn-hangzhou.aliyuncs.com/weiyuai/bytedesk:0.4.6
-    container_name: bytedesk
-    depends_on:
-      - bytedesk-db
-      - bytedesk-redis
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-bytedesk:3306/bytedesk_im
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=r8FqfdbWUaN3
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_DATA_REDIS_HOST=redis-bytedesk
-      - SPRING_DATA_REDIS_PORT=6379
-      - SPRING_DATA_REDIS_PASSWORD=qfRxz3tVT8Nh
-      - SPRING_DATA_REDIS_DATABASE=0
-    ports:
-      - 9003:9003
+# Pull docker image
+docker pull bytedesk/bytedesk:latest
 ```
 
-## 创建docker.env文件
-
-内容如下:
+## Configuration
 
 ```bash
-REDIS_HOST_PASSWORD=qfRxz3tVT8Nh
+# Create configuration directory
+mkdir -p /etc/bytedesk/config
+# Copy configuration files
+cp config/* /etc/bytedesk/config/
+# Modify database configuration
+vim /etc/bytedesk/config/application.yml
+# Modify redis configuration
+vim /etc/bytedesk/config/redis.yml
 ```
 
-## 拉取镜像并启动容器
+## Start
 
 ```bash
-# 从阿里云拉取镜像
-docker pull registry.cn-hangzhou.aliyuncs.com/weiyuai/bytedesk:0.4.8
-# 启动docker compose容器, -f标志来指定文件路径, -d标志表示在后台模式下启动容器
-docker compose -f docker-compose.yaml up -d
-# 停止容器
-docker compose -f docker-compose.yaml stop
+# Start container
+docker run -d \
+  --name bytedesk \
+  -p 9003:9003 \
+  -v /etc/bytedesk/config:/app/config \
+  -v /etc/bytedesk/logs:/app/logs \
+  bytedesk/bytedesk:latest
+# View logs
+docker logs -f bytedesk
 ```
 
-## 本地预览
+## Stop
 
 ```bash
-web: http://127.0.0.1:9003/
-开发者入口: http://127.0.0.1:9003/dev
-管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
-客户端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
-访客端: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
-api文档: http://127.0.0.1:9003/swagger-ui/index.html
-数据库监控: http://127.0.0.1:9003/druid，用户名: admin@email.com, 密码: admin
-actuator: http://127.0.0.1:9003/actuator
+# Stop container
+docker stop bytedesk
+# Remove container
+docker rm bytedesk
+```
+
+## Upgrade
+
+```bash
+# Pull latest image
+docker pull bytedesk/bytedesk:latest
+# Stop container
+docker stop bytedesk
+# Remove container
+docker rm bytedesk
+# Start new container
+docker run -d \
+  --name bytedesk \
+  -p 9003:9003 \
+  -v /etc/bytedesk/config:/app/config \
+  -v /etc/bytedesk/logs:/app/logs \
+  bytedesk/bytedesk:latest
 ```

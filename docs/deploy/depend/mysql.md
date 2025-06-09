@@ -1,6 +1,6 @@
 ---
-sidebar_label: Mysql
+sidebar_label: MySQL
 sidebar_position: 1
 ---
 
-# Mysql
+# MySQL

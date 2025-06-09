@@ -7,50 +7,50 @@ sidebar_position: 4
 
 :::tip
 
-- 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置 2 核 4G 内存，推荐配置 4 核 8G 内存。
+- Operating System: Ubuntu 20.04 LTS
+- Server minimum requirements: 2 CPU cores, 4GB RAM. Recommended: 4 CPU cores, 8GB RAM.
 
 :::
 
-## 安装
+## Installation
 
 ```bash
 sudo apt update
 sudo apt install nginx
-# 查看是否安装成功
+# Check if installation successful
 netstat -ntlp
-# 如果80端口正常启动，则证明安装成功
-# 停止nginx
+# If port 80 starts normally, installation is successful
+# Stop nginx
 # service nginx stop
-# 启动nginx
+# Start nginx
 # service nginx start
-# 重启nginx:
+# Restart nginx:
 # service nginx restart
 # systemctl restart nginx
-# 重新加载：
+# Reload:
 # service nginx force-reload
 ```
 
 ```bash
-# 查看是否安装stream模块
-nginx -V | grep stream # 注意是大写V
-# 有输出内容证明已经安装
+# Check if stream module is installed
+nginx -V | grep stream # Note: capital V
+# Output indicates it's installed
 nginx version: nginx/1.18.0 (Ubuntu)
 # ...
-# 可以看到参数：--with-stream=dynamic，说明已经安装stream模块
-# 对应报错：unknown directive "stream" in /etc/nginx/nginx.conf，需要在nginx.conf的第一行插入
+# You can see parameter: --with-stream=dynamic, indicating stream module is installed
+# For error: unknown directive "stream" in /etc/nginx/nginx.conf, need to insert at first line of nginx.conf:
 load_module /usr/lib/nginx/modules/ngx_stream_module.so;
-# 缓存路径，创建文件夹，在nginx.conf文件中用到
+# Create cache directory, used in nginx.conf
 mkdir -p /var/www/html/nginx/cache/webserver
-# 重新加载配置文件
+# Reload configuration
 nginx -s reload
-# 或者 重启nginx
+# Or restart nginx
 service nginx restart
 ```
 
-## 准备
+## Preparation
 
-- 将下载的 [server](https://www.weiyuai.cn/download/weiyu-server.zip) 文件解压，解压后的文件结构如下
+- Download and extract [server](https://www.weiyuai.cn/download/weiyu-server.zip) file, the extracted structure is as follows:
 
 ```bash
 (base) server % tree -L 1
@@ -72,62 +72,63 @@ service nginx restart
 7 directories, 7 files
 ```
 
-- 将其中的 admin，agent，chat 三个文件夹复制到 /var/www/html/weiyuai/ 文件夹下。
-- 其中：admin 为管理后台，agent 为客户端，chat 为访客端
-- 三者默认访问的服务器地址为: http://127.0.0.1:9003, 发布到线上时需要修改才能够正常使用，具体修改方法如下：
-- 找到 admin/config.json 、 agent/config.json 和 chat/config.json 三个文件
-- config.json 文件内容如下：
+- Copy the admin, agent, chat folders to /var/www/html/weiyuai/
+- Where: admin is for management dashboard, agent is for client, chat is for visitor interface
+- The three components default to accessing server at: http://127.0.0.1:9003, this needs to be modified for production use, specifically:
+- Find config.json files in admin/config.json, agent/config.json and chat/config.json
+- The config.json content is as follows:
 
 ```json
 {
-  "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-  "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
-  "htmlHost": "www.weiyuai.cn", // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
-  "protocol": "https" // 自定义协议，默认为 https，也可以改为 http
+    "enabled": false,
+    "apiUrl": "https://api.weiyuai.cn",
+    "websocketUrl": "wss://api.weiyuai.cn/websocket",
+    "htmlUrl": "https://www.weiyuai.cn"
 }
 ```
 
-- enabled 字段为是否启用自定义服务器地址，默认为 false。这里需要将 false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-- apiHost 字段为 api 地址，默认为：api.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
-- htmlHost 字段为静态网页地址，默认为：www.weiyuai.cn，请替换为自己的域名，不能够以 http 开头
+- enabled field determines whether to use custom server address, default is false. Change it to true here. Only when set to true will the apiHost and htmlHost below take effect
+- apiUrl field is the API address, default is: api.weiyuai.cn, please replace with your domain
+- websocketUrl field is the websocket address, default is: ws://api.weiyuai.cn/websocket, please replace with your domain
+- htmlHost field is the static webpage address, default is: www.weiyuai.cn, please replace with your domain
 
-## 替换为ip实例
+## Example Using IP
 
-- 将域名替换为ip
-- 将https替换为http
+- Replace domain with IP
+- Replace https with http
 
 ```json
 {
-  "enabled": true,
-  "apiHost": "192.168.0.1",
-  "htmlHost": "192.168.0.1",
-  "protocol": "http"
+    "enabled": false,
+    "apiUrl": "http://127.0.0.1:9003",
+    "websocketUrl": "ws://127.0.0.1:9885/websocket",
+    "htmlUrl": "http://127.0.0.1:9003"
 }
 ```
 
 ## nginx.conf
 
-在nginx.conf文件中http模块添加如下内容：
+Add the following content to the http module in nginx.conf:
 
 ```bash
 #...
 http {
     ##...
     
-    ## restapi-负载均衡
+    ## REST API Load Balancing
     upstream weiyuai {
-        # round_robin; # 默认，轮流分配
-        ip_hash; # 同一个ip访问同一台服务器, 这样来自同一个IP的访客固定访问一个后端服务器
-        # least_conn; # 公平分配
+        # round_robin; # Default, round-robin distribution
+        ip_hash; # Same IP accesses same server, so visitors from same IP are fixed to one backend server
+        # least_conn; # Fair distribution
         # server 172.16.81.2:9003     weight=2 max_fails=10 fail_timeout=60s;
         server 127.0.0.1:9003 weight=2 max_fails=10 fail_timeout=60s;
     }
 
-    # websocket-负载均衡
+    # WebSocket Load Balancing
     upstream weiyuaiwss {
-        # round_robin; # 默认，轮流分配
-        ip_hash; # 同一个ip访问同一台服务器, 这样来自同一个IP的访客固定访问一个后端服务器
-        # least_conn; # 公平分配
+        # round_robin; # Default, round-robin distribution
+        ip_hash; # Same IP accesses same server, so visitors from same IP are fixed to one backend server
+        # least_conn; # Fair distribution
         # server 172.16.81.2:9885     weight=2 max_fails=10 fail_timeout=60s;
         server 127.0.0.1:9885 weight=2 max_fails=10 fail_timeout=60s;
     }
@@ -139,14 +140,14 @@ http {
 
 ## sites-available
 
-在sites-available文件夹下创建4个文件，如下：
+Create 4 files in the sites-available folder as follows:
 
 ### weiyuai_cn_80.conf
 
-- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
+- Need to change server_name weiyuai.cn *.weiyuai.cn; to your domain or IP address
 
 ```bash
-# weiyuai_cn_80.conf内容
+# weiyuai_cn_80.conf content
 server {
     listen 80;
     listen [::]:80;
@@ -157,11 +158,11 @@ server {
     server_name weiyuai.cn *.weiyuai.cn;
 
     location / {
-        # 匹配所有路径，并尝试首先提供文件，然后目录，最后回退到index.html
-        try_files $uri $uri/ /index.html; # 这里应该指向根目录的index.html，而不是特定路径下的index.html
+        # Match all paths, try to serve file first, then directory, finally fallback to index.html
+        try_files $uri $uri/ /index.html; # This should point to root directory's index.html, not specific path's index.html
     }
 
-    # 如果需要为每个子路径提供特定的index.html，您可以添加额外的location块
+    # If you need to provide specific index.html for each sub-path, you can add extra location blocks
     location /admin/ {
         try_files $uri $uri/ /admin/index.html;
     }
@@ -182,31 +183,31 @@ server {
 
 ### weiyuai_cn_443.conf
 
-- 可选，仅有启用ssl的情况下需要
-- 需要修将 server_name weiyuai.cn *.weiyuai.cn; 改为自己的域名或者IP地址
-- 443端口配置，需要ssl证书，这里使用的是Let's Encrypt的免费SSL证书
-- 需要修改ssl证书的路径
+- Optional, only needed when SSL is enabled
+- Need to change server_name weiyuai.cn *.weiyuai.cn; to your domain or IP address
+- Port 443 configuration requires SSL certificate, here using Let's Encrypt free SSL certificate
+- Need to modify SSL certificate paths
 
 ```bash
-# weiyuai_cn_443.conf内容
+# weiyuai_cn_443.conf content
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+    listen 443 ssl;
+    listen [::]:443 ssl;
 
-	ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # managed by Certbot
 
-	server_name weiyuai.cn *.weiyuai.cn;
+    server_name weiyuai.cn *.weiyuai.cn;
 
-	root /var/www/html/weiyuai;
-	index index.html index.htm index.nginx-debian.html index.php;
+    root /var/www/html/weiyuai;
+    index index.html index.htm index.nginx-debian.html index.php;
 
-	location / {
-        # 匹配所有路径，并尝试首先提供文件，然后目录，最后回退到index.html
-        try_files $uri $uri/ /index.html; # 这里应该指向根目录的index.html，而不是特定路径下的index.html
+    location / {
+        # Match all paths, try to serve file first, then directory, finally fallback to index.html
+        try_files $uri $uri/ /index.html; # This should point to root directory's index.html, not specific path's index.html
     }
 
-    # 如果需要为每个子路径提供特定的index.html，您可以添加额外的location块
+    # If you need to provide specific index.html for each sub-path, you can add extra location blocks
     location /admin/ {
         try_files $uri $uri/ /admin/index.html;
     }
@@ -231,208 +232,204 @@ server {
 
 ### weiyuai_cn_api_80.conf
 
-- 需要修将 server_name api.weiyuai.cn; 改为自己的域名或者IP地址
+- Need to change server_name api.weiyuai.cn; to your domain or IP address
 
 ```bash
-# weiyuai_cn_api_80.conf内容
+# weiyuai_cn_api_80.conf content
 server {
-	listen 80;
-	listen [::]:80;
+    listen 80;
+    listen [::]:80;
 
-	root /var/www/html/weiyuai/;
-	index index.html index.htm index.nginx-debian.html;
+    root /var/www/html/weiyuai/;
+    index index.html index.htm index.nginx-debian.html;
 
     server_name api.weiyuai.cn;
 
-    ## 反向代理
-    # https代理stomp连接
+    ## Reverse Proxy
+    # Proxy stomp connection
     location /stomp {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_pass http://weiyuai/stomp;
 
-        # 为记录真实ip地址，而不是反向代理服务器地址
+        # To record real IP address instead of reverse proxy server address
         proxy_set_header  Host            $host;
         proxy_set_header  X-Real-IP       $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         include           fastcgi_params;
     }
 
-    ## 反向代理
-    # https代理websocket连接
+    ## Reverse Proxy
+    # Proxy websocket connection
     location /websocket {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_pass http://weiyuaiwss/websocket;
 
-        # 为记录真实ip地址，而不是反向代理服务器地址
+        # To record real IP address instead of reverse proxy server address
         proxy_set_header  Host            $host;
         proxy_set_header  X-Real-IP       $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         include           fastcgi_params;
     }
 
-    #增加两头部
+    # Add two headers
     add_header X-Via $server_addr;
     add_header X-Cache $upstream_cache_status;
 
-    ## 反向代理
+    ## Reverse Proxy
     location @springboot {
-		# 将nginx所有请求均跳转到9003端口
+        # Forward all nginx requests to port 9003
         proxy_pass http://weiyuai;
         
-        # 为记录真实ip地址，而不是反向代理服务器地址
+        # To record real IP address instead of reverse proxy server address
         proxy_set_header  Host            $host;
-        #  X-Real-IP 让日志的IP显示真实的客户端的IP
+        # X-Real-IP makes logs show real client IP
         proxy_set_header  X-Real-IP       $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         include           fastcgi_params;
 
-        # 设置缓存
-        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
+        # Set cache
+        # Set 10-minute cache for response codes 200 and 302, 10-minute cache for 404 code
         #proxy_cache webserver;
         # proxy_cache_valid  200 302  10m;
         proxy_cache_valid  404      10m;
-	}
+    }
 
-	location / {
+    location / {
         # First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		# try_files $uri $uri/ =404;
-		try_files $uri $uri/ @springboot;
-	}
+        # as directory, then fall back to displaying a 404.
+        # try_files $uri $uri/ =404;
+        try_files $uri $uri/ @springboot;
+    }
 }
 ```
 
 ### weiyuai_cn_api_443.conf
 
-- 可选，仅有启用ssl的情况下需要
-- 需要修将 server_name api.weiyuai.cn; 改为自己的域名或者IP地址
-- 443端口配置，需要ssl证书，这里使用的是Let's Encrypt的免费SSL证书
-- 需要修改ssl证书的路径
+- Optional, only needed when SSL is enabled
+- Need to change server_name api.weiyuai.cn; to your domain or IP address
+- Port 443 configuration requires SSL certificate, here using Let's Encrypt free SSL certificate
+- Need to modify SSL certificate paths
 
 ```bash
-# weiyuai_cn_api_443.conf内容
+# weiyuai_cn_api_443.conf content
 server {
-	listen 443 ssl;
-	listen [::]:443 ssl;
+    listen 443 ssl;
+    listen [::]:443 ssl;
 
-	ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/weiyuai.cn/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/weiyuai.cn/privkey.pem; # managed by Certbot
 
-	server_name api.weiyuai.cn;
+    server_name api.weiyuai.cn;
 
-	root /var/www/html/weiyuai;
-	index index.html index.htm index.nginx-debian.html;
+    root /var/www/html/weiyuai;
+    index index.html index.htm index.nginx-debian.html;
 
-    ## 反向代理
-    # https代理stomp连接
+    ## Reverse Proxy
+    # Proxy stomp connection
     location /stomp {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_pass http://weiyuai/stomp;
 
-        # 为记录真实ip地址，而不是反向代理服务器地址
+        # To record real IP address instead of reverse proxy server address
         proxy_set_header  Host            $host;
         proxy_set_header  X-Real-IP       $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         include           fastcgi_params;
     }
 
-    ## 反向代理
-    # https代理websocket连接
+    ## Reverse Proxy
+    # Proxy websocket connection
     location /websocket {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
         proxy_pass http://weiyuaiwss/websocket;
 
-        # 为记录真实ip地址，而不是反向代理服务器地址
+        # To record real IP address instead of reverse proxy server address
         proxy_set_header  Host            $host;
         proxy_set_header  X-Real-IP       $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         include           fastcgi_params;
     }
 
-    #增加两头部
+    # Add two headers
     add_header X-Via $server_addr;
     add_header X-Cache $upstream_cache_status;
 
-    ## 反向代理
+    ## Reverse Proxy
     location @springboot {
-		# 将nginx所有请求均跳转到9003端口
+        # Forward all nginx requests to port 9003
         proxy_pass http://weiyuai;
 
-        # add_header Access-Control-Allow-Origin *; # 报错，不能添加，需要在spring boot中去掉相应的origin
-        # 为记录真实ip地址，而不是反向代理服务器地址
+        # add_header Access-Control-Allow-Origin *; # Error, cannot add, need to remove corresponding origin in spring boot
+        # To record real IP address instead of reverse proxy server address
         proxy_set_header  Host            $host;
-        #  X-Real-IP 让日志的IP显示真实的客户端的IP
+        # X-Real-IP makes logs show real client IP
         proxy_set_header  X-Real-IP       $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         include           fastcgi_params;
 
-        # 设置缓存
-        # 为应答代码为200和302的设置缓存时间为10分钟，404代码缓存10分钟。
+        # Set cache
+        # Set 10-minute cache for response codes 200 and 302, 10-minute cache for 404 code
         #proxy_cache webserver;
         #proxy_cache_valid  200 302  10m;
         proxy_cache_valid  404      10m;
-	}
+    }
 
-	location / {
+    location / {
         # First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		# try_files $uri $uri/ =404;
-		try_files $uri $uri/ @springboot;
-	}
+        # as directory, then fall back to displaying a 404.
+        # try_files $uri $uri/ =404;
+        try_files $uri $uri/ @springboot;
+    }
 }
 ```
 
-## 创建软链接
+## Create Symbolic Links
 
 ```bash
-# 创建软连接
+# Create symbolic links
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_80.conf /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_443.conf /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_80.conf /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_443.conf /etc/nginx/sites-enabled/
 ```
 
-## 使配置生效
+## Apply Configuration
 
 ```bash
-# 重新加载nginx配置
+# Reload nginx configuration
 sudo nginx -s reload
-# 或
+# Or
 sudo systemctl reload nginx
 ```
 
-## 对外开放端口
+## Open Ports
 
 ```bash
-# 对外开放端口号
-http：80
-https：443
-# 可选，可不对外开放
-mysql：3306
-redis：6379
-rest api：9003
-websocket：9885
+# Ports to open externally
+http: 80
+https: 443
+# Optional, may not need to be opened externally
+mysql: 3306
+redis: 6379
+rest api: 9003
+websocket: 9885
 ```
 
-<!-- 
-
--->
-
-## TCP 连接数修改（可选）
+## Modify TCP Connections (Optional)
 
 ```bash
-# 查看Linux系统用户最大打开的文件限制
+# Check maximum file limit for Linux system user
 ulimit -n
 # 65535
-# 修改打开文件限制
+# Modify file limit
 vi /etc/security/limits.conf
 root soft nofile 655350
 root hard nofile 655350
@@ -440,23 +437,25 @@ nginx soft nofile 6553500
 nginx hard nofile 6553500
 * soft nofile 655350
 * hard nofile 655350
-# 其中root指定了要修改哪个用户的打开文件数限制。
-# 可用'*'号表示修改所有用户的限制；soft或hard指定要修改软限制还是硬限制；
-# 102400则指定了想要修改的新的限制值，即最大打开文件数(请注意软限制值要小于或等于硬限制)
-# 注意：修改了/etc/security/limits.conf，关闭Terminal重新登录或重启服务器生效
-# 查看 open files数
+# root specifies which user's file limit to modify.
+# '*' can be used to modify limit for all users;
+# soft or hard specifies whether to modify soft or hard limit;
+# 102400 specifies the new limit value, i.e. maximum open files
+# (note: soft limit value must be less than or equal to hard limit)
+# Note: After modifying /etc/security/limits.conf, close Terminal and re-login or restart server to take effect
+# Check open files number
 ulimit -a
 ```
 
-## 常见问题
+## Common Issues
 
 ```shell
-# 查看nginx log
+# View nginx log
 cd /var/log/nginx
 ```
 
-## 参考
+## References
 
 - [letsencrypt](https://letsencrypt.org/)
-- [LetsEncrypt 通配符证书](https://www.jianshu.com/p/c5c9d071e395)
-- [Ubuntu /etc/security/limits.conf 不生效问题](https://www.cnblogs.com/xiao987334176/p/11008812.html)
+- [LetsEncrypt Wildcard Certificate](https://www.jianshu.com/p/c5c9d071e395)
+- [Ubuntu /etc/security/limits.conf Not Taking Effect](https://www.cnblogs.com/xiao987334176/p/11008812.html)

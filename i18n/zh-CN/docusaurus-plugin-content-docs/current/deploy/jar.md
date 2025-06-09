@@ -3,121 +3,199 @@ sidebar_label: Jar包部署
 sidebar_position: 1
 ---
 
-# Jar 包部署
+# Jar包部署指南
 
-:::tip
+本文档提供详细的Jar包部署步骤，帮助您快速部署和运行微语系统。相比源码部署，Jar包部署更加简便，适合快速上线和测试使用。
 
-- 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置 2 核 4G 内存，推荐配置 4 核 8G 内存。
+:::tip 系统要求
+
+- **操作系统**：Ubuntu 22.04 LTS
+- **硬件配置**：推荐4核8G内存
+- **软件环境**：JDK 17+、MySQL 8.0+、Redis Stack Server
 
 :::
 
-## 前期准备
+## 1. 环境准备
 
-### [Jdk17](./depend/jdk)
+### 1.1 安装JDK 17
 
-因项目依赖 spring boot 3, 最低要求 jdk17, 请确保已安装
+微语系统基于Spring Boot 3开发，**必须**使用JDK 17或更高版本：
 
 ```bash
+# 检查Java版本
 java --version
-# java 17.0.4 2022-07-19 LTS
+# 应显示: java 17.x.x 或更高版本
 ```
 
-### [Mysql 8.0](./depend/mysql)
+如果没有安装JDK 17，请参考：[JDK 17安装指南](./depend/jdk)
 
-默认使用 mysql
+### 1.2 安装项目依赖
+
+您可以选择以下两种方式之一安装项目依赖：
+
+#### 方式一：使用Docker安装（推荐 ⭐）
+
+Docker方式可以快速启动所有依赖服务，非常适合开发和测试环境：[部署Docker](./depend/docker)
 
 ```bash
-# 修改application.properties
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
-spring.datasource.username=root
-spring.datasource.password=密码
+# 1. 确保Docker服务已启动
+sudo systemctl status docker  # 检查Docker状态
+sudo systemctl start docker   # 如需启动Docker服务
+
+# 2. 需要提前Clone或下载项目：https://gitee.com/270580156/weiyu，在项目根目录下进入配置目录
+cd starter/src/main/resources
+
+# 3. 一键启动所有依赖服务
+docker compose -p bytedesk -f compose.yaml up -d
+
+# 查看容器运行状态
+docker ps | grep bytedesk
+
+# 如需停止服务
+# docker compose -p bytedesk -f compose.yaml down
 ```
 
-### 或 [PostgreSQL 16](./depend/postgresql)
-
-mysql 或 postgresql 任选其一, 默认使用 mysql
+或者
 
 ```bash
-# 修改application.properties
-spring.datasource.url=jdbc:postgresql://127.0.0.1:5433/bytedesk_im
-spring.datasource.username=postgres
-spring.datasource.password=密码
+# 1 打开 https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-middleware.yaml 
+
+# 2 复制内容到本地，保存为 docker-compose.yaml
+
+# 3 直接运行下面命令启动
+docker compose -p bytedesk -f docker-compose.yaml up -d
 ```
 
-### [Redis](./depend/redis)
+> 💡 **提示**：使用Docker方式，无需手动安装每个依赖，容器会自动配置好网络和初始设置。
+
+#### 方式二：手动安装各个依赖
+
+如果您需要更精细地控制每个组件，可以选择手动安装：
+
+1. **[MySQL 8.0](./depend/mysql)**：数据库服务
+2. **[Redis](./depend/redis)**：缓存服务
+3. **[Ollama](./depend/ollama)**：AI大模型服务
+4. **[Elasticsearch](./depend/elasticsearch)**：全文检索和向量存储检索
+5. **[Artemis](./depend/artemis)**：消息队列服务
+
+> ⚠️ **注意**：有的同学会找数据库.sql文件，这里不需要，只需要修改配置文件连接上数据库，系统会自动生成表。
+
+## 2. 下载与解压
+
+### 2.1 下载服务端文件
+
+从官方网站下载最新版微语系统服务端软件包：
 
 ```bash
-spring.data.redis.database=0
-spring.data.redis.host=127.0.0.1
-spring.data.redis.port=6379
-spring.data.redis.password=密码
+# 使用wget下载
+wget https://www.weiyuai.cn/download/weiyu-server.zip
+
+# 或直接在浏览器中访问下载链接
+# https://www.weiyuai.cn/download/weiyu-server.zip
+
 ```
 
-## [Nginx](./depend/nginx)
+> 💡 **提示**：访问[下载中心](https://www.weiyuai.cn/download)获取最新版本。
 
-本地部署可不需要，仅在生产环境推荐安装nginx，nginx做反向代理，
-
-## [AI](./depend/ai)
-
-可选，仅用于知识库对话，可跳过。如果仅仅是对话大模型，则直接在配置文件里面填写智谱AI的key就行
+### 2.2 解压文件
 
 ```bash
-下载地址： https://github.com/Bytedesk/bytedesk-ai
-```
-
-<!-- ### [Ollama](./depend/ollama)可选 -->
-
-## 下载 [im server](https://www.weiyuai.cn/download/weiyu-server.zip)
-
-```bash
-# 更多下载: https://www.weiyuai.cn/download
-# 解压
+# 解压下载的zip文件
 unzip weiyu-server.zip
+
+# 进入解压后的目录
+cd weiyu-server
+
+# 查看目录结构
+ls -la
 ```
 
-## 配置
+## 3. 配置系统
+
+### 3.1 修改配置文件
+
+编辑`config/application.properties`文件，配置数据库和Redis连接信息：[请参考应用配置说明](./config.md)
 
 ```bash
-# 编辑配置文件：server/config/application.properties
-# 修改数据库连接信息
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk_im
-spring.datasource.username=root
-spring.datasource.password=password
-# 修改redis连接信息
-spring.data.redis.database=0
-spring.data.redis.host=127.0.0.1
-spring.data.redis.port=6379
-spring.data.redis.password=password
+# 编辑配置文件
+nano config/application.properties
+```
 
-# 赋予权限
+### 3.2 检查文件权限
+
+确保启动脚本有执行权限：
+
+```bash
+# 赋予启动脚本执行权限
 chmod +x start.sh
 chmod +x stop.sh
-# 启动
-# 在Mac或Linux上运行
+```
+
+## 4. 启动与停止
+
+### 4.1 启动系统
+
+```bash
+# 在Linux/macOS上启动
 ./start.sh
-# 在Windows上运行
+
+# 在Windows上启动
 start.bat
-# 停止
-# 在Mac或Linux上运行
-./stop.sh
-# 在Windows上运行
-stop.bat
-# 启动之后，稍等片刻。查看端口号，如果有 9003端口，则启动成功
-netstat -ntlp
-# 查看日志
+```
+
+> 🚀 **启动成功标志**：控制台显示"Started Application"且无异常信息
+
+### 4.2 验证启动状态
+
+```bash
+# 检查9003端口是否正常监听
+netstat -ntlp | grep 9003
+
+# 查看运行日志
 tail -f logs/bytedeskim.log
 ```
 
-## 本地预览
+### 4.3 停止系统
 
 ```bash
-web: http://127.0.0.1:9003/
-开发者入口: http://127.0.0.1:9003/dev
-管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
-客服端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
-访客: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
-api文档: http://127.0.0.1:9003/swagger-ui/index.html
-数据库监控: http://127.0.0.1:9003/druid，用户名: admin@email.com, 密码: admin
-actuator: http://127.0.0.1:9003/actuator
+# 在Linux/macOS上停止
+./stop.sh
+
+# 在Windows上停止
+stop.bat
 ```
+
+## 5. 系统访问
+
+### 5.1 本地访问
+
+```bash
+访问地址：http://服务器IP:9003/
+默认账号：admin@email.com
+默认密码：admin
+```
+
+### 5.2 端口说明
+
+系统使用的端口：
+
+- **9003**：Web管理后台和API接口
+- **9885**：WebSocket通信服务端口
+
+请确保防火墙已开放这些端口。
+
+## 6. 域名配置（生产环境）
+
+对于生产环境，建议配置域名访问和HTTPS：
+
+1. **安装配置Nginx**：参考[Nginx配置指南](./depend/nginx.md)
+2. **配置SSL证书**：建议使用[Let's Encrypt](./depend/letsencrypt.md)免费证书
+
+## 常见问题
+
+部署过程中遇到问题？请查看：[常见问题解答](/docs/faq)
+
+如需技术支持，请通过以下方式联系我们：
+
+- 📧 邮箱：[270580156@qq.com](mailto:270580156@qq.com)
+- 💬 社区：[技术社区](https://github.com/bytedesk/bytedesk/discussions)

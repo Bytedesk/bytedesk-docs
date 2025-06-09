@@ -3,18 +3,18 @@ sidebar_label: Ollama
 sidebar_position: 3
 ---
 
-# Ollma
+# Ollama
 
-- [ollma github](https://github.com/ollama/ollama)
-- [Ollama官方网站](https://ollama.com/)
+- [ollama github](https://github.com/ollama/ollama)
+- [Ollama Official Website](https://ollama.com/)
 
 ```bash
 sudo apt-get update
-# 安装Ollama：
+# Install Ollama:
 sudo apt-get install ollama
-# 验证安装
+# Verify installation
 ollama --version
-# 无docker安装模型
+# Install model without docker
 ollama run mistral
 ollama run llama3.1
 ```

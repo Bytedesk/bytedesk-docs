@@ -1,8 +1,8 @@
 {
-  "label": "组织",
-  "position": 1,
+  "label": "Organization",
+  "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "5分钟快速上手使用 企业IM."
+    "description": "Get started with Enterprise IM in 5 minutes."
   }
 }

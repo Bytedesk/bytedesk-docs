@@ -1,6 +1,6 @@
 ---
-sidebar_label: Ticket
+sidebar_label: Ticket System
 sidebar_position: 9
 ---
 
-# Ticket
+# Ticket System

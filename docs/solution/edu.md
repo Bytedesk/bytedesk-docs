@@ -1,6 +1,6 @@
 ---
-sidebar_label: EduCs
+sidebar_label: Education
 sidebar_position: 2
 ---
 
-# EduCs
+# Education

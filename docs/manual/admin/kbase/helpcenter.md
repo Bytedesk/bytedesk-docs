@@ -1,6 +1,6 @@
 ---
-sidebar_label: HelpCenter
+sidebar_label: Help Center
 sidebar_position: 1
 ---
 
-# HelpCenter
+# Help Center

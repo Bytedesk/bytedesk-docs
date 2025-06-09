@@ -1,13 +1,13 @@
 ---
-sidebar_label: 跨境电商智能客服解决方案
+sidebar_label: Cross-border E-commerce Smart Service Solution
 sidebar_position: 5
 ---
 
-# 跨境电商智能客服解决方案
+# Cross-border E-commerce Smart Service Solution
 
-## 功能对比
+## Feature Comparison
 
-| 功能      | 开源  |  企业版 |
-| --------- | ----- |  ------ |
-| Header    | Title |  Title  |
-| Paragraph | Text  |  Text   |
+| Feature | Community | Enterprise |
+| --------- | ----- | ------ |
+| Header | Title | Title |
+| Paragraph | Text | Text |

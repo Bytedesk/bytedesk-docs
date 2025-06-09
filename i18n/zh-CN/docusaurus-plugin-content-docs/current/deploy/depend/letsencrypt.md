@@ -1,98 +1,178 @@
 ---
 sidebar_label: Letsencrypt
-sidebar_position: 5
+sidebar_position: 10
 ---
 
-# Letsencrypt
+# Let's Encrypt SSL证书申请指南
+
+:::tip 系统要求
+
+- 操作系统：Ubuntu 22.04 LTS
+- 服务器推荐配置：4核8G内存
+:::
+
+[Let's Encrypt](https://letsencrypt.org) 是一个免费、开源的证书颁发机构，可以帮助您为网站获取SSL/TLS证书，启用HTTPS加密连接。本指南将引导您完成申请和安装过程。
+
+## 什么是SSL证书？
+
+SSL证书允许网站使用HTTPS协议（即安全的HTTP），保护用户与网站之间传输的数据安全。当您的网站启用HTTPS后：
+
+- 数据在传输过程中被加密，防止被窃取
+- 为用户提供更安全的浏览体验
+- 提升网站在搜索引擎中的排名
+- 显示安全锁图标，增加用户信任
+
+## 安装Certbot工具
+
+Certbot是申请Let's Encrypt证书的官方工具。以下是在Ubuntu系统上安装Certbot的步骤：
 
 ```bash
-# 更新源
+# 1. 更新系统软件包
 sudo apt update
-# 安装snapd
+
+# 2. 安装snapd工具
 sudo apt install snapd
-# 查看snapd版本
-snap version
-# 更新snap到最新版
-sudo snap install core; sudo snap refresh core
-# 删除之前安装的certbot，如果之前没有安装过certbot，则忽略
-# sudo apt-get remove certbot 或 sudo dnf remove certbot, 或 sudo yum remove certbot
-# 重新安装certbot
+
+# 3. 确保snapd是最新版本
+sudo snap install core
+sudo snap refresh core
+
+# 4. 安装certbot
 sudo snap install --classic certbot
-# 检查certbot是否正常运行
+
+# 5. 创建符号链接，确保certbot可执行
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-# 安装证书并更新nginx
-# sudo certbot --nginx
-# 仅用于安装证书，不更新nginx
-# sudo certbot certonly --nginx
-# 生成证书，支持通配符
-sudo certbot certonly --manual --preferred-challenges=dns-01
-# 修正：续约的时候使用这个才成功：sudo certbot --manual --preferred-challenges dns certonly
-# 自动更新证书
-sudo certbot renew --dry-run
-# The command to renew certbot is installed in one of the following locations:
-# /etc/crontab/
-# /etc/cron.*/*
-# systemctl list-timers
-# 修改nginx配置文件 site-available 
-# 重启
-service nginx restart
-# 打开浏览器确认是否正常运行
-# 暂时不支持3级域名 *.*.weiyuai.cn
-# The server will not issue certificates for the identifier :: Error creating new order :: Cannot issue for "*.*.weiyuai.cn": Domain name has more than one wildcard
 ```
 
-## 运行
+## 申请证书的方法
+
+### 方法1: 自动申请和配置（适合大多数情况）
+
+如果您的服务器上运行着Nginx或Apache，可以使用自动配置：
 
 ```bash
-sudo certbot certonly --manual --preferred-challenges=dns-01
+# 自动申请证书并配置Nginx
+sudo certbot --nginx
 
-Saving debug log to /var/log/letsencrypt/letsencrypt.log
-Please enter the domain name(s) you would like on your certificate (comma and/or
-<!-- 注意：修改为自己的域名。可添加多个域名，支持2级、3级通配符域名 -->
-space separated) (Enter 'c' to cancel): weiyuai.cn,*.weiyuai.cn
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-<!-- 添加域名解析TXT记录 -->
-Please deploy a DNS TXT record under the name:
-
-_acme-challenge.weiyuai.cn.
-
-with the following value:
-
-KRxVNaEepknOJaIZt4e6cR0aTv_AydVsULksMiI7ySA
-
-Before continuing, verify the TXT record has been deployed. Depending on the DNS
-provider, this may take some time, from a few seconds to multiple minutes. You can
-check if it has finished deploying with aid of online tools, such as the Google
-Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.weiyuai.cn.
-Look for one or more bolded line(s) below the line ';ANSWER'. It should show the
-value(s) you've just added.
-
-Press Enter to Continue
-
-Successfully received certificate.
-Certificate is saved at: /etc/letsencrypt/live/weiyuai.cn/fullchain.pem
-Key is saved at:         /etc/letsencrypt/live/weiyuai.cn/privkey.pem
-This certificate expires on 2022-06-09.
-These files will be updated when the certificate renews.
-
-NEXT STEPS:
-
-- This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one was not provided. To renew this certificate, repeat this same certbot command before the certificate's expiry date.
-We were unable to subscribe you the EFF mailing list because your e-mail address appears to be invalid. You can try again later by visiting <https://act.eff.org>.
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-If you like Certbot, please consider supporting our work by:
-
-- Donating to ISRG / Let's Encrypt:   <https://letsencrypt.org/donate>
-- Donating to EFF:                    <https://eff.org/donate-le>
-
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+# 或者自动申请证书并配置Apache
+sudo certbot --apache
 ```
 
-## 参考
+此命令会:
 
-- [letsencrypt](https://letsencrypt.org)
-- [手动申请 Let's Encrypt 通配符证书](https://sspai.com/post/66008)
-- [参考网站](https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal)
+1. 申请证书
+2. 自动修改您的网站配置文件
+3. 设置自动更新
+
+### 方法2: 仅申请证书（不修改配置）
+
+如果您希望手动配置服务器：
+
+```bash
+# 仅申请证书，不修改配置
+sudo certbot certonly --nginx  # 针对Nginx
+# 或
+sudo certbot certonly --apache  # 针对Apache
+```
+
+### 方法3: 申请通配符证书（适用于多个子域名）
+
+通配符证书可让您用一个证书保护多个子域名（如：*.example.com）：
+
+```bash
+# 申请通配符证书
+sudo certbot certonly --manual --preferred-challenges=dns-01
+```
+
+#### 通配符证书申请步骤演示
+
+下面是申请通配符证书的交互过程：
+
+1. 运行命令后，输入您的域名（示例）：
+
+   ```bash
+   请输入您想要为证书添加的域名(用逗号或空格分隔):
+   example.com,*.example.com
+   ```
+
+2. 系统会要求您添加DNS TXT记录来验证域名所有权：
+
+   ```bash
+   请在以下域名下添加DNS TXT记录:
+   _acme-challenge.example.com
+   
+   TXT记录值:
+   Ab5x7HcJK2LoQn... (这是一个随机生成的长字符串)
+   ```
+
+3. 登录您的DNS管理控制台（如阿里云、腾讯云等），添加该TXT记录
+4. 添加完成并等待DNS记录生效后（通常需要几分钟），按回车继续
+5. 验证成功后，证书会保存到服务器上：
+
+   ```bash
+   证书位置: /etc/letsencrypt/live/example.com/fullchain.pem
+   私钥位置: /etc/letsencrypt/live/example.com/privkey.pem
+   ```
+
+## 证书更新
+
+Let's Encrypt证书有效期为90天，需要定期更新。有两种方式：
+
+### 自动更新
+
+安装Certbot后，系统会自动添加定时任务，一般无需手动干预。可以测试更新过程：
+
+```bash
+sudo certbot renew --dry-run
+```
+
+### 手动更新
+
+如果需要手动更新证书：
+
+```bash
+sudo certbot renew
+```
+
+## 配置Web服务器使用证书
+
+### Nginx配置示例
+
+```bash
+server {
+    listen 443 ssl;
+    server_name example.com;
+    
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+    
+    # 其他SSL配置...
+    
+    # 您的网站配置...
+}
+
+# 将HTTP重定向到HTTPS
+server {
+    listen 80;
+    server_name example.com;
+    return 301 https://$host$request_uri;
+}
+```
+
+配置完成后重启Nginx：
+
+```bash
+sudo service nginx restart
+```
+
+## 注意事项
+
+- 通配符证书可以保护一个域名的所有一级子域名，但不支持多级通配符（如 *.*.example.com）
+- 手动申请的证书需要手动续期，请记得在到期前更新
+- 证书文件位置：`/etc/letsencrypt/live/你的域名/`
+
+## 参考资料
+
+- [Let's Encrypt 官方网站](https://letsencrypt.org)
+- [Certbot 使用文档](https://certbot.eff.org/instructions)
+- [手动申请 Let's Encrypt 通配符证书教程](https://sspai.com/post/66008)

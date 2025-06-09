@@ -1,0 +1,44 @@
+facebook:
+  label: Facebook
+  permalink: /facebook
+  description: Facebook tag description
+
+hello:
+  label: Hello
+  permalink: /hello
+  description: Hello tag description
+
+docusaurus:
+  label: Docusaurus
+  permalink: /docusaurus
+  description: Docusaurus tag description
+
+hola:
+  label: Hola
+  permalink: /hola
+  description: Hola tag description
+
+developer:
+  label: Developer
+  permalink: /developer
+  description: Developer tag description
+
+bytedesk:
+  label: Bytedesk
+  permalink: /bytedesk
+  description: Bytedesk tag description
+
+AI:
+  label: AI
+  permalink: /ai
+  description: 人工智能相关技术与应用
+
+Qwen3:
+  label: Qwen3
+  permalink: /qwen3
+  description: 阿里云通义千问大语言模型
+
+LLM:
+  label: LLM
+  permalink: /llm
+  description: 大型语言模型(Large Language Model)

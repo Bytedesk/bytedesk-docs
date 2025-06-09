@@ -1,6 +1,6 @@
 ---
-sidebar_label: ShopCs
+sidebar_label: E-commerce
 sidebar_position: 4
 ---
 
-# ShopCs
+# E-commerce

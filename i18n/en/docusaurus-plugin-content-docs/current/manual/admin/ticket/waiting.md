@@ -1,6 +1,6 @@
 ---
-sidebar_label: 待分配
+sidebar_label: Unassigned
 sidebar_position: 1
 ---
 
-# 待分配
+# Unassigned

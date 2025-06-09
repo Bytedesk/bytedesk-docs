@@ -1,6 +1,6 @@
 ---
-sidebar_label: 关键词
+sidebar_label: Keywords
 sidebar_position: 3
 ---
 
-# 关键词
+# Keywords

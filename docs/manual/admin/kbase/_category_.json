@@ -1,8 +1,8 @@
 {
-  "label": "知识库",
-  "position": 4,
+  "label": "Knowledge Base",
+  "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "5分钟快速上手使用 微语."
+    "description": "Get started with Weiyu in 5 minutes."
   }
 }

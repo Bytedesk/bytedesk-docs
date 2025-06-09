@@ -1,12 +1,12 @@
 ---
-sidebar_label: 帮助中心
+sidebar_label: Help Center
 sidebar_position: 1
 ---
 
-# 帮助中心
+# Help Center
 
-## 什么是帮助中心？
+## What is Help Center?
 
-## 功能点
+## Features
 
-## 预览
+## Preview

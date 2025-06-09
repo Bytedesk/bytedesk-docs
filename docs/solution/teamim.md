@@ -1,6 +1,6 @@
 ---
-sidebar_label: TeamIM
+sidebar_label: Team Collaboration
 sidebar_position: 1
 ---
 
-# TeamIM
+# Team Collaboration

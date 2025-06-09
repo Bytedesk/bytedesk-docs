@@ -1,22 +1,22 @@
 ---
-sidebar_label: 登录
+sidebar_label: Login
 sidebar_position: 1
 ---
 
-# 登录
+# Login
 
-## 自定义服务器
+## Custom Server
 
-- 登录管理后台
-- 点击左侧菜单栏的`设置` -》`服务器设置` -》复制 服务器地址
-- 找到 admin/config.json 文件，默认格式如下：
+- Login to admin dashboard
+- Click `Settings` -> `Server Settings` in the left menu -> Copy server address
+- Find admin/config.json file, default format is as follows:
 
 ```json
 {
-    "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-    "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
-    "htmlHost": "www.weiyuai.cn" // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
+    "enabled": false, // Change false to true. Only when changed to true, the apiHost and htmlHost below will take effect
+    "apiHost": "api.weiyuai.cn", // Important: Change to online api address, like: api.example.com, cannot start with http
+    "htmlHost": "www.weiyuai.cn" // Change to static webpage address, like: www.example.com, cannot start with http
 }
 ```
 
-将 apiHost 和 htmlHost 替换为服务器地址即可
+Replace apiHost and htmlHost with your server address

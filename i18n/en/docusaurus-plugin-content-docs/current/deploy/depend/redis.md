@@ -7,49 +7,49 @@ sidebar_position: 2
 
 :::tip
 
-- 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置2核4G内存，推荐配置4核8G内存
+- Operating System: Ubuntu 20.04 LTS  
+- Server Requirements: Minimum 2 cores 4GB RAM, Recommended 4 cores 8GB RAM
 
 :::
 
 :::warning
-因AI知识库问答用到向量搜索，需要安装redis-stack-server，而不是普通redis，否则无法正常使用AI知识库问答
+Due to AI knowledge base Q&A using vector search, redis-stack-server needs to be installed instead of regular redis, otherwise AI knowledge base Q&A cannot function properly
 :::
 
-### 参考[redis官方安装说明](https://redis.io/docs/install/install-stack/docker/)
+### Refer to [Redis official installation guide](https://redis.io/docs/install/install-stack/docker/)
 
-### Docker方式安装
+### Docker Installation
 
 ```bash
-# 首先本地启动docker, 如果没有安装，会自动安装redis/redis-stack-server
-# 线上环境：安装redis/redis-stack-server
-# 密码参数：-e REDIS_ARGS="--requirepass 密码"
-docker run -d --name redis-stack-server -p 6379:6379 -e REDIS_ARGS="--requirepass 密码" redis/redis-stack-server:latest
-# 使用redis-cli
+# First start docker locally, if not installed, redis/redis-stack-server will be installed automatically
+# Production environment: Install redis/redis-stack-server
+# Password parameter: -e REDIS_ARGS="--requirepass password"
+docker run -d --name redis-stack-server -p 6379:6379 -e REDIS_ARGS="--requirepass password" redis/redis-stack-server:latest
+# Use redis-cli
 docker exec -it redis-stack-server redis-cli
-# 本地测试：安装redis/redis-stack
+# Local testing: Install redis/redis-stack
 # redisinsight: http://localhost:8001
-# docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 -e REDIS_ARGS="--requirepass 密码" redis/redis-stack:latest
+# docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 -e REDIS_ARGS="--requirepass password" redis/redis-stack:latest
 #
-# 将内容存储到/local-data/文件夹
+# Store content in /local-data/ folder
 # docker run -v /local-data/:/data redis/redis-stack:latest
-# 使用local-redis-stack.conf替代默认redis-stack.conf配置文件
+# Use local-redis-stack.conf instead of default redis-stack.conf
 # docker run -v `pwd`/local-redis-stack.conf:/redis-stack.conf -p 6379:6379 -p 8001:8001 redis/redis-stack-server:latest
-# 使用redis-cli
+# Use redis-cli
 # docker exec -it redis-stack redis-cli
 #
-# 1.进入redis的容器：docker exec -it redis-stack bash
-# 2.运行命令：redis-cli
-# 3.查看现有的redis密码：config get requirepass
-# 随机密码 https://suijimimashengcheng.bmcx.com/
-# 4.设置 redis 密码：config set requirepass 密码
-# docker container stop redis-stack # 停止 Redis 服务
-# docker container start redis-stack # 开启 Redis 服务
-# docker container restart redis-stack # 重启 Redis 服务
+# 1. Enter redis container: docker exec -it redis-stack bash
+# 2. Run command: redis-cli
+# 3. View existing redis password: config get requirepass
+# Random password https://suijimimashengcheng.bmcx.com/
+# 4. Set redis password: config set requirepass password
+# docker container stop redis-stack # Stop Redis service
+# docker container start redis-stack # Start Redis service
+# docker container restart redis-stack # Restart Redis service
 #
 ```
 
-### ubuntu 安装非docker版 redis-stack-server
+### Ubuntu Installation of Non-Docker redis-stack-server
 
 ```bash
 # https://redis.io/docs/install/install-stack/linux/
@@ -60,20 +60,20 @@ sudo apt-get update
 sudo apt-get install redis-stack-server
 ```
 
-### Mac 安装 非docker版 redis-stack
+### Mac Installation of Non-Docker redis-stack
 
 ```bash
 # https://redis.io/docs/install/install-stack/mac-os/
 arch -arm64 brew tap redis-stack/redis-stack
 arch -arm64 brew install redis-stack
-# echo $PATH，输出结果：/opt/homebrew/bin
-# 修改 ~/.zshrc
+# echo $PATH, output: /opt/homebrew/bin
+# Modify ~/.zshrc
 # export PATH=/opt/homebrew/Caskroom/redis-stack-server/<VERSION>/bin:$PATH
-# 找到安装目录，修改conf文件，密码
-# 启动
+# Find installation directory, modify conf file, password
+# Start
 redis-stack-server
 redisinsight
-# 卸载
+# Uninstall
 brew uninstall redis-stack-redisinsight redis-stack-server redis-stack
 brew untap redis-stack/redis-stack
 ```

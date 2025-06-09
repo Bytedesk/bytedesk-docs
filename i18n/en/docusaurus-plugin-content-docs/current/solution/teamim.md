@@ -1,32 +1,79 @@
 ---
-sidebar_label: 企业即时通讯IM解决方案
-sidebar_position: 1
+sidebar_label: Team Chat
+sidebar_position: 2
 ---
 
-# 企业即时通讯IM解决方案
+# Team Chat Solution
 
-## 功能对比（待完善，企业版暂未发布）
+## Features
 
-| 功能 | 开源 | 企业版 |
-| :--: | :--: | :--: |
-| 一对一聊天 | √ | √ |
-| 群组聊天 | √ | √ |
-| 文本/图片/文件消息 | √ | √ |
-| 截图 | √ | √ |
-| 机器人会话 | √ | √ |
-| 消息记录 | √ | √ |
-| WebHook | X | √ |
-| 音视频 | X | √ |
-| 音视频会议 | X | √ |
-<!-- | 单点登录 | X | √ | -->
-<!-- | LDAP认证 | X | √ | -->
-<!-- | 文件预览 | X | √ | -->
-<!-- | 通讯录集成 | X | √ | -->
-<!-- | IP登录限制 | X | √ | -->
-<!-- | 桌面共享 | √ | √ | -->
-<!-- | 右键菜单 | X | √ | -->
-<!-- | 协作文档 | X | √ | -->
-<!-- | 扩展机制 | X | √ | -->
-<!-- | 服务端文件加密储存 | X | √ | -->
-<!-- | 数据库消息加密储存 | X | √ | -->
-<!-- | 更高级的扩展API | X | √ | -->
+### Chat Features
+
+- Real-time messaging
+- File sharing
+- Image sharing
+- Voice messages
+- Video calls
+- Screen sharing
+- Chat history
+- Message search
+- Online/offline status
+- Read receipts
+- Typing indicators
+- Group chat
+- @mentions
+- Reactions
+- Threads
+
+### Team Features
+
+- Team management
+- Channel management
+- Role management
+- Permission control
+- File storage
+- Team directory
+- Team calendar
+- Task management
+- Meeting scheduling
+
+### Admin Features
+
+- User management
+- Team management
+- Role management
+- Permission control
+- Usage statistics
+- System settings
+- Audit logs
+- Data backup
+
+### Integration
+
+- REST API
+- WebSocket API
+- JavaScript SDK
+- Android SDK
+- iOS SDK
+- Desktop apps
+- Custom plugins
+
+## Deployment
+
+- [Source Code](/docs/deploy/source)
+- [Docker](/docs/deploy/docker)
+- [JAR Package](/docs/deploy/jar)
+- [Desktop Client](/docs/deploy/desktop)
+- [Cluster](/docs/deploy/cluster)
+
+## Development
+
+- [Server API](/docs/develop/server/service/agent)
+- [Client SDK](/docs/develop/visitor/platform/web)
+- [Mobile SDK](/docs/develop/visitor/platform/android)
+
+## Support
+
+- [GitHub Issues](https://github.com/bytedesk/bytedesk/issues)
+- [Email Support](mailto:support@bytedesk.com)
+- [Commercial Support](https://www.bytedesk.com/support)

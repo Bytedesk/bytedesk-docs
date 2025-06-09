@@ -7,16 +7,36 @@
     "message": "Bytedesk Logo",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Tutorial": {
-    "message": "Tutorial",
-    "description": "Navbar item with label Tutorial"
+  "item.label.Docs": {
+    "message": "文檔",
+    "description": "Navbar item with label Docs"
   },
   "item.label.Blog": {
-    "message": "Blog",
+    "message": "博客",
     "description": "Navbar item with label Blog"
+  },
+  "item.label.Architecture": {
+    "message": "架構圖",
+    "description": "Navbar item with label Architecture"
+  },
+  "item.label.Swagger Apis": {
+    "message": "SwaggerApis",
+    "description": "Navbar item with label Swagger Apis"
+  },
+  "item.label.Javadocs": {
+    "message": "JavaDocs",
+    "description": "Navbar item with label Javadocs"
   },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Contact": {
+    "message": "聯繫我們",
+    "description": "Navbar item with label Contact"
+  },
+  "item.label.Price": {
+    "message": "價格",
+    "description": "Navbar item with label Price"
   }
 }

@@ -1,6 +1,6 @@
 ---
-sidebar_label: 一对一
+sidebar_label: One-on-One
 sidebar_position: 1
 ---
 
-# 一对一客服
+# One-on-One Customer Service

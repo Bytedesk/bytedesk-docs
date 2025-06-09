@@ -1,6 +1,20 @@
+/*
+ * @Author: jackning 270580156@qq.com
+ * @Date: 2025-01-06 21:22:08
+ * @LastEditors: jack ning github@bytedesk.com
+ * @LastEditTime: 2025-05-05 14:36:05
+ * @Description: bytedesk.com https://github.com/Bytedesk/bytedesk
+ *   Please be aware of the BSL license restrictions before installing Bytedesk IM – 
+ *  selling, reselling, or hosting Bytedesk IM as a service is a breach of the terms and automatically terminates your rights under the license. 
+ *  仅支持企业内部员工自用，严禁私自用于销售、二次销售或者部署SaaS方式销售 
+ *  Business Source License 1.1: https://github.com/Bytedesk/bytedesk/blob/main/LICENSE 
+ *  contact: 270580156@qq.com 
+ *  技术/商务联系：270580156@qq.com
+ * Copyright (c) 2025 by bytedesk.com, All Rights Reserved. 
+ */
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+// import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
@@ -10,6 +24,8 @@ import styles from './index.module.css';
 // import React from 'react';
 // import { FormattedMessage } from 'react-intl';
 import Translate, { translate } from '@docusaurus/Translate';
+// import { BytedeskReact } from 'bytedesk-web/react';
+// import { BytedeskConfig } from 'bytedesk-web';
 
 function HomepageHeader() {
   // const { siteConfig } = useDocusaurusContext();
@@ -38,7 +54,7 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  // const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title={translate({ id: 'homepage.title', message: 'ByteDesk' })}

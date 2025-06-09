@@ -1,12 +1,12 @@
 ---
-sidebar_label: 快捷回复
+sidebar_label: Quick Reply
 sidebar_position: 6
 ---
 
-# 快捷回复
+# Quick Reply
 
-## 什么是快捷回复？
+## What is Quick Reply?
 
-## 功能点
+## Features
 
-## 预览
+## Preview

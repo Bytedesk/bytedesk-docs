@@ -1,6 +1,6 @@
 ---
-sidebar_label: Letsencrypt
-sidebar_position: 5
+sidebar_label: SSL Certificate
+sidebar_position: 10
 ---
 
-# Letsencrypt
+# SSL Certificate

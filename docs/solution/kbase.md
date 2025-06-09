@@ -1,6 +1,6 @@
 ---
-sidebar_label: Kbase
+sidebar_label: Knowledge Base
 sidebar_position: 7
 ---
 
-# Kbase
+# Knowledge Base

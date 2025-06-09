@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // 
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
-import Translate, { translate } from '@docusaurus/Translate';
+import { translate } from '@docusaurus/Translate';
 
 type FeatureItem = {
   title: JSX.Element;
@@ -13,8 +14,8 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: <Link to="docs/category/组织">{translate({ id: 'homepage.feature.im.title', message: 'Team Chat', })}</Link>,
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: <Link to="docs/modules/team">{translate({ id: 'homepage.feature.im.title', message: 'Team Chat', })}</Link>,
+    Svg: require('@site/static/img/features/team-chat.svg').default,
     description: (
       <>
         {translate({id: 'homepage.feature.im.description', message: 'Team Chat'})}
@@ -22,8 +23,8 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/category/客服">{translate({ id: 'homepage.feature.cs.title', message: 'Customer Service', })}</Link>,
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: <Link to="docs/modules/service">{translate({ id: 'homepage.feature.cs.title', message: 'Customer Service', })}</Link>,
+    Svg: require('@site/static/img/features/customer-service.svg').default,
     description: (
       <>
         {translate({ id: 'homepage.feature.cs.description', message: 'OmniChannel Customer Service' })}
@@ -31,26 +32,17 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/category/ai助手">{translate({ id: 'homepage.feature.ai.title', message: 'AI Asistant', })}</Link>,
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: <Link to="docs/modules/ai">{translate({ id: 'homepage.feature.ai.title', message: 'AI Assistant', })}</Link>,
+    Svg: require('@site/static/img/features/ai-assistant.svg').default,
     description: (
       <>
-        {translate({ id: 'homepage.feature.ai.description', message: 'OmniChannel Customer Service' })}
+        {translate({ id: 'homepage.feature.ai.description', message: 'AI Assistant' })}
       </>
     ),
   },
   {
-    title: <Link to="docs/category/知识库">{translate({ id: 'homepage.feature.kb.title', message: 'Knowledge Base', })}</Link>,
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        {translate({ id: 'homepage.feature.kb.description', message: 'Knowledge Base' })}
-      </>
-    ),
-  },
-  {
-    title: <Link to="docs/category/知识库">{translate({ id: 'homepage.feature.helpcenter.title', message: 'Help Center', })}</Link>,
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: <Link to="docs/modules/kbase">{translate({ id: 'homepage.feature.helpcenter.title', message: 'Help Center', })}</Link>,
+    Svg: require('@site/static/img/features/help-center.svg').default,
     description: (
       <>
         {
@@ -60,13 +52,67 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/category/工单">{translate({ id: 'homepage.feature.ticket.title', message: 'Ticket System', })}</Link>,
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: <Link to="docs/modules/voc">{translate({ id: 'homepage.feature.voc.title', message: 'Voice Of Customer', })}</Link>,
+    Svg: require('@site/static/img/features/voice-of-customer.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.voc.description', message: 'Voice Of Customer' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/modules/ticket">{translate({ id: 'homepage.feature.ticket.title', message: 'Ticket System', })}</Link>,
+    Svg: require('@site/static/img/features/ticket-system.svg').default,
     description: (
       <>
         {
           translate({id: 'homepage.feature.ticket.description', message: 'Ticket System'})
         }
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/modules/workflow">{translate({ id: 'homepage.feature.workflow.title', message: 'Workflow', })}</Link>,
+    Svg: require('@site/static/img/features/workflow.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.workflow.description', message: 'Workflow' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/plugins/freeswitch">{translate({ id: 'homepage.feature.callcenter.title', message: 'Call Center', })}</Link>,
+    Svg: require('@site/static/img/features/call-center.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.callcenter.description', message: 'Call Center' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/plugins/webrtc">{translate({ id: 'homepage.feature.videocs.title', message: 'Video Customer Service', })}</Link>,
+    Svg: require('@site/static/img/features/video-customer-service.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.videocs.description', message: 'Video Customer Service' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/plugins/jitsi">{translate({ id: 'homepage.feature.conference.title', message: 'Video Conference', })}</Link>,
+    Svg: require('@site/static/img/features/video-conference.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.conference.description', message: 'Video Conference' })}
+      </>
+    ),
+  },
+  {
+    title: <Link to="docs/modules/forum">{translate({ id: 'homepage.feature.project.title', message: 'Project Management', })}</Link>,
+    Svg: require('@site/static/img/features/project-management.svg').default,
+    description: (
+      <>
+        {translate({ id: 'homepage.feature.project.description', message: 'Project Management' })}
       </>
     ),
   },
@@ -79,7 +125,7 @@ function Feature({title, Svg, description}: FeatureItem) {
         <Svg className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
+        <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
         <p>{description}</p>
       </div>
     </div>

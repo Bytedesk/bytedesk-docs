@@ -1,6 +1,6 @@
 ---
 sidebar_label: JDK
-sidebar_position: 7
+sidebar_position: 10
 ---
 
 # JDK

@@ -1,7 +1,4 @@
 {
-  "label": "管理后台",
-  "position": 1,
-  "link": {
-    "type": "generated-index"
-  }
+  "label": "Admin Guide",
+  "position": 1
 }

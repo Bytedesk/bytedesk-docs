@@ -3,16 +3,32 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
-    "message": "Tutorial - Basics",
-    "description": "The label for category Tutorial - Basics in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Private Deployment": {
+    "message": "Private Deployment",
+    "description": "The label for category Private Deployment in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Dependencies": {
+    "message": "Dependencies",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
-    "message": "Tutorial - Extras",
-    "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.CICD Continuous Deployment": {
+    "message": "CICD Continuous Deployment",
+    "description": "The label for category CICD Continuous Deployment in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Solutions": {
+    "message": "Solutions",
+    "description": "The label for category Solutions in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Integrations": {
+    "message": "Integrations",
+    "description": "The label for category Integrations in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.APIs": {
+    "message": "APIs",
+    "description": "The label for category APIs in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.SDKs": {
+    "message": "SDKs",
+    "description": "The label for category SDKs in sidebar tutorialSidebar"
   }
 }

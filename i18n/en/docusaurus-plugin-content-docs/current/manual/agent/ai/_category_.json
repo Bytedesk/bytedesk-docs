@@ -1,8 +1,8 @@
 {
-  "label": "Ai",
+  "label": "AI",
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "5分钟快速上手使用 微语AI助手."
+    "description": "Get started with Weiyu AI Assistant in 5 minutes."
   }
 }

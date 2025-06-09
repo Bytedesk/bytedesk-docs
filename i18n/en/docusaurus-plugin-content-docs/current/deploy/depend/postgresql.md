@@ -1,5 +1,5 @@
 ---
-sidebar_label: Postgresql
+sidebar_label: PostgreSQL
 sidebar_position: 1
 ---
 
@@ -7,12 +7,12 @@ sidebar_position: 1
 
 :::tip
 
-- 操作系统：Ubuntu 20.04 LTS
-- 服务器最低配置2核4G内存，推荐配置4核8G内存
+- Operating System: Ubuntu 20.04 LTS
+- Server Requirements: Minimum 2 cores 4GB RAM, Recommended 4 cores 8GB RAM
 
 :::
 
-## 安装
+## Installation
 
 ```bash
 # ubuntu
@@ -30,33 +30,33 @@ sudo apt update
 # Install the latest version of PostgreSQL:
 # If you want a specific version, use 'postgresql-16' or similar instead of 'postgresql'
 sudo apt -y install postgresql
-# 查看版本号
+# Check version
 psql --version
-# 查看是否已经启动
+# Check if running
 lsof -i:5432
-# 如需要本地客户端连接云服务，到腾讯云或阿里云防火墙开放端口号：5432
-# 查找配置文件路径
+# If you need local client to connect to cloud service, open port 5432 in Tencent Cloud or Alibaba Cloud firewall
+# Find configuration file path
 locate postgresql.conf
 # /etc/postgresql/16/main/postgresql.conf
-# 为方便修改将/etc/postgresql/16/main/路径下所有配置文件下载到本地修改
-# 开启外网访问，修改 postgresql.conf 文件
+# Download all configuration files from /etc/postgresql/16/main/ for easier modification
+# Enable external access, modify postgresql.conf file
 listen_addresses = '*'
-# 修改 pg_hba.conf 文件，文件末尾添加如下内容：
+# Modify pg_hba.conf file, add the following at the end:
 host    all             all             0.0.0.0/0               scram-sha-256
-# 修改密码
+# Change password
 sudo -u postgres psql
-ALTER USER postgres WITH PASSWORD 'password'; # 修改密码 https://suijimimashengcheng.bmcx.com/
-# 按 \q 退出
-# 安装 pgvector
+ALTER USER postgres WITH PASSWORD 'password'; # Change password https://suijimimashengcheng.bmcx.com/
+# Press \q to exit
+# Install pgvector
 apt install postgresql-16-pgvector
-# 将修改后的配置文件上传到服务器，然后重启
+# Upload modified configuration files to server, then restart
 service postgresql restart
 # service postgresql stop
-# 查看端口 5432
+# Check port 5432
 lsof -i:5432
-# 或者
+# Or
 netstat -tunlp | grep 5432
-# 使用pgadmin客户端, 桌面客户端远程连接
-# 创建数据库 bytedesk_im
-# 给刚创建的数据库bytedesk_im添加扩展vector（右键扩展，创建->General->名称：vector）
+# Use pgadmin client, desktop client remote connection
+# Create database bytedesk
+# Add vector extension to the newly created database bytedesk (right click extensions, create->General->name: vector)
 ```

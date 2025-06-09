@@ -1,18 +1,130 @@
 {
   "version.label": {
-    "message": "Next",
+    "message": "最新",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics": {
-    "message": "使用指南",
-    "description": "The label for category Tutorial - Basics in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.User Manual": {
+    "message": "使用手册",
+    "description": "The label for category Private Deployment in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Tutorial - Basics.link.generated-index.description": {
-    "message": "5 minutes to learn the most important Docusaurus concepts.",
-    "description": "The generated-index page description for category Tutorial - Basics in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Tutorial - Extras": {
+  "sidebar.tutorialSidebar.category.Development": {
     "message": "开发指南",
-    "description": "The label for category Tutorial - Extras in sidebar tutorialSidebar"
+    "description": "The label for category Private Deployment in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Private Deployment": {
+    "message": "私有部署",
+    "description": "The label for category Private Deployment in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Llm Provider": {
+    "message": "大模型对接",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Modules": {
+    "message": "功能模块",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.VectorDB": {
+    "message": "向量数据库",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Dashscope": {
+    "message": "通义千问 DashScope",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Deepseek": {
+    "message": "DeepSeek",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Ollama": {
+    "message": "Ollama",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Zhipu": {
+    "message": "智谱",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Dependencies": {
+    "message": "依赖组件",
+    "description": "The label for category Dependencies in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.CICD Continuous Deployment": {
+    "message": "持续集成部署",
+    "description": "The label for category CICD Continuous Deployment in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Solutions": {
+    "message": "解决方案",
+    "description": "The label for category Solutions in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Integrations": {
+    "message": "集成指南",
+    "description": "The label for category Integrations in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.APIs": {
+    "message": "接口文档",
+    "description": "The label for category APIs in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.SDKs": {
+    "message": "SDK文档",
+    "description": "The label for category SDKs in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Channel": {
+    "message": "渠道对接",
+    "description": "The label for category Channels in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Admin Dashboard": {
+    "message": "管理后台",
+    "description": "The label for category Channels in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Agent Dashboard": {
+    "message": "客服端",
+    "description": "The label for category Channels in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Plugins": {
+    "message": "插件扩展",
+    "description": "The label for category Solutions in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Compare": {
+    "message": "同业对比",
+    "description": "The label for category Solutions in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Authentication": {
+    "message": "登录授权",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Workplace": {
+    "message": "工作台",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Organization": {
+    "message": "组织",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Customer Service": {
+    "message": "客服",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AI Assistant": {
+    "message": "AI助手",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Knowledge Base": {
+    "message": "知识库",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Ticket System": {
+    "message": "工单",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Setting": {
+    "message": "设置",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.doc.Member": {
+    "message": "成员",
+    "description": "The label for document Member in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.doc.Role": {
+    "message": "角色",
+    "description": "The label for document Role in sidebar tutorialSidebar"
   }
 }

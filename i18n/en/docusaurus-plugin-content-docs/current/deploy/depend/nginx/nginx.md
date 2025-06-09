@@ -14,84 +14,84 @@
 -->
 # Nginx
 
-## 安装
+## Installation
 
-``` bash
+```bash
 sudo apt update
 sudo apt install nginx
-# 查看是否安装成功
+# Check if installation successful
 netstat -ntlp
-# 如果80端口正常启动，则证明安装成功
-# 停止nginx
+# If port 80 starts normally, installation is successful
+# Stop nginx
 # service nginx stop
-# 启动nginx
+# Start nginx
 # service nginx start
-# 重启nginx:
+# Restart nginx:
 # service nginx restart
 # systemctl restart nginx
-# 重新加载：
+# Reload:
 # service nginx force-reload
-# 测试 Nginx 配置文件，确保所做的修改没有错误
+# Test Nginx configuration file to ensure changes are correct
 # sudo nginx -t
-# 如果没有错误，运行以下命令让 Nginx 重新载入修改后的配置文件
+# If no errors, run following command to reload modified configuration
 # sudo nginx -s reload
 ```
 
 ```bash
-# 查看是否安装stream模块
-nginx -V | grep stream # 注意是大写V
-# 有输出内容证明已经安装
-# 缓存路径，创建文件夹，在nginx.conf文件中用到
+# Check if stream module is installed
+nginx -V | grep stream # Note: capital V
+# Output indicates it's installed
+# Create cache directory, used in nginx.conf
 mkdir -p /var/www/html/nginx/cache/webserver
-# 对外开放端口号
-http：80
-https：443
-# 另外
-mysql：3306
-redis：6379
-# spring boot 端口：
+# Ports to open externally
+http: 80
+https: 443
+# Additionally
+mysql: 3306
+redis: 6379
+# spring boot ports:
 9003
 # 9883
 9885
 ```
 
-## 配置
+## Configuration
 
-``` bash
-# 如果下载文件报错：
+```bash
+# If download file error:
  open() "/root/weiyuai/uploader/20240821080529_weiyuai.exe" failed (13: Permission denied),
-# 修改 nginx.conf 的 
+# Modify nginx.conf's
 # user www-data;
-# 为
+# to
 # user root;
-# 然后重启
-# 查看nginx进程
+# then restart
+# Check nginx processes
 ps -aux | grep nginx
-# 将 nginx.conf和sites-available文件夹，直接上传到/etc/nginx/目录下覆盖原有文件
-# 重新加载配置文件
+# Upload nginx.conf and sites-available folder directly to /etc/nginx/ directory to overwrite original files
+# Reload configuration
 nginx -s reload
-# 或者 重启nginx
+# Or restart nginx
 service nginx restart
 sudo systemctl restart nginx
 ```
 
 ```bash
-# 创建软连接
+# Create symbolic links
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_80.conf /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_443.conf /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_80.conf /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/weiyuai_cn_api_443.conf /etc/nginx/sites-enabled/
-# 删除软连接
+# Delete symbolic links
 sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_80.conf
 sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_443.conf
 sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_api_80.conf
 sudo unlink /etc/nginx/sites-enabled/weiyuai_cn_api_443.conf
 # 
 sudo unlink /etc/nginx/sites-enabled/default
-# 查看软连接
+# View symbolic links
 ls -l /etc/nginx/sites-enabled/
-# 重新加载nginx配置
+# Reload nginx configuration
 sudo nginx -s reload
-# 或
+# Or
 sudo systemctl reload nginx
 ```

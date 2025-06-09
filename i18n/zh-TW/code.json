@@ -2,6 +2,36 @@
   "homepage.title": {
     "message": "ByteDesk"
   },
+  "footer.docs.title": {
+    "message": "文檔"
+  },
+  "footer.docs.tutorial": {
+    "message": "教程"
+  },
+  "footer.docs.contact": {
+    "message": "聯繫我們"
+  },
+  "footer.community.title": {
+    "message": "社區"
+  },
+  "footer.community.wechat": {
+    "message": "微信公眾號"
+  },
+  "footer.community.zhihu": {
+    "message": "知乎專欄"
+  },
+  "footer.community.forum": {
+    "message": "技術社區"
+  },
+  "footer.more.title": {
+    "message": "更多"
+  },
+  "footer.more.pricing": {
+    "message": "價格方案"
+  },
+  "footer.more.privacy": {
+    "message": "隱私政策"
+  },
   "homepage.tagline": {
     "message": "homepage.tagline"
   },
@@ -9,7 +39,7 @@
     "message": "快速开始"
   },
   "homepage.description": {
-    "message": "企业IM、在线客服、AI助手、知识库、帮助中心"
+    "message": "企业IM、在线客服、AI Agent、知识库、帮助中心"
   },
   "homepage.feature.im.title": {
     "message": "企业IM"

@@ -1,0 +1,88 @@
+/**
+ * 代码块自定义样式
+ */
+
+/* 整体代码块样式优化 */
+.theme-code-block {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 1.5em 0;
+  transition: all 0.3s ease;
+}
+
+.theme-code-block:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* 代码块标题样式 */
+.theme-code-block-header {
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* 高亮行样式 */
+.theme-code-block-highlighted-line {
+  background-color: rgba(255, 255, 0, 0.1);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  border-left: 3px solid #ffd700;
+}
+
+/* 重要行样式 */
+.theme-code-block-important-line {
+  background-color: rgba(255, 80, 80, 0.15);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  border-left: 3px solid #ff5050;
+}
+
+/* 信息行样式 */
+.theme-code-block-info-line {
+  background-color: rgba(80, 140, 255, 0.15);
+  display: block;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+  border-left: 3px solid #508cff;
+}
+
+/* 代码块标签样式 */
+.tabs-container {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+/* 代码块复制按钮样式优化 */
+.theme-code-block .clean-btn {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.theme-code-block:hover .clean-btn {
+  opacity: 1;
+}
+
+.theme-code-block .clean-btn:hover {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 代码块语言标签 */
+.theme-code-block-language {
+  opacity: 0.7;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 行号样式优化 */
+.theme-code-block .token-line .token-line-number {
+  opacity: 0.5;
+  user-select: none;
+}

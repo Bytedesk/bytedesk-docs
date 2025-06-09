@@ -1,6 +1,6 @@
 ---
-sidebar_label: HospitalCS
+sidebar_label: Healthcare
 sidebar_position: 3
 ---
 
-# HospitalCS
+# Healthcare

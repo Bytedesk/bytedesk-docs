@@ -1,6 +1,6 @@
 ---
-sidebar_label: Workgroup
+sidebar_label: Work Group
 sidebar_position: 2
 ---
 
-# Workgroup
+# Work Group

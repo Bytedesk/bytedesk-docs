@@ -7,7 +7,7 @@
     "message": "微语 Logo",
     "description": "The alt text of navbar logo"
   },
-  "item.label.Tutorial": {
+  "item.label.Docs": {
     "message": "文档",
     "description": "Navbar item with label Tutorial"
   },
@@ -15,8 +15,28 @@
     "message": "博客",
     "description": "Navbar item with label Blog"
   },
+  "item.label.Architecture": {
+    "message": "架构图",
+    "description": "Navbar item with label Architecture"
+  },
+  "item.label.Swagger Apis": {
+    "message": "SwaggerApis",
+    "description": "Navbar item with label Swagger Apis"
+  },
+  "item.label.Javadocs": {
+    "message": "JavaDocs",
+    "description": "Navbar item with label Javadocs"
+  },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Contact": {
+    "message": "联系我们",
+    "description": "Navbar item with label Contact"
+  },
+  "item.label.Price": {
+    "message": "价格",
+    "description": "Navbar item with label Price"
   }
 }

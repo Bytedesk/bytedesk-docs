@@ -1,6 +1,6 @@
 ---
-sidebar_label: QueueNumber
+sidebar_label: Queue Management
 sidebar_position: 10
 ---
 
-# QueueNumber
+# Queue Management

@@ -1,8 +1,4 @@
 {
-  "label": "组织",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "description": "5分钟快速上手使用 企业IM."
-  }
+  "label": "Team Management",
+  "position": 1
 }

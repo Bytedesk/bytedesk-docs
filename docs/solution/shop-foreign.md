@@ -1,6 +1,6 @@
 ---
-sidebar_label: ShopCs-Foreign
+sidebar_label: Cross-border E-commerce
 sidebar_position: 5
 ---
 
-# ShopCs-Foreign
+# Cross-border E-commerce

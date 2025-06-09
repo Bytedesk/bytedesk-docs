@@ -1,14 +1,15 @@
 {
   "name": "docs",
-  "version": "0.3.5",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "dev": "docusaurus start --port 9008 --locale zh-CN",
     "start": "docusaurus start --port 9008",
     "start-cn": "docusaurus start --port 9008 --locale zh-CN",
     "start-tw": "docusaurus start --port 9008 --locale zh-TW",
+    "release": "sh cicd/scripts/build-upload.sh",
     "build": "docusaurus build",
-    "release": "sh cicd/scripts/release.sh",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -18,21 +19,27 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@cmfcmf/docusaurus-search-local": "^1.1.0",
-    "@docusaurus/core": "3.4.0",
-    "@docusaurus/preset-classic": "3.4.0",
+    "@docusaurus/core": "^3.8.0",
+    "@docusaurus/plugin-content-docs": "^3.8.1",
+    "@docusaurus/plugin-sitemap": "^3.8.0",
+    "@docusaurus/preset-classic": "^3.8.0",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.8.0",
+    "@docusaurus/theme-common": "^3.8.1",
+    "@docusaurus/theme-mermaid": "^3.8.0",
+    "@docusaurus/theme-search-algolia": "^3.8.0",
+    "@easyops-cn/docusaurus-search-local": "^0.49.2",
     "@mdx-js/react": "^3.0.0",
-    "bytedesk-react": "^0.0.5",
+    "bytedesk-web": "^1.4.10",
     "clsx": "^2.0.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.3.2",
-    "@docusaurus/tsconfig": "3.3.2",
-    "@docusaurus/types": "3.3.2",
-    "typescript": "~5.2.2"
+    "@docusaurus/module-type-aliases": "^3.8.0",
+    "@docusaurus/tsconfig": "^3.7.0",
+    "@docusaurus/types": "^3.7.0",
+    "typescript": "~5.6.2"
   },
   "browserslist": {
     "production": [

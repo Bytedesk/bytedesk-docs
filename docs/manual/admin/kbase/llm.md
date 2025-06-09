@@ -1,6 +1,6 @@
 ---
-sidebar_label: Llm
+sidebar_label: Large Language Models
 sidebar_position: 2
 ---
 
-# Llm
+# Large Language Models

@@ -1,6 +1,6 @@
 ---
-sidebar_label: IM
+sidebar_label: Instant Messaging
 sidebar_position: 1
 ---
 
-# IM
+# Instant Messaging
