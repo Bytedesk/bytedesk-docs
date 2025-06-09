@@ -65,7 +65,12 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/bytedesk/bytedesk-docs",
+          editUrl: ({locale, docPath}) => {
+            if (locale !== 'en') {
+              return `https://github.com/bytedesk/bytedesk-docs/blob/main/i18n/${locale}/docusaurus-plugin-content-docs/current/${docPath}`;
+            }
+            return `https://github.com/bytedesk/bytedesk-docs/blob/main/docs/${docPath}`;
+          },
           // 版本化配置（暂时禁用，待网站内容稳定后启用）
           // lastVersion: 'current',
           // versions: {...},
@@ -83,7 +88,12 @@ const config: Config = {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/bytedesk/bytedesk",
+          editUrl: ({locale, blogPath}) => {
+            if (locale !== 'en') {
+              return `https://github.com/bytedesk/bytedesk-docs/blob/main/i18n/${locale}/docusaurus-plugin-content-blog/${blogPath}`;
+            }
+            return `https://github.com/bytedesk/bytedesk-docs/blob/main/blog/${blogPath}`;
+          },
         },
         theme: {
           customCss: "./src/css/custom.css",
