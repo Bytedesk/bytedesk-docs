@@ -65,7 +65,7 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/bytedesk/bytedesk",
+          editUrl: "https://github.com/bytedesk/bytedesk-docs",
           // 版本化配置（暂时禁用，待网站内容稳定后启用）
           // lastVersion: 'current',
           // versions: {...},
