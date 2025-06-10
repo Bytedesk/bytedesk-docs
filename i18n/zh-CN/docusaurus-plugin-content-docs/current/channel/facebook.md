@@ -102,3 +102,4 @@ sidebar_position: 14
 - [图谱 API 探索工具](https://developers.facebook.com/tools/explorer)
 - [graph-api-webhooks-samples](https://github.com/fbsamples/graph-api-webhooks-samples)
 - [Meta Business SDK](https://developers.facebook.com/docs/business-sdk/getting-started)
+- [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
