@@ -92,3 +92,5 @@ import FinalWeiyuaiBotProfile from '/img/channel/telegram/13_weiyuai_bot_profile
 - [Telegram Bots API](https://core.telegram.org/bots)
 - [Telegram API](https://core.telegram.org/api)
 - [TelegramBots Maven Package](https://mvnrepository.com/artifact/org.telegram/telegrambots-meta)
+- [Spring Boot With Proxy](https://rubenlagus.github.io/TelegramBotsDocumentation/lesson-10.html#now-it-s-time-for-our-custom-configurations)
+- [Http Proxy && SOCKS5 Proxy](https://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04)
