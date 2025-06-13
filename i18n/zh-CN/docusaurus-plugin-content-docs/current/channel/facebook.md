@@ -74,9 +74,13 @@ sidebar_position: 14
 
 ### 获取 App ID 和 App Secret
 
+- [Facebook 应用](https://developers.facebook.com/apps/)，选择对应的应用-》应用设置-》基本
+
 ![appId](/img/channel/meta/meta_app_appid_appsecret.png)
 
 ### 获取 Page Access Token
+
+- [Facebook 应用](https://developers.facebook.com/apps/)，选择对应的应用-》Messenger-》Messenger API 设置-》绑定页面-》生成访问令牌
 
 ![pageAccessToken](/img/channel/meta/meta_app_generate_page_access_token.png)
 
@@ -94,6 +98,9 @@ sidebar_position: 14
 
 ## 参考链接
 
+- [Facebook 开发者](https://developers.facebook.com/)
+- [Facebook 应用](https://developers.facebook.com/apps/)
+- [Messenger Webhooks](https://developers.facebook.com/docs/messenger-platform/webhooks)
 - [Meta Webhooks](https://developers.facebook.com/docs/graph-api/webhooks)
 - [绑定Whatsapp和Instagram](https://www.facebook.com/settings/?tab=linked_profiles)
 - [Messenger 开放平台](https://developers.facebook.com/docs/messenger-platform/)
