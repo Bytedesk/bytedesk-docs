@@ -118,6 +118,14 @@ sidebar_position: 11
 
 > **租户说明**：一个租户代表一个企业，可创建多个部门成员和客服账号。不同租户数据相互隔离，互不影响。
 
+### 权利声明
+
+import Copyright from '/img/right/copyright.png';
+import Trademark from '/img/right/trademark.jpg';
+
+<img src={Copyright} alt="版权声明" style={{width: 360}} />
+<img src={Trademark} alt="商标声明" style={{width: 360}} />
+
 ## 使用条款与参考
 
 - **禁止用途**：严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务
