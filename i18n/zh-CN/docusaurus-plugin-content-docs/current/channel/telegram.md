@@ -2,9 +2,14 @@
 sidebar_label: Telegram
 sidebar_position: 15
 ---
-<!-- Paste this code inside your Markdown file -->
 
 # Telegram
+
+:::tip 前置条件
+
+- 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
+
+:::
 
 ## 创建Telegram机器人
 

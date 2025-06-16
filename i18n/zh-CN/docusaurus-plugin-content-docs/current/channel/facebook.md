@@ -5,6 +5,12 @@ sidebar_position: 14
 
 # Facebook
 
+:::tip 前置条件
+
+- 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
+
+:::
+
 ## Facebook 公共主页创建
 
 ### 登录 Facebook 账号，左侧菜单-》公共主页
