@@ -628,9 +628,11 @@ grep -i "event_socket" /usr/local/freeswitch/log/freeswitch.log
 - [Freeswitch Github](https://github.com/signalwire/freeswitch)
 - [常见报错](https://www.cnblogs.com/garvenc/p/freeswitch_learning_install.html)
 <!-- * [LinPhone Github](https://github.com/BelledonneCommunications) -->
-- [Zoiper](https://www.zoiper.com/)
+<!-- - [Zoiper](https://www.zoiper.com/) -->
 - [SIP.js](https://sipjs.com/)
 - [JSSIP](https://jssip.net/)
+- [Ubuntu  安装 FreeSWitch](https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Installation/Linux/#ubuntu)
+- [WebRTC 配置](https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Configuration/WebRTC_3375381/)
 
 ## Mac 安装 Freeswitch
 
