@@ -89,6 +89,8 @@ import FinalWeiyuaiBotProfile from '/img/channel/telegram/13_weiyuai_bot_profile
 
 <img src={FinalWeiyuaiBotProfile} alt="机器人最终资料" style={{width: 360}} />
 
+### 9. 微语中配置Telegram机器人
+
 ## 参考资源
 
 <!-- Telegram官方sdk -->
