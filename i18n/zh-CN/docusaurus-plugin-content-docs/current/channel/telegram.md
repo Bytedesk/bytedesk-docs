@@ -35,6 +35,12 @@ import StartBotfather from '/img/channel/telegram/2_start_botfather.jpg';
 
 使用 /newbot 命令创建新的机器人。
 
+- 先输入Bot 名称：xxx，注：请自行定义，例如：weiyuai
+- 然后输入Bot 用户名：xxxx_bot，注：请自行定义，例如：weiyuai_bot
+- 最后一步获取 Telegram 机器人Token
+
+将上述三者依次填入到微语管理后台中。
+
 import NewWeiyuaiBot from '/img/channel/telegram/3_new_weiyuai_bot.jpg';
 
 <img src={NewWeiyuaiBot} alt="创建新机器人" style={{width: 360}} />
