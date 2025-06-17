@@ -268,6 +268,16 @@ sidebar_position: 7
 | `spring.ai.openrouter.chat.options.model` | OpenRouter聊天模型 | - | `SPRING_AI_OPENROUTER_CHAT_OPTIONS_MODEL:` |
 | `spring.ai.openrouter.chat.options.temperature` | 温度参数 | `0.7` | `SPRING_AI_OPENROUTER_CHAT_OPTIONS_TEMPERATURE: 0.7` |
 
+## Telegram配置
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| ------ | ------ | ------ | ------ |
+| `bytedesk.telegram.enabled` | 是否启用Telegram功能 | `false` | `BYTEDESK_TELEGRAM_ENABLED: false` |
+| `bytedesk.telegram.default-bot-enabled` | 是否启用默认Telegram机器人。必须先启用Telegram功能，此配置才有效 | `false` | `BYTEDESK_TELEGRAM_DEFAULT_BOT_ENABLED: false` |
+| `bytedesk.telegram.default-bot-token` | 默认Telegram机器人令牌 | `placeholder` | `BYTEDESK_TELEGRAM_DEFAULT_BOT_TOKEN: placeholder` |
+
+> 注意：使用Telegram功能需要确保服务器能够访问 `https://api.telegram.org`
+
 ## 向量数据库配置
 
 ### Elasticsearch向量存储配置

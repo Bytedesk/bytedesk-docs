@@ -210,8 +210,10 @@ bytedesk.admin.password=admin
 修改配置
 
 ```bash
-# 导入成员默认密码
+# spring boot 配置文件导入成员默认密码
 bytedesk.member.password=123456
+# 或者在docker-compose.yaml文件中修改
+BYTEDESK_MEMBER_PASSWORD: 123456
 ```
 
 - [修改默认密码](./deploy/config.md#成员配置)
