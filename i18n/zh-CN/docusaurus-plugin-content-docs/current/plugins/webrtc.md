@@ -1,5 +1,5 @@
 ---
-title: 微语智能视频客服
+title: 视频客服
 description: AI驱动的智能视频客服解决方案
 sidebar_position: 2
 ---

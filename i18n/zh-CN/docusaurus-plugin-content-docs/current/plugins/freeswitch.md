@@ -1,5 +1,5 @@
 ---
-sidebar_label: 微语智能呼叫中心
+sidebar_label: 呼叫中心
 sidebar_position: 3
 ---
 
