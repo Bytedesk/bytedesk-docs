@@ -21,6 +21,8 @@ sidebar_position: 14
 
 ### 新建公共主页
 
+- [新建公共主页](https://www.facebook.com/pages/?category=your_pages&ref=bookmarks)
+
 ![meta_create_public_page_2](/img/channel/meta/meta_create_public_page_2.png)
 
 ## Facebook 开发者注册
@@ -106,7 +108,7 @@ sidebar_position: 14
 
 - [Facebook 开发者](https://developers.facebook.com/)
 - [Facebook 应用](https://developers.facebook.com/apps/)
-- [Facebook 登录](https://developers.facebook.com/docs/facebook-login/overview)
+- [Facebook 登录](https://developers.facebook.com/docs/facebook-login)
 - [Messenger Webhooks](https://developers.facebook.com/docs/messenger-platform/webhooks)
 - [Meta Webhooks](https://developers.facebook.com/docs/graph-api/webhooks)
 - [绑定Whatsapp和Instagram](https://www.facebook.com/settings/?tab=linked_profiles)
@@ -118,4 +120,5 @@ sidebar_position: 14
 - [Meta Business SDK](https://developers.facebook.com/docs/business-sdk/getting-started)
 - [Messenger Conversation Routing](https://www.facebook.com/settings?tab=msgr_conversation_routing)
 - [市场营销 API](https://developers.facebook.com/docs/marketing-apis)
+- [Messenger 体验示例：Original Coast Clothing](https://developers.facebook.com/docs/messenger-platform/getting-started/sample-experience/)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)

@@ -14,4 +14,6 @@ sidebar_position: 14
 ## 参考链接
 
 - [Instagram 开放平台](https://developers.facebook.com/docs/instagram-platform)
+- [Messenger Platform for Instagram](https://developers.facebook.com/docs/messenger-platform/instagram)
+- [支持 Instagram 的 Messenger API 体验示例 - Original Coast Clothing](https://developers.facebook.com/docs/messenger-platform/instagram/sample-experience)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
