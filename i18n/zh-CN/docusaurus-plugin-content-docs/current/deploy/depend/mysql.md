@@ -11,28 +11,9 @@ sidebar_position: 1
 - 服务器推荐配置：4核8G内存
 :::
 
-## 方式一：Docker部署（推荐）
+## 方式一：Docker Compose方式（适合多容器部署）
 
-使用Docker容器部署MySQL更简单，特别适合快速搭建开发环境。
-
-### 1. 单容器方式
-
-```bash
-# 拉取MySQL镜像
-docker pull mysql:latest
-
-# 运行MySQL容器（一行命令完成部署）
-docker run --name mysql-bytedesk \
-  -e MYSQL_ROOT_PASSWORD=your_password \
-  -e MYSQL_DATABASE=bytedesk \
-  -p 13306:3306 \
-  -v mysql_data:/var/lib/mysql \
-  -d mysql:latest
-```
-
-### 2. Docker Compose方式（适合多容器部署）
-
-1. 创建[`docker-compose.yml`文件](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)：
+1. 创建[`docker-compose.yml`文件](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)：
 
    ```yaml
    services:
@@ -56,9 +37,9 @@ docker run --name mysql-bytedesk \
 
 2. 启动容器：
 
-   ```bash
-   docker-compose up -d
-   ```
+```bash
+docker-compose up -d
+```
 
 ### 3. 连接到MySQL
 
@@ -97,13 +78,13 @@ docker exec -it mysql-bytedesk mysql -uroot -p
 
 ### 1. 安装MySQL
 
-1. [下载安装包](https://dev.mysql.com/downloads/repo/apt/)（mysql-apt-config_0.8.29-1_all.deb）
+1. [下载安装包](https://www.weiyuai.cn/download/mysql-apt-config_0.8.22-1_all.deb)（mysql-apt-config_0.8.22-1_all.deb）
 
 2. 安装MySQL服务器：
 
    ```bash
    # 安装仓库配置包
-   sudo dpkg -i mysql-apt-config_0.8.29-1_all.deb
+   sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
    # 在弹出界面中选择：MySQL 8.0 > OK
    
    # 更新软件包并安装MySQL
