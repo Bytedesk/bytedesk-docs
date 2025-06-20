@@ -11,9 +11,43 @@ sidebar_position: 14
 
 :::
 
-## 切换 专业版 或 创作者账号
+## 切换 专业版账号
+
+### 步骤1
+
+- [登录 Instagram](https://www.instagram.com/)
 
 ![meta_instagram_1](/img/channel/instagram/meta_instagram_account_1.png)
+
+### 步骤2
+
+![meta_instagram_2](/img/channel/instagram/meta_instagram_account_2.png)
+
+## 绑定 Facebook 公共主页
+
+- [绑定 Facebook 公共主页和 Instagram 账户](https://www.facebook.com/business/help/connect-instgram-to-page)
+
+绑定 Facebook 公共主页和 Instagram 账户的步骤：
+
+1. 登录 Facebook，然后点击右上方的头像。
+2. 点击查看所有个人主页，然后选择想切换到的公共主页。
+3. 点击 Facebook 页面右上方的公共主页头像。
+4. 点击设置与隐私，然后点击设置。
+5. 在权限下，点击绑定的账户。
+6. 在 Instagram 旁边，点击查看。
+7. 点击绑定账户，然后按照步骤绑定您的 Facebook 公共主页和 Instagram 账户。
+
+- [查看已绑定的Instagram 账户](https://www.facebook.com/settings/?tab=linked_profiles)
+
+![meta_instagram_3](/img/channel/instagram/meta_instagram_account_3.png)
+
+![meta_instagram_4](/img/channel/instagram/meta_instagram_account_4.png)
+
+## 绑定 Meta Business Suite
+
+- [Meta Business Suite](https://business.facebook.com/)
+
+![meta_instagram_5](/img/channel/instagram/meta_instagram_account_5.png)
 
 ## 参考链接
 

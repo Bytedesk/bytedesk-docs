@@ -10,6 +10,12 @@ sidebar_position: 3
 - 操作系统：Ubuntu 22.04 LTS
 - 服务器最低配置8核16G内存
 - 配置要求太高？建议：可以分拆 MySQL、Redis、Elasticsearch、ArtemisMQ 等服务到其他服务器，仅保留核心服务在主服务器上。可以有效降低服务器配置要求。
+- Docker社区版镜像，二选其一即可，建议国内选阿里云镜像
+  - bytedesk/bytedesk-ce:latest # hub.docker.com community
+  - registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk-ce:latest # 阿里云社区版镜像
+- Docker企业版/平台版镜像，二选其一即可，建议国内选阿里云镜像
+  - bytedesk/bytedesk:latest # hub.docker.com enterprise
+  - registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest # 阿里云企业版/平台版镜像
 
 :::
 

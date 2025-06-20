@@ -14,7 +14,7 @@ sidebar_position: 10
 ## 准备工作
 
 1. 访问[Oracle官网](https://www.oracle.com/java/technologies/downloads/)下载JDK17
-2. 直接[点击此链接](https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.tar.gz)下载Linux x64版本的JDK17
+2. 直接[点击此链接](https://www.weiyuai.cn/download/jdk-17_linux-x64_bin.tar.gz)下载Linux x64版本的JDK17
 
 ## 安装步骤
 
@@ -23,6 +23,7 @@ sidebar_position: 10
 将下载好的JDK压缩包解压到当前目录：
 
 ```bash
+wget https://www.weiyuai.cn/download/jdk-17_linux-x64_bin.tar.gz
 sudo tar -zxvf jdk-17_linux-x64_bin.tar.gz
 ```
 
@@ -41,13 +42,13 @@ sudo mv jdk-17.0.10 /usr/java/
 
 我们需要配置全局环境变量，使所有用户都能使用Java：
 
-1. 使用文本编辑器打开全局配置文件：
+- 使用文本编辑器打开全局配置文件：
 
 ```bash
 sudo vi /etc/profile
 ```
 
-2. 在文件**底部**添加以下配置信息：
+- 在文件**底部**添加以下配置信息：
 
 ```bash
 export JAVA_HOME=/usr/java/jdk-17.0.10
@@ -58,9 +59,9 @@ export PATH=${JAVA_HOME}/bin:$PATH
 
 > 注意：请确保JAVA_HOME路径与您实际的JDK安装路径一致
 
-3. 保存并退出编辑器（在vi中按ESC，然后输入`:wq`回车）
+- 保存并退出编辑器（在vi中按ESC，然后输入`:wq`回车）
 
-4. 使环境变量立即生效：
+- 使环境变量立即生效：
 
 ```bash
 source /etc/profile
