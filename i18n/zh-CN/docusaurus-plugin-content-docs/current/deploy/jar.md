@@ -43,6 +43,7 @@ sudo systemctl status docker  # 检查Docker状态
 sudo systemctl start docker   # 如需启动Docker服务
 
 # 2. 需要提前Clone或下载项目：https://gitee.com/270580156/weiyu，在项目根目录下进入配置目录
+git clone https://gitee.com/270580156/weiyu.git
 cd starter/src/main/resources
 
 # 3. 一键启动所有依赖服务

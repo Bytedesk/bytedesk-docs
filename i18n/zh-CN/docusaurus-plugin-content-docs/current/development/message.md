@@ -1,8 +1,6 @@
 ---
-sidebar_label: 消息
+sidebar_label: 消息类型
 sidebar_position: 12
 ---
 
-# 消息
-
-## 消息类型
+# 消息类型

@@ -1,9 +1,9 @@
 ---
-sidebar_label: 历史记录
+sidebar_label: 历史消息
 sidebar_position: 9
 ---
 
-# 历史聊天记录
+# 历史消息记录
 
 本页面介绍如何通过 `loadHistory` 参数控制是否自动加载历史聊天记录，帮助用户查看历史会话内容。
 
