@@ -11,68 +11,9 @@ sidebar_position: 1
 - 服务器推荐配置：4核8G内存
 :::
 
-## 方式一：Docker Compose方式（适合多容器部署）
+## 方式一：Docker安装
 
-1. 创建[`docker-compose.yml`文件](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)：
-
-   ```yaml
-   services:
-     bytedesk-mysql:
-        image: mysql:latest
-            container_name: mysql-bytedesk
-        environment:
-            MYSQL_DATABASE: bytedesk
-            MYSQL_ROOT_PASSWORD: r8FqfdbWUaN3
-        ports:
-            - "13306:3306"
-        volumes:
-            - mysql_data:/var/lib/mysql
-        networks:
-            - bytedesk-network
-   
-   volumes:
-     mysql_data:
-       name: bytedesk_mysql_data
-   ```
-
-2. 启动容器：
-
-```bash
-docker-compose up -d
-```
-
-### 3. 连接到MySQL
-
-```bash
-# 命令行连接
-docker exec -it mysql-bytedesk mysql -uroot -p
-```
-
-或使用图形客户端（如Sequel Ace）连接：
-
-- 主机：localhost 或服务器IP
-- 端口：13306
-- 用户名：root
-- 密码：你设置的MYSQL_ROOT_PASSWORD
-
-### 4. 实用操作
-
-- **查看数据持久化位置**：
-
-  ```bash
-  docker volume ls | grep bytedesk_mysql_data
-  ```
-
-- **创建数据库**：
-
-  ```bash
-  CREATE DATABASE bytedesk CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-  ```
-
-- **安全建议**：
-  - 使用强密码
-  - 定期备份数据
-  - 在生产环境中限制容器资源使用
+- [使用Docker安装](../jar.md#12-安装项目依赖)
 
 ## 方式二：直接安装
 
@@ -83,6 +24,8 @@ docker exec -it mysql-bytedesk mysql -uroot -p
 2. 安装MySQL服务器：
 
    ```bash
+   # 下载仓库配置包
+   wget https://www.weiyuai.cn/download/mysql-apt-config_0.8.22-1_all.deb
    # 安装仓库配置包
    sudo dpkg -i mysql-apt-config_0.8.22-1_all.deb
    # 在弹出界面中选择：MySQL 8.0 > OK

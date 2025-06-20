@@ -45,54 +45,7 @@ java --version
 
 ### 2.2 安装项目依赖
 
-您可以选择以下两种方式之一安装项目依赖：
-
-#### 方式一：使用Docker安装（推荐 ⭐）
-
-Docker方式可以快速启动所有依赖服务，非常适合开发和测试环境：[部署Docker](./depend/docker)
-
-```bash
-# 1. 确保Docker服务已启动
-sudo systemctl status docker  # 检查Docker状态
-sudo systemctl start docker   # 如需启动Docker服务
-
-# 2. 需要提前Clone或下载项目：https://gitee.com/270580156/weiyu，在项目根目录下进入配置目录
-cd starter/src/main/resources
-
-# 3. 一键启动所有依赖服务
-docker compose -p bytedesk -f compose.yaml up -d
-
-# 查看容器运行状态
-docker ps | grep bytedesk
-
-# 如需停止服务
-# docker compose -p bytedesk -f compose.yaml down
-```
-
-或者
-
-```bash
-# 1 打开 https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-middleware.yaml 
-
-# 2 复制内容到本地，保存为 docker-compose.yaml
-
-# 3 直接运行下面命令启动
-docker compose -p bytedesk -f docker-compose.yaml up -d
-```
-
-> 💡 **提示**：使用Docker方式，无需手动安装每个依赖，容器会自动配置好网络和初始设置。
-
-#### 方式二：手动安装各个依赖
-
-如果您需要更精细地控制每个组件，可以选择手动安装：
-
-1. **[MySQL 8.0](./depend/mysql)**：数据库服务
-2. **[Redis](./depend/redis)**：缓存服务
-3. **[Ollama](./depend/ollama)**：AI大模型服务
-4. **[Elasticsearch](./depend/elasticsearch)**：全文检索和向量存储检索
-5. **[Artemis](./depend/artemis)**：消息队列服务
-
-> ⚠️ **注意**：有的同学会找数据库.sql文件，这里不需要，只需要修改配置文件连接上数据库，系统会自动生成表。
+- [安装项目依赖](./jar.md#12-安装项目依赖)
 
 ## 3. 编译与启动
 
