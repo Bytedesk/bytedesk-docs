@@ -120,5 +120,6 @@ sidebar_position: 14
 - [Meta Business SDK](https://developers.facebook.com/docs/business-sdk/getting-started)
 - [Messenger Conversation Routing](https://www.facebook.com/settings?tab=msgr_conversation_routing)
 - [市场营销 API](https://developers.facebook.com/docs/marketing-apis)
+- [在 Meta Business Suite 中向业务资产组合添加公共主页](https://www.facebook.com/business/help/720478807965744?id=420299598837059&helpref=faq_content)
 - [Messenger 体验示例：Original Coast Clothing](https://developers.facebook.com/docs/messenger-platform/getting-started/sample-experience/)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
