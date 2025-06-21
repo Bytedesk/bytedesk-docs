@@ -19,11 +19,6 @@ sidebar_position: 3
 
 :::
 
-## 宝塔面板部署
-
-- [宝塔面板部署](./baota)
-- [部署Docker](./depend/docker)
-
 ## 方法一：一行命令启动，需要另行安装ollama
 
 ```bash
@@ -76,3 +71,9 @@ http://127.0.0.1:9003/
 ## 常见问题
 
 - 参考 [常见问题](/docs/faq)
+
+## 参考链接
+
+- [部署Docker](./depend/docker)
+- [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
+- [微语企业版/平台版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk)

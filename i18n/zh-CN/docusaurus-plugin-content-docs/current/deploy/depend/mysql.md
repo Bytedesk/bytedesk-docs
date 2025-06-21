@@ -7,8 +7,8 @@ sidebar_position: 1
 
 :::tip 系统要求
 
-- 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置：4核8G内存
+- 操作系统：Ubuntu 24.04 LTS
+- 服务器推荐配置：2核4G内存
 :::
 
 ## 方式一：Docker安装

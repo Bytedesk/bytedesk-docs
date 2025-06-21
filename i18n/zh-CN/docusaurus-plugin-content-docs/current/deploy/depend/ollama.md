@@ -7,8 +7,8 @@ sidebar_position: 3
 
 :::tip 系统要求
 
-- 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置：4核8G内存
+- 操作系统：Ubuntu 24.04 LTS
+- 服务器推荐配置：2核4G内存
 :::
 
 ## 简介
@@ -53,46 +53,9 @@ brew install ollama
 
 从[Ollama官方网站](https://ollama.com/download/windows)下载安装包进行安装。
 
-## Docker部署
+## Docker安装
 
-对于微语系统，我们推荐使用Docker进行部署，以便更好地管理容器化环境并与其他服务集成。
-
-### Docker Compose配置
-
-将以下配置添加到您的[`docker-compose.yml`文件](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)中：
-
-```yaml
-bytedesk-ollama:
-    image: ollama/ollama:latest
-    container_name: ollama-bytedesk
-    ports:
-      - "21434:11434"
-    volumes:
-      - ollama_models:/root/.ollama
-    environment:
-      - OLLAMA_MODELS=qwen3:0.6b
-    networks:
-      - bytedesk-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:11434/api/version"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-```
-
-### 配置说明
-
-- **端口映射**: `21434:11434` - 将容器内的11434端口映射到宿主机的21434端口
-- **卷挂载**: `ollama_models:/root/.ollama` - 将模型文件持久化存储
-- **环境变量**: `OLLAMA_MODELS=qwen3:0.6b` - 预加载通义千问3.0 0.6b小型模型
-- **网络**: `bytedesk-network` - 连接到微语系统网络
-- **健康检查**: 定期检查Ollama服务是否正常运行
-
-### 启动服务
-
-```bash
-docker-compose up -d bytedesk-ollama
-```
+- [使用Docker安装](../jar.md#12-安装项目依赖)
 
 ## 常用模型
 
