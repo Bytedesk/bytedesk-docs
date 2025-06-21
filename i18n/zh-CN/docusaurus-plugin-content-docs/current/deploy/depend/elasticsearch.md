@@ -38,70 +38,9 @@ Elasticsearch 提供强大的全文搜索能力，在微语系统中用于：
 - KNN（K近邻）检索
 - 高维向量索引优化
 
-## Docker 部署配置
+## ## 方式一：Docker安装
 
-微语系统推荐使用 Docker 容器化技术部署 Elasticsearch。[`docker-compose.yml`文件](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)，以下是详细的 Docker 配置说明：
-
-```yaml
-# ElasticSearch 向量数据库
-bytedesk-elasticsearch:
-  image: docker.elastic.co/elasticsearch/elasticsearch:8.18.0
-  container_name: elasticsearch-bytedesk
-  environment:
-    - node.name=bytedesk-es01                # 节点名称
-    - cluster.name=bytedesk-es-cluster       # 集群名称
-    - discovery.type=single-node             # 单节点模式
-    - bootstrap.memory_lock=true             # 内存锁定，避免内存交换到磁盘
-    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"       # JVM 内存设置
-    - xpack.security.enabled=true            # 启用安全认证
-    - ELASTIC_PASSWORD=bytedesk123           # 设置 elastic 用户密码
-  ulimits:
-    memlock:
-      soft: -1
-      hard: -1                               # 取消内存锁定限制
-  volumes:
-    - elasticsearch_data:/usr/share/elasticsearch/data  # 数据持久化
-  ports:
-    - "19200:9200"                           # REST API 端口映射
-    - "19300:9300"                           # 节点通信端口映射
-  networks:
-    - bytedesk-network                       # 使用自定义网络
-  healthcheck:
-    test: ["CMD-SHELL", "curl -s -f http://localhost:9200/_cluster/health?wait_for_status=yellow || exit 1"]
-    interval: 30s
-    timeout: 10s
-    retries: 5                               # 健康检查配置
-```
-
-### 配置项说明
-
-#### 基本配置
-
-- **image**: 使用官方 Elasticsearch 8.18.0 版本镜像
-- **container_name**: 容器名称，方便识别和管理
-- **node.name & cluster.name**: 定义节点和集群名称，即使是单节点也需要设置
-
-#### 系统优化
-
-- **discovery.type=single-node**: 设置为单节点模式，适合开发和小型部署
-- **bootstrap.memory_lock=true**: 锁定内存，防止系统将内存交换到磁盘，提高性能
-- **ES_JAVA_OPTS**: 配置 JVM 堆内存大小，根据实际服务器资源调整
-- **ulimits.memlock**: 移除系统对内存锁定的限制
-
-#### 安全设置
-
-- **xpack.security.enabled=true**: 启用 X-Pack 安全功能，提供认证和授权
-- **ELASTIC_PASSWORD**: 设置内置超级用户 elastic 的密码
-
-#### 网络与存储
-
-- **ports**: 将 Elasticsearch 的 REST API 和节点通信端口映射到宿主机
-- **volumes**: 数据持久化存储，避免容器重启数据丢失
-- **networks**: 使用自定义网络，便于与微语系统其他服务通信
-
-#### 健康检查
-
-- **healthcheck**: 定期检查 Elasticsearch 服务健康状态，确保服务可用性
+- [使用Docker安装](../jar.md#12-安装项目依赖)
 
 ## 微语系统中的应用集成
 
@@ -123,22 +62,6 @@ spring.elasticsearch.password=bytedesk123
 - **bytedesk-messages**: 存储消息数据和向量
 - **bytedesk-knowledge**: 存储知识库文档和向量
 - **bytedesk-logs**: 存储系统操作日志
-
-### 向量检索示例
-
-```java
-// 示例：使用向量检索相似文档
-SearchResponse<KnowledgeDocument> response = elasticsearchClient.search(s -> s
-    .index("bytedesk-knowledge")
-    .knn(k -> k
-        .field("embedding")
-        .queryVector(queryEmbedding)
-        .k(5)
-        .numCandidates(100)
-    ),
-    KnowledgeDocument.class
-);
-```
 
 ## 性能优化建议
 

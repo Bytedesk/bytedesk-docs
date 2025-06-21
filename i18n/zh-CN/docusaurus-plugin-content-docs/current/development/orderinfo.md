@@ -155,7 +155,7 @@ const config = {
 
 基本链接格式如下：
 
-```
+```javascript
 https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&orderInfo=订单信息JSON
 ```
 
@@ -205,234 +205,7 @@ H5链接对接特别适用于以下场景：
 
 ## 完整示例代码
 
-以下是一个完整的React组件示例，演示如何在订单详情页面集成微语客服并传递订单信息：
-
-```jsx
-import { useState } from 'react';
-import { Button, Card, Typography, Space, Image, Divider, Row, Col, Tag, Steps, Descriptions } from 'antd';
-import { BytedeskReact } from 'bytedesk-web/react';
-import type { BytedeskConfig } from 'bytedesk-web';
-
-const { Title, Paragraph, Text } = Typography;
-
-// 定义商品信息接口
-interface GoodsInfo {
-    uid: string;
-    title: string;
-    image: string;
-    description: string;
-    price: number;
-    url: string;
-    tagList: string[];
-    extra: string;
-    quantity: number
-}
-
-// 定义订单信息接口
-interface OrderInfo {
-    uid: string;
-    time: string;
-    status: 'pending' | 'paid' | 'shipped' | 'delivered';
-    statusText: string;
-    goods: GoodsInfo
-    totalAmount: number;
-    shippingAddress: {
-        name: string;
-        phone: string;
-        address: string;
-    };
-    paymentMethod: string;
-    extra: string;
-}
-
-// 示例订单数据
-const ORDER = {
-    uid: 'ORD202505270001',
-    time: '2025-05-27 14:30:00',
-    status: 'paid',
-    statusText: '已支付',
-    goods: {
-        uid: 'goods_001',
-        title: '比亚迪 仰望U7 豪华纯电动轿车',
-        image: 'https://www.weiyuai.cn/assets/images/car/yu7.jpg',
-        description: '比亚迪仰望U7是一款豪华纯电动轿车，采用最新一代刀片电池技术，续航里程可达1000公里。',
-        price: 299900,
-        url: 'https://www.weiyuai.cn/car/yu7',
-        tagList: ['新能源', '豪华轿车', '智能驾驶', '长续航'],
-        extra: JSON.stringify({
-            color: '极光蓝',
-            configuration: '豪华版'
-        }),
-        quantity: 1
-    },
-    totalAmount: 299900,
-    shippingAddress: {
-        name: '张三',
-        phone: '13800138000',
-        address: '北京市朝阳区建国路88号'
-    },
-    paymentMethod: '微信支付',
-    extra: JSON.stringify({
-        invoiceType: '电子发票',
-        expectedDelivery: '2025-05-30'
-    })
-};
-
-const OrderDetail = () => {
-    // 当前订单信息
-    const [order] = useState<OrderInfo>(ORDER);
-
-    // 客服组件配置
-    const config: BytedeskConfig = {
-        placement: 'bottom-right',
-        autoPopup: false,
-        marginBottom: 20,
-        marginSide: 20,
-        buttonConfig: {
-            show: false,  // 隐藏默认按钮，使用自定义按钮
-        },
-        bubbleConfig: {
-            show: false,  // 隐藏气泡
-            icon: '📦',
-            title: '订单有问题？',
-            subtitle: '点击咨询客服'
-        },
-        chatConfig: {
-            org: 'df_org_uid',    // 替换为您的组织ID
-            t: "1",
-            sid: 'df_wg_uid',     // 替换为您的SID
-            
-            // 可选：传入用户信息
-            uid: 'visitor_001',
-            nickname: '访客小明',
-            avatar: 'https://example.com/avatar.jpg',
-            
-            // 订单信息 - 核心部分
-            orderInfo: JSON.stringify({
-                uid: order.uid,
-                time: order.time,
-                status: order.status,
-                statusText: order.statusText,
-                goods: order.goods,
-                totalAmount: order.totalAmount,
-                shippingAddress: order.shippingAddress,
-                paymentMethod: order.paymentMethod,
-                extra: order.extra
-            })
-        },
-        locale: 'zh-cn',
-    };
-
-    // 打开聊天窗口
-    const handleConsultService = () => {
-        console.log("打开客服窗口并发送订单信息");
-        (window as any).bytedesk?.showChat();
-    };
-
-    // 获取订单状态步骤
-    const getOrderSteps = () => {
-        const steps = [
-            { title: '待支付', status: 'wait' },
-            { title: '已支付', status: 'wait' },
-            { title: '已发货', status: 'wait' },
-            { title: '已完成', status: 'wait' }
-        ];
-
-        const statusIndex = {
-            'pending': 0,
-            'paid': 1,
-            'shipped': 2,
-            'delivered': 3
-        };
-
-        const currentIndex = statusIndex[order.status];
-        steps.forEach((step, index) => {
-            if (index < currentIndex) {
-                step.status = 'finish';
-            } else if (index === currentIndex) {
-                step.status = 'process';
-            }
-        });
-
-        return steps;
-    };
-
-    return (
-        <div style={{ padding: '24px' }}>
-            <Card>
-                <Space direction="vertical" size="large" style={{ width: '100%' }}>
-                    {/* 订单状态 */}
-                    <div>
-                        <Title level={4}>订单状态</Title>
-                        <Steps items={getOrderSteps()} />
-                    </div>
-
-                    {/* 订单信息 */}
-                    <div>
-                        <Title level={4}>订单信息</Title>
-                        <Descriptions bordered>
-                            <Descriptions.Item label="订单编号">{order.uid}</Descriptions.Item>
-                            <Descriptions.Item label="下单时间">{order.time}</Descriptions.Item>
-                            <Descriptions.Item label="订单状态">
-                                <Tag color="blue">{order.statusText}</Tag>
-                            </Descriptions.Item>
-                            <Descriptions.Item label="支付方式">{order.paymentMethod}</Descriptions.Item>
-                            <Descriptions.Item label="订单金额">
-                                <Text strong style={{ color: '#f5222d' }}>
-                                    ¥{order.totalAmount.toLocaleString()}
-                                </Text>
-                            </Descriptions.Item>
-                        </Descriptions>
-                    </div>
-
-                    {/* 商品信息 */}
-                    <div>
-                        <Title level={4}>商品信息</Title>
-                        <Row gutter={24}>
-                            <Col span={6}>
-                                <Image
-                                    src={order.goods.image}
-                                    alt={order.goods.title}
-                                    style={{ width: '100%', borderRadius: '8px' }}
-                                />
-                            </Col>
-                            <Col span={18}>
-                                <Space direction="vertical" size="small">
-                                    <Title level={5}>{order.goods.title}</Title>
-                                    <Text>单价：¥{order.goods.price.toLocaleString()}</Text>
-                                    <Text>数量：{order.goods.quantity}</Text>
-                                </Space>
-                            </Col>
-                        </Row>
-                    </div>
-
-                    {/* 收货信息 */}
-                    <div>
-                        <Title level={4}>收货信息</Title>
-                        <Descriptions bordered>
-                            <Descriptions.Item label="收货人">{order.shippingAddress.name}</Descriptions.Item>
-                            <Descriptions.Item label="联系电话">{order.shippingAddress.phone}</Descriptions.Item>
-                            <Descriptions.Item label="收货地址">{order.shippingAddress.address}</Descriptions.Item>
-                        </Descriptions>
-                    </div>
-
-                    {/* 客服咨询按钮 */}
-                    <div style={{ textAlign: 'center' }}>
-                        <Button type="primary" size="large" onClick={handleConsultService}>
-                            订单有问题？咨询客服
-                        </Button>
-                    </div>
-                </Space>
-            </Card>
-
-            {/* 微语客服组件 */}
-            <BytedeskReact {...config} />
-        </div>
-    );
-};
-
-export default OrderDetail;
-```
+[订单信息对接示例](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/orderInfoDemo.tsx)
 
 ## 最佳实践
 
@@ -464,6 +237,7 @@ export default OrderDetail;
 **A**: 对于包含多个商品的订单，可以采用以下方法：
 
 1. 在`goods`字段中使用数组存储多个商品信息：
+
 ```javascript
 goods: [
   {
@@ -479,7 +253,7 @@ goods: [
 ]
 ```
 
-2. 或者只传递主要商品信息，在`extra`字段中添加简要的其他商品信息。
+1. 或者只传递主要商品信息，在`extra`字段中添加简要的其他商品信息。
 
 ### Q2: 订单状态发生变化时如何更新？
 

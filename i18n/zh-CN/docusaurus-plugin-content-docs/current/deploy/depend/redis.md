@@ -15,7 +15,7 @@ sidebar_position: 2
 
 - [使用Docker安装](../jar.md#12-安装项目依赖)
 
-## 其他安装方式
+## 方式二：直接安装
 
 ### Ubuntu 安装（非 Docker 版）
 
