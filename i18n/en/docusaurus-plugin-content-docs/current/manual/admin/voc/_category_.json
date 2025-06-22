@@ -1,0 +1,8 @@
+{
+  "label": "VOC",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Get started with Weiyu VOC in 5 minutes."
+  }
+}

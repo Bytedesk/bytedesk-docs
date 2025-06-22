@@ -115,6 +115,22 @@
     "message": "工单管理",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.VOC": {
+    "message": "客户之声",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.CallCenter": {
+    "message": "呼叫中心",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.WebRTC": {
+    "message": "视频客服",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.BI": {
+    "message": "BI智能分析",
+    "description": "The label for category Team in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Setting": {
     "message": "设置",
     "description": "The label for category Team in sidebar tutorialSidebar"
