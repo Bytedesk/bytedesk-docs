@@ -7,7 +7,7 @@ sidebar_position: 3
 :::tip
 
 - 操作系统：Ubuntu 22.04 LTS
-- 服务器最低配置8核16G内存
+- 服务器最低配置4核8G内存，建议配置8核16G内存
 - 配置要求太高？建议：可以分拆 MySQL、Redis、Elasticsearch、ArtemisMQ 等服务到其他服务器，仅保留核心服务在主服务器上。可以有效降低服务器配置要求。
 
 :::
@@ -77,7 +77,9 @@ ollama pull bge-m3:latest
 
 ```bash
 # 请将127.0.0.1替换为你的服务器ip
-http://127.0.0.1:9003/
+访问地址：http://127.0.0.1:9003/
+默认账号：admin@email.com
+默认密码：admin
 ```
 
 ## 步骤九：配置域名访问

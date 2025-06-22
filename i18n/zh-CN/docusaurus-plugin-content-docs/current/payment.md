@@ -136,7 +136,6 @@ sidebar_position: 11
 
 ### 购买须知
 
-- 可购买功能子集，价格灵活可谈
 - 价格为一次性收费，不含税点（如需发票，加收3%税点）
 - 一年内免费升级（源码版购买时需明确），一年后可选支付15%/年维护费
 - 提供30天免费试用，付款后支持7天无理由退款（源码除外）
@@ -152,8 +151,11 @@ import Trademark from '/img/right/trademark.jpg';
 <img src={Copyright} alt="版权声明" style={{width: 360}} />
 <img src={Trademark} alt="商标声明" style={{width: 360}} />
 
+## 联系方式
+
+- 原则上不接受砍价，如需咨询、意见反馈或购买，请[扫码联系微信](/img/wechat.png)
+
 ## 使用条款与参考
 
 - **禁止用途**：严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务
 - **行业对比**：[查看阿里云智能对话机器人价格对比](https://help.aliyun.com/zh/beebot/intelligent-dialogue-robot-tongyi-version/product-overview/product-billing/?spm=a2c4g.11186623.0.nextDoc.1bf77058eyaBzh)
-- **联系方式**：如需咨询或购买，请[扫码联系微信](/img/wechat.png)

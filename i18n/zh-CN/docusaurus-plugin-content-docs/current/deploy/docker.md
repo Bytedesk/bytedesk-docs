@@ -8,7 +8,7 @@ sidebar_position: 3
 :::tip
 
 - 操作系统：Ubuntu 22.04 LTS
-- 服务器最低配置8核16G内存
+- 服务器最低配置4核8G内存，建议配置8核16G内存
 - 配置要求太高？建议：可以分拆 MySQL、Redis、Elasticsearch、ArtemisMQ 等服务到其他服务器，仅保留核心服务在主服务器上。可以有效降低服务器配置要求。
 - Docker社区版镜像，二选其一即可，建议国内选阿里云镜像
   - bytedesk/bytedesk-ce:latest # hub.docker.com community
@@ -52,13 +52,52 @@ docker compose -p weiyu -f docker-compose.yaml stop
 docker compose -p weiyu -f docker-compose-ollama.yaml stop
 ```
 
+## 开放端口
+
+请开放内网入方向端口
+
+- 9003
+- 9885
+
 ## 演示
 
 本地预览
 
 ```bash
 # 请将127.0.0.1替换为你的服务器ip
-http://127.0.0.1:9003/
+访问地址：http://127.0.0.1:9003/
+默认账号：admin@email.com
+默认密码：admin
+```
+
+## 问题排查
+
+查看logs
+
+```bash
+# 例如查看MySQL容器的日志
+docker logs mysql-bytedesk
+
+# 查看Redis容器的日志
+docker logs redis-bytedesk
+
+# 查看Elasticsearch容器的日志
+docker logs elasticsearch-bytedesk
+
+# 查看Artemis消息队列容器的日志
+docker logs artemis-bytedesk
+
+# 查看ollama-bytedesk容器的日志
+docker logs ollama-bytedesk
+
+# 查看主应用容器的日志
+docker logs bytedesk
+# 实时查看日志并跟踪最新输出
+docker logs -f bytedesk
+# 显示最近50行日志
+docker logs --tail 50 bytedesk
+# 查看容器内运行的进程
+docker top bytedesk
 ```
 
 ## 配置域名访问

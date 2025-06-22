@@ -100,7 +100,7 @@
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Customer Service": {
-    "message": "客服",
+    "message": "在线客服",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.AI Assistant": {
@@ -112,7 +112,7 @@
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Ticket System": {
-    "message": "工单",
+    "message": "工单管理",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Setting": {
