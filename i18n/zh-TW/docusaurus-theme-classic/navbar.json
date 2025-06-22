@@ -27,6 +27,10 @@
     "message": "JavaDocs",
     "description": "Navbar item with label Javadocs"
   },
+  "item.label.Trial": {
+    "message": "演示體驗",
+    "description": "Navbar item with label 演示體驗"
+  },
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
