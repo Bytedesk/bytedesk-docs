@@ -352,6 +352,35 @@ window.addEventListener('storage', (e) => {
 3. 手动调用`getUnreadMessageCount()`刷新计数
 4. 必要时可调用`clearMessageUnread()`重置计数
 
+### Q5: 如何使用纯API实现获取访客的未读消息数？
+
+- 首先获取当前访客uid，可以从localStorage.getItem('VISITOR_STORE')中获取访客信息，并从json中解析currentVisitor并获取uid
+
+```javascript
+// 获取访客信息
+const visitorInfo = localStorage.getItem('VISITOR_STORE');
+const currentVisitor = JSON.parse(visitorInfo).state.currentVisitor;
+const visitorUid = currentVisitor.uid; // 获取访客uid
+```
+
+![获取访客uid](/img/develop/chat/unread_count_uid.png)
+
+- 调用API获取未读消息数. 代码实例
+
+```javascript
+// 请求地址示例：请将127.0.0.1:9003替换为您的微语客服系统地址
+http://127.0.0.1:9003/visitor/api/v1/message/unread/count?uid=1678201721979008
+// 返回结果示例：
+{
+    message: "get unread messages count success",
+    code: 200,
+    data: 10 // 未读消息数
+}
+```
+
+- 参考[API接口代码](https://github.com/Bytedesk/bytedesk-web/blob/master/src/apis/message.ts)
+- 注：访客端匿名用户，无需token，只需要uid即可。如需登录用户授权，请联系微语客服。
+
 ## 小结
 
 未读消息数对接是提升用户体验的重要功能，通过实时显示未读消息计数，可以有效提醒用户及时查看客服消息，提高沟通效率。微语客服系统提供了简单易用的API，帮助开发者轻松实现未读消息数管理功能。通过遵循本文提供的最佳实践，您可以为用户打造更加完善的消息通知体验。
