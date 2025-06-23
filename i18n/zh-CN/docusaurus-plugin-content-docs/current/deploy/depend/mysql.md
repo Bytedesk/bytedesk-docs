@@ -63,6 +63,8 @@ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 # 找到 bind-address = 127.0.0.1 这一行并注释掉（前面加#）
 # 保存退出
 sudo systemctl restart mysql
+sudo systemctl stop mysql
+sudo systemctl start mysql
 ```
 
 开启防火墙端口（云服务器需要），在阿里云或腾讯云控制台开启3306端口访问权限
