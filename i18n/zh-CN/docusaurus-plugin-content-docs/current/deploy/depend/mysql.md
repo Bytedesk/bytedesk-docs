@@ -39,33 +39,33 @@ sidebar_position: 1
 
 ### 2. 配置远程访问
 
-1. 登录MySQL并修改访问权限：
+登录MySQL并修改访问权限：
 
-   ```bash
-   # 登录MySQL
-   mysql -u root -p
-   
-   # 执行以下命令
-   use mysql;
-   update user set host='%' where user ='root';
-   FLUSH PRIVILEGES;
-   ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '你的密码';
-   FLUSH PRIVILEGES;
-   GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-   FLUSH PRIVILEGES;
-   exit;
-   ```
+```bash
+# 登录MySQL
+mysql -u root -p
 
-2. 修改MySQL配置文件：
+# 执行以下命令
+use mysql;
+update user set host='%' where user ='root';
+FLUSH PRIVILEGES;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '<PASSWORD>';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+exit;
+```
 
-   ```bash
-   sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
-   # 找到 bind-address = 127.0.0.1 这一行并注释掉（前面加#）
-   # 保存退出
-   ```
+修改MySQL配置文件：
 
-3. 开启防火墙端口（云服务器需要）：
-   - 在阿里云或腾讯云控制台开启3306端口访问权限
+```bash
+sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+# 找到 bind-address = 127.0.0.1 这一行并注释掉（前面加#）
+# 保存退出
+sudo systemctl restart mysql
+```
+
+开启防火墙端口（云服务器需要），在阿里云或腾讯云控制台开启3306端口访问权限
 
 ### 3. 创建数据库
 
