@@ -304,7 +304,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} www.weiyu.im, Inc.`,
+      copyright: `Copyright © ${new Date().getFullYear()} www.weiyuai.cn, Inc.`,
     },
     prism: {
       theme: prismThemes.github,
