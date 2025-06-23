@@ -8,8 +8,9 @@ sidebar_position: 6
 本页面介绍如何将业务系统中的订单信息传递给客服系统，特别适用于电商、物流等需要提供订单咨询服务的场景，帮助客服快速了解用户咨询的订单详情。
 
 - 演示链接：[订单信息对接演示](https://weiyuai.cn/reactdemo)
-<!-- - H5链接演示：[H5订单信息对接](https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_aftersales&orderInfo=%7B%22uid%22%3A%22ORD202505270001%22%2C%22time%22%3A%222025-05-27%2014%3A30%3A00%22%2C%22status%22%3A%22paid%22%2C%22statusText%22%3A%22%E5%B7%B2%E6%94%AF%E4%BB%98%22%2C%22goods%22%3A%7B%22uid%22%3A%22goods_001%22%2C%22title%22%3A%22%E6%AF%94%E4%BA%9A%E8%BF%AA%20%E4%BB%B0%E6%9C%9BU7%22%2C%22image%22%3A%22https%3A%2F%2Fwww.weiyuai.cn%2Fassets%2Fimages%2Fcar%2Fyu7.jpg%22%2C%22price%22%3A299900%2C%22quantity%22%3A1%7D%2C%22totalAmount%22%3A299900%7D) -->
-- 演示代码：[订单信息对接示例](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/orderInfoDemo.tsx)
+- 演示代码：
+- [订单信息对接示例-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/orderInfoDemo.tsx)
+- [订单信息对接示例-Vue](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/vue-demo/src/pages/orderInfoDemo.vue)
 
 > 注意：请确保您已经完成了[React集成指南](../channel/react.md)中的基本功能对接，才能继续进行订单信息对接。
 

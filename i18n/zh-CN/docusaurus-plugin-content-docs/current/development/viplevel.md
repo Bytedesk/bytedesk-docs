@@ -8,7 +8,9 @@ sidebar_position: 5
 本页面介绍如何通过 `vipLevel` 参数实现针对不同等级用户展示不同的客服内容，实现千人千面的个性化服务体验。
 
 - 演示链接：[千人千面演示](https://weiyuai.cn/reactdemo)
-- 演示代码：[千人千面示例](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/vipLevelDemo.tsx)
+- 演示代码：
+- [千人千面示例-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/vipLevelDemo.tsx)
+- [千人千面示例-Vue](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/vue-demo/src/pages/vipLevelDemo.vue)
 
 > 注意：请确保您已经完成了[用户信息对接](./userinfo.md)的基本配置，才能更好地实现千人千面功能。
 
@@ -168,6 +170,7 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&uid=用户ID&ni
 ```
 
 各参数说明：
+
 - `org`: 您的组织ID
 - `t`: 会话类型，通常为1
 - `sid`: 会话ID

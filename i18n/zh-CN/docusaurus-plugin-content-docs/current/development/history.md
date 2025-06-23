@@ -62,6 +62,7 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&loadHistory=1
 ```
 
 参数说明：
+
 - `loadHistory`: 控制是否加载历史记录，值为"1"时加载，其他值不加载
 
 ### 示例代码

@@ -8,10 +8,11 @@ sidebar_position: 7
 本页面介绍如何将业务系统中的商品信息传递给客服系统，特别适用于电商类网站，帮助客服快速了解用户咨询的商品详情。
 
 - 演示链接：[商品信息对接演示](https://weiyuai.cn/reactdemo)
-<!-- - H5链接演示：[H5商品信息对接](https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&goodsInfo=%7B%22uid%22%3A%22goods_001%22%2C%22title%22%3A%22%E6%AF%94%E4%BA%9A%E8%BF%AA%20%E4%BB%B0%E6%9C%9BU7%20%E8%B1%AA%E5%8D%8E%E7%BA%AF%E7%94%B5%E5%8A%A8%E8%BD%BF%E8%BD%A6%22%2C%22image%22%3A%22https%3A%2F%2Fwww.weiyuai.cn%2Fassets%2Fimages%2Fcar%2Fyu7.jpg%22%2C%22price%22%3A299900%2C%22description%22%3A%22%E6%AF%94%E4%BA%9A%E8%BF%AA%E4%BB%B0%E6%9C%9BU7%E6%98%AF%E4%B8%80%E6%AC%BE%E8%B1%AA%E5%8D%8E%E7%BA%AF%E7%94%B5%E5%8A%A8%E8%BD%BF%E8%BD%A6%22%2C%22tagList%22%3A%5B%22%E6%96%B0%E8%83%BD%E6%BA%90%22%2C%22%E8%B1%AA%E5%8D%8E%E8%BD%BF%E8%BD%A6%22%5D%7D) -->
-- 演示代码：[商品信息对接示例](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/goodsInfoDemo.tsx)
+- 演示代码：
+- [商品信息对接示例-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/goodsInfoDemo.tsx)
+- [商品信息对接示例-Vue](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/vue-demo/src/pages/goodsInfoDemo.vue)
 
-> 注意：请确保您已经完成了[React集成指南](../channel/react.md)中的基本功能对接，才能继续进行商品信息对接。
+> 注意：请确保您已经完成了[React集成指南](../channel/react.md)或[Vue集成指南](../channel/vue.md)中的基本功能对接，才能继续进行商品信息对接。
 
 ![商品信息对接示例](/img/develop/chat/goodsinfo.png)
 

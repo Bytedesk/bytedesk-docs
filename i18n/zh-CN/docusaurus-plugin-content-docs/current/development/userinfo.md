@@ -8,10 +8,11 @@ sidebar_position: 5
 本页面介绍如何将业务系统中的用户信息对接到微语客服系统，以实现用户身份识别和个性化服务。
 
 - 演示链接：[用户信息对接演示](https://weiyuai.cn/reactdemo)
-<!-- - H5链接演示：[H5用户信息对接](https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&uid=visitor_001&nickname=%E8%AE%BF%E5%AE%A2%E5%B0%8F%E6%98%8E&avatar=https%3A%2F%2Fweiyuai.cn%2Fassets%2Fimages%2Favatar%2F02.jpg) -->
-- 演示代码：[用户信息对接示例](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/userInfoDemo.tsx)
+- 演示代码：
+- [用户信息对接示例-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/userInfoDemo.tsx)
+- [用户信息对接示例-Vue](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/vue-demo/src/pages/userInfoDemo.vue)
 
-> 注意：请确保您已经完成了[React集成指南](../channel/react.md)中的基本功能对接，才能继续进行用户信息对接。
+> 注意：请确保您已经完成了[React集成指南](../channel/react.md)或[Vue集成指南](../channel/vue.md)中的基本功能对接，才能继续进行用户信息对接。
 
 ![用户信息对接示例](/img/develop/chat/userinfo.png)
 
@@ -203,12 +204,13 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&uid=用户ID&ni
 ```
 
 各参数说明：
+
 - `org`: 您的组织ID
 - `t`: 会话类型，通常为1
 - `sid`: 会话ID
 - `uid`: 用户唯一标识符
 - `nickname`: 用户昵称(需URL编码)
-- `avatar`: 用户头像URL(需URL编码) 
+- `avatar`: 用户头像URL(需URL编码)
 - `extra`: 额外信息(JSON字符串，需URL编码)
 
 ### 示例代码
@@ -281,7 +283,7 @@ H5链接对接特别适用于：
 3. **自定义字段**：传递业务相关的自定义字段，为客服提供更多用户背景信息
 4. **会话控制**：根据用户类型控制是否显示客服入口，例如对VIP用户显示特殊的客服入口
 
-## 注意事项
+## 注意事项2
 
 1. **数据安全**：避免在客户端传递用户敏感信息
 2. **兼容处理**：对于未登录用户，可以使用临时ID作为`uid`，确保体验一致性
