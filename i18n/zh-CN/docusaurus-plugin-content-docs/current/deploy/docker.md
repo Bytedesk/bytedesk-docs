@@ -105,6 +105,8 @@ docker top bytedesk
 ```bash
 # 停止所有服务（保留数据）
 docker compose -p bytedesk -f docker-compose-ollama.yaml down
+# 或
+docker stop bytedesk redis-bytedesk elasticsearch-bytedesk ollama-bytedesk mysql-bytedesk artemis-bytedesk
 
 # 停止所有服务并删除数据卷（谨慎操作，会删除所有数据）
 docker compose -p bytedesk -f docker-compose-ollama.yaml down -v

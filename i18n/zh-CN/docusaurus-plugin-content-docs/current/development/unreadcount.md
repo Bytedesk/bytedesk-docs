@@ -32,7 +32,7 @@ sidebar_position: 13
 微语客服系统提供了简单易用的API来获取和管理未读消息数，主要包括三个核心方法：
 
 1. `getUnreadMessageCount()`: 获取当前未读消息数
-2. `clearMessageUnread()`: 将所有消息标记为已读
+2. `clearUnreadMessages()`: 将所有消息标记为已读
 <!-- 3. 订阅未读消息数变化事件（通过钩子函数实现） -->
 
 ### 基本用法
@@ -52,11 +52,11 @@ window.bytedesk?.getUnreadMessageCount().then((count) => {
 
 #### 2. 标记所有消息为已读
 
-当用户查看了所有消息，或者您需要手动重置未读消息数时，可以使用`clearMessageUnread()`方法：
+当用户查看了所有消息，或者您需要手动重置未读消息数时，可以使用`clearUnreadMessages()`方法：
 
 ```javascript
 // 标记所有消息为已读
-window.bytedesk?.clearMessageUnread().then((count) => {
+window.bytedesk?.clearUnreadMessages().then((count) => {
   console.log('所有消息已标记为已读:', count);
   // 更新UI显示
   setUnreadCount(0);
@@ -151,7 +151,7 @@ const UnreadCountDemo = () => {
                 </button>
                 <button 
                     onClick={() => {
-                        (window as any).bytedesk?.clearMessageUnread().then((count: number) => {
+                        (window as any).bytedesk?.clearUnreadMessages().then((count: number) => {
                             console.log('所有消息已标记为已读:', count);
                             setUnreadCount(count); // 重置未读消息数
                         });
@@ -263,7 +263,7 @@ window.bytedesk?.getUnreadMessageCount().then((count) => {
 });
 ```
 
-### 2. clearMessageUnread()
+### 2. clearUnreadMessages()
 
 将所有消息标记为已读，重置未读计数为0。
 
@@ -272,7 +272,7 @@ window.bytedesk?.getUnreadMessageCount().then((count) => {
 **示例**：
 
 ```javascript
-window.bytedesk?.clearMessageUnread().then((count) => {
+window.bytedesk?.clearUnreadMessages().then((count) => {
   console.log('所有消息已标记为已读，当前未读数：', count);
 });
 ```
@@ -315,13 +315,13 @@ window.bytedesk?.clearMessageUnread().then((count) => {
 
 1. 使用LocalStorage事件机制在标签页间通信
 2. 每个标签页独立定期获取最新未读消息数
-3. 当一个标签页中调用了`clearMessageUnread()`方法后，可以通过LocalStorage通知其他标签页更新状态
+3. 当一个标签页中调用了`clearUnreadMessages()`方法后，可以通过LocalStorage通知其他标签页更新状态
 
 示例代码：
 
 ```javascript
 // 在标记已读后广播给其他标签页
-window.bytedesk?.clearMessageUnread().then(() => {
+window.bytedesk?.clearUnreadMessages().then(() => {
   localStorage.setItem('bytedesk_unread_update', Date.now().toString());
 });
 
@@ -350,7 +350,7 @@ window.addEventListener('storage', (e) => {
 1. 确认您的应用与微语客服系统连接正常
 2. 检查用户登录状态是否一致
 3. 手动调用`getUnreadMessageCount()`刷新计数
-4. 必要时可调用`clearMessageUnread()`重置计数
+4. 必要时可调用`clearUnreadMessages()`重置计数
 
 ### Q5: 如何使用纯API实现获取访客的未读消息数？
 

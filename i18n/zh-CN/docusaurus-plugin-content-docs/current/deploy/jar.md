@@ -48,6 +48,10 @@ cd starter/src/main/resources
 
 # 3. 一键启动所有依赖服务
 docker compose -p bytedesk -f compose.yaml up -d
+# 对话模型
+docker exec ollama-bytedesk ollama pull qwen3:0.6b
+# 向量模型
+docker exec ollama-bytedesk ollama pull bge-m3:latest
 
 # 查看容器运行状态
 docker ps | grep bytedesk
@@ -58,12 +62,12 @@ docker ps | grep bytedesk
 
 或者
 
+- 创建 docker-compose.yaml 文件
+- 打开 [docker-compose-middleware](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-middleware.yaml)
+- 复制其中内容到 docker-compose.yaml 文件
+
 ```bash
-# 1 打开 https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-middleware.yaml 
-
-# 2 复制内容到本地，保存为 docker-compose.yaml
-
-# 3 直接运行下面命令启动
+# 运行下面命令启动
 docker compose -p bytedesk -f docker-compose.yaml up -d
 ```
 
