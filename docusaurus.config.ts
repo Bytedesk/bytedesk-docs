@@ -96,7 +96,10 @@ const config: Config = {
           },
         },
         theme: {
-          customCss: "./src/css/custom.css",
+          customCss: [
+            "./src/css/custom.css",
+            "./src/css/watermark.css",
+          ],
         },
       } satisfies Preset.Options,
     ],

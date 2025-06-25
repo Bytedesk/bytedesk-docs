@@ -30,7 +30,6 @@ sidebar_position: 7
 | `bytedesk.custom.terms-of-service-url` | 服务条款URL地址 | - | `BYTEDESK_CUSTOM_TERMS_OF_SERVICE_URL:` |
 | `bytedesk.custom.login-username-enable` | 是否启用用户名登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_USERNAME_ENABLE: true` |
 | `bytedesk.custom.login-mobile-enable` | 是否启用手机号登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_MOBILE_ENABLE: true` |
-| `bytedesk.custom.login-email-enable` | 是否启用邮箱登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_EMAIL_ENABLE: false` |
 | `bytedesk.custom.login-scan-enable` | 是否启用扫码登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE: true` |
 | `bytedesk.custom.doc-url-show` | 是否显示文档链接 | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
 | `bytedesk.custom.doc-url` | 文档URL地址 | `https://www.weiyuai.cn/docs/zh-CN/` | `BYTEDESK_CUSTOM_DOC_URL: https://www.weiyuai.cn/docs/zh-CN/` |

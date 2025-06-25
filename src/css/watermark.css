@@ -1,0 +1,30 @@
+/* 全局图片水印样式 */
+.watermarked-image {
+  position: relative;
+  display: inline-block;
+}
+
+.watermarked-image img {
+  display: block;
+  max-width: 100%;
+}
+
+.watermarked-image::after {
+  content: "© www.weiyuai.cn";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  color: rgba(0, 0, 0, 0.7);
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* 对于暗色模式的水印调整 */
+[data-theme='dark'] .watermarked-image::after {
+  background-color: rgba(30, 30, 30, 0.6);
+  color: rgba(255, 255, 255, 0.7);
+}
