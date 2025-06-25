@@ -13,7 +13,7 @@ export default function ZoomableImage({ src, alt, width }) {
   };
 
   return (
-    <>
+    <div className="watermarked-image">
       <img 
         src={src} 
         alt={alt} 
@@ -25,10 +25,12 @@ export default function ZoomableImage({ src, alt, width }) {
       {isOpen && (
         <div className={styles.modal} onClick={handleClose}>
           <span className={styles.close}>&times;</span>
-          <img className={styles.modalContent} src={src} alt={alt} />
+          <div className="watermarked-image image-modal-content">
+            <img className={styles.modalContent} src={src} alt={alt} />
+          </div>
           <div className={styles.caption}>{alt}</div>
         </div>
       )}
-    </>
+    </div>
   );
 }

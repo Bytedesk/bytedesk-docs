@@ -6,6 +6,7 @@ sidebar_position: 15
 # Line
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
 
 :::tip 前置条件
 

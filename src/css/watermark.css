@@ -9,6 +9,7 @@
   max-width: 100%;
 }
 
+/* 角落版权信息 */
 .watermarked-image::after {
   content: "© www.weiyuai.cn";
   position: absolute;
@@ -23,8 +24,52 @@
   z-index: 10;
 }
 
+/* 中间水印文字 */
+.watermarked-image::before {
+  content: "微语智能客服";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(128, 128, 128, 0.4);
+  font-size: 24px;
+  font-weight: bold;
+  opacity: 0.3;
+  pointer-events: none;
+  transform: rotate(-30deg);
+  z-index: 1;
+}
+
 /* 对于暗色模式的水印调整 */
 [data-theme='dark'] .watermarked-image::after {
   background-color: rgba(30, 30, 30, 0.6);
   color: rgba(255, 255, 255, 0.7);
+}
+
+/* 大图预览的水印样式 */
+.image-modal-content {
+  position: relative;
+}
+
+.image-modal-content::before {
+  content: "微语智能客服";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(128, 128, 128, 0.4);
+  font-size: 36px;
+  font-weight: bold;
+  opacity: 0.3;
+  pointer-events: none;
+  transform: rotate(-30deg);
+  z-index: 1;
 }
