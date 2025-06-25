@@ -45,7 +45,9 @@ import LineBusinessIdCreate from '/img/channel/line/line_business_id_create.png'
 
 建立服务提供商，任意输入名称或 LINE 官方帐号名称即可 （不影响后续操作），并点击同意
 
-![line_settings_message_api_2](/img/channel/line/line_settings_message_api_2.png)
+import LineSettingsMessageApi2 from '/img/channel/line/line_settings_message_api_2.png';
+
+<img src={LineSettingsMessageApi2} alt="建立服务提供商" style={{width: 360}} />
 
 ### 隐私权政策及服务条款并确认启用
 
