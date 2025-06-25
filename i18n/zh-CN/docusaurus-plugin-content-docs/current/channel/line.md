@@ -21,6 +21,8 @@ sidebar_position: 15
 
 ### 注册账号并登录
 
+- 访问[LINE 官方帐号](https://manager.LINE.biz/)
+
 import LineBusinessIdCreate from '/img/channel/line/line_business_id_create.png';
 
 <img src={LineBusinessIdCreate} alt="LINE业务ID创建" style={{width: 360}} />
@@ -59,7 +61,13 @@ import LineSettingsMessageApi2 from '/img/channel/line/line_settings_message_api
 
 ## 集成到微语系统
 
+### 点击复制 Channel Id 和 Channel Secret 填写到微语后台
+
 ![line_settings_message_api_4](/img/channel/line/line_settings_message_api_4.png)
+
+![line_weiyu_create](/img/channel/line/line_weiyu_create.png)
+
+![line_weiyu_webhook](/img/channel/line/line_weiyu_webhook.png)
 
 ## 参考链接
 
