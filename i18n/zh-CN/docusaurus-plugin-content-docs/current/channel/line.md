@@ -65,9 +65,17 @@ import LineSettingsMessageApi2 from '/img/channel/line/line_settings_message_api
 
 ![line_settings_message_api_4](/img/channel/line/line_settings_message_api_4.png)
 
+### 微语后台创建 LINE 渠道官方账号
+
 ![line_weiyu_create](/img/channel/line/line_weiyu_create.png)
 
+### 微语后台获取 Webhook URL
+
 ![line_weiyu_webhook](/img/channel/line/line_weiyu_webhook.png)
+
+### 回到 LINE 官方帐号管理页，并填入 Webhook URL
+
+![line_settings_message_api_5](/img/channel/line/line_settings_message_api_5.png)
 
 ## 参考链接
 
