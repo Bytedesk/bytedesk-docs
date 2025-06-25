@@ -14,14 +14,23 @@ export default function WatermarkInjector() {
     // 为所有图片添加水印
     const addWatermarkToImages = () => {
       // 选择所有未处理的图片（不包含已经在 watermarked-image 内的图片）
-      const images = document.querySelectorAll('img:not(.watermarked-image img):not(.navbar__logo)');
+      // 特别关注 article 标签内的图片，这是 Docusaurus 放置文档内容的主要容器
+      const images = document.querySelectorAll('article img, .markdown img, .theme-doc-markdown img, img:not(.watermarked-image img):not(.navbar__logo)');
+      
+      console.log("WatermarkInjector 找到图片数量:", images.length);
       
       images.forEach(img => {
-        // 跳过导航栏和页脚中的图片
+        // 跳过导航栏、页脚中的图片以及已处理的图片
         if (img.closest('.navbar') || img.closest('.footer') || 
-            img.closest('.theme-code-block') || img.closest('a')) {
+            img.closest('.theme-code-block') || img.closest('a') ||
+            img.classList.contains('watermark-processed')) {
           return;
         }
+        
+        console.log("WatermarkInjector 处理图片:", img.src);
+        
+        // 标记图片已处理
+        img.classList.add('watermark-processed');
         
         // 创建包装器元素
         const wrapper = document.createElement('div');

@@ -15,7 +15,10 @@ export default function ImageConverter() {
     // 转换标准的Markdown图片为交互式图片
     const convertStandardImages = () => {
       // 查找所有标准图片（不在watermarked-image容器中）
-      const images = document.querySelectorAll('img:not(.watermarked-image img):not(.navbar__logo)');
+      // 特别注意：必须捕获所有包含在 article 内的图片，因为这是 Docusaurus 放置内容的容器
+      const images = document.querySelectorAll('article img, .markdown img, .theme-doc-markdown img, img:not(.watermarked-image img):not(.navbar__logo)');
+      
+      console.log("找到图片数量:", images.length);
       
       images.forEach(img => {
         // 跳过已经处理过的、导航栏中的、页脚中的、代码块中的图片以及链接中的图片
@@ -23,16 +26,24 @@ export default function ImageConverter() {
             img.closest('.footer') || 
             img.closest('.theme-code-block') || 
             img.closest('a') ||
+            img.classList.contains('processed-image') ||
             img.closest('.watermarked-image')) {
           return;
         }
+        
+        console.log("处理图片:", img.src);
 
+        // 标记这个图片已被处理
+        img.classList.add('processed-image');
+        
         // 排除SVG和特殊图片
         if (img.src.endsWith('.svg') || 
             img.classList.contains('special-image') || 
-            img.width < 50) { // 忽略非常小的图标
+            (img.width && img.width < 50)) { // 忽略非常小的图标
           return;
         }
+        
+        console.log('Converting image:', img.src); // 调试日志
 
         // 为图片创建包装元素，并应用水印样式
         const parent = img.parentNode;
@@ -127,13 +138,21 @@ export default function ImageConverter() {
     // 初次执行
     convertStandardImages();
     
+    // 监听自定义事件，强制处理图片
+    document.addEventListener('convert-images', convertStandardImages);
+    
     // 监听DOM变化，处理动态加载的内容
     const observer = new MutationObserver(mutations => {
+      let shouldProcess = false;
       mutations.forEach(mutation => {
         if (mutation.addedNodes.length) {
-          setTimeout(convertStandardImages, 100); // 添加延时以确保DOM完全加载
+          shouldProcess = true;
         }
       });
+      
+      if (shouldProcess) {
+        setTimeout(convertStandardImages, 500); // 增加延时，确保DOM完全加载
+      }
     });
     
     // 开始监听
@@ -143,7 +162,10 @@ export default function ImageConverter() {
     });
     
     // 清理函数
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('convert-images', convertStandardImages);
+    };
   }, []);
 
   return null;

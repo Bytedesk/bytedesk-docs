@@ -7,7 +7,7 @@ description: 在 网站/Web/H5 应用中集成微语客服系统
 
 ### 第一步：登录管理后台
 
-![step1](/img/channel/web/web_h5_1.png)
+![登录管理后台](/img/channel/web/web_h5_1.png)
 
 ### 第二步：配置接入代码
 
@@ -18,10 +18,10 @@ description: 在 网站/Web/H5 应用中集成微语客服系统
 - 支持自定义深色模式，默认浅色
 - 支持是否自动弹窗邀请对话，默认不自动弹窗，并支持自定义弹窗邀请对话的标题和内容，弹窗次数，时间间隔等
 
-![step2](/img/channel/web/web_h5_2.png)
+![配置接入代码](/img/channel/web/web_h5_2.png)
 
 ### 第三步：获取接入代码
 
-![step3](/img/channel/web/web_h5_3.png)
+![获取接入代码](/img/channel/web/web_h5_3.png)
 
 ### 第四步：将接入代码嵌入到网站/Web/H5 应用中

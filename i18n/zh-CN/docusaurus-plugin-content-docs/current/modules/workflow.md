@@ -4,11 +4,13 @@ description: 工作流管理与自动化
 sidebar_position: 4
 ---
 
+import '@site/src/css/watermark.css';
+
 ## 什么是工作流？-开发中
 
 工作流是企业日常业务中的一系列步骤和任务，通过自动化和可视化的方式来管理和执行。简单来说，它就像是一条"工作流水线"，把各个工作环节有序地连接起来，自动流转。
 
-<!-- 图片资源待添加 
+<!-- 图片资源待添加
 ![工作流示例](/img/workflow/workflow_example.png)
 -->
 
