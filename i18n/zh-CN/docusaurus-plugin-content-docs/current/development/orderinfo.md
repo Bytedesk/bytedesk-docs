@@ -14,7 +14,13 @@ sidebar_position: 6
 
 > 注意：请确保您已经完成了[React集成指南](../channel/react.md)中的基本功能对接，才能继续进行订单信息对接。
 
-![订单信息对接示例](/img/develop/chat/orderinfo.png)
+## 访客端对接示例
+
+![访客端对接示例](/img/develop/chat/orderinfo.png)
+
+## 客服端对接示例
+
+![客服端对接示例](/img/develop/chat/orderinfo_agent.png)
 
 ## 为什么需要订单信息对接？
 

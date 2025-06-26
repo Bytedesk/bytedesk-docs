@@ -32,11 +32,17 @@ import LineBusinessIdCreate from '/img/channel/line/line_business_id_create.png'
 
 ### 创建 LINE 官方账号
 
+import line_business_dashboard_new from '/img/channel/line/line_business_dashboard_new.png';
+
+<ZoomableImage src={line_business_dashboard_new} alt="LINE业务ID创建2"/>
+
+- [访问LINE 官方帐号管理页](https://manager.line.biz/account/)
+
 import LineBusinessDashboard from '/img/channel/line/line_business_dashboard.png';
 
 <ZoomableImage src={LineBusinessDashboard} alt="LINE业务仪表板" />
 
-### 进入 LINE 官方帐号管理页
+### 点击账号，进入 LINE 官方帐号管理详情页
 
 import LineBusinessDashboardDetail from '/img/channel/line/line_business_dashboard_detail.png';
 
@@ -94,9 +100,17 @@ import LineWeiyuWebhook from '/img/channel/line/line_weiyu_webhook.png';
 
 ### 回到 LINE 官方帐号管理页，并填入 Webhook URL
 
+打开[LINE Developers Console](https://developers.LINE.biz/console/)
+
 ![line_setting_use_webhook_1](/img/channel/line/line_setting_use_webhook_1.png)
 
+开启Webhook
+
 ![line_setting_use_webhook_2](/img/channel/line/line_setting_use_webhook_2.png)
+
+往下滚动页面，可以开启群聊
+
+![line_group_chat](/img/channel/line/line_group_chat.png)
 
 ![line_setting_use_webhook_3](/img/channel/line/line_setting_use_webhook_3.png)
 
@@ -104,9 +118,13 @@ import lineSettingUseWebhook4 from '/img/channel/line/line_setting_use_webhook_4
 
 <ZoomableImage src={lineSettingUseWebhook4} alt="填入Webhook URL" />
 
-### 费用
+## 费用
+
+访问[查看费用](https://manager.line.biz/account)
 
 ![line_dashboard_fee_1](/img/channel/line/line_dashboard_fee_1.png)
+
+访问[LINE Web Store](https://manager.LINE.biz/webstore/)
 
 ![line_dashboard_fee_2](/img/channel/line/line_dashboard_fee_2.png)
 
