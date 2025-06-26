@@ -94,9 +94,21 @@ import LineWeiyuWebhook from '/img/channel/line/line_weiyu_webhook.png';
 
 ### 回到 LINE 官方帐号管理页，并填入 Webhook URL
 
-import LineSettingsMessageApi5 from '/img/channel/line/line_settings_message_api_5.png';
+![line_setting_use_webhook_1](/img/channel/line/line_setting_use_webhook_1.png)
 
-<ZoomableImage src={LineSettingsMessageApi5} alt="填入Webhook URL" />
+![line_setting_use_webhook_2](/img/channel/line/line_setting_use_webhook_2.png)
+
+![line_setting_use_webhook_3](/img/channel/line/line_setting_use_webhook_3.png)
+
+import lineSettingUseWebhook4 from '/img/channel/line/line_setting_use_webhook_4.png';
+
+<ZoomableImage src={lineSettingUseWebhook4} alt="填入Webhook URL" />
+
+### 费用
+
+![line_dashboard_fee_1](/img/channel/line/line_dashboard_fee_1.png)
+
+![line_dashboard_fee_2](/img/channel/line/line_dashboard_fee_2.png)
 
 ## 参考链接
 
