@@ -152,6 +152,7 @@ import Trademark from '/img/right/trademark.jpg';
 ## 联系方式
 
 - 原则上不接受砍价，如需咨询、意见反馈或购买，请[扫码联系微信](/img/wechat.png)
+- [下载PPT演示文档](https://www.weiyuai.cn/download/ppt/)
 
 ## 使用条款与参考
 

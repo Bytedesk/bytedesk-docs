@@ -102,17 +102,25 @@ import LineWeiyuWebhook from '/img/channel/line/line_weiyu_webhook.png';
 
 打开[LINE Developers Console](https://developers.LINE.biz/console/)
 
-![line_setting_use_webhook_1](/img/channel/line/line_setting_use_webhook_1.png)
+import lineSettingUseWebhook1 from '/img/channel/line/line_setting_use_webhook_1.png';
+
+<ZoomableImage src={lineSettingUseWebhook1} alt="LINE设置Webhook 1" />
 
 开启Webhook
 
-![line_setting_use_webhook_2](/img/channel/line/line_setting_use_webhook_2.png)
+import lineSettingUseWebhook2 from '/img/channel/line/line_setting_use_webhook_2.png';
+
+<ZoomableImage src={lineSettingUseWebhook2} alt="开启Webhook" />
 
 往下滚动页面，可以开启群聊
 
-![line_group_chat](/img/channel/line/line_group_chat.png)
+import lineGroupChat from '/img/channel/line/line_group_chat.png';
 
-![line_setting_use_webhook_3](/img/channel/line/line_setting_use_webhook_3.png)
+<ZoomableImage src={lineGroupChat} alt="LINE群聊设置" />
+
+import lineSettingUseWebhook3 from '/img/channel/line/line_setting_use_webhook_3.png';
+
+<ZoomableImage src={lineSettingUseWebhook3} alt="LINE设置Webhook 3" />
 
 import lineSettingUseWebhook4 from '/img/channel/line/line_setting_use_webhook_4.png';
 
@@ -122,11 +130,15 @@ import lineSettingUseWebhook4 from '/img/channel/line/line_setting_use_webhook_4
 
 访问[查看费用](https://manager.line.biz/account)
 
-![line_dashboard_fee_1](/img/channel/line/line_dashboard_fee_1.png)
+import lineDashboardFee1 from '/img/channel/line/line_dashboard_fee_1.png';
+
+<ZoomableImage src={lineDashboardFee1} alt="LINE费用查看" />
 
 访问[LINE Web Store](https://manager.LINE.biz/webstore/)
 
-![line_dashboard_fee_2](/img/channel/line/line_dashboard_fee_2.png)
+import lineDashboardFee2 from '/img/channel/line/line_dashboard_fee_2.png';
+
+<ZoomableImage src={lineDashboardFee2} alt="LINE Web Store" />
 
 ## 参考链接
 

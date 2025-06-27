@@ -127,3 +127,8 @@ sidebar_position: 1
 - 支持任务创建、分配、进度监控
 - 文件共享与团队协作功能
 - 帮助团队高效完成项目目标
+
+## 下载
+
+- [下载](https://www.weiyuai.cn/download/)
+- [PPT](https://www.weiyuai.cn/download/ppt/)
