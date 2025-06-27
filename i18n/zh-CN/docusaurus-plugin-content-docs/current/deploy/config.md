@@ -10,17 +10,16 @@ sidebar_position: 7
 ## 基础配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `server.port` | 服务器端口 | `9003` | `SERVER_PORT: 9003` |
 | `bytedesk.debug` | 是否开启调试模式 | `true` | `BYTEDESK_DEBUG: true` |
-| `bytedesk.edition` | 产品版本类型：COMMUNITY(社区版，功能受限)、ENTERPRISE(企业版，付费，功能不限)、PLATFORM(平台版，付费，功能不限) | `PLATFORM` | `BYTEDESK_EDITION: ENTERPRISE` |
 | `bytedesk.version` | 产品版本号 | `0.7.8` | `BYTEDESK_VERSION: 0.7.8` |
-| `bytedesk.appkey` | 授权密钥 | `ZjoyMDI1LTA2LTExOkNPTU1VTklUWTo6` | `BYTEDESK_APPKEY: ZjoyMDI1LTA2LTExOkNPTU1VTklUWTo6` |
+| `bytedesk.appkey` | 授权密钥 | `ZjoyMDI...` | `BYTEDESK_APPKEY: ZjoyMDI...` |
 
 ## 自定义配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.custom.enabled` | 是否启用自定义配置（名称、logo、说明等） | `true` | `BYTEDESK_CUSTOM_ENABLED: false` |
 | `bytedesk.custom.name` | 自定义产品名称，默认为空则使用默认名称 | - | `BYTEDESK_CUSTOM_NAME:` |
 | `bytedesk.custom.logo` | 自定义产品logo，默认为空则使用默认logo | - | `BYTEDESK_CUSTOM_LOGO:` |
@@ -32,19 +31,19 @@ sidebar_position: 7
 | `bytedesk.custom.login-mobile-enable` | 是否启用手机号登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_MOBILE_ENABLE: true` |
 | `bytedesk.custom.login-scan-enable` | 是否启用扫码登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE: true` |
 | `bytedesk.custom.doc-url-show` | 是否显示文档链接 | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
-| `bytedesk.custom.doc-url` | 文档URL地址 | `https://www.weiyuai.cn/docs/zh-CN/` | `BYTEDESK_CUSTOM_DOC_URL: https://www.weiyuai.cn/docs/zh-CN/` |
+| `bytedesk.custom.doc-url` | 文档URL地址 | `https://...` | `BYTEDESK_CUSTOM_DOC_URL: https://www.....` |
 
 ## 管理员配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.admin.email` | 管理员邮箱 | `admin@email.com` | `BYTEDESK_ADMIN_EMAIL: admin@email.com` |
 | `bytedesk.admin.password` | 管理员默认密码 | `admin` | `BYTEDESK_ADMIN_PASSWORD: admin` |
 | `bytedesk.admin.password-default` | 创建/导入成员的默认密码 | `123456` | `BYTEDESK_ADMIN_PASSWORD_DEFAULT: 123456` |
 | `bytedesk.admin.nickname` | 管理员昵称 | `SuperAdmin` | `BYTEDESK_ADMIN_NICKNAME: SuperAdmin` |
 | `bytedesk.admin.mobile` | 管理员手机号 | `13345678000` | `BYTEDESK_ADMIN_MOBILE: 13345678000` |
-| `bytedesk.admin.mobile-whitelist` | 手机号白名单，使用逗号分隔 | `18888888000,18888888001,...` | `BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001,18888888002,18888888003,18888888004,18888888005` |
-| `bytedesk.admin.email-whitelist` | 邮箱白名单，使用逗号分隔 | `100@email.com,101@email.com,...` | `BYTEDESK_ADMIN_EMAIL_WHITELIST: 100@email.com,101@email.com,102@email.com,103@email.com,104@email.com,105@email.com` |
+| `bytedesk.admin.mobile-whitelist` | 手机号白名单，使用逗号分隔 | `18888888000,18888888001,...` | `BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001...` |
+| `bytedesk.admin.email-whitelist` | 邮箱白名单，使用逗号分隔 | `100@email.com,101@email.com,...` | `BYTEDESK_ADMIN_EMAIL_WHITELIST: 100@email.com,101@email.com...` |
 | `bytedesk.admin.validate-code` | 白名单手机号和邮箱的验证码，否则生成随机6位数字 | `123456` | `BYTEDESK_ADMIN_VALIDATE_CODE: 123456` |
 | `bytedesk.admin.allow-register` | 是否允许注册新账户 | `true` | `BYTEDESK_FEATURES_ENABLE_REGISTRATION: false` |
 | `bytedesk.admin.force-validate-mobile` | 是否强制验证手机号 | `true` | `BYTEDESK_ADMIN_FORCE_VALIDATE_MOBILE: true` |
@@ -53,13 +52,13 @@ sidebar_position: 7
 ## 成员配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.member.password` | 创建/导入成员的默认密码 | `123456` | `BYTEDESK_MEMBER_PASSWORD: 123456` |
 
 ## 性能测试配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.testing.enabled` | 是否启用性能测试模式 | `false` | `BYTEDESK_TESTING_ENABLED: false` |
 | `bytedesk.testing.account-count` | 测试账号数量 | `300` | `BYTEDESK_TESTING_ACCOUNT_COUNT: 300` |
 | `bytedesk.testing.account-username` | 测试账号用户名前缀 | `test` | `BYTEDESK_TESTING_ACCOUNT_USERNAME: test` |
@@ -70,14 +69,14 @@ sidebar_position: 7
 ## 组织配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.organization.name` | 组织名称 | `MyCompany` | `BYTEDESK_ORGANIZATION_NAME: MyCompany` |
 | `bytedesk.organization.code` | 组织代码 | `bytedesk` | `BYTEDESK_ORGANIZATION_CODE: bytedesk` |
 
 ## 功能特性配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.features.java-ai` | 是否启用Java AI功能 | `true` | `BYTEDESK_FEATURES_JAVA_AI: false` |
 | `bytedesk.features.python-ai` | 是否启用Python AI功能 | `false` | `BYTEDESK_FEATURES_PYTHON_AI: true` |
 | `bytedesk.features.email-type` | 邮件发送方式，可选：`javamail`/`aliyun` | `javamail` | `BYTEDESK_FEATURES_EMAIL_TYPE: javamail` |
@@ -86,13 +85,13 @@ sidebar_position: 7
 ## 跨域配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.cors.allowed-origins` | 允许的跨域来源 | `*` | `BYTEDESK_CORS_ALLOWED_ORIGINS: *` |
 
 ## JWT配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.jwt.secret-key` | JWT密钥 | `1dfaf8d004207b628a9a6b859c429f49a9a7ead9fd8161c1e60847aeef06dbd2` | `BYTEDESK_JWT_SECRET_KEY: 1dfaf8d004207b628a9a6b859c429f49a9a7ead9fd8161c1e60847aeef06dbd2` |
 | `bytedesk.jwt.expiration` | JWT过期时间（毫秒），默认30天 | `2592000000` | `BYTEDESK_JWT_EXPIRATION: 2592000000` |
 | `bytedesk.jwt.refresh-token-expiration` | 刷新令牌过期时间（毫秒），默认60天 | `5184000000` | `BYTEDESK_JWT_REFRESH_TOKEN_EXPIRATION: 5184000000` |
@@ -100,7 +99,7 @@ sidebar_position: 7
 ## 缓存配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.cache.level` | 缓存级别：0(不使用缓存)、1(使用Caffeine缓存)、2(使用Caffeine + Redis缓存) | `0` | `BYTEDESK_CACHE_LEVEL: 0` |
 | `bytedesk.cache.prefix` | 缓存前缀 | `bytedeskim` | `BYTEDESK_CACHE_PREFIX: bytedeskim` |
 | `bytedesk.cache.redis-stream-key` | Redis流键名 | `bytedeskim:stream` | `BYTEDESK_CACHE_REDIS_STREAM_KEY: bytedeskim:stream` |
@@ -108,7 +107,7 @@ sidebar_position: 7
 ## 上传配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.upload.type` | 上传类型 | `local` | `BYTEDESK_UPLOAD_TYPE: local` |
 | `bytedesk.upload.dir` | 上传目录（请首先在服务器创建文件夹，路径末尾不能添加'/'） | `/var/www/html/weiyuai/file` | `BYTEDESK_UPLOAD_DIR: /var/www/html/weiyuai/file` |
 | `bytedesk.upload.url` | 外部访问上传文件URL(需要将域名替换为自己域名) | `https://www.weiyuai.cn` | `BYTEDESK_UPLOAD_URL: https://www.weiyuai.cn` |
@@ -126,7 +125,7 @@ sidebar_position: 7
 ## 知识库配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.kbase.theme` | 知识库主题，可选：`default`/`eduport`/`social`/`kbdoc` | `default` | `BYTEDESK_KBASE_THEME: default` |
 | `bytedesk.kbase.html-path` | 请首先在服务器创建文件夹，HTML路径 | `/var/www/html/weiyuai/helpcenter` | `BYTEDESK_KBASE_HTML_PATH: /var/www/html/weiyuai/helpcenter` |
 | `bytedesk.kbase.api-url` | 外部访问知识库URL(需要将域名替换为自己域名) | `https://api.weiyuai.cn` | `BYTEDESK_KBASE_API_URL: https://api.weiyuai.cn` |
@@ -134,7 +133,7 @@ sidebar_position: 7
 ## Socket模块配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.socket.enabled` | 是否启用Socket | `true` | `BYTEDESK_SOCKET_ENABLED: true` |
 | `bytedesk.socket.host` | Socket主机 | `0.0.0.0` | `BYTEDESK_SOCKET_HOST: 0.0.0.0` |
 | `bytedesk.socket.websocket-port` | WebSocket端口 | `9885` | `BYTEDESK_SOCKET_WEBSOCKET_PORT: 9885` |
@@ -148,7 +147,7 @@ sidebar_position: 7
 ### Ollama配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.ollama.base-url` | Ollama基础URL，默认为11434端口，Docker环境建议修改为21434端口 | `http://127.0.0.1:21434` | `SPRING_AI_OLLAMA_BASE_URL: http://127.0.0.1:21434` |
 | `spring.ai.ollama.chat.enabled` | 是否启用Ollama聊天功能 | `true` | `SPRING_AI_OLLAMA_CHAT_ENABLED: true` |
 | `spring.ai.ollama.chat.options.model` | Ollama聊天模型 | `qwen3:0.6b` | `SPRING_AI_OLLAMA_CHAT_OPTIONS_MODEL: qwen3:0.6b` |
@@ -159,7 +158,7 @@ sidebar_position: 7
 ### 智谱AI配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.zhipuai.api-key` | 智谱AI API密钥 | `sk-xxx` | `SPRING_AI_ZHIPUAI_API_KEY: sk-xxx` |
 | `spring.ai.zhipuai.chat.enabled` | 是否启用智谱AI聊天功能 | `false` | `SPRING_AI_ZHIPUAI_CHAT_ENABLED: false` |
 | `spring.ai.zhipuai.chat.options.model` | 智谱AI聊天模型 | `glm-4-flash` | `SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash` |
@@ -169,7 +168,7 @@ sidebar_position: 7
 ### DeepSeek配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.deepseek.base-url` | DeepSeek基础URL | `https://api.deepseek.com` | `SPRING_AI_DEEPSEEK_BASE_URL: https://api.deepseek.com` |
 | `spring.ai.deepseek.api-key` | DeepSeek API密钥 | `sk-xxx` | `SPRING_AI_DEEPSEEK_API_KEY: sk-xxx` |
 | `spring.ai.deepseek.chat.enabled` | 是否启用DeepSeek聊天功能 | `false` | `SPRING_AI_DEEPSEEK_CHAT_ENABLED: false` |
@@ -179,7 +178,7 @@ sidebar_position: 7
 ### OpenAI配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.openai.base-url` | OpenAI基础URL | `https://api.openai.com` | `SPRING_AI_OPENAI_BASE_URL: https://api.openai.com` |
 | `spring.ai.openai.api-key` | OpenAI API密钥 | `sk-xxx` | `SPRING_AI_OPENAI_API_KEY: sk-xxx` |
 | `spring.ai.openai.chat.enabled` | 是否启用OpenAI聊天功能 | `false` | `SPRING_AI_OPENAI_CHAT_ENABLED: false` |
@@ -194,7 +193,7 @@ sidebar_position: 7
 ### 阿里云百炼配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.dashscope.base-url` | 阿里云百炼基础URL | `https://dashscope.aliyuncs.com/compatible-mode` | `SPRING_AI_DASHSCOPE_BASE_URL: https://dashscope.aliyuncs.com/compatible-mode` |
 | `spring.ai.dashscope.api-key` | 阿里云百炼API密钥 | `sk-xxx` | `SPRING_AI_DASHSCOPE_API_KEY: sk-xxx` |
 | `spring.ai.dashscope.chat.enabled` | 是否启用阿里云百炼聊天功能 | `false` | `SPRING_AI_DASHSCOPE_CHAT_ENABLED: false` |
@@ -210,7 +209,7 @@ sidebar_position: 7
 ### SiliconFlow配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.siliconflow.base-url` | SiliconFlow基础URL | `https://api.siliconflow.cn` | `SPRING_AI_SILICONFLOW_BASE_URL: https://api.siliconflow.cn` |
 | `spring.ai.siliconflow.api-key` | SiliconFlow API密钥 | `sk-xxxx` | `SPRING_AI_SILICONFLOW_API_KEY: sk-xxxx` |
 | `spring.ai.siliconflow.chat.enabled` | 是否启用SiliconFlow聊天功能 | `false` | `SPRING_AI_SILICONFLOW_CHAT_ENABLED: false` |
@@ -220,7 +219,7 @@ sidebar_position: 7
 ### Gitee配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.gitee.base-url` | Gitee基础URL | `https://ai.gitee.com` | `SPRING_AI_GITEE_BASE_URL: https://ai.gitee.com` |
 | `spring.ai.gitee.api-key` | Gitee API密钥 | `xxx` | `SPRING_AI_GITEE_API_KEY: xxx` |
 | `spring.ai.gitee.chat.enabled` | 是否启用Gitee聊天功能 | `false` | `SPRING_AI_GITEE_CHAT_ENABLED: false` |
@@ -230,7 +229,7 @@ sidebar_position: 7
 ### 腾讯云配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.tencent.base-url` | 腾讯云基础URL | `https://api.hunyuan.cloud.tencent.com` | `SPRING_AI_TENCENT_BASE_URL: https://api.hunyuan.cloud.tencent.com` |
 | `spring.ai.tencent.api-key` | 腾讯云API密钥 | `sk-xxx` | `SPRING_AI_TENCENT_API_KEY: sk-xxx` |
 | `spring.ai.tencent.chat.enabled` | 是否启用腾讯云聊天功能 | `false` | `SPRING_AI_TENCENT_CHAT_ENABLED: false` |
@@ -240,7 +239,7 @@ sidebar_position: 7
 ### 百度云配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.baidu.base-url` | 百度云基础URL | `https://qianfan.baidubce.com/v2` | `SPRING_AI_BAIDU_BASE_URL: https://qianfan.baidubce.com/v2` |
 | `spring.ai.baidu.api-key` | 百度云API密钥 | `bce-v3/xxx` | `SPRING_AI_BAIDU_API_KEY: bce-v3/xxx` |
 | `spring.ai.baidu.chat.enabled` | 是否启用百度云聊天功能 | `false` | `SPRING_AI_BAIDU_CHAT_ENABLED: false` |
@@ -250,7 +249,7 @@ sidebar_position: 7
 ### 火山引擎配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.volcengine.base-url` | 火山引擎基础URL | `https://ark.cn-beijing.volces.com/api/v3` | `SPRING_AI_VOLCENGINE_BASE_URL: https://ark.cn-beijing.volces.com/api/v3` |
 | `spring.ai.volcengine.api-key` | 火山引擎API密钥 | `xxx` | `SPRING_AI_VOLCENGINE_API_KEY: xxx` |
 | `spring.ai.volcengine.chat.enabled` | 是否启用火山引擎聊天功能 | `false` | `SPRING_AI_VOLCENGINE_CHAT_ENABLED: false` |
@@ -260,7 +259,7 @@ sidebar_position: 7
 ### OpenRouter配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.ai.openrouter.base-url` | OpenRouter基础URL | `https://openrouter.ai` | `SPRING_AI_OPENROUTER_BASE_URL: https://openrouter.ai` |
 | `spring.ai.openrouter.api-key` | OpenRouter API密钥 | - | `SPRING_AI_OPENROUTER_API_KEY:` |
 | `spring.ai.openrouter.chat.enabled` | 是否启用OpenRouter聊天功能 | `false` | `SPRING_AI_OPENROUTER_CHAT_ENABLED: false` |
@@ -270,7 +269,7 @@ sidebar_position: 7
 ## Telegram配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.telegram.enabled` | 是否启用Telegram功能 | `false` | `BYTEDESK_TELEGRAM_ENABLED: false` |
 | `bytedesk.telegram.default-bot-enabled` | 是否启用默认Telegram机器人。必须先启用Telegram功能，此配置才有效 | `false` | `BYTEDESK_TELEGRAM_DEFAULT_BOT_ENABLED: false` |
 | `bytedesk.telegram.default-bot-token` | 默认Telegram机器人令牌 | `placeholder` | `BYTEDESK_TELEGRAM_DEFAULT_BOT_TOKEN: placeholder` |
@@ -282,7 +281,7 @@ sidebar_position: 7
 ### Elasticsearch向量存储配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `spring.elasticsearch.uris` | Elasticsearch URI | `http://127.0.0.1:19200` | `SPRING_ELASTICSEARCH_URIS: http://127.0.0.1:19200` |
 | `spring.elasticsearch.username` | Elasticsearch用户名 | `elastic` | `SPRING_ELASTICSEARCH_USERNAME: elastic` |
 | `spring.elasticsearch.password` | Elasticsearch密码 | `bytedesk123` | `SPRING_ELASTICSEARCH_PASSWORD: bytedesk123` |
@@ -295,7 +294,7 @@ sidebar_position: 7
 ## 阿里云短信服务配置 - 手机登录验证码
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `aliyun.region.id` | 阿里云区域ID查看 | `cn-hangzhou` | `ALIYUN_REGION_ID: cn-hangzhou` |
 | `aliyun.access.key.id` | 阿里云访问密钥ID申请 | - | `ALIYUN_ACCESS_KEY_ID:` |
 | `aliyun.access.key.secret` | 阿里云访问密钥秘钥申请 | - | `ALIYUN_ACCESS_KEY_SECRET:` |
@@ -326,7 +325,10 @@ bytedesk.admin.validate-code=123456
 **Docker环境变量方式：**
 
 ```yaml
+# 配置默认测试手机号白名单
 BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001,18888888002,18888888003,18888888004,18888888005
+
+# 为白名单手机号和邮箱配置固定验证码，否则生成随机6位数字
 BYTEDESK_ADMIN_VALIDATE_CODE: 123456
 ```
 
@@ -335,7 +337,7 @@ BYTEDESK_ADMIN_VALIDATE_CODE: 123456
 ## 百度翻译配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
-| ------ | ------ | ------ | ------ |
+| :------- | :---------------------- | :------- | :------- |
 | `bytedesk.translate.baidu.appid` | 百度翻译AppID | `placeholder` | `BYTEDESK_TRANSLATE_BAIDU_APPID: placeholder` |
 | `bytedesk.translate.baidu.key` | 百度翻译密钥 | `placeholder` | `BYTEDESK_TRANSLATE_BAIDU_KEY: placeholder` |
 

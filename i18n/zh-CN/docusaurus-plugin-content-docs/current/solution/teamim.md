@@ -1,6 +1,6 @@
 ---
 sidebar_label: 企业即时通讯IM解决方案
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # 企业即时通讯IM解决方案

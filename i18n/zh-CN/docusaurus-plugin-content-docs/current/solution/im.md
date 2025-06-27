@@ -1,6 +1,6 @@
 ---
 sidebar_label: 社交即时通讯IM解决方案
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # 社交即时通讯IM解决方案

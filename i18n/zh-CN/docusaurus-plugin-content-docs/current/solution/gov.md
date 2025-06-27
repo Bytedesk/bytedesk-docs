@@ -1,6 +1,6 @@
 ---
 sidebar_label: 政务事业单位智能客服
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # 政务事业单位智能客服解决方案
