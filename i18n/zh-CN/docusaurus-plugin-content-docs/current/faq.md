@@ -13,9 +13,13 @@ description: 集成微语客服系统常见问题
 
 ```yaml
 # docker-compose.yml中关闭ollama服务
+SPRING_AI_MODEL_CHAT: zhipuai
+SPRING_AI_MODEL_EMBEDDING: zhipuai
 SPRING_AI_OLLAMA_CHAT_ENABLED: false
 SPRING_AI_OLLAMA_EMBEDDING_ENABLED: false
 # 或者 在源码中关闭ollama服务
+spring.ai.model.chat=zhipuai
+spring.ai.model.embedding=zhipuai
 spring.ai.ollama.chat.enabled=false
 spring.ai.ollama.embedding.enabled=false
 ```

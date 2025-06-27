@@ -142,8 +142,10 @@ import lineDashboardFee2 from '/img/channel/line/line_dashboard_fee_2.png';
 
 ## 参考链接
 
+- [Line 官方配置 Message API教程](https://developers.line.biz/en/docs/messaging-api/getting-started/)
 - [LINE 官方帐号](https://manager.LINE.biz/)
 - [Line Developers Console](https://developers.line.biz/console/)
 - [Line Messaging API](https://developers.line.biz/en/docs/messaging-api/overview/)
 - [Line Java SDK](https://github.com/line/line-bot-sdk-java)
 - [Line API Use Case](https://developers.line.biz/en/docs/messaging-api/overview/#line-api-use-case)
+- [Line Channel Access Token](https://developers.line.biz/en/docs/basics/channel-access-token/)

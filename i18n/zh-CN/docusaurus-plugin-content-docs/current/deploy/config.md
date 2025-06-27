@@ -309,6 +309,29 @@ sidebar_position: 7
 - [阿里云短信签名申请](https://dysms.console.aliyun.com/domestic/text/sign) - 阿里云短信签名管理控制台
 - [阿里云短信模板申请](https://dysms.console.aliyun.com/domestic/text/template) - 阿里云短信服务控制台
 
+### 默认测试手机号和验证码配置
+
+配置默认测试手机号白名单，这些手机号将使用固定验证码进行验证，方便开发和测试：
+
+**配置文件方式：**
+
+```properties
+# 配置默认测试手机号白名单
+bytedesk.admin.mobile-whitelist=18888888000,18888888001,18888888002,18888888003,18888888004,18888888005,18888888006
+
+# 为白名单手机号和邮箱配置固定验证码，否则生成随机6位数字
+bytedesk.admin.validate-code=123456
+```
+
+**Docker环境变量方式：**
+
+```yaml
+BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001,18888888002,18888888003,18888888004,18888888005
+BYTEDESK_ADMIN_VALIDATE_CODE: 123456
+```
+
+> **注意：** 白名单手机号使用固定验证码，仅用于开发和测试环境。生产环境请谨慎使用，确保安全性。
+
 ## 百度翻译配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
