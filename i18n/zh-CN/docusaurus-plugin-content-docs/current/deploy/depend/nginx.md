@@ -27,6 +27,9 @@ sidebar_position: 4
 ```bash
 sudo apt update
 sudo apt install nginx
+sudo apt -y install libnginx-mod-stream
+mkdir -p /var/www/html/weiyuai
+sudo chmod -R 755 /var/www/html/weiyuai/
 
 # 验证安装是否成功(查看80端口是否启动)
 netstat -ntlp

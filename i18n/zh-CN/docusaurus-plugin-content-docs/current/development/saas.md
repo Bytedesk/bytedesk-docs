@@ -102,13 +102,8 @@ BYTEDESK_ADMIN_FORCE_VALIDATE_EMAIL=true
 ```bash
 # 是否启用用户名登录
 bytedesk.custom.login-username-enable=true
-
 # 是否启用手机号登录
 bytedesk.custom.login-mobile-enable=true
-
-# 是否启用邮箱登录
-bytedesk.custom.login-email-enable=false
-
 # 是否启用扫码登录
 bytedesk.custom.login-scan-enable=true
 ```
@@ -118,7 +113,6 @@ bytedesk.custom.login-scan-enable=true
 ```bash
 BYTEDESK_CUSTOM_LOGIN_USERNAME_ENABLE=true
 BYTEDESK_CUSTOM_LOGIN_MOBILE_ENABLE=true
-BYTEDESK_CUSTOM_LOGIN_EMAIL_ENABLE=false
 BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE=true
 ```
 
