@@ -5,36 +5,55 @@ sidebar_position: 9
 description: 集成微语客服系统常见问题
 ---
 
-## 问题1：可不可以不用ollama
+## 问题1：可以不使用 Ollama 吗？
 
-### 答案1：可以
+### 答案：可以
 
-如果不想使用ollama，可以关闭ollama服务，但同时必须启用另外一个大模型服务，比如智谱AI，并修改配置文件
+### 配置步骤
+
+#### 1. 修改默认模型为智谱AI，关闭 Ollama 服务
 
 ```yaml
-# docker-compose.yml中关闭ollama服务
+# 在 docker-compose.yml 中关闭 Ollama 服务
+# 修改默认模型为智谱AI
 SPRING_AI_MODEL_CHAT: zhipuai
 SPRING_AI_MODEL_EMBEDDING: zhipuai
+# 关闭 Ollama 服务
 SPRING_AI_OLLAMA_CHAT_ENABLED: false
 SPRING_AI_OLLAMA_EMBEDDING_ENABLED: false
-# 或者 在源码中关闭ollama服务
+```
+
+或在源码配置文件中：
+
+```yaml
+# 修改默认模型为智谱AI
 spring.ai.model.chat=zhipuai
 spring.ai.model.embedding=zhipuai
+# 关闭 Ollama 服务
 spring.ai.ollama.chat.enabled=false
 spring.ai.ollama.embedding.enabled=false
 ```
 
-同时必须启用智谱AI服务，且必须填写真实智谱AI API Key，否则无法正常启动。使用glm-4-flash模型免费，不会产生任何费用。
+#### 2. 启用智谱AI服务
+
+:::info 重要提示
+必须填写真实的智谱AI API Key，否则无法正常启动。使用 glm-4-flash 模型免费，不会产生费用。
+:::
+
+获取API Key：[智谱AI控制台](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
 
 ```yaml
-# 申请智谱AI API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys
-# docker-compose.yml中启用智谱AI服务
+# 在 docker-compose.yml 中配置
 SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'
 SPRING_AI_ZHIPUAI_CHAT_ENABLED: true
 SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
 SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
 SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: true
-# 或者 在源码中启用智谱AI服务
+```
+
+或在源码配置文件中：
+
+```yaml
 spring.ai.zhipuai.api-key=sk-xxx
 spring.ai.zhipuai.chat.enabled=true
 spring.ai.zhipuai.chat.options.model=glm-4-flash
@@ -44,123 +63,167 @@ spring.ai.zhipuai.embedding.enabled=true
 
 ![faq_a](/img/faq/faq_1_a.jpg)
 
-那么问题来了：
+### 常见疑问
 
-- 问：如果我不想使用智谱AI，比如我想用deepseek，那我该怎么办呢？
-- 答：因为目前deepseek模型不支持embedding，所以如果要使用知识库问答，必须至少使用一款支持embedding的模型。所以在启用deepseek的同时，必须同时启用智谱AI的embedding或者Ollama支持embedding的模型，否则无法使用知识库问答功能。
+**Q：如果我不想使用智谱AI，想用 DeepSeek 怎么办？**
 
-## 问题2：Unsatisfied dependency expressed through constructor parameter 0: N o qualifying bean of type 'org.springframework.ai.chat.client ChatClient' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations
+**A：** 由于 DeepSeek 模型不支持 embedding，如果要使用知识库问答功能，必须至少使用一款支持 embedding 的模型。因此在启用 DeepSeek 的同时，必须同时启用智谱AI的 embedding 或 Ollama 支持 embedding 的模型。
+
+## 问题2：ChatClient 依赖注入失败
+
+**错误信息：**
+> Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'org.springframework.ai.chat.client ChatClient' available
 
 ![faq1](/img/faq/faq_1.jpg)
 
-### 原因2
+### 错误原因
 
-未成功连上ollama服务，导致无法注入ChatClient。
+未成功连接到 Ollama 服务，导致无法注入 ChatClient。
 
-### 解决方案2
+### 处理方法
 
-修改配置文件
+修改 Ollama 服务地址配置：
 
 ```yaml
-# docker-compose.yml中修改地址为自己ollama服务的地址
+# 在 docker-compose.yml 中修改为实际的 Ollama 服务地址
 SPRING_AI_OLLAMA_BASE_URL: http://host.docker.internal:11434
-# 或者 在源码配置文件中修改地址为自己ollama服务的地址
+```
+
+或在源码配置文件中：
+
+```yaml
 spring.ai.ollama.base-url=http://127.0.0.1:11434
 ```
 
-## 问题3：找不到protobuf类
+## 问题3：找不到 Protobuf 类
 
 ![faq2](/img/faq/faq_2.png)
 
-### 原因3
+### 错误分析
 
-相关protobuf类未生成
+相关 Protobuf 类未生成。
 
-### 解决方案3
+### 处理步骤
 
-```bash
-# 推荐开发环境：vscode + maven
-# 项目使用了protobuf，可能需要安装 protobuf 编译工具
-protoc --version
-libprotoc 25.3
-# 安装protoc之后，重新编译项目，生成相关protobuf类
-cd bytedesk # 进入项目根目录
-./mvnw install -Dmaven.test.skip=true
-```
+1. **检查 Protobuf 编译工具**
 
-## 问题4：消息乱序，排序错误
+   ```bash
+   protoc --version
+   # 预期输出：libprotoc 25.3
+   ```
+
+2. **重新编译项目**
+
+   ```bash
+   cd bytedesk  # 进入项目根目录
+   ./mvnw install -Dmaven.test.skip=true
+   ```
+
+:::tip 开发环境推荐
+推荐使用 VS Code + Maven 进行开发
+:::
+
+## 问题4：消息排序错误
 
 ![faq3](/img/faq/faq_3.png)
 
-### 原因4
+### 原因分析
 
-docker时区错误
+Docker 容器时区配置错误。
 
-### 解决方案4
+### 解决办法
 
-请修复docker所在时区
+修复 Docker 容器的时区设置。
 
-## 问题5：无法获取验证码或无法登录
+## 问题5：无法获取验证码或登录失败
 
-### 原因5
+### 问题分析
 
-无法正确连接服务器，可能是服务器地址错误
+无法正确连接服务器，可能是服务器地址配置错误。
 
-### 解决方案5
+### 解决策略
 
-刷新几次浏览器页面，如果验证码还无法显示或无法登录，可以尝试切换服务器
+1. **刷新页面**：多次刷新浏览器页面重试
+2. **切换服务器**：如果问题仍然存在，可尝试切换服务器
 
-#### 步骤1
+#### 操作步骤
+
+##### 步骤1：点击设置
 
 ![faq4](/img/faq/faq_4.png)
 
-#### 步骤2
+##### 步骤2：选择服务器
 
 ![faq4](/img/faq/faq_4_a.png)
 
-#### 步骤3
+##### 步骤3：切换服务器
 
 ![faq4](/img/faq/faq_4_a_1.png)
 
-注意：此种方式仅适用于本地测试，对于线上情况建议参考 [Nginx配置](./deploy/depend/nginx.md)
+:::warning 注意
+此方法仅适用于本地测试，生产环境建议参考 [Nginx配置](./deploy/depend/nginx.md)
+:::
 
 ## 问题6：如何使用域名访问
 
-### 原因6
+### 当前状态
 
-默认情况下，访问地址: http://服务器ip:9003
+默认访问地址：`http://服务器IP:9003`
 
-### 解决方案6
+### 部署方案
 
-- 方法一：前后分离部署，参考 [Nginx配置](./deploy/depend/nginx.md)，推荐，升级方便，无需重启服务器
-- 方法二：前后端一体部署，仅使用nginx做反向代理，参考文件[gitee config](https://gitee.com/270580156/weiyu/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
+#### 方法一：前后分离部署（推荐）
 
-## 问题7：上传图片、文件和知识库无法正常显示
+- 参考 [Nginx配置](./deploy/depend/nginx.md)  
+- 优点：升级方便，无需重启服务器
 
-### 原因7
+#### 方法二：前后端一体部署
 
-未正确配置上传地址
+- 使用 Nginx 做反向代理
+- 参考配置：[Gitee示例配置](https://gitee.com/270580156/weiyu/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
 
-### 解决方案7： 修改配置，否则上传图片、文件和知识库无法正常显示
+## 问题7：上传功能无法正常使用
 
-- 修改 `docker-compose.yaml` 文件 或 `docker-compose-ollama.yaml` 文件，将127.0.0.1替换为你的服务器ip地址或者域名。
+### 影响范围
+
+以下功能可能无法正常显示：
+
+- 图片上传
+- 文件上传  
+- 知识库内容
+
+### 解决方法
+
+修改配置文件中的上传地址设置。
+
+#### 操作方法
+
+在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 文件中，将 `127.0.0.1` 替换为实际的服务器IP地址或域名：
 
 ```bash
-# 请将服务器127.0.0.1替换为你的服务器ip，或者域名
+# 请将 127.0.0.1 替换为你的服务器IP或域名
 BYTEDESK_UPLOAD_URL: http://127.0.0.1:9003
 BYTEDESK_KBASE_API_URL: http://127.0.0.1:9003
 ```
 
-## 问题8：修改默认密码
+## 问题8：如何修改默认密码
 
-- 修改 `docker-compose.yaml` 文件 或 `docker-compose-ollama.yaml` 文件 中的默认管理员密码
+### 修改方法
+
+#### 方法一：通过配置文件修改
+
+**Docker 部署：**
+
+在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 文件中修改：
 
 ```bash
 BYTEDESK_ADMIN_EMAIL: admin@email.com
 BYTEDESK_ADMIN_PASSWORD: admin
 ```
 
-- 在 properties 文件中修改默认管理员密码
+**源码部署：**
+
+在 properties 配置文件中修改：
 
 ```bash
 # 修改默认管理员密码
@@ -168,56 +231,64 @@ bytedesk.admin.email=admin@email.com
 bytedesk.admin.password=admin
 ```
 
-或登录之后在个人资料修改密码
+#### 方法二：登录后修改
 
-## 问题9：试用版提示
+登录系统后，在个人资料页面修改密码。
 
-为什么管理后台右上角有提示，如下图：
+## 问题9：出现试用版提示
+
+### 问题现象
+
+管理后台右上角出现试用版提示：
 
 ![faq_9](/img/faq/faq_9.png)
 
-### 原因9
+### 产生原因
 
-使用企业版或平台版，但未付费
+使用企业版或平台版功能，但未完成付费授权。
 
-### 解决方案9
+### 处理方案
 
-通过下面方法可以隐藏此提示：
+#### 方法一：购买正式版本
 
-- 方法一：购买企业版或平台版，参考 [购买](./payment.md)
-- 方法二：修改配置文件
+参考 [购买指南](./payment.md) 完成付费授权。
+
+#### 方法二：切换到社区版
+
+修改配置文件，使用社区版appkey
+
+## 问题10：如何自定义品牌信息
+
+### 当前状态
+
+系统默认使用微语的名称和LOGO。
+
+### 自定义方法
+
+参考文档：[自定义名称和LOGO](./deploy/config.md#自定义配置)
+
+## 问题11：导入成员的默认密码
+
+### 默认设置
+
+导入成员时的默认密码为：`123456`
+
+### 修改方法
+
+#### 源码配置文件
 
 ```bash
-# COMMUNITY, // 社区版-单租户，不限人，免费, 功能受限
-# ENTERPRISE, // 企业版-单租户，不限人，付费，功能不限
-# PLATFORM // 平台版-多租户，不限人数，付费，功能不限
+bytedesk.member.password=123456
 ```
 
-## 问题10：如何自定义名称和LOGO
+#### Docker 部署配置
 
-### 原因10
-
-默认使用微语名称和LOGO
-
-### 解决方案10
-
-- [自定义名称和LOGO](./deploy/config.md#自定义配置)
-
-## 问题11：导入成员默认密码
-
-### 原因11
-
-默认密码为：123456
-
-### 解决方案11
-
-修改配置
+在 `docker-compose.yaml` 文件中修改：
 
 ```bash
-# spring boot 配置文件导入成员默认密码
-bytedesk.member.password=123456
-# 或者在docker-compose.yaml文件中修改
 BYTEDESK_MEMBER_PASSWORD: 123456
 ```
 
-- [修改默认密码](./deploy/config.md#成员配置)
+### 更多配置
+
+详细配置说明请参考：[成员配置文档](./deploy/config.md#成员配置)

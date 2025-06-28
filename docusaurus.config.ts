@@ -71,8 +71,12 @@ const config: Config = {
             }
             return `https://github.com/bytedesk/bytedesk-docs/blob/main/docs/${docPath}`;
           },
+          // 显示最后更新时间
+          showLastUpdateTime: true,
+          // 显示最后更新者
+          showLastUpdateAuthor: true,
           // 版本化配置（暂时禁用，待网站内容稳定后启用）
-          // lastVersion: 'current',
+          lastVersion: 'current',
           // versions: {...},
           // onlyIncludeVersions: [...],
           // 侧边栏配置
@@ -86,6 +90,10 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          // 显示最后更新时间
+          showLastUpdateTime: true,
+          // 显示最后更新者
+          showLastUpdateAuthor: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl: ({locale, blogPath}) => {
