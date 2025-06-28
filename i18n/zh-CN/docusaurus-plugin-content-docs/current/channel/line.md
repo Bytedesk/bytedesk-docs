@@ -126,6 +126,20 @@ import lineSettingUseWebhook4 from '/img/channel/line/line_setting_use_webhook_4
 
 <ZoomableImage src={lineSettingUseWebhook4} alt="填入Webhook URL" />
 
+## kid 说明
+
+首先在微语后台，点击生成密钥对
+
+![line_generate_kid_1](/img/channel/line/line_generate_kid_1.png)
+
+然后复制生成的公钥(public key) 到 [Line Developers Console](https://developers.line.biz/console)
+
+![line_generate_kid_2](/img/channel/line/line_generate_kid_2.png)
+
+找到 Register A Public Key, 并粘贴公钥(public key)，点击Register 按钮。[参考链接](https://developers.line.biz/en/docs/messaging-api/generate-json-web-token/#register-public-key-and-get-kid)
+
+![line_generate_kid_3](/img/channel/line/line_generate_kid_3.png)
+
 ## 费用
 
 访问[查看费用](https://manager.line.biz/account)
