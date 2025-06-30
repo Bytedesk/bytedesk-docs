@@ -19,4 +19,6 @@ sidebar_position: 14
 - [Marketing Messages Lite API](https://developers.facebook.com/docs/whatsapp/marketing-messages-lite-api/)
 - [Meta Webhooks](https://developers.facebook.com/docs/graph-api/webhooks)
 - [WhatsApp Business Manager](https://business.facebook.com/)
+- [YCloud 帮助中心](https://helpdocs.ycloud.com/help-center/zh)
+- [YCloud API 文档](https://docs.ycloud.com/reference/introduction)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
