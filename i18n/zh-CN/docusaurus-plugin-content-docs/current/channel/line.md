@@ -140,6 +140,18 @@ import lineSettingUseWebhook4 from '/img/channel/line/line_setting_use_webhook_4
 
 ![line_generate_kid_3](/img/channel/line/line_generate_kid_3.png)
 
+复制生成后的kid
+
+![line_generate_kid_4](/img/channel/line/line_generate_kid_4.png)
+
+到微语后台，点击编辑kid
+
+![line_generate_kid_5](/img/channel/line/line_generate_kid_5.png)
+
+填入kid，点击保存。
+
+![line_generate_kid_6](/img/channel/line/line_generate_kid_6.png)
+
 ## 费用
 
 访问[查看费用](https://manager.line.biz/account)

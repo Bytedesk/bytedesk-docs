@@ -105,12 +105,6 @@ sidebar_position: 11
 | [微信客服](./channel/wechat_kf) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [微信公众号](./channel/wechat_mp) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [微信小程序](./channel/wechat_mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [WhatsApp](./channel/whatsapp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Facebook](./channel/facebook) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Instagram](./channel/instagram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Line](./channel/line) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 ### Plus 功能插件（额外收费）
@@ -123,6 +117,18 @@ sidebar_position: 11
 | [BI智能分析](./plugins/bi.md) | AI驱动的数据智能决策平台 | 另计 | 不包含在基础套餐中 |
 | [远程协助](./plugins/remote.md) | 无障碍远程支持，随时随地解决问题 | 另计 | 不包含在基础套餐中 |
 | [看板插件](./plugins/kanban.md) | 可视化任务与项目管理 | 另计 | 不包含在基础套餐中 |
+
+#### Plus 海外媒体渠道（额外收费）
+
+| 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
+|------|--------|--------|--------|----------|--------|
+| [WhatsApp](./channel/whatsapp) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Facebook](./channel/facebook) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Instagram](./channel/instagram) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Line](./channel/line) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 ### 服务条款
 
