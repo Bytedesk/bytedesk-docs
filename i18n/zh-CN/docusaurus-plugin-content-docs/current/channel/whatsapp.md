@@ -13,6 +13,10 @@ sidebar_position: 14
 
 ## 参考链接
 
-- [whatsapp](https://developers.facebook.com/docs/whatsapp/cloud-api)
+- [WhatsApp 开放平台](https://developers.facebook.com/docs/whatsapp/)
+- [Whatsapp Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api)
+- [Business Management API](https://developers.facebook.com/docs/whatsapp/business-management-api)
 - [Marketing Messages Lite API](https://developers.facebook.com/docs/whatsapp/marketing-messages-lite-api/)
+- [Meta Webhooks](https://developers.facebook.com/docs/graph-api/webhooks)
+- [WhatsApp Business Manager](https://business.facebook.com/)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
