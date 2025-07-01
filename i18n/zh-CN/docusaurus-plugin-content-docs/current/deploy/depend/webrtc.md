@@ -8,7 +8,7 @@ sidebar_position: 6
 :::tip 系统要求
 
 - 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置：4核8G内存
+- 服务器推荐配置：2核4G内存
 :::
 
 ## STUN/TURN 服务安装

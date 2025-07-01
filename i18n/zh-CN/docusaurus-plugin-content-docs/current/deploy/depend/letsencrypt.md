@@ -8,7 +8,7 @@ sidebar_position: 10
 :::tip 系统要求
 
 - 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置：4核8G内存
+- 服务器推荐配置：2核4G内存
 :::
 
 [Let's Encrypt](https://letsencrypt.org) 是一个免费、开源的证书颁发机构，可以帮助您为网站获取SSL/TLS证书，启用HTTPS加密连接。本指南将引导您完成申请和安装过程。

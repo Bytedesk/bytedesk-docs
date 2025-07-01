@@ -9,9 +9,8 @@ sidebar_position: 1
 
 :::tip 系统要求
 
-- **操作系统**：Ubuntu 22.04 LTS
-- **硬件配置**：推荐4核8G内存
-- **软件环境**：JDK 17+、MySQL 8.0+、Redis Stack Server
+- 操作系统：Ubuntu 22.04 LTS
+- 服务器最低配置2核4G内存
 
 :::
 

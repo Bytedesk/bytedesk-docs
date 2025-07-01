@@ -8,7 +8,7 @@ sidebar_position: 3
 :::tip
 
 - 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置4核8G内存
+- 服务器推荐配置2核4G内存
 
 :::
 
