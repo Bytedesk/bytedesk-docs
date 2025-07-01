@@ -29,6 +29,14 @@ sidebar_position: 15
 
 ### 阿里云企业邮箱
 
+阿里云默认禁用第三方客户端，需要手动[开启](https://help.aliyun.com/document_detail/606337.html?spm=a2c4g.11186623.0.0.4395347ejIC1nB)
+
+使用postmaster[登录](https://qiye.aliyun.com/)
+
+![email_aliyun_qiye_postmaster_1](/img/channel/email/email_aliyun_qiye_postmaster_1.png)
+
+![email_aliyun_qiye_postmaster_2](/img/channel/email/email_aliyun_qiye_postmaster_2.png)
+
 ![email_aliyun_qiye](/img/channel/email/email_aliyun_qiye.png)
 
 ### 其他邮箱类似
@@ -37,4 +45,5 @@ sidebar_position: 15
 
 ## 参考链接
 
+- [阿里云开启POP3/SMTP](https://help.aliyun.com/document_detail/606337.html?spm=a2c4g.11186623.0.0.4395347ejIC1nB)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
