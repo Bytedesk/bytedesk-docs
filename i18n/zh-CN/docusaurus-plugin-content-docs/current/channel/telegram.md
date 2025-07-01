@@ -5,6 +5,9 @@ sidebar_position: 15
 
 # Telegram
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
+
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
@@ -12,6 +15,10 @@ sidebar_position: 15
 - 相关配置参数请参考[服务器配置参数说明](/docs/deploy/config#telegram配置)
 
 :::
+
+## 功能简介
+
+Telegram是一款注重隐私和安全的即时通讯应用，在全球范围内拥有数亿用户。通过集成Telegram Bot API，企业可以在微语平台上统一管理来自Telegram的客户消息，为海外用户提供便捷的客服支持。支持创建自定义机器人、设置Webhook回调、群组管理等功能，是开拓国际市场的重要客服渠道。
 
 ## 创建Telegram机器人
 

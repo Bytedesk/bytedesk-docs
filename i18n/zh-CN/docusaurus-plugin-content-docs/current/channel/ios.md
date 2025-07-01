@@ -5,6 +5,13 @@ sidebar_position: 6
 description: 在 iOS 应用中集成微语客服系统
 ---
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
+
+## 功能简介
+
+iOS是Apple公司开发的移动操作系统，拥有庞大的用户群体。通过集成微语iOS SDK，您的iPhone和iPad应用可以提供专业的客服功能。SDK基于Swift开发，100%开源，支持自定义界面，包含人工客服、机器人对话、消息状态管理等完整功能，让您的iOS应用拥有强大的客户服务能力。
+
 ## 部分功能
 
 - 微语官方技术支持

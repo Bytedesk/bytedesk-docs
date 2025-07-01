@@ -130,27 +130,27 @@ import lineSettingUseWebhook4 from '/img/channel/line/line_setting_use_webhook_4
 
 首先在微语后台，点击生成密钥对
 
-![line_generate_kid_1](/img/channel/line/line_generate_kid_1.png)
+<ZoomableImage src="/img/channel/line/line_generate_kid_1.png" alt="生成密钥对步骤1" />
 
 然后复制生成的公钥(public key) 到 [Line Developers Console](https://developers.line.biz/console)
 
-![line_generate_kid_2](/img/channel/line/line_generate_kid_2.png)
+<ZoomableImage src="/img/channel/line/line_generate_kid_2.png" alt="复制公钥" />
 
 找到 Register A Public Key, 并粘贴公钥(public key)，点击Register 按钮。[参考链接](https://developers.line.biz/en/docs/messaging-api/generate-json-web-token/#register-public-key-and-get-kid)
 
-![line_generate_kid_3](/img/channel/line/line_generate_kid_3.png)
+<ZoomableImage src="/img/channel/line/line_generate_kid_3.png" alt="注册公钥" />
 
 复制生成后的kid
 
-![line_generate_kid_4](/img/channel/line/line_generate_kid_4.png)
+<ZoomableImage src="/img/channel/line/line_generate_kid_4.png" alt="复制kid" />
 
 到微语后台，点击编辑kid
 
-![line_generate_kid_5](/img/channel/line/line_generate_kid_5.png)
+<ZoomableImage src="/img/channel/line/line_generate_kid_5.png" alt="编辑kid" />
 
 填入kid，点击保存。
 
-![line_generate_kid_6](/img/channel/line/line_generate_kid_6.png)
+<ZoomableImage src="/img/channel/line/line_generate_kid_6.png" alt="保存kid" />
 
 ## 费用
 

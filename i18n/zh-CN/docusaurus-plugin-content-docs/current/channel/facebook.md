@@ -5,11 +5,18 @@ sidebar_position: 14
 
 # Facebook
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
+
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
 
 :::
+
+## 功能简介
+
+Facebook是全球最大的社交网络平台，拥有数十亿用户。通过集成Facebook Messenger渠道，企业可以直接在微语平台上管理来自Facebook公共主页的消息和对话，提供即时的客户服务。本指南将详细介绍如何创建Facebook公共主页、注册开发者账号、创建应用程序，并将其与微语系统集成，帮助您建立完整的Facebook客服体系。
 
 ## Facebook 公共主页创建
 
@@ -17,52 +24,77 @@ sidebar_position: 14
 
 - [登录Facebook](https://www.facebook.com/)
 
-![meta_create_public_page_1](/img/channel/meta/meta_create_public_page_1.png)
+import metaCreatePublicPage1 from '/img/channel/meta/meta_create_public_page_1.png';
+
+{/* Facebook左侧菜单公共主页 */}
+<ZoomableImage src={metaCreatePublicPage1} alt="Facebook左侧菜单公共主页" />
 
 ### 新建公共主页
 
 - [新建公共主页](https://www.facebook.com/pages/?category=your_pages&ref=bookmarks)
 
-![meta_create_public_page_2](/img/channel/meta/meta_create_public_page_2.png)
+import metaCreatePublicPage2 from '/img/channel/meta/meta_create_public_page_2.png';
+
+{/* 新建公共主页 */}
+<ZoomableImage src={metaCreatePublicPage2} alt="新建公共主页" />
 
 ## Facebook 开发者注册
 
 - [注册开发者](https://developers.facebook.com/docs/development/register)
 
-![register-dev-1](/img/channel/meta/meta_register_dev_1.png)
-![register-dev-2](/img/channel/meta/meta_register_dev_2.png)
-![register-dev-3](/img/channel/meta/meta_register_dev_3.png)
-![register-dev-4](/img/channel/meta/meta_register_dev_4.png)
-![register-dev-5](/img/channel/meta/meta_register_dev_5.png)
+import metaRegisterDev1 from '/img/channel/meta/meta_register_dev_1.png';
+import metaRegisterDev2 from '/img/channel/meta/meta_register_dev_2.png';
+import metaRegisterDev3 from '/img/channel/meta/meta_register_dev_3.png';
+import metaRegisterDev4 from '/img/channel/meta/meta_register_dev_4.png';
+import metaRegisterDev5 from '/img/channel/meta/meta_register_dev_5.png';
+
+<ZoomableImage src={metaRegisterDev1} alt="注册开发者步骤1" />
+<ZoomableImage src={metaRegisterDev2} alt="注册开发者步骤2" />
+<ZoomableImage src={metaRegisterDev3} alt="注册开发者步骤3" />
+<ZoomableImage src={metaRegisterDev4} alt="注册开发者步骤4" />
+<ZoomableImage src={metaRegisterDev5} alt="注册开发者步骤5" />
 
 ## Facebook 应用创建
 
 - [创建应用页面](https://developers.facebook.com/apps/creation/)
 - [创建应用说明](https://developers.facebook.com/docs/development/create-an-app)
 
-![create-app-1](/img/channel/meta/meta_create_app_1.png)
-![create-app-2](/img/channel/meta/meta_create_app_2.png)
-![create-app-3](/img/channel/meta/meta_create_app_3.png)
-![create-app-4](/img/channel/meta/meta_create_app_4.png)
-![create-app-5](/img/channel/meta/meta_create_app_5.png)
+import metaCreateApp1 from '/img/channel/meta/meta_create_app_1.png';
+import metaCreateApp2 from '/img/channel/meta/meta_create_app_2.png';
+import metaCreateApp3 from '/img/channel/meta/meta_create_app_3.png';
+import metaCreateApp4 from '/img/channel/meta/meta_create_app_4.png';
+import metaCreateApp5 from '/img/channel/meta/meta_create_app_5.png';
+import metaMessengerBind from '/img/channel/meta/meta_messenger_bind.png';
+import metaMessengerWebhook from '/img/channel/meta/meta_messenger_webhook.png';
+import metaMessengerWebhookBind from '/img/channel/meta/meta_messenger_webhook_bind.png';
+import metaWebhookBind from '/img/channel/meta/meta_webhook_bind.png';
+import metaAppIdSecret from '/img/channel/meta/meta_app_appid_appsecret.png';
+import metaPageAccessToken from '/img/channel/meta/meta_app_generate_page_access_token.png';
+import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
+
+<ZoomableImage src={metaCreateApp1} alt="创建应用步骤1" />
+<ZoomableImage src={metaCreateApp2} alt="创建应用步骤2" />
+<ZoomableImage src={metaCreateApp3} alt="创建应用步骤3" />
+<ZoomableImage src={metaCreateApp4} alt="创建应用步骤4" />
+<ZoomableImage src={metaCreateApp5} alt="创建应用步骤5" />
 
 ## 微语后台绑定
 
 ### 绑定 Meta 应用
 
-![meta_messenger_bind](/img/channel/meta/meta_messenger_bind.png)
+<ZoomableImage src={metaMessengerBind} alt="绑定Meta应用" />
 
 ### 获取 Webhook URL回调地址 和 验证口令
 
-![meta_messenger_webhook](/img/channel/meta/meta_messenger_webhook.png)
+<ZoomableImage src={metaMessengerWebhook} alt="获取Webhook URL" />
 
 ### 绑定 Facebook Messenger Webhook URL回调地址 和 验证口令
 
-![meta_messenger_webhook_bind](/img/channel/meta/meta_messenger_webhook_bind.png)
+<ZoomableImage src={metaMessengerWebhookBind} alt="绑定Messenger Webhook" />
 
 ### 绑定 Facebook Webhook URL回调地址 和 验证口令
 
-![meta_webhook_bind](/img/channel/meta/meta_webhook_bind.png)
+<ZoomableImage src={metaWebhookBind} alt="绑定Facebook Webhook" />
 
 ## Facebook Webhook
 
@@ -84,19 +116,19 @@ sidebar_position: 14
 
 - [Facebook 应用](https://developers.facebook.com/apps/)，选择对应的应用-》应用设置-》基本
 
-![appId](/img/channel/meta/meta_app_appid_appsecret.png)
+<ZoomableImage src={metaAppIdSecret} alt="获取App ID和App Secret" />
 
 ### 获取 Page Access Token
 
 - [Facebook 应用](https://developers.facebook.com/apps/)，选择对应的应用-》Messenger-》Messenger API 设置-》绑定页面-》生成访问令牌
 
-![pageAccessToken](/img/channel/meta/meta_app_generate_page_access_token.png)
+<ZoomableImage src={metaPageAccessToken} alt="生成Page Access Token" />
 
 ### 获取 Page ID
 
 - [访客口令信息](https://developers.facebook.com/tools/debug/accesstoken/?access_token=EAAV8HSdkm0cBO2AC47g86fWjhTQyYq1kZBDlNnmsR0bvCa0ywWV6MDtVEwdQGZBxax0tYiKbb2Ue2jHqziJI6lhOdbbIJvuF9YZAhZAtUfDZAoUsD6XxbeC44dgA38EI2OAyl3lujMjE0Ir938dSoWa7Jb9P2BxHTT3wwTVjPleyYBrZBMqogOxDUoqqjYJlJGcdWgaDS2jJubdCywMZBgZD&version=v23.0)
 
-![pageId](/img/channel/meta/meta_app_get_page_id.png)
+<ZoomableImage src={metaPageId} alt="获取Page ID" />
 
 ## Facebook Instagram
 

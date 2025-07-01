@@ -5,6 +5,13 @@ sidebar_position: 2
 description: 在 React 应用中集成微语客服系统
 ---
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
+
+## 功能简介
+
+React是目前最流行的前端框架之一，通过集成微语客服系统到您的React应用中，可以为用户提供便捷的在线客服功能。支持自定义主题、拖拽、多语言等丰富特性，完美融入您的React项目。
+
 - 演示链接：[React 基础集成演示](https://weiyuai.cn/reactdemo/)
 - 演示代码：[React 基础集成示例](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/LocalDemo.tsx)
 - [github](https://github.com/Bytedesk/bytedesk-web)
@@ -12,7 +19,10 @@ description: 在 React 应用中集成微语客服系统
 - [![NPM Downloads](https://img.shields.io/npm/dm/bytedesk-web.svg?style=flat)](https://www.npmjs.com/package/bytedesk-web)
 - [npmjs](https://www.npmjs.com/package/bytedesk-web)
 
-![微语客服React集成效果图](/img/develop/chat/basicsettings.png)
+import reactBasicSettings from '/img/develop/chat/basicsettings.png';
+
+{/* 使用导入的图片 */}
+<ZoomableImage src={reactBasicSettings} alt="微语客服React集成效果图" />
 
 ### 安装包
 

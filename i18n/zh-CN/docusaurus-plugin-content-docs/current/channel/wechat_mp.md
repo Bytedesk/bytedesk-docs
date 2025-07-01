@@ -5,11 +5,23 @@ sidebar_position: 9
 
 # 微信公众号
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
+
+import wechatMpHelloworld from '/img/channel/wechat/wechat_mp_helloworld.jpg';
+import wechatMpLink1 from '/img/channel/wechat/wechat_mp_link_1.png';
+import wechatMpLink2 from '/img/channel/wechat/wechat_mp_link_2.png';
+import wechatMpLink3 from '/img/channel/wechat/wechat_mp_link_3.png';
+
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
 
 :::
+
+## 功能简介
+
+微信公众号是企业与用户沟通的重要渠道，拥有庞大的用户群体。通过集成微语客服系统到微信公众号，企业可以直接在公众号内为用户提供实时客服支持，无需用户跳转到其他平台。支持两种接入方式：企业微信客服对接和自定义菜单，满足不同场景的需求。
 
 > 以下方法无需认证公众号即可接入，无需额外开发。
 
@@ -27,7 +39,7 @@ sidebar_position: 9
 2. 对接完毕之后，输入任意文字，即可收到客服卡片
 3. 点击卡片可直接发起会话
 
-![公众号|200](/img/channel/wechat/wechat_mp_helloworld.jpg)
+<ZoomableImage src={wechatMpHelloworld} alt="公众号客服卡片" width="200px" />
 
 ## 方法二：自定义菜单
 
@@ -39,12 +51,12 @@ sidebar_position: 9
 
 **步骤1：** 在企业微信管理后台，找到"应用管理"->"应用"->"微信客服"->"客服账号"
 
-![步骤1](/img/channel/wechat/wechat_mp_link_1.png)
+<ZoomableImage src={wechatMpLink1} alt="步骤1：找到客服账号" />
 
 **步骤2：** 点击客服账号，进入客服账号详情页面，找到"客服链接"，点击"复制链接"
 
-![步骤2](/img/channel/wechat/wechat_mp_link_2.png)
+<ZoomableImage src={wechatMpLink2} alt="步骤2：复制客服链接" />
 
 ### 将客服链接复制到微信公众号的自定义菜单中，保存即可
 
-![步骤3](/img/channel/wechat/wechat_mp_link_3.png)
+<ZoomableImage src={wechatMpLink3} alt="步骤3：设置自定义菜单" />
