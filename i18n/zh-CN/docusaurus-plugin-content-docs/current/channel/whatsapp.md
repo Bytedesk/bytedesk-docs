@@ -55,9 +55,11 @@ import whatsappYcloudKeyFill from '/img/channel/whatsapp/whatsapp_ycloud_key_fil
 
 ### 在 YCloud 里面填写 Webhook URL
 
-[YCloud Webhook](https://www.ycloud.com/console/#/app/developers/webhook)
+#### 打开[YCloud Webhook](https://www.ycloud.com/console/#/app/developers/webhook)，点击：添加端点，将微语后台的Webhook URL填入
 
 ![whatsapp_ycloud_webhook_1](/img/channel/whatsapp/whatsapp_ycloud_webhook_1.png)
+
+#### 勾选WhatsApp相关事件，点击确认
 
 ![whatsapp_ycloud_webhook_2](/img/channel/whatsapp/whatsapp_ycloud_webhook_2.png)
 
