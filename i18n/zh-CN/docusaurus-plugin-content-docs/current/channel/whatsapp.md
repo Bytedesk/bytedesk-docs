@@ -49,6 +49,22 @@ import whatsappYcloudKeyFill from '/img/channel/whatsapp/whatsapp_ycloud_key_fil
 {/* 填入API Key到微语后台 */}
 <ZoomableImage src={whatsappYcloudKeyFill} alt="填入API Key到微语后台" />
 
+### 从微语后台获取 Webhook URL
+
+![whatsapp_ycloud_webhook](/img/channel/whatsapp/whatsapp_ycloud_webhook.png)
+
+### 在 YCloud 里面填写 Webhook URL
+
+[YCloud Webhook](https://www.ycloud.com/console/#/app/developers/webhook)
+
+![whatsapp_ycloud_webhook_1](/img/channel/whatsapp/whatsapp_ycloud_webhook_1.png)
+
+![whatsapp_ycloud_webhook_2](/img/channel/whatsapp/whatsapp_ycloud_webhook_2.png)
+
+### 激活 Webhook
+
+![whatsapp_ycloud_webhook_3](/img/channel/whatsapp/whatsapp_ycloud_webhook_3.png)
+
 ## 参考链接
 
 - [WhatsApp 开放平台](https://developers.facebook.com/docs/whatsapp/)

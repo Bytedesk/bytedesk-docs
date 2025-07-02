@@ -66,6 +66,7 @@ sidebar_position: 11
 
 | 功能 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|
+| [对接大模型](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [敏感词过滤](./development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [数据统计报表](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [转接会话](./development/transfer.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
