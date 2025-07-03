@@ -22,6 +22,8 @@ WhatsApp是全球最受欢迎的即时通讯应用之一，拥有数十亿用户
 
 ### [登录 YCloud](https://www.ycloud.com/console/#/entry/login)
 
+- [注册](https://www.ycloud.com/?utm_invite_code=fangchen)
+
 import whatsappYcloudLogin from '/img/channel/whatsapp/whatsapp_ycloud_login.png';
 
 {/* YCloud登录页面 */}
@@ -63,7 +65,7 @@ import whatsappYcloudKeyFill from '/img/channel/whatsapp/whatsapp_ycloud_key_fil
 
 ![whatsapp_ycloud_webhook_2](/img/channel/whatsapp/whatsapp_ycloud_webhook_2.png)
 
-### 激活 Webhook
+#### 激活 Webhook
 
 ![whatsapp_ycloud_webhook_3](/img/channel/whatsapp/whatsapp_ycloud_webhook_3.png)
 
@@ -77,4 +79,5 @@ import whatsappYcloudKeyFill from '/img/channel/whatsapp/whatsapp_ycloud_key_fil
 - [WhatsApp Business Manager](https://business.facebook.com/)
 - [YCloud 帮助中心](https://helpdocs.ycloud.com/help-center/zh)
 - [YCloud API 文档](https://docs.ycloud.com/reference/introduction)
+- [WhatsApp Messages](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
