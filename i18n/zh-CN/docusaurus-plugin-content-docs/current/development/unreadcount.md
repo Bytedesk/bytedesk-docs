@@ -87,7 +87,7 @@ const UnreadCountDemo = () => {
             t: "1", // 0: 一对一对话；1：工作组对话；2：机器人对话
             sid: 'df_wg_uid',
             // 自定义用户信息
-            uid: 'visitor_001',
+            visitorUid: 'visitor_001',
             nickname: '访客小明',
             avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg',
         },
@@ -360,7 +360,7 @@ window.addEventListener('storage', (e) => {
 // 获取访客信息
 const visitorInfo = localStorage.getItem('VISITOR_STORE');
 const currentVisitor = JSON.parse(visitorInfo).state.currentVisitor;
-const visitorUid = currentVisitor.uid; // 获取访客uid
+const visitorUid = currentVisitor.visitorUid; // 获取访客uid
 ```
 
 ![获取访客uid](/img/develop/chat/unread_count_uid.png)

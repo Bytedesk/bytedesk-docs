@@ -44,7 +44,7 @@ chatConfig: {
   sid: 'df_wg_uid',         // 会话ID
   
   // 用户信息参数
-  uid: 'visitor_001',       // 用户唯一ID
+  visitorUid: 'visitor_001',       // 用户唯一ID
   nickname: '访客小明',     // 用户昵称
   avatar: 'https://example.com/avatar.jpg', // 用户头像URL
   
@@ -89,7 +89,8 @@ const VipLevelDemo = () => {
             org: 'df_org_uid',    // 替换为您的组织ID
             t: "1",
             sid: 'df_wg_uid',     // 替换为您的SID
-            uid: 'visitor_001',
+            // 用户信息参数
+            visitorUid: 'visitor_001',
             nickname: '测试用户',
             avatar: 'https://example.com/avatar.jpg',
             
@@ -166,7 +167,7 @@ export default VipLevelDemo;
 基本链接格式如下：
 
 ```text
-https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&uid=用户ID&nickname=用户昵称&avatar=头像URL&vipLevel=用户等级&extra=附加信息JSON
+https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&visitorUid=用户ID&nickname=用户昵称&avatar=头像URL&vipLevel=用户等级&extra=附加信息JSON
 ```
 
 各参数说明：
@@ -174,7 +175,7 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&uid=用户ID&ni
 - `org`: 您的组织ID
 - `t`: 会话类型，通常为1
 - `sid`: 会话ID
-- `uid`: 用户唯一标识符
+- `visitorUid`: 用户唯一标识符
 - `nickname`: 用户昵称(需URL编码)
 - `avatar`: 用户头像URL(需URL编码)
 - `vipLevel`: 用户VIP等级(1-10的整数)
@@ -202,7 +203,7 @@ const encodedAvatar = encodeURIComponent(userAvatar);
 const encodedExtra = encodeURIComponent(JSON.stringify(extraInfo));
 
 // 4. 拼接完整URL
-const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&uid=${userId}&nickname=${encodedNickname}&avatar=${encodedAvatar}&vipLevel=${userVipLevel}&extra=${encodedExtra}`;
+const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&visitorUid=${userId}&nickname=${encodedNickname}&avatar=${encodedAvatar}&vipLevel=${userVipLevel}&extra=${encodedExtra}`;
 
 // 5. 使用该链接进行跳转或生成按钮
 window.location.href = chatUrl;

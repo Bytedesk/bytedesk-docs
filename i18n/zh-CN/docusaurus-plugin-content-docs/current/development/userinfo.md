@@ -44,7 +44,7 @@ chatConfig: {
   sid: 'df_wg_uid',         // 会话ID
   
   // 用户信息参数 - 这些是用户信息对接的关键
-  uid: 'visitor_001',       // 用户唯一ID，建议使用您业务系统中的用户ID
+  visitorUid: 'visitor_001',       // 用户唯一ID，建议使用您业务系统中的用户ID
   nickname: '访客小明',     // 用户昵称
   avatar: 'https://example.com/avatar.jpg', // 用户头像URL
   
@@ -71,7 +71,7 @@ const { Title, Paragraph } = Typography;
 
 // 定义用户信息接口
 interface UserInfo {
-    uid: string;
+    visitorUid: string;
     nickname: string;
     avatar: string;
 }
@@ -79,12 +79,12 @@ interface UserInfo {
 // 定义两个测试用户
 const TEST_USERS = [
     {
-        uid: 'visitor_001',
+        visitorUid: 'visitor_001',
         nickname: '访客小明',
         avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg'
     },
     {
-        uid: 'visitor_002',
+        visitorUid: 'visitor_002',
         nickname: '访客小红',
         avatar: 'https://weiyuai.cn/assets/images/avatar/01.jpg'
     }
@@ -112,7 +112,7 @@ const UserInfoDemo = () => {
             sid: 'df_wg_uid',     // 替换为您的SID
             
             // 传入当前用户信息 - 核心部分
-            uid: currentUser.uid,
+            visitorUid: currentUser.visitorUid,
             nickname: currentUser.nickname,
             avatar: currentUser.avatar,
             
@@ -140,7 +140,7 @@ const UserInfoDemo = () => {
         <div style={{ padding: '24px' }}>
             <Title level={2}>用户信息对接演示</Title>
             <Paragraph>
-                本示例演示如何通过配置参数传入用户信息（uid、nickname、avatar）到客服组件中。
+                本示例演示如何通过配置参数传入用户信息（visitorUid、nickname、avatar）到客服组件中。
                 点击下方按钮可以切换不同的用户信息。
             </Paragraph>
 
@@ -151,7 +151,7 @@ const UserInfoDemo = () => {
                         <Space>
                             <Avatar src={currentUser.avatar} size={64} />
                             <div>
-                                <Paragraph>用户ID: {currentUser.uid}</Paragraph>
+                                <Paragraph>用户ID: {currentUser.visitorUid}</Paragraph>
                                 <Paragraph>昵称: {currentUser.nickname}</Paragraph>
                             </div>
                         </Space>
@@ -161,14 +161,14 @@ const UserInfoDemo = () => {
                         <Button 
                             type="primary"
                             onClick={() => handleSwitchUser(TEST_USERS[0])}
-                            disabled={currentUser.uid === TEST_USERS[0].uid}
+                            disabled={currentUser.visitorUid === TEST_USERS[0].visitorUid}
                         >
                             切换到访客小明
                         </Button>
                         <Button 
                             type="primary"
                             onClick={() => handleSwitchUser(TEST_USERS[1])}
-                            disabled={currentUser.uid === TEST_USERS[1].uid}
+                            disabled={currentUser.visitorUid === TEST_USERS[1].visitorUid}
                         >
                             切换到访客小红
                         </Button>
@@ -200,7 +200,7 @@ export default UserInfoDemo;
 基本链接格式如下：
 
 ```text
-https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&uid=用户ID&nickname=用户昵称&avatar=头像URL&extra=附加信息JSON
+https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&visitorUid=用户ID&nickname=用户昵称&avatar=头像URL&extra=附加信息JSON
 ```
 
 各参数说明：
@@ -208,7 +208,7 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&uid=用户ID&ni
 - `org`: 您的组织ID
 - `t`: 会话类型，通常为1
 - `sid`: 会话ID
-- `uid`: 用户唯一标识符
+- `visitorUid`: 用户唯一标识符
 - `nickname`: 用户昵称(需URL编码)
 - `avatar`: 用户头像URL(需URL编码)
 - `extra`: 额外信息(JSON字符串，需URL编码)
@@ -234,7 +234,7 @@ const encodedAvatar = encodeURIComponent(userAvatar);
 const encodedExtra = encodeURIComponent(JSON.stringify(extraInfo));
 
 // 4. 拼接完整URL
-const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&uid=${userId}&nickname=${encodedNickname}&avatar=${encodedAvatar}&extra=${encodedExtra}`;
+const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&visitorUid=${userId}&nickname=${encodedNickname}&avatar=${encodedAvatar}&extra=${encodedExtra}`;
 
 // 5. 使用该链接进行跳转或生成按钮
 window.location.href = chatUrl;
@@ -268,7 +268,7 @@ H5链接对接特别适用于：
 
 ## 最佳实践
 
-1. **唯一标识**：确保每个用户的`uid`在您的系统中是唯一的，建议使用业务系统中的用户ID
+1. **唯一标识**：确保每个用户的`visitorUid`在您的系统中是唯一的，建议使用业务系统中的用户ID
 2. **实时同步**：当用户登录状态变化时，及时更新微语客服组件的用户信息
 3. **合理传参**：在`extra`字段中只传递必要的用户信息，避免传递敏感信息
 4. **头像优化**：确保提供的头像URL可以正常访问，考虑使用CDN加速
@@ -286,6 +286,6 @@ H5链接对接特别适用于：
 ## 注意事项2
 
 1. **数据安全**：避免在客户端传递用户敏感信息
-2. **兼容处理**：对于未登录用户，可以使用临时ID作为`uid`，确保体验一致性
+2. **兼容处理**：对于未登录用户，可以使用临时ID作为`visitorUid`，确保体验一致性
 3. **参数验证**：确保传入的用户信息格式正确，特别是头像URL
 4. **更新机制**：当用户信息变更时，需要重新初始化客服组件以应用新的用户信息

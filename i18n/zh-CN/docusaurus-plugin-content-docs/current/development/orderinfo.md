@@ -100,7 +100,7 @@ const config = {
     sid: 'df_wg_uid',     // 替换为您的SID
     
     // 可选：传入用户信息
-    uid: 'visitor_001',
+    visitorUid: 'visitor_001',
     nickname: '访客小明',
     avatar: 'https://example.com/avatar.jpg',
     

@@ -43,7 +43,7 @@ chatConfig: {
   loadHistory: "1",         // 值为"1"时加载历史记录，其他值不加载
   
   // 其他可选参数
-  uid: 'visitor_001',       // 用户唯一ID
+  visitorUid: 'visitor_001',       // 用户唯一ID
   nickname: '访客小明',     // 用户昵称
   avatar: 'https://example.com/avatar.jpg' // 用户头像URL
 }

@@ -67,7 +67,7 @@ const config = {
     sid: 'df_wg_uid',         // 会话ID
     
     // 用户基本信息（可选）
-    uid: 'visitor_001',
+    visitorUid: 'visitor_001',
     nickname: '访客小明',
     avatar: 'https://example.com/avatar.jpg',
     

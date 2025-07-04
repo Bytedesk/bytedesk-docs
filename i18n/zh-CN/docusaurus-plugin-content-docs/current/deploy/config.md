@@ -25,6 +25,7 @@ sidebar_position: 7
 | `bytedesk.custom.logo` | 自定义产品logo，默认为空则使用默认logo | - | `BYTEDESK_CUSTOM_LOGO:` |
 | `bytedesk.custom.description` | 自定义产品描述，默认为空则使用"Chat As A Service" | - | `BYTEDESK_CUSTOM_DESCRIPTION:` |
 | `bytedesk.custom.show-right-corner-chat` | 是否显示右下角对话窗口 | `false` | `BYTEDESK_CUSTOM_SHOW_RIGHT_CORNER_CHAT: true` |
+| `bytedesk.custom.show-demo` | 是否显示默认演示 | `true` | `BYTEDESK_CUSTOM_SHOW_DEMO: true` |
 | `bytedesk.custom.privacy-policy-url` | 隐私政策URL地址 | - | `BYTEDESK_CUSTOM_PRIVACY_POLICY_URL:` |
 | `bytedesk.custom.terms-of-service-url` | 服务条款URL地址 | - | `BYTEDESK_CUSTOM_TERMS_OF_SERVICE_URL:` |
 | `bytedesk.custom.login-username-enable` | 是否启用用户名登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_USERNAME_ENABLE: true` |
