@@ -5,6 +5,9 @@ sidebar_position: 11
 
 # 费用相关
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
+
 ## 版本与价格
 
 微语系统提供多种版本选择，满足不同规模企业需求：
@@ -153,8 +156,8 @@ sidebar_position: 11
 import Copyright from '/img/right/copyright.png';
 import Trademark from '/img/right/trademark.jpg';
 
-<img src={Copyright} alt="版权声明" style={{width: 360}} />
-<img src={Trademark} alt="商标声明" style={{width: 360}} />
+<ZoomableImage src={Copyright} alt="版权声明" width="360px" />
+<ZoomableImage src={Trademark} alt="商标声明" width="360px" />
 
 ## 联系方式
 

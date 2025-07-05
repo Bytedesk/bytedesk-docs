@@ -4,31 +4,39 @@ sidebar_position: 1
 
 # 微语协作平台
 
+import ZoomableImage from '@site/src/components/ZoomableImage';
+import '@site/src/css/watermark.css';
+import nin1Image from '/img/nin1.png';
+
 ## 📚 概述
 
 **微语**是基于AI全新打造的一款开源企业级多租户团队协作工具，集成多种功能于一体：
 
 > 企业IM、在线客服、企业知识库/帮助文档、工单系统、AI Agent智能体、工作流、客户之声、呼叫中心、视频客服、视频会议、项目管理
 
-![微语功能集成](/img/nin1.png)
+<ZoomableImage src={nin1Image} alt="微语功能集成" />
 
 ---
 
 ## 🔍 系统架构
 
+import archLayerImage from '/img/arch/arch_layer.png';
+import archModuleImage from '/img/arch/arch_module.png';
+import archFrontImage from '/img/arch/arch_front.png';
+
 系统基于模块化设计开发，各个模块相互独立，可灵活组合，满足不同企业的个性化需求。
 
 ### 📊 分层架构图
 
-![分层架构图](/img/arch/arch_layer.png)
+<ZoomableImage src={archLayerImage} alt="分层架构图" />
 
 ### 🧩 模块架构图
 
-![模块架构图](/img/arch/arch_module.png)
+<ZoomableImage src={archModuleImage} alt="模块架构图" />
 
 ### 🖥️ 前端架构图
 
-![前端架构图](/img/arch/arch_front.png)
+<ZoomableImage src={archFrontImage} alt="前端架构图" />
 
 ### 📚 [查看完整架构说明](https://www.weiyuai.cn/architecture.html)
 
