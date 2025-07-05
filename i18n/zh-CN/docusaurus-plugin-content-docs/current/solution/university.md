@@ -5,7 +5,7 @@ sidebar_position: 16
 
 # 高校服务智能客服解决方案
 
-<!-- ![高校智能客服](/img/solution/university_banner.jpg) -->
+![高校智能客服](/img/solution/university_banner.svg)
 
 ## 💡 方案概述
 
@@ -41,7 +41,7 @@ sidebar_position: 16
 
 ### 📚 招生咨询智能服务
 
-<!-- ![招生咨询](/img/solution/university_enrollment.jpg) -->
+![招生咨询](/img/solution/university_enrollment.svg)
 
 - **智能招生问答机器人**：基于招生政策、专业介绍等知识库训练，24小时在线解答招生咨询
 - **多渠道接入**：统一接入官网、微信公众号、小程序、APP等渠道的招生咨询
@@ -50,7 +50,7 @@ sidebar_position: 16
 
 ### 👨‍🎓 学生事务一站式服务
 
-<!-- ![学生服务](/img/solution/university_student_service.jpg) -->
+![学生服务](/img/solution/university_student_service.svg)
 
 - **统一服务门户**：整合教务、宿管、财务等多部门服务入口
 - **智能分类分流**：根据问题类型自动分配至相应部门处理
@@ -60,7 +60,7 @@ sidebar_position: 16
 
 ### 🏫 校园生活智慧服务
 
-<!-- ![校园生活](/img/solution/university_campus_life.jpg) -->
+![校园生活](/img/solution/university_campus_life.svg)
 
 - **宿舍报修系统**：一键提交宿舍设施报修，自动分配维修人员
 - **校园设施反馈**：校园公共设施问题反馈与跟踪处理
@@ -70,21 +70,12 @@ sidebar_position: 16
 
 ### 📖 教学资源智能助手
 
-<!-- ![教学资源](/img/solution/university_teaching_resources.jpg) -->
+![教学资源](/img/solution/university_teaching_resources.svg)
 
 - **智能知识库**：整合课程资料、学术文献、学习指南等资源
 - **个性化推荐**：基于学生专业与兴趣推荐学习资源
 - **智能检索**：自然语言检索，快速定位所需资源
 - **协作学习平台**：支持师生在线互动，资源共享
-
-### 👨‍🎓 校友服务管理
-
-<!-- ![校友服务](/img/solution/university_alumni.jpg) -->
-
-- **校友信息管理**：校友基本信息、职业发展等信息管理
-- **校友活动组织**：校友活动信息发布、报名、反馈一体化
-- **校友捐赠管理**：捐赠项目展示、在线捐赠、进度跟踪
-- **校友资源对接**：校友企业招聘、实习资源对接平台
 
 ## 🌟 方案价值与优势
 
@@ -114,7 +105,7 @@ sidebar_position: 16
 
 ## 📊 成功案例
 
-<!-- ![案例展示](/img/solution/university_case_study.jpg) -->
+![案例展示](/img/solution/university_case_study.svg)
 
 ### A大学智能招生咨询系统
 
@@ -142,19 +133,19 @@ sidebar_position: 16
 
 ## 📱 系统界面展示
 
-<!-- ![系统界面](/img/solution/university_system_ui.jpg) -->
+![系统界面](/img/solution/university_system_ui.svg)
 
 ### 招生咨询机器人
 
-<!-- ![招生咨询机器人](/img/solution/university_chatbot.jpg) -->
+![招生咨询机器人](/img/solution/university_chatbot.svg)
 
 ### 学生服务工单系统
 
-<!-- ![工单系统](/img/solution/university_ticket_system.jpg) -->
+![工单系统](/img/solution/university_ticket_system.svg)
 
 ### 校园知识库
 
-<!-- ![知识库](/img/solution/university_knowledge_base.jpg) -->
+![知识库](/img/solution/university_knowledge_base.svg)
 
 ## 🔧 部署与集成
 
