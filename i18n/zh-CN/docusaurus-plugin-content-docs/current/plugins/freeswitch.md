@@ -153,7 +153,3 @@ AI驱动的智能服务系统为这家金融机构带来显著成效：
 ## 开启智能客服新时代
 
 立即体验微语智能呼叫中心，让AI为您的企业创造实质性价值：
-
-- [免费试用](https://www.weiyuai.cn/contact.html)
-- [预约产品演示](https://www.weiyuai.cn/contact.html)
-- [LinPhone](https://www.linphone.org/en/download/)
