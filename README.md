@@ -7,7 +7,7 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 # https://docusaurus.io/zh-CN/docs/installation
 npx create-docusaurus@latest docs classic --typescript
 # 安装依赖
-pnpm
+pnpm install
 # 打包
 pnpm build
 # 打包上传到服务器，需要手动输入密码

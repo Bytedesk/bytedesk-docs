@@ -119,13 +119,20 @@ import FinalWeiyuaiBotProfile from '/img/channel/telegram/13_weiyuai_bot_profile
 
 配置完成后，客户可以通过Telegram与您的企业进行实时对话。
 
+## 对话测试
+
+输入 /help，查看帮助信息
+
+![15_telegram_chat_help](/img/channel/telegram/15_telegram_chat_help.png)
+
 ## 参考资源
 
 <!-- Telegram官方sdk -->
+- [TelegramBots Api](https://api.telegram.org/)
 - [TelegramBots Documentation](https://rubenlagus.github.io/TelegramBotsDocumentation/telegram-bots.html)
 - [TelegramBots GitHub](https://github.com/rubenlagus/TelegramBots)
 - [Telegram Bots API](https://core.telegram.org/bots)
-- [Telegram API](https://core.telegram.org/api)
+- [Telegram Core API](https://core.telegram.org/api)
 - [TelegramBots Maven Package](https://mvnrepository.com/artifact/org.telegram/telegrambots-meta)
 - [Spring Boot With Proxy](https://rubenlagus.github.io/TelegramBotsDocumentation/lesson-10.html#now-it-s-time-for-our-custom-configurations)
 - [Http Proxy && SOCKS5 Proxy](https://www.digitalocean.com/community/tutorials/how-to-set-up-squid-proxy-on-ubuntu-20-04)
