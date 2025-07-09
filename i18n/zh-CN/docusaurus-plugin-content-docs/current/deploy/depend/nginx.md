@@ -51,7 +51,11 @@ nginx -V | grep stream  # 注意是大写V
 mkdir -p /var/www/html/nginx/cache/webserver
 ```
 
-## 准备前端文件
+## 方式一：直接反向代理到后端服务器（前后一体）
+
+可以直接配置nginx反向代理到后端服务器，实现访问域名时直接访问到后端服务器。可以直接跳转到 [Nginx主配置文件](#nginx主配置文件) 直接进行反向代理。
+
+## 方式二：反向代理到后端服务器并配置前端文件（前后分离）
 
 ### 1. 下载微语前端文件
 
@@ -89,7 +93,7 @@ server/
 
 每个模块都有一个`config.json`配置文件，配置方式有以下几种情况（**根据实际环境二选一**）。注意，`agenticflow`、`notebase`和`kanban`这三个模块的配置文件与`agent`文件夹中的`config.json`配置相同：
 
-### 方式一：使用域名（线上环境）
+### 方法1：使用域名（线上环境）
 
 如果您使用域名部署，配置如下：
 
@@ -111,7 +115,7 @@ server/
 }
 ```
 
-### 方式二：使用服务器IP（无域名环境）
+### 方法2：使用服务器IP（无域名环境）
 
 如果您没有域名或者在使用服务器IP部署，需要将配置中的域名替换为服务器IP地址，https替换为http：
 
@@ -133,7 +137,7 @@ server/
 }
 ```
 
-## Nginx主配置文件
+### Nginx主配置文件
 
 首先配置Nginx的主配置文件，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/nginx.conf`的http块中添加负载均衡配置：
 
@@ -162,11 +166,11 @@ http {
 }
 ```
 
-## 网站配置文件
+### 网站配置文件
 
 接下来，我们需要创建网站配置文件。去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/sites-available/`目录下创建以下配置文件：
 
-### 1. 主站点HTTP配置 (weiyuai_cn_80.conf)
+#### 1. 主站点HTTP配置 (weiyuai_cn_80.conf)
 
 此配置用于处理访问微语前端的HTTP请求：
 
@@ -226,7 +230,7 @@ server {
 }
 ```
 
-### 2. 主站点HTTPS配置 (weiyuai_cn_443.conf)
+#### 2. 主站点HTTPS配置 (weiyuai_cn_443.conf)
 
 如果需要启用HTTPS，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
 
@@ -293,7 +297,7 @@ server {
 }
 ```
 
-### 3. API服务HTTP配置 (weiyuai_cn_api_80.conf)
+#### 3. API服务HTTP配置 (weiyuai_cn_api_80.conf)
 
 去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，此配置用于处理API请求和WebSocket连接：
 
@@ -366,7 +370,7 @@ server {
 }
 ```
 
-### 4. API服务HTTPS配置 (weiyuai_cn_api_443.conf)
+#### 4. API服务HTTPS配置 (weiyuai_cn_api_443.conf)
 
 如果需要启用API的HTTPS访问，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
 

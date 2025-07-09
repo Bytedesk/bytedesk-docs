@@ -76,6 +76,9 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 <ZoomableImage src={metaCreateApp2} alt="创建应用步骤2" />
 <ZoomableImage src={metaCreateApp3} alt="创建应用步骤3" />
 <ZoomableImage src={metaCreateApp4} alt="创建应用步骤4" />
+
+### [Facebook 应用后台](https://developers.facebook.com/apps/)
+
 <ZoomableImage src={metaCreateApp5} alt="创建应用步骤5" />
 
 ## 微语后台绑定
@@ -90,27 +93,17 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
 ### 绑定 Facebook Messenger Webhook URL回调地址 和 验证口令
 
+注意是：Messenger Webhook URL回调地址 和 验证口令，不是 Webhook URL回调地址 和 验证口令。
+
 <ZoomableImage src={metaMessengerWebhookBind} alt="绑定Messenger Webhook" />
 
-### 绑定 Facebook Webhook URL回调地址 和 验证口令
+### 添加公共主页
 
-<ZoomableImage src={metaWebhookBind} alt="绑定Facebook Webhook" />
+![添加公共主页](/img/channel/meta/meta_messenger_add_page.png)
 
-## Facebook Webhook
+### 添加订阅
 
-- [Meta Webhooks](https://developers.facebook.com/docs/graph-api/webhooks/)
-
-## Facebook Messenger
-
-- [Messenger Webhooks](https://developers.facebook.com/docs/messenger-platform/webhooks)
-
-### 本地开发测试步骤
-
-1. ngrok http 9003，生成url
-2. 在微语管理后台-》客服-》渠道-》Meta-》添加Messenger应用
-3. 获取到第2步生成的webhook url，使用上面第1步生成的url替换掉前面域名
-   - 如：`https://e1a4-111-48-134-179.ngrok-free.app/meta/webhooks/1666799623995648`
-4. 填写到Meta平台的webhook url中，验证口令使用在第3步中生成的验证token
+![添加订阅](/img/channel/meta/meta_messenger_add_subscribe.png)
 
 ### 获取 App ID 和 App Secret
 
@@ -130,17 +123,42 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
 <ZoomableImage src={metaPageId} alt="获取Page ID" />
 
-## Facebook Instagram
+### 微语后台编辑-》填写Page Access Token 和 Page ID，并保存后
 
-- [Instagram Webhooks](https://developers.facebook.com/docs/instagram-platform/webhooks)
+![编辑](/img/channel/meta/meta_weiyu_messenger_edit.png)
 
-## Facebook Whatsapp
+![填写](/img/channel/meta/meta_weiyu_messenger_page_access_token.png)
+
+<!-- ### 绑定 Facebook Webhook URL回调地址 和 验证口令
+
+注意是：Webhook URL回调地址 和 验证口令，不是Messenger Webhook URL回调地址 和 验证口令。
+
+<ZoomableImage src={metaWebhookBind} alt="绑定Facebook Webhook" /> -->
+
+### 开始对话
+
+#### 打开自己的Facebook公共主页，开始对话
+
+![对话](/img/channel/messenger/messenger_chat.png)
+
+#### 可以输入: /help 查看帮助信息
+
+![对话](/img/channel/messenger/messenger_chat_help.png)
+
+### 本地开发测试步骤
+
+1. ngrok http 9003，生成url
+2. 在微语管理后台-》客服-》渠道-》Meta-》添加Messenger应用
+3. 获取到第2步生成的webhook url，使用上面第1步生成的url替换掉前面域名
+   - 如：`https://e1a4-111-48-134-179.ngrok-free.app/meta/webhooks/1666799623995648`
+4. 填写到Meta平台的webhook url中，验证口令使用在第3步中生成的验证token
 
 ## 参考链接
 
 - [Facebook 开发者](https://developers.facebook.com/)
 - [Facebook 应用](https://developers.facebook.com/apps/)
 - [Facebook 登录](https://developers.facebook.com/docs/facebook-login)
+- [Meta Webhooks](https://developers.facebook.com/docs/graph-api/webhooks/)
 - [Messenger Webhooks](https://developers.facebook.com/docs/messenger-platform/webhooks)
 - [Meta Webhooks](https://developers.facebook.com/docs/graph-api/webhooks)
 - [绑定Whatsapp和Instagram](https://www.facebook.com/settings/?tab=linked_profiles)
