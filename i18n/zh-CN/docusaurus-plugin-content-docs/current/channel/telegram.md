@@ -72,7 +72,7 @@ import WeiyuaiBotProfile from '/img/channel/telegram/6_weiyuai_bot_profile.jpg';
 
 <img src={WeiyuaiBotProfile} alt="机器人资料" style={{width: 360}} />
 
-### 6. 添加机器人
+### 6. 添加机器人到频道Channel
 
 你可以通过不同方式添加机器人。
 
@@ -114,28 +114,8 @@ import FinalWeiyuaiBotProfile from '/img/channel/telegram/13_weiyuai_bot_profile
    - Bot名称：填写你创建的机器人名称(例如：weiyuai)
    - Bot用户名：填写你创建的机器人用户名(例如：weiyuai_bot)
    - Bot Token：填写BotFather提供的Token
-
-也可以通过修改[配置文件](/docs/deploy/config#telegram配置)启用Telegram功能：
-
-```properties
-# ===============================
-# = Telegram 配置
-# 需要能够连上：https://api.telegram.org
-# ===============================
-bytedesk.telegram.enabled=true
-bytedesk.telegram.default-bot-enabled=true
-bytedesk.telegram.default-bot-token=YOUR_BOT_TOKEN
-```
-
-如果使用Docker部署，可以在`docker-compose.yml`文件中添加环境变量：
-
-```yaml
-environment:
-  # 其他环境变量...
-  BYTEDESK_TELEGRAM_ENABLED: "true"
-  BYTEDESK_TELEGRAM_DEFAULT_BOT_ENABLED: "true"
-  BYTEDESK_TELEGRAM_DEFAULT_BOT_TOKEN: "YOUR_BOT_TOKEN"
-```
+  
+![weiyu_telegram_create](/img/channel/telegram/14_weiyu_telegram_create.png)
 
 配置完成后，客户可以通过Telegram与您的企业进行实时对话。
 

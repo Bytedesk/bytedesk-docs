@@ -79,6 +79,8 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
 ### [Facebook 应用后台](https://developers.facebook.com/apps/)
 
+点击创建 Messenger 应用
+
 <ZoomableImage src={metaCreateApp5} alt="创建应用步骤5" />
 
 ## 微语后台绑定
@@ -105,6 +107,10 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
 ![添加订阅](/img/channel/meta/meta_messenger_add_subscribe.png)
 
+### 订阅结果
+
+![订阅结果](/img/channel/meta/meta_messenger_subscribe_list.png)
+
 ### 获取 App ID 和 App Secret
 
 - [Facebook 应用](https://developers.facebook.com/apps/)，选择对应的应用-》应用设置-》基本
@@ -130,9 +136,7 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 ![填写](/img/channel/meta/meta_weiyu_messenger_page_access_token.png)
 
 <!-- ### 绑定 Facebook Webhook URL回调地址 和 验证口令
-
 注意是：Webhook URL回调地址 和 验证口令，不是Messenger Webhook URL回调地址 和 验证口令。
-
 <ZoomableImage src={metaWebhookBind} alt="绑定Facebook Webhook" /> -->
 
 ### 开始对话
