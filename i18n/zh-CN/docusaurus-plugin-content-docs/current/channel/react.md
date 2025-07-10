@@ -1,7 +1,7 @@
 ---
 title: React 集成指南
 sidebar_label: React
-sidebar_position: 2
+sidebar_position: 3
 description: 在 React 应用中集成微语客服系统
 ---
 

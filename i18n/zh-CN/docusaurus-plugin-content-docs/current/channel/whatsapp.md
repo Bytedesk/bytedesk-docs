@@ -69,6 +69,38 @@ import whatsappYcloudKeyFill from '/img/channel/whatsapp/whatsapp_ycloud_key_fil
 
 ![whatsapp_ycloud_webhook_3](/img/channel/whatsapp/whatsapp_ycloud_webhook_3.png)
 
+### 对话测试
+
+首先在 WhatsApp 添加 在YCloud 中绑定的 WhatsApp账号为联系人
+
+- [查看YCloud WhatsApp账号](https://www.ycloud.com/console/#/app/whatsApp/account)
+
+#### WhatsApp 发送消息
+
+import whatsapp_ycloud_send from '/img/channel/whatsapp/whatsapp_ycloud_send.png';
+
+<img src={whatsapp_ycloud_send} alt="搜索BotFather" style={{width: 360}} />
+
+#### 微语客服端回复
+
+![whatsapp_ycloud_reply](/img/channel/whatsapp/whatsapp_ycloud_reply.png)
+
+#### 支持接收图片
+
+![whatsapp_ycloud_receive_image](/img/channel/whatsapp/whatsapp_ycloud_receive_image.png)
+
+#### 支持接收文件
+
+![whatsapp_ycloud_receive_file](/img/channel/whatsapp/whatsapp_ycloud_receive_file.png)
+
+#### 支持接收语音
+
+![whatsapp_ycloud_receive_audio](/img/channel/whatsapp/whatsapp_ycloud_receive_audio.png)
+
+#### 支持位置信息
+
+![whatsapp_ycloud_receive_location](/img/channel/whatsapp/whatsapp_ycloud_receive_location.png)
+
 ## 参考链接
 
 - [WhatsApp 开放平台](https://developers.facebook.com/docs/whatsapp/)
@@ -79,5 +111,8 @@ import whatsappYcloudKeyFill from '/img/channel/whatsapp/whatsapp_ycloud_key_fil
 - [WhatsApp Business Manager](https://business.facebook.com/)
 - [YCloud 帮助中心](https://helpdocs.ycloud.com/help-center/zh)
 - [YCloud API 文档](https://docs.ycloud.com/reference/introduction)
+- [YCloud WhatsApp Messages](https://helpdocs.ycloud.com/help-center/whatsapp-basics/messages)
 - [WhatsApp Messages](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages)
 - [阿里云ChatApp](https://chatapp.console.aliyun.com/Overview)
+- [阿里无影云手机](https://help.aliyun.com/zh/ecp/what-is-cloud-phone?spm=a2c4g.11186623.help-menu-254658.d_0_0.1e116b54QHIMjO)
+- [WhatsApp 云设备](https://faq.whatsapp.com/378279804439436/?helpref=hc_fnav&cms_platform=android&locale=zh_CN)

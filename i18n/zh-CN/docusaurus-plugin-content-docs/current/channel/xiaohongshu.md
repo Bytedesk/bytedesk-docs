@@ -1,6 +1,6 @@
 ---
 sidebar_label: 小红书
-sidebar_position: 15
+sidebar_position: 2
 ---
 
 # 小红书
