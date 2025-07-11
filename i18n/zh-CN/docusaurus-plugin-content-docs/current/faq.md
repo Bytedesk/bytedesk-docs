@@ -283,10 +283,36 @@ bytedesk.member.password=123456
 
 #### Docker 部署配置
 
-在 `docker-compose.yaml` 文件中修改：
+在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 文件中修改：
 
 ```bash
 BYTEDESK_MEMBER_PASSWORD: 123456
+```
+
+## 问题12：如果关闭默认演示页面
+
+### 默认界面
+
+![faq_12_show_demo](/img/faq/faq_12_show_demo.png)
+
+### 关闭后页面
+
+![faq_12_hide_demo](/img/faq/faq_12_hide_demo.png)
+
+### 修改方法
+
+#### 源码配置文件
+
+```bash
+bytedesk.custom.show-demo=false
+```
+
+#### Docker 部署配置
+
+在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 文件中修改：
+
+```bash
+BYTEDESK_CUSTOM_SHOW_DEMO: "false"
 ```
 
 ### 更多配置
