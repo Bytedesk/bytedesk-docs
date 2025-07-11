@@ -5,9 +5,6 @@ sidebar_position: 14
 
 # Whatsapp
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
@@ -27,14 +24,14 @@ WhatsApp是全球最受欢迎的即时通讯应用之一，拥有数十亿用户
 import whatsappYcloudLogin from '/img/channel/whatsapp/whatsapp_ycloud_login.png';
 
 {/* YCloud登录页面 */}
-<ZoomableImage src={whatsappYcloudLogin} alt="YCloud登录页面" />
+<img src={whatsappYcloudLogin} />
 
 ### [创建 API Key](https://www.ycloud.com/console/#/app/developers/apikey)
 
 import whatsappYcloudKeyCreate from '/img/channel/whatsapp/whatsapp_ycloud_key_create.png';
 
 {/* 创建API Key */}
-<ZoomableImage src={whatsappYcloudKeyCreate} alt="创建API Key" />
+<img src={whatsappYcloudKeyCreate} />
 
 ### Ycloud里面注册WhatsApp API号码
 
@@ -49,7 +46,7 @@ import whatsappYcloudKeyCreate from '/img/channel/whatsapp/whatsapp_ycloud_key_c
 import whatsappYcloudKeyFill from '/img/channel/whatsapp/whatsapp_ycloud_key_fill.png';
 
 {/* 填入API Key到微语后台 */}
-<ZoomableImage src={whatsappYcloudKeyFill} alt="填入API Key到微语后台" />
+<img src={whatsappYcloudKeyFill} />
 
 ### 从微语后台获取 Webhook URL
 

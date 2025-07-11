@@ -5,9 +5,6 @@ sidebar_position: 15
 
 # Email
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
@@ -24,22 +21,22 @@ import '@site/src/css/watermark.css';
 
 import emailWeiyu from '/img/channel/email/email_weiyu.png';
 
-{/* 微语后台邮箱配置 */}
-<ZoomableImage src={emailWeiyu} alt="微语后台邮箱配置" />
+{/*微语后台邮箱配置*/}
+<img src={emailWeiyu} />
 
 ### QQ邮箱
 
 import emailQQ from '/img/channel/email/email_qq.png';
 
-{/* QQ邮箱配置 */}
-<ZoomableImage src={emailQQ} alt="QQ邮箱配置" />
+{/*QQ邮箱配置*/}
+<img src={emailQQ} />
 
 ### 网易163邮箱
 
 import email163 from '/img/channel/email/email_163.png';
 
-{/* 网易163邮箱配置 */}
-<ZoomableImage src={email163} alt="网易163邮箱配置" />
+{/*网易163邮箱配置*/}
+<img src={email163} />
 
 ### 阿里云企业邮箱
 
@@ -51,20 +48,20 @@ import email163 from '/img/channel/email/email_163.png';
 
 import emailAliyunPostmaster1 from '/img/channel/email/email_aliyun_qiye_postmaster_1.png';
 
-{/* 阿里云企业邮箱设置1 */}
-<ZoomableImage src={emailAliyunPostmaster1} alt="阿里云企业邮箱设置1" />
+{/*阿里云企业邮箱设置1*/}
+<img src={emailAliyunPostmaster1} />
 
 import emailAliyunPostmaster2 from '/img/channel/email/email_aliyun_qiye_postmaster_2.png';
 
-{/* 阿里云企业邮箱设置2 */}
-<ZoomableImage src={emailAliyunPostmaster2} alt="阿里云企业邮箱设置2" />
+{/*阿里云企业邮箱设置2*/}
+<img src={emailAliyunPostmaster2} />
 
 #### 获取POP3/SMTP密码
 
 import emailAliyunPop3 from '/img/channel/email/email_aliyun_qiye_pop3.png';
 
-{/* 获取POP3/SMTP密码 */}
-<ZoomableImage src={emailAliyunPop3} alt="获取POP3/SMTP密码" />
+{/*获取POP3/SMTP密码*/}
+<img src={emailAliyunPop3} />
 
 #### 生成专有密码（非邮箱登录密码）
 
@@ -72,8 +69,8 @@ import emailAliyunPop3 from '/img/channel/email/email_aliyun_qiye_pop3.png';
 
 import emailAliyunPassword from '/img/channel/email/email_aliyun_qiye_password.png';
 
-{/* 生成专有密码 */}
-<ZoomableImage src={emailAliyunPassword} alt="生成专有密码" />
+{/*生成专有密码*/}
+<img src={emailAliyunPassword} />
 
 #### 给员工账号开启POP3/SMTP服务
 
@@ -81,8 +78,8 @@ import emailAliyunPassword from '/img/channel/email/email_aliyun_qiye_password.p
 
 import emailAliyunMemberPop3 from '/img/channel/email/email_aliyun_member_pop3.png';
 
-{/* 开启员工POP3/SMTP服务 */}
-<ZoomableImage src={emailAliyunMemberPop3} alt="开启员工POP3/SMTP服务" />
+{/*开启员工POP3/SMTP服务*/}
+<img src={emailAliyunMemberPop3} />
 
 ### 其他邮箱类似
 

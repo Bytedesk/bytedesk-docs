@@ -5,9 +5,6 @@ sidebar_position: 14
 
 # Facebook Messenger
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
@@ -27,7 +24,7 @@ Facebook是全球最大的社交网络平台，拥有数十亿用户。通过集
 import metaCreatePublicPage1 from '/img/channel/meta/meta_create_public_page_1.png';
 
 {/* Facebook左侧菜单公共主页 */}
-<ZoomableImage src={metaCreatePublicPage1} alt="Facebook左侧菜单公共主页" />
+<img src={metaCreatePublicPage1} />
 
 ### 新建公共主页
 
@@ -36,7 +33,7 @@ import metaCreatePublicPage1 from '/img/channel/meta/meta_create_public_page_1.p
 import metaCreatePublicPage2 from '/img/channel/meta/meta_create_public_page_2.png';
 
 {/* 新建公共主页 */}
-<ZoomableImage src={metaCreatePublicPage2} alt="新建公共主页" />
+<img src={metaCreatePublicPage2} />
 
 ## Facebook 开发者注册
 
@@ -48,11 +45,11 @@ import metaRegisterDev3 from '/img/channel/meta/meta_register_dev_3.png';
 import metaRegisterDev4 from '/img/channel/meta/meta_register_dev_4.png';
 import metaRegisterDev5 from '/img/channel/meta/meta_register_dev_5.png';
 
-<ZoomableImage src={metaRegisterDev1} alt="注册开发者步骤1" />
-<ZoomableImage src={metaRegisterDev2} alt="注册开发者步骤2" />
-<ZoomableImage src={metaRegisterDev3} alt="注册开发者步骤3" />
-<ZoomableImage src={metaRegisterDev4} alt="注册开发者步骤4" />
-<ZoomableImage src={metaRegisterDev5} alt="注册开发者步骤5" />
+<img src={metaRegisterDev1} />
+<img src={metaRegisterDev2} />
+<img src={metaRegisterDev3} />
+<img src={metaRegisterDev4} />
+<img src={metaRegisterDev5} />
 
 ## Facebook 应用创建
 
@@ -72,32 +69,32 @@ import metaAppIdSecret from '/img/channel/meta/meta_app_appid_appsecret.png';
 import metaPageAccessToken from '/img/channel/meta/meta_app_generate_page_access_token.png';
 import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
-<ZoomableImage src={metaCreateApp1} alt="创建应用步骤1" />
-<ZoomableImage src={metaCreateApp2} alt="创建应用步骤2" />
-<ZoomableImage src={metaCreateApp3} alt="创建应用步骤3" />
-<ZoomableImage src={metaCreateApp4} alt="创建应用步骤4" />
+<img src={metaCreateApp1} />
+<img src={metaCreateApp2} />
+<img src={metaCreateApp3} />
+<img src={metaCreateApp4} />
 
 ### [Facebook 应用后台](https://developers.facebook.com/apps/)
 
 点击创建 Messenger 应用
 
-<ZoomableImage src={metaCreateApp5} alt="创建应用步骤5" />
+<img src={metaCreateApp5} />
 
 ## 微语后台绑定
 
 ### 绑定 Meta 应用
 
-<ZoomableImage src={metaMessengerBind} alt="绑定Meta应用" />
+<img src={metaMessengerBind} />
 
 ### 获取 Webhook URL回调地址 和 验证口令
 
-<ZoomableImage src={metaMessengerWebhook} alt="获取Webhook URL" />
+<img src={metaMessengerWebhook} />
 
 ### 绑定 Facebook Messenger Webhook URL回调地址 和 验证口令
 
 注意是：Messenger Webhook URL回调地址 和 验证口令，不是 Webhook URL回调地址 和 验证口令。
 
-<ZoomableImage src={metaMessengerWebhookBind} alt="绑定Messenger Webhook" />
+<img src={metaMessengerWebhookBind} />
 
 ### 添加公共主页
 
@@ -115,19 +112,19 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
 - [Facebook 应用](https://developers.facebook.com/apps/)，选择对应的应用-》应用设置-》基本
 
-<ZoomableImage src={metaAppIdSecret} alt="获取App ID和App Secret" />
+<img src={metaAppIdSecret} />
 
 ### 获取 Page Access Token
 
 - [Facebook 应用](https://developers.facebook.com/apps/)，选择对应的应用-》Messenger-》Messenger API 设置-》绑定页面-》生成访问令牌
 
-<ZoomableImage src={metaPageAccessToken} alt="生成Page Access Token" />
+<img src={metaPageAccessToken} />
 
 ### 获取 Page ID
 
 - [访客口令信息](https://developers.facebook.com/tools/debug/accesstoken/?access_token=EAAV8HSdkm0cBO2AC47g86fWjhTQyYq1kZBDlNnmsR0bvCa0ywWV6MDtVEwdQGZBxax0tYiKbb2Ue2jHqziJI6lhOdbbIJvuF9YZAhZAtUfDZAoUsD6XxbeC44dgA38EI2OAyl3lujMjE0Ir938dSoWa7Jb9P2BxHTT3wwTVjPleyYBrZBMqogOxDUoqqjYJlJGcdWgaDS2jJubdCywMZBgZD&version=v23.0)
 
-<ZoomableImage src={metaPageId} alt="获取Page ID" />
+<img src={metaPageId} />
 
 ### 微语后台编辑-》填写Page Access Token 和 Page ID，并保存后
 
@@ -137,7 +134,7 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
 <!-- ### 绑定 Facebook Webhook URL回调地址 和 验证口令
 注意是：Webhook URL回调地址 和 验证口令，不是Messenger Webhook URL回调地址 和 验证口令。
-<ZoomableImage src={metaWebhookBind} alt="绑定Facebook Webhook" /> -->
+<img src={metaWebhookBind} /> -->
 
 ### 开始对话
 

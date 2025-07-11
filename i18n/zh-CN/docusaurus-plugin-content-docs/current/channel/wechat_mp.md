@@ -5,9 +5,6 @@ sidebar_position: 9
 
 # 微信公众号
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 import wechatMpHelloworld from '/img/channel/wechat/wechat_mp_helloworld.jpg';
 import wechatMpLink1 from '/img/channel/wechat/wechat_mp_link_1.png';
 import wechatMpLink2 from '/img/channel/wechat/wechat_mp_link_2.png';
@@ -39,7 +36,7 @@ import wechatMpLink3 from '/img/channel/wechat/wechat_mp_link_3.png';
 2. 对接完毕之后，输入任意文字，即可收到客服卡片
 3. 点击卡片可直接发起会话
 
-<ZoomableImage src={wechatMpHelloworld} alt="公众号客服卡片" width="200px" />
+<img src={wechatMpHelloworld} />
 
 ## 方法二：自定义菜单
 
@@ -51,12 +48,12 @@ import wechatMpLink3 from '/img/channel/wechat/wechat_mp_link_3.png';
 
 **步骤1：** 在企业微信管理后台，找到"应用管理"->"应用"->"微信客服"->"客服账号"
 
-<ZoomableImage src={wechatMpLink1} alt="步骤1：找到客服账号" />
+<img src={wechatMpLink1} />
 
 **步骤2：** 点击客服账号，进入客服账号详情页面，找到"客服链接"，点击"复制链接"
 
-<ZoomableImage src={wechatMpLink2} alt="步骤2：复制客服链接" />
+<img src={wechatMpLink2} />
 
 ### 将客服链接复制到微信公众号的自定义菜单中，保存即可
 
-<ZoomableImage src={wechatMpLink3} alt="步骤3：设置自定义菜单" />
+<img src={wechatMpLink3} />

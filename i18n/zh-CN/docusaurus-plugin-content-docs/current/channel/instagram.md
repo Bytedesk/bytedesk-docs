@@ -5,9 +5,6 @@ sidebar_position: 14
 
 # Instagram
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
@@ -27,14 +24,14 @@ Instagram是全球最受欢迎的图片和视频分享社交平台，拥有数�
 import instagramAccount1 from '/img/channel/instagram/meta_instagram_account_1.png';
 
 {/* Instagram登录页面 */}
-<ZoomableImage src={instagramAccount1} alt="Instagram登录页面" />
+<img src={instagramAccount1} />
 
 ### 步骤2
 
 import instagramAccount2 from '/img/channel/instagram/meta_instagram_account_2.png';
 
 {/* 切换到专业版账号 */}
-<ZoomableImage src={instagramAccount2} alt="切换到专业版账号" />
+<img src={instagramAccount2} />
 
 ## 绑定 Facebook 公共主页
 
@@ -55,12 +52,12 @@ import instagramAccount2 from '/img/channel/instagram/meta_instagram_account_2.p
 import instagramAccount3 from '/img/channel/instagram/meta_instagram_account_3.png';
 
 {/* 查看绑定的Instagram账户1 */}
-<ZoomableImage src={instagramAccount3} alt="查看绑定的Instagram账户1" />
+<img src={instagramAccount3} />
 
 import instagramAccount4 from '/img/channel/instagram/meta_instagram_account_4.png';
 
 {/* 查看绑定的Instagram账户2 */}
-<ZoomableImage src={instagramAccount4} alt="查看绑定的Instagram账户2" />
+<img src={instagramAccount4} />
 
 ## 绑定 Meta Business Suite
 
@@ -69,7 +66,7 @@ import instagramAccount4 from '/img/channel/instagram/meta_instagram_account_4.p
 import instagramAccount5 from '/img/channel/instagram/meta_instagram_account_5.png';
 
 {/* Meta Business Suite绑定 */}
-<ZoomableImage src={instagramAccount5} alt="Meta Business Suite绑定" />
+<img src={instagramAccount5} />
 
 ## 参考链接
 

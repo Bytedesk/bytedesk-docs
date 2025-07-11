@@ -4,15 +4,10 @@
   display: inline-block;
   max-width: 100%;
   margin: 1rem 0;
-}
-
-.watermarked-image img {
-  display: block;
-  max-width: 100%;
   transition: opacity 0.3s;
 }
 
-.watermarked-image img:hover {
+.watermarked-image:hover {
   opacity: 0.9;
   cursor: zoom-in;
 }

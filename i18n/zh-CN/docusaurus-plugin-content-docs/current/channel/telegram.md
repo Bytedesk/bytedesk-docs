@@ -5,9 +5,6 @@ sidebar_position: 15
 
 # Telegram
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 :::tip 前置条件
 
 - 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)

@@ -4,8 +4,6 @@ sidebar_position: 1
 
 # 微语协作平台
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
 import nin1Image from '/img/nin1.png';
 
 ## 📚 概述
@@ -14,7 +12,7 @@ import nin1Image from '/img/nin1.png';
 
 > 企业IM、在线客服、企业知识库/帮助文档、工单系统、AI Agent智能体、工作流、客户之声、呼叫中心、视频客服、视频会议、项目管理
 
-<ZoomableImage src={nin1Image} alt="微语功能集成" />
+<img src={nin1Image} alt="微语功能集成" />
 
 ---
 
@@ -28,15 +26,15 @@ import archFrontImage from '/img/arch/arch_front.png';
 
 ### 📊 分层架构图
 
-<ZoomableImage src={archLayerImage} alt="分层架构图" />
+<img src={archLayerImage} alt="分层架构图" />
 
 ### 🧩 模块架构图
 
-<ZoomableImage src={archModuleImage} alt="模块架构图" />
+<img src={archModuleImage} alt="模块架构图" />
 
 ### 🖥️ 前端架构图
 
-<ZoomableImage src={archFrontImage} alt="前端架构图" />
+<img src={archFrontImage} alt="前端架构图" />
 
 ### 📚 [查看完整架构说明](https://www.weiyuai.cn/architecture.html)
 

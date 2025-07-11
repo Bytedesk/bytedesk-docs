@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { BytedeskReact } from 'bytedesk-web/react';
+import '@site/src/css/watermark.css';
 // import { BytedeskConfig } from 'bytedesk-web';
 
 // 默认布局根组件，可用于添加全局 Head 标签和聊天组件
@@ -70,6 +71,184 @@ export default function Root({children}) {
   const handleInit = () => {
     console.log('BytedeskReact initialized with locale:', currentLocale);
   };
+
+  // 全局图片点击放大功能
+  useEffect(() => {
+    // 创建模态框样式
+    const modalStyles = `
+      .global-image-modal {
+        position: fixed;
+        z-index: 9999;
+        padding-top: 50px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+      }
+      .global-image-modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 80vh;
+        position: relative;
+      }
+      .global-image-modal-caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: auto;
+      }
+      .global-image-modal-close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .global-image-modal-close:hover {
+        color: #bbb;
+      }
+      @media only screen and (max-width: 700px) {
+        .global-image-modal-content {
+          max-width: 100%;
+        }
+      }
+    `;
+
+    // 添加样式到页面
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = modalStyles;
+    document.head.appendChild(styleSheet);
+
+    // 为所有图片添加点击事件
+    const addImageClickHandlers = () => {
+      const images = document.querySelectorAll('img:not(.global-image-modal-content img)');
+      
+      images.forEach(img => {
+        // 跳过已经处理过的图片
+        if (img.dataset.globalZoomHandled) return;
+        
+        // 标记为已处理
+        img.dataset.globalZoomHandled = 'true';
+        
+        // 直接为图片添加水印类名，避免DOM操作
+        if (!img.classList.contains('watermarked-image')) {
+          img.classList.add('watermarked-image');
+        }
+        
+        // 添加点击事件
+        img.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const modal = document.createElement('div');
+          modal.className = 'global-image-modal';
+          
+          const closeBtn = document.createElement('span');
+          closeBtn.className = 'global-image-modal-close';
+          closeBtn.innerHTML = '&times;';
+          
+          const modalContent = document.createElement('div');
+          modalContent.className = 'watermarked-image image-modal-content';
+          
+          const modalImg = document.createElement('img');
+          modalImg.className = 'global-image-modal-content';
+          modalImg.src = img.src;
+          modalImg.alt = img.alt || '';
+          
+          const caption = document.createElement('div');
+          caption.className = 'global-image-modal-caption';
+          caption.textContent = img.alt || '';
+          
+          modalContent.appendChild(modalImg);
+          modal.appendChild(closeBtn);
+          modal.appendChild(modalContent);
+          modal.appendChild(caption);
+          
+          document.body.appendChild(modal);
+          document.body.style.overflow = 'hidden';
+          
+          // 关闭事件
+          const closeModal = () => {
+            try {
+              if (modal.parentNode) {
+                modal.parentNode.removeChild(modal);
+              }
+            } catch (error) {
+              console.warn('Failed to remove modal:', error);
+            }
+            document.body.style.overflow = '';
+          };
+          
+          closeBtn.addEventListener('click', closeModal);
+          modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+              closeModal();
+            }
+          });
+          
+          // ESC键关闭
+          const handleEsc = (e) => {
+            if (e.key === 'Escape') {
+              closeModal();
+              document.removeEventListener('keydown', handleEsc);
+            }
+          };
+          document.addEventListener('keydown', handleEsc);
+        });
+        
+        // 添加鼠标样式
+        img.style.cursor = 'zoom-in';
+      });
+    };
+
+    // 初始执行
+    addImageClickHandlers();
+
+    // 监听DOM变化，处理动态加载的图片
+    const observer = new MutationObserver((mutations) => {
+      let shouldCheck = false;
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+          shouldCheck = true;
+        }
+      });
+      
+      if (shouldCheck) {
+        // 延迟执行，确保DOM完全渲染
+        setTimeout(addImageClickHandlers, 100);
+      }
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // 清理函数
+    return () => {
+      observer.disconnect();
+      try {
+        if (styleSheet.parentNode) {
+          styleSheet.parentNode.removeChild(styleSheet);
+        }
+      } catch (error) {
+        console.warn('Failed to remove styleSheet:', error);
+      }
+    };
+  }, []);
   
   return (
     <>

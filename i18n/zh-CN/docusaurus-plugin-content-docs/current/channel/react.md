@@ -5,9 +5,6 @@ sidebar_position: 3
 description: 在 React 应用中集成微语客服系统
 ---
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 ## 功能简介
 
 React是目前最流行的前端框架之一，通过集成微语客服系统到您的React应用中，可以为用户提供便捷的在线客服功能。支持自定义主题、拖拽、多语言等丰富特性，完美融入您的React项目。
@@ -22,7 +19,7 @@ React是目前最流行的前端框架之一，通过集成微语客服系统到
 import reactBasicSettings from '/img/develop/chat/basicsettings.png';
 
 {/* 使用导入的图片 */}
-<ZoomableImage src={reactBasicSettings} alt="微语客服React集成效果图" />
+<img src={reactBasicSettings} />
 
 ### 安装包
 

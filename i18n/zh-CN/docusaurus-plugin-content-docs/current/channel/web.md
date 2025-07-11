@@ -5,9 +5,6 @@ sidebar_position: 1
 description: 在 网站/Web/H5 应用中集成微语客服系统
 ---
 
-import ZoomableImage from '@site/src/components/ZoomableImage';
-import '@site/src/css/watermark.css';
-
 import webH5Login from '/img/channel/web/web_h5_1.png';
 import webH5Config from '/img/channel/web/web_h5_2.png';
 import webH5Code from '/img/channel/web/web_h5_3.png';
@@ -18,7 +15,7 @@ import webH5Code from '/img/channel/web/web_h5_3.png';
 
 ### 第一步：登录管理后台
 
-<ZoomableImage src={webH5Login} alt="登录管理后台" />
+<img src={webH5Login} />
 
 ### 第二步：配置接入代码
 
@@ -29,10 +26,10 @@ import webH5Code from '/img/channel/web/web_h5_3.png';
 - 支持自定义深色模式，默认浅色
 - 支持是否自动弹窗邀请对话，默认不自动弹窗，并支持自定义弹窗邀请对话的标题和内容，弹窗次数，时间间隔等
 
-<ZoomableImage src={webH5Config} alt="配置接入代码" />
+<img src={webH5Config} />
 
 ### 第三步：获取接入代码
 
-<ZoomableImage src={webH5Code} alt="获取接入代码" />
+<img src={webH5Code} />
 
 ### 第四步：将接入代码嵌入到网站/Web/H5 应用中
