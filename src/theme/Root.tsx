@@ -7,7 +7,7 @@ interface RootProps {
   children: React.ReactNode;
 }
 
-export default function Root({ children }: RootProps): JSX.Element {
+export default function Root({ children }: RootProps): React.ReactElement {
   // 获取当前语言
   const { i18n } = useDocusaurusContext();
   const currentLocale = i18n.currentLocale;
@@ -51,7 +51,7 @@ export default function Root({ children }: RootProps): JSX.Element {
 
   // 配置客服组件
   const config: BytedeskConfig = {
-    placement: 'bottom-right',
+    placement: 'bottom-left',
     autoPopup: false,
     inviteConfig: {
       show: false,

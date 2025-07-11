@@ -42,7 +42,7 @@ export default function Root({children}) {
 
   // 配置客服组件
   const config = {
-    placement: 'bottom-right',
+    placement: 'bottom-left',
     autoPopup: false,
     inviteConfig: {
       show: false,
