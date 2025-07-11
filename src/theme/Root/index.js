@@ -153,6 +153,14 @@ export default function Root({children}) {
           e.preventDefault();
           e.stopPropagation();
           
+          // 检查是否已经有模态框存在，如果有则先关闭
+          const existingModal = document.querySelector('.global-image-modal');
+          if (existingModal) {
+            existingModal.remove();
+            document.body.style.overflow = '';
+            return;
+          }
+          
           const modal = document.createElement('div');
           modal.className = 'global-image-modal';
           
@@ -190,11 +198,13 @@ export default function Root({children}) {
               console.warn('Failed to remove modal:', error);
             }
             document.body.style.overflow = '';
+            // 移除事件监听器
+            document.removeEventListener('keydown', handleEsc);
           };
           
           closeBtn.addEventListener('click', closeModal);
           modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
+            if (e.target === modal || e.target === modalImg) {
               closeModal();
             }
           });
@@ -203,7 +213,6 @@ export default function Root({children}) {
           const handleEsc = (e) => {
             if (e.key === 'Escape') {
               closeModal();
-              document.removeEventListener('keydown', handleEsc);
             }
           };
           document.addEventListener('keydown', handleEsc);
