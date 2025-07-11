@@ -22,21 +22,18 @@ sidebar_position: 3
 
 ### 复制如下编排内容(二选一)
 
-- [最新docker-compose.yaml-需要自行安装ollama](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
-- [最新docker-compose-ollama.yaml-默认集成ollama](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)
+- [最新docker-compose.yaml-默认使用智谱AI](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
+- [最新docker-compose-ollama.yaml-默认使用ollama](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)
 
-如果使用docker-compose.yaml-需要自行安装ollama，并修改ollama服务器地址，参考如下配置：
+如果使用docker-compose.yaml-需要自行填充智谱AI相关配置，参考如下配置：
 
 ```yaml
-# 修改ollama服务器地址
-SPRING_AI_OLLAMA_BASE_URL: http://host.docker.internal:11434
-# 启用ollama聊天功能，并设置模型和温度参数
-SPRING_AI_OLLAMA_CHAT_ENABLED: true
-SPRING_AI_OLLAMA_CHAT_OPTIONS_MODEL: qwen3:0.6b
-SPRING_AI_OLLAMA_CHAT_OPTIONS_TEMPERATURE: 0.7
-# 启用ollama embedding功能，并设置模型
-SPRING_AI_OLLAMA_EMBEDDING_ENABLED: true
-SPRING_AI_OLLAMA_EMBEDDING_OPTIONS_MODEL: bge-m3:latest
+# 申请智谱AI API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys
+SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx' # 智谱AI API Key
+SPRING_AI_ZHIPUAI_CHAT_ENABLED: "true"
+SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
+SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
+SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
 ```
 
 ## 步骤三：等待中

@@ -1,9 +1,9 @@
 ---
-sidebar_label: Facebook
+sidebar_label: Messenger
 sidebar_position: 14
 ---
 
-# Facebook
+# Facebook Messenger
 
 import ZoomableImage from '@site/src/components/ZoomableImage';
 import '@site/src/css/watermark.css';
@@ -143,11 +143,24 @@ import metaPageId from '/img/channel/meta/meta_app_get_page_id.png';
 
 #### 打开自己的Facebook公共主页，开始对话
 
+可以输入: /help 查看帮助信息
+
 ![对话](/img/channel/messenger/messenger_chat.png)
 
-#### 可以输入: /help 查看帮助信息
+<!-- #### 可以输入: /help 查看帮助信息 -->
+<!-- ![对话](/img/channel/messenger/messenger_chat_help.png) -->
 
-![对话](/img/channel/messenger/messenger_chat_help.png)
+### Facebook 主页发送消息
+
+发送文字 和 图片消息
+
+![messenger_chat_image_page](/img/channel/messenger/messenger_chat_image_page.png)
+
+### 微语客服端查看对话
+
+在微语客服端查看
+
+![messenger_chat_image](/img/channel/messenger/messenger_chat_image.png)
 
 ### 本地开发测试步骤
 

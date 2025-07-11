@@ -203,7 +203,10 @@ Docker 容器时区配置错误。
 ```bash
 # 请将 127.0.0.1 替换为你的服务器IP或域名
 BYTEDESK_UPLOAD_URL: http://127.0.0.1:9003
+# 知识库的访问地址，请修改为服务器实际的地址
 BYTEDESK_KBASE_API_URL: http://127.0.0.1:9003
+# 头像的访问地址，请修改为服务器实际的地址
+BYTEDESK_FEATURES_AVATAR_BASE_URL: http://127.0.0.1:9003
 ```
 
 ## 问题8：如何修改默认密码

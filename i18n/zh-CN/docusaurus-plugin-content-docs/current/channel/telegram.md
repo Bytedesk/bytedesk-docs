@@ -125,6 +125,10 @@ import FinalWeiyuaiBotProfile from '/img/channel/telegram/13_weiyuai_bot_profile
 
 ![15_telegram_chat_help](/img/channel/telegram/15_telegram_chat_help.png)
 
+## 客服对话
+
+![16_telegram_chat_image](/img/channel/telegram/16_telegram_chat_image.png)
+
 ## 参考资源
 
 <!-- Telegram官方sdk -->
