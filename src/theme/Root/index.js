@@ -139,7 +139,7 @@ export default function Root({children}) {
 
     // 为所有图片添加点击事件
     const addImageClickHandlers = () => {
-      const images = document.querySelectorAll('img:not(.global-image-modal-content img)');
+      const images = document.querySelectorAll('img:not(.global-image-modal-content img):not(.navbar__logo):not(.navbar .navbar__brand img):not(.navbar .navbar__logo):not(.navbar img[src*="logo"])');
       
       images.forEach(img => {
         // 跳过已经处理过的图片
@@ -154,10 +154,10 @@ export default function Root({children}) {
           const widthAttr = imageElement.getAttribute('width');
           const styleWidth = imageElement.style.width;
           
+          // 为所有图片应用宽度限制样式，确保不会超出屏幕
+          imageElement.classList.add('img-width-limited');
+          
           if (widthAttr || styleWidth) {
-            // 如果有宽度属性，应用宽度限制样式
-            imageElement.classList.add('img-width-limited');
-            
             // 如果设置了具体的宽度值，直接应用
             if (widthAttr) {
               imageElement.style.maxWidth = `${widthAttr}px`;

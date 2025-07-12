@@ -47,6 +47,9 @@ chatConfig: {
   visitorUid: 'visitor_001',       // 用户唯一ID，建议使用您业务系统中的用户ID
   nickname: '访客小明',     // 用户昵称
   avatar: 'https://example.com/avatar.jpg', // 用户头像URL
+  mobile: '13800000000',    // 用户手机号
+  email: 'user@example.com', // 用户邮箱
+  note: '备注信息',        // 用户备注
   
   // 自定义字段，可以传递任何附加信息（JSON字符串）
   extra: JSON.stringify({
@@ -74,6 +77,9 @@ interface UserInfo {
     visitorUid: string;
     nickname: string;
     avatar: string;
+    mobile?: string; // 可选字段，根据需要添加
+    email?: string; // 可选字段，根据需要添加
+    note?: string; // 可选字段，根据需要添加
 }
 
 // 定义两个测试用户
@@ -81,12 +87,18 @@ const TEST_USERS = [
     {
         visitorUid: 'visitor_001',
         nickname: '访客小明',
-        avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg'
+        avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg',
+        mobile: '13800000000',
+        email: 'user@example.com'
+        note: '备注信息'
     },
     {
         visitorUid: 'visitor_002',
         nickname: '访客小红',
-        avatar: 'https://weiyuai.cn/assets/images/avatar/01.jpg'
+        avatar: 'https://weiyuai.cn/assets/images/avatar/01.jpg',
+        mobile: '13800000001',
+        email: 'user2@example.com'
+        note: '备注信息'
     }
 ];
 
@@ -115,6 +127,9 @@ const UserInfoDemo = () => {
             visitorUid: currentUser.visitorUid,
             nickname: currentUser.nickname,
             avatar: currentUser.avatar,
+            mobile: currentUser.mobile,
+            email: currentUser.email,
+            note: currentUser.note,
             
             // 自定义字段，可以传递任何字段
             extra: JSON.stringify({
@@ -211,6 +226,9 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&visitorUid=用�
 - `visitorUid`: 用户唯一标识符
 - `nickname`: 用户昵称(需URL编码)
 - `avatar`: 用户头像URL(需URL编码)
+- `mobile`: 用户手机号(可选，需URL编码)
+- `email`: 用户邮箱(可选，需URL编码)
+- `note`: 备注信息(可选，需URL编码)
 - `extra`: 额外信息(JSON字符串，需URL编码)
 
 ### 示例代码
@@ -220,21 +238,27 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&visitorUid=用�
 const userId = 'user12345';
 const userNickname = '张三';
 const userAvatar = 'https://example.com/avatar.jpg';
+const userMobile = '13800000000'; // 可选
+const userEmail = 'zhangsan@example.com'; // 可选
+const userNote = '备注信息'; // 可选
 
 // 2. 准备额外信息(可选)
 const extraInfo = {
   userType: 'vip',
   registerTime: '2025-01-01',
-  memberLevel: '黄金会员'
+  memberLevel: '黄金会员',
 };
 
 // 3. URL编码处理
 const encodedNickname = encodeURIComponent(userNickname);
 const encodedAvatar = encodeURIComponent(userAvatar);
+const encodedMobile = encodeURIComponent(userMobile);
+const encodedEmail = encodeURIComponent(userEmail);
+const encodedNote = encodeURIComponent(userNote);
 const encodedExtra = encodeURIComponent(JSON.stringify(extraInfo));
 
 // 4. 拼接完整URL
-const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&visitorUid=${userId}&nickname=${encodedNickname}&avatar=${encodedAvatar}&extra=${encodedExtra}`;
+const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&visitorUid=${userId}&nickname=${encodedNickname}&avatar=${encodedAvatar}&mobile=${encodeMobile}&email=${ecodedEmail}&note=${ecodedNote}&extra=${encodedExtra}`;
 
 // 5. 使用该链接进行跳转或生成按钮
 window.location.href = chatUrl;

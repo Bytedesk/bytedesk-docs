@@ -163,3 +163,27 @@
 
 /* 导入中文字体 - 确保中文显示良好 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+/* 全局图片宽度限制样式 */
+.img-width-limited {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* 确保所有图片都不会超出容器宽度，但排除导航栏logo */
+img:not(.navbar__logo):not(.navbar .navbar__brand img):not(.navbar .navbar__logo):not(.navbar img[src*="logo"]) {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 导航栏logo固定尺寸 - 使用更精确的选择器 */
+.navbar__logo,
+.navbar .navbar__brand img,
+.navbar .navbar__logo,
+.navbar img[src*="logo"] {
+  height: calc(var(--ifm-navbar-height) - 1rem) !important;
+  width: auto !important;
+  max-width: none !important;
+  object-fit: contain;
+}
