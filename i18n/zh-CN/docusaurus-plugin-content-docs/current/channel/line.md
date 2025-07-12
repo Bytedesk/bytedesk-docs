@@ -25,7 +25,7 @@ sidebar_position: 15
 
 import LineBusinessIdCreate from '/img/channel/line/line_business_id_create.png';
 
-<img src={LineBusinessIdCreate} />
+<img src={LineBusinessIdCreate} width="360"/>
 
 ### 创建 LINE 官方账号
 
@@ -63,7 +63,7 @@ import LineSettingsMessageApi1 from '/img/channel/line/line_settings_message_api
 
 import LineSettingsMessageApi2 from '/img/channel/line/line_settings_message_api_2.png';
 
-<img src={LineSettingsMessageApi2} />
+<img src={LineSettingsMessageApi2} width="360"/>
 
 ### 隐私权政策及服务条款并确认启用
 
