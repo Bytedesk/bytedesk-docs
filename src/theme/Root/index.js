@@ -125,6 +125,11 @@ export default function Root({children}) {
           max-width: 100%;
         }
       }
+      /* 图片宽度限制样式 */
+      .img-width-limited {
+        max-width: 100%;
+        height: auto;
+      }
     `;
 
     // 添加样式到页面
@@ -142,6 +147,32 @@ export default function Root({children}) {
         
         // 标记为已处理
         img.dataset.globalZoomHandled = 'true';
+        
+        // 处理图片宽度限制
+        const handleImageWidth = (imageElement) => {
+          // 检查是否有宽度属性
+          const widthAttr = imageElement.getAttribute('width');
+          const styleWidth = imageElement.style.width;
+          
+          if (widthAttr || styleWidth) {
+            // 如果有宽度属性，应用宽度限制样式
+            imageElement.classList.add('img-width-limited');
+            
+            // 如果设置了具体的宽度值，直接应用
+            if (widthAttr) {
+              imageElement.style.maxWidth = `${widthAttr}px`;
+            } else if (styleWidth) {
+              // 处理样式中的宽度值
+              const widthValue = styleWidth.replace(/[^\d]/g, '');
+              if (widthValue) {
+                imageElement.style.maxWidth = `${widthValue}px`;
+              }
+            }
+          }
+        };
+        
+        // 应用宽度限制
+        handleImageWidth(img);
         
         // 直接为图片添加水印类名，避免DOM操作
         if (!img.classList.contains('watermarked-image')) {

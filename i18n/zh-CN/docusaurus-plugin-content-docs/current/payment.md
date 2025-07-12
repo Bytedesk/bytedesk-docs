@@ -153,12 +153,12 @@ sidebar_position: 11
 import Copyright from '/img/right/copyright.png';
 import Trademark from '/img/right/trademark.jpg';
 
-<img src={Copyright} />
-<img src={Trademark} />
+<img src={Copyright} width="360" />
+<img src={Trademark} width="360" />
 
 ## 联系方式
 
-- 原则上不接受砍价，如需咨询、意见反馈或购买，请[扫码联系微信](/img/wechat.png)
+- 如需咨询、意见反馈或购买，请[扫码联系微信](/img/wechat.png)
 
 ## PPT演示文档
 
