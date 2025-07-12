@@ -7,6 +7,15 @@
   transition: opacity 0.3s;
 }
 
+/* 确保所有图片容器都有相对定位 */
+.watermarked-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+}
+
 .watermarked-image:hover {
   opacity: 0.9;
   cursor: zoom-in;

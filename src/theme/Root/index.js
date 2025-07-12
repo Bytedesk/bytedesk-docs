@@ -174,9 +174,26 @@ export default function Root({children}) {
         // 应用宽度限制
         handleImageWidth(img);
         
-        // 直接为图片添加水印类名，避免DOM操作
-        if (!img.classList.contains('watermarked-image')) {
-          img.classList.add('watermarked-image');
+        // 为图片添加水印类名，确保正常显示时也有水印
+        // 检查图片是否已经有父容器应用了水印样式
+        let parentContainer = img.parentElement;
+        let watermarkedContainer = null;
+        
+        // 向上查找已经应用水印样式的父容器
+        while (parentContainer && parentContainer !== document.body) {
+          if (parentContainer.classList.contains('watermarked-image')) {
+            watermarkedContainer = parentContainer;
+            break;
+          }
+          parentContainer = parentContainer.parentElement;
+        }
+        
+        // 如果没有找到水印容器，为图片创建一个包装器
+        if (!watermarkedContainer) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'watermarked-image';
+          img.parentNode.insertBefore(wrapper, img);
+          wrapper.appendChild(img);
         }
         
         // 添加点击事件
