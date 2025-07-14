@@ -7,4 +7,5 @@ sidebar_position: 2
 
 ## 参考链接
 
+- [抖音开放平台](https://developer.open-douyin.com/console?type=1)
 - [抖音私信发送消息](https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/develop/server/reach-marketing/instant-message/private-message/send-message)
