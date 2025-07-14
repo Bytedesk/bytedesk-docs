@@ -202,15 +202,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持自定义审批流程、任务分配
 - 状态跟踪，提高团队协作效率
 
-### 7. [客户之声-开发中...](modules/voc.md)
-
-📣 **客户反馈管理系统**
-
-- 收集、分析客户反馈和建议
-- 帮助企业了解客户需求与痛点
-- 发现产品和服务改进机会
-
-### 8. [呼叫中心-开发中...](plugins/freeswitch.md)
+### 7. [呼叫中心-开发中...](plugins/freeswitch.md)
 
 ☎️ **全功能呼叫系统**
 
@@ -218,13 +210,21 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持来电弹屏、自动分配、通话录音
 - 数据统计，语音与文字服务无缝集成
 
-### 9. [视频客服-开发中...](plugins/webrtc.md)
+### 8. [视频客服-开发中...](plugins/webrtc.md)
 
 📹 **实时视频服务解决方案**
 
 - 基于WebRTC技术的高清视频通话
 - 支持一键视频对话与屏幕共享
 - 适用于需要直观展示的服务场景
+
+### 9. [客户之声-开发中...](modules/voc.md)
+
+📣 **客户反馈管理系统**
+
+- 收集、分析客户反馈和建议
+- 帮助企业了解客户需求与痛点
+- 发现产品和服务改进机会
 
 ### 10. [开放平台...](modules/open.md)
 
