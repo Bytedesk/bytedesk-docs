@@ -21,3 +21,4 @@ yarn-error.log*
 cicd/
 *.out
 *.out
+# docx/
