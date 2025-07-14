@@ -38,10 +38,6 @@ import archFrontImage from '/img/arch/arch_front.png';
 
 ### 📚 [查看完整架构说明](https://www.weiyuai.cn/architecture.html)
 
-## 🚀 性能压测
-
-- [📊 压测脚本与数据](https://gitee.com/270580156/weiyu/tree/main/jmeter)
-
 ---
 
 ## 🎯 使用场景
