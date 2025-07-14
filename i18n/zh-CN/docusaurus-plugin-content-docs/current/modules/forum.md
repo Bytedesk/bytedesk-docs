@@ -1,5 +1,5 @@
 ---
-title: 论坛系统
+title: 客户论坛
 description: 在线论坛讨论与知识分享
 sidebar_position: 8
 ---
