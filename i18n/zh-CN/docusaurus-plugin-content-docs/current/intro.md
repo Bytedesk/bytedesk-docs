@@ -234,7 +234,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - [PPT](https://www.weiyuai.cn/download/ppt/) 
 -->
 
-## 使用条款与参考
+## 使用条款
 
 - **禁止用途**：严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务
 - **免责声明**：本软件不保证任何形式的法律责任，请自行承担使用风险
