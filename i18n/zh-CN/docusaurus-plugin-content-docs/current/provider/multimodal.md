@@ -1,6 +1,6 @@
 ---
 sidebar_label: 多模态
-sidebar_position: 9
+sidebar_position: 100
 ---
 
 # 多模态集成
