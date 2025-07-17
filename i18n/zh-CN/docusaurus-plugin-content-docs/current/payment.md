@@ -115,6 +115,7 @@ sidebar_position: 11
 | [呼叫中心](./plugins/freeswitch.md) | 语音通话、IVR、自动话务分配 | 待定 | 开发中 |
 | [视频客服](./plugins/webrtc.md) | 一对一视频通话、屏幕共享 | 待定 | 开发中 |
 | [BI智能分析](./plugins/bi.md) | AI驱动的数据智能决策平台 | 待定 | 开发中 |
+<!-- | [工作流](./modules/workflow.md) | 大模型工作流 | 待定 | 开发中 | -->
 <!-- | [视频会议](./plugins/jitsi.md) | 多人视频会议、协同办公 | 待定 | 开发中 | -->
 <!-- | [远程协助](./plugins/remote.md) | 无障碍远程支持，随时随地解决问题 | 待定 | 开发中 | -->
 <!-- | [看板插件](./plugins/kanban.md) | 可视化任务与项目管理 | 待定 | 开发中 | -->
