@@ -7,97 +7,12 @@ sidebar_position: 3
 
 ## 简介
 
-ByteDesk管理后台API和SDK用于二次开发和定制企业专属的客服管理系统，包括企业配置、客服管理、数据统计等功能。
+微语管理端用于管理企业成员或客服账号、客服组、会话分配、消息处理、客户管理等功能。
 
-## 系统架构
+## accessToken 登录方式
 
-- 整体架构
-- 模块划分
-- 技术栈
-
-## API接口文档
-
-### 认证与授权
-
-#### 获取访问令牌
-
-#### 权限管理
-
-### 企业管理
-
-#### 企业信息配置
-
-#### 成员管理
-
-#### 部门管理
-
-### 客服管理
-
-#### 客服账号管理
-
-#### 角色与权限配置
-
-#### 工作组管理
-
-### 智能机器人
-
-#### 知识库管理
-
-#### 对话流配置
-
-#### AI模型设置
-
-### 统计分析
-
-#### 会话统计
-
-#### 客服绩效
-
-#### 满意度分析
-
-### WebHook接口
-
-## SDK集成
-
-### 安装SDK
+在管理端登录路径 `/admin/auth/login?accessToken=xxx` 中，通过 `accessToken` 参数进行登录。
 
 ```bash
-# 安装命令示例
-npm install @bytedesk/admin
+http://服务器ip/admin/auth/login?accessToken=eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ7XCJwbGF0Zm9ybVwiOlwiYnl0ZWRlc2tcIixcInVzZXJuYW1lXCI6XCJhZG1pbkBlbWFpbC5jb21cIn0iLCJpYXQiOjE3NTI3MjQ4MzIsImV4cCI6MTc1NTMxNjgzMn0.3Q5ZXyNHImEGCErPkRXWG6rnFK1F_z77kTE6iRlpKmzUAtRpJZinjM_O0J0GebtM
 ```
-
-### 基础使用
-
-```javascript
-// 初始化示例代码
-```
-
-## 定制开发
-
-### UI主题定制
-
-### 功能模块定制
-
-### 多语言支持
-
-## 部署方案
-
-### 私有化部署
-
-### 云服务接入
-
-## 权限控制
-
-### 角色管理
-
-### 数据权限
-
-## 最佳实践
-
-### 大型企业实施案例
-
-### 性能优化建议
-
-## 常见问题
-
-## 更新日志

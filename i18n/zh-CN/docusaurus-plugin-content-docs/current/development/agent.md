@@ -7,77 +7,12 @@ sidebar_position: 2
 
 ## 简介
 
-ByteDesk客服端SDK适用于开发者构建专业的客服工作台，提供会话分配、消息处理、客户管理等功能。
+微语客服端用于专业的企业IM或客服工作台，提供会话分配、消息处理、客户管理等功能。
 
-## 环境要求
+## accessToken 登录
 
-- 支持的平台和框架
-- 依赖项
-- 权限要求
-
-## 安装与配置
-
-### 安装SDK
+在客服端登录路径 `/agent/auth/login?accessToken=xxx` 中，通过 `accessToken` 参数进行登录。
 
 ```bash
-# 安装命令示例
-npm install @bytedesk/agent
+http://服务器ip/agent/auth/login?accessToken=eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ7XCJwbGF0Zm9ybVwiOlwiYnl0ZWRlc2tcIixcInVzZXJuYW1lXCI6XCJhZG1pbkBlbWFpbC5jb21cIn0iLCJpYXQiOjE3NTI3MjQ4MzIsImV4cCI6MTc1NTMxNjgzMn0.3Q5ZXyNHImEGCErPkRXWG6rnFK1F_z77kTE6iRlpKmzUAtRpJZinjM_O0J0GebtM
 ```
-
-### 初始化配置
-
-```javascript
-// 初始化配置示例代码
-```
-
-## 功能模块
-
-### 客服登录与状态管理
-
-#### 登录接口
-
-#### 状态切换（在线、忙碌、离线）
-
-### 会话管理
-
-#### 接收分配的会话
-
-#### 会话转接
-
-#### 会话结束
-
-### 消息处理
-
-#### 接收消息
-
-#### 发送消息（文本、图片、文件等）
-
-#### 消息历史记录
-
-### 客户管理
-
-#### 客户资料查看
-
-#### 添加备注
-
-## 事件监听
-
-## 自定义UI
-
-## 高级功能
-
-### 数据统计
-
-### 满意度评价
-
-### 智能辅助回复
-
-## 常见问题解答
-
-## 完整示例
-
-```javascript
-// 完整集成示例代码
-```
-
-## 版本更新记录
