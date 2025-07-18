@@ -14,14 +14,14 @@ sidebar_position: 22
 
 ```bash
 # 可选项：none（关闭）、ollama（本地）、zhipuai（智谱AI）、dashscope（阿里云）
-spring.ai.model.embedding=dashscope
+spring.ai.model.embedding=zhipuai
 ```
 
 **Docker 环境变量写法：**
 
 ```yaml
 environment:
-  SPRING_AI_MODEL_EMBEDDING: dashscope
+  SPRING_AI_MODEL_EMBEDDING: zhipuai
 ```
 
 > **建议**：
@@ -60,10 +60,9 @@ environment:
 
 ### 2. 智谱AI（zhipuai，云服务，需API Key）
 
-适合中文场景，需注册并获取API Key。
+适合中文场景，需注册并[申请API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
 
 ```bash
-# 申请API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys
 spring.ai.zhipuai.api-key=你的APIKey
 spring.ai.zhipuai.embedding.enabled=true
 # 推荐模型：embedding-2（1024维度）
@@ -85,10 +84,9 @@ environment:
 
 ### 3. 阿里云百炼（dashscope，云服务，需API Key）
 
-适合大规模生产环境，支持多种embedding模型。
+适合大规模生产环境，支持多种embedding模型。[申请API Key](https://bailian.console.aliyun.com/?apiKey=1#/api-key)
 
 ```bash
-# 申请API Key：https://bailian.console.aliyun.com/?apiKey=1#/api-key
 spring.ai.dashscope.api-key=你的APIKey
 spring.ai.dashscope.enabled=true
 spring.ai.dashscope.base-url=https://dashscope.aliyuncs.com
@@ -120,7 +118,7 @@ environment:
 
 ```bash
 spring.ai.vectorstore.type=elasticsearch
-# 需与所选向量模型的维度一致（如BGE/embedding-2等为1024，text-embedding-v1为1536）
+# 需与所选向量模型的维度一致（如BGE/embedding-2等为1024，dashscope的text-embedding-v1为1536）
 spring.ai.vectorstore.elasticsearch.dimensions=1024
 ```
 
@@ -129,7 +127,7 @@ spring.ai.vectorstore.elasticsearch.dimensions=1024
 ```yaml
 environment:
   SPRING_AI_VECTORSTORE_TYPE: elasticsearch
-  # 需与所选向量模型的维度一致（如BGE/embedding-2等为1024，text-embedding-v1为1536）
+  # 需与所选向量模型的维度一致（如BGE/embedding-2等为1024，dashscope的text-embedding-v1为1536）
   SPRING_AI_VECTORSTORE_ELASTICSEARCH_DIMENSIONS: 1024
 ```
 
@@ -143,5 +141,7 @@ environment:
   - 需与所选embedding模型一致，常见为1024。
 - **Q: API Key如何获取？**
   - 见各云服务商控制台。
+- 注意：text-embedding-v1 维度为1536，需同步设置。
+- 当开启一个embedding模型时，请关闭其余的，也即设置enabled=false。
 
 如有更多问题，欢迎在社区或交流群反馈。
