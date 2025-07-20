@@ -9,6 +9,12 @@ sidebar_position: 3
 
 微语管理端用于管理企业成员或客服账号、客服组、会话分配、消息处理、客户管理等功能。
 
+![chat](/img/develop/admin/chat_zh.png)
+
+## 多渠道
+
+![channel](/img/develop/admin/channel.png)
+
 ## accessToken 登录方式
 
 在管理端登录路径 `/admin/auth/login?accessToken=xxx` 中，通过 `accessToken` 参数进行登录。

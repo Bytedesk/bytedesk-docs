@@ -166,7 +166,7 @@ ChatBox组件支持多种参数配置：
 | preload | boolean | 是否预加载 | false |
 | navbar | boolean | 是否显示导航栏，0表示隐藏 | true |
 | navbarTheme | string | 导航栏主题 | - |
-| uid | string | 自定义访客唯一ID | 自动生成 |
+| visitorUid | string | 自定义访客唯一ID | 自动生成 |
 | nickname | string | 自定义访客昵称 | "访客" |
 | avatar | string | 自定义访客头像 | 默认头像 |
 | vipLevel | string | 访客VIP等级 | "0" |
@@ -185,7 +185,7 @@ ChatBox组件支持多种参数配置：
 1. **URL参数传递**：在初始化聊天窗口时，通过URL参数传递用户信息
 
    ```bash
-   https://chat.example.com?uid=user123&nickname=张三&avatar=https://example.com/avatar.jpg&vipLevel=2
+   https://chat.example.com?visitorUid=user123&nickname=张三&avatar=https://example.com/avatar.jpg&vipLevel=2
    ```
 
 ## 进阶使用

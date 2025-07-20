@@ -70,6 +70,22 @@ docker compose -p weiyu -f docker-compose-ollama.yaml stop
 默认密码：admin
 ```
 
+## 编排内容(二选一)
+
+- [最新docker-compose.yaml-默认使用智谱AI](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
+- [最新docker-compose-ollama.yaml-默认使用ollama](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)
+
+如果使用docker-compose.yaml-需要自行填充智谱AI相关配置，参考如下配置：
+
+```yaml
+# 申请智谱AI API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys
+SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx' # 智谱AI API Key
+SPRING_AI_ZHIPUAI_CHAT_ENABLED: "true"
+SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
+SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
+SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
+```
+
 ## 问题排查
 
 查看logs

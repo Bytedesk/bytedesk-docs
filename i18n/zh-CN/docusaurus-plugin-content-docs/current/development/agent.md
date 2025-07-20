@@ -9,6 +9,8 @@ sidebar_position: 2
 
 微语客服端用于专业的企业IM或客服工作台，提供会话分配、消息处理、客户管理等功能。
 
+![agent](/img/develop/agent/agent_chat.png)
+
 ## accessToken 登录
 
 在客服端登录路径 `/agent/auth/login?accessToken=xxx` 中，通过 `accessToken` 参数进行登录。
