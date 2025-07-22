@@ -153,11 +153,12 @@ sidebar_position: 11
 
 ### 权利声明
 
+
 import Copyright from '/img/right/copyright.png';
 import Trademark from '/img/right/trademark.jpg';
 
-<img src={Copyright} width="360" />
-<img src={Trademark} width="360" />
+<img src={Copyright} alt="版权声明" width="360" />
+<img src={Trademark} alt="商标声明" width="360" />
 
 ## 联系方式
 
