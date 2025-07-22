@@ -80,16 +80,9 @@ spring.ai.deepseek.chat.options.temperature=0.7        # 温度参数，控制�
 
 配置完成后，你可以在网站中看到如下效果：
 
-![provider-chat](/img/deploy/provider/provider-chat.png)
-<!-- <img 
-  src="/img/deploy/provider/provider-chat.png" 
-  alt="provider-chat" 
-  style={{ 
-    width: '50%', 
-    display: 'block', 
-    margin: '0 auto' 
-  }} 
-/> -->
+import ProviderChat from '/img/deploy/provider/provider-chat.png';
+
+<img src={ProviderChat} alt="聊天效果展示" width="360" />
 
 ## 常见问题
 

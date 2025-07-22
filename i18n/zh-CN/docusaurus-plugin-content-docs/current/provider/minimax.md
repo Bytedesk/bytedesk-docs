@@ -8,7 +8,7 @@ description: 微语对接 MiniMax 大模型的配置说明和步骤指南
 :::tip 前置条件
 
 - 已部署微语系统
-- 已申请 MiniMax 大模型 API Key（[MiniMax 官网](https://www.minimax.chat/)）
+- 已申请 MiniMax 大模型 API Key（[MiniMax 官网](https://www.minimaxi.com/)）
 :::
 
 ## 配置说明

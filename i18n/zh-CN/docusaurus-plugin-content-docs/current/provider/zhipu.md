@@ -82,7 +82,9 @@ spring.ai.zhipuai.embedding.enabled=true                 # 启用文本嵌入功
 
 配置完成后，你可以在网站中看到如下效果：
 
-![provider-chat](/img/deploy/provider/provider-chat.png)
+import ProviderChat from '/img/deploy/provider/provider-chat.png';
+
+<img src={ProviderChat} alt="聊天效果展示" width="360" />
 
 ## 常见问题
 

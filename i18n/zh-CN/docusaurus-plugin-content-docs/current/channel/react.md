@@ -12,8 +12,8 @@ React是目前最流行的前端框架之一，通过集成微语客服系统到
 - 演示链接：[React 基础集成演示](https://weiyuai.cn/reactdemo/)
 - 演示代码：[React 基础集成示例](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/LocalDemo.tsx)
 - [github](https://github.com/Bytedesk/bytedesk-web)
-- [![npm version](https://badge.fury.io/js/bytedesk-web.svg)](https://badge.fury.io/js/bytedesk-web)
-- [![NPM Downloads](https://img.shields.io/npm/dm/bytedesk-web.svg?style=flat)](https://www.npmjs.com/package/bytedesk-web)
+<!-- - [![npm version](https://badge.fury.io/js/bytedesk-web.svg)](https://badge.fury.io/js/bytedesk-web) -->
+<!-- - [![NPM Downloads](https://img.shields.io/npm/dm/bytedesk-web.svg?style=flat)](https://www.npmjs.com/package/bytedesk-web) -->
 - [npmjs](https://www.npmjs.com/package/bytedesk-web)
 
 import reactBasicSettings from '/img/develop/chat/basicsettings.png';

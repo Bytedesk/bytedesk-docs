@@ -6,8 +6,8 @@ description: 在 Nextjs 应用中集成微语客服系统
 ---
 
 - [github](https://github.com/Bytedesk/bytedesk-web)
-- [![npm version](https://badge.fury.io/js/bytedesk-web.svg)](https://badge.fury.io/js/bytedesk-web)
-- [![NPM Downloads](https://img.shields.io/npm/dm/bytedesk-web.svg?style=flat)](https://www.npmjs.com/package/bytedesk-web)
+<!-- - [![npm version](https://badge.fury.io/js/bytedesk-web.svg)](https://badge.fury.io/js/bytedesk-web) -->
+<!-- - [![NPM Downloads](https://img.shields.io/npm/dm/bytedesk-web.svg?style=flat)](https://www.npmjs.com/package/bytedesk-web) -->
 - [npmjs](https://www.npmjs.com/package/bytedesk-web)
 
 ### 安装包
