@@ -59,192 +59,8 @@ window.bytedesk?.getUnreadMessageCount().then((count) => {
 window.bytedesk?.clearUnreadMessages().then((count) => {
   console.log('所有消息已标记为已读:', count);
   // 更新UI显示
-  setUnreadCount(0);
+  // setUnreadCount(0);
 });
-```
-
-## React组件集成示例
-
-以下是在React应用中集成未读消息数功能的完整示例：
-
-```jsx
-import React, { useState, useEffect } from 'react';
-// @ts-ignore
-import { BytedeskReact } from '@bytedesk/web/adapters/react';
-// @ts-ignore
-import type { BytedeskConfig } from '@bytedesk/web/types';
-
-const UnreadCountDemo = () => {
-    const [unreadCount, setUnreadCount] = useState<number>(0);
-    const [config] = useState<BytedeskConfig>({
-        placement: 'bottom-right',
-        marginBottom: 20,
-        marginSide: 20,
-        autoPopup: false,
-        draggable: true,
-        chatConfig: {
-            org: 'df_org_uid',
-            t: "1", // 0: 一对一对话；1：工作组对话；2：机器人对话
-            sid: 'df_wg_uid',
-            // 自定义用户信息
-            visitorUid: 'visitor_001',
-            nickname: '访客小明',
-            avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg',
-        },
-        theme: {
-            mode: 'light',
-        },
-        locale: 'zh-cn',
-        // 添加 onVisitorInfo 回调
-        onVisitorInfo: (uid: string, visitorUid: string) => {
-            // uid 是系统自动生成访客uid，visitorUid 是前端自定义访客uid
-            console.log('收到访客信息:', { uid, visitorUid });
-        },
-    });
-
-    const handleInit = () => {
-        console.log('BytedeskReact initialized');
-    };
-
-    useEffect(() => {
-        // 默认初始化未读消息数
-        (window as any).bytedesk?.getUnreadMessageCount().then((count: number) => {
-            console.log('刷新后未读消息数：', count);
-            setUnreadCount(count);
-        });
-
-        // 组件卸载时清除监听器
-        return () => {
-            if ((window as any).bytedesk) {
-                // 清除事件监听
-            }
-        };
-    }, []);
-
-    return (
-        <div style={{ padding: '20px' }}>
-            <h1>微语未读消息计数示例</h1>
-            
-            <div style={{ 
-                marginTop: '20px', 
-                marginBottom: '20px', 
-                padding: '20px', 
-                backgroundColor: '#f5f5f5', 
-                borderRadius: '8px' 
-            }}>
-                <h2>当前未读消息数: <span style={{ color: '#ff4d4f' }}>{unreadCount}</span></h2>
-            </div>
-
-            <div style={{ marginTop: '20px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                <button 
-                    onClick={() => (window as any).bytedesk?.showChat()}
-                    style={{
-                        padding: '10px 20px',
-                        backgroundColor: '#2e88ff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    打开聊天
-                </button>
-                <button 
-                    onClick={() => {
-                        (window as any).bytedesk?.clearUnreadMessages().then((count: number) => {
-                            console.log('所有消息已标记为已读:', count);
-                            setUnreadCount(count); // 重置未读消息数
-                        });
-                    }}
-                    style={{
-                        padding: '10px 20px',
-                        backgroundColor: '#52c41a',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    标记所有消息为已读
-                </button>
-                <button 
-                    onClick={() => {
-                        (window as any).bytedesk?.getUnreadMessageCount().then((count: number) => {
-                            console.log('刷新后未读消息数：', count);
-                            setUnreadCount(count);
-                        });
-                    }}
-                    style={{
-                        padding: '10px 20px',
-                        backgroundColor: '#722ed1',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    刷新未读消息数
-                </button>
-            </div>
-            
-            <BytedeskReact 
-                {...config} 
-                onInit={handleInit} 
-            />
-        </div>
-    );
-};
-
-export default UnreadCountDemo;
-```
-
-## 在应用导航栏显示未读消息数
-
-在实际应用中，常见的做法是在网站或APP的导航栏显示未读消息数，以下是一个简单的实现示例：
-
-```jsx
-import React, { useState, useEffect } from 'react';
-
-function NavBar() {
-  const [unreadCount, setUnreadCount] = useState(0);
-  
-  useEffect(() => {
-    // 初始化时获取未读消息数
-    if (window.bytedesk) {
-      window.bytedesk.getUnreadMessageCount().then((count) => {
-        setUnreadCount(count);
-      });
-      
-      // 可以在应用加载后定期检查未读消息（可选）
-      const interval = setInterval(() => {
-        window.bytedesk.getUnreadMessageCount().then((count) => {
-          setUnreadCount(count);
-        });
-      }, 60000); // 每分钟检查一次
-      
-      return () => clearInterval(interval);
-    }
-  }, []);
-  
-  return (
-    <nav className="navbar">
-      <div className="navbar-brand">我的应用</div>
-      <div className="navbar-menu">
-        <div className="navbar-item">首页</div>
-        <div className="navbar-item">产品</div>
-        <div className="navbar-item">
-          消息
-          {unreadCount > 0 && (
-            <span className="badge">{unreadCount}</span>
-          )}
-        </div>
-        <div className="navbar-item">设置</div>
-      </div>
-    </nav>
-  );
-}
-
-export default NavBar;
 ```
 
 ## API 参考
@@ -360,7 +176,7 @@ window.addEventListener('storage', (e) => {
 // 获取访客信息
 const visitorInfo = localStorage.getItem('VISITOR_STORE');
 const currentVisitor = JSON.parse(visitorInfo).state.currentVisitor;
-const visitorUid = currentVisitor.visitorUid; // 获取访客uid
+const uid = currentVisitor.uid; // 获取访客uid
 ```
 
 ![获取访客uid](/img/develop/chat/unread_count_uid.png)
@@ -375,6 +191,21 @@ http://127.0.0.1:9003/visitor/api/v1/message/unread/count?uid=1678201721979008
     message: "get unread messages count success",
     code: 200,
     data: 10 // 未读消息数
+}
+```
+
+### Q6: 如何拉取微语客服系统中访客端未读消息列表？
+
+- 调用API获取未读消息. 代码实例
+
+```javascript
+// 请求地址示例：请将127.0.0.1:9003替换为您的微语客服系统地址
+http://127.0.0.1:9003/visitor/api/v1/message/unread?pageNumber=0&pageSize=10&uid=1678201721979008
+// 返回结果示例：
+{
+    message: "get unread messages success",
+    code: 200,
+    data: [] // 未读消息列表
 }
 ```
 

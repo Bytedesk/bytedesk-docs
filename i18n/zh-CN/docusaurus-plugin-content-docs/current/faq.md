@@ -321,3 +321,11 @@ BYTEDESK_CUSTOM_SHOW_DEMO: "false"
 ### 更多配置
 
 详细配置说明请参考：[成员配置文档](./deploy/config.md#成员配置)
+
+## 问题13：如何获取试用版license
+
+### 获取方法
+
+登录 [微语管理后台](https://www.weiyuai.cn/admin) ，点击 设置 -> License 管理，即可获取试用版 license。
+
+![faq_13](/img/faq/faq_13_get_license.png)
