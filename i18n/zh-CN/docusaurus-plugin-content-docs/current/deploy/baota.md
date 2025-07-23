@@ -4,10 +4,14 @@ sidebar_label: 宝塔面板部署
 sidebar_position: 3
 ---
 
+:::info 试用版License
+需要试用版License？请参考：[问题13：如何获取试用版license](/docs/faq#问题13如何获取试用版license)
+:::
+
 :::tip
 
 - 操作系统：Ubuntu 22.04 LTS
-- 服务器最低配置2核4G内存
+- 服务器最低配置4核8G内存
 - 配置要求太高？建议：可以分拆 MySQL、Redis、Elasticsearch、ArtemisMQ 等服务到其他服务器，仅保留核心服务在主服务器上。可以有效降低服务器配置要求。
 
 :::

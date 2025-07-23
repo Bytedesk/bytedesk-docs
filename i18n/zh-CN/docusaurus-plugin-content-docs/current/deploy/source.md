@@ -5,6 +5,10 @@ sidebar_position: 2
 
 # 源码部署指南
 
+:::info 试用版License
+需要试用版License？请参考：[问题13：如何获取试用版license](/docs/faq#问题13如何获取试用版license)
+:::
+
 本文档提供详细的源码部署步骤，帮助您快速部署和运行项目。
 
 :::tip 系统要求

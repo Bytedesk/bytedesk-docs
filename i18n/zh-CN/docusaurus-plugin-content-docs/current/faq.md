@@ -326,6 +326,16 @@ BYTEDESK_CUSTOM_SHOW_DEMO: "false"
 
 ### 获取方法
 
-登录 [微语管理后台](https://www.weiyuai.cn/admin) ，点击 设置 -> License 管理，即可获取试用版 license。
+手机号登录 [微语管理后台](https://www.weiyuai.cn/admin) ，点击 设置 -> License 管理，即可获取试用版 license。
 
 ![faq_13](/img/faq/faq_13_get_license.png)
+
+### 将获取到的 licenseKey 填入配置文件中
+
+```java
+// properties配置文件
+bytedesk.licenseKey=<KEY>
+
+// docker-compose配置文件
+BYTEDESK_LICENSE_KEY: <KEY>
+```
