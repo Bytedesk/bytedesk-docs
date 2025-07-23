@@ -93,7 +93,7 @@ const config: BytedeskConfig = {
   // 聊天配置
   chatConfig: {
     org: 'df_org_uid',             // 替换为您的组织ID
-    t: "2",                       
+    t: "2",                        // 0 代表一对一客服，1 代表工作组客服，2 代表机器人客服                
     sid: 'df_rt_uid',              // 替换为您的SID
     hello: 'hello'                 // 可添加任意自定义参数
   },
@@ -157,132 +157,9 @@ const App = () => {
 # 显示/隐藏邀请对话框
 (window as any).bytedesk?.showInviteDialog();
 (window as any).bytedesk?.hideInviteDialog();
-```
 
-### 完整示例
-
-下面是一个更完整的示例，包含了所有可用功能的操作按钮：
-
-```jsx
-import React, { useState } from 'react';
-import { BytedeskReact } from 'bytedesk-web/react';
-import type { BytedeskConfig } from 'bytedesk-web';
-
-const App = () => {
-  const [config] = useState<BytedeskConfig>({
-    placement: 'bottom-right',
-    marginBottom: 20,
-    marginSide: 20,
-    autoPopup: false,
-    draggable: true,                 // 是否可拖拽，默认不可拖拽
-    
-    inviteConfig: {
-      show: false,
-      delay: 1000,                   // 首次弹出延迟时间, 单位: 毫秒
-      loop: true,                    // 是否启用循环
-      loopDelay: 10000,              // 循环间隔, 单位: 毫秒
-      loopCount: 3,                  // 循环次数, 设置为0表示无限循环
-    },
-    
-    bubbleConfig: {
-      show: true,
-      icon: '👋',
-      title: '需要帮助吗？',
-      subtitle: '点击开始对话'
-    },
-    
-    buttonConfig: {
-      show: true,
-      width: 60,
-      height: 60,
-    },
-    
-    chatConfig: {
-      org: 'df_org_uid',             // 替换为您的组织ID
-      t: "2",                       
-      sid: 'df_rt_uid',              // 替换为您的SID
-      hello: 'hello'                 // 可添加任意自定义参数
-    },
-    
-    theme: {
-      mode: 'light',                 // light | dark | system
-    },
-    
-    locale: 'zh-cn',                 // en | zh-cn | zh-tw | ja | ko
-  });
-
-  const handleInit = () => {
-    console.log('BytedeskReact initialized');
-  };
-
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>微语基本设置</h1>
-
-      <div style={{ marginTop: '20px', display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-        <button 
-          onClick={() => (window as any).bytedesk?.showChat()}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#2e88ff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
-        >
-          打开聊天
-        </button>
-        
-        <button 
-          onClick={() => (window as any).bytedesk?.showChat({
-            chatConfig: {
-              org: 'df_org_uid',
-              t: "1",
-              sid: 'df_wg_uid'
-            }
-          })}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#2e88ff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
-        >
-          带参数打开聊天
-        </button>
-        
-        <button 
-          onClick={() => (window as any).bytedesk?.hideChat()}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#2e88ff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
-        >
-          关闭聊天
-        </button>
-        
-        <button onClick={() => (window as any).bytedesk?.showButton()}>显示按钮</button>
-        <button onClick={() => (window as any).bytedesk?.hideButton()}>隐藏按钮</button>
-        <button onClick={() => (window as any).bytedesk?.showBubble()}>显示气泡</button>
-        <button onClick={() => (window as any).bytedesk?.hideBubble()}>隐藏气泡</button>
-        <button onClick={() => (window as any).bytedesk?.showInviteDialog()}>显示邀请</button>
-        <button onClick={() => (window as any).bytedesk?.hideInviteDialog()}>隐藏邀请</button>
-      </div>
-      
-      <BytedeskReact 
-        {...config} 
-        onInit={handleInit} 
-      />
-    </div>
-  );
-};
-
-export default App;
+# 获取未读消息数量
+const unreadCount = (window as any).bytedesk?.getUnreadMessageCount();
+# 清除未读消息数量
+(window as any).bytedesk?.clearUnreadMessages()
 ```
