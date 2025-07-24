@@ -50,7 +50,10 @@ import type { BytedeskConfig } from 'bytedesk-web';
 
 ```bash
 const config: BytedeskConfig = {
-  placement: 'bottom-right',       // 位置：右下角
+  # isDebug: false,                 // 是否开启调试模式
+  htmlUrl: 'https://www.weiyuai.cn/chat', // 自定义服务器htmlUrl
+  apiUrl: 'https://api.weiyuai.cn', // 自定义服务器apiUrl
+  placement: 'bottom-right',       // 位置：右下角: bottom-right, 左下角: bottom-left
   marginBottom: 20,                // 底部边距：20像素
   marginSide: 20,                  // 侧边距：20像素
   autoPopup: false,                // 是否自动弹出聊天窗口
