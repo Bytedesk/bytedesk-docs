@@ -137,7 +137,7 @@ const App = () => {
 (window as any).bytedesk?.showChat() 
 (window as any).bytedesk?.hideChat()
 
-# 带参数打开聊天窗口（可动态切换客服）
+# 带参数打开聊天窗口（可动态切换客服）, showChat支持上方参数：config: BytedeskConfig 
 (window as any).bytedesk?.showChat({
   chatConfig: {
     org: 'df_org_uid',

@@ -163,7 +163,6 @@ ChatBox组件支持多种参数配置：
 | referer | string | 来源页面 | - |
 | title | string | 页面标题 | - |
 | url | string | 页面URL | - |
-| preload | boolean | 是否预加载 | false |
 | navbar | boolean | 是否显示导航栏，0表示隐藏 | true |
 | navbarTheme | string | 导航栏主题 | - |
 | visitorUid | string | 自定义访客唯一ID | 自动生成 |
@@ -197,3 +196,4 @@ ChatBox组件支持多种参数配置：
 - [订单信息对接](./orderinfo.md) - 了解如何传递订单信息给客服
 - [用户信息对接](./userinfo.md) - 了解如何传递用户信息给客服
 - [千人千面](./viplevel.md) - 了解如何根据用户等级提供差异化服务
+- [国际化](./i18n.md) - 了解如何支持多语言
