@@ -143,6 +143,29 @@ sidebar_position: 7
 | `bytedesk.socket.child-event-loop-group-thread-count` | 子事件循环组线程数 | `8` | `BYTEDESK_SOCKET_CHILD_EVENT_LOOP_GROUP_THREAD_COUNT: 8` |
 | `bytedesk.socket.max-payload-size` | 最大载荷大小（字节） | `10240` | `BYTEDESK_SOCKET_MAX_PAYLOAD_SIZE: 10240` |
 
+## 水印配置
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.watermark.enabled` | 是否启用水印功能 | `true` | `BYTEDESK_WATERMARK_ENABLED: true` |
+| `bytedesk.watermark.text` | 水印文字内容 | `bytedesk.com` | `BYTEDESK_WATERMARK_TEXT: bytedesk.com` |
+| `bytedesk.watermark.position` | 水印位置，可选：`TOP_LEFT`/`TOP_RIGHT`/`BOTTOM_LEFT`/`BOTTOM_RIGHT`/`CENTER` | `BOTTOM_RIGHT` | `BYTEDESK_WATERMARK_POSITION: BOTTOM_RIGHT` |
+| `bytedesk.watermark.fontSize` | 水印字体大小 | `24` | `BYTEDESK_WATERMARK_FONT_SIZE: 24` |
+| `bytedesk.watermark.fontName` | 水印字体名称 | `Arial` | `BYTEDESK_WATERMARK_FONT_NAME: Arial` |
+| `bytedesk.watermark.color` | 水印颜色（RGBA格式：R,G,B,A） | `255,255,255,128` | `BYTEDESK_WATERMARK_COLOR: 255,255,255,128` |
+| `bytedesk.watermark.opacity` | 水印透明度（0.0-1.0） | `0.5` | `BYTEDESK_WATERMARK_OPACITY: 0.5` |
+| `bytedesk.watermark.margin` | 水印边距（像素） | `20` | `BYTEDESK_WATERMARK_MARGIN: 20` |
+| `bytedesk.watermark.imageOnly` | 是否只对图片文件添加水印 | `true` | `BYTEDESK_WATERMARK_IMAGE_ONLY: true` |
+| `bytedesk.watermark.minImageSize` | 最小图片尺寸（像素），小于此尺寸的图片不添加水印 | `100` | `BYTEDESK_WATERMARK_MIN_IMAGE_SIZE: 100` |
+| `bytedesk.watermark.maxImageSize` | 最大图片尺寸（像素），大于此尺寸的图片不添加水印 | `5000` | `BYTEDESK_WATERMARK_MAX_IMAGE_SIZE: 5000` |
+
+### 水印配置说明
+
+- **位置选项**：支持五种水印位置，分别为左上角、右上角、左下角、右下角和居中
+- **颜色格式**：使用RGBA格式，格式为：红,绿,蓝,透明度，其中颜色值范围0-255，透明度范围0-255
+- **透明度参数**：opacity值范围为0.0（完全透明）到1.0（完全不透明）
+- **尺寸控制**：通过最小和最大图片尺寸参数，可以控制哪些图片需要添加水印，避免对过小或过大的图片添加水印
+
 ## AI模块配置
 
 ### Ollama配置

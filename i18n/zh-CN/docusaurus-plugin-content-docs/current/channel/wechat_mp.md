@@ -36,7 +36,7 @@ import wechatMpLink3 from '/img/channel/wechat/wechat_mp_link_3.png';
 2. 对接完毕之后，输入任意文字，即可收到客服卡片
 3. 点击卡片可直接发起会话
 
-<img src={wechatMpHelloworld} />
+<img src={wechatMpHelloworld} width="360"/>
 
 ## 方法二：自定义菜单
 

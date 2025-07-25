@@ -322,7 +322,7 @@ BYTEDESK_CUSTOM_SHOW_DEMO: "false"
 
 详细配置说明请参考：[成员配置文档](./deploy/config.md#成员配置)
 
-## 问题13：如何获取试用版license
+## 问题13：如何申请licenseKey
 
 ### 获取方法
 

@@ -51,8 +51,8 @@ import type { BytedeskConfig } from 'bytedesk-web';
 ```bash
 const config: BytedeskConfig = {
   # isDebug: false,                 // 是否开启调试模式
-  htmlUrl: 'https://www.weiyuai.cn/chat', // 自定义服务器htmlUrl
-  apiUrl: 'https://api.weiyuai.cn', // 自定义服务器apiUrl
+  htmlUrl: 'https://www.weiyuai.cn/chat', // 自定义服务器htmlUrl，注意：末尾没有 '/'
+  apiUrl: 'https://api.weiyuai.cn', // 自定义服务器apiUrl，注意：末尾没有 '/'
   placement: 'bottom-right',       // 位置：右下角: bottom-right, 左下角: bottom-left
   marginBottom: 20,                // 底部边距：20像素
   marginSide: 20,                  // 侧边距：20像素
