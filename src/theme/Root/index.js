@@ -3,6 +3,7 @@ import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { BytedeskReact } from 'bytedesk-web/react';
 import '@site/src/css/watermark.css';
+import ErrorBoundary from '@site/src/components/ErrorBoundary';
 // import { BytedeskConfig } from 'bytedesk-web';
 
 // 默认布局根组件，可用于添加全局 Head 标签和聊天组件
@@ -308,7 +309,7 @@ export default function Root({children}) {
   }, []);
   
   return (
-    <>
+    <ErrorBoundary>
       <Head>
         {/* 基本内容安全策略 */}
         <meta
@@ -344,6 +345,6 @@ export default function Root({children}) {
       </Head>
       {children}
       <BytedeskReact {...config} onInit={handleInit} />
-    </>
+    </ErrorBoundary>
   );
 }

@@ -132,7 +132,7 @@ const config: Config = {
         searchBarShortcutHint: true, // 显示搜索快捷键提示
         searchResultLimits: 8, // 显示的搜索结果数量
         searchResultContextMaxLength: 50, // 搜索结果上下文的最大长度
-        explicitSearchResultPath: true // 在搜索结果中显示完整路径
+        explicitSearchResultPath: true, // 在搜索结果中显示完整路径
       }
     ],
   ],
@@ -143,6 +143,11 @@ const config: Config = {
       src: '/docs/feedback-config.js',
       async: false,
     },
+  ],
+
+  // React 配置
+  clientModules: [
+    require.resolve('./src/client-modules/react-config.js'),
   ],
 
   themeConfig: {
