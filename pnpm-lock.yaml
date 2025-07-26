@@ -39,8 +39,8 @@ importers:
         specifier: ^3.0.0
         version: 3.1.0(@types/react@19.1.6)(react@18.3.1)
       bytedesk-web:
-        specifier: ^1.5.9
-        version: 1.5.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(svelte@4.2.20)(typescript@5.6.3)(vue@3.5.17(typescript@5.6.3))
+        specifier: ^1.6.2
+        version: 1.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(svelte@4.2.20)(typescript@5.6.3)(vue@3.5.17(typescript@5.6.3))
       clsx:
         specifier: ^2.0.0
         version: 2.1.1
@@ -701,10 +701,6 @@ packages:
 
   '@babel/runtime-corejs3@7.27.6':
     resolution: {integrity: sha512-vDVrlmRAY8z9Ul/HxT+8ceAru95LQgkSKiXkSYZvqtbkPSfhZJgpRp45Cldbh1GJ1kxzQkI70AqyrTI58KpaWQ==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/runtime@7.27.6':
-    resolution: {integrity: sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==}
     engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.28.2':
@@ -2271,8 +2267,8 @@ packages:
   buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
 
-  bytedesk-web@1.5.9:
-    resolution: {integrity: sha512-8GQtKldGl7etb+e7YC3/6+MdVHHcHNaPek0H80WPxig/BxnXn8ftCdNvM2vimwWBVgV3Y2hZgsePWrhNapNzXw==}
+  bytedesk-web@1.6.2:
+    resolution: {integrity: sha512-dxQgKs0G8rdYfhrCnGuT88aHWu4sWnC3pOouWZ/Fj30G+shkW+uJ4rfQHwEBQdmJP+fdcPVxbauMDzCjtF/HTA==}
     peerDependencies:
       '@angular/common': ^16.0.0
       '@angular/core': ^16.0.0
@@ -6735,8 +6731,6 @@ snapshots:
     dependencies:
       core-js-pure: 3.43.0
 
-  '@babel/runtime@7.27.6': {}
-
   '@babel/runtime@7.28.2': {}
 
   '@babel/template@7.27.2':
@@ -7077,7 +7071,7 @@ snapshots:
       '@babel/preset-env': 7.27.2(@babel/core@7.27.4)
       '@babel/preset-react': 7.27.1(@babel/core@7.27.4)
       '@babel/preset-typescript': 7.27.1(@babel/core@7.27.4)
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       '@babel/runtime-corejs3': 7.27.6
       '@babel/traverse': 7.27.4
       '@docusaurus/logger': 3.8.1
@@ -9122,7 +9116,7 @@ snapshots:
 
   buffer-from@1.1.2: {}
 
-  bytedesk-web@1.5.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(svelte@4.2.20)(typescript@5.6.3)(vue@3.5.17(typescript@5.6.3)):
+  bytedesk-web@1.6.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(svelte@4.2.20)(typescript@5.6.3)(vue@3.5.17(typescript@5.6.3)):
     dependencies:
       axios: 1.10.0
       mitt: 3.0.1
@@ -12374,19 +12368,19 @@ snapshots:
 
   react-loadable-ssr-addon-v5-slorber@1.0.1(@docusaurus/react-loadable@6.0.0(react@18.3.1))(webpack@5.99.9):
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       react-loadable: '@docusaurus/react-loadable@6.0.0(react@18.3.1)'
       webpack: 5.99.9
 
   react-router-config@5.1.1(react-router@5.3.4(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       react: 18.3.1
       react-router: 5.3.4(react@18.3.1)
 
   react-router-dom@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -12397,7 +12391,7 @@ snapshots:
 
   react-router@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.28.2
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
