@@ -6,7 +6,7 @@ sidebar_position: 3
 # Docker部署
 
 :::info 试用版License
-需要试用版License？请参考：[问题13：如何获取试用版license](/docs/faq#问题13如何获取试用版license)
+需要试用版License？请参考：[问题13：如何申请licenseKey](/docs/faq#问题13如何申请licensekey)
 :::
 
 :::tip

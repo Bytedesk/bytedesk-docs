@@ -9,6 +9,22 @@ sidebar_position: 26
 
 当客服不在线时，系统会自动显示留言表单，收集用户的留言信息和联系方式。通过配置 Webhook URL，可以将这些留言消息推送到多种平台，确保及时处理用户需求。
 
+## 访客端留言
+
+import leavemsgChat from '/img/develop/admin/leavemsg_chat.png';
+import leavemsgChat2 from '/img/develop/admin/leavemsg_chat2.png';
+
+<img src={leavemsgChat} alt="Chat" width="360" />
+<img src={leavemsgChat2} alt="Chat" width="360" />
+
+## 客服端查看留言
+
+![leavemsg_agent](/img/develop/admin/leavemsg_agent.png)
+
+## 后台查看留言
+
+![leavemsg_admin](/img/develop/admin/leavemsg_admin.png)
+
 ## 留言表单功能
 
 ### 自动显示

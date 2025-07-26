@@ -339,3 +339,5 @@ bytedesk.licenseKey=<KEY>
 // docker-compose配置文件
 BYTEDESK_LICENSE_KEY: <KEY>
 ```
+
+更多详情参考 [licenseKey配置](./development/license.md)

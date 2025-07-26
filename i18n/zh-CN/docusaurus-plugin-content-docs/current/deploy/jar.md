@@ -6,7 +6,7 @@ sidebar_position: 1
 # Jar包部署指南
 
 :::info 试用版License
-需要试用版License？请参考：[问题13：如何获取试用版license](/docs/faq#问题13如何获取试用版license)
+需要试用版License？请参考：[问题13：如何申请licenseKey](/docs/faq#问题13如何申请licensekey)
 :::
 
 本文档提供详细的Jar包部署步骤，帮助您快速部署和运行微语系统。相比源码部署，Jar包部署更加简便，适合快速上线和测试使用。
