@@ -141,7 +141,3 @@ secret是企业应用里面用于保障数据安全的"钥匙"，每一个应用
 
 <img src={wechatWorkSecret} />
 
-## 参考链接
-
-- [企微群机器人配置说明](https://developer.work.weixin.qq.com/document/path/99110)
-- [如何设置群机器人](https://open.work.weixin.qq.com/help2/pc/14931)

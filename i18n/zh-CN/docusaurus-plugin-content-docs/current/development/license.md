@@ -5,7 +5,7 @@ sidebar_position: 27
 
 # License
 
-任何用户要想使用微语系统，无论是社区版、企业版还是平台版，都需要申请 licenseKey。本文档将详细介绍如何获取和配置 licenseKey。
+任何用户要想使用微语系统，无论是社区版、企业版还是平台版（源码版除外），都需要申请 licenseKey。本文档将详细介绍如何获取和配置 licenseKey。
 
 ![license](/img/develop/admin/license.png)
 
@@ -65,3 +65,6 @@ A: 只需要使用手机号注册微语管理后台即可申请试用版 license
 
 **Q: License 过期了怎么办？**
 A: 重新登录管理后台，在 License 管理页面重新获取即可。
+
+**Q: 为什么免费开源还需要licenseKey？**
+A: 考虑到客服系统可能被用于诈骗等非法行为，为防止此类行为的发生，特实行licenseKey。并且需要用户自行保管好自己的key，以防被盗用。
