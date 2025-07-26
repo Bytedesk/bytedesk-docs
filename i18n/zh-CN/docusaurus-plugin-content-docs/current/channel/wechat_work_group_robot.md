@@ -15,13 +15,13 @@ sidebar_position: 12
 - 需要试用版License？请参考：[问题13：如何申请licenseKey](/docs/faq#问题13如何申请licensekey)
 :::
 
-## 内部群聊机器人
+## 内部群聊Webhook机器人
 
 ### 1.如何设置群机器人
 
 [设置群机器人](https://open.work.weixin.qq.com/help2/pc/14931)
 
-### 2.获取群机器人webhook
+### 2.获取群机器人Webhook
 
 ![wechat_work_webhook](/img/develop/admin/wechat_work_webhook.png)
 

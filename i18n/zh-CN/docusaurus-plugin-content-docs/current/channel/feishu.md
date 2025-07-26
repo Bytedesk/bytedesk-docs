@@ -5,13 +5,13 @@ sidebar_position: 14
 
 # 飞书
 
-## 内部群聊机器人
+## 内部群聊Webhook机器人
 
 ### 1. 如何设置群机器人
 
 - [创建机器人](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot?lang=zh-CN)
 
-### 2.获取群机器人webhook
+### 2.获取群机器人Webhook
 
 ![feishu_webhook](/img/develop/admin/feishu_webhook.png)
 
@@ -28,3 +28,4 @@ sidebar_position: 14
 ## 参考链接
 
 - [自定义机器人使用指南](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot?lang=zh-CN)
+- [自定义机器人发送消息的消息类型](https://open.dingtalk.com/document/orgapp/custom-bot-send-message-type)
