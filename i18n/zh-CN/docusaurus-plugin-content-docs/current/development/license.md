@@ -54,9 +54,9 @@ set BYTEDESK_LICENSE_KEY=your_license_key_here
 
 ## 注意事项
 
-- License 有效期为 30 天，到期后需要重新申请
+- LicenseKey 有效期为 30 天，到期后需要重新申请
 - 请妥善保管您的 licenseKey，不要泄露给他人
-- 如需企业版或平台版 license，请联系客服获取正式授权
+- 如需正式版企业版或平台版 licenseKey，请联系客服获取正式授权
 
 ## 常见问题
 
