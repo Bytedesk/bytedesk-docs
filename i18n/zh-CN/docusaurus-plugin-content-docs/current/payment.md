@@ -78,6 +78,7 @@ sidebar_position: 11
 | [黑名单](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 官方技术支持 | ❌ | ✅ | ✅ | ✅ | ✅ |
 <!-- | [文本转语音TTS](./development/tts.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 <!-- | [语音转文本ASR/STT](./development/asr.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 
