@@ -232,7 +232,8 @@ const config: Config = {
           href: "https://www.weiyuai.cn/architecture.html",
           label: "Architecture",
           position: "left",
-        },{
+        },
+        {
           href: "https://www.weiyuai.cn/admin/",
           label: "Trial",
           position: "left",

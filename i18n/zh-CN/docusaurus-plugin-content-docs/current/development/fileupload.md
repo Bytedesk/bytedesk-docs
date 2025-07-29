@@ -72,76 +72,19 @@ bytedesk.minio.secure=false
 
 ## Docker Compose 配置
 
-如果您使用Docker部署，可以在`docker-compose.yaml`文件中配置MinIO服务：
+如果您使用Docker部署，可以在`docker-compose.yaml`文件中配置文件上传服务：
 
 ```yaml
-version: '3.8'
-
-services:
-  # 微语主服务
-  bytedesk:
-    image: bytedesk/bytedesk:latest
-    container_name: bytedesk
-    ports:
-      - "9003:9003"
-    environment:
-      # 文件上传配置
-      - BYTEDESK_UPLOAD_TYPE=local  # 或 minio
-      - BYTEDESK_UPLOAD_DIR=uploads
-      - BYTEDESK_UPLOAD_URL=http://127.0.0.1:9003  # 请将127.0.0.1替换为服务器实际IP地址或域名
-      
-      # MinIO配置（当使用MinIO时）
-      - BYTEDESK_MINIO_ENABLED=false
-      - BYTEDESK_MINIO_ENDPOINT=http://bytedesk-minio:9000  # Docker内部通信使用服务名
-      - BYTEDESK_MINIO_ACCESS_KEY=minioadmin
-      - BYTEDESK_MINIO_SECRET_KEY=minioadmin123
-      - BYTEDESK_MINIO_BUCKET_NAME=bytedesk
-      - BYTEDESK_MINIO_REGION=us-east-1
-      - BYTEDESK_MINIO_SECURE=false
-    volumes:
-      - ./uploads:/app/uploads  # 本地文件存储目录
-    depends_on:
-      - bytedesk-minio
-    networks:
-      - bytedesk-network
-
-  # MinIO对象存储服务
-  # http://localhost:19000 - MinIO Console
-  # http://localhost:19001 - MinIO API
-  bytedesk-minio:
-    image: minio/minio:latest
-    container_name: minio-bytedesk
-    environment:
-      - MINIO_ROOT_USER=minioadmin
-      - MINIO_ROOT_PASSWORD=minioadmin123
-      - TZ=Asia/Shanghai
-    ports:
-      - "19000:9000"   # API
-      - "19001:9001"   # Console
-    volumes:
-      - minio_data:/data
-    command: minio server /data --console-address ":9001"
-    networks:
-      - bytedesk-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-
-volumes:
-  minio_data:
-
-networks:
-  bytedesk-network:
-    driver: bridge
+# MinIO配置（当使用MinIO时）
+BYTEDESK_MINIO_ENABLED=false
+# MinIO服务的访问地址，需要将127.0.0.1替换为您的服务器实际IP地址或域名
+BYTEDESK_MINIO_ENDPOINT=http://127.0.0.1:19000
+BYTEDESK_MINIO_ACCESS_KEY=minioadmin
+BYTEDESK_MINIO_SECRET_KEY=minioadmin123
+BYTEDESK_MINIO_BUCKET_NAME=bytedesk
+BYTEDESK_MINIO_REGION=us-east-1
+BYTEDESK_MINIO_SECURE=false
 ```
-
-**MinIO访问说明：**
-
-- **控制台访问**：http://localhost:19000 - 用于管理MinIO存储桶和文件
-- **API访问**：http://localhost:19001 - MinIO服务的API端口
-- **默认登录**：用户名 `minioadmin`，密码 `minioadmin123`
 
 ## 存储方式选择
 
