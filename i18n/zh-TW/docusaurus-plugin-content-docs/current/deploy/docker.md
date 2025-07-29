@@ -5,85 +5,96 @@ sidebar_position: 3
 
 # Docker部署
 
+:::info 試用版License
+需要試用版License？請參考：[問題13：如何申請licenseKey](/docs/faq#問題13如何申請licensekey)
+:::
+
 :::tip
 
-- 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置2核4G内存
+- 作業系統：Ubuntu 22.04 LTS
+- 伺服器最低配置4核8G記憶體
+- 配置要求太高？建議：可以分拆 MySQL、Redis、Elasticsearch、ArtemisMQ 等服務到其他伺服器，僅保留核心服務在主伺服器上。可以有效降低伺服器配置要求。
+- Docker社區版鏡像，二選其一即可，建議國內選阿里雲鏡像
+  - bytedesk/bytedesk-ce:latest # hub.docker.com community
+  - registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk-ce:latest # 阿里雲社區版鏡像
+- Docker企業版/平台版鏡像，二選其一即可，建議國內選阿里雲鏡像
+  - bytedesk/bytedesk:latest # hub.docker.com enterprise
+  - registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest # 阿里雲企業版/平台版鏡像
 
 :::
 
-## 安装[Docker](./depend/docker)
-
-## 创建docker-compose.yaml文件
-
-内容如下:
+## 方法一：一行命令啟動，需要另行安裝ollama
 
 ```bash
-services:
-  bytedesk-db:
-    image: mysql:latest
-    container_name: mysql-bytedesk
-    environment:
-      MYSQL_DATABASE: "bytedesk"
-      MYSQL_ROOT_PASSWORD: "r8FqfdbWUaN3"
-    ports:
-      - "3306:3306"
-  bytedesk-redis:
-    image: redis/redis-stack-server:latest
-    container_name: redis-bytedesk
-    command: /bin/sh -c "redis-server --requirepass $$REDIS_HOST_PASSWORD"
-    env_file:
-      - docker.env
-    ports:
-      - "6379:6379"
-  bytedesk:
-    # image: bytedesk/bytedesk:latest
-    image: registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest
-    container_name: bytedesk
-    depends_on:
-      - bytedesk-db
-      - bytedesk-redis
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-bytedesk:3306/bytedesk
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=r8FqfdbWUaN3
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_DATA_REDIS_HOST=redis-bytedesk
-      - SPRING_DATA_REDIS_PORT=6379
-      - SPRING_DATA_REDIS_PASSWORD=qfRxz3tVT8Nh
-      - SPRING_DATA_REDIS_DATABASE=0
-    ports:
-      - 9003:9003
+git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose.yaml up -d
 ```
 
-## 创建docker.env文件
-
-内容如下:
+### 因專案預設使用ollama qwen3:0.6b模型，所以需要另外拉取模型
 
 ```bash
-REDIS_HOST_PASSWORD=qfRxz3tVT8Nh
+# 對話模型
+ollama pull qwen3:0.6b
+# 向量模型
+ollama pull bge-m3:latest
 ```
 
-## 拉取镜像并启动容器
+## 方法二： 使用 docker compose ollama，預設整合ollama
 
 ```bash
-# 从阿里云拉取镜像
-docker pull registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest
-# 启动docker compose容器, -f标志来指定文件路径, -d标志表示在后台模式下启动容器
-docker compose -f docker-compose.yaml up -d
-# 停止容器
-docker compose -f docker-compose.yaml stop
+git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose-ollama.yaml up -d
+# 對話模型
+docker exec ollama-bytedesk ollama pull qwen3:0.6b
+# 向量模型
+docker exec ollama-bytedesk ollama pull bge-m3:latest
 ```
 
-## 本地预览
+## 停止容器
 
 ```bash
-web: http://127.0.0.1:9003/
-开发者入口: http://127.0.0.1:9003/dev
-管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
-客户端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
-访客端: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
-api文档: http://127.0.0.1:9003/swagger-ui/index.html
-数据库监控: http://127.0.0.1:9003/druid，用户名: admin@email.com, 密码: admin
-actuator: http://127.0.0.1:9003/actuator
+docker compose -p weiyu -f docker-compose.yaml stop
+# 或者
+docker compose -p weiyu -f docker-compose-ollama.yaml stop
+```
+
+## 開放埠
+
+請開放內網入方向埠
+
+- 9003
+- 9885
+
+## 演示
+
+本地預覽
+
+```bash
+# 請將127.0.0.1替換為你的伺服器ip
+存取地址：http://127.0.0.1:9003/
+預設帳號：admin@email.com
+預設密碼：admin
+```
+
+## 編排內容(二選一)
+
+- [最新docker-compose.yaml-預設使用智譜AI](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
+- [最新docker-compose-ollama.yaml-預設使用ollama](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)
+
+如果使用docker-compose.yaml-需要自行填充智譜AI相關配置，參考如下配置：
+
+```yaml
+# 申請智譜AI API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys
+SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx' # 智譜AI API Key
+SPRING_AI_ZHIPUAI_CHAT_ENABLED: "true"
+SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
+SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
+SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
+```
+
+## 問題排查
+
+查看logs
+
+```bash
+# 例如查看MySQL容器的日誌
+docker logs mysql-bytedesk
 ```

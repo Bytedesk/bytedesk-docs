@@ -1,75 +1,99 @@
 ---
-sidebar_label: Source Code
-sidebar_position: 1
+sidebar_label: Source Code Deployment
+sidebar_position: 2
 ---
 
-# Source Code Deployment
+# Source Code Deployment Guide
 
-:::tip
+:::info Trial License
+Need a trial license? Please refer to: [Question 13: How to apply for licenseKey](/docs/faq#question-13-how-to-apply-for-licensekey)
+:::
 
-- Operating System: Ubuntu 20.04 LTS
-- Server Requirements: Minimum 2 cores 4GB RAM, Recommended 4 cores 8GB RAM
+This document provides detailed source code deployment steps to help you quickly deploy and run the project.
+
+:::tip System Requirements
+
+- **Operating System**: Ubuntu 22.04 LTS
+- **Hardware Configuration**: Standard deployment: 2 cores 4GB RAM
 
 :::
 
-## Dependencies
+## 1. Get Source Code
 
-- [JDK](/docs/deploy/depend/jdk)
-- [MySQL](/docs/deploy/depend/mysql) or [PostgreSQL](/docs/deploy/depend/postgresql)
-- [Redis](/docs/deploy/depend/redis)
-- [Nginx](/docs/deploy/depend/nginx)
-- [Docker](/docs/deploy/depend/docker)
-- [Let's Encrypt](/docs/deploy/depend/letsencrypt)
-
-## Download
+First, clone the project source code from the repository to local:
 
 ```bash
-# Download source code
+# Domestic users recommended to use Gitee mirror
+git clone https://gitee.com/270580156/weiyu.git
+
+# Or use GitHub source
 git clone https://github.com/bytedesk/bytedesk.git
-cd bytedesk
-# Install dependencies
-yarn install
-# Start development
-yarn dev
-# Build for production
-yarn build
+
+# Enter project directory
+cd weiyu  # or cd bytedesk
 ```
 
-## Configuration
+## 2. Environment Preparation
+
+### 2.1 Install JDK 17
+
+The project is developed based on Spring Boot 3, **must** use JDK 17 or higher version:
 
 ```bash
-# Modify configuration files
-# Modify database configuration
-vim config/application.yml
-# Modify redis configuration
-vim config/redis.yml
+# Check Java version
+java --version
+# Should display: java 17.x.x or higher version
 ```
 
-## Start
+If JDK 17 is not installed, please refer to: [JDK 17 Installation Guide](./depend/jdk)
+
+### 2.2 Install Project Dependencies
+
+- [Install Project Dependencies](./jar.md#12-install-project-dependencies)
+
+## 3. Compilation and Startup
+
+### 3.1 Install Development Tools
+
+Recommended development environment:
+
+- Editor: Visual Studio Code
+- Build tool: Maven 3.6+
+- Other dependencies: protobuf compilation tools (project uses protobuf)
 
 ```bash
-# Start server
-./startup.sh
-# View logs
-tail -f logs/bytedesk.log
+# Check Maven version
+mvn --version
+# Should display Apache Maven 3.6+ version
+
+# Check protobuf version (if installed)
+protoc --version
+# Recommended to use libprotoc 25.0+
 ```
 
-## Stop
+### 3.2 Compile Project
 
 ```bash
-# Stop server
-./shutdown.sh
+# Execute compilation in project root directory (skip tests to speed up)
+./mvnw install -Dmaven.test.skip=true
 ```
 
-## Upgrade
+### 3.3 Modify Configuration File
+
+Edit the `starter/src/main/resources/application-dev.properties` file to configure database and Redis connection information: [Please refer to Application Configuration Instructions](./config.md)
+
+### 3.4 Start Project
 
 ```bash
-# Pull latest code
-git pull
-# Build
-yarn build
-# Stop server
-./shutdown.sh
-# Start server
-./startup.sh
+# Enter startup module directory
+cd starter
+
+# Start application
+./mvnw spring-boot:run
 ```
+
+> 🚀 **Startup Success Flag**: Console outputs "Started Application" with no exception information.
+
+## 4. Access System
+
+### 4.1 Local Access

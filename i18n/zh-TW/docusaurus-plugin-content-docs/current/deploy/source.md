@@ -1,94 +1,99 @@
 ---
-sidebar_label: 源码部署
+sidebar_label: 源碼部署
 sidebar_position: 2
 ---
 
-# 源码部署
+# 源碼部署指南
 
-:::tip
+:::info 試用版License
+需要試用版License？請參考：[問題13：如何申請licenseKey](/docs/faq#問題13如何申請licensekey)
+:::
 
-- 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置2核4G内存
+本文檔提供詳細的源碼部署步驟，幫助您快速部署和執行專案。
+
+:::tip 系統要求
+
+- **作業系統**：Ubuntu 22.04 LTS
+- **硬體配置**：標準部署：2核4G記憶體
 
 :::
 
-## 前期准备
+## 1. 取得源碼
 
-### [Jdk17](./depend/jdk)
-
-因项目依赖spring boot 3, 最低要求 jdk17, 请确保已安装
+首先，從程式碼倉庫克隆專案源碼到本地：
 
 ```bash
-java --version
-# java 17.0.4 2022-07-19 LTS
-```
+# 國內使用者推薦使用Gitee鏡像源
+git clone https://gitee.com/270580156/weiyu.git
 
-### [MySQL 8](./depend/mysql)
-
-```bash
-# 修改application.properties
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/bytedesk
-spring.datasource.username=root
-spring.datasource.password=密码
-```
-
-### 或 [PostgreSQL 16](./depend/postgresql)
-
-mysql或postgresql任选其一, 默认使用mysql
-
-```bash
-# 修改application.properties
-spring.datasource.url=jdbc:postgresql://127.0.0.1:5433/bytedesk
-spring.datasource.username=postgres
-spring.datasource.password=密码
-```
-
-### [Redis](./depend/redis)
-
-```bash
-spring.data.redis.database=0
-spring.data.redis.host=127.0.0.1
-spring.data.redis.port=6379
-spring.data.redis.password=密码
-```
-
-<!-- ### [Ollama](./depend/ollama)可选 -->
-
-## [下载源码](https://github.com/Bytedesk/bytedesk)，并编译
-
-```bash
-# 注意: 此开源版本处于早期阶段，许多功能尚未完善或测试未完成，文档尚待完善，请勿在生产环境使用
+# 或者使用GitHub源
 git clone https://github.com/bytedesk/bytedesk.git
-# 配置文件: bytedesk/starter/src/main/resources/application-dev.properties
-# 推荐开发环境：vscode + maven
-#
-# java --version
-# java 17.0.4 2022-07-19 LTS
-# 
-# mvn --version
-# Apache Maven 3.8.4 (9b656c72d54e5bacbed989b64718c159fe39b537)
-# OS name: "mac os x", version: "14.2.1", arch: "aarch64", family: "mac"
-# 
-# 项目使用了protobuf，可能需要安装 protobuf 编译工具
-# protoc --version
-# libprotoc 25.3
-# 
-cd bytedesk
-mvn install -Dmaven.test.skip=true
-# 
-cd starter
-mvn spring-boot:run
+
+# 進入專案目錄
+cd weiyu  # 或 cd bytedesk
 ```
 
-## 本地预览
+## 2. 環境準備
+
+### 2.1 安裝JDK 17
+
+專案基於Spring Boot 3開發，**必須**使用JDK 17或更高版本：
 
 ```bash
-web: http://127.0.0.1:9003/
-开发者入口: http://127.0.0.1:9003/dev
-管理后台: http://127.0.0.1:9003/admin, 用户名: admin@email.com, 密码: admin
-客户端: http://127.0.0.1:9003/agent/chat, 用户名: admin@email.com, 密码: admin
-访客端: http://127.0.0.1:9003/chat?org=df_org_uid&t=0&sid=df_ag_uid&
-api文档: http://127.0.0.1:9003/swagger-ui/index.html
-数据库监控: http://127.0.0.1:9003/druid，用户名: admin@email.com, 密码: admin
-actuator: http://127.0.0.1:9003/actuator
+# 檢查Java版本
+java --version
+# 應顯示: java 17.x.x 或更高版本
 ```
+
+如果沒有安裝JDK 17，請參考：[JDK 17安裝指南](./depend/jdk)
+
+### 2.2 安裝專案依賴
+
+- [安裝專案依賴](./jar.md#12-安裝專案依賴)
+
+## 3. 編譯與啟動
+
+### 3.1 安裝開發工具
+
+推薦的開發環境：
+
+- 編輯器：Visual Studio Code
+- 建構工具：Maven 3.6+
+- 其他依賴：protobuf 編譯工具（專案使用了protobuf）
+
+```bash
+# 檢查Maven版本
+mvn --version
+# 應顯示 Apache Maven 3.6+ 版本
+
+# 檢查protobuf版本（如果已安裝）
+protoc --version
+# 建議使用 libprotoc 25.0+
+```
+
+### 3.2 編譯專案
+
+```bash
+# 在專案根目錄下執行編譯（跳過測試以加快速度）
+./mvnw install -Dmaven.test.skip=true
+```
+
+### 3.3 修改配置檔案
+
+編輯`starter/src/main/resources/application-dev.properties`檔案，配置資料庫和Redis連線資訊：[請參考應用配置說明](./config.md)
+
+### 3.4 啟動專案
+
+```bash
+# 進入啟動模組目錄
+cd starter
+
+# 啟動應用
+./mvnw spring-boot:run
+```
+
+> 🚀 **啟動成功標誌**：控制台輸出"Started Application"且無異常資訊。
+
+## 4. 存取系統
+
+### 4.1 本地存取
