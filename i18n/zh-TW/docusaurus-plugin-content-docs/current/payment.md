@@ -1,71 +1,176 @@
 ---
-sidebar_label: "费用相关"
+sidebar_label: "費用相關"
+sidebar_position: 11
 ---
 
-# 费用相关
+# 費用相關
 
-## 功能对比
+## 版本與價格
 
-### 企业IM
+微語系統提供多種版本選擇，滿足不同規模企業需求：
 
-| 功能      | 开源  |  企业版 |
-| --------- | ----- |  ------ |
-| Header    | Title |  Title  |
-| Paragraph | Text  |  Text   |
+| 版本 | 價格 | 主要特點 |
+| --- | --- | --- |
+| **社區版** | **免費** | 開源，可商用，單租戶，**[社區版源碼，保留源碼版權聲明](./deploy/source.md)**，用戶數不限，客服/機器人/知識庫各限50個。|
+| **企業版** | **3萬元** | 單租戶，功能完整，**[私有化部署包](./deploy/docker.md)，不含源碼**，用戶數/客服/機器人/知識庫數量不限，支援品牌自訂 |
+| **平台版** | **6萬元** | **多租戶**，功能完整，**[私有化部署包](./deploy/docker.md)，不含源碼**，用戶數/客服/機器人/知識庫數量不限，支援品牌自訂 |
+| **產品代理** | **企業版8折** | 適用於購買企業版≥2份授權，**[私有化部署包](./deploy/docker.md)，不含源碼** |
+| **源碼版** | **2萬元起** | **包含完整源碼**，按模組單獨購買。無需再購買企業版或平台版，無需授權license |
 
-### AI Agent
+註：價格為一次性收費
 
-| 功能      | 开源  |  企业版 |
-| --------- | ----- |  ------ |
-| Header    | Title |  Title  |
-| Paragraph | Text  |  Text   |
+### 源碼版模組定價
 
-### 智能客服
+| 模組 | 價格 |
+| --- | --- |
+| 管理後台源碼(前端/React) | 5萬元 |
+| 客服工作台源碼(前端/React，支援Web和PC端) | 5萬元 |
+| 手機客服端源碼(安卓/iOS) | 5萬元 |
+| H5訪客端源碼(前端/React) | 2萬元 |
+| 伺服器進階功能源碼(後端/Java) | 5萬元 |
 
-| 功能      | 开源  |  企业版 |
-| --------- | ----- |  ------ |
-| Header    | Title |  Title  |
-| Paragraph | Text  |  Text   |
+> 註：可以按模組單獨購買，技術棧：java + react
 
-### 知识库
+## 功能對比表
 
-| 功能      | 开源  |  企业版 |
-| --------- | ----- |  ------ |
-| Header    | Title |  Title  |
-| Paragraph | Text  |  Text   |
+### 基礎功能與限制
 
-### 帮助中心
+| 功能 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
+|------|--------|--------|--------|----------|--------|
+| 多租戶支援 | ❌ | ❌ | ✅ | ✅ | ✅ |
+| 用戶數量 | 不限 | 不限 | 不限 | 不限 | 不限 |
+| 客服數量 | 50個 | 不限 | 不限 | 不限 | 不限 |
+| 機器人數量 | 50個 | 不限 | 不限 | 不限 | 不限 |
+| 知識庫數量 | 50個 | 不限 | 不限 | 不限 | 不限 |
+| 品牌自訂 | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 商業版源碼 | ❌ | ❌ | ❌ | ❌ | ✅ |
 
-| 功能      | 开源  |  企业版 |
-| --------- | ----- |  ------ |
-| Header    | Title |  Title  |
-| Paragraph | Text  |  Text   |
+### 通訊功能
 
-### 工单系统
+| 功能 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
+|------|--------|--------|--------|----------|--------|
+| 單聊 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 群聊 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [文字訊息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [圖片訊息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [語音訊息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [視訊訊息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [檔案訊息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 機器人訊息 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [訊息撤回](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 機器人客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 一對一客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 工作組客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
 
-| 功能      | 开源  |  企业版 |
-| --------- | ----- |  ------ |
-| Header    | Title |  Title  |
-| Paragraph | Text  |  Text   |
+### 進階功能
 
-## 收费标准
+| 功能 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
+|------|--------|--------|--------|----------|--------|
+| [對接大模型](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [知識庫](./modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [敏感詞過濾](./development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [資料統計報表](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [轉接會話](./development/transfer.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [邀請會話](./development/invite.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [滿意度評分](./development/rating.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [智能質檢](./development/qualitycheck.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [自動回覆](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [黑名單](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [訊息翻譯](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [叢集部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 官方技術支援 | ❌ | ✅ | ✅ | ✅ | ✅ |
+<!-- | [文字轉語音TTS](./development/tts.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
+<!-- | [語音轉文字ASR/STT](./development/asr.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 
-<!-- - 保留logo的前提下，可以免费安装使用，不收取任何费用。授权修改’微语‘及 Logo： 1w -->
-- 开源社区版，支持完全免费商用，无任何限制
-- 服务器基本功能开源免费, [码云](https://gitee.com/270580156/weiyu.im),[github](https://github.com/Bytedesk/bytedesk)
-- 服务器高级功能（技术栈 java+spring-boot3+jdk17），如：数据统计、敏感词、会话转接、自动回复、满意度、质检等：源码价格5w
-- Web管理后台（技术栈：react+typescript+antd）： 源码价格5w
-- 聊天Web/桌面客户端（技术栈：electron+react+typescript+antd），支持：[web](https://www.weiyuai.cn/agent)/[windows](https://www.weiyuai.cn/download/weiyu-windows.exe)/[macOS](https://www.weiyuai.cn/download/weiyu-mac.dmg)/[linux](https://www.weiyuai.cn/download/weiyu-linux.AppImage)）： 源码价格5w
-- 手机客户端（技术栈：flutter，支持：[android](https://www.weiyuai.cn/download/weiyu-android.apk)/[ios](https://apps.apple.com/cn/app/%E5%BE%AE%E8%AF%AD/id6470106586)）： 源码价格5w
-- Web访客端（技术栈：react+typescript）： 源码价格2w
-- 如有定制需求，请[联系微信](/img/wechat.png)，发送您的需求，评估开发周期/定价
+### 支援渠道
 
-## 其他
+#### 網頁與應用框架
 
-<!-- - 在保留原有商标 logo 等信息前提下，支持免费商用。如需移除，需要获得授权 -->
-<!-- - 仅支持企业内部员工自用，销售、二次销售或者部署 SaaS 方式销售需要获得授权 -->
-<!-- - 代理合作：您负责销售，我方负责售后，维护等，五五分成 -->
-<!-- - 此软件可能存在 bug 或不完善的地方，如造成损失，需自行负责 -->
-- 严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务
-<!-- - <img src="/img/wechat.png" width="150"></img> -->
-<!-- - 定制按 2500 人/天 计算 -->
+| 渠道 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
+|------|--------|--------|--------|----------|--------|
+| [網站/H5](./channel/web) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [React](./channel/react) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vue](./channel/vue) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Svelte](./channel/svelte) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Angular](./channel/angular) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Nextjs](./channel/nextjs) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vanilla](./channel/vanilla) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [iOS](./channel/ios) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Android](./channel/android) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Uniapp](./channel/uniapp) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Flutter](./channel/flutter) | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+#### 社交媒體渠道
+
+| 渠道 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
+|------|--------|--------|--------|----------|--------|
+| [企業微信](./channel/wechat_work) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信客服](./channel/wechat_kf) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信公眾號](./channel/wechat_mp) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信小程序](./channel/wechat_mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 更多對接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
+
+### Plus 功能插件（額外收費）
+
+| 插件名稱 | 功能描述 | 價格 | 備註 |
+|---------|---------|------|------|
+| [呼叫中心](./plugins/freeswitch.md) | 語音通話、IVR、自動話務分配 | 待定 | 開發中 |
+| [視訊客服](./plugins/webrtc.md) | 一對一視訊通話、螢幕共享 | 待定 | 開發中 |
+| [BI智能分析](./plugins/bi.md) | AI驅動的資料智能決策平台 | 待定 | 開發中 |
+<!-- | [工作流](./modules/workflow.md) | 大模型工作流 | 待定 | 開發中 | -->
+<!-- | [視訊會議](./plugins/jitsi.md) | 多人視訊會議、協同辦公 | 待定 | 開發中 | -->
+<!-- | [遠端協助](./plugins/remote.md) | 無障礙遠端支援，隨時隨地解決問題 | 待定 | 開發中 | -->
+<!-- | [看板插件](./plugins/kanban.md) | 視覺化任務與專案管理 | 待定 | 開發中 | -->
+
+#### Plus 海外媒體渠道（額外收費）
+
+| 渠道 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
+|------|--------|--------|--------|----------|--------|
+| [WhatsApp](./channel/whatsapp) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Facebook](./channel/facebook) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Instagram](./channel/instagram) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Line](./channel/line) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 更多對接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
+
+<!-- ### 開放平台 -->
+
+### 服務條款
+
+| 項目 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
+|------|-------|-------|-------|----------|-------|
+| 1年內免費升級 | ❌ | ✅ | ✅ | ✅ | ✅ |
+| 1年後升級維護費 | - | 15%/年 | 15%/年 | 15%/年 | 15%/年 |
+| 客製開發支援 | ❌ | ✅ | ✅ | ✅ | ✅ |
+
+### 購買須知
+
+- 價格為一次性收費，不含稅點（如需發票，加收3%稅點）
+- 一年內免費升級（源碼版購買時需明確），一年後可選支付15%/年維護費
+- 提供30天免費試用，付款後支援7天無理由退款（源碼除外）
+- 可提供客製開發服務，按2000元/人天計算
+
+> **租戶說明**：一個租戶代表一個企業帳號，一個企業帳號下可創建多個部門成員和客服帳號。不同租戶資料相互隔離，互不影響。
+
+### 權利聲明
+
+import Copyright from '/img/right/copyright.png';
+import Trademark from '/img/right/trademark.jpg';
+
+<img src={Copyright} alt="版權聲明" width="360" />
+<img src={Trademark} alt="商標聲明" width="360" />
+
+## 聯絡方式
+
+- 如需諮詢、意見反饋或購買，請[掃碼聯絡微信](/img/wechat.png)
+
+## PPT演示文檔
+
+- [下載](https://www.weiyuai.cn/download/ppt/)
+
+## 使用條款與參考
+
+- **禁止用途**：嚴禁用於含有木馬、病毒、色情、賭博、詐騙等違法違規業務
+- **免責聲明**：本軟體不保證任何形式的法律責任，請自行承擔使用風險
+- **行業對比**：[查看阿里雲智能對話機器人價格對比](https://help.aliyun.com/zh/beebot/intelligent-dialogue-robot-tongyi-version/product-overview/product-billing/?spm=a2c4g.11186623.0.nextDoc.1bf77058eyaBzh)
