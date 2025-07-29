@@ -7,7 +7,7 @@ sidebar_position: 21
 
 ## 人工质检
 
-![quality_rating](/img/quality/quality_rating.png)
+![quality_check](/img/quality/quality_check.png)
 
 ## 评分规则
 
