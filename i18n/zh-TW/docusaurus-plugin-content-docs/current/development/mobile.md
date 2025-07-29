@@ -1,6 +1,6 @@
 ---
-sidebar_label: Mobile
+sidebar_label: 手機端
 sidebar_position: 4
 ---
 
-# Mobile Development
+# 手機端開發

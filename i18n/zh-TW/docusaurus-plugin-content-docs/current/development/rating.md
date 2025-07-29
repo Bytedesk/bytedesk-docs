@@ -1,6 +1,6 @@
 ---
-sidebar_label: Rating
+sidebar_label: 滿意度評價
 sidebar_position: 20
 ---
 
-# Rating
+# 滿意度評價

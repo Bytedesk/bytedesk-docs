@@ -1,6 +1,6 @@
 ---
-sidebar_label: Server
+sidebar_label: 伺服器
 sidebar_position: 3
 ---
 
-# Server Development
+# 伺服器開發

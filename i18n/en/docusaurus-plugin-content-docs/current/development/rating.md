@@ -1,6 +1,6 @@
 ---
-sidebar_label: Rating
+sidebar_label: Satisfaction Rating
 sidebar_position: 20
 ---
 
-# Rating
+# Satisfaction Rating

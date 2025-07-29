@@ -1,6 +1,6 @@
 ---
-sidebar_label: Mobile
+sidebar_label: Mobile Client
 sidebar_position: 4
 ---
 
-# Mobile Development
+# Mobile Client Development

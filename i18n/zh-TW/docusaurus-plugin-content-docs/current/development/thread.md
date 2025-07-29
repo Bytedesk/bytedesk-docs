@@ -1,6 +1,6 @@
 ---
-sidebar_label: Thread
+sidebar_label: 會話
 sidebar_position: 28
 ---
 
-# Thread
+# 會話

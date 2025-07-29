@@ -1,6 +1,6 @@
 ---
-sidebar_label: Thread
+sidebar_label: Session
 sidebar_position: 28
 ---
 
-# Thread
+# Session
