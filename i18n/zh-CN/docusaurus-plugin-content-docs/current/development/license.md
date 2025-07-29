@@ -11,9 +11,10 @@ sidebar_position: 27
 
 ### 获取方法
 
-1. 使用手机号登录 [微语管理后台](https://www.weiyuai.cn/admin)
+1. 使用手机号登录官方 [微语管理后台](https://www.weiyuai.cn/admin)
 2. 点击 **设置** -> **License 管理**
 3. 即可获取试用版 license
+4. 找到 **激活秘钥**，复制粘贴到配置文件中即可。
 
 ![获取License](/img/faq/faq_13_get_license.png)
 
