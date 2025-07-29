@@ -7,8 +7,6 @@ sidebar_position: 27
 
 任何用户要想使用微语系统，无论是社区版、企业版还是平台版（源码版除外），都需要申请 licenseKey。本文档将详细介绍如何获取和配置 licenseKey。
 
-![license](/img/develop/admin/license.png)
-
 ## 如何申请 licenseKey
 
 ### 获取方法
