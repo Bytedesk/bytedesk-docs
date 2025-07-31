@@ -1,9 +1,9 @@
 ---
-sidebar_label: 性能测试
-sidebar_position: 10
+sidebar_label: JMeter
+sidebar_position: 2
 ---
 
-# 性能测试方案
+# JMeter 性能测试方案
 
 ## 私有部署 JMeter 进行性能测试
 

@@ -1,9 +1,9 @@
 ---
-sidebar_label: 效能測試
-sidebar_position: 10
+sidebar_label: JMeter 效能測試
+sidebar_position: 2
 ---
 
-# 效能測試方案
+# JMeter 效能測試方案
 
 ## 利用阿里雲 PTS 進行效能測試
 

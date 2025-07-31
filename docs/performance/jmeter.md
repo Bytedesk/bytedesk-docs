@@ -1,6 +1,6 @@
 ---
-sidebar_label: LoadTest
-sidebar_position: 10
+sidebar_label: JMeter
+sidebar_position: 2
 ---
 
-# LoadTest
+# JMeter
