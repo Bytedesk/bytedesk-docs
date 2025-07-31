@@ -1,7 +1,7 @@
 ---
 title: FAQ
 sidebar_label: FAQ
-sidebar_position: 9
+sidebar_position: 10
 description: Common questions about integrating Weiyu customer service system
 ---
 
