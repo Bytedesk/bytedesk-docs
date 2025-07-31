@@ -1,6 +1,6 @@
 ---
-sidebar_label: Feishu Doc
+sidebar_label: Feishu Documentation
 sidebar_position: 28
 ---
 
-# 飞书文档
+# Feishu Documentation

@@ -1,6 +1,6 @@
 ---
-sidebar_label: Taboo
+sidebar_label: Sensitive Word Filtering
 sidebar_position: 16
 ---
 
-# Taboo
+# Sensitive Word Filtering

@@ -1,6 +1,6 @@
 ---
-sidebar_label: Queue
+sidebar_label: Queue Logic
 sidebar_position: 25
 ---
 
-# Queue
+# Queue Logic

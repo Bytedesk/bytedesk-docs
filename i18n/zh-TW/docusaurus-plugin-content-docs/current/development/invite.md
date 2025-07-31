@@ -1,6 +1,6 @@
 ---
-sidebar_label: Invite
+sidebar_label: 邀請會話
 sidebar_position: 19
 ---
 
-# Invite
+# 邀請會話

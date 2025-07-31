@@ -1,6 +1,6 @@
 ---
-sidebar_label: TTS
+sidebar_label: 文字轉語音
 sidebar_position: 14
 ---
 
-# TTS
+# 文字轉語音

@@ -1,6 +1,6 @@
 ---
-sidebar_label: Black
+sidebar_label: 黑名單
 sidebar_position: 23
 ---
 
-# Black
+# 黑名單

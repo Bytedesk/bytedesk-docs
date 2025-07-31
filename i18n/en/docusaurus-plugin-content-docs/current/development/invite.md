@@ -1,6 +1,6 @@
 ---
-sidebar_label: Invite
+sidebar_label: Session Invitation
 sidebar_position: 19
 ---
 
-# Invite
+# Session Invitation

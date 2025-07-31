@@ -1,6 +1,6 @@
 ---
-sidebar_label: Translate
+sidebar_label: 訊息翻譯
 sidebar_position: 24
 ---
 
-# Translate
+# 訊息翻譯

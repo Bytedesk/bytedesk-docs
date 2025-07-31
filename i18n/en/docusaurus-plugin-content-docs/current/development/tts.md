@@ -1,6 +1,6 @@
 ---
-sidebar_label: TTS
+sidebar_label: Text to Speech
 sidebar_position: 14
 ---
 
-# TTS
+# Text to Speech

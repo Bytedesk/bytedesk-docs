@@ -1,6 +1,6 @@
 ---
-sidebar_label: Offline
+sidebar_label: 離線
 sidebar_position: 29
 ---
 
-# Offline
+# 離線

@@ -1,6 +1,6 @@
 ---
-sidebar_label: Translate
+sidebar_label: Message Translation
 sidebar_position: 24
 ---
 
-# Translate
+# Message Translation

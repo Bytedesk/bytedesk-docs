@@ -1,6 +1,6 @@
 ---
-sidebar_label: Transfer
+sidebar_label: Session Transfer
 sidebar_position: 18
 ---
 
-# Transfer
+# Session Transfer

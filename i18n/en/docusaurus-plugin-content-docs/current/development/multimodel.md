@@ -1,6 +1,6 @@
 ---
-sidebar_label: MultiModel
+sidebar_label: Multimodal
 sidebar_position: 11
 ---
 
-# MultiModel
+# Multimodal

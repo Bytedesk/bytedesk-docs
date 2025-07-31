@@ -1,6 +1,6 @@
 ---
-sidebar_label: Feishu Doc
+sidebar_label: 飛書文件
 sidebar_position: 28
 ---
 
-# 飞书文档
+# 飛書文件

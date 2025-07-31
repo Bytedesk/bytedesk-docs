@@ -1,6 +1,6 @@
 ---
-sidebar_label: AutoReply
+sidebar_label: Auto Reply
 sidebar_position: 22
 ---
 
-# AutoReply
+# Auto Reply

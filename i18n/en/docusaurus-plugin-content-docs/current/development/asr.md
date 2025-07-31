@@ -1,6 +1,6 @@
 ---
-sidebar_label: ASR
+sidebar_label: Speech Recognition
 sidebar_position: 15
 ---
 
-# ASR
+# Speech Recognition, Speech to Text
