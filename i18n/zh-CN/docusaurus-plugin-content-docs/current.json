@@ -83,6 +83,10 @@
     "message": "插件扩展",
     "description": "The label for category Solutions in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.Performance": {
+    "message": "性能测试",
+    "description": "The label for category Solutions in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Compare": {
     "message": "同业对比",
     "description": "The label for category Solutions in sidebar tutorialSidebar"
