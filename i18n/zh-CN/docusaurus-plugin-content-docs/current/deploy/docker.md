@@ -38,13 +38,16 @@ sidebar_position: 3
 
 ### 步骤2：修改配置
 
-在下载的配置文件中，将 `127.0.0.1` 替换为你的服务器IP地址或域名：
+在下载的配置文件中，将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置[licenseKey](../development/license.md)：
 
 ```yaml
 # 请将 127.0.0.1 替换为你的服务器IP或域名
 BYTEDESK_UPLOAD_URL: http://你的服务器IP:9003
 BYTEDESK_KBASE_API_URL: http://你的服务器IP:9003
 BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
+
+# 申请licenseKey
+BYTEDESK_LICENSE_KEY: 
 ```
 
 ### 步骤3：启动服务
@@ -134,6 +137,7 @@ environment:
 
 ## 参考链接
 
+- [申请licenseKey](../development/license.md)
 - [微语项目仓库](https://gitee.com/270580156/weiyu)
 - [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
 - [微语企业版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk)
