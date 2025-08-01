@@ -1,5 +1,5 @@
 ---
-sidebar_label: 会话
+sidebar_label: 智能会话
 sidebar_position: 28
 ---
 

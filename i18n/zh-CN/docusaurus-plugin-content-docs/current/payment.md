@@ -74,6 +74,7 @@ sidebar_position: 11
 | [转接会话](./development/transfer.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [邀请会话](./development/invite.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [满意度评分](./development/rating.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [智能工单](./development/ticket.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [智能质检](./development/qualitycheck.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [自动回复](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [黑名单](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
