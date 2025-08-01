@@ -13,9 +13,7 @@ sidebar_position: 10
 
 Docker 是一个开源的应用容器引擎，它让开发者可以将应用及其依赖打包到一个可移植的容器中，然后发布到任何流行的 Linux 或 Windows 操作系统的机器上。本指南将教你如何安装 Docker 并介绍一些常用命令。
 
-## 1. Docker 安装流程（Ubuntu 系统）
-
-### 1.1 添加 Docker 软件源
+## Docker 安装流程（Ubuntu 系统）
 
 运行以下命令添加 Docker 的官方软件源：
 
@@ -37,7 +35,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 sudo apt-get update
 ```
 
-### 1.2 安装 Docker
+### 安装 Docker
 
 通过以下命令安装 Docker 和相关组件：
 
@@ -46,9 +44,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-## 2. Docker 基本操作
-
-### 2.1 Docker 服务管理
+## Docker 基本操作
 
 ```bash
 # 启动 Docker 服务
@@ -71,8 +67,6 @@ docker info
 ```
 
 ## 问题排查
-
-查看logs
 
 ```bash
 # 例如查看MySQL容器的日志
@@ -104,34 +98,41 @@ docker top bytedesk
 
 ```bash
 # 停止所有服务（保留数据）
-docker compose -p bytedesk -f docker-compose-ollama.yaml down
+docker compose -p bytedesk -f docker-compose.yaml down
+# docker compose -p bytedesk -f docker-compose-ollama.yaml down
 # 或
 docker stop bytedesk redis-bytedesk elasticsearch-bytedesk ollama-bytedesk mysql-bytedesk artemis-bytedesk
 
 # 停止所有服务并删除数据卷（谨慎操作，会删除所有数据）
-docker compose -p bytedesk -f docker-compose-ollama.yaml down -v
+docker compose -p bytedesk -f docker-compose.yaml down -v
+# docker compose -p bytedesk -f docker-compose-ollama.yaml down -v
 
 # 重启特定服务
-docker compose -p bytedesk -f docker-compose-ollama.yaml restart bytedesk
+docker compose -p bytedesk -f docker-compose.yaml restart bytedesk
+# docker compose -p bytedesk -f docker-compose-ollama.yaml restart bytedesk
 
 # 重启所有服务
-docker compose -p bytedesk -f docker-compose-ollama.yaml restart
+docker compose -p bytedesk -f docker-compose.yaml restart
+# docker compose -p bytedesk -f docker-compose-ollama.yaml restart
 ```
 
 ## 升级bytedesk镜像
 
 ```bash
 # 1. 停止当前服务
-docker compose -p bytedesk -f docker-compose-ollama.yaml down
+docker compose -p bytedesk -f docker-compose.yaml down
+# docker compose -p bytedesk -f docker-compose-ollama.yaml down
 
 # 2. 拉取最新镜像
 docker pull registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest
 
 # 3. 重新启动服务（会自动使用最新镜像）
-docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
+docker compose -p bytedesk -f docker-compose.yaml up -d
+# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
 
 # 或者使用以下命令强制重新构建并启动
-docker compose -p bytedesk -f docker-compose-ollama.yaml up -d --force-recreate bytedesk
+docker compose -p bytedesk -f docker-compose.yaml up -d --force-recreate bytedesk
+# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d --force-recreate bytedesk
 ```
 
 ## 删除MySQL数据挂载
@@ -140,13 +141,15 @@ docker compose -p bytedesk -f docker-compose-ollama.yaml up -d --force-recreate 
 
 ```bash
 # 1. 停止所有服务
-docker compose -p bytedesk -f docker-compose-ollama.yaml down
+docker compose -p bytedesk -f docker-compose.yaml down
+# docker compose -p bytedesk -f docker-compose-ollama.yaml down
 
 # 2. 删除MySQL数据卷（谨慎操作，会删除所有数据库数据）
 docker volume rm bytedesk_mysql_data
 
 # 3. 重新启动服务（会自动创建新的数据卷和数据库）
-docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
+docker compose -p bytedesk -f docker-compose.yaml up -d
+# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
 
 # 注意：删除数据卷后，所有数据都会丢失，需要重新初始化管理员账户
 ```
@@ -186,7 +189,9 @@ docker logs bytedesk
 
 # 如果服务启动失败，可以尝试重启
 docker compose -p bytedesk -f docker-compose.yaml down
+# docker compose -p bytedesk -f docker-compose-ollama.yaml down
 docker compose -p bytedesk -f docker-compose.yaml up -d
+# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
 
 # 检查网络连接
 docker network inspect bytedesk-network
@@ -199,13 +204,16 @@ docker system prune -f
 
 ```bash
 # 查看服务状态
-docker compose -p bytedesk -f docker-compose-ollama.yaml ps
+docker compose -p bytedesk -f docker-compose.yaml ps
+# docker compose -p bytedesk -f docker-compose-ollama.yaml ps
 
 # 查看服务日志
-docker compose -p bytedesk -f docker-compose-ollama.yaml logs
+docker compose -p bytedesk -f docker-compose.yaml logs
+# docker compose -p bytedesk -f docker-compose-ollama.yaml logs
 
 # 查看特定服务日志
-docker compose -p bytedesk -f docker-compose-ollama.yaml logs bytedesk
+docker compose -p bytedesk -f docker-compose.yaml logs bytedesk
+# docker compose -p bytedesk -f docker-compose-ollama.yaml logs bytedesk
 
 # 进入容器内部
 docker exec -it bytedesk /bin/bash

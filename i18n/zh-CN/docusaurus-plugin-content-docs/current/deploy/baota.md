@@ -54,7 +54,7 @@ SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
 
 ## 步骤六：安装ollama模型
 
-因项目默认使用ollama qwen2.5:1.5b模型，所以需要拉取模型，否则无法使用AI问答功能
+仅有使用配置文件 docker-compose-ollama.yaml 时，需要执行此步骤，否则忽略此步骤
 
 ```bash
 # 对话模型
@@ -66,6 +66,8 @@ ollama pull bge-m3:latest
 如果你使用的是docker-compose-ollama.yaml-默认集成ollama，参考下图安装模型
 
 - ![ollama](/img/deploy/baota/baota-ollama.png)
+
+> **更多**[微语Docker常用命令](./depend/docker#升级bytedesk镜像)
 
 ## 步骤七：开放端口
 

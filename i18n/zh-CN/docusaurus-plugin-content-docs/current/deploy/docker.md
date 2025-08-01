@@ -61,13 +61,7 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 # docker exec ollama-bytedesk ollama pull hf.co/<username>/<model-repository>
 ```
 
-## 停止容器
-
-```bash
-docker compose -p weiyu -f docker-compose.yaml down
-# 或者
-docker compose -p weiyu -f docker-compose-ollama.yaml down
-```
+> **更多**[微语Docker常用命令](./depend/docker#升级bytedesk镜像)
 
 ## 开放端口
 
@@ -77,8 +71,6 @@ docker compose -p weiyu -f docker-compose-ollama.yaml down
 - 9885
 
 ## 演示
-
-本地预览
 
 ```bash
 # 请将127.0.0.1替换为你的服务器ip
