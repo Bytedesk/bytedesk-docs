@@ -340,7 +340,7 @@ scrape_configs:
 
 ### 9.2 性能测试报告
 
-- [测试报告模板](./bytedesk-load-test-report.md)
+<!-- - [测试报告模板](./report.md) -->
 
 ### 9.3 结果图表示例
 
