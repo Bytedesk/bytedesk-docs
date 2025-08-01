@@ -57,7 +57,6 @@ sidebar_position: 11
 | [视频消息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [文件消息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 机器人消息 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [消息撤回](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 机器人客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 一对一客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 工作组客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
@@ -68,7 +67,9 @@ sidebar_position: 11
 |------|--------|--------|--------|----------|--------|
 | [对接大模型](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [知识库](./modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [消息撤回](./development/message.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [敏感词过滤](./development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Ip过滤拦截](./development/ip.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [数据统计报表](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [转接会话](./development/transfer.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [邀请会话](./development/invite.md) | ❌ | ✅ | ✅ | ✅ | ✅ |

@@ -45,7 +45,7 @@ BYTEDESK_UPLOAD_URL: http://你的服务器IP:9003
 BYTEDESK_KBASE_API_URL: http://你的服务器IP:9003
 BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
 
-# 申请licenseKey
+# 官方微语管理后台-》设置-》License-》申请licenseKey
 BYTEDESK_LICENSE_KEY: 
 ```
 
