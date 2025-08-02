@@ -7,4 +7,4 @@ sidebar_position: 3
 
 ## 下载测试脚本
 
-- [多用户同时登录](https://gitee.com/270580156/weiyu/blob/main/jmeter/01_login.jmx)
+- [多用户同时登录](https://gitee.com/270580156/weiyu/blob/main/jmeter/zh_cn/01_login.jmx)
