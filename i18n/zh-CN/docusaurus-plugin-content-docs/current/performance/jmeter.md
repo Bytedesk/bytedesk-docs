@@ -57,11 +57,12 @@ BYTEDESK_TESTING_DISABLE_IP_FILTER: "true"
 cd bin/ && ./jmeter.sh
 ```
 
-### 在JMeter中导入这些.jmx文件
+### 开始测试
 
-### 根据需要调整HOST和PORT变量
-
-### 运行测试并查看结果
+- [登录测试步骤](./01_login.md)
+- [一对一客服测试步骤](./02_agent.md)
+- [工作组客服测试步骤](./03_workgroup.md)
+- [机器人客服测试步骤](./04_robot.md)
 
 ## 参考链接
 
