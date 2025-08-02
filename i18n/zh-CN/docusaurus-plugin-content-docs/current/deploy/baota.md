@@ -37,6 +37,8 @@ sidebar_position: 3
 
 ### 步骤2：修改配置
 
+#### 2.1 服务器IP配置
+
 在下载的配置文件中，将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置[licenseKey](../development/license.md)：
 
 ```yaml
@@ -48,6 +50,24 @@ BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
 # 官方微语管理后台-》设置-》License-》申请licenseKey
 BYTEDESK_LICENSE_KEY: 
 ```
+
+#### 2.2 云模型配置（智谱AI）
+
+如果选择云模型方式，在 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 中配置：
+
+```yaml
+environment:
+  SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
+  SPRING_AI_ZHIPUAI_CHAT_ENABLED: "true"
+  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
+  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
+  SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
+  SPRING_AI_ZHIPUAI_EMBEDDING_OPTIONS_MODEL: embedding-2
+```
+
+#### 2.3 本地模型配置（Ollama）
+
+如果选择本地模型方式，在 [`docker-compose-ollama.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml) 中已预配置，无需额外设置。
 
 ### 步骤3：宝塔面板操作
 
@@ -92,26 +112,6 @@ ollama pull bge-m3:latest
 
 ![Ollama模型安装](/img/deploy/baota/baota-ollama.png)
 
-## 配置说明
-
-### 云模型配置（智谱AI）
-
-在 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 中配置：
-
-```yaml
-environment:
-  SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
-  SPRING_AI_ZHIPUAI_CHAT_ENABLED: "true"
-  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
-  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
-  SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
-  SPRING_AI_ZHIPUAI_EMBEDDING_OPTIONS_MODEL: embedding-2
-```
-
-### 本地模型配置（Ollama）
-
-在 [`docker-compose-ollama.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml) 中已预配置，无需额外设置。
-
 ## 访问系统
 
 ### 开放端口
@@ -146,25 +146,6 @@ environment:
 - **社区版**：`registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk-ce:latest`
 - **企业版**：`registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest`
 :::
-
-## 常用命令
-
-```bash
-# 查看服务状态
-docker compose -p bytedesk ps
-
-# 查看日志
-docker compose -p bytedesk logs -f
-
-# 停止服务
-docker compose -p bytedesk down
-
-# 重启服务
-docker compose -p bytedesk restart
-
-# 升级镜像
-docker compose -p bytedesk pull && docker compose -p bytedesk up -d
-```
 
 ## 常见问题
 
