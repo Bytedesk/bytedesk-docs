@@ -6,10 +6,8 @@ sidebar_position: 14
 # Instagram
 
 :::tip 前置条件
-
-- 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
-- 服务器需要能够访问Instagram和Facebook的官方网站。
-
+社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
+服务器需要能够访问Instagram和Facebook的官方网站。
 :::
 
 ## 功能简介
