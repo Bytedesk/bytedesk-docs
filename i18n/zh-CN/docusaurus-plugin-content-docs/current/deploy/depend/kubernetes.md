@@ -514,7 +514,7 @@ kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
 ## 参考链接
 
 - [Kubernetes官方文档](https://kubernetes.io/zh-cn/docs/setup/)
-- [kubeadm安装指南](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
+- [Kubeadm安装指南](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/)
 - [Minikube文档](https://minikube.sigs.k8s.io/docs/)
 - [kind文档](https://kind.sigs.k8s.io/)
 - [kubectl命令参考](https://kubernetes.io/docs/reference/kubectl/)
