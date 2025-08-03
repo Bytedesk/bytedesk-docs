@@ -38,7 +38,8 @@ sidebar_position: 3
 
 ### 步骤2：修改配置
 
-在下载的配置文件中，将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置[licenseKey](../development/license.md)：
+在下载的配置文件中，将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置[licenseKey](../development/license.md)，
+申请[智谱AI API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
 
 ```yaml
 # 请将 127.0.0.1 替换为你的服务器IP或域名
@@ -48,6 +49,9 @@ BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
 
 # 官方微语管理后台-》设置-》License-》申请licenseKey
 BYTEDESK_LICENSE_KEY: 
+
+# 申请智谱AI API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys
+SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
 ```
 
 ### 步骤3：启动服务
@@ -75,26 +79,6 @@ docker exec ollama-bytedesk ollama pull bge-m3:latest
 docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 ```
 
-## 配置说明
-
-### 云模型配置（智谱AI）
-
-在 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 中配置：
-
-```yaml
-environment:
-  SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
-  SPRING_AI_ZHIPUAI_CHAT_ENABLED: "true"
-  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
-  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
-  SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
-  SPRING_AI_ZHIPUAI_EMBEDDING_OPTIONS_MODEL: embedding-2
-```
-
-### 本地模型配置（Ollama）
-
-在 [`docker-compose-ollama.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml) 中已预配置，无需额外设置。
-
 ## 访问系统
 
 ### 开放端口
@@ -107,7 +91,8 @@ environment:
 ### 登录信息
 
 ```bash
-访问地址：http://你的服务器IP:9003/
+# 将 127.0.0.1 替换为你的服务器IP
+访问地址：http://127.0.0.1:9003/
 默认账号：admin@email.com
 默认密码：admin
 ```
