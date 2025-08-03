@@ -11,19 +11,19 @@ sidebar_position: 26
 
 ## 訪客端留言
 
-import leavemsgChat from '/img/develop/admin/leavemsg_chat.png';
-import leavemsgChat2 from '/img/develop/admin/leavemsg_chat2.png';
+import leavemsgChat from '/img/develop/leavemsg/leavemsg_chat.png';
+import leavemsgChat2 from '/img/develop/leavemsg/leavemsg_chat2.png';
 
 <img src={leavemsgChat} alt="Chat" width="360" />
 <img src={leavemsgChat2} alt="Chat" width="360" />
 
 ## 客服端查看留言
 
-![leavemsg_agent](/img/develop/admin/leavemsg_agent.png)
+![leavemsg_agent](/img/develop/leavemsg/leavemsg_agent.png)
 
 ## 後台查看留言
 
-![leavemsg_admin](/img/develop/admin/leavemsg_admin.png)
+![leavemsg_admin](/img/develop/leavemsg/leavemsg_admin.png)
 
 ## 留言通知
 

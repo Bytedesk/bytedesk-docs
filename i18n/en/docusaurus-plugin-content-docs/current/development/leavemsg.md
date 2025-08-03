@@ -11,19 +11,19 @@ When customer service is offline, the system will automatically display a leave 
 
 ## Visitor End Leave Message
 
-import leavemsgChat from '/img/develop/admin/leavemsg_chat.png';
-import leavemsgChat2 from '/img/develop/admin/leavemsg_chat2.png';
+import leavemsgChat from '/img/develop/leavemsg/leavemsg_chat.png';
+import leavemsgChat2 from '/img/develop/leavemsg/leavemsg_chat2.png';
 
 <img src={leavemsgChat} alt="Chat" width="360" />
 <img src={leavemsgChat2} alt="Chat" width="360" />
 
 ## Customer Service End View Leave Messages
 
-![leavemsg_agent](/img/develop/admin/leavemsg_agent.png)
+![leavemsg_agent](/img/develop/leavemsg/leavemsg_agent.png)
 
 ## Admin Backend View Leave Messages
 
-![leavemsg_admin](/img/develop/admin/leavemsg_admin.png)
+![leavemsg_admin](/img/develop/leavemsg/leavemsg_admin.png)
 
 ## Leave Message Notifications
 
