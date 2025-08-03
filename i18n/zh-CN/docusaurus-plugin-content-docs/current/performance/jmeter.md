@@ -21,6 +21,7 @@ sidebar_position: 2
 #= Performance Testing config
 # ===============================
 bytedesk.testing.enabled=true
+bytedesk.testing.disable-captcha=true
 bytedesk.testing.disable-ip-filter=true
 ```
 
@@ -31,12 +32,14 @@ bytedesk.testing.disable-ip-filter=true
 ```yaml
 # Performance Testing config
 BYTEDESK_TESTING_ENABLED: "true"
+BYTEDESK_TESTING_DISABLE_CAPTCHA: "true"
 BYTEDESK_TESTING_DISABLE_IP_FILTER: "true"
 ```
 
 配置说明
 
 - `bytedesk.testing.enabled`: 设置为 true 启用性能测试模式
+- `bytedesk.testing.disable-captcha`: 设置为 true 禁用验证码验证
 - `bytedesk.testing.disable-ip-filter`: 设置为 true 禁用IP过滤
 
 配置完成后重启微语系统服务。
