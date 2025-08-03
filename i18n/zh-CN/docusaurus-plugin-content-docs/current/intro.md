@@ -226,7 +226,13 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 帮助企业了解客户需求与痛点
 - 发现产品和服务改进机会
 
-### 10. [开放平台...](modules/open.md)
+### 10. [开放平台](modules/open.md)
+
+🔌 **企业级API开放平台**
+
+- 提供完整的RESTful API接口和SDK工具包
+- 支持与第三方系统无缝集成，实现数据互通
+- 多语言SDK支持，简化开发集成流程
 
 <!-- ## 下载
 
