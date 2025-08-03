@@ -387,6 +387,7 @@ kubectl rollout undo deployment/bytedesk-app --to-revision=2
 
 ## 参考链接
 
+- [安装Kubernetes](./depend/kubernetes.md)
 - [申请licenseKey](../development/license.md)
 - [微语项目仓库](https://gitee.com/270580156/weiyu)
 - [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
