@@ -69,6 +69,6 @@ cd bin/ && ./jmeter.sh
 
 ## 参考链接
 
-- [JMeter](https://jmeter.apache.org/)
-- [下载JMeter](https://jmeter.apache.org/download_jmeter.cgi) (推荐版本: 5.6.3)
+- [JMeter官网](https://jmeter.apache.org/)
+- [官网下载JMeter](https://jmeter.apache.org/download_jmeter.cgi) (推荐版本: 5.6.3)
 - [📊 压测脚本与数据](https://gitee.com/270580156/weiyu/tree/main/jmeter)
