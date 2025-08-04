@@ -15,6 +15,18 @@ sidebar_position: 12
 - 兼容 ARM 架构鲲鹏、海思、飞腾等芯片
 - 兼容 LoongArch 架构 3A5000、3B5000 等芯片
 
+## JDK 推荐版本
+
+根据不同的CPU架构，我们推荐使用以下JDK版本：
+
+| 架构/厂商 | 推荐 JDK |
+|-----------|----------|
+| 鲲鹏 / ARM64 | Huawei Bisheng JDK、Adoptium（ARM64） |
+| 飞腾 / ARM64 | Huawei Bisheng JDK、Adoptium（ARM64） |
+| 龙芯（LoongArch） | 龙芯 JDK、LoongArch JDK |
+| 龙芯（MIPS） | LoongArch JDK（部分兼容） |
+| 兆芯 / 海光 | Adoptium、Oracle JDK（x86_64） |
+
 ## 国产中间件
 
 支持多种国产中间件解决方案：
@@ -48,3 +60,7 @@ sidebar_position: 12
 
 - 支持宁盾等国密加密认证方案
 - 一体机支持配置 PCIE 加密卡、 -->
+
+## 参考链接
+
+- [java环境对国产服务器的硬件环境要求？](https://blog.27nk.com/article/8498)

@@ -64,33 +64,7 @@ sudo sysctl --system
 
 #### 步骤2：安装Docker
 
-```bash
-# 安装Docker
-sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-
-# 配置Docker使用systemd
-sudo mkdir -p /etc/docker
-cat <<EOF | sudo tee /etc/docker/daemon.json
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2"
-}
-EOF
-
-sudo systemctl enable docker
-sudo systemctl start docker
-```
+- [安装Docker](./docker.md)
 
 #### 步骤3：安装kubeadm、kubelet和kubectl
 
@@ -142,38 +116,17 @@ kubeadm token create --print-join-command
 sudo kubeadm join <主节点IP>:6443 --token <token> --discovery-token-ca-cert-hash sha256:<hash>
 ```
 
-### 方式二：使用Minikube（开发测试）
-
-Minikube适合本地开发和测试，可以快速搭建单节点集群。
-
-```bash
-# 安装Minikube
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-sudo install minikube-linux-amd64 /usr/local/bin/minikube
-
-# 启动集群
-minikube start --driver=docker
-
-# 验证集群
-kubectl cluster-info
-```
-
-### 方式三：使用kind（本地开发）
+### 方式二：使用kind（本地开发）
 
 kind（Kubernetes IN Docker）适合本地开发和CI/CD。
 
-```bash
-# 安装kind
-curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
-chmod +x ./kind
-sudo mv ./kind /usr/local/bin/kind
+在 Docker Desktop 右上角 Settings 中启用 Kubernetes：
 
-# 创建集群
-kind create cluster
+![k8s_docker_settings](/img/k8s/k8s_docker_settings.png)
 
-# 验证集群
-kubectl cluster-info
-```
+模拟集群环境，设置2个节点，点击右下角Apply，等待 Kubernetes Running 图标变为绿色，表示集群已启动。
+
+![k8s_docker_kind_2](/img/k8s/k8s_docker_kind_2.png)
 
 ## 基本操作
 
@@ -387,72 +340,6 @@ kubectl label pod <pod-name> environment-
 
 # 添加注解
 kubectl annotate pod <pod-name> description="This is a test pod"
-```
-
-## 配置文件示例
-
-### Pod配置
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx-pod
-  labels:
-    app: nginx
-spec:
-  containers:
-  - name: nginx
-    image: nginx:latest
-    ports:
-    - containerPort: 80
-    resources:
-      requests:
-        memory: "64Mi"
-        cpu: "250m"
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-```
-
-### Deployment配置
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
-```
-
-### Service配置
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-spec:
-  selector:
-    app: nginx
-  ports:
-  - port: 80
-    targetPort: 80
-  type: NodePort
 ```
 
 ## 常见问题
