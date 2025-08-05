@@ -5,9 +5,8 @@ sidebar_position: 27
 
 # Token
 
-:::tip 前置条件
-
-- 仅企业版和平台版支持此功能，如需要，请[扫码联系微信](/img/wechat.png)
+:::tip 提示
+社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
 :::
 
 ## 功能简介
