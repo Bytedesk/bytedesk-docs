@@ -1,15 +1,9 @@
 ---
-sidebar_label: WebRTC
-sidebar_position: 6
+sidebar_label: Coturn
+sidebar_position: 15
 ---
 
-# WebRTC
-
-:::tip 系统要求
-
-- 操作系统：Ubuntu 22.04 LTS
-- 服务器推荐配置：2核4G内存
-:::
+# Coturn
 
 ## STUN/TURN 服务安装
 
