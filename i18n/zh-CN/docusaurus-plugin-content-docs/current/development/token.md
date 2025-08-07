@@ -28,20 +28,41 @@ AccessToken 是微语系统提供的第三方登录凭证，主要用于第三�
 
 在微语管理后台的 Token 管理页面，可以生成和管理 AccessToken。
 
+### 任意路径登录优势
+
+AccessToken 支持任意路径登录，这意味着您可以直接跳转到系统的任何页面，而不仅限于登录页面。这种方式的优势包括：
+
+- **提升用户体验**: 用户可以直接跳转到需要的功能页面，无需额外的导航步骤
+- **简化集成流程**: 第三方系统可以直接链接到具体功能模块
+- **减少页面跳转**: 避免先跳转到登录页面再跳转到目标页面的多余步骤
+- **精确定位**: 可以将用户直接带到相关的工作页面，提高工作效率
+
 ### 2. 登录 URL 格式
 
-AccessToken 支持两种登录方式：
+AccessToken 支持两种登录方式，并且支持任意路径登录：
 
 #### 客服工作台登录
 
 ```bash
+# 标准登录页面
 http://服务器ip/agent/auth/login?accessToken=YOUR_ACCESS_TOKEN
+
+# 任意路径登录（推荐）
+http://服务器ip/agent/chat?accessToken=YOUR_ACCESS_TOKEN
+http://服务器ip/agent/ticket?accessToken=YOUR_ACCESS_TOKEN
+http://服务器ip/agent/任意路径?accessToken=YOUR_ACCESS_TOKEN
 ```
 
 #### 管理后台登录
 
 ```bash
+# 标准登录页面
 http://服务器ip/admin/auth/login?accessToken=YOUR_ACCESS_TOKEN
+
+# 任意路径登录（推荐）
+http://服务器ip/admin/welcome?accessToken=YOUR_ACCESS_TOKEN
+http://服务器ip/admin/dashboard?accessToken=YOUR_ACCESS_TOKEN
+http://服务器ip/admin/任意路径?accessToken=YOUR_ACCESS_TOKEN
 ```
 
 ### 3. 完整示例
@@ -49,13 +70,27 @@ http://服务器ip/admin/auth/login?accessToken=YOUR_ACCESS_TOKEN
 #### 客服工作台示例
 
 ```bash
-http://your-domain.com/agent/auth/login?accessToken=eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ7XCJwbGF0Zm9ybVwiOlwiYnl0ZWRlc2tcIixcInVzZXJuYW1lXCI6XCJhZG1pbkBlbWFpbC5jb21cIn0iLCJpYXQiOjE3NTI3MjQ4MzIsImV4cCI6MTc1NTMxNjgzMn0.3Q5ZXyNHImEGCErPkRXWG6rnFK1F_z77kTE6iRlpKmzUAtRpJZinjM_O0J0GebtM
+# 标准登录页面
+http://your-domain.com/agent/auth/login?accessToken=eyJhbGciOiJIUzM4NCJ9...
+
+# 聊天页面直接登录
+http://127.0.0.1:9005/agent/chat?accessToken=eyJhbGciOiJIUzM4NCJ9...
+
+# 工单页面直接登录
+http://127.0.0.1:9005/agent/ticket?accessToken=eyJhbGciOiJIUzM4NCJ9...
 ```
 
 #### 管理后台示例
 
 ```bash
-http://your-domain.com/admin/auth/login?accessToken=eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ7XCJwbGF0Zm9ybVwiOlwiYnl0ZWRlc2tcIixcInVzZXJuYW1lXCI6XCJhZG1pbkBlbWFpbC5jb21cIn0iLCJpYXQiOjE3NTI3MjQ4MzIsImV4cCI6MTc1NTMxNjgzMn0.3Q5ZXyNHImEGCErPkRXWG6rnFK1F_z77kTE6iRlpKmzUAtRpJZinjM_O0J0GebtM
+# 标准登录页面
+http://your-domain.com/admin/auth/login?accessToken=eyJhbGciOiJIUzM4NCJ9...
+
+# 欢迎页面直接登录
+http://127.0.0.1:9004/admin/welcome?accessToken=eyJhbGciOiJIUzM4NCJ9...
+
+# 仪表盘页面直接登录
+http://127.0.0.1:9004/admin/dashboard?accessToken=eyJhbGciOiJIUzM4NCJ9...
 ```
 
 ## 集成示例
@@ -65,37 +100,86 @@ http://your-domain.com/admin/auth/login?accessToken=eyJhbGciOiJIUzM4NCJ9.eyJzdWI
 #### 客服工作台
 
 ```html
+<!-- 标准登录页面 -->
 <a href="http://your-domain.com/agent/auth/login?accessToken=YOUR_ACCESS_TOKEN" target="_blank">
     打开客服工作台
+</a>
+
+<!-- 直接跳转到聊天页面 -->
+<a href="http://127.0.0.1:9005/agent/chat?accessToken=YOUR_ACCESS_TOKEN" target="_blank">
+    打开客服聊天页面
+</a>
+
+<!-- 直接跳转到工单页面 -->
+<a href="http://127.0.0.1:9005/agent/ticket?accessToken=YOUR_ACCESS_TOKEN" target="_blank">
+    打开客服工单页面
 </a>
 ```
 
 #### 管理后台
 
 ```html
+<!-- 标准登录页面 -->
 <a href="http://your-domain.com/admin/auth/login?accessToken=YOUR_ACCESS_TOKEN" target="_blank">
     打开管理后台
+</a>
+
+<!-- 直接跳转到欢迎页面 -->
+<a href="http://127.0.0.1:9004/admin/welcome?accessToken=YOUR_ACCESS_TOKEN" target="_blank">
+    打开管理后台欢迎页
+</a>
+
+<!-- 直接跳转到仪表盘 -->
+<a href="http://127.0.0.1:9004/admin/dashboard?accessToken=YOUR_ACCESS_TOKEN" target="_blank">
+    打开管理后台仪表盘
 </a>
 ```
 
 ### 2. JavaScript 跳转
 
 ```javascript
-// 打开客服工作台
+// 打开客服工作台（标准登录）
 function openAgentWorkspace(accessToken) {
     const url = `http://your-domain.com/agent/auth/login?accessToken=${accessToken}`;
     window.open(url, '_blank');
 }
 
-// 打开管理后台
+// 打开客服聊天页面（任意路径登录）
+function openAgentChat(accessToken) {
+    const url = `http://127.0.0.1:9005/agent/chat?accessToken=${accessToken}`;
+    window.open(url, '_blank');
+}
+
+// 打开客服工单页面（任意路径登录）
+function openAgentTicket(accessToken) {
+    const url = `http://127.0.0.1:9005/agent/ticket?accessToken=${accessToken}`;
+    window.open(url, '_blank');
+}
+
+// 打开管理后台（标准登录）
 function openAdminPanel(accessToken) {
     const url = `http://your-domain.com/admin/auth/login?accessToken=${accessToken}`;
     window.open(url, '_blank');
 }
 
+// 打开管理后台欢迎页（任意路径登录）
+function openAdminWelcome(accessToken) {
+    const url = `http://127.0.0.1:9004/admin/welcome?accessToken=${accessToken}`;
+    window.open(url, '_blank');
+}
+
+// 打开管理后台仪表盘（任意路径登录）
+function openAdminDashboard(accessToken) {
+    const url = `http://127.0.0.1:9004/admin/dashboard?accessToken=${accessToken}`;
+    window.open(url, '_blank');
+}
+
 // 使用示例
-openAgentWorkspace('YOUR_ACCESS_TOKEN');
-openAdminPanel('YOUR_ACCESS_TOKEN');
+const accessToken = 'YOUR_ACCESS_TOKEN';
+openAgentChat(accessToken);        // 直接打开聊天页面
+openAgentTicket(accessToken);      // 直接打开工单页面
+openAdminWelcome(accessToken);     // 直接打开管理后台欢迎页
+openAdminDashboard(accessToken);   // 直接打开管理后台仪表盘
 ```
 
 ### 3. iframe 嵌入
@@ -103,248 +187,57 @@ openAdminPanel('YOUR_ACCESS_TOKEN');
 #### 客服工作台
 
 ```html
+<!-- 标准登录页面 -->
 <iframe 
     src="http://your-domain.com/agent/auth/login?accessToken=YOUR_ACCESS_TOKEN"
     width="100%" 
     height="600px"
     frameborder="0">
 </iframe>
-```
 
-#### 管理后台
-
-```html
+<!-- 直接嵌入聊天页面 -->
 <iframe 
-    src="http://your-domain.com/admin/auth/login?accessToken=YOUR_ACCESS_TOKEN"
+    src="http://127.0.0.1:9005/agent/chat?accessToken=YOUR_ACCESS_TOKEN"
+    width="100%" 
+    height="600px"
+    frameborder="0">
+</iframe>
+
+<!-- 直接嵌入工单页面 -->
+<iframe 
+    src="http://127.0.0.1:9005/agent/ticket?accessToken=YOUR_ACCESS_TOKEN"
     width="100%" 
     height="600px"
     frameborder="0">
 </iframe>
 ```
 
-### 4. 表单提交
-
-#### 客服工作台
-
-```html
-<form action="http://your-domain.com/agent/auth/login" method="GET">
-    <input type="hidden" name="accessToken" value="YOUR_ACCESS_TOKEN">
-    <button type="submit">登录客服工作台</button>
-</form>
-```
-
 #### 管理后台
 
 ```html
-<form action="http://your-domain.com/admin/auth/login" method="GET">
-    <input type="hidden" name="accessToken" value="YOUR_ACCESS_TOKEN">
-    <button type="submit">登录管理后台</button>
-</form>
-```
+<!-- 标准登录页面 -->
+<iframe 
+    src="http://your-domain.com/admin/auth/login?accessToken=YOUR_ACCESS_TOKEN"
+    width="100%" 
+    height="600px"
+    frameborder="0">
+</iframe>
 
-### 5. API 调用示例
+<!-- 直接嵌入欢迎页面 -->
+<iframe 
+    src="http://127.0.0.1:9004/admin/welcome?accessToken=YOUR_ACCESS_TOKEN"
+    width="100%" 
+    height="600px"
+    frameborder="0">
+</iframe>
 
-AccessToken 可以用于调用微语系统的各种 API 接口，实现程序化操作。
-
-#### 在请求头中使用 AccessToken
-
-```javascript
-// JavaScript 示例
-async function callBytedeskAPI(accessToken, endpoint) {
-    const response = await fetch(`http://your-domain.com/api/${endpoint}`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        }
-    });
-    
-    if (response.ok) {
-        const data = await response.json();
-        return data;
-    } else {
-        throw new Error(`API 调用失败: ${response.status}`);
-    }
-}
-
-// 使用示例
-callBytedeskAPI('YOUR_ACCESS_TOKEN', 'tickets/list')
-    .then(data => console.log('工单列表:', data))
-    .catch(error => console.error('错误:', error));
-```
-
-#### React + TypeScript 请求拦截器示例
-
-在 React + TypeScript 项目中，可以使用 axios 拦截器自动为 API 请求添加 AccessToken：
-
-```typescript
-import axios, { AxiosRequestConfig } from 'axios';
-
-// 定义常量
-const ACCESS_TOKEN = 'accessToken';
-
-// 创建 axios 实例
-const api = axios.create({
-  baseURL: 'http://your-domain.com',
-  timeout: 10000,
-});
-
-// 请求拦截器 - 自动添加 AccessToken
-api.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
-    // 发送请求之前做一些处理
-    const accessToken = localStorage.getItem(ACCESS_TOKEN);
-    // console.log("accessToken", accessToken);
-    if (accessToken && accessToken.length > 10 && config.url?.startsWith("/api")) {
-      // token不为空，且长度大于10，说明已经登录，对于授权访问接口，则设置请求头
-      config.headers = config.headers || {};
-      config.headers.Authorization = `Bearer ${accessToken}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-// 响应拦截器 - 处理 token 过期等情况
-api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    if (error.response?.status === 401) {
-      // Token 过期或无效，清除本地存储的 token
-      localStorage.removeItem(ACCESS_TOKEN);
-      // 可以在这里重定向到登录页面
-      window.location.href = '/login';
-    }
-    return Promise.reject(error);
-  }
-);
-
-// 使用示例
-export const ticketAPI = {
-  // 获取工单列表
-  getTickets: () => api.get('/api/tickets/list'),
-  
-  // 创建新工单
-  createTicket: (data: any) => api.post('/api/tickets/create', data),
-  
-  // 更新工单
-  updateTicket: (id: string, data: any) => api.put(`/api/tickets/${id}`, data),
-  
-  // 删除工单
-  deleteTicket: (id: string) => api.delete(`/api/tickets/${id}`),
-};
-
-// 在组件中使用
-import React, { useEffect, useState } from 'react';
-
-const TicketList: React.FC = () => {
-  const [tickets, setTickets] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchTickets = async () => {
-      setLoading(true);
-      try {
-        const response = await ticketAPI.getTickets();
-        setTickets(response.data);
-      } catch (error) {
-        console.error('获取工单列表失败:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTickets();
-  }, []);
-
-  return (
-    <div>
-      {loading ? (
-        <p>加载中...</p>
-      ) : (
-        <ul>
-          {tickets.map((ticket: any) => (
-            <li key={ticket.id}>{ticket.title}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
-export default TicketList;
-```
-
-#### cURL 示例
-
-```bash
-# 获取工单列表
-curl -X GET "http://your-domain.com/api/tickets/list" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
-
-# 创建新工单
-curl -X POST "http://your-domain.com/api/tickets/create" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "title": "新工单标题",
-    "content": "工单内容描述",
-    "priority": "medium"
-  }'
-
-# 获取用户信息
-curl -X GET "http://your-domain.com/api/user/profile" \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
-  -H "Content-Type: application/json"
-```
-
-#### Python 示例
-
-```python
-import requests
-
-def call_bytedesk_api(access_token, endpoint, method='GET', data=None):
-    """调用微语 API"""
-    url = f"http://your-domain.com/api/{endpoint}"
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-        'Content-Type': 'application/json'
-    }
-    
-    if method.upper() == 'GET':
-        response = requests.get(url, headers=headers)
-    elif method.upper() == 'POST':
-        response = requests.post(url, headers=headers, json=data)
-    elif method.upper() == 'PUT':
-        response = requests.put(url, headers=headers, json=data)
-    elif method.upper() == 'DELETE':
-        response = requests.delete(url, headers=headers)
-    
-    if response.status_code == 200:
-        return response.json()
-    else:
-        raise Exception(f"API 调用失败: {response.status_code} - {response.text}")
-
-# 使用示例
-access_token = "YOUR_ACCESS_TOKEN"
-
-# 获取工单列表
-tickets = call_bytedesk_api(access_token, "tickets/list")
-print("工单列表:", tickets)
-
-# 创建新工单
-new_ticket_data = {
-    "title": "新工单标题",
-    "content": "工单内容描述",
-    "priority": "medium"
-}
-result = call_bytedesk_api(access_token, "tickets/create", method="POST", data=new_ticket_data)
-print("创建结果:", result)
+<!-- 直接嵌入仪表盘 -->
+<iframe 
+    src="http://127.0.0.1:9004/admin/dashboard?accessToken=YOUR_ACCESS_TOKEN"
+    width="100%" 
+    height="600px"
+    frameborder="0">
+</iframe>
 ```
 
 #### 常用 API 端点示例

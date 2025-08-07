@@ -97,6 +97,23 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 默认密码：admin
 ```
 
+## 国产信创
+
+### 支持架构
+
+arm64 和 amd64架构均支持。
+
+![arches](/img/deploy/docker/docker_arches.png)
+
+对于国产服务器，比如麒麟920，arm64架构，在拉取镜像时，需要指明系统架构：
+
+```bash
+# 拉取国内镜像（arm64）
+docker pull --platform linux/arm64 registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest
+# 或直接拉取官方镜像（arm64）
+docker pull --platform linux/arm64 bytedesk/bytedesk:latest
+```
+
 ## 生产环境配置
 
 ### 域名访问

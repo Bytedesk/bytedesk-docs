@@ -1,5 +1,5 @@
 ---
-sidebar_label: Kubernetes部署
+sidebar_label: K8s部署
 sidebar_position: 9
 ---
 
@@ -72,6 +72,8 @@ kubectl get nodes
 # 检查存储类
 kubectl get storageclass
 ```
+
+- [微语K8s配置文件](https://gitee.com/270580156/weiyu/tree/main/deploy/k8s)
 
 ## 参考链接
 
