@@ -1,6 +1,6 @@
 ---
-sidebar_label: 智能会话
+sidebar_label: 会话管理
 sidebar_position: 28
 ---
 
-# 会话
+# 会话管理

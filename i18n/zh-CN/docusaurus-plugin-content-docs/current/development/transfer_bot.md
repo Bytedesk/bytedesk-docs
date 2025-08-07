@@ -199,20 +199,14 @@ graph TD
 
 #### 触发条件配置
 
-```typescript
-interface BotTransferRules {
-  confidenceThreshold: number;     // 置信度阈值
-  consecutiveFailures: number;     // 连续失败次数
-  sentimentThreshold: number;      // 情绪阈值
-  vipAutoTransfer: boolean;        // VIP自动转接
-  businessHours: {
-    start: string;
-    end: string;
-    timezone: string;
-  };
-  keywords: string[];              // 触发关键词
-}
-```
+系统支持灵活的转接规则配置：
+
+- **置信度阈值**：设定AI回答的最低置信度要求
+- **连续失败次数**：机器人连续无法理解的次数限制
+- **情绪阈值**：客户负面情绪的触发临界值
+- **VIP自动转接**：是否为VIP客户启用自动转接
+- **服务时间**：定义机器人和人工服务的时间范围
+- **触发关键词**：配置直接触发转接的关键词列表
 
 #### 客服分配策略
 
@@ -225,16 +219,14 @@ interface BotTransferRules {
 
 #### 等待时间管理
 
-```typescript
-interface WaitTimeConfig {
-  maxWaitTime: number;           // 最大等待时间
-  vipMaxWaitTime: number;        // VIP最大等待时间
-  escalationRules: Array<{
-    waitTime: number;
-    action: 'NOTIFY_SUPERVISOR' | 'ADD_AGENTS' | 'ALTERNATIVE_SERVICE';
-  }>;
-}
-```
+系统提供完善的等待时间控制机制：
+
+- **最大等待时间**：普通客户的最长等待时限
+- **VIP最大等待时间**：VIP客户的优先等待时限
+- **升级规则**：超时后的自动处理策略
+  - 通知主管介入
+  - 增加客服资源
+  - 提供替代服务方案
 
 #### 溢出处理
 
@@ -267,17 +259,13 @@ interface WaitTimeConfig {
 
 #### 转接原因分析
 
-```typescript
-interface TransferReasonAnalysis {
-  reasons: Array<{
-    category: string;
-    count: number;
-    percentage: number;
-    trend: 'INCREASING' | 'STABLE' | 'DECREASING';
-  }>;
-  suggestions: string[];
-}
-```
+系统提供详细的转接数据分析：
+
+- **原因分类**：按问题类型统计转接原因
+- **数量统计**：各类原因的具体转接次数
+- **比例分析**：不同原因占总转接量的百分比
+- **趋势变化**：识别转接原因的增长、稳定或下降趋势
+- **改进建议**：基于数据分析提供优化建议
 
 #### 优化建议
 
@@ -351,53 +339,39 @@ interface TransferReasonAnalysis {
 
 #### 转接请求
 
-```typescript
-// 发起转接请求
-POST /api/bot-transfer/request
-{
-  sessionId: string;
-  customerId: string;
-  reason: string;
-  priority: 'HIGH' | 'MEDIUM' | 'LOW';
-  preferredSkills?: string[];
-  context: {
-    conversation: Array<Message>;
-    summary: string;
-    sentiment: string;
-  };
-}
-```
+**接口地址**：`POST /api/bot-transfer/request`
+
+**请求参数**：
+
+- 会话ID和客户ID
+- 转接原因说明
+- 优先级（高、中、低）
+- 首选技能要求（可选）
+- 上下文信息（对话记录、摘要、情绪分析）
 
 #### 队列状态查询
 
-```typescript
-// 查询排队状态
-GET /api/bot-transfer/queue-status/{sessionId}
-{
-  position: number;
-  estimatedWaitTime: number;
-  queueType: string;
-  alternatives: Array<{
-    type: string;
-    description: string;
-    action: string;
-  }>;
-}
-```
+**接口地址**：`GET /api/bot-transfer/queue-status/{sessionId}`
+
+**返回信息**：
+
+- 当前排队位置
+- 预计等待时间
+- 队列类型
+- 可选的替代方案
 
 ### 事件通知
 
 #### WebSocket消息类型
 
-```typescript
-interface TransferEvent {
-  type: 'TRANSFER_INITIATED' | 'QUEUE_POSITION_UPDATED' | 
-        'AGENT_ASSIGNED' | 'TRANSFER_COMPLETED';
-  sessionId: string;
-  data: any;
-  timestamp: number;
-}
-```
+系统通过WebSocket实时推送转接状态变化：
+
+- **转接发起**：转接请求已提交
+- **队列位置更新**：排队位置发生变化
+- **客服分配**：已分配到具体客服
+- **转接完成**：成功连接人工服务
+
+每个事件都包含会话ID、相关数据和时间戳信息。
 
 ## 常见问题
 
