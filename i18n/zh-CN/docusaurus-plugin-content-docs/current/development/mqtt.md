@@ -1,11 +1,32 @@
 ---
-sidebar_label: 长连接
+sidebar_label: 客服端长连接
 sidebar_position: 33
 ---
 
-# MQTT 长连接
+# 客服端长连接
 
-MQTT (Message Queuing Telemetry Transport) 是一种轻量级的发布/订阅消息传输协议，适用于实时通信场景。微语使用 MQTT 协议实现客户端与服务器之间的长连接通信，支持实时消息收发。
+客服端基于MQTT协议实现长连接，用于与服务器建立持久的连接，支持实时消息收发。
+
+## 协议说明
+
+MQTT (Message Queuing Telemetry Transport) 是一种轻量级的发布/订阅消息传输协议，适用于实时通信场景。微语使用 MQTT 协议实现客服端与服务器之间的长连接通信，支持实时消息收发。
+
+:::info 使用场景说明
+MQTT长连接主要用于**客服端向访客端发送消息**的场景。当客服人员需要主动向网站访客或用户发送消息时，通过MQTT协议可以实现：
+
+- **实时消息推送**：客服消息可以立即推送到访客端
+- **双向通信**：支持客服和访客之间的实时对话
+- **离线消息处理**：访客离线时，消息会在其重新连接后推送
+- **多媒体消息支持**：支持文本、图片、文件、语音等多种消息类型
+
+**典型流程：**
+
+1. 客服端建立MQTT连接到服务器（通常在用户登录时建立）
+2. 客服端通过系统发送消息到服务器
+3. 服务器通过MQTT将消息推送到访客端
+4. 访客端实时接收并显示消息
+
+:::
 
 ## 快速开始
 
@@ -20,6 +41,9 @@ npm install mqtt
 ```javascript
 import mqtt from 'mqtt';
 
+// 全局MQTT客户端变量
+let mqttClient = null;
+
 // 连接参数类型定义
 type mqttConnectOptions = {
   uid: string;        // 用户唯一标识符
@@ -28,7 +52,7 @@ type mqttConnectOptions = {
 };
 
 // 连接参数示例
-const connectOptions = {
+const connectOptions: mqttConnectOptions = {
   uid: 'user123',              // 必填：用户ID，用于生成唯一的客户端ID
   username: 'your_username',   // 必填：用户名，通常是用户登录名
   accessToken: 'your_access_token' // 必填：访问令牌，从服务端获取的JWT或其他认证令牌
@@ -61,24 +85,65 @@ const mqttConnect = ({ uid, username, accessToken }) => {
     rejectUnauthorized: false, // WSS连接时是否验证服务器证书
   };
 
-  // 连接 MQTT 服务器
-  const client = mqtt.connect('wss://your-mqtt-server.com', options);
+  // 连接 MQTT 服务器，并将客户端实例赋值给全局变量
+  mqttClient = mqtt.connect(getMqttUrl(), options);
   
-  return client;
+  return mqttClient;
 };
+```
+
+#### MQTT服务器连接说明
+
+微语支持两种WebSocket协议连接MQTT服务器：
+
+```javascript
+// 1. 开发环境 - 使用 ws:// 协议（非加密连接）
+const MQTT_URL_DEV = "ws://127.0.0.1:9885/websocket";
+
+// 2. 生产环境 - 使用 wss:// 协议（加密连接）
+const MQTT_URL_PROD = "wss://api.weiyuai.cn/websocket";
+
+// 根据环境选择连接地址
+const getMqttUrl = () => {
+  const isDevelopment = process.env.NODE_ENV === 'development';
+  return isDevelopment ? MQTT_URL_DEV : MQTT_URL_PROD;
+};
+
+// 使用示例
+const client = mqtt.connect(getMqttUrl(), options);
+```
+
+**协议说明：**
+
+- **ws://** - WebSocket协议，明文传输，适用于本地开发环境
+  - 优点：配置简单，调试方便
+  - 缺点：数据未加密，不安全
+  - 使用场景：本地开发、测试环境
+
+- **wss://** - WebSocket Secure协议，TLS/SSL加密传输，适用于生产环境
+  - 优点：数据加密安全，防止中间人攻击
+  - 缺点：需要SSL证书配置
+  - 使用场景：生产环境、公网部署
+
+**连接地址格式：**
+
+```text
+协议://域名:端口/路径
+ws://127.0.0.1:9885/websocket    # 本地开发
+wss://api.weiyuai.cn/websocket   # 生产环境
 ```
 
 ### 3. 添加事件监听
 
 ```javascript
 // 连接成功事件
-client.on('connect', () => {
+mqttClient.on('connect', () => {
   console.log('MQTT 连接成功');
   // 可以在这里订阅主题
 });
 
 // 接收消息事件
-client.on('message', (topic, message, packet) => {
+mqttClient.on('message', (topic, message, packet) => {
   console.log('收到消息:', {
     topic: topic,
     message: message.toString(),
@@ -90,22 +155,22 @@ client.on('message', (topic, message, packet) => {
 });
 
 // 重连事件
-client.on('reconnect', () => {
+mqttClient.on('reconnect', () => {
   console.log('MQTT 重新连接中...');
 });
 
 // 连接关闭事件
-client.on('close', () => {
+mqttClient.on('close', () => {
   console.log('MQTT 连接已关闭');
 });
 
 // 错误事件
-client.on('error', (error) => {
+mqttClient.on('error', (error) => {
   console.error('MQTT 连接错误:', error);
 });
 
 // 离线事件
-client.on('offline', () => {
+mqttClient.on('offline', () => {
   console.log('MQTT 客户端离线');
 });
 ```
@@ -133,7 +198,7 @@ const messageStructure = {
     uid: 'user123',
     nickname: '用户昵称',
     avatar: 'avatar_url',
-    type: 'USER'               // 用户类型：USER/AGENT/MEMBER
+    type: 'USER'               // 用户类型：USER/AGENT
   },
   thread: {                    // 会话信息
     uid: 'thread_uid',
@@ -159,41 +224,13 @@ const MESSAGE_TYPES = {
   AUDIO: 'AUDIO',             // 音频消息
   VOICE: 'VOICE',             // 语音消息
   LOCATION: 'LOCATION',       // 位置消息
-  
-  // 业务消息
-  WELCOME: 'WELCOME',         // 欢迎消息
-  ARTICLE: 'ARTICLE',         // 文章消息
-  GOODS: 'GOODS',             // 商品消息
-  ORDER: 'ORDER',             // 订单消息
-  
-  // 状态消息
-  TYPING: 'TYPING',           // 正在输入
-  PROCESSING: 'PROCESSING',   // 正在处理
-  STREAM: 'STREAM',           // 流式输出
-  PREVIEW: 'PREVIEW',         // 消息预览
-  
-  // 回执消息
-  DELIVERED: 'DELIVERED',     // 已送达回执
-  READ: 'READ',               // 已读回执
-  
-  // 系统消息
-  NOTICE: 'NOTICE',           // 系统通知
-  RECALL: 'RECALL',           // 消息撤回
-  
-  // 会话管理
-  TRANSFER: 'TRANSFER',       // 转接消息
-  TRANSFER_ACCEPT: 'TRANSFER_ACCEPT', // 接受转接
-  TRANSFER_REJECT: 'TRANSFER_REJECT', // 拒绝转接
-  INVITE: 'INVITE',           // 邀请消息
-  INVITE_ACCEPT: 'INVITE_ACCEPT',     // 接受邀请
-  INVITE_REJECT: 'INVITE_REJECT',     // 拒绝邀请
-  
-  // 评价相关
-  RATE_INVITE: 'RATE_INVITE', // 邀请评价
-  RATE_SUBMIT: 'RATE_SUBMIT', // 提交评价
-  RATE_CANCEL: 'RATE_CANCEL', // 取消评价
+  .....
 };
 ```
+
+:::tip 消息类型详细说明
+如需了解各种消息类型的详细结构、TypeScript定义和使用示例，请参考 [消息类型文档](./message.md)。
+:::
 
 #### 1. MQTT 发送消息（首选方式）
 
@@ -201,7 +238,7 @@ const MESSAGE_TYPES = {
 
 ```javascript
 // MQTT发送消息的核心函数
-const mqttSendMessage = async (messageUid, messageType, messageContent, currentThread, fromTicketTab = false) => {
+const mqttSendMessage = async (messageUid, messageType, messageContent, currentThread) => {
   console.log('MQTT发送消息:', { messageUid, messageType, messageContent });
   const timestamp = Date.now();
 
@@ -222,30 +259,14 @@ const mqttSendMessage = async (messageUid, messageType, messageContent, currentT
 
     // 2. 构建发送者信息（根据会话类型选择不同的用户身份）
     const user = new userProto.User();
-    
-    if (fromTicketTab) {
-      // 工单会话：使用成员信息
-      const memberInfo = getMemberInfo();
-      user.setUid(memberInfo?.uid);
-      user.setNickname(memberInfo?.nickname);
-      user.setAvatar(memberInfo?.avatar);
-      user.setType('MEMBER');
-    } else if (isCustomerServiceThread(currentThread)) {
-      // 客服会话：使用客服信息
-      const agentInfo = getAgentInfo();
-      user.setUid(agentInfo?.uid);
-      user.setNickname(agentInfo?.nickname);
-      user.setAvatar(agentInfo?.avatar);
-      user.setType('AGENT');
-    } else {
-      // 普通会话：使用用户信息
-      const userInfo = getUserInfo();
-      user.setUid(userInfo.uid);
-      user.setNickname(userInfo.nickname);
-      user.setAvatar(userInfo.avatar);
-      user.setType('USER');
-    }
 
+    // 需要自己设置用户信息，这里仅为示例：
+    const userInfo = getUserInfo();
+    user.setUid(userInfo.uid);
+    user.setNickname(userInfo.nickname);
+    user.setAvatar(userInfo.avatar);
+    user.setType('USER');
+    
     // 3. 构建消息体
     const messageExtra = {
       orgUid: userInfo?.currentOrganization?.uid // 组织ID
@@ -266,34 +287,10 @@ const mqttSendMessage = async (messageUid, messageType, messageContent, currentT
     const messageData = message.serializeBinary();
     mqttClient.publish(currentThread.topic, messageData, { qos: 0 });
 
-    // 5. 立即更新本地消息状态
-    const messageResponse = {
-      uid: message.getUid(),
-      type: message.getType(),
-      content: messageContent,
-      channel: message.getChannel(),
-      createdAt: message.getCreatedat(),
-      status: message.getStatus(),
-      thread: {
-        uid: message.getThread().getUid(),
-        type: message.getThread().getType(),
-        topic: message.getThread().getTopic(),
-      },
-      user: {
-        uid: message.getUser().getUid(),
-        nickname: message.getUser().getNickname(),
-        avatar: message.getUser().getAvatar(),
-      },
-    };
-    
-    // 添加到本地消息存储
-    addMessageToStore(messageResponse);
-    console.log('MQTT消息发送成功');
-    
   } else {
     // MQTT连接断开，降级到HTTP发送
     console.log('MQTT连接断开，使用HTTP发送');
-    await sendMessageViaHttp(messageUid, messageType, messageContent, currentThread, fromTicketTab);
+    await sendMessageViaHttp(messageUid, messageType, messageContent, currentThread);
   }
 };
 
@@ -331,36 +328,19 @@ const formatMessageContent = (messageType, messageContent) => {
 
 ```javascript
 // HTTP降级发送消息
-const sendMessageViaHttp = async (messageUid, messageType, messageContent, currentThread, fromTicketTab) => {
+const sendMessageViaHttp = async (messageUid, messageType, messageContent, currentThread) => {
   console.log('HTTP发送消息:', { messageUid, messageType, messageContent });
   
   // 1. 构建HTTP消息格式（JSON格式）
-  let messageObject;
-  
-  if (fromTicketTab) {
-    // 工单消息格式
-    const memberInfo = getMemberInfo();
-    messageObject = formatMessageProtobufTicket(
-      currentThread,
-      getUserInfo(),
-      memberInfo,
-      messageUid,
-      messageType,
-      messageContent,
-      Date.now()
-    );
-  } else {
-    // 普通消息格式
-    messageObject = formatMessageProtobuf(
-      currentThread,
-      getUserInfo(),
-      getAgentInfo(),
-      messageUid,
-      messageType,
-      messageContent,
-      Date.now()
-    );
-  }
+  const messageObject = formatMessageProtobuf(
+    currentThread,
+    getUserInfo(),
+    getAgentInfo(),
+    messageUid,
+    messageType,
+    messageContent,
+    Date.now()
+  );
 
   try {
     // 2. 发送HTTP请求
@@ -430,17 +410,19 @@ const formatMessageProtobuf = (currentThread, userInfo, agentInfo, messageUid, m
 
 #### 常用消息发送示例
 
+以下是各种消息类型的基本发送示例：
+
 ```javascript
 // 发送文本消息
 const sendTextMessage = (topic, content) => {
   const messageUid = generateMessageId();
-  mqttSendMessage(messageUid, 'TEXT', content, currentThread, false);
+  mqttSendMessage(messageUid, 'TEXT', content, currentThread);
 };
 
 // 发送图片消息
 const sendImageMessage = (topic, imageUrl) => {
   const messageUid = generateMessageId();
-  mqttSendMessage(messageUid, 'IMAGE', imageUrl, currentThread, false);
+  mqttSendMessage(messageUid, 'IMAGE', imageUrl, currentThread);
 };
 
 // 发送文件消息
@@ -452,7 +434,7 @@ const sendFileMessage = (topic, fileUrl, fileName) => {
     size: fileSize,
     type: 'FILE'
   });
-  mqttSendMessage(messageUid, 'FILE', fileContent, currentThread, false);
+  mqttSendMessage(messageUid, 'FILE', fileContent, currentThread);
 };
 
 // 发送位置消息
@@ -464,15 +446,24 @@ const sendLocationMessage = (topic, latitude, longitude, address) => {
     address: address,
     type: 'LOCATION'
   });
-  mqttSendMessage(messageUid, 'LOCATION', locationContent, currentThread, false);
+  mqttSendMessage(messageUid, 'LOCATION', locationContent, currentThread);
 };
 
 // 发送正在输入状态
 const sendTypingStatus = (topic) => {
   const messageUid = generateMessageId();
-  mqttSendMessage(messageUid, 'TYPING', '', currentThread, false);
+  mqttSendMessage(messageUid, 'TYPING', '', currentThread);
 };
 ```
+
+:::info 更多消息类型示例
+上述仅为基础示例，更多消息类型（如语音、视频、音频、按钮等）的详细实现和完整代码示例，请参考 [消息类型文档](./message.md)，其中包含：
+
+- 完整的TypeScript类型定义
+- 详细的JavaScript代码示例  
+- 每种消息类型的使用场景说明
+- 完整的数据结构文档
+:::
 
 #### 消息发送流程总结
 
@@ -480,18 +471,25 @@ const sendTypingStatus = (topic) => {
 2. **统一消息格式**：无论哪种方式，都使用相同的消息结构
 3. **即时状态更新**：发送后立即更新本地消息状态，提升用户体验
 4. **错误处理**：完善的异常处理和重试机制
-5. **多场景支持**：支持普通会话、客服会话、工单会话等不同场景
+5. **多场景支持**：支持普通会话、客服会话等不同场景
 
 这种双重发送机制确保了消息的可靠传输，即使在网络不稳定的情况下也能保证消息正常发送。
-```
 
 ### 处理接收消息
 
 ```javascript
+// 处理接收消息
+// 相应文件 [Protobuf](https://gitee.com/270580156/weiyu/tree/main/deploy/protobuf)
+import { default as messageProto } from "@/network/protobuf/message_pb";
+import { default as threadProto } from "@/network/protobuf/thread_pb";
+import { default as userProto } from "@/network/protobuf/user_pb";
+// 
 const handleReceivedMessage = (topic, messageBinary) => {
   try {
-    // 解析 protobuf 消息
-    const messageProtobuf = parseProtobufMessage(messageBinary);
+    // 解析protobuf, 解密消息内容
+    const messageProtobuf =
+      messageProto.Message.deserializeBinary(messageBinary);
+    console.log('接收到的消息:', messageProtobuf);
     
     const message = {
       uid: messageProtobuf.getUid(),
@@ -528,34 +526,10 @@ const handleReceivedMessage = (topic, messageBinary) => {
       default:
         console.log('未知消息类型:', message.type);
     }
-
-    // 发送消息回执
-    if (shouldSendReceipt(message.type)) {
-      sendReceiptMessage(topic, message.uid);
-    }
     
   } catch (error) {
     console.error('处理消息错误:', error);
   }
-};
-```
-
-### 消息回执
-
-```javascript
-// 发送已送达回执
-const sendDeliveredReceipt = (topic, messageId) => {
-  sendMessage(topic, 'DELIVERED', messageId);
-};
-
-// 发送已读回执
-const sendReadReceipt = (topic, messageId) => {
-  sendMessage(topic, 'READ', messageId);
-};
-
-// 发送正在输入状态
-const sendTypingStatus = (topic) => {
-  sendMessage(topic, 'TYPING', '');
 };
 ```
 
@@ -566,20 +540,20 @@ const sendTypingStatus = (topic) => {
 ```javascript
 // 检查是否已连接
 const isConnected = () => {
-  return client && client.connected;
+  return mqttClient && mqttClient.connected;
 };
 
 // 手动重连
 const reconnect = () => {
-  if (client) {
-    client.reconnect();
+  if (mqttClient) {
+    mqttClient.reconnect();
   }
 };
 
 // 断开连接
 const disconnect = () => {
-  if (client) {
-    client.end();
+  if (mqttClient) {
+    mqttClient.end();
   }
 };
 ```
@@ -636,8 +610,74 @@ const handleSendError = (message, error) => {
 
 ## 示例代码
 
-[MQTT.js 官方文档](https://github.com/mqttjs/MQTT.js)
+```javascript
+// 完整的MQTT连接和使用示例
+import mqtt from 'mqtt';
+
+// 全局MQTT客户端变量
+let mqttClient = null;
+
+// 连接函数
+const connectToMQTT = async () => {
+  const connectOptions = {
+    uid: 'user123',
+    username: 'your_username',
+    accessToken: 'your_access_token'
+  };
+
+  // 建立连接
+  mqttClient = mqttConnect(connectOptions);
+
+  // 添加事件监听
+  mqttClient.on('connect', () => {
+    console.log('MQTT 连接成功');
+    
+    // 连接成功后可以订阅主题
+    const userTopic = `user/${connectOptions.uid}/messages`;
+    mqttClient.subscribe(userTopic, { qos: 0 });
+  });
+
+  mqttClient.on('message', (topic, message) => {
+    handleReceivedMessage(topic, message);
+  });
+
+  mqttClient.on('error', (error) => {
+    console.error('MQTT 连接错误:', error);
+  });
+};
+
+// 发送消息函数
+const sendMessage = (topic, content, type = 'TEXT') => {
+  if (mqttClient && mqttClient.connected) {
+    const message = {
+      uid: generateMessageId(),
+      type: type,
+      content: content,
+      timestamp: Date.now()
+    };
+    
+    const messageData = JSON.stringify(message);
+    mqttClient.publish(topic, messageData);
+    console.log('消息发送成功');
+  } else {
+    console.log('MQTT未连接，无法发送消息');
+  }
+};
+
+// 应用启动时连接MQTT
+document.addEventListener('DOMContentLoaded', () => {
+  connectToMQTT();
+});
+
+// 使用示例
+setTimeout(() => {
+  if (isConnected()) {
+    sendMessage('user/123/messages', 'Hello World!');
+  }
+}, 2000);
+```
 
 ## 参考连接
 
 - [MQTT.js 官方文档](https://github.com/mqttjs/MQTT.js)
+- [Protobuf](https://gitee.com/270580156/weiyu/tree/main/deploy/protobuf)
