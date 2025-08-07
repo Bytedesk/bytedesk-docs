@@ -11,6 +11,10 @@ sidebar_position: 4
 - 服务器推荐配置：2核4G内存
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Elasticsearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)。
+:::
+
 ## 简介
 
 Elasticsearch 是一个分布式、RESTful 的搜索和分析引擎，在微语系统中扮演着重要角色。它主要用于以下两个方面：

@@ -11,6 +11,10 @@ sidebar_position: 10
 - 服务器推荐配置：2核4G内存
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Oracle JDK 官方文档](https://docs.oracle.com/en/java/javase/17/)。
+:::
+
 ## 准备工作
 
 1. 访问[Oracle官网](https://www.oracle.com/java/technologies/downloads/)下载JDK17

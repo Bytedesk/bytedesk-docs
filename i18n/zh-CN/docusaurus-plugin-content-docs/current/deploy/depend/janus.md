@@ -5,6 +5,10 @@ sidebar_position: 14
 
 # Janus WebRTC Server
 
+:::info 提示
+以下说明仅供参考，具体配置和使用方法请参考 [Janus 官方文档](https://janus.conf.meetecho.com/docs/)。
+:::
+
 ## 概述
 
 Janus 是一个开源的通用 WebRTC 服务器，由 Meetecho 开发。它是一个轻量级的 WebRTC 网关，可以作为媒体服务器来处理音视频通信。

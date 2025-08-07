@@ -11,6 +11,10 @@ sidebar_position: 3
 - 服务器推荐配置：2核4G内存
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Ollama 官方文档](https://github.com/ollama/ollama/blob/main/README.md)。
+:::
+
 ## 简介
 
 Ollama 是一个轻量级、开源的框架，让您能够在本地设备上运行、创建和管理大型语言模型（LLM）。它提供了一种简单方式在本地部署和运行各种开源语言模型，如Llama、Mistral、Qwen等，无需依赖云服务。

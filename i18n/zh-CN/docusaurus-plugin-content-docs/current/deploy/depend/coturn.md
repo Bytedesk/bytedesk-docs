@@ -5,6 +5,10 @@ sidebar_position: 15
 
 # Coturn STUN/TURN 服务器
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Coturn 官方文档](https://github.com/coturn/coturn/wiki)。
+:::
+
 ## 概述
 
 Coturn 是一个开源的 STUN/TURN 服务器，用于处理 WebRTC 通信中的 NAT 穿越问题。它是 WebRTC 应用必不可少的基础设施组件。

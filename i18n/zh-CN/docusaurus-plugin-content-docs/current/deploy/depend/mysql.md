@@ -11,6 +11,10 @@ sidebar_position: 1
 - 服务器推荐配置：2核4G内存
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [MySQL 官方文档](https://dev.mysql.com/doc/)。
+:::
+
 ## 方式一：Docker安装
 
 - [使用Docker安装](../jar.md#12-安装项目依赖)

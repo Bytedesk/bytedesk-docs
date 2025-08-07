@@ -20,6 +20,10 @@ sidebar_position: 4
 
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Nginx 官方文档](http://nginx.org/en/docs/)。
+:::
+
 ## 安装Nginx
 
 首先需要在服务器上安装Nginx：

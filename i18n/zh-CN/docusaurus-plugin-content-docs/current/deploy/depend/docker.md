@@ -11,6 +11,10 @@ sidebar_position: 10
 - 服务器推荐配置：2核4G内存
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Docker 官方文档](https://docs.docker.com/)。
+:::
+
 Docker 是一个开源的应用容器引擎，它让开发者可以将应用及其依赖打包到一个可移植的容器中，然后发布到任何流行的 Linux 或 Windows 操作系统的机器上。本指南将教你如何安装 Docker 并介绍一些常用命令。
 
 ## Docker 安装流程（Ubuntu 系统）

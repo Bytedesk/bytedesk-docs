@@ -5,8 +5,8 @@ sidebar_position: 10
 
 # Kubernetes
 
-:::info 什么是Kubernetes
-Kubernetes（K8s）是一个开源的容器编排平台，用于自动化部署、扩展和管理容器化应用程序。它提供了容器编排、自动部署、自动扩展、负载均衡等功能。
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/home/)。Kubernetes（K8s）是一个开源的容器编排平台，用于自动化部署、扩展和管理容器化应用程序。它提供了容器编排、自动部署、自动扩展、负载均衡等功能。
 :::
 
 ## 系统要求

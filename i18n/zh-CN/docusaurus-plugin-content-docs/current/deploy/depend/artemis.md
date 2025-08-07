@@ -11,6 +11,10 @@ sidebar_position: 5
 - 服务器推荐配置：2核4G内存
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Apache ActiveMQ Artemis 官方文档](https://activemq.apache.org/components/artemis/documentation/latest/)。
+:::
+
 ## 简介
 
 Apache ActiveMQ Artemis 是 Apache 软件基金会开源的一个高性能、异步的消息传递系统。作为微语系统（基于Spring Boot 3.x开发）的核心组件之一，Artemis 消息队列在系统中扮演着至关重要的角色，主要用于处理实时聊天消息收发以及大规模FAQ文件批量导入等场景。

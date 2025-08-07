@@ -11,6 +11,10 @@ sidebar_position: 10
 - 服务器推荐配置：2核4G内存
 :::
 
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [Let's Encrypt 官方文档](https://letsencrypt.org/docs/)。
+:::
+
 [Let's Encrypt](https://letsencrypt.org) 是一个免费、开源的证书颁发机构，可以帮助您为网站获取SSL/TLS证书，启用HTTPS加密连接。本指南将引导您完成申请和安装过程。
 
 ## 什么是SSL证书？
