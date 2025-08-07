@@ -78,12 +78,11 @@ sidebar_position: 11
 | [智能质检](./development/qualitycheck.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [自动回复](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [黑名单](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [留言处理](./development/leavemsg.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单对接](./development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 官方技术支持 | ❌ | ✅ | ✅ | ✅ | ✅ |
+<!-- | [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 <!-- | [文本转语音TTS](./development/tts.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 <!-- | [语音转文本ASR/STT](./development/asr.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 

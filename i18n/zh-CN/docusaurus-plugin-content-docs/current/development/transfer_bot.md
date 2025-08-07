@@ -108,14 +108,12 @@ graph TD
 
 #### 负载均衡
 
-```typescript
-interface AgentMatchingConfig {
-  skillWeight: number;        // 技能匹配权重 40%
-  performanceWeight: number;  // 历史表现权重 30%
-  loadWeight: number;         // 负载均衡权重 20%
-  availabilityWeight: number; // 可用性权重 10%
-}
-```
+系统通过以下权重分配策略实现智能分配：
+
+- **技能匹配权重**：40% - 优先考虑客服的专业技能匹配度
+- **历史表现权重**：30% - 参考客服的历史服务质量
+- **负载均衡权重**：20% - 考虑当前工作负载分布
+- **可用性权重**：10% - 确保客服当前可以接受服务
 
 ### 等待队列管理
 
@@ -136,14 +134,11 @@ interface AgentMatchingConfig {
 
 1. **实时排队信息**
 
-   ```typescript
-   interface QueueInfo {
-     position: number;        // 当前排队位置
-     estimatedWaitTime: number; // 预计等待时间
-     queueLength: number;     // 队列总长度
-     averageWaitTime: number; // 平均等待时间
-   }
-   ```
+   系统提供详细的排队状态信息：
+   - **当前排队位置**：告知客户在队列中的位置
+   - **预计等待时间**：基于历史数据估算等待时长
+   - **队列总长度**：显示当前排队的总人数
+   - **平均等待时间**：提供历史平均等待时间参考
 
 2. **等待期间服务**
    - 提供相关FAQ推荐
@@ -157,19 +152,13 @@ interface AgentMatchingConfig {
 
 #### 转接提示
 
-```typescript
-interface TransferNotification {
-  type: 'BOT_TO_HUMAN';
-  message: string;
-  estimatedWaitTime?: number;
-  queuePosition?: number;
-  alternatives?: Array<{
-    type: 'FAQ' | 'SELF_SERVICE' | 'CALLBACK';
-    title: string;
-    action: string;
-  }>;
-}
-```
+系统会向客户发送转接通知，包含以下信息：
+
+- **转接类型**：明确告知是机器人转人工服务
+- **提示消息**：友好的转接说明和安抚信息
+- **预计等待时间**：基于当前队列情况的时间估算
+- **排队位置**：当前在队列中的具体位置
+- **备选方案**：提供FAQ、自助服务或回拨等选项
 
 #### 状态展示
 
@@ -181,20 +170,16 @@ interface TransferNotification {
 
 #### 转接通知
 
-客服收到转接请求时的信息展示：
+客服收到转接请求时会看到完整的客户信息：
 
-```typescript
-interface TransferRequest {
-  customerId: string;
-  customerLevel: 'VIP' | 'ENTERPRISE' | 'REGULAR';
-  problemType: string;
-  urgencyLevel: 'HIGH' | 'MEDIUM' | 'LOW';
-  botConversationSummary: string;
-  customerSentiment: 'POSITIVE' | 'NEUTRAL' | 'NEGATIVE';
-  estimatedComplexity: number;
-  relevantTags: string[];
-}
-```
+- **客户身份**：客户ID和基本信息
+- **客户等级**：VIP、企业客户或普通客户
+- **问题类型**：问题的分类和描述
+- **紧急程度**：高、中、低优先级标识
+- **对话摘要**：机器人与客户的对话总结
+- **客户情绪**：积极、中性或消极的情绪分析
+- **复杂程度**：预估的问题处理难度
+- **相关标签**：问题的关键词和分类标签
 
 #### 上下文传递
 
