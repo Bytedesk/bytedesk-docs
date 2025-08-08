@@ -40,31 +40,7 @@ Janus 是一个开源的通用 WebRTC 服务器，由 Meetecho 开发。它是�
 
 ### 快速安装
 
-推荐使用预编译包或脚本安装：
-
-- 参考[Github Readme](https://github.com/meetecho/janus-gateway?tab=readme-ov-file)
-- 使用[快捷安装脚本](#快捷脚本参考)
-
-### 编译安装
-
-如需自定义配置，可选择源码编译安装：
-
-```bash
-# 安装依赖
-sudo apt-get update
-sudo apt-get install -y build-essential cmake pkg-config
-
-# 下载源码
-git clone https://github.com/meetecho/janus-gateway.git
-cd janus-gateway
-
-# 配置编译
-./autogen.sh
-./configure --prefix=/opt/janus
-
-# 编译安装
-make && sudo make install
-```
+- 参考[Janus 安装指南](https://github.com/meetecho/janus-gateway?tab=readme-ov-file)
 
 ## 端口配置
 
@@ -319,33 +295,6 @@ sudo systemctl status janus
 
 # 查看实时日志
 sudo journalctl -u janus -f
-```
-
-## 快捷脚本参考
-
-为了简化部署过程，可以使用以下脚本：
-
-- [自动化安装脚本](https://gitee.com/270580156/weiyu/tree/main/deploy/janus)
-
-### 脚本功能
-
-- 自动安装依赖包
-- 下载并编译 Janus
-- 配置系统服务
-- 设置防火墙规则
-- 部署管理界面
-
-### 使用方法
-
-```bash
-# 下载脚本
-wget https://gitee.com/270580156/weiyu/raw/main/deploy/janus/install.sh
-
-# 添加执行权限
-chmod +x install.sh
-
-# 运行安装脚本
-sudo ./install.sh
 ```
 
 ## 性能优化建议
