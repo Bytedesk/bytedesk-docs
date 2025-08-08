@@ -11,7 +11,7 @@ description: 集成微语客服系统常见问题
 
 ### 配置步骤0
 
-.properties 文件配置：
+修改源码 .properties 文件配置：
 
 ```bash
 # 关闭文本对话配置
@@ -28,7 +28,7 @@ spring.ai.model.rerank=none
 spring.ai.vectorstore.type=none
 ```
 
-docker-compose.yml 文件配置：
+或者修改 docker-compose.yml 文件配置：
 
 ```yaml
 # 关闭文本对话配置
@@ -50,6 +50,8 @@ SPRING_AI_VECTORSTORE_TYPE: none
 ### 答案：可以
 
 ### 配置步骤
+
+参考 [docker-compose.yaml](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
 
 #### 1. 修改默认模型为智谱AI，关闭 Ollama 服务
 
