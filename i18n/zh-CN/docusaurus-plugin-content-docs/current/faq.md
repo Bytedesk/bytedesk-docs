@@ -5,6 +5,46 @@ sidebar_position: 10
 description: 集成微语客服系统常见问题
 ---
 
+## 问题0：是否可以不用大模型
+
+### 答案0：可以
+
+### 配置步骤0
+
+.properties 文件配置：
+
+```bash
+# 关闭文本对话配置
+spring.ai.model.chat=none
+# 关闭向量模型
+spring.ai.model.embedding=none
+# 关闭视觉模型
+spring.ai.model.vision=none
+# 关闭语音模型
+spring.ai.model.audio=none
+# 关闭重排序模型
+spring.ai.model.rerank=none
+# 关闭向量数据库
+spring.ai.vectorstore.type=none
+```
+
+docker-compose.yml 文件配置：
+
+```yaml
+# 关闭文本对话配置
+SPRING_AI_MODEL_CHAT: none
+# 关闭向量模型
+SPRING_AI_MODEL_EMBEDDING: none
+# 关闭视觉模型
+SPRING_AI_MODEL_AUDIO: none
+# 关闭语音模型
+SPRING_AI_MODEL_VISION: none
+# 关闭重排序模型
+SPRING_AI_MODEL_RERANK: none
+# 关闭向量数据库
+SPRING_AI_VECTORSTORE_TYPE: none
+```
+
 ## 问题1：可以不使用 Ollama 吗？
 
 ### 答案：可以
