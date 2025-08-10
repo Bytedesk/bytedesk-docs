@@ -158,6 +158,7 @@ sidebar_position: 16
 
 如果您有任何关于高校服务智能客服解决方案的疑问，或希望了解更多详情，请随时联系我们：
 
+- **微信咨询**：请[扫码联系微信](/img/wechat.png)
 - **微信公众号**：微语AI
 - **官方网站**：[https://www.weiyuai.cn](https://www.weiyuai.cn)
 
