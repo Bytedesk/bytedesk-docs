@@ -51,6 +51,8 @@ BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
 BYTEDESK_LICENSE_KEY: 
 ```
 
+> 💡 **提示**：注意修改镜像默认用户名密码，比如:Mysql/Redis等默认密码。
+
 #### 2.2 云模型配置（智谱AI）
 
 如果选择云模型方式，在 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 中配置：

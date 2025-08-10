@@ -54,6 +54,8 @@ BYTEDESK_LICENSE_KEY:
 SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
 ```
 
+> 💡 **提示**：注意修改镜像默认用户名密码，比如:Mysql/Redis等默认密码。
+
 ### 步骤3：启动服务
 
 ```bash
