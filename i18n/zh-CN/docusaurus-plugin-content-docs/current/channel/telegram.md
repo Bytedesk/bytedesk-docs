@@ -7,10 +7,9 @@ sidebar_position: 15
 
 :::tip 前置条件
 
-- 此模块为付费模块，如需要，请[扫码联系微信](/img/wechat.png)
-- 使用Telegram功能需要确保服务器能够访问 `https://api.telegram.org`
+- 社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
+- 使用Telegram功能需要确保服务器能够访问 `https://api.telegram.org`，请使用海外服务器或代理
 - 相关配置参数请参考[服务器配置参数说明](/docs/deploy/config#telegram配置)
-
 :::
 
 ## 功能简介
