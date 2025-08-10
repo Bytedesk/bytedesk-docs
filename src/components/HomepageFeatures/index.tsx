@@ -98,24 +98,24 @@ const FeatureList: FeatureItem[] = [
       </>
     ),
   },
-  {
-    title: <Link to="docs/plugins/jitsi">{translate({ id: 'homepage.feature.conference.title', message: 'Video Conference', })}</Link>,
-    Svg: require('@site/static/img/features/video-conference.svg').default,
-    description: (
-      <>
-        {translate({ id: 'homepage.feature.conference.description', message: 'Video Conference' })}
-      </>
-    ),
-  },
-  {
-    title: <Link to="docs/modules/forum">{translate({ id: 'homepage.feature.project.title', message: 'Project Management', })}</Link>,
-    Svg: require('@site/static/img/features/project-management.svg').default,
-    description: (
-      <>
-        {translate({ id: 'homepage.feature.project.description', message: 'Project Management' })}
-      </>
-    ),
-  },
+  // {
+  //   title: <Link to="docs/plugins/jitsi">{translate({ id: 'homepage.feature.conference.title', message: 'Video Conference', })}</Link>,
+  //   Svg: require('@site/static/img/features/video-conference.svg').default,
+  //   description: (
+  //     <>
+  //       {translate({ id: 'homepage.feature.conference.description', message: 'Video Conference' })}
+  //     </>
+  //   ),
+  // },
+  // {
+  //   title: <Link to="docs/modules/forum">{translate({ id: 'homepage.feature.project.title', message: 'Project Management', })}</Link>,
+  //   Svg: require('@site/static/img/features/project-management.svg').default,
+  //   description: (
+  //     <>
+  //       {translate({ id: 'homepage.feature.project.description', message: 'Project Management' })}
+  //     </>
+  //   ),
+  // },
 ];
 
 function Feature({title, Svg, description}: FeatureItem) {

@@ -161,7 +161,7 @@ sidebar_position: 11
 
 
 import Copyright from '/img/right/copyright.png';
-import Trademark from '/img/right/trademark.jpg';
+import Trademark from '/img/right/trademark.png';
 
 <img src={Copyright} alt="版权声明" width="360" />
 <img src={Trademark} alt="商标声明" width="360" />
