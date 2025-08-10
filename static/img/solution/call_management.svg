@@ -51,6 +51,6 @@
   <!-- 监控指标 -->
   <rect x="70" y="210" width="260" height="30" rx="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1"/>
   <text x="200" y="230" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#10B981">
-    实时监控: 接通率 85% | 完成率 92% | 响应时间 <100ms
+    实时监控: 接通率 85% | 完成率 92% | 响应时间 &lt;100ms
   </text>
 </svg>
