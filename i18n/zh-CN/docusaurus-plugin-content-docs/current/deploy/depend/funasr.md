@@ -11,4 +11,5 @@ sidebar_position: 7
 
 ## 参考链接
 
-- [Github](https://github.com/modelscope/FunASR)
+- [FunASR Github](https://github.com/modelscope/FunASR)
+- [FunASR 官网](https://www.funasr.com/#/)

@@ -1,6 +1,6 @@
 ---
-sidebar_label: 京东
+sidebar_label: 京麦
 sidebar_position: 17
 ---
 
-# 京东
+# 京东京麦对接
