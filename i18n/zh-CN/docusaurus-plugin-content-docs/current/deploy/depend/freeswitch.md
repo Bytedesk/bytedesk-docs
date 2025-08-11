@@ -611,6 +611,15 @@ grep -i "event_socket" /usr/local/freeswitch/log/freeswitch.log
 
 完成以上配置后，微语系统就可以与 FreeSwitch 正常通信，实现呼叫中心功能。
 
+## Mac 安装 Freeswitch
+
+```bash
+brew install freeswitch
+# FreeSWITCH 通常会安装在 /usr/local/freeswitch
+# 启动
+freeswitch
+```
+
 ## 常见问题与解决方案
 
 1. **缺少依赖问题**
@@ -637,12 +646,3 @@ grep -i "event_socket" /usr/local/freeswitch/log/freeswitch.log
 - [JSSIP](https://jssip.net/)
 - [Ubuntu  安装 FreeSWitch](https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Installation/Linux/#ubuntu)
 - [WebRTC 配置](https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Configuration/WebRTC_3375381/)
-
-## Mac 安装 Freeswitch
-
-```bash
-brew install freeswitch
-# FreeSWITCH 通常会安装在 /usr/local/freeswitch
-# 启动
-freeswitch
-```

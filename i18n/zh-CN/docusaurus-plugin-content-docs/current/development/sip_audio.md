@@ -11,5 +11,6 @@ sidebar_position: 37
 
 ## 参考链接
 
-- [Janus](../deploy/depend/janus.md)
+- [Janus-Gateway](../deploy/depend/janus.md)
 - [Coturn](../deploy/depend/coturn.md)
+- [FreeSwitch](../deploy/depend/freeswitch.md)
