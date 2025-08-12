@@ -1,6 +1,6 @@
 ---
 sidebar_label: Freeswitch
-sidebar_position: 6
+sidebar_position: 15
 ---
 
 # Freeswitch 安装指南
@@ -344,21 +344,14 @@ FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据
 
 | 端口号 | 网络协议 | 应用协议 | 描述 |
 | ------ | -------- | -------- | ---- |
-| 1719 | UDP | H.323 | Gatekeeper 资源分配服务(RAS)端口，用于 H.323 注册、准入和状态通信 |
-| 1720 | TCP | H.323 | 呼叫信令端口，用于 H.323 呼叫建立和控制 |
-| 2855-2856 | TCP | MSRP | 消息会话中继协议，用于带消息功能的呼叫 |
 | 3478 | UDP | STUN | STUN 服务，用于 NAT 穿透 |
 | 3479 | UDP | STUN | 辅助 STUN 服务，用于 NAT 穿透 |
-| 5002 | TCP | MLP | 多语言协议服务器 |
-| 5003 | UDP | - | 邻近服务 |
 | 5060 | UDP & TCP | SIP | SIP 用户代理服务器，用于 SIP 信令（默认内部配置文件的标准 SIP 端口） |
 | 5070 | UDP & TCP | SIP | SIP 用户代理服务器，用于 SIP 信令（默认"NAT"配置文件） |
 | 5080 | UDP & TCP | SIP | SIP 用户代理服务器，用于 SIP 信令（默认"外部"配置文件） |
 | 5066 | TCP | WebSocket | 用于 WebRTC 连接 |
 | 7443 | TCP | WebSocket | 用于安全 WebRTC 连接（WSS） |
 | 8021 | TCP | ESL | 事件套接字库（mod_event_socket）接口，用于外部控制和监控 |
-| 8081-8082 | TCP | WebSocket | 用于 Verto 协议 |
-| 16384-32768 | UDP | RTP/RTCP | 多媒体流传输，用于 SIP、Verto 和其他协议的音频/视频数据传输 |
 
 > **注意**：
 >
