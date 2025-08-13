@@ -359,6 +359,10 @@ FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据
 
 - [LinPhone 下载](https://www.linphone.org/en/download/)
 
+import LinPhoneLogin from '/img/deploy/freeswitch/linphone_login.png';
+
+<img src={LinPhoneLogin} alt="LinPhone登录" width="360" />
+
 ```bash
 # Freeswitch默认就配置了1000~1019共20个账户
 Username: 1000
