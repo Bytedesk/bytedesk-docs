@@ -26,7 +26,7 @@ Need a trial license? Please refer to: [Question 13: How to apply for licenseKey
 ## Method 1: One-line command startup, requires separate ollama installation
 
 ```bash
-git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose.yaml up -d
+git clone https://github.com/Bytedesk/bytedesk.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose.yaml up -d
 ```
 
 ### Since the project uses ollama qwen3:0.6b model by default, you need to pull the model separately
@@ -41,7 +41,7 @@ ollama pull bge-m3:latest
 ## Method 2: Use docker compose ollama, ollama integrated by default
 
 ```bash
-git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose-ollama.yaml up -d
+git clone https://github.com/Bytedesk/bytedesk.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose-ollama.yaml up -d
 # Chat model
 docker exec ollama-bytedesk ollama pull qwen3:0.6b
 # Vector model
@@ -76,8 +76,8 @@ Default password: admin
 
 ## Orchestration Content (Choose One)
 
-- [Latest docker-compose.yaml - Uses Zhipu AI by default](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
-- [Latest docker-compose-ollama.yaml - Uses ollama by default](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)
+- [Latest docker-compose.yaml - Uses Zhipu AI by default](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml)
+- [Latest docker-compose-ollama.yaml - Uses ollama by default](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml)
 
 If using docker-compose.yaml - you need to fill in Zhipu AI related configuration yourself, refer to the following configuration:
 

@@ -13,6 +13,6 @@ sidebar_position: 2
 
 ## 參考連結
 
-- [📊 壓測腳本與資料](https://gitee.com/270580156/weiyu/tree/main/jmeter)
+- [📊 壓測腳本與資料](https://github.com/Bytedesk/bytedesk/tree/main/jmeter)
 - [阿里雲效能測試](https://ptsnext.console.aliyun.com/?spm=5176.7946858.J_5253785160.4.5a02ed1dhApB1v#/overviewpage)
 - [騰訊雲效能測試](https://console.cloud.tencent.com/monitor/pts)

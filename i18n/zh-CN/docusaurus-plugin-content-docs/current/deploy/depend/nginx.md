@@ -68,7 +68,7 @@ mkdir -p /var/www/html/nginx/cache/webserver
 - 方式一：从[Github仓库](https://github.com/Bytedesk/bytedesk/tree/main/starter/src/main/resources/static)下载，最新，推荐
 - 方式二：从[Github Release](https://github.com/Bytedesk/bytedesk/releases) 下载
 - 方式三：下载[server压缩包](https://www.weiyuai.cn/download/weiyu-server.zip) 并解压
-- 方式四：从[Gitee仓库](https://gitee.com/270580156/weiyu/tree/main/starter/src/main/resources/static)下载
+- 方式四：从[Gitee仓库](https://github.com/Bytedesk/bytedesk/tree/main/starter/src/main/resources/static)下载
 
 下载解压后的文件结构如下：
 
@@ -143,7 +143,7 @@ server/
 
 ### Nginx主配置文件
 
-首先配置Nginx的主配置文件，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/nginx.conf`的http块中添加负载均衡配置：
+首先配置Nginx的主配置文件，去[gitee查看](https://github.com/Bytedesk/bytedesk/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/nginx.conf`的http块中添加负载均衡配置：
 
 ```bash
 # 在nginx.conf文件中的http模块中添加
@@ -172,7 +172,7 @@ http {
 
 ### 网站配置文件
 
-接下来，我们需要创建网站配置文件。去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/sites-available/`目录下创建以下配置文件：
+接下来，我们需要创建网站配置文件。去[gitee查看](https://github.com/Bytedesk/bytedesk/tree/main/deploy/nginx/weiyuai.cn)，在`/etc/nginx/sites-available/`目录下创建以下配置文件：
 
 #### 1. 主站点HTTP配置 (weiyuai_cn_80.conf)
 
@@ -236,7 +236,7 @@ server {
 
 #### 2. 主站点HTTPS配置 (weiyuai_cn_443.conf)
 
-如果需要启用HTTPS，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
+如果需要启用HTTPS，去[gitee查看](https://github.com/Bytedesk/bytedesk/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
 
 ```bash
 # weiyuai_cn_443.conf - 主站点HTTPS配置（文件名中的weiyuai_cn可替换为你的域名）
@@ -303,7 +303,7 @@ server {
 
 #### 3. API服务HTTP配置 (weiyuai_cn_api_80.conf)
 
-去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，此配置用于处理API请求和WebSocket连接：
+去[gitee查看](https://github.com/Bytedesk/bytedesk/tree/main/deploy/nginx/weiyuai.cn)，此配置用于处理API请求和WebSocket连接：
 
 ```bash
 # weiyuai_cn_api_80.conf - API服务HTTP配置（文件名中的weiyuai_cn可替换为你的域名）
@@ -376,7 +376,7 @@ server {
 
 #### 4. API服务HTTPS配置 (weiyuai_cn_api_443.conf)
 
-如果需要启用API的HTTPS访问，去[gitee查看](https://gitee.com/270580156/weiyu/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
+如果需要启用API的HTTPS访问，去[gitee查看](https://github.com/Bytedesk/bytedesk/tree/main/deploy/nginx/weiyuai.cn)，可以创建以下配置（可选）：
 
 ```bash
 # weiyuai_cn_api_443.conf - API服务HTTPS配置（文件名中的weiyuai_cn可替换为你的域名）

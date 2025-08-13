@@ -23,4 +23,4 @@ Zendesk 是一个帮助企业解决客户关系的应用程序。它允许企业
 如果发现 微语 缺少的功能，欢迎提需求。
 
 - [github issues](https://github.com/Bytedesk/bytedesk/issues)
-- [gitee issues](https://gitee.com/270580156/weiyu/issues)
+- [gitee issues](https://github.com/Bytedesk/bytedesk/issues)

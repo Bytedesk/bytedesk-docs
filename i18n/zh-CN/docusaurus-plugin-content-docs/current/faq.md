@@ -51,7 +51,7 @@ SPRING_AI_VECTORSTORE_TYPE: none
 
 ### 配置步骤
 
-参考 [docker-compose.yaml](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
+参考 [docker-compose.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml)
 
 #### 1. 修改默认模型为智谱AI，关闭 Ollama 服务
 
@@ -222,7 +222,7 @@ Docker 容器时区配置错误。
 #### 方法二：前后端一体部署
 
 - 使用 Nginx 做反向代理
-- 参考配置：[Gitee示例配置](https://gitee.com/270580156/weiyu/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
+- 参考配置：[Gitee示例配置](https://github.com/Bytedesk/bytedesk/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
 
 ## 问题7：上传功能无法正常使用
 

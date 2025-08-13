@@ -6,7 +6,7 @@ sidebar_position: 2
 # JMeter 性能测试方案
 
 - [下载JMeter 5.6.3](https://www.weiyuai.cn/download/apache-jmeter-5.6.3.zip)
-- [压测脚本与数据](https://gitee.com/270580156/weiyu/tree/main/jmeter)
+- [压测脚本与数据](https://github.com/Bytedesk/bytedesk/tree/main/jmeter)
 
 ## 测试准备
 
@@ -71,4 +71,4 @@ cd bin/ && ./jmeter.sh
 
 - [JMeter官网](https://jmeter.apache.org/)
 - [官网下载JMeter](https://jmeter.apache.org/download_jmeter.cgi) (推荐版本: 5.6.3)
-- [📊 压测脚本与数据](https://gitee.com/270580156/weiyu/tree/main/jmeter)
+- [📊 压测脚本与数据](https://github.com/Bytedesk/bytedesk/tree/main/jmeter)

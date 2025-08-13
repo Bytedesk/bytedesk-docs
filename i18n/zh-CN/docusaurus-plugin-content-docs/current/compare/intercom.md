@@ -12,4 +12,4 @@ Intercom 是一个客户关系管理平台，允许企业与客户进行实时�
 如果发现 微语 缺少的功能，欢迎提需求。
 
 - [github issues](https://github.com/Bytedesk/bytedesk/issues)
-- [gitee issues](https://gitee.com/270580156/weiyu/issues)
+- [gitee issues](https://github.com/Bytedesk/bytedesk/issues)

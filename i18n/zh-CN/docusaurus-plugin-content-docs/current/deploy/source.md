@@ -24,7 +24,7 @@ sidebar_position: 2
 
 ```bash
 # 国内用户推荐使用Gitee镜像源
-git clone https://gitee.com/270580156/weiyu.git
+git clone https://github.com/Bytedesk/bytedesk.git
 
 # 或者使用GitHub源
 git clone https://github.com/bytedesk/bytedesk.git

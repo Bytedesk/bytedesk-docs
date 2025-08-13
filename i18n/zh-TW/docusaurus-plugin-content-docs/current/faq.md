@@ -180,7 +180,7 @@ Docker 容器時區配置錯誤。
 #### 方法二：前後端一體部署
 
 - 使用 Nginx 做反向代理
-- 參考配置：[Gitee範例配置](https://gitee.com/270580156/weiyu/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
+- 參考配置：[Gitee範例配置](https://github.com/Bytedesk/bytedesk/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
 
 ## 問題7：上傳功能無法正常使用
 

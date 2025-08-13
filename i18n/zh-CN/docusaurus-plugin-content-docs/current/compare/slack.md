@@ -12,4 +12,4 @@ Slack 是一个流行的企业聊天应用程序，它提供了一个统一的�
 如果发现 微语 缺少的功能，欢迎提需求。
 
 - [github issues](https://github.com/Bytedesk/bytedesk/issues)
-- [gitee issues](https://gitee.com/270580156/weiyu/issues)
+- [gitee issues](https://github.com/Bytedesk/bytedesk/issues)

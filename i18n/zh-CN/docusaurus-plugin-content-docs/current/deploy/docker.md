@@ -27,13 +27,13 @@ sidebar_position: 3
 
 #### 方式一：使用云模型（推荐新手）
 
-1. 下载 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 文件到本地
+1. 下载 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 文件到本地
 2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
 3. 修改配置文件中的API Key
 
 #### 方式二：使用本地模型
 
-1. 下载 [`docker-compose-ollama.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件到本地
+1. 下载 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件到本地
 2. 无需申请API Key，使用本地Ollama模型
 
 ### 步骤2：修改配置
@@ -142,6 +142,6 @@ docker pull --platform linux/arm64 bytedesk/bytedesk:latest
 ## 参考链接
 
 - [申请licenseKey](../development/license.md)
-- [微语项目仓库](https://gitee.com/270580156/weiyu)
+- [微语项目仓库](https://github.com/Bytedesk/bytedesk)
 - [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
 - [微语企业版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk)

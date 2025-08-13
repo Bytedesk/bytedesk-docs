@@ -24,7 +24,7 @@ First, clone the project source code from the repository to local:
 
 ```bash
 # Domestic users recommended to use Gitee mirror
-git clone https://gitee.com/270580156/weiyu.git
+git clone https://github.com/Bytedesk/bytedesk.git
 
 # Or use GitHub source
 git clone https://github.com/bytedesk/bytedesk.git

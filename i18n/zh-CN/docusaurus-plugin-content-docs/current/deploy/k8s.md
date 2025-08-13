@@ -73,13 +73,13 @@ kubectl get nodes
 kubectl get storageclass
 ```
 
-- [微语K8s配置文件](https://gitee.com/270580156/weiyu/tree/main/deploy/k8s)
+- [微语K8s配置文件](https://github.com/Bytedesk/bytedesk/tree/main/deploy/k8s)
 
 ## 参考链接
 
 - [安装Kubernetes](./depend/kubernetes.md)
 - [申请licenseKey](../development/license.md)
-- [微语项目仓库](https://gitee.com/270580156/weiyu)
+- [微语项目仓库](https://github.com/Bytedesk/bytedesk)
 - [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
 - [微语企业版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk)
 - [Kubernetes官方文档](https://kubernetes.io/docs/)

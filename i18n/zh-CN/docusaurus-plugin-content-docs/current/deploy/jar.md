@@ -45,8 +45,8 @@ Docker方式可以快速启动所有依赖服务，非常适合开发和测试�
 sudo systemctl status docker  # 检查Docker状态
 sudo systemctl start docker   # 如需启动Docker服务
 
-# 2. 需要提前Clone或下载项目：https://gitee.com/270580156/weiyu，在项目根目录下进入配置目录
-git clone https://gitee.com/270580156/weiyu.git
+# 2. 需要提前Clone或下载项目：https://github.com/Bytedesk/bytedesk，在项目根目录下进入配置目录
+git clone https://github.com/Bytedesk/bytedesk.git
 cd starter/src/main/resources
 
 # 3. 一键启动所有依赖服务
@@ -66,7 +66,7 @@ docker ps | grep bytedesk
 或者
 
 - 创建 docker-compose.yaml 文件
-- 打开 [docker-compose-middleware](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-middleware.yaml)
+- 打开 [docker-compose-middleware](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-middleware.yaml)
 - 复制其中内容到 docker-compose.yaml 文件
 
 ```bash

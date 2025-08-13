@@ -26,13 +26,13 @@ sidebar_position: 3
 
 #### 方式一：使用云模型（推荐新手）
 
-1. 下载 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 文件
+1. 下载 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 文件
 2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
 3. 修改配置文件中的API Key
 
 #### 方式二：使用本地模型
 
-1. 下载 [`docker-compose-ollama.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件
+1. 下载 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件
 2. 无需申请API Key，使用本地Ollama模型
 
 ### 步骤2：修改配置
@@ -55,7 +55,7 @@ BYTEDESK_LICENSE_KEY:
 
 #### 2.2 云模型配置（智谱AI）
 
-如果选择云模型方式，在 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 中配置：
+如果选择云模型方式，在 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 中配置：
 
 ```yaml
 environment:
@@ -69,7 +69,7 @@ environment:
 
 #### 2.3 本地模型配置（Ollama）
 
-如果选择本地模型方式，在 [`docker-compose-ollama.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml) 中已预配置，无需额外设置。
+如果选择本地模型方式，在 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 中已预配置，无需额外设置。
 
 ### 步骤3：宝塔面板操作
 
@@ -85,8 +85,8 @@ environment:
 
 将修改后的配置文件内容复制到宝塔面板的容器编排中：
 
-- **云模型**：复制 [`docker-compose.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml) 内容
-- **本地模型**：复制 [`docker-compose-ollama.yaml`](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml) 内容
+- **云模型**：复制 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 内容
+- **本地模型**：复制 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 内容
 
 #### 3.4 等待部署完成
 
@@ -157,6 +157,6 @@ ollama pull bge-m3:latest
 ## 参考链接
 
 - [申请licenseKey](../development/license.md)
-- [微语项目仓库](https://gitee.com/270580156/weiyu)
+- [微语项目仓库](https://github.com/Bytedesk/bytedesk)
 - [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
 - [微语企业版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk)

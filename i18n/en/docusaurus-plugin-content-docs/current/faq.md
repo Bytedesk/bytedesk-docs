@@ -180,7 +180,7 @@ Default access address: `http://serverIP:9003`
 #### Method 2: Frontend-backend integrated deployment
 
 - Use Nginx as reverse proxy
-- Reference configuration: [Gitee Example Configuration](https://gitee.com/270580156/weiyu/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
+- Reference configuration: [Gitee Example Configuration](https://github.com/Bytedesk/bytedesk/blob/main/deploy/nginx/weiyuai.cn/sites-available/weiyuai_cn_api_443.conf)
 
 ## Question 7: Upload functionality cannot work normally
 

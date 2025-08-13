@@ -13,6 +13,6 @@ sidebar_position: 2
 
 ## Reference Links
 
-- [📊 Load Testing Scripts and Data](https://gitee.com/270580156/weiyu/tree/main/jmeter)
+- [📊 Load Testing Scripts and Data](https://github.com/Bytedesk/bytedesk/tree/main/jmeter)
 - [Alibaba Cloud Performance Testing](https://ptsnext.console.aliyun.com/?spm=5176.7946858.J_5253785160.4.5a02ed1dhApB1v#/overviewpage)
 - [Tencent Cloud Performance Testing](https://console.cloud.tencent.com/monitor/pts)

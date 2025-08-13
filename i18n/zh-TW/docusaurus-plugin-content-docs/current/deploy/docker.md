@@ -26,7 +26,7 @@ sidebar_position: 3
 ## 方法一：一行命令啟動，需要另行安裝ollama
 
 ```bash
-git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose.yaml up -d
+git clone https://github.com/Bytedesk/bytedesk.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose.yaml up -d
 ```
 
 ### 因專案預設使用ollama qwen3:0.6b模型，所以需要另外拉取模型
@@ -41,7 +41,7 @@ ollama pull bge-m3:latest
 ## 方法二： 使用 docker compose ollama，預設整合ollama
 
 ```bash
-git clone https://gitee.com/270580156/weiyu.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose-ollama.yaml up -d
+git clone https://github.com/Bytedesk/bytedesk.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose-ollama.yaml up -d
 # 對話模型
 docker exec ollama-bytedesk ollama pull qwen3:0.6b
 # 向量模型
@@ -76,8 +76,8 @@ docker compose -p weiyu -f docker-compose-ollama.yaml stop
 
 ## 編排內容(二選一)
 
-- [最新docker-compose.yaml-預設使用智譜AI](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose.yaml)
-- [最新docker-compose-ollama.yaml-預設使用ollama](https://gitee.com/270580156/weiyu/blob/main/deploy/docker/docker-compose-ollama.yaml)
+- [最新docker-compose.yaml-預設使用智譜AI](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml)
+- [最新docker-compose-ollama.yaml-預設使用ollama](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml)
 
 如果使用docker-compose.yaml-需要自行填充智譜AI相關配置，參考如下配置：
 

@@ -477,7 +477,7 @@ const sendTypingStatus = (topic) => {
 
 ```javascript
 // 处理接收消息
-// 相应文件 [Protobuf](https://gitee.com/270580156/weiyu/tree/main/deploy/protobuf)
+// 相应文件 [Protobuf](https://github.com/Bytedesk/bytedesk/tree/main/deploy/protobuf)
 import { default as messageProto } from "@/network/protobuf/message_pb";
 import { default as threadProto } from "@/network/protobuf/thread_pb";
 import { default as userProto } from "@/network/protobuf/user_pb";
@@ -678,4 +678,4 @@ setTimeout(() => {
 ## 参考连接
 
 - [MQTT.js 官方文档](https://github.com/mqttjs/MQTT.js)
-- [Protobuf](https://gitee.com/270580156/weiyu/tree/main/deploy/protobuf)
+- [Protobuf](https://github.com/Bytedesk/bytedesk/tree/main/deploy/protobuf)
