@@ -300,7 +300,9 @@ bytedesk.admin.password=admin
 
 #### 方法二：切换到社区版
 
-修改配置文件，使用社区版appkey
+修改配置文件，使用社区版licenseKey
+
+更多详情参考 [licenseKey配置](./development/license.md)
 
 ## 问题10：如何自定义品牌信息
 

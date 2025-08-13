@@ -138,15 +138,7 @@ SWITCH_AM_CFLAGS = -I/usr/local/include/uuid -I/usr/local/include/uuid  -I/root/
 # 开始安装
 make && make install
 
-# 更多可选安装命令，可选安装声音文件
-make cd-sounds-install
-make cd-moh-install
-make uhd-sounds-install
-make uhd-moh-install
-make hd-sounds-install
-make hd-moh-install
-make sounds-install
-make moh-install
+make mod_mariadb
 
 # 安装完成，安装目录为 /usr/local/freeswitch 
 
@@ -278,95 +270,94 @@ shutdown                        # 关闭FreeSWITCH
 /exit                           # 退出CLI         
 ```
 
-### 配置为 systemd 服务运行
-
-为了使用 systemctl 在后台运行 FreeSWITCH，需要创建 systemd 服务文件：
-
-```bash
-# 创建 systemd 服务文件
-vim /etc/systemd/system/freeswitch.service
-```
-
-将以下内容复制到文件中：
-
-```ini
-[Unit] 
-Description=FreeSWITCH open source softswitch 
-Wants=network-online.target 
-Requires=network.target local-fs.target 
-After=network.target network-online.target local-fs.target 
-
-[Service] 
-; service 
-Type=forking 
-PIDFile=/usr/local/freeswitch/run/freeswitch.pid 
-Environment="DAEMON_OPTS=-nonat" 
-Environment="USER=freeswitch" 
-Environment="GROUP=freeswitch" 
-EnvironmentFile=-/etc/default/freeswitch 
-ExecStartPre=/bin/chown -R ${USER}:${GROUP} /usr/local/freeswitch 
-ExecStart=/usr/local/freeswitch/bin/freeswitch -u ${USER} -g ${GROUP} -ncwait ${DAEMON_OPTS} 
-TimeoutSec=45s 
-Restart=always 
-
-[Install] 
-WantedBy=multi-user.target
-```
-
-然后启用并启动服务：
-
-```bash
-# 重新加载 systemd 配置
-systemctl daemon-reload
-
-# 启用 FreeSWITCH 服务（开机自启）
-systemctl enable freeswitch
-
-# 启动 FreeSWITCH 服务
-systemctl start freeswitch
-
-# 查看服务状态
-systemctl status freeswitch
-
-# 停止服务
-systemctl stop freeswitch
-
-# 重启服务
-systemctl restart freeswitch
-
-# 查看服务日志
-journalctl -u freeswitch -f
-```
-
 ## 步骤五：对外开放端口号
 
-FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据您的实际使用情况配置防火墙规则，开放相应端口。
+FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据您的实际使用情况配置防火墙规则和云服务器安全组，开放相应端口。
 
-| 端口号 | 网络协议 | 应用协议 | 描述 |
-| ------ | -------- | -------- | ---- |
-| 3478 | UDP | STUN | STUN 服务，用于 NAT 穿透 |
-| 3479 | UDP | STUN | 辅助 STUN 服务，用于 NAT 穿透 |
-| 5060 | UDP & TCP | SIP | SIP 用户代理服务器，用于 SIP 信令（默认内部配置文件的标准 SIP 端口） |
-| 5070 | UDP & TCP | SIP | SIP 用户代理服务器，用于 SIP 信令（默认"NAT"配置文件） |
-| 5080 | UDP & TCP | SIP | SIP 用户代理服务器，用于 SIP 信令（默认"外部"配置文件） |
-| 5066 | TCP | WebSocket | 用于 WebRTC 连接 |
-| 7443 | TCP | WebSocket | 用于安全 WebRTC 连接（WSS） |
-| 8021 | TCP | ESL | 事件套接字库（mod_event_socket）接口，用于外部控制和监控 |
+### 5.1 端口分类
 
-> **注意**：
+#### 🔒 必需开放端口（核心功能）
+
+##### SIP 信令端口
+
+| 端口号 | 网络协议 | 应用协议 | 配置文件 | 描述 |
+| ------ | -------- | -------- | -------- | ---- |
+| **5060** | UDP & TCP | SIP | `sip_profiles/internal.xml` | SIP 用户代理服务器，用于 SIP 信令（默认内部配置文件的标准 SIP 端口） |
+| **5080** | UDP & TCP | SIP | `sip_profiles/external.xml` | SIP 用户代理服务器，用于 SIP 信令（默认"外部"配置文件） |
+| **5061** | TCP | SIP TLS | `vars.xml` | 内部 SIP TLS 加密通信端口 |
+| **5081** | TCP | SIP TLS | `vars.xml` | 外部 SIP TLS 加密通信端口 |
+
+##### WebRTC 端口
+
+| 端口号 | 网络协议 | 应用协议 | 配置文件 | 描述 |
+| ------ | -------- | -------- | -------- | ---- |
+| **5066** | TCP | WebSocket | `sip_profiles/internal.xml` | 用于 WebRTC 连接 |
+| **7443** | TCP | WebSocket Secure | `sip_profiles/internal.xml` | 用于安全 WebRTC 连接（WSS） |
+
+##### ESL 管理端口
+
+| 端口号 | 网络协议 | 应用协议 | 配置文件 | 描述 |
+| ------ | -------- | -------- | -------- | ---- |
+| **8021** | TCP | ESL | `event_socket.conf.xml` | 事件套接字库（mod_event_socket）接口，用于外部控制和监控 |
+
+##### RTP 媒体流端口
+
+| 端口范围 | 网络协议 | 应用协议 | 配置文件 | 描述 |
+| -------- | -------- | -------- | -------- | ---- |
+| **16384-32768** | UDP | RTP | `vars.xml` | RTP 媒体流端口范围，用于音频和视频数据传输 |
+
+#### 🔧 可选开放端口
+
+##### STUN 服务端口
+
+| 端口号 | 网络协议 | 应用协议 | 配置文件 | 描述 |
+| ------ | -------- | -------- | -------- | ---- |
+| 3478 | UDP | STUN | `vars.xml` | STUN 服务，用于 NAT 穿透 |
+| 3479 | UDP | STUN | `vars.xml` | 辅助 STUN 服务，用于 NAT 穿透 |
+
+##### 其他服务端口
+
+| 端口号 | 网络协议 | 应用协议 | 配置文件 | 描述 |
+| ------ | -------- | -------- | -------- | ---- |
+| 5070 | UDP & TCP | SIP | `sip_profiles/nat.xml` | SIP 用户代理服务器，用于 SIP 信令（默认"NAT"配置文件） |
+| 8081 | TCP | HTTP | FreeSWITCH默认 | 内部 HTTP 服务 |
+| 8082 | TCP | HTTP | FreeSWITCH默认 | 内部 HTTP 服务 |
+
+### 5.2 云服务器安全组配置
+
+如果您使用的是云服务器（如阿里云 ECS、腾讯云 CVM、AWS EC2 等），除了系统防火墙外，还需要在云控制台配置安全组规则：
+
+#### 云服务安全组配置
+
+| 协议类型 | 端口范围 | 授权对象 | 描述 |
+|---------|---------|---------|------|
+| TCP | 5060 | 0.0.0.0/0 | SIP 内部端口 |
+| UDP | 5060 | 0.0.0.0/0 | SIP 内部端口 |
+| TCP | 5080 | 0.0.0.0/0 | SIP 外部端口 |
+| UDP | 5080 | 0.0.0.0/0 | SIP 外部端口 |
+| TCP | 5061 | 0.0.0.0/0 | SIP 内部 TLS |
+| TCP | 5081 | 0.0.0.0/0 | SIP 外部 TLS |
+| TCP | 5066 | 0.0.0.0/0 | WebRTC WebSocket |
+| TCP | 7443 | 0.0.0.0/0 | WebRTC WSS |
+| TCP | 8021 | 特定IP/32 | ESL 管理端口（建议限制IP） |
+| UDP | 16384-32768 | 0.0.0.0/0 | RTP 媒体流端口 |
+| UDP | 3478-3479 | 0.0.0.0/0 | STUN 服务端口（可选） |
+
+> **重要说明**：
 >
-> 1. 根据您的具体应用场景，您可能不需要开放所有端口
-> 2. 生产环境中应只开放必要的端口以提高安全性
-> 3. 对于 WebRTC 应用，确保 5066 和 7443 端口可访问
-> 4. RTP 端口范围（16384-32768）可根据实际需求进行调整
-> 5. **ESL 安全风险**：谨慎考虑是否将 ESL 端口(8021)暴露给外部网络，并务必修改默认密码。ESL 允许执行任意系统命令，甚至可以使 FreeSWITCH 崩溃以进行呼叫恢复测试。允许公共访问会带来严重安全隐患
-> 6. 以上列出的端口可能会根据您加载的模块及其配置而有所不同，例如您可能有更多或更少的 SIP 配置文件，并且可能已更改了上述许多端口，包括 SIP、RTP、ESL 等
+> 1. **核心端口必须开放**：SIP信令端口（5060/5080）、WebRTC端口（5066/7443）、ESL管理端口（8021）和RTP媒体端口（16384-32768）是FreeSWITCH正常运行的必需端口
+> 2. **RTP 端口范围**：必须开放完整的 UDP 端口范围 16384-32768 用于 RTP 媒体流，这是音频和视频通话的关键端口。如果防火墙未开放这些端口，通话将无法建立或出现单向音频问题
+> 3. **TLS 加密端口**：5061/5081端口用于SIP TLS加密通信，提高安全性
+> 4. **ESL 安全风险**：谨慎考虑是否将 ESL 端口(8021)暴露给外部网络，并务必修改默认密码。ESL 允许执行任意系统命令，建议只允许特定IP访问
+> 5. **端口范围调整**：RTP端口范围可根据实际需求调整，但需确保有足够端口用于并发通话
+> 6. **生产环境配置**：生产环境中应只开放必要的端口，并定期审查安全组规则
+> 7. **配置文件关联**：端口配置分散在多个配置文件中，修改时需要注意文件对应关系
 
 ## 步骤六：通话测试
 
 ### 1. SIP 客户端配置
 
-<!-- * [LinPhone 下载](https://www.linphone.org/en/download/) -->
+- [LinPhone 下载](https://www.linphone.org/en/download/)
 
 ```bash
 # Freeswitch默认就配置了1000~1019共20个账户
@@ -478,7 +469,7 @@ vim /usr/local/freeswitch/conf/autoload_configs/acl.conf.xml
       
       <!-- 允许特定的外部IP (请根据实际需要调整) -->
       <!-- 如果Java应用程序在特定的公网IP上运行，请在这里添加 -->
-      <node type="allow" cidr="103.46.244.83/32"/>
+      <!-- <node type="allow" cidr="103.46.244.83/32"/> -->
       
       <!-- 临时解决方案：允许所有连接 (仅用于测试，生产环境请限制具体IP) -->
       <node type="allow" cidr="0.0.0.0/0"/>
@@ -513,42 +504,46 @@ reloadxml
 #= FreeSwitch config
 # ===============================
 # 启用 freeswitch
-bytedesk.freeswitch.enabled=true
-
+bytedesk.call.freeswitch.enabled=true
 # freeswitch 服务器 IP (替换为你的实际服务器IP)
-bytedesk.freeswitch.server=14.103.165.199
-
+bytedesk.call.freeswitch.server=127.0.0.1
 # ESL 端口
-bytedesk.freeswitch.esl-port=8021
-
+bytedesk.call.freeswitch.esl-port=8021
 # ESL 密码 (与 event_socket.conf 中的密码保持一致)
-bytedesk.freeswitch.esl-password=bytedesk123
-
+bytedesk.call.freeswitch.esl-password=password
 # SIP 端口
-bytedesk.freeswitch.sip-port=15060
-
+bytedesk.call.freeswitch.sip-port=5060
 # WebRTC 端口
-bytedesk.freeswitch.webrtc-port=17443
-
+bytedesk.call.freeswitch.webrtc-port=7443
 # WebSocket 信令端口
-bytedesk.freeswitch.ws-port=15066
-
+#bytedesk.call.freeswitch.ws-port=5066
 # 呼叫超时时间 (秒)
-bytedesk.freeswitch.call-timeout=120
-
-# RTP 端口范围
-bytedesk.freeswitch.rtp-port-start=16000
-bytedesk.freeswitch.rtp-port-end=16999
-
-# 最大会话数
-bytedesk.freeswitch.max-sessions=1000
-
-# 每秒会话数限制
-bytedesk.freeswitch.sessions-per-second=30
-
-# 日志级别
-bytedesk.freeswitch.log-level=WARNING
+#bytedesk.call.freeswitch.call-timeout=120
 ```
+
+#### Docker 环境变量配置
+
+如果使用 Docker 部署微语系统，可以通过环境变量进行配置：
+
+```yaml
+# Docker Compose 环境变量配置
+environment:
+  # Call FreeSwitch config
+  BYTEDESK_CALL_FREESWITCH_ENABLED: "false"
+  BYTEDESK_CALL_FREESWITCH_SERVER: 127.0.0.1
+  BYTEDESK_CALL_FREESWITCH_ESL_PORT: 8021
+  BYTEDESK_CALL_FREESWITCH_ESL_PASSWORD: password
+  BYTEDESK_CALL_FREESWITCH_SIP_PORT: 5060
+  BYTEDESK_CALL_FREESWITCH_WEBRTC_PORT: 7443
+  BYTEDESK_CALL_FREESWITCH_WS_PORT: 5066
+  BYTEDESK_CALL_FREESWITCH_CALL_TIMEOUT: 120
+```
+
+> **注意**：
+>
+> - Docker 环境变量配置与 properties 配置对应关系：`bytedesk.call.freeswitch.enabled` → `BYTEDESK_CALL_FREESWITCH_ENABLED`
+> - 环境变量中的值都需要用引号包围，特别是布尔值和数字
+> - 确保 FreeSwitch 服务器地址在 Docker 网络中是可访问的
 
 ### 3. 验证连接
 
@@ -585,22 +580,26 @@ telnet 127.0.0.1 8021
 3. **防火墙配置**：确保防火墙只开放必要的端口
 4. **定期监控**：定期检查 FreeSwitch 日志文件，监控异常连接
 
-### 5. 故障排除
+### 5.4 配置文件位置
 
-如果连接失败，请检查：
+| 配置文件 | 路径 | 说明 |
+|----------|------|------|
+| 主配置 | `/usr/local/freeswitch/conf/vars.xml` | 全局变量和端口配置 |
+| 内部SIP配置 | `/usr/local/freeswitch/conf/sip_profiles/internal.xml` | 内部SIP配置文件 |
+| 外部SIP配置 | `/usr/local/freeswitch/conf/sip_profiles/external.xml` | 外部SIP配置文件 |
+| ESL配置 | `/usr/local/freeswitch/conf/autoload_configs/event_socket.conf.xml` | ESL事件套接字配置 |
 
-1. **端口开放**：确保 8021 端口已开放并可访问
-2. **配置正确**：验证密码和 IP 地址配置是否正确
-3. **ACL 设置**：检查 ACL 配置是否允许连接的 IP
-4. **日志检查**：查看 FreeSwitch 日志文件排查错误
+### 5.6 安全建议
 
-```bash
-# 查看 FreeSwitch 日志
-tail -f /usr/local/freeswitch/log/freeswitch.log
+> **重要安全提示**：
 
-# 查看 ESL 连接日志
-grep -i "event_socket" /usr/local/freeswitch/log/freeswitch.log
-```
+1. **限制 ESL 端口访问**：ESL 端口 8021 具有高权限，建议只允许特定 IP 访问
+2. **使用 TLS 加密**：生产环境建议启用 SIP TLS（5061/5081 端口）
+3. **定期审查规则**：定期检查安全组和防火墙规则，移除不必要的开放端口
+4. **使用非标准端口**：考虑修改默认端口以减少恶意扫描
+5. **监控连接日志**：定期检查访问日志，发现异常连接及时处理
+6. **最小权限原则**：只开放必要的端口和 IP 范围
+7. **网络分段**：将 FreeSWITCH 放在 DMZ 区域，内外网分离
 
 完成以上配置后，微语系统就可以与 FreeSwitch 正常通信，实现呼叫中心功能。
 
@@ -629,13 +628,4 @@ freeswitch
 
 ## 参考链接
 
-- [Installing FreeSWITCH 1.10.X on Ubuntu 18.04 | 20.04 | 22.04 LTS](https://gist.github.com/cyrenity/96cc1ad7979b719b1c684f90aa0f526d)
-- [不识君的文章](https://juejin.cn/post/7314509615159672883)  
-- [Freeswitch Github](https://github.com/signalwire/freeswitch)
-- [常见报错](https://www.cnblogs.com/garvenc/p/freeswitch_learning_install.html)
-<!-- * [LinPhone Github](https://github.com/BelledonneCommunications) -->
-<!-- - [Zoiper](https://www.zoiper.com/) -->
-- [SIP.js](https://sipjs.com/)
-- [JSSIP](https://jssip.net/)
-- [Ubuntu  安装 FreeSWitch](https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Installation/Linux/#ubuntu)
-- [WebRTC 配置](https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Configuration/WebRTC_3375381/)
+- [LinPhone下载](https://www.linphone.org/en/download/)
