@@ -119,47 +119,286 @@ vim mybroker/etc/broker.xml
 http://localhost:8161
 ```
 
-## 微语应用配置
+## Artemis 部署模式选择
 
-在微语中配置连接到Docker中的Artemis。下面分别展示配置与对应的Docker环境变量设置方式：
+微语系统支持两种 Artemis 部署模式，您可以根据实际需求选择最适合的方式：
 
-### 微语属性配置（application.properties）
+### 1. Embedded 模式（开发测试推荐）
+
+Embedded 模式下，Spring Boot 会自动启动内嵌的 Artemis broker，无需额外安装和配置 Artemis 服务。
+
+**优点：**
+
+- 无需额外安装 Artemis
+- 配置简单，开箱即用
+- 适合开发和测试环境
+- 快速启动和调试
+
+**缺点：**
+
+- 性能相对较低
+- 不适合生产环境
+- 无法支持集群部署
+
+**配置示例：**
 
 ```properties
 # ===============================
-# = Artemis 基本连接配置
+# = Artemis Embedded 模式配置
 # ===============================
-spring.artemis.mode=native      # 独立模式，适合生产环境
+# 启用 embedded 模式
+spring.artemis.mode=embedded
+```
+
+### 2. Native 模式（生产环境推荐）
+
+Native 模式连接到外部独立的 Artemis broker，适合生产环境部署。
+
+**优点：**
+
+- 性能更高
+- 支持集群部署
+- 适合生产环境
+- 更好的可扩展性和可维护性
+
+**缺点：**
+
+- 需要额外安装和配置 Artemis
+- 配置相对复杂
+- 需要维护独立的消息服务
+
+## 微语应用配置
+
+### Native 模式配置（生产环境推荐）
+
+在微语中配置连接到Docker中的Artemis。下面分别展示配置与对应的Docker环境变量设置方式：
+
+```properties
+# ===============================
+# = Artemis Native 模式配置
+# ===============================
+# 启用 native 模式
+spring.artemis.mode=native
+
+# native 模式连接配置
 spring.artemis.broker-url=tcp://127.0.0.1:16161
 spring.artemis.user=admin
 spring.artemis.password=admin
-
-# 并发消费者配置
-spring.jms.listener.concurrency=1        # 最小消费者数
-spring.jms.listener.max-concurrency=10   # 最大消费者数 
-
-# 消息确认与会话配置
-spring.jms.listener.acknowledge-mode=client
-spring.jms.listener.auto-startup=true
-
-# 消息重试配置
-spring.jms.listener.max-attempts=5             # 最大重试次数
-spring.jms.listener.initial-interval=1000      # 初始重试间隔(毫秒)
-spring.jms.listener.max-interval=10000         # 最大重试间隔(毫秒)
-spring.jms.listener.multiplier=2.0             # 退避乘数
-spring.jms.listener.receive-timeout=1000       # 接收超时
-
-# 队列与错误处理
-spring.artemis.embedded.queues=DLQ            # 死信队列
-spring.jms.listener.missing-queues-fatal=false # JMS错误处理
-
-# 可选：发布订阅模式
-# spring.jms.pub-sub-domain=true              # 启用时为发布订阅模式
 ```
 
-### 对应的Docker环境变量配置
+## 配置模式切换
 
-在使用Docker部署微语服务时，可以通过环境变量来设置以上配置：
+### 如何在两种模式之间切换
+
+要在 Embedded 模式和 Native 模式之间切换，请按以下步骤操作：
+
+1. **修改模式配置**：更改 `spring.artemis.mode` 属性值
+2. **注释当前模式配置**：将当前模式的相关配置注释掉
+3. **启用目标模式配置**：取消注释目标模式的配置
+4. **重启应用**：重启微语应用以使配置生效
+
+## 更多配置参数(可选配置项)
+
+```bash
+# ===============================
+# = JMS 配置（适用于两种模式）
+# ===============================
+# 启用Spring Boot的JMS自动配置，让Spring Boot自动管理ConnectionFactory
+spring.jms.listener.auto-startup=true
+spring.jms.listener.acknowledge-mode=auto
+# 并发消费者数 - 增加并发处理能力
+spring.jms.listener.concurrency=5
+spring.jms.listener.max-concurrency=50
+# 增加接收超时时间
+spring.jms.listener.receive-timeout=15000
+# 消息失败重试配置
+spring.jms.listener.max-attempts=3
+# 指数退避算法的初始间隔（毫秒）
+spring.jms.listener.initial-interval=2000
+# 指数退避算法的最大间隔（毫秒）
+spring.jms.listener.max-interval=15000
+# 指数退避算法的乘数
+spring.jms.listener.multiplier=2.0
+# 启用JMS错误处理
+spring.jms.listener.missing-queues-fatal=false
+spring.jms.listener.connection-factory-fatal=false
+
+# 连接池配置 - 解决连接问题
+spring.artemis.pool.enabled=true
+spring.artemis.pool.max-connections=20
+spring.artemis.pool.min-connections=5
+spring.artemis.pool.time-between-expiration-check=10000
+spring.artemis.pool.idle-timeout=60000
+spring.artemis.pool.max-lifetime=300000
+
+# 连接超时和重试配置
+spring.artemis.connection-timeout=15000
+spring.artemis.connection-ttl=30000
+spring.artemis.call-timeout=15000
+spring.artemis.call-failover-timeout=15000
+
+# 连接重试和故障转移配置
+spring.artemis.retry-interval=2000
+spring.artemis.max-retry-interval=30000
+spring.artemis.reconnect-attempts=15
+spring.artemis.initial-connect-attempts=5
+
+# 流控制和性能配置
+spring.artemis.consumer-window-size=0
+spring.artemis.producer-window-size=0
+spring.artemis.consumer-max-rate=-1
+spring.artemis.producer-max-rate=-1
+spring.artemis.confirmation-window-size=-1
+spring.artemis.block-on-durable-send=false
+spring.artemis.block-on-non-durable-send=false
+
+# ===============================
+# = Artemis 健康检查配置
+# ===============================
+management.health.jms.enabled=true
+management.health.artemis.enabled=true
+```
+
+## 重要说明
+
+### ConnectionFactory 创建机制
+
+- **Embedded 模式**：Spring Boot 自动创建内嵌的 ConnectionFactory
+- **Native 模式**：手动创建并配置连接到外部 Artemis 的 ConnectionFactory
+
+### 监听器工厂和 JmsTemplate
+
+- 两种模式都使用相同的 JMS 配置
+- 自动使用对应模式的 ConnectionFactory
+- 监听器工厂和 JmsTemplate 配置保持一致
+
+### 健康检查
+
+- 两种模式都支持 Spring Boot Actuator 健康检查
+- 可通过 `/actuator/health` 端点查看 Artemis 连接状态
+- 生产环境建议启用健康检查监控
+
+### 配置管理最佳实践
+
+1. **集中管理**：所有 Artemis 和 JMS 配置集中在一个配置块中
+2. **避免重复**：不同模式的配置通过注释切换，避免配置分散
+3. **环境区分**：不同环境使用不同的配置文件（如 application-dev.properties、application-prod.properties）
+4. **版本控制**：将配置文件纳入版本控制，便于配置变更追踪
+
+## 故障排除
+
+### 连接失败问题
+
+**问题现象**：应用启动时出现连接 Artemis 失败的错误
+
+**排查步骤**：
+
+1. **检查 Artemis 服务状态**
+
+   ```bash
+   # Docker 方式检查
+   docker ps | grep artemis
+   docker logs artemis-bytedesk
+   
+   # 独立安装方式检查
+   ./mybroker/bin/artemis-service status
+   ```
+
+2. **验证连接参数**
+   - 检查 broker URL 是否正确（IP、端口）
+   - 验证用户名和密码是否匹配
+   - 确认网络连通性
+
+3. **查看应用日志**
+
+   ```bash
+   # 查找 JMS 和 Artemis 相关错误
+   grep -i "artemis\|jms" application.log
+   ```
+
+### 性能问题优化
+
+**问题现象**：消息处理延迟高或吞吐量低
+
+**优化建议**：
+
+1. **调整连接池配置**
+
+   ```properties
+   # 增加连接池大小
+   spring.artemis.pool.max-connections=50
+   spring.artemis.pool.idle-timeout=30000
+   ```
+
+2. **优化并发消费者数量**
+
+   ```properties
+   # 根据 CPU 核心数调整
+   spring.jms.listener.max-concurrency=20
+   ```
+
+3. **配置适当的超时时间**
+
+   ```properties
+   # 调整接收超时
+   spring.jms.listener.receive-timeout=5000
+   ```
+
+### 消息丢失问题
+
+**问题现象**：消息发送后未能正确投递或处理
+
+**排查方案**：
+
+1. **检查消息确认模式**
+
+   ```properties
+   # 使用客户端确认模式
+   spring.jms.listener.acknowledge-mode=client
+   ```
+
+2. **启用死信队列**
+
+   ```properties
+   # 配置死信队列处理失败消息
+   spring.artemis.embedded.queues=DLQ
+   ```
+
+3. **查看 Artemis 管理控制台**
+   - 访问 `http://server:18161/console`
+   - 检查队列中的消息堆积情况
+   - 查看死信队列中的失败消息
+
+### 内存使用过高
+
+**问题现象**：Artemis 或应用内存占用过高
+
+**解决方案**：
+
+1. **调整 JVM 堆内存**
+
+   ```bash
+   # Docker 环境变量
+   JAVA_OPTS: "-Xmx2g -Xms1g"
+   ```
+
+2. **配置消息持久化**
+
+   ```properties
+   # Embedded 模式启用持久化
+   spring.artemis.embedded.persistent=true
+   ```
+
+3. **限制队列大小**
+
+   ```xml
+   <!-- 在 artemis-config.xml 中配置 -->
+   <max-size-bytes>100MB</max-size-bytes>
+   ```
+
+### Docker 环境变量配置
+
+在使用 Docker 部署微语服务时，可以通过环境变量来设置以上配置：
 
 ```yaml
 services:
@@ -171,25 +410,6 @@ services:
       - SPRING_ARTEMIS_BROKER_URL=tcp://bytedesk-artemis:61616
       - SPRING_ARTEMIS_USER=admin
       - SPRING_ARTEMIS_PASSWORD=admin
-      
-      # 并发消费者配置
-      - SPRING_JMS_LISTENER_CONCURRENCY=1
-      - SPRING_JMS_LISTENER_MAX_CONCURRENCY=10
-      
-      # 消息确认与会话配置
-      - SPRING_JMS_LISTENER_ACKNOWLEDGE_MODE=client
-      - SPRING_JMS_LISTENER_AUTO_STARTUP=true
-      
-      # 消息重试配置
-      - SPRING_JMS_LISTENER_MAX_ATTEMPTS=5
-      - SPRING_JMS_LISTENER_INITIAL_INTERVAL=1000
-      - SPRING_JMS_LISTENER_MAX_INTERVAL=10000
-      - SPRING_JMS_LISTENER_MULTIPLIER=2.0
-      - SPRING_JMS_LISTENER_RECEIVE_TIMEOUT=1000
-      
-      # 队列与错误处理
-      - SPRING_ARTEMIS_EMBEDDED_QUEUES=DLQ
-      - SPRING_JMS_LISTENER_MISSING_QUEUES_FATAL=false
       
       # 其他微语系统配置...
     depends_on:
@@ -220,9 +440,26 @@ http://127.0.0.1:18161/console
 > 2. 推荐使用内网地址（如Docker网络中的容器名称）以提高性能和安全性
 > 3. 根据服务器CPU核心数合理设置最大消费者数（max-concurrency）
 
+## 相关资源链接
+
+### 官方文档
+
+- [Spring Boot JMS 文档](https://docs.spring.io/spring-boot/reference/messaging/jms.html) - Spring Boot JMS 集成指南
+- [Apache Artemis 官方文档](https://activemq.apache.org/components/artemis/documentation/latest/index.html) - Artemis 完整文档
+- [Spring JMS 指南](https://spring.io/guides/gs/messaging-jms/) - Spring JMS 快速入门
+- [Artemis Docker镜像说明](https://hub.docker.com/r/apache/activemq-artemis) - Docker 部署参考
+
 ## 总结
 
-Apache ActiveMQ Artemis 作为微语系统的消息中间件，在实时通讯场景中具有出色的性能和可靠性。通过Docker方式部署大大简化了安装和配置过程，无需关心繁琐的服务器配置细节，让您可以更专注于业务功能的开发。
+Apache ActiveMQ Artemis 作为微语系统的消息中间件，在实时通讯场景中具有出色的性能和可靠性。本文档详细介绍了：
+
+1. **两种部署模式**：Embedded 模式适合开发测试，Native 模式适合生产环境
+2. **完整配置指南**：包含所有必要的配置参数和最佳实践
+3. **模式切换方法**：如何在不同模式间灵活切换
+4. **故障排除方案**：常见问题的诊断和解决方法
+5. **性能优化建议**：提升系统性能的配置技巧
+
+通过 Docker 方式部署大大简化了安装和配置过程，无需关心繁琐的服务器配置细节，让您可以更专注于业务功能的开发。选择合适的部署模式，并根据实际需求调整配置参数，可以让微语系统发挥最佳性能。
 
 ## Artemis与其他消息队列系统对比
 
