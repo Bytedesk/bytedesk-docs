@@ -1,6 +1,6 @@
 ---
 sidebar_label: 机器人转人工
-sidebar_position: 19
+sidebar_position: 18
 ---
 
 # 机器人转人工

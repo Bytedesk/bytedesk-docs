@@ -1,9 +1,9 @@
 ---
-sidebar_label: 访客邀请对话框
-sidebar_position: 20
+sidebar_label: 访客端邀请对话框
+sidebar_position: 19
 ---
 
-# 访客邀请对话框
+# 访客端邀请对话框
 
 :::tip 提示
 社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
