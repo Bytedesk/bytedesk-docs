@@ -12,3 +12,9 @@ sidebar_position: 10
 ## 方法一：企业微信客服对接
 
 - [小程序接入](./wechat_work#在小程序中接入)
+
+## 方法二：UniApp sdk
+
+- [UniApp sdk](./uniapp.md)
+
+## 方法三：客服接口对接
