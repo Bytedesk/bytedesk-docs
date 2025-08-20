@@ -168,7 +168,7 @@ import Trademark from '/img/right/trademark.png';
 
 ## 联系方式
 
-- 如需咨询、意见反馈或购买，请[扫码联系微信](/img/wechat.png)
+- 如需咨询、购买、意见反馈、定制开发等，请[扫码联系微信](/img/wechat.png)，备注：微语
 
 ## PPT演示文档
 
