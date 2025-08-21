@@ -1,6 +1,6 @@
 ---
 sidebar_label: 订单对接
-sidebar_position: 36
+sidebar_position: 6
 ---
 
 # 订单系统对接-开发中
@@ -8,6 +8,8 @@ sidebar_position: 36
 :::tip 提示
 社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
 :::
+
+订单信息传递请参考[订单信息](./order_info.md)
 
 ## 概述
 
