@@ -172,7 +172,7 @@ ChatBox组件支持多种参数配置：
 | extra | string | 自定义访客额外信息（JSON格式） | - |
 | loadHistory | string | 是否自动加载历史聊天记录，值为"1"时加载，其他值不加载，详见[历史消息](./history) | - |
 | goodsInfo | string | 商品信息（JSON格式），详见[商品信息对接](./goodsinfo.md) | - |
-| orderInfo | string | 订单信息（JSON格式），详见[订单信息对接](./orderinfo.md) | - |
+| orderInfo | string | 订单信息（JSON格式），详见[订单信息对接](./order_info.md) | - |
 | userInfo | string | 用户信息（JSON格式），详见[用户信息对接](./userinfo.md) | - |
 
 ## 常见问题
@@ -193,7 +193,7 @@ ChatBox组件支持多种参数配置：
 
 - [历史消息](./history) - 了解如何加载和展示历史聊天记录
 - [商品信息对接](./goodsinfo.md) - 了解如何传递商品信息给客服
-- [订单信息对接](./orderinfo.md) - 了解如何传递订单信息给客服
+- [订单信息对接](./order_info.md) - 了解如何传递订单信息给客服
 - [用户信息对接](./userinfo.md) - 了解如何传递用户信息给客服
 - [千人千面](./viplevel.md) - 了解如何根据用户等级提供差异化服务
 - [国际化](./i18n.md) - 了解如何支持多语言

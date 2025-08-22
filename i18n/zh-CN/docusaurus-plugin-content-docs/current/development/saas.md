@@ -71,7 +71,7 @@ BYTEDESK_ADMIN_FORCE_VALIDATE_MOBILE=true
 BYTEDESK_ADMIN_FORCE_VALIDATE_EMAIL=true
 ```
 
-![登录界面](/img/develop/saas/saas_login.png)
+<!-- ![登录界面](/img/develop/saas/saas_login.png) -->
 
 ## 线上生产环境配置
 

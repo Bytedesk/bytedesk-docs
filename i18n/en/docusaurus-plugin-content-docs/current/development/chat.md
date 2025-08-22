@@ -172,7 +172,7 @@ The ChatBox component supports various parameter configurations:
 | extra | string | Custom visitor additional information (JSON format) | - |
 | loadHistory | string | Whether to automatically load historical chat records, loads when value is "1", doesn't load for other values, see [Historical Messages](./history) for details | - |
 | goodsInfo | string | Product information (JSON format), see [Product Information Integration](./goodsinfo.md) for details | - |
-| orderInfo | string | Order information (JSON format), see [Order Information Integration](./orderinfo.md) for details | - |
+| orderInfo | string | Order information (JSON format), see [Order Information Integration](./order_info.md) for details | - |
 | userInfo | string | User information (JSON format), see [User Information Integration](./userinfo.md) for details | - |
 
 ## Common Questions
@@ -193,7 +193,7 @@ You can pass information from existing user systems to the customer service clie
 
 - [Historical Messages](./history) - Learn how to load and display historical chat records
 - [Product Information Integration](./goodsinfo.md) - Learn how to pass product information to customer service
-- [Order Information Integration](./orderinfo.md) - Learn how to pass order information to customer service
+- [Order Information Integration](./order_info.md) - Learn how to pass order information to customer service
 - [User Information Integration](./userinfo.md) - Learn how to pass user information to customer service
 - [Personalized Service](./viplevel.md) - Learn how to provide differentiated services based on user levels
 - [Internationalization](./i18n.md) - Learn how to support multiple languages
