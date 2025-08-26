@@ -1,0 +1,162 @@
+/* 终极下拉菜单修复 - 完全重写hover逻辑 */
+
+/* 禁用默认的CSS hover行为，改用JavaScript控制 */
+.navbar__item.dropdown .dropdown__menu {
+  /* 完全重置所有默认样式 */
+  all: unset !important;
+  
+  /* 重新应用必要的样式 */
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  z-index: 999999 !important;
+  
+  /* 初始隐藏状态 */
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-10px) !important;
+  
+  /* 菜单样式 */
+  background: var(--ifm-navbar-background-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  min-width: 150px !important;
+  padding: 8px 0 !important;
+  margin-top: 4px !important;
+  
+  /* 移除所有过渡效果，让JavaScript完全控制 */
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 强制显示状态 */
+.navbar__item.dropdown.force-show .dropdown__menu,
+.navbar__item.dropdown.dropdown-enhanced .dropdown__menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* 右侧菜单位置调整 */
+.navbar__items--right .navbar__item.dropdown .dropdown__menu {
+  right: 0 !important;
+  left: auto !important;
+}
+
+/* 语言切换按钮增强 */
+.navbar__item--language {
+  position: relative !important;
+}
+
+.navbar__item--language .navbar__link {
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: background-color 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.navbar__item--language.force-show .navbar__link,
+.navbar__item--language:hover .navbar__link {
+  background-color: var(--ifm-color-emphasis-100) !important;
+}
+
+/* 下拉菜单项样式 */
+.dropdown__menu .dropdown__link {
+  display: block !important;
+  padding: 10px 16px !important;
+  color: var(--ifm-color-content) !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  transition: background-color 0.15s ease !important;
+  cursor: pointer !important;
+  border: none !important;
+  outline: none !important;
+}
+
+.dropdown__menu .dropdown__link:hover,
+.dropdown__menu .dropdown__link:focus {
+  background-color: var(--ifm-color-emphasis-200) !important;
+  color: var(--ifm-color-content) !important;
+  text-decoration: none !important;
+}
+
+/* 创建更大的交互区域 */
+.navbar__item.dropdown {
+  position: relative !important;
+}
+
+.navbar__item.dropdown::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -15px !important;
+  left: -15px !important;
+  right: -15px !important;
+  bottom: -15px !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+/* 暗色主题 */
+[data-theme='dark'] .dropdown__menu {
+  background: var(--ifm-navbar-background-color) !important;
+  border-color: var(--ifm-color-emphasis-300) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme='dark'] .dropdown__menu .dropdown__link:hover,
+[data-theme='dark'] .dropdown__menu .dropdown__link:focus {
+  background-color: var(--ifm-color-emphasis-200) !important;
+}
+
+[data-theme='dark'] .navbar__item--language.force-show .navbar__link,
+[data-theme='dark'] .navbar__item--language:hover .navbar__link {
+  background-color: var(--ifm-color-emphasis-200) !important;
+}
+
+/* 移动端处理 */
+@media (max-width: 996px) {
+  .navbar__item.dropdown .dropdown__menu {
+    position: static !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .navbar__item.dropdown .dropdown__menu {
+    display: none;
+  }
+  
+  .navbar__item.dropdown.dropdown--show .dropdown__menu {
+    display: block !important;
+  }
+}
+
+/* 确保所有可能的选择器都被覆盖 */
+.navbar .navbar__item.dropdown .dropdown__menu,
+.navbar__items .navbar__item.dropdown .dropdown__menu,
+.navbar__items--right .navbar__item.dropdown .dropdown__menu,
+.navbar__items--left .navbar__item.dropdown .dropdown__menu {
+  display: none !important;
+}
+
+.navbar .navbar__item.dropdown.force-show .dropdown__menu,
+.navbar__items .navbar__item.dropdown.force-show .dropdown__menu,
+.navbar__items--right .navbar__item.dropdown.force-show .dropdown__menu,
+.navbar__items--left .navbar__item.dropdown.force-show .dropdown__menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}

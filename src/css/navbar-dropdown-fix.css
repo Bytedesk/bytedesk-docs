@@ -1,0 +1,162 @@
+/* 强力修复语言切换下拉菜单的交互问题 */
+
+/* 彻底重写下拉菜单的hover逻辑 */
+.navbar__item.dropdown {
+  position: relative;
+}
+
+/* 完全控制下拉菜单的显示状态 */
+.navbar__item.dropdown .dropdown__menu {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  z-index: 1000 !important;
+  min-width: 150px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-10px) !important;
+  /* 移除所有默认的transition，我们用JavaScript完全控制 */
+  transition: none !important;
+  /* 添加连接区域 */
+  margin-top: 0px !important;
+  padding-top: 5px !important;
+  /* 确保在父元素正下方 */
+  border-top: 5px solid transparent !important;
+  /* 背景和样式 */
+  background: var(--ifm-navbar-background-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 强制显示状态 - 使用类名控制而不是hover */
+.navbar__item.dropdown.dropdown-force-show .dropdown__menu,
+.navbar__item.dropdown:hover .dropdown__menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  display: block !important;
+}
+
+/* 创建一个巨大的hover区域 */
+.navbar__item.dropdown::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  right: -15px;
+  bottom: -10px;
+  z-index: -1;
+}
+
+/* 语言切换特殊处理 */
+.navbar__item--language {
+  position: relative;
+}
+
+.navbar__item--language .navbar__link {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem !important;
+  border-radius: 4px;
+  transition: background-color 0.15s ease-in-out;
+  /* 确保有足够的点击区域 */
+  min-height: 40px;
+}
+
+.navbar__item--language .navbar__link:hover,
+.navbar__item--language.dropdown-force-show .navbar__link {
+  background-color: var(--ifm-color-emphasis-100) !important;
+}
+
+/* 下拉菜单项样式 */
+.dropdown__menu .dropdown__link {
+  padding: 10px 16px !important;
+  white-space: nowrap !important;
+  transition: background-color 0.15s ease-in-out !important;
+  display: block !important;
+  color: var(--ifm-color-content) !important;
+  text-decoration: none !important;
+}
+
+.dropdown__menu .dropdown__link:hover {
+  background-color: var(--ifm-color-emphasis-200) !important;
+  color: var(--ifm-color-content) !important;
+  text-decoration: none !important;
+}
+
+/* 确保下拉菜单在所有情况下都能正确显示 */
+.navbar__items--right .navbar__item.dropdown.dropdown-force-show .dropdown__menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* 特别针对右侧导航栏的语言切换 */
+.navbar__items--right .navbar__item--language {
+  position: relative;
+}
+
+.navbar__items--right .navbar__item--language .dropdown__menu {
+  right: 0 !important;
+  left: auto !important;
+}
+
+/* 移动端处理 */
+@media (max-width: 996px) {
+  .navbar__item.dropdown .dropdown__menu {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+  
+  .navbar__item.dropdown .dropdown__menu {
+    display: none;
+  }
+  
+  .navbar__item.dropdown.dropdown--show .dropdown__menu,
+  .navbar__item.dropdown.dropdown-force-show .dropdown__menu {
+    display: block !important;
+  }
+}
+
+/* 暗色模式 */
+[data-theme='dark'] .dropdown__menu {
+  background: var(--ifm-navbar-background-color) !important;
+  border-color: var(--ifm-color-emphasis-300) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme='dark'] .dropdown__menu .dropdown__link:hover {
+  background-color: var(--ifm-color-emphasis-200) !important;
+}
+
+[data-theme='dark'] .navbar__item--language .navbar__link:hover,
+[data-theme='dark'] .navbar__item--language.dropdown-force-show .navbar__link {
+  background-color: var(--ifm-color-emphasis-200) !important;
+}
+
+/* 强制样式覆盖 - 确保我们的规则优先级最高 */
+.navbar__item.dropdown.navbar-dropdown-enhanced .dropdown__menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* 额外的保险措施 */
+.navbar__item.dropdown:hover .dropdown__menu,
+.navbar__item.dropdown.force-visible .dropdown__menu,
+.navbar__item.dropdown.dropdown-enhanced-visible .dropdown__menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}

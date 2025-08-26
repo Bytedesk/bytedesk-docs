@@ -107,6 +107,9 @@ const config: Config = {
           customCss: [
             "./src/css/custom.css",
             "./src/css/watermark.css",
+            "./src/css/navbar-dropdown-fix.css",
+            "./src/css/simple-dropdown-fix.css",
+            "./src/css/ultimate-dropdown-fix.css",
           ],
         },
       } satisfies Preset.Options,

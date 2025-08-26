@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { BytedeskReact } from 'bytedesk-web/react';
 import '@site/src/css/watermark.css';
 import ErrorBoundary from '@site/src/components/ErrorBoundary';
+import { useUltimateDropdownFix } from '@site/src/hooks/useUltimateDropdownFix.js';
 // import { BytedeskConfig } from 'bytedesk-web';
 
 // 默认布局根组件，可用于添加全局 Head 标签和聊天组件
@@ -11,6 +12,9 @@ export default function Root({children}) {
   const {siteConfig, i18n} = useDocusaurusContext();
   const url = siteConfig.url;
   const currentLocale = i18n.currentLocale;
+
+  // 使用超强力导航栏下拉菜单修复 hook
+  useUltimateDropdownFix();
 
   // 多语言文本配置
   const texts = {

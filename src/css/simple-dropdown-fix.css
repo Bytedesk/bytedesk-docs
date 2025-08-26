@@ -1,0 +1,116 @@
+/* 超级简单但有效的下拉菜单修复 */
+
+/* 为所有下拉菜单添加巨大的延迟和稳定的hover区域 */
+.navbar__item.dropdown {
+  position: relative;
+}
+
+/* 创建一个超大的隐形hover区域 */
+.navbar__item.dropdown::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 确保下拉菜单在hover时显示 */
+.navbar__item.dropdown:hover .dropdown__menu {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* 下拉菜单基础样式 */
+.dropdown__menu {
+  position: absolute !important;
+  top: calc(100% + 5px) !important;
+  left: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease-in-out 0.1s;
+  background: var(--ifm-navbar-background-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  min-width: 160px !important;
+  padding: 8px 0 !important;
+  /* 创建连接区域 */
+  margin-top: -5px !important;
+  padding-top: 13px !important;
+  /* 添加透明边框连接 */
+  border-top: 8px solid transparent !important;
+}
+
+/* 右侧导航的下拉菜单 */
+.navbar__items--right .navbar__item.dropdown .dropdown__menu {
+  right: 0 !important;
+  left: auto !important;
+}
+
+/* 下拉菜单项样式 */
+.dropdown__menu .dropdown__link {
+  padding: 8px 16px !important;
+  display: block !important;
+  color: var(--ifm-color-content) !important;
+  text-decoration: none !important;
+  transition: background-color 0.15s ease !important;
+  white-space: nowrap !important;
+}
+
+.dropdown__menu .dropdown__link:hover {
+  background-color: var(--ifm-color-emphasis-200) !important;
+  color: var(--ifm-color-content) !important;
+  text-decoration: none !important;
+}
+
+/* 语言切换按钮样式 */
+.navbar__item--language .navbar__link {
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  transition: background-color 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.navbar__item--language:hover .navbar__link {
+  background-color: var(--ifm-color-emphasis-100) !important;
+}
+
+/* 暗色主题适配 */
+[data-theme='dark'] .dropdown__menu {
+  background: var(--ifm-navbar-background-color) !important;
+  border-color: var(--ifm-color-emphasis-300) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+}
+
+[data-theme='dark'] .dropdown__menu .dropdown__link:hover {
+  background-color: var(--ifm-color-emphasis-200) !important;
+}
+
+[data-theme='dark'] .navbar__item--language:hover .navbar__link {
+  background-color: var(--ifm-color-emphasis-200) !important;
+}
+
+/* 移动端适配 */
+@media (max-width: 996px) {
+  .navbar__item.dropdown .dropdown__menu {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+}
