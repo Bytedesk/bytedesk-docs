@@ -23,14 +23,11 @@ sidebar_position: 2
 首先，从代码仓库克隆项目源代码到本地：
 
 ```bash
-# 国内用户推荐使用Gitee镜像源
-git clone https://github.com/Bytedesk/bytedesk.git
-
-# 或者使用GitHub源
+# 使用GitHub源
 git clone https://github.com/bytedesk/bytedesk.git
 
 # 进入项目目录
-cd weiyu  # 或 cd bytedesk
+cd bytedesk
 ```
 
 ## 2. 环境准备
