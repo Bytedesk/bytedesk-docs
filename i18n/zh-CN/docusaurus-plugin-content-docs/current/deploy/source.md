@@ -46,7 +46,16 @@ java --version
 
 ### 2.2 安装项目依赖
 
-- [安装项目依赖](./jar.md#12-安装项目依赖)
+```bash
+# 1. 进入项目资源目录
+cd bytedesk/starter/src/main/resources
+
+# 2. 使用docker-compose启动依赖服务
+docker compose -p bytedesk -f compose.yaml up -d
+# docker compose -p bytedesk -f compose.yaml down
+```
+
+- 或参考[手动项目依赖](./jar.md#12-安装项目依赖)
 
 ## 3. 编译与启动
 
@@ -71,6 +80,9 @@ protoc --version
 ### 3.2 编译项目
 
 ```bash
+# 进入项目根目录
+cd bytedesk
+
 # 在项目根目录下执行编译（跳过测试以加快速度）
 ./mvnw install -Dmaven.test.skip=true
 ```

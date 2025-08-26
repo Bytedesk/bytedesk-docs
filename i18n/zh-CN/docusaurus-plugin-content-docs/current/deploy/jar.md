@@ -47,31 +47,24 @@ sudo systemctl start docker   # 如需启动Docker服务
 
 # 2. 需要提前Clone或下载项目：https://github.com/Bytedesk/bytedesk，在项目根目录下进入配置目录
 git clone https://github.com/Bytedesk/bytedesk.git
-cd starter/src/main/resources
 
-# 3. 一键启动所有依赖服务
+# 3. 进入项目配置目录
+cd bytedesk/starter/src/main/resources
+
+# 4. 一键启动所有依赖服务
 docker compose -p bytedesk -f compose.yaml up -d
-# 对话模型
+
+# 5. 安装Ollama对话模型
 docker exec ollama-bytedesk ollama pull qwen3:0.6b
-# 向量模型
+
+# 6. 安装Ollama对话模型
 docker exec ollama-bytedesk ollama pull bge-m3:latest
 
-# 查看容器运行状态
+# 7. 查看容器运行状态
 docker ps | grep bytedesk
 
 # 如需停止服务
 # docker compose -p bytedesk -f compose.yaml down
-```
-
-或者
-
-- 创建 docker-compose.yaml 文件
-- 打开 [docker-compose-middleware](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-middleware.yaml)
-- 复制其中内容到 docker-compose.yaml 文件
-
-```bash
-# 运行下面命令启动
-docker compose -p bytedesk -f docker-compose.yaml up -d
 ```
 
 > 💡 **提示**：使用Docker方式，无需手动安装每个依赖，容器会自动配置好网络和初始设置。
@@ -85,6 +78,7 @@ docker compose -p bytedesk -f docker-compose.yaml up -d
 3. **[Ollama](./depend/ollama)**：AI大模型服务
 4. **[Elasticsearch](./depend/elasticsearch)**：全文检索和向量存储检索
 5. **[Artemis](./depend/artemis)**：消息队列服务
+6. **[MinIO](./depend/minio)**：对象存储服务
 
 > ⚠️ **注意**：有的同学会找数据库.sql文件，这里不需要，只需要修改配置文件连接上数据库，系统会自动生成表。
 
