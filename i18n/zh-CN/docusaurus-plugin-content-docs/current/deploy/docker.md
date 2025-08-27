@@ -131,7 +131,7 @@ docker pull --platform linux/arm64 bytedesk/bytedesk:latest
 
 - **国内用户**：建议使用阿里云镜像，下载速度更快
 - **社区版**：`registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk-ce:latest`
-- **企业版**：`registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest`
+- **企业版/平台版**：`registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest`
 :::
 
 ## 常见问题

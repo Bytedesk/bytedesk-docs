@@ -8,6 +8,12 @@ sidebar_position: 5
 
 微语AI智能知识库系统是一套革命性的知识管理解决方案，通过AI技术重新定义企业知识管理方式。系统集成了先进的大语言模型，实现知识的智能采集、组织、更新和应用，显著提升知识利用效率，降低知识管理成本，为企业打造持续进化的知识资产。
 
+## 核心功能
+
+- 支持[多模态](../provider/multimodal.md)，支持上传多种类型文件、图片问答
+- 支持知识溯源，支持查看知识来源
+- 支持对接第三方知识库：[Coze](../development/llm_coze.md)、[Dify](../development/llm_dify.md)、[N8n](../development/llm_n8n.md)、[Ragflow](../development/llm_ragflow.md)、[MaxKB](../development/llm_maxkb.md)等
+
 ## AI驱动的知识管理核心优势
 
 ### 🤖 智能知识采集
