@@ -5,6 +5,10 @@ sidebar_position: 5
 
 # 千人千面
 
+:::tip 提示
+社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
+:::
+
 本页面介绍如何通过 `vipLevel` 参数实现针对不同等级用户展示不同的客服内容，实现千人千面的个性化服务体验。
 
 - 演示链接：[千人千面演示](https://weiyuai.cn/reactdemo)

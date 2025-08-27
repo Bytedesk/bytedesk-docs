@@ -5,6 +5,10 @@ sidebar_position: 6
 
 # 订单信息对接
 
+:::tip 提示
+社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
+:::
+
 本页面介绍如何将业务系统中的订单信息传递给客服系统，特别适用于电商、物流等需要提供订单咨询服务的场景，帮助客服快速了解用户咨询的订单详情。
 
 - 演示链接：[订单信息对接演示](https://weiyuai.cn/reactdemo)
