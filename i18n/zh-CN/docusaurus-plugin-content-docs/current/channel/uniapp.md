@@ -5,6 +5,12 @@ sidebar_position: 8
 description: 在 Uniapp 应用中集成微语客服系统
 ---
 
+## 方法一：H5链接嵌入
+
+- [H5链接嵌入](./web.md)
+
+## 方法二：SDK集成
+
 ## 功能简介
 
 Uniapp是一个基于Vue.js的跨平台应用开发框架，可以一套代码发布到多个平台。通过集成微语客服系统，您的Uniapp应用可以同时在Web、H5、小程序、Android、iOS等全平台提供统一的客服体验。本SDK基于Vue.js开发，100%开源，支持自定义界面，让您轻松构建专业的客服功能。

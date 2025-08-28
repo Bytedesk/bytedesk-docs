@@ -5,6 +5,12 @@ sidebar_position: 9
 description: 在 Flutter 应用中集成微语客服系统
 ---
 
+## 方法一：H5链接嵌入
+
+- [H5链接嵌入](./web.md)
+
+## 方法二：SDK集成
+
 ## 功能简介
 
 Flutter是Google开发的跨平台UI框架，一套代码可以同时构建Android、iOS、Web、Desktop等多端应用。通过集成微语Flutter SDK，您的应用可以在所有平台上提供统一的客服体验。SDK源码100%开源，支持丰富的功能，包括机器人对话、人工客服、电商商品信息发送等，让您轻松构建专业的移动客服系统。
