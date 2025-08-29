@@ -12,7 +12,7 @@ sidebar_position: 5
 
 - 支持[多模态](../provider/multimodal.md)，支持上传多种类型文件、图片问答
 - 支持知识溯源，支持查看知识来源
-- 支持对接第三方知识库：[Coze](../development/llm_coze.md)、[Dify](../development/llm_dify.md)、[N8n](../development/llm_n8n.md)、[Ragflow](../development/llm_ragflow.md)、[MaxKB](../development/llm_maxkb.md)等
+- 支持对接第三方知识库：[Coze](../provider/llm_coze.md)、[Dify](../provider/llm_dify.md)、[N8n](../provider/llm_n8n.md)、[Ragflow](../provider/llm_ragflow.md)、[MaxKB](../provider/llm_maxkb.md)等
 
 ## AI驱动的知识管理核心优势
 
