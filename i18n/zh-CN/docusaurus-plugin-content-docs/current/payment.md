@@ -69,6 +69,7 @@ sidebar_position: 11
 | [对接大模型](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [知识库](./modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [消息撤回](./development/message.md#消息撤回) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [敏感词过滤](./development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Ip过滤拦截](./development/ip.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [数据统计报表](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
