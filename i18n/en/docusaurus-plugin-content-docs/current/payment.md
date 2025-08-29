@@ -107,7 +107,7 @@ Note: Prices are one-time charges
 | [WeChat Work](./channel/wechat_work) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [WeChat Customer Service](./channel/wechat_kf) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [WeChat Official Account](./channel/wechat_mp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [WeChat Mini Program](./channel/wechat_mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WeChat Mini Program](./channel/mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | More Integration Channels | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 ### Plus Feature Plugins (Additional Charges)

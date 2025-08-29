@@ -107,7 +107,7 @@ sidebar_position: 11
 | [企業微信](./channel/wechat_work) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [微信客服](./channel/wechat_kf) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [微信公眾號](./channel/wechat_mp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信小程序](./channel/wechat_mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信小程序](./channel/mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多對接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 ### Plus 功能插件（額外收費）
