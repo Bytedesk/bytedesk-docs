@@ -26,10 +26,10 @@ import webH5Code from '/img/channel/web/web_h5_3.png';
 - 支持自定义深色模式，默认浅色
 - 支持是否自动弹窗邀请对话，默认不自动弹窗，并支持自定义弹窗邀请对话的标题和内容，弹窗次数，时间间隔等
 
-<img src={webH5Config} />
+<img src={webH5Config} width={500}/>
 
 ### 第三步：获取接入代码
 
-<img src={webH5Code} />
+<img src={webH5Code} width={500} />
 
 ### 第四步：将接入代码嵌入到网站/Web/H5 应用中
