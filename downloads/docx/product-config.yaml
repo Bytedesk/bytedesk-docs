@@ -1,0 +1,16 @@
+# Pandoc配置文件 - 微语协作平台产品介绍
+metadata:
+  title: "微语协作平台"
+  subtitle: "基于AI全新打造的开源企业级多租户团队协作工具"
+  author: "北京微语天下科技有限公司"
+  date: "2025年9月1日"
+
+variables:
+  lang: zh-CN
+  mainfont: "PingFang SC"
+  fontsize: 12pt
+  geometry: margin=2.5cm
+  linestretch: 1.5
+
+metadata-files:
+  - header.yaml

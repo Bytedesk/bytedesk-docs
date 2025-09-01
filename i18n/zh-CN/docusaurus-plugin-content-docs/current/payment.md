@@ -172,9 +172,11 @@ import Trademark from '/img/right/trademark.png';
 
 - 如需咨询、购买、意见反馈、定制开发等，请[扫码联系微信](/img/wechat.png)，备注：微语
 
-## PPT演示文档
+## 下载演示资料
 
-- [下载](https://www.weiyuai.cn/download/ppt/)
+- [PPT](https://www.weiyuai.cn/download/ppt/)
+- [文档](https://www.weiyuai.cn/download/docx/)
+- [更多](https://www.weiyuai.cn/downloads/)
 
 ## 使用条款与参考
 
