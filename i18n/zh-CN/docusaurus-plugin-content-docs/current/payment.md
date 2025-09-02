@@ -176,7 +176,7 @@ import Trademark from '/img/right/trademark.png';
 
 - [PPT](https://www.weiyuai.cn/download/ppt/)
 - [文档](https://www.weiyuai.cn/download/docx/)
-- [更多](https://www.weiyuai.cn/downloads/)
+- [更多](https://www.weiyuai.cn/download/)
 
 ## 使用条款与参考
 
