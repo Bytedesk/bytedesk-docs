@@ -13,6 +13,285 @@ sidebar_position: 27
 
 AccessToken 是微语系统提供的第三方登录凭证，主要用于第三方系统集成时避免用户二次登录。通过 AccessToken，第三方系统可以直接让用户登录到微语系统，无需用户重新输入用户名和密码。
 
+![token](/img/develop/admin/token.png)
+
+## 使用场景
+
+- **第三方系统集成**: 当您的系统需要集成微语客服功能时
+- **单点登录 (SSO)**: 实现用户一次登录即可访问多个系统
+- **嵌入式应用**: 在您的应用中嵌入微语客服界面
+- **API 调用**: 通过 AccessToken 进行 API 认证，实现程序化访问微语系统的各项功能
+
+## AccessToken 登录方式
+
+### 1. 获取 AccessToken
+
+#### 方式一：通过管理后台生成
+
+在微语管理后台的 Token 管理页面，可以生成和管理 AccessToken。
+
+#### 方式二：通过登录接口获取
+
+您也可以通过调用登录接口来获取 AccessToken，这种方式适用于程序化获取 Token 的场景。
+
+##### 接口说明
+
+- **接口地址**: `/auth/v1/login`
+- **请求方法**: `POST`
+- **内容类型**: `application/json`
+
+##### TypeScript 类型定义
+
+```typescript
+// 登录参数类型
+interface LoginParams {
+  username?: string;
+  password?: string;
+  passwordHash?: string; // 哈希后的密码
+  passwordSalt?: string; // 盐值
+  captchaUid?: string;
+  captchaCode?: string;
+  deviceUid?: string;
+  channel?: string;
+  platform: string;
+}
+
+// 登录返回结果类型
+interface LoginResult {
+  message: string;
+  code: number;
+  data: {
+    accessToken?: string;
+    user?: any;
+  };
+}
+```
+
+##### 使用示例
+
+```typescript
+import axios from 'axios';
+
+// 配置登录参数
+const loginInfo: LoginParams = {
+  username: 'your_username',
+  password: 'your_password',
+  channel: 'FLUTTER',
+  platform: 'BYTEDESK'
+};
+
+// 登录接口封装
+export async function login(params: LoginParams): Promise<LoginResult> {
+  try {
+    const response = await axios.post<LoginResult>('/auth/v1/login', {
+      ...params,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('登录失败:', error);
+    throw error;
+  }
+}
+
+// 获取 AccessToken
+async function getAccessToken() {
+  try {
+    const result = await login(loginInfo);
+    
+    if (result.code === 200 && result.data.accessToken) {
+      const accessToken = result.data.accessToken;
+      console.log('获取到 AccessToken:', accessToken);
+      
+      // 使用 AccessToken 进行后续操作
+      return accessToken;
+    } else {
+      console.error('登录失败:', result.message);
+      return null;
+    }
+  } catch (error) {
+    console.error('获取 AccessToken 失败:', error);
+    return null;
+  }
+}
+
+// 完整示例：获取 Token 并跳转到系统
+async function loginAndRedirect() {
+  const accessToken = await getAccessToken();
+  
+  if (accessToken) {
+    // 使用获取到的 AccessToken 跳转到系统
+    const chatUrl = `http://127.0.0.1:9005/agent/chat?accessToken=${accessToken}`;
+    window.open(chatUrl, '_blank');
+  }
+}
+```
+
+##### 注意事项
+
+1. **安全性**: 请勿在前端代码中硬编码用户名和密码
+2. **错误处理**: 需要正确处理登录失败的情况
+3. **Token 缓存**: 可以将获取到的 AccessToken 缓存起来重复使用
+4. **有效期**: 注意 AccessToken 的有效期，过期后需要重新获取
+
+### 任意路径登录优势起见，建议及时撤销使其失效。系统提供了两种撤销方式：
+
+### 方式一：通过管理后台撤销
+
+在微语管理后台的 Token 管理页面，可以手动撤销指定的 AccessToken，使其立即失效。
+
+### 方式二：通过登出接口撤销
+
+您也可以通过调用登出接口来撤销当前的 AccessToken，这种方式适用于程序化撤销 Token 的场景。
+
+#### 接口说明
+
+- **接口地址**: `/api/v1/user/logout`
+- **请求方法**: `POST`
+- **认证方式**: Bearer Token（在请求头中设置 AccessToken）
+
+#### TypeScript 类型定义
+
+```typescript
+// 登出返回结果类型
+interface LogoutResult {
+  message: string;
+  code: number;
+  data: boolean;
+}
+```
+
+#### 使用示例
+
+```typescript
+import axios from 'axios';
+
+// 配置 axios 实例
+const request = axios.create({
+  baseURL: 'http://your-domain.com', // 替换为实际的服务器地址
+  timeout: 10000,
+});
+
+// 登出接口封装
+export async function logout(accessToken: string): Promise<LogoutResult> {
+  try {
+    const response = await request.post<LogoutResult>('/api/v1/user/logout', {}, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('登出失败:', error);
+    throw error;
+  }
+}
+
+// 撤销 AccessToken 示例
+async function revokeAccessToken(accessToken: string) {
+  try {
+    const result = await logout(accessToken);
+    
+    if (result.code === 200 && result.data === true) {
+      console.log('AccessToken 撤销成功:', result.message);
+      
+      // 清除本地存储的 Token
+      localStorage.removeItem('accessToken');
+      sessionStorage.removeItem('accessToken');
+      
+      return true;
+    } else {
+      console.error('AccessToken 撤销失败:', result.message);
+      return false;
+    }
+  } catch (error) {
+    console.error('撤销 AccessToken 失败:', error);
+    return false;
+  }
+}
+
+// 完整示例：撤销 Token 并重定向
+async function logoutAndRedirect(accessToken: string) {
+  const success = await revokeAccessToken(accessToken);
+  
+  if (success) {
+    // 撤销成功后重定向到登录页面
+    window.location.href = '/login';
+  }
+}
+```
+
+#### 请求拦截器配置示例
+
+如果您使用 axios 拦截器统一处理认证头，可以参考以下配置：
+
+```typescript
+import axios from 'axios';
+
+// 创建 axios 实例
+const request = axios.create({
+  baseURL: 'http://your-domain.com',
+  timeout: 10000,
+});
+
+// 请求拦截器：自动添加 Authorization 头
+request.interceptors.request.use(
+  (config) => {
+    // 从存储中获取 AccessToken
+    const accessToken = localStorage.getItem('accessToken') || 
+                       sessionStorage.getItem('accessToken');
+    
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// 响应拦截器：处理 Token 失效
+request.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    // 如果返回 401，说明 Token 已失效
+    if (error.response?.status === 401) {
+      // 清除失效的 Token
+      localStorage.removeItem('accessToken');
+      sessionStorage.removeItem('accessToken');
+      
+      // 重定向到登录页面
+      window.location.href = '/login';
+    }
+    
+    return Promise.reject(error);
+  }
+);
+
+// 使用拦截器配置后的登出接口
+export async function logout(): Promise<LogoutResult> {
+  try {
+    const response = await request.post<LogoutResult>('/api/v1/user/logout');
+    return response.data;
+  } catch (error) {
+    console.error('登出失败:', error);
+    throw error;
+  }
+}
+```
+
+#### 注意事项
+
+1. **认证头格式**: 必须使用 `Bearer ${accessToken}` 格式设置 Authorization 头
+2. **Token 清理**: 撤销成功后应及时清除本地存储的 Token
+3. **错误处理**: 需要正确处理网络错误和服务器返回的错误
+4. **安全性**: 撤销 Token 后应引导用户重新登录
+5. **状态管理**: 在单页应用中注意更新应用的登录状态
+
 ## 使用场景
 
 - **第三方系统集成**: 当您的系统需要集成微语客服功能时
