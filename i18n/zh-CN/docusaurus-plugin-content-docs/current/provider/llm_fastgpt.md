@@ -1,6 +1,6 @@
 ---
-sidebar_label: LLM FastGpt
+sidebar_label: 对接 FastGpt
 sidebar_position: 39
 ---
 
-# LLM FastGpt
+# 对接 FastGpt
