@@ -1,6 +1,6 @@
 ---
-sidebar_label: Model Audio
+sidebar_label: 音频模型配置
 sidebar_position: 24
 ---
 
-# Model Audio Integration
+# 音频模型配置

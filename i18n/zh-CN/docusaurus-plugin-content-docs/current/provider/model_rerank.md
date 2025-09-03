@@ -1,6 +1,6 @@
 ---
-sidebar_label: Model Rerank
+sidebar_label: 重排序模型配置
 sidebar_position: 25
 ---
 
-# Model Rerank Integration
+# 重排序模型配置

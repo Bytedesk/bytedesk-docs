@@ -1,6 +1,6 @@
 ---
-sidebar_label: Model Vision
+sidebar_label: 视觉模型配置
 sidebar_position: 23
 ---
 
-# Model Vision Integration
+# 视觉模型配置
