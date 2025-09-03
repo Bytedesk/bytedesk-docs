@@ -13,8 +13,6 @@ sidebar_position: 27
 
 AccessToken 是微语系统提供的第三方登录凭证，主要用于第三方系统集成时避免用户二次登录。通过 AccessToken，第三方系统可以直接让用户登录到微语系统，无需用户重新输入用户名和密码。
 
-![token](/img/develop/admin/token.png)
-
 ## 使用场景
 
 - **第三方系统集成**: 当您的系统需要集成微语客服功能时
@@ -30,13 +28,15 @@ AccessToken 是微语系统提供的第三方登录凭证，主要用于第三�
 
 在微语管理后台的 Token 管理页面，可以生成和管理 AccessToken。
 
+![token](/img/develop/admin/token.png)
+
 #### 方式二：通过登录接口获取
 
 您也可以通过调用登录接口来获取 AccessToken，这种方式适用于程序化获取 Token 的场景。
 
 ##### 接口说明
 
-- **接口地址**: `/auth/v1/login`
+- **接口地址**: `/auth/v1/login`，注意添加服务器域名或ip，如：`http://127.0.0.1:9003/auth/v1/login`
 - **请求方法**: `POST`
 - **内容类型**: `application/json`
 
@@ -47,11 +47,6 @@ AccessToken 是微语系统提供的第三方登录凭证，主要用于第三�
 interface LoginParams {
   username?: string;
   password?: string;
-  passwordHash?: string; // 哈希后的密码
-  passwordSalt?: string; // 盐值
-  captchaUid?: string;
-  captchaCode?: string;
-  deviceUid?: string;
   channel?: string;
   platform: string;
 }
@@ -126,30 +121,34 @@ async function loginAndRedirect() {
 }
 ```
 
-##### 注意事项
+##### 获取Token注意事项
 
 1. **安全性**: 请勿在前端代码中硬编码用户名和密码
 2. **错误处理**: 需要正确处理登录失败的情况
 3. **Token 缓存**: 可以将获取到的 AccessToken 缓存起来重复使用
 4. **有效期**: 注意 AccessToken 的有效期，过期后需要重新获取
 
-### 任意路径登录优势起见，建议及时撤销使其失效。系统提供了两种撤销方式：
+### 2. 撤销 AccessToken
 
-### 方式一：通过管理后台撤销
+当 AccessToken 不再需要使用时，为了安全起见，建议及时撤销使其失效。系统提供了两种撤销方式：
+
+#### 方式一：通过管理后台撤销
 
 在微语管理后台的 Token 管理页面，可以手动撤销指定的 AccessToken，使其立即失效。
 
-### 方式二：通过登出接口撤销
+![token](/img/develop/admin/token_revoke.png)
+
+#### 方式二：通过登出接口撤销
 
 您也可以通过调用登出接口来撤销当前的 AccessToken，这种方式适用于程序化撤销 Token 的场景。
 
-#### 接口说明
+##### 撤销接口说明
 
-- **接口地址**: `/api/v1/user/logout`
+- **接口地址**: `/api/v1/user/logout`，注意添加服务器域名或ip，如：`http://127.0.0.1:9003/api/v1/user/logout`
 - **请求方法**: `POST`
 - **认证方式**: Bearer Token（在请求头中设置 AccessToken）
 
-#### TypeScript 类型定义
+##### 撤销返回类型定义
 
 ```typescript
 // 登出返回结果类型
@@ -160,7 +159,7 @@ interface LogoutResult {
 }
 ```
 
-#### 使用示例
+##### 撤销使用示例
 
 ```typescript
 import axios from 'axios';
@@ -221,7 +220,7 @@ async function logoutAndRedirect(accessToken: string) {
 }
 ```
 
-#### 请求拦截器配置示例
+##### 请求拦截器配置示例
 
 如果您使用 axios 拦截器统一处理认证头，可以参考以下配置：
 
@@ -284,7 +283,7 @@ export async function logout(): Promise<LogoutResult> {
 }
 ```
 
-#### 注意事项
+##### 撤销注意事项
 
 1. **认证头格式**: 必须使用 `Bearer ${accessToken}` 格式设置 Authorization 头
 2. **Token 清理**: 撤销成功后应及时清除本地存储的 Token
@@ -292,122 +291,7 @@ export async function logout(): Promise<LogoutResult> {
 4. **安全性**: 撤销 Token 后应引导用户重新登录
 5. **状态管理**: 在单页应用中注意更新应用的登录状态
 
-## 使用场景
-
-- **第三方系统集成**: 当您的系统需要集成微语客服功能时
-- **单点登录 (SSO)**: 实现用户一次登录即可访问多个系统
-- **嵌入式应用**: 在您的应用中嵌入微语客服界面
-- **API 调用**: 通过 AccessToken 进行 API 认证，实现程序化访问微语系统的各项功能
-
-## AccessToken 登录方式
-
-### 1. 获取 AccessToken
-
-#### 方式一：通过管理后台生成
-
-在微语管理后台的 Token 管理页面，可以生成和管理 AccessToken。
-
-![token](/img/develop/admin/token.png)
-
-#### 方式二：通过登录接口获取
-
-您也可以通过调用登录接口来获取 AccessToken，这种方式适用于程序化获取 Token 的场景。
-
-##### 接口说明
-
-- **接口地址**: `/auth/v1/login` （请根据实际部署的域名/ip进行替换, 例如: `http://127.0.0.1:9003/auth/v1/login`）
-- **请求方法**: `POST`
-- **内容类型**: `application/json`
-
-##### TypeScript 类型定义
-
-```typescript
-// 登录参数类型
-interface LoginParams {
-  username?: string;
-  password?: string;
-  channel?: string;
-  platform: string;
-}
-
-// 登录返回结果类型
-interface LoginResult {
-  message: string;
-  code: number;
-  data: {
-    accessToken?: string;
-    user?: any;
-  };
-}
-```
-
-##### 使用示例
-
-```typescript
-import axios from 'axios';
-
-// 配置登录参数
-const loginInfo: LoginParams = {
-  username: 'your_username',
-  password: 'your_password',
-  channel: 'FLUTTER', // 固定写死，不能修改
-  platform: 'BYTEDESK' // 固定写死，不能修改
-};
-
-// 登录接口封装
-export async function login(params: LoginParams): Promise<LoginResult> {
-  try {
-    const response = await axios.post<LoginResult>('/auth/v1/login', {
-      ...params,
-    });
-    return response.data;
-  } catch (error) {
-    console.error('登录失败:', error);
-    throw error;
-  }
-}
-
-// 获取 AccessToken
-async function getAccessToken() {
-  try {
-    const result = await login(loginInfo);
-    
-    if (result.code === 200 && result.data.accessToken) {
-      const accessToken = result.data.accessToken;
-      console.log('获取到 AccessToken:', accessToken);
-      
-      // 使用 AccessToken 进行后续操作
-      return accessToken;
-    } else {
-      console.error('登录失败:', result.message);
-      return null;
-    }
-  } catch (error) {
-    console.error('获取 AccessToken 失败:', error);
-    return null;
-  }
-}
-
-// 完整示例：获取 Token 并跳转到系统
-async function loginAndRedirect() {
-  const accessToken = await getAccessToken();
-  
-  if (accessToken) {
-    // 使用获取到的 AccessToken 跳转到系统
-    const chatUrl = `http://127.0.0.1:9005/agent/chat?accessToken=${accessToken}`;
-    window.open(chatUrl, '_blank');
-  }
-}
-```
-
-##### 注意事项
-
-1. **安全性**: 请勿在前端代码中硬编码用户名和密码
-2. **错误处理**: 需要正确处理登录失败的情况
-3. **Token 缓存**: 可以将获取到的 AccessToken 缓存起来重复使用
-4. **有效期**: 注意 AccessToken 的有效期，过期后需要重新获取
-
-### 任意路径登录优势
+### 3. 任意路径登录优势
 
 AccessToken 支持任意路径登录，这意味着您可以直接跳转到系统的任何页面，而不仅限于登录页面。这种方式的优势包括：
 
@@ -416,7 +300,7 @@ AccessToken 支持任意路径登录，这意味着您可以直接跳转到系�
 - **减少页面跳转**: 避免先跳转到登录页面再跳转到目标页面的多余步骤
 - **精确定位**: 可以将用户直接带到相关的工作页面，提高工作效率
 
-### 2. 登录 URL 格式
+### 4. 登录 URL 格式
 
 AccessToken 支持两种登录方式，并且支持任意路径登录：
 
@@ -444,7 +328,7 @@ http://服务器ip/admin/dashboard?accessToken=YOUR_ACCESS_TOKEN
 http://服务器ip/admin/任意路径?accessToken=YOUR_ACCESS_TOKEN
 ```
 
-### 3. 完整示例
+### 5. 完整示例
 
 #### 客服工作台示例
 
@@ -563,7 +447,7 @@ openAdminDashboard(accessToken);   // 直接打开管理后台仪表盘
 
 ### 3. iframe 嵌入
 
-#### 客服工作台
+#### 客服工作台iframe示例
 
 ```html
 <!-- 标准登录页面 -->
@@ -591,7 +475,7 @@ openAdminDashboard(accessToken);   // 直接打开管理后台仪表盘
 </iframe>
 ```
 
-#### 管理后台
+#### 管理后台iframe示例
 
 ```html
 <!-- 标准登录页面 -->
