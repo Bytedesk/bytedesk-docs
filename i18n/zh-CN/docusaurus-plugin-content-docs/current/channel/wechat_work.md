@@ -41,6 +41,8 @@ sidebar_position: 11
 
 ### 可信IP
 
+设置部署服务器的IP地址为可信IP，保证消息回调不被拦截。
+
 ![wechat_work_ip](/img/channel/wechat/wechat_work_ip.png)
 
 ### 测试对话
