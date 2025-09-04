@@ -51,7 +51,9 @@ sidebar_position: 11
 
 ## 微信客服配置
 
-### 在企业微信管理后台，找到"应用管理"→"应用"→"微信客服"
+不仅可以直接为企业微信应用对话，还可以通过微信客服为客户提供服务。
+
+### 找到"应用管理"→"应用"→"微信客服"
 
 ![wechat_work_kefu](/img/channel/wechat/wechat_work_kefu.png)
 
