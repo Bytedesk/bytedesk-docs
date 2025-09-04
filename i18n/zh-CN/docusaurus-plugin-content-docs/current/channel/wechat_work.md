@@ -129,6 +129,12 @@ sidebar_position: 11
 
 ![wechat_work_corpid](/img/channel/wechat/wechat_work_corpid.png)
 
+### AgentId 或 应用ID
+
+在管理后台→"应用管理"→"应用"→"自建"，点进某个应用，即可看到。
+
+![wechat_work_agentid](/img/channel/wechat/wechat_work_agentid.png)
+
 ### AppSecret 或 secret
 
 secret是企业应用里面用于保障数据安全的"钥匙"，每一个应用都有一个独立的访问密钥，为了保证数据的安全，secret务必不能泄漏。secret查看方法：
