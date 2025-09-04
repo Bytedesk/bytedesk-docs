@@ -5,17 +5,6 @@ sidebar_position: 11
 
 # 企业微信
 
-import wechatWorkApp from '/img/channel/wechat/wechat_work_create_internal_app.png';
-import wechatWorkMsg from '/img/channel/wechat/wechat_work_receive_msg.png';
-import wechatWorkCreate from '/img/channel/wechat/wechat_work_weiyu_create.png';
-import wechatWorkDetail from '/img/channel/wechat/wechat_work_weiyu_detail.png';
-import wechatWorkHook from '/img/channel/wechat/wechat_work_hook.png';
-import wechatWorkKefu from '/img/channel/wechat/wechat_work_kefu.png';
-import wechatWorkInternalApp from '/img/channel/wechat/wechat_work_kefu_internal_app.png';
-import wechatWorkAccount from '/img/channel/wechat/wechat_work_kefu_create_account.png';
-import wechatWorkCorpid from '/img/channel/wechat/wechat_work_corpid.png';
-import wechatWorkSecret from '/img/channel/wechat/wechat_work_secret.png';
-
 :::tip 提示
 社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
 :::
@@ -24,47 +13,55 @@ import wechatWorkSecret from '/img/channel/wechat/wechat_work_secret.png';
 
 企业微信是腾讯专为企业打造的高效办公平台，拥有完善的客服功能。通过集成企业微信渠道，企业可以在微语平台上统一管理来自企业微信的客户咨询，实现更专业的客户服务体验。支持内部应用创建、消息接收、客服账号管理等完整功能，让企业客服工作更加高效。
 
-## 配置
-
-### 企业微信配置
+## 应用配置
 
 管理员登录企业微信管理后台 → "应用管理" → "应用" → "自建"，创建内部应用
 
-<img src={wechatWorkApp} />
+![wechat_work_create_internal_app](/img/channel/wechat/wechat_work_create_internal_app.png)
 
 ### 消息接收
 
 在企业微信管理后台，点进刚创建的自建应用，找到"接收消息"，点击"启用API"
 
-<img src={wechatWorkMsg} />
+![wechat_work_receive_msg](/img/channel/wechat/wechat_work_receive_msg.png)
 
 ### 回调配置
 
 在微语管理后台，配置相应参数，点击提交。其中：[Corpid](#企业id-或-corpid) 和 [Secret](#appsecret-或-secret) 参考下面
 
-<img src={wechatWorkCreate} />
+![wechat_work_weiyu_create](/img/channel/wechat/wechat_work_weiyu_create.png)
 
 查看微语配置，配置参数如下：
 
-<img src={wechatWorkDetail} />
+![wechat_work_weiyu_detail](/img/channel/wechat/wechat_work_weiyu_detail.png)
 
-然后将上述参数复制到企业微信管理后台：
+然后将上述参数复制到企业微信管理后台 或者 从企业微信后台获取复制到微语管理后台，保证两个平台统一即可：
 
-<img src={wechatWorkHook} />
+![wechat_work_hook](/img/channel/wechat/wechat_work_hook.png)
 
-### 对接微信客服
+### 可信IP
 
-#### 在企业微信管理后台，找到"应用管理"→"应用"→"微信客服"
+![wechat_work_ip](/img/channel/wechat/wechat_work_ip.png)
 
-<img src={wechatWorkKefu} />
+### 测试对话
 
-#### 然后通过API管理微信客服
+![wechat_work_platform](/img/channel/wechat/wechat_work_platform.png)
 
-<img src={wechatWorkInternalApp} />
+![wechat_work_chat](/img/channel/wechat/wechat_work_chat.png)
 
-#### 创建客服账号，至少创建一个客服账号
+## 微信客服配置
 
-<img src={wechatWorkAccount} />
+### 在企业微信管理后台，找到"应用管理"→"应用"→"微信客服"
+
+![wechat_work_kefu](/img/channel/wechat/wechat_work_kefu.png)
+
+### 然后通过API管理微信客服
+
+![wechat_work_kefu_internal_app](/img/channel/wechat/wechat_work_kefu_internal_app.png)
+
+### 创建客服账号，至少创建一个客服账号
+
+![wechat_work_kefu_create_account](/img/channel/wechat/wechat_work_kefu_create_account.png)
 
 ## 接入场景
 
@@ -130,12 +127,11 @@ import wechatWorkSecret from '/img/channel/wechat/wechat_work_secret.png';
 
 每个企业都拥有唯一的corpid，获取此信息可在管理后台"我的企业"－"企业信息"下查看"企业ID"（需要有管理员权限）
 
-<img src={wechatWorkCorpid} />
+![wechat_work_corpid](/img/channel/wechat/wechat_work_corpid.png)
 
 ### AppSecret 或 secret
 
 secret是企业应用里面用于保障数据安全的"钥匙"，每一个应用都有一个独立的访问密钥，为了保证数据的安全，secret务必不能泄漏。secret查看方法：
 在管理后台→"应用管理"→"应用"→"自建"，点进某个应用，即可看到。
 
-<img src={wechatWorkSecret} />
-
+![wechat_work_secret](/img/channel/wechat/wechat_work_secret.png)
