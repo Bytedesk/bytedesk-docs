@@ -55,15 +55,25 @@ sidebar_position: 11
 
 不仅可以直接为企业微信应用对话，还可以通过微信客服为客户提供服务。
 
-### 找到"应用管理"→"应用"→"微信客服"
+### 微信客服
 
 ![wechat_work_kefu](/img/channel/wechat/wechat_work_kefu.png)
 
-### 然后通过API管理微信客服
+### API设置
 
 ![wechat_work_kefu_internal_app](/img/channel/wechat/wechat_work_kefu_internal_app.png)
 
-### 创建客服账号，至少创建一个客服账号
+### 配置自建应用
+
+![wechat_work_kefu_internal_app_detail](/img/channel/wechat/wechat_work_kefu_internal_app_detail.png)
+
+### 修改自建应用
+
+![wechat_work_kefu_internal_app_change](/img/channel/wechat/wechat_work_kefu_internal_app_change.png)
+
+![wechat_work_kefu_internal_app_change_model](/img/channel/wechat/wechat_work_kefu_internal_app_change_model.png)
+
+### 创建客服账号
 
 ![wechat_work_kefu_create_account](/img/channel/wechat/wechat_work_kefu_create_account.png)
 
