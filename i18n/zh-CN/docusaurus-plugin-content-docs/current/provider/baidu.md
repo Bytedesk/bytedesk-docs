@@ -11,7 +11,53 @@ description: 微语对接百度千帆大模型的配置说明和步骤指南
 - 已申请百度千帆 API Key（申请地址：[https://console.bce.baidu.com/iam/#/iam/apikey/list](https://console.bce.baidu.com/iam/#/iam/apikey/list)）
 :::
 
-## 配置说明
+## 配置步骤
+
+### 1. 获取 API Key
+
+1. 登录百度智能云控制台：[https://console.bce.baidu.com](https://console.bce.baidu.com)
+2. 进入访问控制 IAM：[https://console.bce.baidu.com/iam/#/iam/apikey/list](https://console.bce.baidu.com/iam/#/iam/apikey/list)
+3. 创建 API Key, [地址](https://console.bce.baidu.com/iam/#/iam/apikey/list)，服务选择 千帆Model Builder, 点击创建. 注意：选择 AI开放能力报错401
+4. 保存生成的 API Key
+
+### 2. 开通文心一言服务
+
+1. 访问百度千帆大模型平台：[https://cloud.baidu.com/product/wenxinworkshop](https://cloud.baidu.com/product/wenxinworkshop)
+2. 开通文心一言服务
+3. 在控制台获取访问权限
+
+### 3. 管理后台配置
+
+1. 登录微语管理后台
+
+![provider](/img/deploy/provider/provider_api_key.png)
+
+### 4. 模型配置选择
+
+1. 进入 AI 模型配置页面
+2. 选择百度千帆作为默认模型
+3. 保存配置
+
+![provider](/img/deploy/provider/provider.png)
+![provider-choose](/img/deploy/provider/provider-choose.png)
+
+### 5. 获取聊天代码
+
+1. 在管理后台找到"获取聊天代码"选项
+2. 复制生成的代码
+3. 将代码集成到你的网站中
+
+![provider-code](/img/deploy/provider/provider-code.png)
+
+## 效果展示
+
+配置完成后，你可以在网站中看到如下效果：
+
+import ProviderChat from '/img/deploy/provider/provider-chat.png';
+
+<img src={ProviderChat} alt="聊天效果展示" width="360" />
+
+## 配置说明（可选）
 
 ### Docker部署配置参数
 
@@ -39,54 +85,11 @@ spring.ai.baidu.chat.options.model=ernie-x1-32k-preview    # 文心一言大模�
 spring.ai.baidu.chat.options.temperature=0.7               # 温度参数，控制输出的随机性，范围 0-1
 ```
 
-## 配置步骤
-
-### 1. 获取 API Key
-
-1. 登录百度智能云控制台：[https://console.bce.baidu.com](https://console.bce.baidu.com)
-2. 进入访问控制 IAM：[https://console.bce.baidu.com/iam/#/iam/apikey/list](https://console.bce.baidu.com/iam/#/iam/apikey/list)
-3. 创建 API Key, [地址](https://console.bce.baidu.com/iam/#/iam/apikey/list)，服务选择 千帆Model Builder, 点击创建. 注意：选择 AI开放能力报错401
-4. 保存生成的 API Key
-
-### 2. 开通文心一言服务
-
-1. 访问百度千帆大模型平台：[https://cloud.baidu.com/product/wenxinworkshop](https://cloud.baidu.com/product/wenxinworkshop)
-2. 开通文心一言服务
-3. 在控制台获取访问权限
-
-### 3. 修改配置文件
-
 :::tip 配置说明
 
 - 将配置文件中的 `bce-v3/xxx` 替换为你获取的 API Key
 - 根据实际需求选择适合的模型和调整 temperature 参数
 :::
-
-### 4. 管理后台配置
-
-1. 登录微语管理后台
-2. 进入 AI 模型配置页面
-3. 选择百度千帆作为默认模型
-4. 保存配置
-
-![provider](/img/deploy/provider/provider.png)
-![provider-choose](/img/deploy/provider/provider-choose.png)
-
-### 5. 获取聊天代码
-
-1. 在管理后台找到"获取聊天代码"选项
-2. 复制生成的代码
-3. 将代码集成到你的网站中
-
-![provider-code](/img/deploy/provider/provider-code.png)
-
-## 效果展示
-
-配置完成后，你可以在网站中看到如下效果：
-
-import ProviderChat from '/img/deploy/provider/provider-chat.png';
-
-<img src={ProviderChat} alt="聊天效果展示" width="360" />
 
 ## 常见问题
 

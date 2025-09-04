@@ -12,7 +12,53 @@ description: 微语对接 Ollama 本地大模型的配置说明和步骤指南
 - 已下载所需模型（如 qwen3:0.6b）
 :::
 
-## 配置说明
+## 配置步骤
+
+### 1. 安装 Ollama
+
+1. 访问 Ollama 官网：[https://ollama.ai/download](https://ollama.ai/download)
+2. 下载并安装适合你操作系统的版本
+3. 启动 Ollama 服务
+
+### 2. 下载模型
+
+```bash
+# 下载所需模型
+ollama pull qwen3:0.6b
+```
+
+### 3. 管理后台配置
+
+1. 登录微语管理后台
+
+![provider](/img/deploy/provider/provider_api_key.png)
+
+### 4. 模型配置选择
+
+1. 进入 AI 模型配置页面
+2. 选择 Ollama 作为默认模型
+3. 保存配置
+
+![provider](/img/deploy/provider/provider.png)
+![provider-choose](/img/deploy/provider/provider-choose.png)
+
+### 5. 获取聊天代码
+
+1. 在管理后台找到"获取聊天代码"选项
+2. 复制生成的代码
+3. 将代码集成到你的网站中
+
+![provider-code](/img/deploy/provider/provider-code.png)
+
+## 效果展示
+
+配置完成后，你可以在网站中看到如下效果：
+
+import ProviderChat from '/img/deploy/provider/provider-chat.png';
+
+<img src={ProviderChat} alt="聊天效果展示" width="360" />
+
+## 配置说明（可选）
 
 ### Docker部署配置参数
 
@@ -46,55 +92,12 @@ spring.ai.ollama.embedding.enabled=true                     # 启用文本嵌入
 spring.ai.ollama.embedding.options.model=qwen3:0.6b      # 文本嵌入使用的模型
 ```
 
-## 配置步骤
-
-### 1. 安装 Ollama
-
-1. 访问 Ollama 官网：[https://ollama.ai/download](https://ollama.ai/download)
-2. 下载并安装适合你操作系统的版本
-3. 启动 Ollama 服务
-
-### 2. 下载模型
-
-```bash
-# 下载所需模型
-ollama pull qwen3:0.6b
-```
-
-### 3. 修改配置文件
-
 :::tip 配置说明
 
 - 确保 Ollama 服务地址配置正确
 - 根据实际需求调整 temperature 参数
 - 如果不需要文本嵌入功能，可以将 `SPRING_AI_OLLAMA_EMBEDDING_ENABLED` 设置为 false
 :::
-
-### 4. 管理后台配置
-
-1. 登录微语管理后台
-2. 进入 AI 模型配置页面
-3. 选择 Ollama 作为默认模型
-4. 保存配置
-
-![provider](/img/deploy/provider/provider.png)
-![provider-choose](/img/deploy/provider/provider-choose.png)
-
-### 5. 获取聊天代码
-
-1. 在管理后台找到"获取聊天代码"选项
-2. 复制生成的代码
-3. 将代码集成到你的网站中
-
-![provider-code](/img/deploy/provider/provider-code.png)
-
-## 效果展示
-
-配置完成后，你可以在网站中看到如下效果：
-
-import ProviderChat from '/img/deploy/provider/provider-chat.png';
-
-<img src={ProviderChat} alt="聊天效果展示" width="360" />
 
 ## 常见问题
 

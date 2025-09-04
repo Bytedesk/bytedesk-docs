@@ -11,7 +11,47 @@ description: 微语对接阿里云通义千问 DashScope 大模型的配置说�
 - 已申请阿里云百炼大模型 API Key（申请地址：[https://bailian.console.aliyun.com/?apiKey=1#/api-key](https://bailian.console.aliyun.com/?apiKey=1#/api-key)）
 :::
 
-## 配置说明
+## 配置步骤
+
+### 1. 获取 API Key
+
+1. 访问阿里云百炼大模型控制台：[https://bailian.console.aliyun.com/?apiKey=1#/api-key](https://bailian.console.aliyun.com/?apiKey=1#/api-key)
+2. 注册并登录阿里云账号
+3. 在控制台创建 API Key
+4. 保存生成的 API Key
+
+### 2. 管理后台配置
+
+1. 登录微语管理后台
+
+![provider](/img/deploy/provider/provider_api_key.png)
+
+### 3. 模型配置选择
+
+1. 进入 AI 模型配置页面
+2. 选择通义千问作为默认模型
+3. 保存配置
+
+![provider](/img/deploy/provider/provider.png)
+![provider-choose](/img/deploy/provider/provider-choose.png)
+
+### 4. 获取聊天代码
+
+1. 在管理后台找到"获取聊天代码"选项
+2. 复制生成的代码
+3. 将代码集成到你的网站中
+
+![provider-code](/img/deploy/provider/provider-code.png)
+
+## 效果展示
+
+配置完成后，你可以在网站中看到如下效果：
+
+import ProviderChat from '/img/deploy/provider/provider-chat.png';
+
+<img src={ProviderChat} alt="聊天效果展示" width="360" />
+
+## 配置说明（可选）
 
 ### Docker部署配置参数
 
@@ -54,49 +94,12 @@ spring.ai.dashscope.audio.synthesis.enabled=false       # 语音合成功能
 spring.ai.nacos.prompt.template.enabled=false           # Nacos 提示词模板功能
 ```
 
-## 配置步骤
-
-### 1. 获取 API Key
-
-1. 访问阿里云百炼大模型控制台：[https://bailian.console.aliyun.com/?apiKey=1#/api-key](https://bailian.console.aliyun.com/?apiKey=1#/api-key)
-2. 注册并登录阿里云账号
-3. 在控制台创建 API Key
-4. 保存生成的 API Key
-
-### 2. 修改配置文件
-
 :::tip 配置说明
 
 - 将配置文件中的 `sk-xxx` 替换为你获取的 API Key
 - 根据实际需求调整 temperature 和 topP 参数
 - 根据需求开启或关闭相关功能（语音转文字、图像处理等）
 :::
-
-### 3. 管理后台配置
-
-1. 登录微语管理后台
-2. 进入 AI 模型配置页面
-3. 选择通义千问作为默认模型
-4. 保存配置
-
-![provider](/img/deploy/provider/provider.png)
-![provider-choose](/img/deploy/provider/provider-choose.png)
-
-### 4. 获取聊天代码
-
-1. 在管理后台找到"获取聊天代码"选项
-2. 复制生成的代码
-3. 将代码集成到你的网站中
-
-![provider-code](/img/deploy/provider/provider-code.png)
-
-## 效果展示
-
-配置完成后，你可以在网站中看到如下效果：
-
-import ProviderChat from '/img/deploy/provider/provider-chat.png';
-
-<img src={ProviderChat} alt="聊天效果展示" width="360" />
 
 ## 常见问题
 

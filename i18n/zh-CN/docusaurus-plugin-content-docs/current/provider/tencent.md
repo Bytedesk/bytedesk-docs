@@ -11,7 +11,47 @@ description: 微语对接腾讯混元大模型的配置说明和步骤指南
 - 已申请腾讯混元 API Key（申请地址：[https://console.cloud.tencent.com/hunyuan/start](https://console.cloud.tencent.com/hunyuan/start)）
 :::
 
-## 配置说明
+## 配置步骤
+
+### 1. 获取 API Key
+
+1. 登录腾讯云控制台：[https://console.cloud.tencent.com](https://console.cloud.tencent.com)
+2. 进入混元大模型服务：[https://console.cloud.tencent.com/hunyuan/start](https://console.cloud.tencent.com/hunyuan/start)
+3. 开通混元大模型服务
+4. 创建并获取 API Key
+
+### 2. 管理后台配置
+
+1. 登录微语管理后台
+
+![provider](/img/deploy/provider/provider_api_key.png)
+
+### 3. 模型配置选择
+
+1. 进入 AI 模型配置页面
+2. 选择腾讯混元作为默认模型
+3. 保存配置
+
+![provider](/img/deploy/provider/provider.png)
+![provider-choose](/img/deploy/provider/provider-choose.png)
+
+### 4. 获取聊天代码
+
+1. 在管理后台找到"获取聊天代码"选项
+2. 复制生成的代码
+3. 将代码集成到你的网站中
+
+![provider-code](/img/deploy/provider/provider-code.png)
+
+## 效果展示
+
+配置完成后，你可以在网站中看到如下效果：
+
+import ProviderChat from '/img/deploy/provider/provider-chat.png';
+
+<img src={ProviderChat} alt="聊天效果展示" width="360" />
+
+## 配置说明（可选）
 
 ### Docker部署配置参数
 
@@ -39,48 +79,11 @@ spring.ai.tencent.chat.options.model=hunyuan-t1-latest             # 当前支�
 spring.ai.tencent.chat.options.temperature=0.7                     # 温度参数，控制输出的随机性，范围 0-1
 ```
 
-## 配置步骤
-
-### 1. 获取 API Key
-
-1. 登录腾讯云控制台：[https://console.cloud.tencent.com](https://console.cloud.tencent.com)
-2. 进入混元大模型服务：[https://console.cloud.tencent.com/hunyuan/start](https://console.cloud.tencent.com/hunyuan/start)
-3. 开通混元大模型服务
-4. 创建并获取 API Key
-
-### 2. 修改配置文件
-
 :::tip 配置说明
 
 - 将配置文件中的 `sk-xxx` 替换为你获取的 API Key
 - 根据实际需求调整 temperature 参数
 :::
-
-### 3. 管理后台配置
-
-1. 登录微语管理后台
-2. 进入 AI 模型配置页面
-3. 选择腾讯混元作为默认模型
-4. 保存配置
-
-![provider](/img/deploy/provider/provider.png)
-![provider-choose](/img/deploy/provider/provider-choose.png)
-
-### 4. 获取聊天代码
-
-1. 在管理后台找到"获取聊天代码"选项
-2. 复制生成的代码
-3. 将代码集成到你的网站中
-
-![provider-code](/img/deploy/provider/provider-code.png)
-
-## 效果展示
-
-配置完成后，你可以在网站中看到如下效果：
-
-import ProviderChat from '/img/deploy/provider/provider-chat.png';
-
-<img src={ProviderChat} alt="聊天效果展示" width="360" />
 
 ## 常见问题
 
