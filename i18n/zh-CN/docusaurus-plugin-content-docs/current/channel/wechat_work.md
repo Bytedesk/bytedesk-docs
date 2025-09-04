@@ -25,19 +25,19 @@ sidebar_position: 11
 
 ![wechat_work_receive_msg](/img/channel/wechat/wechat_work_receive_msg.png)
 
+这里需要填写回调地址URL、Token、EncodingAESKey，需要从微语管理后台获取：
+
+![wechat_work_hook](/img/channel/wechat/wechat_work_hook.png)
+
 ### 回调配置
 
 在微语管理后台，配置相应参数，点击提交。其中：[Corpid](#企业id-或-corpid) 和 [Secret](#appsecret-或-secret) 参考下面
 
 ![wechat_work_weiyu_create](/img/channel/wechat/wechat_work_weiyu_create.png)
 
-查看微语配置，配置参数如下：
+查看微语配置，配置参数如下，这里的回调地址URL、Token、EncodingAESKey需要跟企业微信管理后台配置的一致。
 
 ![wechat_work_weiyu_detail](/img/channel/wechat/wechat_work_weiyu_detail.png)
-
-然后将上述参数复制到企业微信管理后台 或者 从企业微信后台获取复制到微语管理后台，保证两个平台统一即可：
-
-![wechat_work_hook](/img/channel/wechat/wechat_work_hook.png)
 
 ### 可信IP
 
