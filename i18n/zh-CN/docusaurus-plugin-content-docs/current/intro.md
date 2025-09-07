@@ -18,7 +18,7 @@ import nin1Image from '/img/nin1.png';
 
 ## 宗旨
 
-重复工作自动化
+让重复工作自动化
 
 ---
 
