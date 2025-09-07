@@ -16,6 +16,12 @@ import nin1Image from '/img/nin1.png';
 
 ---
 
+## 宗旨
+
+重复工作自动化
+
+---
+
 ## 🔍 系统架构
 
 import archLayerImage from '/img/arch/arch_layer.png';
