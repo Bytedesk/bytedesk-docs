@@ -71,8 +71,8 @@ import axios from 'axios';
 const loginInfo: LoginParams = {
   username: 'your_username',
   password: 'your_password',
-  channel: 'FLUTTER',
-  platform: 'BYTEDESK'
+  channel: 'FLUTTER', // 渠道，固定值
+  platform: 'BYTEDESK' // 平台，固定值
 };
 
 // 登录接口封装
