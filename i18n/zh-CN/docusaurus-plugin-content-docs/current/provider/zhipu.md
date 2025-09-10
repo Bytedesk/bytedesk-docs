@@ -11,7 +11,47 @@ description: 微语对接智谱 AI 大模型的配置说明和步骤指南
 - 已申请智谱 AI API Key（申请地址：[https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)）
 :::
 
-## 配置说明
+## 配置步骤
+
+### 1. 获取 API Key
+
+1. 访问智谱 AI 开发者平台：[https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
+2. 注册并登录账号
+3. 在控制台创建 API Key
+4. 保存生成的 API Key
+
+### 2. 管理后台配置
+
+1. 登录微语管理后台
+
+![provider](/img/deploy/provider/provider_api_key.png)
+
+### 3. 模型配置选择
+
+1. 进入 AI 模型配置页面
+2. 选择智谱 AI 作为默认模型
+3. 保存配置
+
+![provider](/img/deploy/provider/provider.png)
+![provider-choose](/img/deploy/provider/provider-choose.png)
+
+### 4. 获取聊天代码
+
+1. 在管理后台找到"获取聊天代码"选项
+2. 复制生成的代码
+3. 将代码集成到你的网站中
+
+![provider-code](/img/deploy/provider/provider-code.png)
+
+## 效果展示
+
+配置完成后，你可以在网站中看到如下效果：
+
+import ProviderChat from '/img/deploy/provider/provider-chat.png';
+
+<img src={ProviderChat} alt="聊天效果展示" width="360" />
+
+## 配置说明（可选）
 
 ### Docker部署配置参数
 
@@ -43,48 +83,12 @@ spring.ai.zhipuai.chat.options.temperature=0.7          # 温度参数，控制�
 spring.ai.zhipuai.embedding.enabled=true                 # 启用文本嵌入功能
 ```
 
-## 配置步骤
-
-### 1. 获取 API Key
-
-1. 访问智谱 AI 开发者平台：[https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
-2. 注册并登录账号
-3. 在控制台创建 API Key
-4. 保存生成的 API Key
-
-### 2. 修改配置文件
-
 :::tip 配置说明
 
 - 将配置文件中的 `sk-xxx` 替换为你获取的 API Key
 - 根据实际需求调整 temperature 参数
 - 如果不需要文本嵌入功能，可以将 `SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED` 设置为 false
 :::
-
-### 3. 管理后台配置
-
-1. 登录微语管理后台
-2. 进入 AI 模型配置页面
-3. 选择智谱 AI 作为默认模型
-4. 保存配置
-
-![provider](/img/deploy/provider/provider.png)
-
-### 4. 获取聊天代码
-
-1. 在管理后台找到"获取聊天代码"选项
-2. 复制生成的代码
-3. 将代码集成到你的网站中
-
-![provider-code](/img/deploy/provider/provider-code.png)
-
-## 效果展示
-
-配置完成后，你可以在网站中看到如下效果：
-
-import ProviderChat from '/img/deploy/provider/provider-chat.png';
-
-<img src={ProviderChat} alt="聊天效果展示" width="360" />
 
 ## 常见问题
 
@@ -104,6 +108,6 @@ import ProviderChat from '/img/deploy/provider/provider-chat.png';
 
 ## 相关资源
 
-- [智谱 AI 开放平台](https://open.bigmodel.cn/overview)
+- [智谱 AI API 文档](https://open.bigmodel.cn/overview)
 - [Spring AI 文档](https://docs.spring.io/spring-ai/reference/api/chat/zhipuai-chat.html)
 - [微语文档中心](/docs/intro)
