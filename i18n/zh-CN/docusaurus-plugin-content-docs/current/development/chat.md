@@ -161,8 +161,8 @@ ChatBox组件支持多种参数配置：
 | backgroundColor | string | 自定义导航背景色 | - |
 | textColor | string | 自定义导航文字颜色 | - |
 | referer | string | 来源页面 | - |
-| title | string | 页面标题 | - |
-| url | string | 页面URL | - |
+| title | string | 来源页面浏览记录标题 | - |
+| url | string | 来源页面浏览记录URL | - |
 | navbar | boolean | 是否显示导航栏，0表示隐藏 | true |
 | navbarTheme | string | 导航栏主题 | - |
 | visitorUid | string | 自定义访客唯一ID | 自动生成 |
