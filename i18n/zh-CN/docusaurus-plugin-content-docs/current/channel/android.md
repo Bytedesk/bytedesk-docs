@@ -39,7 +39,13 @@ Android是Google开发的移动操作系统，占据全球移动市场的主要�
 implementation project(':bytedesk-android')
 ```
 
-混淆
+## WebView 集成注意事项
+
+如果您在 Android 应用中通过 WebView 包裹 H5 页面来集成客服功能，需要在 WebView 中进行额外配置以确保功能正常运行。
+
+参考实现：[BrowserActivity.java](https://github.com/Bytedesk/bytedesk-android/blob/master/bytedesk-android/bytedesk-android/src/main/java/com/bytedesk/im/ui/activity/BrowserActivity.java)
+
+## 代码混淆
 
 ```bash
 # 参考bytedesk-demo proguard-rules.pro
