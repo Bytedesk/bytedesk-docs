@@ -4,3 +4,7 @@ sidebar_position: 28
 ---
 
 # 知识库-技术实现
+
+## 参考链接
+
+- [WeKnora](https://github.com/Tencent/WeKnora)
