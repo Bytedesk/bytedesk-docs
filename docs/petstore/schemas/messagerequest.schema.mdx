@@ -1,0 +1,33 @@
+---
+id: messagerequest
+title: "MessageRequest"
+description: ""
+sidebar_label: "MessageRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"conversationId":198772,"content":"Hello, I need help with my order","type":"text"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"MessageRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"required":["content","conversationId"],"type":"object","properties":{"conversationId":{"type":"integer","format":"int64","example":198772},"content":{"type":"string","example":"Hello, I need help with my order"},"type":{"type":"string","description":"message type","example":"text","enum":["text","image","file","voice"]}},"xml":{"name":"messageRequest"},"title":"MessageRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,263 @@
+openapi: 3.0.3
+info:
+  title: Bytedesk API - OpenAPI 3.0
+  description: |-
+    This is the Bytedesk Customer Service System API specification based on the OpenAPI 3.0 specification.
+    
+    You can find out more about Bytedesk at [https://www.weiyuai.cn](https://www.weiyuai.cn).
+    
+    Some useful links:
+    - [The Bytedesk repository](https://github.com/bytedesk/bytedesk)
+    - [The source API definition for the Bytedesk API](https://api.weiyuai.cn/v3/api-docs)
+  termsOfService: https://www.weiyuai.cn/terms.html
+  contact:
+    email: support@weiyuai.cn
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Bytedesk
+  url: https://www.weiyuai.cn
+servers:
+  - url: https://api.weiyuai.cn/api/v1
+    description: Production server
+  - url: https://demo-api.weiyuai.cn/api/v1
+    description: Demo server
+tags:
+  - name: user
+    description: Operations about user
+    externalDocs:
+      description: Find out more about our store
+      url: https://www.weiyuai.cn
+  - name: conversation
+    description: Access to conversations
+    externalDocs:
+      description: Find out more about our store
+      url: https://www.weiyuai.cn
+  - name: message
+    description: Everything about messages
+    externalDocs:
+      description: Find out more
+      url: https://www.weiyuai.cn
+paths:
+  /user/profile:
+    get:
+      tags:
+        - user
+      summary: Get user profile
+      description: Returns user profile information
+      operationId: getUserProfile
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'          
+        '400':
+          description: Invalid user supplied
+        '404':
+          description: User not found
+      security:
+        - api_key: []
+  /conversation/list:
+    get:
+      tags:
+        - conversation
+      summary: Get conversation list
+      description: Returns a list of conversations for the current user
+      operationId: getConversationList
+      parameters:
+        - name: page
+          in: query
+          description: Page number
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: size
+          in: query
+          description: Page size
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 20
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Conversation'
+        '400':
+          description: Invalid parameters
+      security:
+        - api_key: []
+  /message/send:
+    post:
+      tags:
+        - message
+      summary: Send a message
+      description: Send a message to a conversation
+      operationId: sendMessage
+      requestBody:
+        description: Message object that needs to be sent
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'          
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+      security:
+        - api_key: []
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        username:
+          type: string
+          example: theUser
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: James
+        email:
+          type: string
+          example: john@example.com
+        phone:
+          type: string
+          example: '12345'
+        userStatus:
+          type: integer
+          description: User Status
+          format: int32
+          example: 1
+      xml:
+        name: user
+    Conversation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 198772
+        topic:
+          type: string
+          example: "Customer Support"
+        status:
+          type: string
+          description: conversation status
+          example: active
+          enum:
+            - active
+            - closed
+            - pending
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      xml:
+        name: conversation
+    Message:
+      required:
+        - content
+        - conversationId
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        conversationId:
+          type: integer
+          format: int64
+          example: 198772
+        content:
+          type: string
+          example: "Hello, I need help with my order"
+        type:
+          type: string
+          description: message type
+          example: text
+          enum:
+            - text
+            - image
+            - file
+            - voice
+        createdAt:
+          type: string
+          format: date-time
+      xml:
+        name: message
+    MessageRequest:
+      required:
+        - content
+        - conversationId
+      type: object
+      properties:
+        conversationId:
+          type: integer
+          format: int64
+          example: 198772
+        content:
+          type: string
+          example: "Hello, I need help with my order"
+        type:
+          type: string
+          description: message type
+          example: text
+          enum:
+            - text
+            - image
+            - file
+            - voice
+      xml:
+        name: messageRequest
+    ApiResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    Message:
+      description: Message object that needs to be sent
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/MessageRequest'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

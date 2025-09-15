@@ -1,0 +1,71 @@
+---
+id: get-conversation-list
+title: "Get conversation list"
+description: "Returns a list of conversations for the current user"
+sidebar_label: "Get conversation list"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVm1v2zYQ/isEPy2AbDlOsW76tCwLimDFWjTZhyExBpo6WWzFl5JHJ56h/z4cJctS4m7tsHxw+HL33AvvudOeo9gEXtxzac0WfBCorOGrjJcQpFcubQv+ATB6E5hgjQrIbMXG8oFV1jOsgcnoPRhkMYDnGbcOfJK4KXnBN4BXI623KiDPuBNeaEDw5MaeG6GBF9yJDfCMKzL+OYLf8ecuvRcbYCbqdbLk4XNUHkpeVKIJkPEga9CCF3uOO0eIyiBskmxlvRbYHV0sE3AlYoO8OG/bbHAhqL++xoVe7P9xYLlo2xWBBWdNgEDqy8WC/k1NhyglhFDFhg1J5hm9IoJBkhfONUqmi/xjIKX9S5+E94LiUgg6jM7t+iPI9Dqe4FF1rqjyX+P5/hXPODwJ7RrgxfmPP7x+vWwzjtYpOVIO6JXZjEX5VQxoNXh2G52zHnmb8YACYzilN03HuBpZrzTGFhLVlp4JTNRU7sOBbGyAkiIFUxL0qs249CAQyks8ZXmIthQIM1QayNPoym9TaTP+pBuS7uttwkBKmcIuL5Nz+sv4q1M1cWO2olElGzGKZAPI6BXuEr2EU39+AlqvqNA0YG17biYuYs0Lno9dyZuOpwH89kDS6Bte8BrRhSLPhVPzR1C7KNRcGtrm2/OXZPG2jLJ7oATFiWtTpBK0nX0d3C+g7QC0OkZ5SyXeVesQ67HcnfoVqN77lB8kepbXIEqCa2lf2aTYP8LPO4QSwid2+f6Gzdg7B4ZWF/PFC8/uahWYCqkfDmrH4ga/VRLY7S4g6AQXHEhV9VxlaxGgZNYk/ZGdqdj8wTyYP2xkUhhWKVMyG5Fp64GJNS0HywLZ/SG/j4+Po9Suvjt9fpbAb60G6uPUYhplPoXiwczY/d04Kg/OBoXW745YG4V1XM+l1fm6lxsWZwNEsNFLSOGXUCmjUuyHMTLO9hH5WWFsL+hkVloZznjGEbwO76o+v6OimgaXJ7l5jbrp+6WQibOghWpSZ03d56ejCpGxURJMgBFdL52QNbBlqoBjGfcGRbqdW7/Je9WQv725uv7t9nq2nC86+23GiVJd2ZzPF/MFHTkbUAszMvUGcDJvWU/JSd3tj83/v47rniUIT5i7RqgUeQpt37eGZ98JlJeA9LlQ24B0vd9T/f7um7al425uUssoVRDrZjQfv+j8dLCf9Cmx+vCNsBVNJJHUT77RTD+8/8FIL3E0sqKNV2QlddHs0DYoyk7nUkpwONJ6MYsnvffN9R3PuIiU4HGr6jpTvyD0w5XZTbAPPawzTr+UiZPC+33XAtt2kO+uvqjRB3eQptSs2rb9Gyowgt0=
+sidebar_class_name: "get api-method"
+info_path: docs/petstore/bytedesk-api-openapi-3-0
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Get conversation list"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/conversation/list"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+Returns a list of conversations for the current user
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"name":"page","in":"query","description":"Page number","required":false,"schema":{"type":"integer","format":"int32","default":1}},{"name":"size","in":"query","description":"Page size","required":false,"schema":{"type":"integer","format":"int32","default":20}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"successful operation","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"integer","format":"int64","example":198772},"topic":{"type":"string","example":"Customer Support"},"status":{"type":"string","description":"conversation status","example":"active","enum":["active","closed","pending"]},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"xml":{"name":"conversation"},"title":"Conversation"}}}}},"400":{"description":"Invalid parameters"}}}
+>
+  
+</StatusCodes>
+
+
+      

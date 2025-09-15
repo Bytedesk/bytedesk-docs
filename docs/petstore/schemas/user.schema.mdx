@@ -1,0 +1,33 @@
+---
+id: user
+title: "User"
+description: ""
+sidebar_label: "User"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"id":10,"username":"theUser","firstName":"John","lastName":"James","email":"john@example.com","phone":"12345","userStatus":1}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"User"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"id":{"type":"integer","format":"int64","example":10},"username":{"type":"string","example":"theUser"},"firstName":{"type":"string","example":"John"},"lastName":{"type":"string","example":"James"},"email":{"type":"string","example":"john@example.com"},"phone":{"type":"string","example":"12345"},"userStatus":{"type":"integer","description":"User Status","format":"int32","example":1}},"xml":{"name":"user"},"title":"User"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            
