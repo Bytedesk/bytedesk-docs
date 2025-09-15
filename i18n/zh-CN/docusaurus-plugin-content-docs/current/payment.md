@@ -80,7 +80,7 @@ sidebar_position: 11
 | [智能质检](./development/qualitycheck.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [自动回复](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [黑名单](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [留言处理](./development/leavemsg.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [留言处理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单对接](./development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 官方技术支持 | ❌ | ✅ | ✅ | ✅ | ✅ |

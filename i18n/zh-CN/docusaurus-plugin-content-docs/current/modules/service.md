@@ -57,7 +57,7 @@ sidebar_position: 3
 #### 工单与留言
 
 - **[智能工单](../development/ticket.md)**：自动化工单生成和处理流程
-- **[留言处理](../development/leavemsg.md)**：离线留言管理和跟进机制
+- **[留言处理](../development/message_leave.md)**：离线留言管理和跟进机制
 
 #### 业务集成
 
