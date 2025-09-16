@@ -15,6 +15,10 @@ sidebar_position: 39
 
 ## 步骤二：Dify 后台获取apiKey
 
+[Dify 应用列表](https://cloud.dify.ai/apps)
+
+![llm_dify_apps](/img/provider/dify/llm_dify_apps.png)
+
 ![llm_dify_apikey](/img/provider/dify/llm_dify_apikey.png)
 
 ## 步骤三：将获取到的 apiKey 填写到微语管理后台的 Dify 配置中
@@ -43,4 +47,5 @@ sidebar_position: 39
 
 ## 参考链接
 
+- [Dify 应用列表](https://cloud.dify.ai/apps)
 - [Dify API 文档](https://docs.dify.ai/api-reference/%E5%AF%B9%E8%AF%9D%E6%B6%88%E6%81%AF/%E5%8F%91%E9%80%81%E5%AF%B9%E8%AF%9D%E6%B6%88%E6%81%AF)

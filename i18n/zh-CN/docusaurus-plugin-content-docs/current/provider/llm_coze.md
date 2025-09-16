@@ -10,3 +10,7 @@ sidebar_position: 39
 :::
 
 ## 参考链接
+
+- [Coze 首页](https://www.coze.cn/home)
+- [Coze API 文档](https://www.coze.cn/open/docs/developer_guides)
+- [Coze 个人访问令牌](https://www.coze.cn/open/oauth/pats)
