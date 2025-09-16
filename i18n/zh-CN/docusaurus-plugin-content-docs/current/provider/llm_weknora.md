@@ -1,9 +1,9 @@
 ---
-sidebar_label: LLM WeKnora
+sidebar_label: 对接 WeKnora
 sidebar_position: 39
 ---
 
-# LLM WeKnora
+# 对接 WeKnora
 
 ## 参考链接
 
