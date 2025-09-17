@@ -72,7 +72,7 @@ API服务器即：baseUrl，API KEY即：apikey
 
 ![llm_ragflow_provider_save](/img/provider/ragflow/llm_ragflow_provider_save.png)
 
-## 步骤六：测试
+## 步骤六：测试对话
 
 获取对话链接
 
