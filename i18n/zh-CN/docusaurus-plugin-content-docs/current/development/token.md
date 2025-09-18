@@ -535,7 +535,7 @@ enum Sex {
 }
 
 // 创建用户请求参数类型
-interface CreateUserRequest {
+interface UserRequest {
   username?: string;           // 用户名（可选，默认使用邮箱或手机号）
   nickname?: string;           // 用户昵称（可选，系统会自动生成默认昵称）
   password?: string;           // 用户密码（可选，但建议设置）
@@ -597,7 +597,7 @@ const apiClient = axios.create({
 
 // 创建用户接口封装
 export async function createUser(
-  userRequest: CreateUserRequest, 
+  userRequest: UserRequest, 
   accessToken: string
 ): Promise<CreateUserResult> {
   try {
@@ -616,7 +616,7 @@ export async function createUser(
 // 创建用户示例函数
 async function createNewUser(superAdminToken: string) {
   // 创建用户参数
-  const userRequest: CreateUserRequest = {
+  const userRequest: UserRequest = {
     username: 'newuser@example.com',
     email: 'newuser@example.com',
     password: 'SecurePassword123!',
@@ -694,7 +694,7 @@ async function completeUserCreationFlow() {
 #### 仅邮箱注册
 
 ```typescript
-const emailOnlyUser: CreateUserRequest = {
+const emailOnlyUser: UserRequest = {
   email: 'user1@example.com',
   password: 'Password123!',
   nickname: '邮箱用户',
@@ -706,7 +706,7 @@ const emailOnlyUser: CreateUserRequest = {
 #### 仅手机号注册
 
 ```typescript
-const mobileOnlyUser: CreateUserRequest = {
+const mobileOnlyUser: UserRequest = {
   mobile: '13987654321',
   password: 'Password123!',
   nickname: '手机用户',
@@ -718,7 +718,7 @@ const mobileOnlyUser: CreateUserRequest = {
 #### 邮箱+手机号注册
 
 ```typescript
-const fullUser: CreateUserRequest = {
+const fullUser: UserRequest = {
   username: 'fulluser',
   email: 'fulluser@example.com',
   mobile: '13612345678',
@@ -736,7 +736,7 @@ const fullUser: CreateUserRequest = {
 
 ```typescript
 async function createUserWithErrorHandling(
-  userRequest: CreateUserRequest, 
+  userRequest: UserRequest, 
   accessToken: string
 ) {
   try {
@@ -790,7 +790,7 @@ async function createUserWithErrorHandling(
 
 ```typescript
 async function batchCreateUsers(
-  userRequests: CreateUserRequest[], 
+  userRequests: UserRequest[], 
   superAdminToken: string
 ) {
   const results = [];
@@ -830,7 +830,7 @@ async function batchCreateUsers(
 
 // 批量创建用户使用示例
 async function batchCreateExample(superAdminToken: string) {
-  const usersToCreate: CreateUserRequest[] = [
+  const usersToCreate: UserRequest[] = [
     {
       email: 'user1@example.com',
       password: 'Password123!',
