@@ -73,6 +73,7 @@ sidebar_position: 11
 | [敏感词过滤](./development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Ip过滤拦截](./development/ip.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [数据统计报表](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [BI智能分析](./plugins/bi.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [转接会话](./development/transfer.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [邀请会话](./development/invite.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [满意度评分](./development/rating.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -83,6 +84,7 @@ sidebar_position: 11
 | [留言处理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单对接](./development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+
 | 官方技术支持 | ❌ | ✅ | ✅ | ✅ | ✅ |
 <!-- | [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 <!-- | [文本转语音TTS](./development/tts.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
@@ -116,19 +118,9 @@ sidebar_position: 11
 | [小程序](./channel/mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
-### Plus 功能插件（不包含在企业版/平台版/源码版，额外收费）
+#### 海外媒体渠道
 
-| 插件名称 | 功能描述 | 价格 | 备注 |
-|---------|---------|------|------|
-| [呼叫中心](./plugins/freeswitch.md) | 语音通话、IVR、自动话务分配 | 待定 | 开发中 |
-| [视频客服](./plugins/webrtc.md) | 一对一视频通话、屏幕共享 | 待定 | 开发中 |
-| [BI智能分析](./plugins/bi.md) | AI驱动的数据智能决策平台 | 待定 | 开发中 |
-<!-- | [工作流](./modules/workflow.md) | 大模型工作流 | 待定 | 开发中 | -->
-<!-- | [视频会议](./plugins/jitsi.md) | 多人视频会议、协同办公 | 待定 | 开发中 | -->
-<!-- | [远程协助](./plugins/remote.md) | 无障碍远程支持，随时随地解决问题 | 待定 | 开发中 | -->
-<!-- | [看板插件](./plugins/kanban.md) | 可视化任务与项目管理 | 待定 | 开发中 | -->
-
-#### Plus 海外媒体渠道（不包含在企业版/平台版/源码版，额外收费）
+默认不包含在源码版，额外收费
 
 | 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|
@@ -139,6 +131,19 @@ sidebar_position: 11
 | [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
+
+### Plus 功能插件
+
+默认不包含在源码版，额外收费
+
+| 插件名称 | 功能描述 | 价格 | 备注 |
+|---------|---------|------|------|
+| [呼叫中心](./plugins/freeswitch.md) | 语音通话、IVR、自动话务分配 | 待定 | 开发中 |
+| [视频客服](./plugins/webrtc.md) | 一对一视频通话、屏幕共享 | 待定 | 开发中 |
+<!-- | [工作流](./modules/workflow.md) | 大模型工作流 | 待定 | 开发中 | -->
+<!-- | [视频会议](./plugins/jitsi.md) | 多人视频会议、协同办公 | 待定 | 开发中 | -->
+<!-- | [远程协助](./plugins/remote.md) | 无障碍远程支持，随时随地解决问题 | 待定 | 开发中 | -->
+<!-- | [看板插件](./plugins/kanban.md) | 可视化任务与项目管理 | 待定 | 开发中 | -->
 
 <!-- ### 开放平台 -->
 
