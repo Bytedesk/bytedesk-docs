@@ -84,7 +84,6 @@ sidebar_position: 11
 | [留言处理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单对接](./development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-
 | 官方技术支持 | ❌ | ✅ | ✅ | ✅ | ✅ |
 <!-- | [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
 <!-- | [文本转语音TTS](./development/tts.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
