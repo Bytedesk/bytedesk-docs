@@ -511,6 +511,374 @@ openAdminDashboard(accessToken);   // 直接打开管理后台仪表盘
 - **统计报表**: `/api/statistics/*` - 数据统计和报表
 - **系统配置**: `/api/settings/*` - 系统配置管理
 
+## 创建用户接口演示
+
+:::warning 权限要求
+创建用户接口仅限超级管理员账号调用。系统安装完成后会自动创建超级管理员账号，需要使用超级管理员登录后获取 AccessToken 来调用此接口。
+:::
+
+### 1. 接口说明
+
+- **接口地址**: `/api/v1/user/create`
+- **请求方法**: `POST`
+- **内容类型**: `application/json`
+- **认证方式**: Bearer Token（超级管理员权限）
+
+### 2. TypeScript 类型定义
+
+```typescript
+// 性别枚举
+enum Sex {
+  MALE = 'MALE',       // 男性
+  FEMALE = 'FEMALE',   // 女性
+  UNKNOWN = 'UNKNOWN'  // 未知
+}
+
+// 创建用户请求参数类型
+interface CreateUserRequest {
+  username?: string;           // 用户名（可选，默认使用邮箱或手机号）
+  nickname?: string;           // 用户昵称（可选，系统会自动生成默认昵称）
+  password?: string;           // 用户密码（可选，但建议设置）
+  email?: string;              // 邮箱地址（邮箱或手机号至少提供一个）
+  mobile?: string;             // 手机号码（邮箱或手机号至少提供一个）
+  avatar?: string;             // 用户头像URL（可选，默认使用系统头像）
+  description?: string;        // 用户描述/个人简介（可选）
+  emailVerified?: boolean;     // 邮箱是否已验证（可选，默认为false）
+  mobileVerified?: boolean;    // 手机号是否已验证（可选，默认为true）
+  platform: string;          // 平台标识（必填，固定写死为BYTEDESK）
+}
+
+// 用户响应类型
+interface UserResponse {
+  uid: string;                  // 用户唯一标识符
+  username: string;            // 用户名
+  nickname: string;            // 用户昵称
+  email?: string;              // 邮箱地址
+  mobile?: string;             // 手机号码
+  country?: string;            // 国家代码
+  avatar: string;              // 用户头像URL
+  description: string;         // 用户描述/个人简介
+  platform: string;           // 平台标识
+  sex: Sex;                    // 用户性别
+  enabled: boolean;            // 账户是否启用
+  superUser: boolean;          // 是否为超级用户
+  emailVerified: boolean;      // 邮箱是否已验证
+  mobileVerified: boolean;     // 手机号是否已验证
+  passwordModifiedAt: string;  // 密码最后修改时间（ISO格式）
+  currentOrganization?: any;   // 当前所属组织信息
+  currentRoles?: any[];        // 当前用户角色列表
+  userOrganizationRoles?: any[]; // 用户组织角色关系列表
+  authorities?: any[];         // 用户权限列表
+}
+
+// 创建用户返回结果类型
+interface CreateUserResult {
+  message: string;             // 响应消息
+  code: number;                // 响应状态码（200表示成功）
+  data: UserResponse;          // 创建成功的用户信息
+}
+```
+
+### 3. 接口使用示例
+
+#### 基础使用示例
+
+```typescript
+import axios from 'axios';
+
+// 配置 axios 实例
+const apiClient = axios.create({
+  baseURL: 'http://127.0.0.1:9003', // 替换为实际的服务器地址
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+// 创建用户接口封装
+export async function createUser(
+  userRequest: CreateUserRequest, 
+  accessToken: string
+): Promise<CreateUserResult> {
+  try {
+    const response = await apiClient.post<CreateUserResult>('/api/v1/user/create', userRequest, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('创建用户失败:', error);
+    throw error;
+  }
+}
+
+// 创建用户示例函数
+async function createNewUser(superAdminToken: string) {
+  // 创建用户参数
+  const userRequest: CreateUserRequest = {
+    username: 'newuser@example.com',
+    email: 'newuser@example.com',
+    password: 'SecurePassword123!',
+    nickname: '新用户',
+    mobile: '13812345678',
+    emailVerified: true,
+    mobileVerified: true,
+    platform: 'BYTEDESK', // 平台标识，必填，固定写死为BYTEDESK
+    description: '通过API创建的用户'
+  };
+
+  try {
+    const result = await createUser(userRequest, superAdminToken);
+    
+    if (result.code === 200) {
+      console.log('用户创建成功:', result.data);
+      return result.data;
+    } else {
+      console.error('用户创建失败:', result.message);
+      return null;
+    }
+  } catch (error) {
+    console.error('创建用户时发生错误:', error);
+    return null;
+  }
+}
+```
+
+#### 完整流程示例
+
+```typescript
+// 完整的创建用户流程：登录获取超级管理员Token -> 创建用户
+async function completeUserCreationFlow() {
+  try {
+    // 步骤1: 使用超级管理员账号登录
+    const loginParams = {
+      username: 'admin@example.com', // 超级管理员邮箱
+      password: 'AdminPassword123!', // 超级管理员密码
+      channel: 'FLUTTER',
+      platform: 'BYTEDESK'
+    };
+
+    const loginResult = await login(loginParams);
+    
+    if (loginResult.code !== 200 || !loginResult.data.accessToken) {
+      throw new Error(`登录失败: ${loginResult.message}`);
+    }
+
+    const superAdminToken = loginResult.data.accessToken;
+    console.log('超级管理员登录成功');
+
+    // 步骤2: 使用超级管理员Token创建新用户
+    const newUserData = await createNewUser(superAdminToken);
+    
+    if (newUserData) {
+      console.log('用户创建流程完成:', {
+        username: newUserData.username,
+        nickname: newUserData.nickname,
+        email: newUserData.email,
+        mobile: newUserData.mobile,
+        enabled: newUserData.enabled
+      });
+    }
+
+    return newUserData;
+  } catch (error) {
+    console.error('完整用户创建流程失败:', error);
+    throw error;
+  }
+}
+```
+
+### 4. 不同创建场景示例
+
+#### 仅邮箱注册
+
+```typescript
+const emailOnlyUser: CreateUserRequest = {
+  email: 'user1@example.com',
+  password: 'Password123!',
+  nickname: '邮箱用户',
+  emailVerified: true,
+  platform: 'BYTEDESK'
+};
+```
+
+#### 仅手机号注册
+
+```typescript
+const mobileOnlyUser: CreateUserRequest = {
+  mobile: '13987654321',
+  password: 'Password123!',
+  nickname: '手机用户',
+  mobileVerified: true,
+  platform: 'BYTEDESK'
+};
+```
+
+#### 邮箱+手机号注册
+
+```typescript
+const fullUser: CreateUserRequest = {
+  username: 'fulluser',
+  email: 'fulluser@example.com',
+  mobile: '13612345678',
+  password: 'Password123!',
+  nickname: '完整用户',
+  avatar: 'https://example.com/avatar.jpg',
+  description: '拥有完整信息的用户',
+  emailVerified: true,
+  mobileVerified: true,
+  platform: 'BYTEDESK'
+};
+```
+
+### 5. 错误处理示例
+
+```typescript
+async function createUserWithErrorHandling(
+  userRequest: CreateUserRequest, 
+  accessToken: string
+) {
+  try {
+    const result = await createUser(userRequest, accessToken);
+    return result;
+  } catch (error: any) {
+    // 处理不同类型的错误
+    if (error.response) {
+      const { status, data } = error.response;
+      
+      switch (status) {
+        case 400:
+          if (data.message?.includes('Email') && data.message?.includes('already exists')) {
+            console.error('邮箱已存在:', data.message);
+          } else if (data.message?.includes('Mobile') && data.message?.includes('already exists')) {
+            console.error('手机号已存在:', data.message);
+          } else if (data.message?.includes('email or mobile is required')) {
+            console.error('邮箱或手机号必填:', data.message);
+          } else {
+            console.error('请求参数错误:', data.message);
+          }
+          break;
+          
+        case 401:
+          console.error('认证失败，请检查AccessToken是否有效');
+          break;
+          
+        case 403:
+          console.error('权限不足，只有超级管理员才能创建用户');
+          break;
+          
+        case 500:
+          console.error('服务器内部错误:', data.message);
+          break;
+          
+        default:
+          console.error('未知错误:', data.message || error.message);
+      }
+    } else if (error.request) {
+      console.error('网络请求失败，请检查网络连接');
+    } else {
+      console.error('请求配置错误:', error.message);
+    }
+    
+    throw error;
+  }
+}
+```
+
+### 6. 批量创建用户示例
+
+```typescript
+async function batchCreateUsers(
+  userRequests: CreateUserRequest[], 
+  superAdminToken: string
+) {
+  const results = [];
+  const errors = [];
+
+  for (let i = 0; i < userRequests.length; i++) {
+    const userRequest = userRequests[i];
+    
+    try {
+      console.log(`正在创建第 ${i + 1} 个用户...`);
+      const result = await createUser(userRequest, superAdminToken);
+      
+      if (result.code === 200) {
+        results.push(result.data);
+        console.log(`✅ 用户 ${userRequest.username || userRequest.email || userRequest.mobile} 创建成功`);
+      } else {
+        errors.push({ user: userRequest, error: result.message });
+        console.log(`❌ 用户 ${userRequest.username || userRequest.email || userRequest.mobile} 创建失败: ${result.message}`);
+      }
+      
+      // 避免请求过于频繁，添加延迟
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+    } catch (error: any) {
+      errors.push({ user: userRequest, error: error.message });
+      console.log(`❌ 用户 ${userRequest.username || userRequest.email || userRequest.mobile} 创建异常: ${error.message}`);
+    }
+  }
+
+  return {
+    successCount: results.length,
+    errorCount: errors.length,
+    results,
+    errors
+  };
+}
+
+// 批量创建用户使用示例
+async function batchCreateExample(superAdminToken: string) {
+  const usersToCreate: CreateUserRequest[] = [
+    {
+      email: 'user1@example.com',
+      password: 'Password123!',
+      nickname: '用户1',
+      platform: 'BYTEDESK'
+    },
+    {
+      email: 'user2@example.com',
+      password: 'Password123!',
+      nickname: '用户2',
+      platform: 'BYTEDESK'
+    },
+    {
+      mobile: '13812345678',
+      password: 'Password123!',
+      nickname: '用户3',
+      platform: 'BYTEDESK'
+    }
+  ];
+
+  const batchResult = await batchCreateUsers(usersToCreate, superAdminToken);
+  
+  console.log('批量创建结果:', {
+    成功: batchResult.successCount,
+    失败: batchResult.errorCount,
+    成功用户: batchResult.results.map(u => u.username),
+    失败详情: batchResult.errors
+  });
+}
+```
+
+### 7. 参数验证注意事项
+
+1. **必填字段**: `email` 或 `mobile` 至少提供一个
+2. **邮箱格式**: 必须符合邮箱格式规范
+3. **平台参数**: `platform` 字段必填，默认值为 `BYTEDESK`
+4. **密码要求**: 建议使用强密码，包含字母、数字和特殊字符
+5. **手机号格式**: 建议提供完整的手机号码
+6. **用户名唯一性**: 同一平台下，邮箱和手机号必须唯一
+
+### 8. 最佳实践
+
+1. **权限检查**: 调用前确保当前用户具有超级管理员权限
+2. **参数验证**: 在前端进行基础参数验证，减少无效请求
+3. **错误处理**: 完善的错误处理机制，给用户友好的提示
+4. **批量操作**: 大量用户创建时注意控制请求频率
+5. **日志记录**: 记录创建操作日志，便于审计和问题排查
+
 ## 安全注意事项
 
 1. **Token 保护**: AccessToken 具有登录权限，请妥善保管，不要泄露给他人
