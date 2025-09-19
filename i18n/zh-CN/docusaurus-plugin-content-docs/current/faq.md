@@ -20,12 +20,20 @@ spring.ai.model.chat=none
 spring.ai.model.embedding=none
 # 关闭视觉模型
 spring.ai.model.vision=none
+spring.ai.model.image=none
+spring.ai.model.moderation=none
 # 关闭语音模型
 spring.ai.model.audio=none
+spring.ai.model.audio.speech=none
+spring.ai.model.audio.transcription=none
 # 关闭重排序模型
 spring.ai.model.rerank=none
 # 关闭向量数据库
 spring.ai.vectorstore.type=none
+# 关闭 Dashscope
+spring.ai.dashscope.enabled=false
+# 关闭 Elasticsearch 向量数据库
+spring.ai.vectorstore.elasticsearch.enabled=false
 ```
 
 或者修改 docker-compose.yml 文件配置：
@@ -37,12 +45,20 @@ SPRING_AI_MODEL_CHAT: none
 SPRING_AI_MODEL_EMBEDDING: none
 # 关闭视觉模型
 SPRING_AI_MODEL_AUDIO: none
+SPRING_AI_MODEL_AUDIO_SPEECH: none
+SPRING_AI_MODEL_AUDIO_TRANSCRIPTION: none
 # 关闭语音模型
 SPRING_AI_MODEL_VISION: none
+SPRING_AI_MODEL_IMAGE: none
+SPRING_AI_MODEL_MODERATION: none
 # 关闭重排序模型
 SPRING_AI_MODEL_RERANK: none
 # 关闭向量数据库
 SPRING_AI_VECTORSTORE_TYPE: none
+# 关闭 Dashscope
+SPRING_AI_DASHSCOPE_ENABLED: false
+# 关闭 Elasticsearch 向量数据库
+SPRING_AI_VECTORSTORE_ELASTICSEARCH_ENABLED: false
 ```
 
 ## 问题1：可以不使用 Ollama 吗？
