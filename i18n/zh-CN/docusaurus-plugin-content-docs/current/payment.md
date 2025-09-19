@@ -184,6 +184,7 @@ import Trademark from '/img/right/trademark.png';
 
 ## 使用条款与参考
 
+- **允许使用**：可以用于商业用途，但禁止未获得许可的情况下二次销售
 - **禁止用途**：严禁用于含有木马、病毒、色情、赌博、诈骗等违法违规业务
 - **免责声明**：本软件不保证任何形式的法律责任，请自行承担使用风险
 - **行业对比**：[查看阿里云智能对话机器人价格对比](https://help.aliyun.com/zh/beebot/intelligent-dialogue-robot-tongyi-version/product-overview/product-billing/?spm=a2c4g.11186623.0.nextDoc.1bf77058eyaBzh)

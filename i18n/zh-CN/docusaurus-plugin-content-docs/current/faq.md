@@ -11,7 +11,7 @@ description: 集成微语客服系统常见问题
 
 ### 配置步骤0
 
-修改源码 .properties 文件配置：
+参考源码 [.properties](https://github.com/Bytedesk/bytedesk/blob/main/starter/src/main/resources/application-noai.properties) 文件配置：
 
 ```bash
 # 关闭文本对话配置
@@ -36,7 +36,7 @@ spring.ai.dashscope.enabled=false
 spring.ai.vectorstore.elasticsearch.enabled=false
 ```
 
-或者修改 docker-compose.yml 文件配置：
+或者参考 [docker-compose-noai.yml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-noai.yaml) 文件配置：
 
 ```yaml
 # 关闭文本对话配置
