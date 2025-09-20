@@ -292,9 +292,22 @@ const config: Config = {
           position: "left",
         },
         {
-          href: "https://www.weiyuai.cn/admin/",
           label: "Trial",
           position: "left",
+          items: [
+            {
+              label: "管理后台",
+              href: "https://www.weiyuai.cn/admin/",
+            },
+            {
+              label: "客服工作台",
+              href: "https://www.weiyuai.cn/agent/",
+            },
+            {
+              label: "访客端演示",
+              href: "https://www.weiyuai.cn/reactdemo/",
+            },
+          ],
         },
         {
           type: "search",
