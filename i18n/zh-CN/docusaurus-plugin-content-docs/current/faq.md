@@ -11,7 +11,7 @@ description: 集成微语客服系统常见问题
 
 ### 配置步骤0
 
-参考源码 [.properties](https://github.com/Bytedesk/bytedesk/blob/main/starter/src/main/resources/application-noai.properties) 文件配置：
+参考源码 [application-noai.properties](https://github.com/Bytedesk/bytedesk/blob/main/starter/src/main/resources/application-noai.properties) 文件配置：
 
 ```bash
 # 关闭文本对话配置

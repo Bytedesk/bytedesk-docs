@@ -35,6 +35,10 @@ sidebar_position: 3
 1. 下载 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件
 2. 无需申请API Key，使用本地Ollama模型
 
+#### 方式三：默认不使用ai大模型
+
+1. 下载 [`docker-compose-noai.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-noai.yaml) 文件到本地
+
 ### 步骤2：修改配置
 
 #### 2.1 服务器IP配置
