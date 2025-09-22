@@ -163,7 +163,7 @@ const config: Config = {
             // 可选：显示模式页面
             showSchemas: true,
             sidebarOptions: {
-              groupPathsBy: "tag",
+              groupPathsBy: "tagGroup",
               categoryLinkSource: "tag", // 使用 tag 描述作为分类链接
               sidebarCollapsible: true,
               sidebarCollapsed: true,

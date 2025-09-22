@@ -31,34 +31,16 @@ tags:
     description: 消息相关
   - name: tickets
     description: 工单（Ticket）相关
+x-tagGroups:
+  - name: Authentication
+    tags: [auth]
+  - name: Users
+    tags: [users]
+  - name: IM
+    tags: [threads, messages]
+  - name: Tickets
+    tags: [tickets]
 paths:
-  /agent/auth/login:
-    get:
-      tags: [auth]
-      summary: 使用 AccessToken 登录（客服工作台）
-      description: 使用 AccessToken 免登客服工作台，通常返回 302 跳转。
-      operationId: loginAgentWithAccessToken
-      parameters:
-        - in: query
-          name: accessToken
-          required: true
-          schema:
-            type: string
-            minLength: 16
-          description: AccessToken（在后台生成）
-      responses:
-        '302':
-          description: 登录成功并跳转
-          headers:
-            Location:
-              schema:
-                type: string
-        '400':
-          description: 请求不合法
-        '401':
-          description: 未授权或 Token 失效
-      servers:
-        - url: https://api.weiyuai.cn
   /auth/login:
     get:
       tags: [auth]
