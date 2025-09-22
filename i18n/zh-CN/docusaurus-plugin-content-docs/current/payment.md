@@ -73,8 +73,7 @@ sidebar_position: 11
 | [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [敏感词过滤](./development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Ip过滤拦截](./development/ip.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [数据统计报表](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [BI智能分析](./plugins/bi.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [BI智能分析](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [转接会话](./development/transfer.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [邀请会话](./development/invite.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [满意度评分](./development/rating.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
