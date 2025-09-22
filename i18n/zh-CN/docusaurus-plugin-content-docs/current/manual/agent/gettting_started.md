@@ -9,6 +9,10 @@ sidebar_position: 1
 
 ![agent preview](/img/manual/agent/agent_preview.png)
 
+## 未读消息提示
+
+![agent_thread_unread_tip](/img/manual/agent/agent_thread_unread_tip.png)
+
 ## 订单对接示例
 
 ![订单对接示例](/img/develop/chat/orderinfo_agent.png)
