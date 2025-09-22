@@ -29,6 +29,7 @@ sidebar_position: 11
 | 手机客服端源码(安卓/iOS，Flutter) | 5万元 |
 | H5访客端源码(前端/React) | 2万元 |
 | 服务器高级功能源码(后端/Java) | 5万元 |
+| 呼叫中心源码(前后端/React+Java) | 开发中 |
 
 > 注：可以按模块单独购买，技术栈：[java + react](https://www.weiyuai.cn/architecture.html)，前后分离
 
