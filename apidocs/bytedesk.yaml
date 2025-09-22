@@ -7,7 +7,7 @@ info:
     注意：以下接口按模块划分。免登接口多为网页重定向场景；REST 接口需在请求头携带 `Authorization: Bearer <token>`。
   termsOfService: https://api.weiyuai.cn/terms.html
   contact:
-    email: support@weiyuai.cn
+    email: 270580156@qq.com
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
