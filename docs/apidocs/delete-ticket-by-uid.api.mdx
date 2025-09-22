@@ -1,0 +1,71 @@
+---
+id: delete-ticket-by-uid
+title: "删除工单"
+description: "覆盖 BaseRestController.delete"
+sidebar_label: "删除工单"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVV1r21YY/ivivVrh1HLCrsQYi0MGGWMJsUsvXEOP5bfxqWVJPecoqScEId1aZ2vSdNCOpAlZaFLCYA2jHQ12uj9TS46v/Be2cySnbrKVXezGls55v5/neRWCpIsCrDJIZjdQCqgQqKGwOfMl81yw4OzF/f6zp0aBClxAIac9V3LPcZDnauigRCDg+cipMp+tgQXpcUnHK7SusRoQEGgHnMkWWOUQqkg58qlA1sEqV6IKAY53AhSy4NVaYIX6lXGsgSV5gARsz5XoSnVFfd9htk5m3haqwBCEXccmVU+y5SNY4FVvoy2BgM9VaZKhULcBq40ZCcmZuwhRRMbylbVRJYrSY+F7rkidJ/N59ffhbOL2L4Otg6S9Gf+wB/9bnSKwbRRizLDqeQ5SFwjgXdr0HUwnExFoohB0Ef+5L8mkMoW5xkLWCqSdfZqfuNxMsvNrstFOdu9p3ybKuqfg9D2hS6QKLjBTnpjn2AvkS8iFBjbgzt+EqUvpC8s0qc9yy8haAWU521Wv5tIEXKTX1PyskcYwPlmYKZauQEQ+HulSiOtYNajvn4eZ0uMreQ10jf5WN3775Aoolo1IWFQ4pKMep+L5BFVa1Zk2U9PXRkCyhy893qQSLPjqekmPSuG78J7BMyOIMsadI0KAubc8nSgDptCSWEPRMKbmZy+1NbocnrbjP1+eHf82PF3rv+r2u3vK3EiePkj2nw9PH8Z7nV5nwxjvOv5+vb/V7Z1sGAVdspEeD9ZeJ7v33q2s3nBvuMmro+S7R8PT7V73sHfyY7JxGD96njxcS472492f4/ZPcfv+u5XVNFR6Gx9s9046/bePB/t/DB6sxy+3483H8U4n2Toenj5T6Bmp4WBnJd45Ojt+k/y+Gh+8TjY78ckL46aas8fZt1oW1qi2z6Qq7vObui4gIJE3xdytIvIlZuO/E0rb5eqy6WTSo7aWHjYpU+wRge97XH4xxpyIgMNsVEKwQnCphnfKp3YdjclcHsgY8SzTXF5ezlF9m/P4opm5CvPr2emZb4ozVydz+TR/RECJIMVtIpfP5dWRUk6TumOp0n0RvzmM159cxDt8vz7+y87NuCrxrjR9hzLdnK4+zLQ62uk6kfaqEKgrNVtlCMMqFXiNO1Gkju8EyNVyrhBYopzRqqJnuRIRqCOtIdfybmALLJhOq7xaUgUocydQhVxaeErGqYdipi8/alsZWzjzc8WSElv2MWh6NeXD6TIQ/WuB/uQob61hfRaCQ93FQK9CSGMqadIPlX1Bybqr7Iq6rbEKwzC10LqJIiBZK5qqEKkPxF/Bt8f3
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"删除工单"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/ticket/delete"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+覆盖 BaseRestController.delete
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"uid":{"type":"string"}},"required":["uid"]}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"删除成功","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"message":{"type":"string"}},"title":"OkResponse"}}}},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

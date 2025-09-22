@@ -1,0 +1,71 @@
+---
+id: send-rest-message
+title: "发送离线消息（REST）"
+description: "当客户端长连接断开时，通过 REST 接口发送 JSON 格式消息"
+sidebar_label: "发送离线消息（REST）"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVd9PG0cQ/ldO89RIF59BfTpVVSGiElEbECbKg2Mp6/MGX7DvLrt7OO7pJIc0xbSEH60SBIVSmoBQW0Bt0gTZR/lj4jvjJ/8L1eydiYuVPOXJ593ZmflmvvnGA0FmOOhZKFPOyQzlkFOhQLnBTEeYtgU6hKc/hUe/RfU37T+OO0/Pzs9+iZb3omeHYVCL1l93g6VObfP8bEGZGstMK9HyXrjyPFxZ69QeKtczEzeU6NcgDFai1/Xo4TGoYDuUEfQ8XgAdOLUKU5SLr+PooAKnhstMUQU960GeEkbZiCuKoGdzfk4FRu+7lItRu1AF3ZN/TUYLoAvmUhUM2xLUEnhFHKdkGjKUdo8jEg+4UaRlgl+i6lDQwc7fo4YAFRyGiQmTcrzt2SdWXDDTmoHLhYkxxSjDw/X2n/utk7/B99W+tLKxr5zvx+fcsS0eBxlOp/HnUrFl5aL6avj9Dnw0PNw1DMp5n2HetkuUWKACfUDKTonGFfTVHhEG4SMAYQo0hYnZqQQKxMg+TQ8Ngom2fo+W69H2I/m2TEXRxqY7NpcpEmwraElAjVEuNCSEZAGbo4xLErisBDoUhXC4rmnEMVMValZdYqYMC/9qc0MDrRmZHFdiH8onyMsr4Ksf9jTg4hbNK8RxLtyMyBJO27PUUtobzfD06RVARvYIm8FexOXup+1FFTEsIpNm2AFpBGry8aXNykSADtdvTctyYY+n3rF9rNemHjsv2qKCad21ZaSkO6NVQQuUzyojk+MDuHqX3aAe/nt0fnzYDRbbL5vt5g6aK9GzhWj3eTdYCncarcay0g87fPykvdFsnSwrozJnJT7uLL6Kth+9rc3ftm5b0cuD6NuVbrDZau61Tn6I9SBaWowOdsPt9bD+Y1j/7m1tPnaVqMWLzdZJo3261tn9p7PwJDzaDFfXwq1GtHHcDX7uk5XOVi3cOjg/fhP9NR++eBWtNsKTfeUOFtpm5jdyNvRebp8JTO7zOzIvUEFQVuYTdzOUzZkGfT+jpF2qKMqlZP6IIeePlomJ9OGu49hMfNFHHV+FkmlQnAbdA4vI/o44xChSZTiVBrWPebqmVSqVFJG3KZvNaMlTrn01fm3sRmbs6nAqHcf3VcApiPs2lEqn0niE41MmVl+oWDTa+8124ywWpW5Qx7p1g8XL/ffeacpHVvaE54I+EJpTIqasiwTuJbN+sWVASqGQg24VcOUUURP0LHhennB6k5V8H4/vu5ThKsipMEeYSfLI72zOV6FISYEyKRCztAo6XIthXZ3GNNC85GI6A7KJQhC/QGo74oO2uT7ZmpzITOO4JqunbBfwDSMVREMqoINcb/haqoA886BErBlXCmo8uFIuyf+14ZIWSFTJFbGqfRl6XmwhB8/3QU2gSK6Dj2vmP5U2K/I=
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"发送离线消息（REST）"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/message/rest/send"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+当客户端长连接断开时，通过 REST 接口发送 JSON 格式消息
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"json":{"type":"string","description":"消息 JSON 字符串"}},"required":["json"]}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"发送成功","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"message":{"type":"string"}},"title":"OkResponse"}}}},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

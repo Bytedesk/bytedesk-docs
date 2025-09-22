@@ -1,0 +1,71 @@
+---
+id: query-tickets-by-org
+title: "按组织查询工单"
+description: "覆盖 BaseRestController.queryByOrg"
+sidebar_label: "按组织查询工单"
+hide_title: true
+hide_table_of_contents: true
+api: eJzlV91uE0cUfpXVXBVpsZ0I9cKqqjoorVJVJSJBXARLjNfH9pDdne3MbFJjrZQCJU6bhNDyo0BQlEJQVAmiFiiRHejD4N1NrvIK1czaZo13Q3pNbpLs950zZ87/NJDAVY7yM0gQYxYER0UdlYEbjDiCUBvl0cHTm+HDe9oY5nAeuDhLbcGoaQLL/OACq4/Vz7Eq0hF1gGEpMlFGeaSg6Uhlj8HBcBkRdZSfaaASYAas4Ioays8UvaKOHMywBQIYVwRi99QgHdnYApRHDq6CVGTUwMIo30Ci7sjvxBZQBYak6RXsmgLlRzxPT1bCydWTKhnNpWsRWLg8SQ8XjNhVlCrpMEKVG46TLeqIAXeozYFLfDSXk78GIxM01/xfNpGODGoLsIVkYMcxiaECkb3CJa0xfAwtXQFDIB05TIZNkOiQmJouETOGpaFEgMWTFGDTPFdR8TpeNSkn3FJHBgMsoFwQw6iOKpRZWKA8KmMBpwWxQIq4Tvn/iahAHG+dIMKERAMHHJ6Ad9MgCerHOQmMPiQB1CFGMlJjgMsX0jyJBVQpq6fhLgeWFMDBjAr/fhs+XwiXmuGdnaD5uvPvVvDT7tH+cnhnp9Na9V8t+9v3/Y0d//cVv3Wns/dsyJPuMcdH+Z8A2sSYTQVTPCWRKGroAgc2yaigJbciJeYpm60y6jppviiDg5mwwBZpDMw5qdoAn4jHGDiUiU8mQbAQ2KjJ+Mcr96O9btAT/uttf+Xu4fqNTvufE98y9RIuM4/tZy4jqt3I2ZU0svpEYovPz6iGEDXz6Y96J5rShb5PznfnjiI5jBrA+YTNBbYNmEi+Vpc1bgsiUjsQk207hpQoNQHbXUiShi/m6WgOGKmQNMn0CSpH6OAVBy4mqMDmuAkfZkHsZEWZxFVIwW3XKg3UTAxLCZSnfnR0JjeSMM43/gxWm8Gj68pAC0SNylWqCmpgYbkpoWy0pmXVTpGl3b2KzfW2JpVHqCaEw/PZLHZIZh5I3cUkY9jy3+zcyFAmFyYntEiH9tn58anpU0hOzOM0Dam4CCUNO05fTcGQ+TBNZ8HWwvW2/+buKSQD0lsBp2TYIr/GF8G+v+Sxvf1IRVyRkN794+tetn97cVo5i9gVGhvkaKwuoAx8VitMTgwZ2wOP9pv+2+cHu8+O9pfCF+2wvSnpWnBvMdh6fLS/7G+2Oq1VLX4X/+eVcL3d2VvVxpQhWvT5cOll8Oj6u4Vrl+xLdvBiJ7hx62j/Qae93dn7NVjd9m89DpaXgp0t/9F9v/mb37z5buFapCpC/ScPOnut8M3tw61Xh4sr/vMH/tptf6MVrO8e7T+UMdEi4uHGgr+xc7D7Ovjrmv/kZbDW8veeapel9ygjV9Xal+/Z9oWQxn15WdmFdCSAWfxcZQrYHDEgPU0UL1MTltldLbGhli2wMJE5wV1HjouvYvng6cgkBsjiyjd6i27BwUYNtNFMDumxdMpns/Pz8xms0Axl1WxXlGe/mzg7/v3U+OnRTC46P6p/HsVtJJPL5FS7oVxY2I4dFSwvhe0bYXsx2Nw+2P0j6s0fBj624J70UdNNRwE/iqxjYmLHenVUkb2HE9L7e76syqKOapQLiTcaJczhAjM9T36OWLJWy4Tjkik7WwWbHHQ0C/X3j5w5bLrybFWMKdTuU+ZE1N575STk2BPlPb0o/2FE8tWTTUc1wGXZAGcaXTlZKo6ISQ29RqSWfmf7ZnxaPiEGS/+DUo+/LbAdt6jRiBiqBD0P9YxXWY+8oud5/wEEEp98
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"按组织查询工单"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/ticket/query/org"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+覆盖 BaseRestController.queryByOrg
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"page","schema":{"type":"integer","default":1}},{"in":"query","name":"size","schema":{"type":"integer","default":20}},{"in":"query","name":"status","schema":{"type":"string"}},{"in":"query","name":"priority","schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"content":{"type":"array","items":{"type":"object","allOf":[{"type":"object","properties":{"id":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}}},{"type":"object","properties":{"title":{"type":"string"},"description":{"type":"string"},"status":{"type":"string"},"priority":{"type":"string"},"type":{"type":"string"},"topic":{"type":"string"},"threadUid":{"type":"string"},"categoryUid":{"type":"string"},"user":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"workgroupUid":{"type":"string"},"departmentUid":{"type":"string"},"assignee":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"reporter":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"attachments":{"type":"array","items":{"type":"object","description":"工单附件","properties":{"uid":{"type":"string"},"name":{"type":"string"},"url":{"type":"string","format":"uri"},"size":{"type":"integer","format":"int64"},"contentType":{"type":"string"}},"title":"TicketAttachmentResponse"}},"processInstanceId":{"type":"string"},"processEntityUid":{"type":"string"},"rated":{"type":"boolean"},"rating":{"type":"integer"},"verified":{"type":"boolean"},"schema":{"type":"string"}}}],"title":"TicketResponse"}},"totalElements":{"type":"integer"},"totalPages":{"type":"integer"},"number":{"type":"integer"},"size":{"type":"integer"}}}}}},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

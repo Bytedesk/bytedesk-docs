@@ -1,0 +1,33 @@
+---
+id: ticketrequest
+title: "TicketRequest"
+description: ""
+sidebar_label: "TicketRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"title":"string","description":"string","status":"string","priority":"string","type":"string","topic":"string","threadUid":"string","categoryUid":"string","workgroupUid":"string","departmentUid":"string","assignmentAll":true,"assigneeUid":"string","assignee":{"uid":"string","username":"string","nickname":"string","type":"string"},"reporterUid":"string","reporter":{"uid":"string","username":"string","nickname":"string","type":"string"},"createdAtStart":"string","createdAtEnd":"string","uploadUids":["string"],"processInstanceId":"string","processEntityUid":"string","rated":true,"rating":0,"verified":true,"schema":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"TicketRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"title":{"type":"string"},"description":{"type":"string"},"status":{"type":"string","description":"工单状态"},"priority":{"type":"string","description":"优先级"},"type":{"type":"string","description":"工单类型"},"topic":{"type":"string"},"threadUid":{"type":"string"},"categoryUid":{"type":"string"},"workgroupUid":{"type":"string"},"departmentUid":{"type":"string"},"assignmentAll":{"type":"boolean"},"assigneeUid":{"type":"string","description":"方便 GET 查询"},"assignee":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"reporterUid":{"type":"string","description":"方便 GET 查询"},"reporter":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"createdAtStart":{"type":"string","description":"创建时间范围开始（ISO 字符串）"},"createdAtEnd":{"type":"string","description":"创建时间范围结束（ISO 字符串）"},"uploadUids":{"type":"array","items":{"type":"string"}},"processInstanceId":{"type":"string"},"processEntityUid":{"type":"string"},"rated":{"type":"boolean"},"rating":{"type":"integer"},"verified":{"type":"boolean"},"schema":{"type":"string","description":"自定义表单 JSON Schema 字符串"}},"title":"TicketRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

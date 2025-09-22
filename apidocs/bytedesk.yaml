@@ -29,6 +29,8 @@ tags:
     description: 会话（Thread）相关
   - name: messages
     description: 消息相关
+  - name: tickets
+    description: 工单（Ticket）相关
 paths:
   /agent/auth/login:
     get:
@@ -57,7 +59,7 @@ paths:
           description: 未授权或 Token 失效
       servers:
         - url: https://api.weiyuai.cn
-  /admin/auth/login:
+  /auth/login:
     get:
       tags: [auth]
       summary: 使用 AccessToken 登录（管理后台）
@@ -391,31 +393,6 @@ paths:
           description: 参数不合法
         '401':
           description: 未授权
-  /user/admin/change/password:
-    post:
-      tags: [users]
-      summary: 管理员重置成员密码
-      description: 需要管理员权限。
-      operationId: adminChangePassword
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AdminChangePasswordRequest'
-      responses:
-        '200':
-          description: 修改成功
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OkResponse'
-        '401':
-          description: 未授权
-        '403':
-          description: 权限不足
   /user/change/email:
     post:
       tags: [users]
@@ -801,16 +778,52 @@ paths:
           description: 未授权
         '404':
           description: 未找到
-  /messages/thread/{threadId}:
+  # ========================= Thread (Controller-based) =========================
+  /thread/query/invite:
     get:
-      tags: [messages]
-      summary: 获取会话消息列表
-      operationId: listMessagesByThread
+      tags: [threads]
+      summary: 查询邀请会话
+      description: 查询邀请相关的会话
+      operationId: queryThreadsByInvite
       security:
         - bearerAuth: []
       parameters:
-        - in: path
-          name: threadId
+        - in: query
+          name: status
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/query/topic:
+    get:
+      tags: [threads]
+      summary: 根据主题查询会话
+      description: 通过主题查找相关会话
+      operationId: queryThreadsByTopic
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: topic
           required: true
           schema:
             type: string
@@ -823,7 +836,7 @@ paths:
           name: size
           schema:
             type: integer
-            default: 50
+            default: 20
       responses:
         '200':
           description: 成功
@@ -832,9 +845,1060 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Message'
+                  $ref: '#/components/schemas/ThreadResponse'
         '401':
           description: 未授权
+  /thread/query/topic/owner:
+    get:
+      tags: [threads]
+      summary: 根据主题和用户查询会话
+      description: 通过主题和用户查找相关会话
+      operationId: queryThreadsByTopicAndOwner
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: topic
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: ownerUid
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/query/by/user/topics:
+    get:
+      tags: [threads]
+      summary: 根据用户UID查询所有会话
+      description: 通过 userUid 查询用户相关的所有会话
+      operationId: queryThreadsByUserTopics
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: userUid
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/top:
+    post:
+      tags: [threads]
+      summary: 更新会话置顶状态
+      description: 设置或取消会话置顶
+      operationId: updateThreadTop
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/star:
+    post:
+      tags: [threads]
+      summary: 更新会话标星状态
+      operationId: updateThreadStar
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/mute:
+    post:
+      tags: [threads]
+      summary: 更新会话静音状态
+      operationId: updateThreadMute
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/hide:
+    post:
+      tags: [threads]
+      summary: 更新会话隐藏状态
+      operationId: updateThreadHide
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/fold:
+    post:
+      tags: [threads]
+      summary: 更新会话折叠状态
+      operationId: updateThreadFold
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/user:
+    post:
+      tags: [threads]
+      summary: 更新会话用户信息
+      operationId: updateThreadUser
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/tagList:
+    post:
+      tags: [threads]
+      summary: 更新会话标签列表
+      operationId: updateThreadTagList
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/unread:
+    post:
+      tags: [threads]
+      summary: 更新会话未读状态
+      description: 标记会话为已读或未读
+      operationId: updateThreadUnread
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/update/note:
+    post:
+      tags: [threads]
+      summary: 更新会话备注
+      operationId: updateThreadNote
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+  /thread/close:
+    post:
+      tags: [threads]
+      summary: 关闭会话
+      operationId: closeThread
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadResponse'
+        '401':
+          description: 未授权
+
+  # ========================= Message (Controller-based) =========================
+  /message/unread:
+    get:
+      tags: [messages]
+      summary: 查询未读消息（迁移到企业版）
+      description: 已迁移到企业版，请使用 /api/v1/vip/message/unread
+      deprecated: true
+      operationId: queryUnreadMessages
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: OK（已废弃）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '410':
+          description: 功能已迁移
+  /message/thread/topic:
+    get:
+      tags: [messages]
+      summary: 根据主题查询消息
+      description: 根据主题查询相关消息
+      operationId: queryMessagesByThreadTopic
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: topic
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageResponse'
+        '401':
+          description: 未授权
+  /message/thread/uid:
+    get:
+      tags: [messages]
+      summary: 根据会话UID查询消息
+      description: 通过会话唯一标识符查询相关消息
+      operationId: queryMessagesByThreadUid
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: threadUid
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageResponse'
+        '401':
+          description: 未授权
+  /message/rest/send:
+    post:
+      tags: [messages]
+      summary: 发送离线消息（REST）
+      description: 当客户端长连接断开时，通过 REST 接口发送 JSON 格式消息
+      operationId: sendRestMessage
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                json:
+                  type: string
+                  description: 消息 JSON 字符串
+              required: [json]
+      responses:
+        '200':
+          description: 发送成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '401':
+          description: 未授权
+  /message/{messageUid}/read:
+    post:
+      tags: [messages]
+      summary: 标记消息为已读（迁移到企业版）
+      description: 已迁移到企业版，请使用 /api/v1/vip/message/{messageUid}/read
+      deprecated: true
+      operationId: markMessageAsRead
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: messageUid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK（已废弃）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '410':
+          description: 功能已迁移
+  /message/thread/{threadUid}/read:
+    post:
+      tags: [messages]
+      summary: 批量标记会话消息为已读（迁移到企业版）
+      description: 已迁移到企业版，请使用 /api/v1/vip/message/thread/{threadUid}/read
+      deprecated: true
+      operationId: markThreadMessagesAsRead
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: threadUid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK（已废弃）
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '410':
+          description: 功能已迁移
+  
+  # ========================= Ticket (Controller-based) =========================
+  /ticket/query/topic:
+    get:
+      tags: [tickets]
+      summary: 根据主题查询工单
+      operationId: queryTicketsByTopic
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: topic
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketResponse'
+        '401':
+          description: 未授权
+  /ticket/query/thread/uid:
+    get:
+      tags: [tickets]
+      summary: 根据会话UID查询工单
+      operationId: queryTicketsByThreadUid
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: threadUid
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketResponse'
+        '401':
+          description: 未授权
+  /ticket/query/org:
+    get:
+      tags: [tickets]
+      summary: 按组织查询工单
+      description: 覆盖 BaseRestController.queryByOrg
+      operationId: queryTicketsByOrg
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+        - in: query
+          name: status
+          schema:
+            type: string
+        - in: query
+          name: priority
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TicketResponse'
+                  totalElements:
+                    type: integer
+                  totalPages:
+                    type: integer
+                  number:
+                    type: integer
+                  size:
+                    type: integer
+        '401':
+          description: 未授权
+  /ticket/query/user:
+    get:
+      tags: [tickets]
+      summary: 按用户查询工单
+      description: 覆盖 BaseRestController.queryByUser
+      operationId: queryTicketsByUser
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: userUid
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TicketResponse'
+                  totalElements:
+                    type: integer
+                  totalPages:
+                    type: integer
+                  number:
+                    type: integer
+                  size:
+                    type: integer
+        '401':
+          description: 未授权
+  /ticket/query/uid:
+    get:
+      tags: [tickets]
+      summary: 根据UID查询工单详情
+      description: 覆盖 BaseRestController.queryByUid
+      operationId: getTicketByUid
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: uid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+  /ticket/create:
+    post:
+      tags: [tickets]
+      summary: 新建工单
+      description: 覆盖 BaseRestController.create
+      operationId: createTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+        '401':
+          description: 未授权
+  /ticket/update:
+    post:
+      tags: [tickets]
+      summary: 更新工单
+      description: 覆盖 BaseRestController.update
+      operationId: updateTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+        '401':
+          description: 未授权
+  /ticket/delete:
+    post:
+      tags: [tickets]
+      summary: 删除工单
+      description: 覆盖 BaseRestController.delete
+      operationId: deleteTicketByUid
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                uid:
+                  type: string
+              required: [uid]
+      responses:
+        '200':
+          description: 删除成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '401':
+          description: 未授权
+  /ticket/claim:
+    post:
+      tags: [tickets]
+      summary: 认领工单
+      operationId: claimTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/start:
+    post:
+      tags: [tickets]
+      summary: 开始处理工单
+      operationId: startTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/unclaim:
+    post:
+      tags: [tickets]
+      summary: 退回工单
+      operationId: unclaimTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/transfer:
+    post:
+      tags: [tickets]
+      summary: 转派工单
+      operationId: transferTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/hold:
+    post:
+      tags: [tickets]
+      summary: 挂起工单
+      operationId: holdTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/resume:
+    post:
+      tags: [tickets]
+      summary: 恢复工单
+      operationId: resumeTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/pend:
+    post:
+      tags: [tickets]
+      summary: 待回应工单
+      operationId: pendTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/reopen:
+    post:
+      tags: [tickets]
+      summary: 重新打开工单
+      operationId: reopenTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/escalate:
+    post:
+      tags: [tickets]
+      summary: 升级工单
+      operationId: escalateTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/resolve:
+    post:
+      tags: [tickets]
+      summary: 完成工单
+      operationId: resolveTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/verify:
+    post:
+      tags: [tickets]
+      summary: 客户验证工单
+      operationId: verifyTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/close:
+    post:
+      tags: [tickets]
+      summary: 关闭工单
+      operationId: closeTicketAction
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/cancel:
+    post:
+      tags: [tickets]
+      summary: 取消工单
+      operationId: cancelTicket
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketResponse'
+  /ticket/history/task:
+    get:
+      tags: [tickets]
+      summary: 查询工单任务历史
+      operationId: queryTicketTaskHistory
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: uid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketHistoryTaskResponse'
+  /ticket/history/process:
+    get:
+      tags: [tickets]
+      summary: 查询工单流程实例历史
+      operationId: queryTicketProcessHistory
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: uid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketHistoryProcessResponse'
+  /ticket/history/activity:
+    get:
+      tags: [tickets]
+      summary: 查询工单活动历史
+      operationId: queryTicketActivityHistory
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: uid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TicketHistoryActivityResponse'
 components:
   securitySchemes:
     bearerAuth:
@@ -1089,15 +2153,257 @@ components:
       required: [type]
     ThreadUpdateRequest:
       type: object
+    ThreadRequest:
+      type: object
       properties:
-        status:
-          type: string
-          enum: [open, in_progress, closed, pending]
         topic:
           type: string
+        topicList:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+        transferStatus:
+          type: string
+          example: NONE
+        inviteStatus:
+          type: string
+          example: NONE
+        top:
+          type: boolean
+        unread:
+          type: boolean
+        mute:
+          type: boolean
+        hide:
+          type: boolean
+        star:
+          type: integer
+          format: int32
+        fold:
+          type: boolean
+        autoClose:
+          type: boolean
+        note:
+          type: string
+        offline:
+          type: boolean
+        tagList:
+          type: array
+          items:
+            type: string
+        transfer:
+          type: string
+          description: 被转接客服 UID 或 JSON
+        inviteUids:
+          type: array
+          items:
+            type: string
+        monitorUids:
+          type: array
+          items:
+            type: string
+        assistantUids:
+          type: array
+          items:
+            type: string
+        ticketorUids:
+          type: array
+          items:
+            type: string
+        memberUids:
+          type: array
+          items:
+            type: string
+        componentType:
+          type: string
+        forceNew:
+          type: boolean
+        mergeByTopic:
+          type: boolean
+        user:
+          $ref: '#/components/schemas/UserProtobuf'
+        userNickname:
+          type: string
+        agentNickname:
+          type: string
+        robotNickname:
+          type: string
+        workgroupNickname:
+          type: string
+        ownerNickname:
+          type: string
+        ownerUid:
+          type: string
+        agent:
+          type: string
+          description: 代理对象 JSON 字符串
+        robot:
+          type: string
+          description: 机器人 JSON 字符串
+        workgroup:
+          type: string
+          description: 工作组 JSON 字符串
+        processInstanceId:
+          type: string
+        processEntityUid:
+          type: string
+        unsubscribe:
+          type: boolean
+    ThreadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        topic:
+          type: string
+        content:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        transferStatus:
+          type: string
+        inviteStatus:
+          type: string
+        top:
+          type: boolean
+        unread:
+          type: boolean
+        unreadCount:
+          type: integer
+        visitorUnreadCount:
+          type: integer
+        mute:
+          type: boolean
+        hide:
+          type: boolean
+        star:
+          type: integer
+        fold:
+          type: boolean
+        autoClose:
+          type: boolean
+        note:
+          type: string
+        offline:
+          type: boolean
+        tagList:
+          type: array
+          items:
+            type: string
+        channel:
+          type: string
         extra:
-          type: object
-          additionalProperties: true
+          type: string
+        transfer:
+          $ref: '#/components/schemas/UserProtobuf'
+        invites:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProtobuf'
+        monitors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProtobuf'
+        assistants:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProtobuf'
+        ticketors:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserProtobuf'
+        user:
+          $ref: '#/components/schemas/UserProtobuf'
+        owner:
+          $ref: '#/components/schemas/UserProtobuf'
+        agent:
+          type: string
+          description: 代理对象 JSON 字符串
+        robot:
+          type: string
+          description: 机器人 JSON 字符串
+        workgroup:
+          type: string
+          description: 工作组 JSON 字符串
+        processInstanceId:
+          type: string
+        processEntityUid:
+          type: string
+        robotToAgent:
+          type: boolean
+        valid:
+          type: boolean
+        allMessageCount:
+          type: integer
+        visitorMessageCount:
+          type: integer
+        agentMessageCount:
+          type: integer
+        systemMessageCount:
+          type: integer
+        robotMessageCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+    MessageRequest:
+      type: object
+      properties:
+        topic:
+          type: string
+        threadUid:
+          type: string
+        threadType:
+          type: string
+          description: AGENT/WORKGROUP/ROBOT/UNIFIED/MEMBER/GROUP
+        userUid:
+          type: string
+        nickname:
+          type: string
+        type:
+          type: string
+        componentType:
+          type: string
+        searchDate:
+          type: string
+    MessageResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        content:
+          type: string
+        status:
+          type: string
+        channel:
+          type: string
+        thread:
+          $ref: '#/components/schemas/ThreadResponse'
+        user:
+          $ref: '#/components/schemas/UserProtobuf'
+        extra:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    UserProtobuf:
+      type: object
+      description: 精简版用户信息，用于嵌套在响应中
+      properties:
+        uid:
+          type: string
+        username:
+          type: string
+        nickname:
+          type: string
+        type:
+          type: string
     Message:
       type: object
       properties:
@@ -1236,3 +2542,192 @@ components:
           example: true
         message:
           type: string
+
+    # ========================= Ticket Schemas =========================
+    TicketRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          description: 工单状态
+        priority:
+          type: string
+          description: 优先级
+        type:
+          type: string
+          description: 工单类型
+        topic:
+          type: string
+        threadUid:
+          type: string
+        categoryUid:
+          type: string
+        workgroupUid:
+          type: string
+        departmentUid:
+          type: string
+        assignmentAll:
+          type: boolean
+        assigneeUid:
+          type: string
+          description: 方便 GET 查询
+        assignee:
+          $ref: '#/components/schemas/UserProtobuf'
+        reporterUid:
+          type: string
+          description: 方便 GET 查询
+        reporter:
+          $ref: '#/components/schemas/UserProtobuf'
+        createdAtStart:
+          type: string
+          description: 创建时间范围开始（ISO 字符串）
+        createdAtEnd:
+          type: string
+          description: 创建时间范围结束（ISO 字符串）
+        uploadUids:
+          type: array
+          items:
+            type: string
+        processInstanceId:
+          type: string
+        processEntityUid:
+          type: string
+        rated:
+          type: boolean
+        rating:
+          type: integer
+        verified:
+          type: boolean
+        schema:
+          type: string
+          description: 自定义表单 JSON Schema 字符串
+
+    TicketAttachmentResponse:
+      type: object
+      description: 工单附件
+      properties:
+        uid:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        size:
+          type: integer
+          format: int64
+        contentType:
+          type: string
+
+    TicketResponse:
+      type: object
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+        - type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            status:
+              type: string
+            priority:
+              type: string
+            type:
+              type: string
+            topic:
+              type: string
+            threadUid:
+              type: string
+            categoryUid:
+              type: string
+            user:
+              $ref: '#/components/schemas/UserProtobuf'
+            workgroupUid:
+              type: string
+            departmentUid:
+              type: string
+            assignee:
+              $ref: '#/components/schemas/UserProtobuf'
+            reporter:
+              $ref: '#/components/schemas/UserProtobuf'
+            attachments:
+              type: array
+              items:
+                $ref: '#/components/schemas/TicketAttachmentResponse'
+            processInstanceId:
+              type: string
+            processEntityUid:
+              type: string
+            rated:
+              type: boolean
+            rating:
+              type: integer
+            verified:
+              type: boolean
+            schema:
+              type: string
+
+    TicketHistoryTaskResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        assignee:
+          $ref: '#/components/schemas/UserProtobuf'
+        status:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+
+    TicketHistoryProcessResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        definitionId:
+          type: string
+        startUser:
+          $ref: '#/components/schemas/UserProtobuf'
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+
+    TicketHistoryActivityResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        assignee:
+          $ref: '#/components/schemas/UserProtobuf'
+        type:
+          type: string
+        time:
+          type: string
+          format: date-time

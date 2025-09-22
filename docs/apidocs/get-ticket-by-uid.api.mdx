@@ -1,0 +1,71 @@
+---
+id: get-ticket-by-uid
+title: "根据UID查询工单详情"
+description: "覆盖 BaseRestController.queryByUid"
+sidebar_label: "根据UID查询工单详情"
+hide_title: true
+hide_table_of_contents: true
+api: eJzlV1tvE0cU/iur8wTSYjsI9WFVVXVoWrmqCspFPIRIjNfH9pD1zjIzm9RYK6VcnTYJ0HJRIChNISiqRNIWKKkT6I/Bu06e8heqmbXTTWwH+sxTkv2+c+bcz0kNJCkJsMZBUnsSpYAJEwoobE49SZkLFuw8u9F6dN8YJAKHUcjTzJWcOQ7y1CUfeXWwOkYLYALzkBMlkiuABSWUo1phBxZo+5zKKljjNcgj4cizviyDNT4RTJjgEU4qKJELTaDqYa0eTHBJBcECX+vheMmnHAtgSe6jCcIuY4WAVQNZ9RRNSE7dEgRKK0fhMVegUPjJTEb9OOhcVL8d/rAMJtjMlehKxSCe51Bb+5K+KBSt1v0My19EW4IJxHHOFLXRhxGPq5hIGj9PCz2MNMHmSCQWsrIbNaHIeIVIsKBAJJ6QtIJKxPcK/08kCMz3WSepdLCngQfi1QMXkkhf9IQ8Tlmc8x5g/KEXwDxq90bKHElhrF8kicQS49V+uC+Q90rgwYJo/fm2tT7Tmq237q5F9dfNf1ai7zf2tudad9eajYXw1Vy4+iBcWgt/ng8bd5ubz7si6R/xfFzJPUCX2pN9wT6RUkicNRgTyM9yJlneLyqJacYnS5z5Xr9YFNAjXFbQlf0YRAhachE/kohx9BiXH02BECmJXVb5T3Yu4ZyogUslVsT7IxG+Xg3n7+0uXmtu/fXBXvZ1wufOkfPM51SPG3o5KU9diSXkSSJ15Sen9ECIR/roe6MTb6rsfkyG22tDkzzObBQi5wpJXBtzvd1qs4ZcSWXfCcTV2E4gecYcJG4bUqRuxwITppDTIu0n2X8Bqg140MWEY8q1U5mBHhtx6bdooR49vgqacao3Y/ZtWP9dx6eCsszaK19VAVFLHdLxOZHWOzztt08APtVZ8DrbUJbSE1Y6TTyamkZa9QlN2a76Mz010FVv2bM5I9ZhHBseGhk9DmqvHaWpS8U5zBvE8/bVZG2VtVE2ia7RWtwK39w7DipsnWtlRAU3LujkzbIfa/UstHOg86JJYLZ/+bJTk1+fG9XBom6RJdYtDFYlFlBMGtmzuS5jO+Dedj18u76z8Xxve7b1Yqu1tazoRnT/ZrTyZG97LlxuNBsLRtKX8Pp8a3GrublgDGpDjPjz7uzL6PHVdzNXzrvn3ejFWnTt1t72w+bWanPzx2hhNbz1JJqbjdZWwscPwvpPYf3Gu5krsaoYDZ8+bG42Wm/u7K682r05H64/DG/fCZca0eLG3vYjlRMjJu4uzYRLazsbr6M/roRPX0a3G+HmM+OCih7j9LK+rayObZ9KZdxnF7RdYIJEXhFniiPIp6iN/ctE81JlWXHa9xux9UmEFUJVTQjfU0P980Q9BCY41EbVAlatc1hmPWKX0TiZyoCZKCcrnZ6enk4RjaYYL6XboiL9Te700LcjQydOpjLx+3GXijhvA6lMKqOHAhOyQtzEU9Evf0fz62O5L6Ll1Z2NX+MJurPxLLp6/XD6a/+dpB96greLUuJ3Mu05hLqJuRr3ZefMB3P/ula9OWFCmQmp8FotTwSOcScI1OeYpTq2QAXJO2oKFYkj8Ahrjw23b/TjRj+jJrG6f9FPEcdXDN14U4RT9Yz+v8CEMpKCWsrjtbaIKnJPJqS6jnWlZX8mfTU0qk70g017qEmTtztxqwndtVrM0M0TBNCxW9crBBNBEPwLC1cYPw==
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"根据UID查询工单详情"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/ticket/query/uid"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+覆盖 BaseRestController.queryByUid
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"uid","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","allOf":[{"type":"object","properties":{"id":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}}},{"type":"object","properties":{"title":{"type":"string"},"description":{"type":"string"},"status":{"type":"string"},"priority":{"type":"string"},"type":{"type":"string"},"topic":{"type":"string"},"threadUid":{"type":"string"},"categoryUid":{"type":"string"},"user":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"workgroupUid":{"type":"string"},"departmentUid":{"type":"string"},"assignee":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"reporter":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"attachments":{"type":"array","items":{"type":"object","description":"工单附件","properties":{"uid":{"type":"string"},"name":{"type":"string"},"url":{"type":"string","format":"uri"},"size":{"type":"integer","format":"int64"},"contentType":{"type":"string"}},"title":"TicketAttachmentResponse"}},"processInstanceId":{"type":"string"},"processEntityUid":{"type":"string"},"rated":{"type":"boolean"},"rating":{"type":"integer"},"verified":{"type":"boolean"},"schema":{"type":"string"}}}],"title":"TicketResponse"}}}},"401":{"description":"未授权"},"404":{"description":"未找到"}}}
+>
+  
+</StatusCodes>
+
+
+      

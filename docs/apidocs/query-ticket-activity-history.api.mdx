@@ -1,0 +1,71 @@
+---
+id: query-ticket-activity-history
+title: "查询工单活动历史"
+description: "查询工单活动历史"
+sidebar_label: "查询工单活动历史"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9VV1PG0cU/Sur+xSkjdfhcVVVdSrSUlUtAqI8EEsZry94gr27mZk1da2VCG0Tk/CVljSCEiGaUPkloCZEINtJf0w8a3jyX6hm1muZGPCL7blfZ+aec28VBJnjYM+AoM48Cg5ZEzwfGRHUc8fzYMODAFllWlszjqBlKirfUi48VgETODoBo6IC9kwVckgYskwgCmDPZMOsCT5hpIQCGdcO1E3ygQkuKSHYENA8mMDwQUAZ5sEWLEATuFPAEgG7CqLiKzcuGHXnIFRZGXLfczlyZR9Np9VXHrnDqK9Qgw1RbUM+2QUTHM8V6ArlQXy/SB19L+s+V27V4TKEMaLAUYElPnDu5e6jI8AEn6nXETQuTvMXQEyudoGBcE7nXMSLMp+/Qeftx87BYme51tmsR7Xj9n970cPDbmuls1lvN9bk+xW5/0Lu1OUfq7Kx2T55MwQtuARbwJFdis+lzvylxvhguCMmCCqK6ug2RzbBPOHlgtkrIlTARTVMmPVYiQiwIU8EXtdeg/ljFvbYl5BxsscGCPXn84eMdvdPD/+Wx/ty9Xl01JRP6nLtkVx/CyaUUBQ8RfE51K0lirhgxUqwCnEZi/TqaLazcsLlgBXBhoIQPrcti/g0tYC0EhCaclz11yrfGGpqZmLciHMY1ybHpqZHIDSvzjSU4g7mDOL7/TQZx0HOp715dI3OVlN+eD4CSiOJMKcUw2NGDMqz//SqLPT0pv7HTmD2ftxKGvLdnWndCurOejq815KbFYF55PNGZmJ8CGxi7LZq8uPB6eGbbmu5867Zae4qdyP683G096rbWpG7jXZjzRi8i/xttbPVbJ+sGTc1ECM+Pls+il7+8mlx6a57143e1aNf17ut7XZzv33yNFrbl+uvopXlqL4nX76Qtd9l7dGnxaU4VWyVr7fbJ43Oh2dne+/PHq/Kg2258UzuNKKtw27rL9UTI3Y821mUO/XTw+Po3yX5+ijaaMiTf4x76vU8Rn/WY8ROsH0hFLgv72lcYIJAVuI/zk4hK1MHL6eJ9ksVRKnYG1XE0aMKS4QqTvDA9z0mvhrgQ2hCkTqo+G5Xkxma8YlTQGM0lQZzgE62ZS0sLKSItqY8Nmf1Qrn1/fjXYz9MjV0fTaXj+qEJitpx326k0qm0OvI9LkrEHSh1hZzO9b5PMIE/CcsvEqqxa3DVntSSpQMmFPobpS+3rAkFjwvlVq3mCMfbrBiG6jjeIEqEecpJrqjWxiwpchzC0B//cG2yt2FGDDAvxjaPlf4+KpNioDy0lsqEUVVGbzUTCkjyyHT9OETx1hcDUUOrRmXpT5tvxqbVPc/r8DPd6ezJTnIrA7mr1dhD6yEMIcGtKQhhNgzD/wEYThGf
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"查询工单活动历史"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/ticket/history/activity"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+查询工单活动历史
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"uid","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"name":{"type":"string"},"assignee":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"type":{"type":"string"},"time":{"type":"string","format":"date-time"}},"title":"TicketHistoryActivityResponse"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      

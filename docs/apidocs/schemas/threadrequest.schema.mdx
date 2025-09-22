@@ -1,0 +1,33 @@
+---
+id: threadrequest
+title: "ThreadRequest"
+description: ""
+sidebar_label: "ThreadRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"topic":"string","topicList":["string"],"status":"string","transferStatus":"NONE","inviteStatus":"NONE","top":true,"unread":true,"mute":true,"hide":true,"star":0,"fold":true,"autoClose":true,"note":"string","offline":true,"tagList":["string"],"transfer":"string","inviteUids":["string"],"monitorUids":["string"],"assistantUids":["string"],"ticketorUids":["string"],"memberUids":["string"],"componentType":"string","forceNew":true,"mergeByTopic":true,"user":{"uid":"string","username":"string","nickname":"string","type":"string"},"userNickname":"string","agentNickname":"string","robotNickname":"string","workgroupNickname":"string","ownerNickname":"string","ownerUid":"string","agent":"string","robot":"string","workgroup":"string","processInstanceId":"string","processEntityUid":"string","unsubscribe":true}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ThreadRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"topic":{"type":"string"},"topicList":{"type":"array","items":{"type":"string"}},"status":{"type":"string"},"transferStatus":{"type":"string","example":"NONE"},"inviteStatus":{"type":"string","example":"NONE"},"top":{"type":"boolean"},"unread":{"type":"boolean"},"mute":{"type":"boolean"},"hide":{"type":"boolean"},"star":{"type":"integer","format":"int32"},"fold":{"type":"boolean"},"autoClose":{"type":"boolean"},"note":{"type":"string"},"offline":{"type":"boolean"},"tagList":{"type":"array","items":{"type":"string"}},"transfer":{"type":"string","description":"被转接客服 UID 或 JSON"},"inviteUids":{"type":"array","items":{"type":"string"}},"monitorUids":{"type":"array","items":{"type":"string"}},"assistantUids":{"type":"array","items":{"type":"string"}},"ticketorUids":{"type":"array","items":{"type":"string"}},"memberUids":{"type":"array","items":{"type":"string"}},"componentType":{"type":"string"},"forceNew":{"type":"boolean"},"mergeByTopic":{"type":"boolean"},"user":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"userNickname":{"type":"string"},"agentNickname":{"type":"string"},"robotNickname":{"type":"string"},"workgroupNickname":{"type":"string"},"ownerNickname":{"type":"string"},"ownerUid":{"type":"string"},"agent":{"type":"string","description":"代理对象 JSON 字符串"},"robot":{"type":"string","description":"机器人 JSON 字符串"},"workgroup":{"type":"string","description":"工作组 JSON 字符串"},"processInstanceId":{"type":"string"},"processEntityUid":{"type":"string"},"unsubscribe":{"type":"boolean"}},"title":"ThreadRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

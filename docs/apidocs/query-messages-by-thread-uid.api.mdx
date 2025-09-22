@@ -1,0 +1,71 @@
+---
+id: query-messages-by-thread-uid
+title: "根据会话UID查询消息"
+description: "通过会话唯一标识符查询相关消息"
+sidebar_label: "根据会话UID查询消息"
+hide_title: true
+hide_table_of_contents: true
+api: eJztWFtPG0cU/iureUqkjW1Qn6yqKklpRZQmUQDlgSBlvD62J6xnNjOzEMeyRK6YFghpaSMIiNCECFUJVm6NY0jyY+JdwxN/IZ3dNRi8C6R9K+XFeM4335zreM4pIomzAiUHUB6EwFkQaFBHaRAGJ5YkjKIk2hyd2/g4Vl+f26gsODOVenXUfTS2UbnbePbUXVzeqPzReFh17rxy/yq7NypIR8wCjtXenjRKoqs28MKPAfnJQl+OA073kzTSkQDD5kQWUHKgiFKAOfAuW+ZQcmCwNKgjC3OcBwlceABCm2xIRxTnASWRbGHjcNUmHNIoKbkNOhJGDvIYJYtIFiwFFpITmkWlkh5OZuEsoJB9hErIAkfKLxlsmxIlOyJJBLl+WJLOREmZyUFYjAoQCt2ZSKiP3QFwy9POT4tIRwajEqhUCGxZJjE8N8evCAUrth+KOcdKNyIhL1rWWeoKGBLpyOIqWJL4h5N0iLf0YCFE0KJOm0xILG0Rvi2HKQUz/CwvoP9cVWYR44t1jTRwHyMkx1RkgPdGQwgdJhL2AUhmtaynGDMBUyWw6R4vtMlOMXuXMc30KulomAgiGe8/CJe3JYQfkSPpCImQmIezZZgZoTC2JTtlMhFBSZkMdz7LZExCI3ZJnD1DhDxEru9U/b6JB9ckD7ssdiIdlpS767Tx8kNjdbQxXm7MrLjlt/WPS+6Nytb6RGNmpV6bct5MOMsPnPkV59dJpzZTrz5vy2o7Iq1tAdy/X0KElBhDkcKI1FYSIk211C+An+dMspSd2clacQjP/ne9oKqDUVVFR94PWAgiJKbyyHtCEmMI/k8J/7AjYauO2Ag9MrbibOj7aK+t9bXHjem7TuXdxosl7XTvubOa8/xB49nTevWlYuEsxQ7B4s7XnNmVeq0WQjHC+FCWM9s6mMZ5u1x/P99Yux1CY3FmgBA9VF1fBvSEezhAdVNJZKE/IgyeUX2sa4+HWt4jw9gkUe8f0wzan4MfbQcDvSgdDBMFISF/MM6z7GCYwQFLSHeFRjbDeB7Lv1MjjSWckCQPu/LM7/guBF0OOloXSPSz8t+4NAjYjk/Vn46+SnSENI/zf7pTZXfhlv+sAZljqi3PgtdUYdVuo3jQ/Mf99ituB+05H2423zY3URLlpLREMh7HFomNACnYmMQMqr7GhzvaAth1vkfzObRjF7p7+44j1TTvx9RGcRFSGrasbZouQxVrHxsCqjVm15z3vx1HqoduThJ6VQfsR791nrDtYHVsszv3ytQDIT345/um209f7PPcRWiGedsDx58sSEiDGNK6zve0KdsUbq2XnQ+rG5XnW+vjjVdrjbVFBdfc38fcpcdb6xPOYq1em9JabXHuTDZm1+rVKe2kp4jmL2+Ov3YXbn0avXmJXqLuqxX39r2t9bn62nK9+rM7tezce+xOjLsrS87CA6f8i1O++2n0pk/lS50nc/VqrfH+/ubSm82xSWd1zpm+78zX3NnK1vpDFRPNB27OjzrzKxuVt+6Lm86T1+50zak+1S4r7zFOrntjhmRTt6+lUu6by55eSEcSeF6cy/QCHyYGRKeJh4vlZN4MRhnY8JIf8pionBC2ZTEuv23Jh5KOTGIA9ZvHYMTSZWEjB1pnLIH0lnRKxuMjIyMx7EljjGfjwVYRP9Nzqvtsb/eJzljCP1/duMCFH7eOWCKW8H4LmJB5TFuOch+9cydX/dFXf893/rhre9C1K/zFnRHDF0/MguyUcE3GLRMTv9HnXqfql+j2fA5tz0h074Ib1FGOqUZ4ABWLKSygn5ulklr2B1OqeNNE4JSpJmMZbArYR/FjF4Ih2nEtSq0hKOwZvA1j01Y4r7zbzvLxwWztMNBggrYDHVRfOFFYbzSooxzgtPoJGSgGe1QtWbJlV9t4TLFsX34/dPchbzDRejfsuQs89uYznxZauItFH+HVaKmEtn2ivqPSYKlU+gwJwmId
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"根据会话UID查询消息"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/message/thread/uid"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+通过会话唯一标识符查询相关消息
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"threadUid","required":true,"schema":{"type":"string"}},{"in":"query","name":"page","schema":{"type":"integer","default":1}},{"in":"query","name":"size","schema":{"type":"integer","default":20}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"type":{"type":"string"},"content":{"type":"string"},"status":{"type":"string"},"channel":{"type":"string"},"thread":{"type":"object","properties":{"id":{"type":"string"},"topic":{"type":"string"},"content":{"type":"string"},"type":{"type":"string"},"status":{"type":"string"},"transferStatus":{"type":"string"},"inviteStatus":{"type":"string"},"top":{"type":"boolean"},"unread":{"type":"boolean"},"unreadCount":{"type":"integer"},"visitorUnreadCount":{"type":"integer"},"mute":{"type":"boolean"},"hide":{"type":"boolean"},"star":{"type":"integer"},"fold":{"type":"boolean"},"autoClose":{"type":"boolean"},"note":{"type":"string"},"offline":{"type":"boolean"},"tagList":{"type":"array","items":{"type":"string"}},"channel":{"type":"string"},"extra":{"type":"string"},"transfer":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"invites":{"type":"array","items":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"}},"monitors":{"type":"array","items":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"}},"assistants":{"type":"array","items":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"}},"ticketors":{"type":"array","items":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"}},"user":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"owner":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"agent":{"type":"string","description":"代理对象 JSON 字符串"},"robot":{"type":"string","description":"机器人 JSON 字符串"},"workgroup":{"type":"string","description":"工作组 JSON 字符串"},"processInstanceId":{"type":"string"},"processEntityUid":{"type":"string"},"robotToAgent":{"type":"boolean"},"valid":{"type":"boolean"},"allMessageCount":{"type":"integer"},"visitorMessageCount":{"type":"integer"},"agentMessageCount":{"type":"integer"},"systemMessageCount":{"type":"integer"},"robotMessageCount":{"type":"integer"},"createdAt":{"type":"string","format":"date-time"}},"title":"ThreadResponse"},"user":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"extra":{"type":"string"},"createdAt":{"type":"string","format":"date-time"}},"title":"MessageResponse"}}}}},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

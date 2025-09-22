@@ -1,0 +1,75 @@
+---
+id: mark-message-as-read
+title: "标记消息为已读（迁移到企业版）"
+description: "已迁移到企业版，请使用 /api/v1/vip/message/{messageUid}/read"
+sidebar_label: "标记消息为已读（迁移到企业版）"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVVtPG0cU/iur8xSkrdegPq2qqk5FJXoDAVEeHKSM1wc8wbs7mRmbuKuVuLTFbglJql4EJaIoSctLcZqkxbJN82PiXZsn/4VqdteOuYSnPnk8cy7fOec733ogyZIAMws2CkGWUMCCDnkUFqdMUtcBE4LjF73Xa90/WkH1eae91mnsdmvVfnurVz/unLzu/nioGYRRozxulCkzkjiGlxxu0LxvcCR5UHEZR4tIzIMpeQl1cBlyovJM5cEEm/DlL2K3jJiNfQRaJU5lBcysBzkkHHmmJAtgZhf8BR0Y4cRGiVxEBlQBZkQWQAeH2KiCDnGADhzvlih/m19YBbQJmB7IClPWQnLqLIGvYnMUzHUECvU+kU6rn7Otmf6s364Gxy+C5n7Q3ui3a6CD5ToSHamMCWNFakX1GXeE8vAuZnRzd9CSoAPjqhuSxvlEybJQiBHDnOsWkTigA94jNitiXISvD0q8rAwdJJXKFKaXZ5N6wPfVw/vjl1QUfLff2zgZjjyKYKMsuGo+zBURUNVfE64ctUBeHgylxItgQkFKJkxDcSW1grRSIjRlOQl14DzpMjNTWhxDuzY7OTc/Br5+daQLIW5iTiOMDcNkoobOu8voaN2dVnDy0xioMQ8YNqcmEzd/lGfDnqq0kFAmmkdkBHpy+MTlNpFgwqc356O2UWfRjdyTAVyvSMyjWNYyM1MXwA4eFZ/+PerV/+y3a92XrW5rX5lr4c+b4cGTfnsr2G92mtvaaC3BN/e7O61OY1u7HgHR4uvT2qvw8cab1fVbzi0nfHkYfv2g397ttJ51Gt+H28+CB0/CrVp4eBA8/iWo/hBUv32zuh6Hil+Dp7udRrN78uj04O/TzfvB0W7w8FGw1wx36v32r2omWmx4urca7B326sfhX+vB01fhw2bQ+F27rbrncvpVRH9zgO0DqcB9eDvCBTpI5LaYXpxDXqYWvpsmkV2qIO1ismLEilYMbUIVJ0SJMZfLj0b44OtQpBYqwpveQA0yjFgF1CZSadBH6GQaxsrKSopErymXLxmJqzA+n/p48su5yfcmUuk4v6+DonY8t/FUOpVWV2o3bOKMpAp/2+wdPQ//qYZr9U6jqXaq3uq3q5eJae08Iby3OvI/CnDCZIn3pMGKhEZNirrgJVs9/BCADuY56SR59XEoKBEws+B5OSLwBi/6vrq+W0KuRHpBhzLhlOQU57Me5KlQ5zyYi6Qo8Ioyr80m4jymvQtqckmcCqg0xZL6BzosY+Ws0vsLvg4FJHnkEYrYQG0NkyOuFwRa6cFQ7mam5+ZBB3JWBs6tfRT+UlyeF1tE6+j7Q5jRBiiEvv8frLsDnw==
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"标记消息为已读（迁移到企业版）"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/message/{messageUid}/read"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+:::caution deprecated
+
+This endpoint has been deprecated and may be replaced or removed in future versions of the API.
+
+:::
+
+已迁移到企业版，请使用 /api/v1/vip/message/\{messageUid\}/read
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"messageUid","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"OK（已废弃）","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"message":{"type":"string"}},"title":"OkResponse"}}}},"410":{"description":"功能已迁移"}}}
+>
+  
+</StatusCodes>
+
+
+      

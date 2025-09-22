@@ -1,0 +1,71 @@
+---
+id: query-ticket-process-history
+title: "查询工单流程实例历史"
+description: "查询工单流程实例历史"
+sidebar_label: "查询工单流程实例历史"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVV1PG0cU/Sur+xSkidfhcVVVJRVtqaoWgaM8EKSMd8d4gr27mZmFuquVCG0TUz7TkkZQUkQTKr8E1CQIZBz6Y+LZhSf/hWj2wzKxSVW/2J575t4zc8+Z64PAMxyMKRDUnCWCwzQCxyUMC+rYYxYYcN8jrFaIo+PMMQnnX1EuHFYDBJyYHqOiBsaUD0WCGWEjniiDMTUdTCNwMcNVIgjjMYDaWTpAYOMqAQM8agECRu57lBELDME8goCbZVLFYPggaq6CccGoPQOBysoIdx2bE67iw/m8+rIINxl1FWkwIKxvyF92AYHp2ILYQiGw61aoGR9Lv8cVzO8vgxnDihwVpMp71p3iPWIKQOAydTmCJsWpNYAiAouUqE2zCxwA4AIzcYsTNqjE5aNEr86ig4VoqR5tNsL6cfvfvfDBYae1Em022s01ebQi95/KnYb8bVU2N9snL/s4eleQ9DhhSQ8GBG1qzl4ZTBb6W4NAUFFRS+po48wRTtErdc9boIPyISg5rIoFGGBhQa4LhQoQENv6fxu4wMLjH+eVqDiVbyrmiVRNEMSfD+8/3N0/P/xLHu/L1Sfh0YOosSwP/myfLcu1h3L9FSCoElF2lE9mSCwQrOQPemInvZzU0t2kWGwZNpcZwmMVMKAshMsNXccuzc0TWvMwzZm2+qvP3egTxMj4mJbk0K5NjE4WhiBAH8/Ul+I2KWrYdbtpRkzFreDMEluLtk7l2ydDoIyWuXtS2SRRU6/HuzetykJqWvU/AQFKf3yR9evr24W4HdQuOfH2tC03a4JYhM9qI+NjfWSzYKdVl2cH54cvO62l6PVpdLqr4Fr4+6Nw73mntSJ3m+3mmtZ7FvnzarR12j5Z027GRLRk+WLpTfjsx3cLi3fsO3b4uhH+tN5pbbdP99sny+Havlx/Hq4shY09+eyprP8q6w/fLSwmqZKofLHdPmlGbx9f7B1dPFqVB9ty47HcaYZbh53WH6onWgK82FmQO43zw+Pwn0X54k240ZQnf2t31e05jP4Qv0VGxu0Toch9ejfmBQgEYVX+XWmSsDlqkqtlEuNyZVGtpO8dNuP3jlQxVZrgnus6THzWo4cAQYWaRIne8LOHeMTFZplow7k8oB45Gbo+Pz+fw3E057AZPd3K9W/GPh/9dnL0+nAun9QPEChpJ327kcvn8mrJdbioYrun1H966pICujIT5HuhuxVM4xPEFP3Ub9n4AgTl7nDKPDeNoOxwoVC+X8Sc3GKVIFDLySxSTrQox8WKGkAlXOGkj0J3kMC1iXRWDWmABlObJbXuZJvDFU8hYkPNYUZVmXg+IigTbKkZMOWnW5R4XdGzq29oqSzdF+fL0QIgwJfN+IH54uzZdLNrPbl9P0HEpggCyHjHOoRgOgiC9w3GL04=
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"查询工单流程实例历史"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/ticket/history/process"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+查询工单流程实例历史
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"uid","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"definitionId":{"type":"string"},"startUser":{"type":"object","description":"精简版用户信息，用于嵌套在响应中","properties":{"uid":{"type":"string"},"username":{"type":"string"},"nickname":{"type":"string"},"type":{"type":"string"}},"title":"UserProtobuf"},"startTime":{"type":"string","format":"date-time"},"endTime":{"type":"string","format":"date-time"},"status":{"type":"string"}},"title":"TicketHistoryProcessResponse"}}}}}}}
+>
+  
+</StatusCodes>
+
+
+      
