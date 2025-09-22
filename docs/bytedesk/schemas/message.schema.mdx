@@ -1,0 +1,33 @@
+---
+id: message
+title: "Message"
+description: ""
+sidebar_label: "Message"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"id":"msg_10001","threadId":"string","senderId":"string","type":"text","content":{},"status":"sent","createdAt":"2024-07-29T15:51:28.071Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Message"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"id":{"type":"string","example":"msg_10001"},"threadId":{"type":"string"},"senderId":{"type":"string"},"type":{"type":"string","enum":["text","image","file","voice","video","sticker","link","location","document","email","button"]},"content":{"type":"object","description":"按消息类型定义的内容体","additionalProperties":true},"status":{"type":"string","enum":["sent","delivered","read","failed"]},"createdAt":{"type":"string","format":"date-time"}},"required":["id","threadId","senderId","type","content"],"title":"Message"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

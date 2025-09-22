@@ -141,15 +141,17 @@ const config: Config = {
         explicitSearchResultPath: true, // 在搜索结果中显示完整路径
       }
     ],
+    // 需要运行下面命令重新生成docs： yarn docusaurus gen-api-docs all
+    // 清理已生成的docs：yarn docusaurus clean-api-docs all
     [
       'docusaurus-plugin-openapi-docs',
       {
         id: "api", // plugin id
         docsPluginId: "classic", // configured for preset-classic
         config: {
-          petstore: {
-            specPath: "examples/petstore.yaml",
-            outputDir: "docs/petstore",
+          bytedesk: {
+            specPath: "apidocs/bytedesk.yaml",
+            outputDir: "docs/bytedesk",
             // 可选：代理 URL，用于 API 请求
             // proxy: "http://localhost:3001",
             // 可选：下载 URL

@@ -1,0 +1,72 @@
+---
+id: login-admin-with-access-token
+title: "使用 AccessToken 登录（管理后台）"
+description: "使用在管理后台生成的 AccessToken 免登系统管理后台。登录成功后会设置会话 Cookie 并重定向到后台首页。"
+sidebar_label: "使用 AccessToken 登录（管理后台）"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVl1P21YY/ivWuZi2ycQpTLuIpmm0YlOnap1KJy5oLw7OaXJEYrv2CYxFkSgfxZkgBJWiNoXSrB9CGyRU9CMkpv0x+BwnV/4L22sb5BTYxS535ePj9zzveZ73y0XEcMZCqXGECyxLNEZVzKiuodsyShNLNakRvKaQe/TRW9/hmzteo+5V7/Nqha/ue+vbwq56tQVpWFWJZd3UJ4km8cUV73HHO+h4ne249fHsnPe4w48eCrvKf9/m1Yrr1LqND95RAxbNLemKrk9SIvHDd72lFd6o8eoat/fD071XG7362+PZuVuaONgRC6u+UxN7L9xW2zta69Xf8sWXfPW57yy7rdmuvdv9uM6fPJWGkoNS9/1B92j3eHYOyUg3iBkwvJpGKZTTM1QbTuepNkZZNsYBycjAJs4TRkyQp4goiHC3QMwZJCMN5wlKIdx3wCR3C9QkaZRiZoHIyFKzJI9RqojYjAHmFjOplkEyylPtGtEyLItSl74ufar0JxpLoajhVq/+trf1x7myo9JtuINl6JpFLHA7lByERz96XwQO34XacHs/7hLJKEtwOqBeRNf0KCfOYIWHvScN8WyJb+7zrVl0Me1SqVSS0VfJ5Dk4zffi9ZzbWuFVWxw89B3bc9p8f03YG25rRew99+oNYBvT23fKKIC7dBZObP4pKrbYmhf2RqQef/FaPLQR3MAi5tRJUAtm7h/3WcYMK6Uo09PTiWlCZwqYJlSIaD/sGJmQsGFIIUAgd56wrA6JlCEsSBkIKVIwZJQCFaUEGQaqELVgUjYzCuqE4Zkg2CTmcAHOnIoFdzkREd5DIyRHi+91M48ZSqEfx24GbKh2Rw+OU5YD+8szjKSJNSkN/3xVGugry8+kGyOjN8/QOjnhOzb/0Og293ynHNVubcHb3OaNp6ICpSU2lkQdCoxvt912RbpuEA28DCWSx7NzYnM3NHA7L/vchgkH6IsrbntZ7Na7Hx7wxZfdN6/46nvevO89u+c7ZbfVFs9a/OO87yzf0iAzm2/Eo0rYdqTLAfsomN39edgDNgFNr7YgNg65sxo0h1vagMQbj7yjNd+pnR9aMBHtqtt5wNsPYlYZyrKFiYSq55WJSJXTRQBbrXh/NU+Ji3aVN2ruYTkGgQ0ac6RMDcHOQFpXLbiZ2Gx2m3shM9+pAeZwPKdrF/VXb3fXbZXFxmGoJl/a6zbv+c4Tb30HQqHgDNGY5LZgCckHmoRtONBkoE9A36lFMNVKCBApCndVvpTCcHu1hV75jdiadzsvvPKy79iQqrpJfwu6QeoE8hsGmN/6TjnssIyYeev6nVFiTlGVXFheSmCXyLJ8DslI1TWGVQaZTPKYQlVaBcPQTfZdrCJLMspRlWgWAcOoCQ8bWM0SaTCRRHKsoCOHOPia0M2MEh21lGtXr4z8NDoyMJhIhv5LMoKWENbDpUQykYQtQ7dYHmsxV1Eynpvd8bBBc/qkzIoBRaKx/88ojToWI78yxchhGsQnCEAx6oTjKEhGJAd/F0gO5y38W2R1i8H3YnECW+QXM1cqwXY4X6Ezp6mFJ3IwTO/gnEX+Rc3Pb0Rz9wvpv07OC7hMkpkzQ34K5wpgGbT/KWxSuCVKjd8uxabBDyPQnP8GY/x1Uw==
+sidebar_class_name: "get api-method"
+info_path: docs/petstore/bytedesk-api-accesstoken-rest
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"使用 AccessToken 登录（管理后台）"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/admin/auth/login"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+使用在管理后台生成的 AccessToken 免登系统管理后台。登录成功后会设置会话 Cookie 并重定向到后台首页。
+注意：此为网页入口，一般返回 302 跳转。
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"accessToken","required":true,"schema":{"type":"string","minLength":16},"description":"在管理后台 Token 管理页面生成的 AccessToken"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"302":{"description":"登录成功并跳转到管理后台","headers":{"Location":{"description":"跳转目标地址","schema":{"type":"string"}}}},"400":{"description":"请求不合法（缺少或不正确的 accessToken）"},"401":{"description":"未授权或 Token 失效"}}}
+>
+  
+</StatusCodes>
+
+
+      

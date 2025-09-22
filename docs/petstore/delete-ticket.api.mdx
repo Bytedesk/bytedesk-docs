@@ -1,0 +1,71 @@
+---
+id: delete-ticket
+title: "删除工单"
+description: "根据工单 ID 删除工单。"
+sidebar_label: "删除工单"
+hide_title: true
+hide_table_of_contents: true
+api: eJyNVd9PG0cQ/ldO81CF6rANydOpqkoaV6KKmipQ5QF4WJ8Xe4V9d9lbQ6l1EuFX7AqMKwgFxwmghAq1YEcqarB9hD8m3jvn6f6Fau8OYwyp+nS7e99+M/PNzkweGEqZoEwAI+oMZiZMyZDEpkqJwYiugQLOfsNZr/H3h3z9hTT6QOKF/U+7b4P9x4VFkEE3MEUCPZoEBZI4gxke9+lABhOrOUrYPCgTeUhgRDEdybE0KBNT1pQMBqIoixmmpg8gwqKBWBpk0FAWgwIkCTJQ/DRHKE6CwmgOy2CqaZxFoOSBzRsCZTJKtBRY/d53/QZhjWLT0DUTm+LmcOye+PTh/eicQpn/uufZa87v+52LLf7yNV9d4bWG4L8XG7p5zan+6ZQKzqulAHEbse9I+2ydn+zw6hFYlgxZzNL6lWYgB6ErEA2zEc2TpOWLSGcvJcrRDCiQZswwlWgUGSQyh8l8DpGIqoltdHYI+lUY+XFUCjikO4/jY+MDYMn9THNzcz1MNyie4ISEDKNLM61TaURVsWmO6zNYkzJ6imgDvsqXKR8TSQq07k18N2fCMoS5FPsABHK4+E6nWcRAge+fjPtyEW1a968TlhH4+/MMJ7E5I4nwBq9584UkwrwRxOUNzy7wD7VO/cSzi+7fLbe151aW3eoer712Sod8442z/dw5eOPZa3yv2W6WpEcG1oSVu5HYx4VFp3ocANqtw2tm3d0WP38h2FfW28015/ig82GTrxx2Tv/gG+95fdXdf+bZxfZZ09k/4xdLnr02qfHGP536qbNTap9fuFtH0n0/eilg7LxbEmciGj9Mt7LsbDe4vfFxYXFSm9QGJV7bcc9/8+zK7YkUEKdZbrc2eXOzB5UiLJ1LRFQ9G02EqnQXPm255P5V7wbuNMu8Vmk3ij0UfW9v9q44GUzqqik8c6r1Tv0kiMyzK4KzRyrPrvDqkVs7cMurvFziG+/crT2nUBZ5OD5unxWd7UagJn9+0qk/8+yX7taRSEUUpbDGpPaZWCazRBOa8JV1d7flazJ4TUDProQ05VJAECrql8qXUpBut7L8qXjqvFpqt966xTXPLoinqlPyi9/XlEvKr5jg/Nqzi0HnY5hmzUfTY5jOEhV/tpiiPi6SZtkMyKDqGkMqEy8ZZxERNWjmDEOn7Jue+rNkyBAVayYWwLAXjhhITWNpOBIDuad8Q4PI/xvRaSoaXjWjD0e/jf8wFh8cjsQC+5YMopUE9TAUiUVi4sjQTZZFWo+p3jbfX0d5Pwassf81HsJqZ/hnFjUyiPix+c7nw353NX1kUEhSzKC0bjLxI59PIBP/RDOWJY6f5jAVo2RKhllECUqIRjCRhyQxxToJyjTKmPg//L3zOBwlA9LVbPiMk+Eh0uZB2MvkxA5kmMHzwWCypnq7+IP4w/h4HGRA1/tcX1/zHb6VOp8PEP7LtayuJf/VCWOW9S/shEHe
+sidebar_class_name: "delete api-method"
+info_path: docs/petstore/bytedesk-api-accesstoken-rest
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"删除工单"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"delete"}
+  path={"/tickets/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+根据工单 ID 删除工单。
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"id","required":true,"schema":{"type":"string"},"description":"工单 ID"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"204":{"description":"删除成功，无返回内容"},"401":{"description":"未授权"},"404":{"description":"工单不存在"}}}
+>
+  
+</StatusCodes>
+
+
+      

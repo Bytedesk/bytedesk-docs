@@ -1,0 +1,788 @@
+openapi: 3.0.3
+info:
+  title: Bytedesk API
+  description: |
+    Bytedesk（微语）系统 API 文档，基于 AccessToken 免登与 Bearer Token 鉴权。
+
+    注意：以下接口按模块划分。免登接口多为网页重定向场景；REST 接口需在请求头携带 `Authorization: Bearer <token>`。
+  termsOfService: https://api.weiyuai.cn/terms.html
+  contact:
+    email: support@weiyuai.cn
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: 官网
+  url: https://api.weiyuai.cn
+servers:
+  - url: https://api.weiyuai.cn/api/v1
+    description: API server (REST)
+  - url: https://api.weiyuai.cn
+    description: Web app server (AccessToken 登录)
+tags:
+  - name: auth
+    description: 认证与登录
+  - name: users
+    description: 用户相关
+  - name: threads
+    description: 会话（Thread）相关
+  - name: messages
+    description: 消息相关
+paths:
+  /agent/auth/login:
+    get:
+      tags: [auth]
+      summary: 使用 AccessToken 登录（客服工作台）
+      description: 使用 AccessToken 免登客服工作台，通常返回 302 跳转。
+      operationId: loginAgentWithAccessToken
+      parameters:
+        - in: query
+          name: accessToken
+          required: true
+          schema:
+            type: string
+            minLength: 16
+          description: AccessToken（在后台生成）
+      responses:
+        '302':
+          description: 登录成功并跳转
+          headers:
+            Location:
+              schema:
+                type: string
+        '400':
+          description: 请求不合法
+        '401':
+          description: 未授权或 Token 失效
+      servers:
+        - url: https://api.weiyuai.cn
+  /admin/auth/login:
+    get:
+      tags: [auth]
+      summary: 使用 AccessToken 登录（管理后台）
+      description: 使用 AccessToken 免登管理后台，通常返回 302 跳转。
+      operationId: loginAdminWithAccessToken
+      parameters:
+        - in: query
+          name: accessToken
+          required: true
+          schema:
+            type: string
+            minLength: 16
+      responses:
+        '302':
+          description: 登录成功并跳转
+          headers:
+            Location:
+              schema:
+                type: string
+        '400':
+          description: 请求不合法
+        '401':
+          description: 未授权或 Token 失效
+      servers:
+        - url: https://api.weiyuai.cn
+  /auth/token/refresh:
+    post:
+      tags: [auth]
+      summary: 刷新 Bearer Token
+      description: 使用有效的刷新令牌获取新的访问令牌。
+      operationId: refreshToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '400':
+          description: 无效的请求
+        '401':
+          description: 未授权
+  /auth/login:
+    post:
+      tags: [auth]
+      summary: 账号密码登录
+      description: 使用用户名与密码获取访问令牌。
+      operationId: loginWithPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 认证失败
+  /auth/logout:
+    post:
+      tags: [auth]
+      summary: 退出登录
+      operationId: logout
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: 已退出
+        '401':
+          description: 未授权
+  /auth/scan/qrcode:
+    get:
+      tags: [auth]
+      summary: 获取扫码登录二维码
+      operationId: getScanQRCode
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanQRCodeResponse'
+  /auth/scan/status:
+    get:
+      tags: [auth]
+      summary: 轮询扫码状态
+      operationId: getScanStatus
+      parameters:
+        - in: query
+          name: ticket
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScanStatusResponse'
+        '410':
+          description: 已过期
+  /auth/scan/confirm:
+    post:
+      tags: [auth]
+      summary: 扫码确认登录
+      operationId: confirmScanLogin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ticket:
+                  type: string
+              required: [ticket]
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '400':
+          description: 参数不合法
+        '410':
+          description: 二维码已过期
+  /user/profile:
+    get:
+      tags: [users]
+      summary: 获取当前用户信息
+      description: 通过 Bearer Token 获取当前登录用户信息。
+      operationId: getCurrentUserProfile
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: 未授权
+  /users/{id}:
+    get:
+      tags: [users]
+      summary: 获取用户信息
+      operationId: getUserById
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+    put:
+      tags: [users]
+      summary: 更新用户
+      operationId: updateUser
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+    delete:
+      tags: [users]
+      summary: 删除用户
+      operationId: deleteUser
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 已删除
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+  /users:
+    get:
+      tags: [users]
+      summary: 查询用户列表
+      operationId: listUsers
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+        - in: query
+          name: q
+          schema:
+            type: string
+          description: 关键字（用户名/邮箱/手机号）
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: 未授权
+    post:
+      tags: [users]
+      summary: 创建用户
+      operationId: createUser
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 未授权
+  /threads:
+    get:
+      tags: [threads]
+      summary: 查询会话列表
+      operationId: listThreads
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 20
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [open, closed, pending]
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Thread'
+        '401':
+          description: 未授权
+    post:
+      tags: [threads]
+      summary: 创建会话
+      operationId: createThread
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadCreateRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thread'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 未授权
+  /threads/{id}:
+    get:
+      tags: [threads]
+      summary: 获取会话详情
+      operationId: getThreadById
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thread'
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+    put:
+      tags: [threads]
+      summary: 更新会话
+      operationId: updateThread
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThreadUpdateRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Thread'
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+    delete:
+      tags: [threads]
+      summary: 删除会话
+      operationId: deleteThread
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 已删除
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+  /messages:
+    post:
+      tags: [messages]
+      summary: 发送消息
+      operationId: sendMessage
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageSendRequest'
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 未授权
+  /messages/{id}:
+    get:
+      tags: [messages]
+      summary: 获取消息详情
+      operationId: getMessageById
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+    delete:
+      tags: [messages]
+      summary: 删除消息
+      operationId: deleteMessage
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: 已删除
+        '401':
+          description: 未授权
+        '404':
+          description: 未找到
+  /messages/thread/{threadId}:
+    get:
+      tags: [messages]
+      summary: 获取会话消息列表
+      operationId: listMessagesByThread
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: threadId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: size
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+        '401':
+          description: 未授权
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    AuthRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          example: admin@email.com
+        password:
+          type: string
+          format: password
+        type:
+          type: string
+          description: 登录类型（可选）
+          enum: [password, email, sms, wechat]
+      required: [username, password]
+    AuthToken:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzM4NCJ9...
+        refreshToken:
+          type: string
+        expiresIn:
+          type: integer
+          description: 访问令牌有效期（秒）
+          example: 7200
+      required: [accessToken, expiresIn]
+    TokenRefreshRequest:
+      type: object
+      properties:
+        refreshToken:
+          type: string
+      required: [refreshToken]
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: u_123
+        username:
+          type: string
+        nickname:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, username]
+    UserCreateRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        nickname:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+      required: [username, password]
+    UserUpdateRequest:
+      type: object
+      properties:
+        nickname:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+    Thread:
+      type: object
+      properties:
+        id:
+          type: string
+          example: th_10001
+        type:
+          type: string
+          enum: [visitor, agent, robot]
+        status:
+          type: string
+          enum: [open, in_progress, closed, pending]
+        topic:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        extra:
+          type: object
+          additionalProperties: true
+      required: [id, type, status]
+    ThreadCreateRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [visitor, agent, robot]
+        topic:
+          type: string
+        extra:
+          type: object
+          additionalProperties: true
+      required: [type]
+    ThreadUpdateRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [open, in_progress, closed, pending]
+        topic:
+          type: string
+        extra:
+          type: object
+          additionalProperties: true
+    Message:
+      type: object
+      properties:
+        id:
+          type: string
+          example: msg_10001
+        threadId:
+          type: string
+        senderId:
+          type: string
+        type:
+          type: string
+          enum: [text, image, file, voice, video, sticker, link, location, document, email, button]
+        content:
+          type: object
+          description: 按消息类型定义的内容体
+          additionalProperties: true
+        status:
+          type: string
+          enum: [sent, delivered, read, failed]
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, threadId, senderId, type, content]
+    MessageSendRequest:
+      type: object
+      properties:
+        threadId:
+          type: string
+        type:
+          type: string
+          enum: [text, image, file, voice, video, sticker, link, location, document, email, button]
+        content:
+          type: object
+          additionalProperties: true
+      required: [threadId, type, content]
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: object
+          additionalProperties: true
+    ScanQRCodeResponse:
+      type: object
+      properties:
+        ticket:
+          type: string
+          example: tk_abcdef
+        qrcodeUrl:
+          type: string
+          example: https://api.weiyuai.cn/qr/tk_abcdef.png
+        expireIn:
+          type: integer
+          example: 120
+    ScanStatusResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [waiting, scanned, confirmed, expired]
+        userId:
+          type: string
+          nullable: true
+        message:
+          type: string

@@ -4,22 +4,31 @@ const sidebar: SidebarsConfig = {
   apisidebar: [
     {
       type: "doc",
-      id: "petstore/bytedesk-api-openapi-3-0",
+      id: "petstore/bytedesk-api-accesstoken-rest",
     },
     {
       type: "category",
-      label: "user",
+      label: "authentication",
       link: {
         type: "doc",
-        id: "petstore/user",
+        id: "petstore/authentication",
       },
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "petstore/get-user-profile",
-          label: "Get user profile",
+          id: "petstore/login-agent-with-access-token",
+          label: "使用 AccessToken 登录（客服工作台）",
+          customProps: {
+            apiLabel: "API Reference",
+          },
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "petstore/login-admin-with-access-token",
+          label: "使用 AccessToken 登录（管理后台）",
           customProps: {
             apiLabel: "API Reference",
           },
@@ -29,18 +38,18 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "conversation",
+      label: "users",
       link: {
         type: "doc",
-        id: "petstore/conversation",
+        id: "petstore/users",
       },
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "petstore/get-conversation-list",
-          label: "Get conversation list",
+          id: "petstore/get-current-user-profile",
+          label: "获取当前用户信息",
           customProps: {
             apiLabel: "API Reference",
           },
@@ -50,22 +59,49 @@ const sidebar: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "message",
+      label: "tickets",
       link: {
         type: "doc",
-        id: "petstore/message",
+        id: "petstore/tickets",
       },
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "petstore/send-message",
-          label: "Send a message",
+          id: "petstore/list-tickets",
+          label: "获取工单列表",
+          customProps: {
+            apiLabel: "API Reference",
+          },
+          className: "api-method get",
+        },
+        {
+          type: "doc",
+          id: "petstore/create-ticket",
+          label: "创建工单",
           customProps: {
             apiLabel: "API Reference",
           },
           className: "api-method post",
+        },
+        {
+          type: "doc",
+          id: "petstore/update-ticket",
+          label: "更新工单",
+          customProps: {
+            apiLabel: "API Reference",
+          },
+          className: "api-method put",
+        },
+        {
+          type: "doc",
+          id: "petstore/delete-ticket",
+          label: "删除工单",
+          customProps: {
+            apiLabel: "API Reference",
+          },
+          className: "api-method delete",
         },
       ],
     },
@@ -86,8 +122,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "petstore/schemas/conversation",
-          label: "Conversation",
+          id: "petstore/schemas/ticket",
+          label: "Ticket",
           customProps: {
             apiLabel: "API Reference",
           },
@@ -95,8 +131,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "petstore/schemas/message",
-          label: "Message",
+          id: "petstore/schemas/ticketcreaterequest",
+          label: "TicketCreateRequest",
           customProps: {
             apiLabel: "API Reference",
           },
@@ -104,8 +140,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "petstore/schemas/messagerequest",
-          label: "MessageRequest",
+          id: "petstore/schemas/ticketupdaterequest",
+          label: "TicketUpdateRequest",
           customProps: {
             apiLabel: "API Reference",
           },
@@ -113,8 +149,8 @@ const sidebar: SidebarsConfig = {
         },
         {
           type: "doc",
-          id: "petstore/schemas/apiresponse",
-          label: "ApiResponse",
+          id: "petstore/schemas/apierror",
+          label: "ApiError",
           customProps: {
             apiLabel: "API Reference",
           },

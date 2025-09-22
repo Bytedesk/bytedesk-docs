@@ -1,0 +1,71 @@
+---
+id: login-agent-with-access-token
+title: "使用 AccessToken 登录（客服工作台）"
+description: "使用 AccessToken 免登客服工作台，通常返回 302 跳转。"
+sidebar_label: "使用 AccessToken 登录（客服工作台）"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVF1PG0cU/Sur+9RIW9uQqg+rqqpT0YoKtVUgygNByrAevCP2KzOzUMdaySJpYydgnAhShZgiGqisqoVEpMU1dvNj8IztJ/+FdnYX1YHQvvRpP+bMvefec+8pAkd5BsYsoIBbMKdDDjOTEp8TzwUDup03vY2GljVNzNiMt4hdTXy71nt2Ig5+lPU1cbzf7dTF+sthe3VQ2hLNZv/Nhnj+g3Y1M671j4/6nV9OSyugg+djilTMyRwYYHt54mbz2OU3CbdGgoMOPqLIwRxTxaoIRLG4E2BaAB1c5GAwAL11geI7AaE4BwanAdaBmRZ2EBhF4AVfwRmnxM2DDg5xp7Cb5xYYYx+G50sdoTFsl0W9IWpVsf6yt7Ejy7VhuwLhnErGfM9lmKn4VzPj6vF2GNWbzqYs18TDHfHH73ETQAcLo1xUVBGmPBPF6OKlbMMwDHX4IJO5mKF/eCxfrXSba6JWlkebEOHGLuJk/WdZLcvte7L8VEu023slN8ugQjNMl86aHFD777gW5z4z0unl5eXUMiaFAJGU6UZlO5hbnlIuj3mkkeohpJGSMK0mJx1JCiqsGVDCC9OqrrhN8xhRTLNqvv4pUyWDRCz1HYNAT14+86iDOBjwxc2ZiC5xF7zoOuG2wl8rcJzDbFHLfj0J56U8O1Q6/nnQP/x12K70jk56JzsKrsmnD+Tui2F7Vey0uq3qO6a726xq1yIiSeMGlddy+95paeWWe8uVRw15f33Y3uqe7Hebj2R1X6y/kKsV2dgV29+L8hNR/u60tBKHik/F3la32ep1Hg92fxs8WBMHW6L2WNRb8tnhsP38+sT0jBYDB/WSqDdiicXea1lrieZP2m3VPY+Su9HcGGfcPuKK3Me3I16gA8fUYV8tTGO6REx8qaTpCJeyuGODDqbncmRy1VzsIKImgQW+71H+yegU6GATE7sMK2CyiFkfmRbWxlMZ0EeGKEmIotOUR/Pp5CpLT01+OvHl9MT746lMnD/UQY1hrNtYKpPKqF++x7iD3JFU7zCieNOUxue9qHJ+IopRldjl/6OlJYPM8Tc87duIRD2KmlBMFmQWogUBPTZXPfY9ZbKWx7g6LxbnEcM3qB2G6nfsc2ojc4SheVuZ2gKyGf6Xct67nvjfFe0/HewS0ou4cMFVl5AdKGS0/kuIEkUHjNm5cMQNPp9Qy/kXP2uyKA==
+sidebar_class_name: "get api-method"
+info_path: docs/bytedesk/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"使用 AccessToken 登录（客服工作台）"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/agent/auth/login"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+使用 AccessToken 免登客服工作台，通常返回 302 跳转。
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"accessToken","required":true,"schema":{"type":"string","minLength":16},"description":"AccessToken（在后台生成）"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"302":{"description":"登录成功并跳转","headers":{"Location":{"schema":{"type":"string"}}}},"400":{"description":"请求不合法"},"401":{"description":"未授权或 Token 失效"}}}
+>
+  
+</StatusCodes>
+
+
+      

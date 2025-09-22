@@ -1,0 +1,33 @@
+---
+id: usercreaterequest
+title: "UserCreateRequest"
+description: ""
+sidebar_label: "UserCreateRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"username":"string","password":"string","nickname":"string","email":"string","phone":"string","roles":["string"]}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"UserCreateRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"username":{"type":"string"},"password":{"type":"string","format":"password"},"nickname":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}}},"required":["username","password"],"title":"UserCreateRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,33 @@
+---
+id: ticketupdaterequest
+title: "TicketUpdateRequest"
+description: ""
+sidebar_label: "TicketUpdateRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"title":"string","content":"string","priority":"low","status":"open"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"TicketUpdateRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"title":{"type":"string"},"content":{"type":"string"},"priority":{"type":"string","enum":["low","medium","high"]},"status":{"type":"string","enum":["open","in_progress","closed"]}},"additionalProperties":false,"title":"TicketUpdateRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

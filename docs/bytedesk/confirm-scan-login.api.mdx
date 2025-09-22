@@ -1,0 +1,71 @@
+---
+id: confirm-scan-login
+title: "扫码确认登录"
+description: "扫码确认登录"
+sidebar_label: "扫码确认登录"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVV9PG0cQ/yqneWqky9kgpKqnqiogWhmlIYqJ8kAsZX1e7A323WV3jeNYJxH6B7vlXyLRCOqIoJAWqappC1WQ7TQfJr47ePJXaGfPhAuQPvVe7m5mduY3M7+ZrYEkeQHmDJCyLEBGB8elnEjm2KkcmGA59izjpbRF7GtOntmgA6f3y1TIMSdXBbOmfhmnOTAlL1MdT0hqS1QR1y0ySzlL3BOOjTJhFWiJ4JesuhRMcLL3qCVBB5djaMmoUFpmzVEZsxOSMzsPnqfHQs6c2mU8L9II17FF5GI4mcRXjgqLMxdRgAnhZsd/vRHU1/3vt+F/Q0ssiwox7cxR+yJkHegDUnKLKKLVyUL2S4tNscnUrYdfjVwfn/zEMAxQ2Gc5FYUPOPHQi8s4Fam4ltmS5ikH/Vyax603J09bvc5u2FgOmo1gox40t/vdevjLk363EYf08XAyeb6o8XTicTM6SCZVIqNlOYAaVX7ksmL7a4vBxu+9oxV/vR4cbGASI0OX2PXay2HnMHz+yH/15/GbpaC5rfr8vlHQ+DV8/ijcaR23dqMugg4lKgsOEtV1hGoLkQUwIYFsTgiL2IkBg0EHQfk85Uj2GpR58d8qFaR0hZlIEJcZFcqqZcIMy8bfxPzQhZqO3khpkQ/to5sT6ekr4OnnPVUqlZinCy5u06xGXPedm9GzQmtRTlfAyyBUq8yZrKaRfxHFspRwyrHssfZjWMxMmYE5MAJ98PGFw0tEggmTt6dVRZHXN8/md+KUBGfzFuMbs2edSBW1fKwqaY6KOW30RupCZqfKfrfu/9063v+t322EB52ws43mWvDjUrDzot9d9rfbvfaqFk/c/3Yl3Oz0jla1MYVai8QnjcPg2ddvFxbv2Hfs4GAv+Gat393qdV72jn4IVl/6ay+C5Uawt+M/e+rXn/j1794uLEauIq2/u9U7aoevH5/s/HWytOK3tvz1x36zHWzu97s/YQO1yPCkueA39473XwV/LPq7h8F62z/6WbuLpXY4e6g2gnmK7VOJ4D67q3CBDpLykpiaTVM+zyz6QSYklJ1RkKXiYOsQS20dWiIMCSTKrutw+XmMPJ4ORWZRW6gG2UR1eNQlVoFqw0YS9Bj3BgGJ0hoOzycGR0XiWmp84np64uqwkYziezrgHER9GzKSRhJFOEAlYsdCXTpw73X9HQ8lfSATbpEwhVrBqg1mcXCzIEmJHeWu5jGjQwFn1pyBWi1LBL3Fi56H4vtlyqtgzmR0mCeckSyybybj6VCgJEe5GuA5WgUTxqP1fXUaYaB5sYxwLqxyHNToBBLPlf9pm4mtlRtT6Wkcp8FlV3JyeIaTCl6EpAImAF6ZeFpNqZLVoEjsfJnk0Tbyic8/W0/vBQ==
+sidebar_class_name: "post api-method"
+info_path: docs/bytedesk/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"扫码确认登录"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/scan/confirm"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+扫码确认登录
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"ticket":{"type":"string"}},"required":["ticket"]}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"登录成功","content":{"application/json":{"schema":{"type":"object","properties":{"accessToken":{"type":"string","example":"eyJhbGciOiJIUzM4NCJ9..."},"refreshToken":{"type":"string"},"expiresIn":{"type":"integer","description":"访问令牌有效期（秒）","example":7200}},"required":["accessToken","expiresIn"],"title":"AuthToken"}}}},"400":{"description":"参数不合法"},"410":{"description":"二维码已过期"}}}
+>
+  
+</StatusCodes>
+
+
+      

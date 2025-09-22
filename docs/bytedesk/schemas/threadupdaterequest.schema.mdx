@@ -1,0 +1,33 @@
+---
+id: threadupdaterequest
+title: "ThreadUpdateRequest"
+description: ""
+sidebar_label: "ThreadUpdateRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"status":"open","topic":"string","extra":{}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"ThreadUpdateRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"status":{"type":"string","enum":["open","in_progress","closed","pending"]},"topic":{"type":"string"},"extra":{"type":"object","additionalProperties":true}},"title":"ThreadUpdateRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

@@ -1,0 +1,132 @@
+---
+id: bytedesk-api-accesstoken-rest
+title: "Bytedesk API - AccessToken & REST"
+description: "Bytedesk（微语）系统的真实接口文档，基于 OpenAPI 3.0。本文档以 AccessToken 登录（免二次输入账号密码）为核心，"
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Heading from "@theme/Heading";
+import SchemaTabs from "@theme/SchemaTabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiExplorer/Export";
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: 1.0.0"}
+>
+</span>
+
+<Export
+  url={"https://api.weiyuai.cn/v3/api-docs"}
+  proxy={undefined}
+>
+  
+</Export>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Bytedesk API - AccessToken & REST"}
+>
+</Heading>
+
+
+
+Bytedesk（微语）系统的真实接口文档，基于 OpenAPI 3.0。本文档以 AccessToken 登录（免二次输入账号密码）为核心，
+并说明使用 Bearer Token 调用 REST API 的方式。
+
+- 官网：https://www.weiyuai.cn
+- 源仓库：https://github.com/bytedesk/bytedesk
+- 后端 OpenAPI 源定义：https://api.weiyuai.cn/v3/api-docs
+
+术语说明：
+- AccessToken：在管理后台生成的第三方登录凭证；用于 /agent 与 /admin 的免登。
+- Bearer Token：登录后用于调用 /api/* 接口的鉴权令牌（Authorization: Bearer &lt;token&gt;）。
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
+    >
+      
+      
+      
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                JWT
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    [support@weiyuai.cn](mailto:support@weiyuai.cn)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://www.weiyuai.cn/terms.html"}
+  >
+    {'https://www.weiyuai.cn/terms.html'}
+  </a>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    License
+  </h3><a
+    href={"http://www.apache.org/licenses/LICENSE-2.0.html"}
+  >
+    Apache 2.0
+  </a>
+</div>
+      

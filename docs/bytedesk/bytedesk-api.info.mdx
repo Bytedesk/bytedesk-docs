@@ -1,7 +1,7 @@
 ---
-id: bytedesk-api-openapi-3-0
-title: "Bytedesk API - OpenAPI 3.0"
-description: "This is the Bytedesk Customer Service System API specification based on the OpenAPI 3.0 specification."
+id: bytedesk-api
+title: "Bytedesk API"
+description: "Bytedesk（微语）系统 API 文档，基于 AccessToken 免登与 Bearer Token 鉴权。"
 sidebar_label: Introduction
 sidebar_position: 0
 hide_title: true
@@ -30,19 +30,16 @@ import Export from "@theme/ApiExplorer/Export";
 <Heading
   as={"h1"}
   className={"openapi__heading"}
-  children={"Bytedesk API - OpenAPI 3.0"}
+  children={"Bytedesk API"}
 >
 </Heading>
 
 
 
-This is the Bytedesk Customer Service System API specification based on the OpenAPI 3.0 specification.
+Bytedesk（微语）系统 API 文档，基于 AccessToken 免登与 Bearer Token 鉴权。
 
-You can find out more about Bytedesk at [https://www.weiyuai.cn](https://www.weiyuai.cn).
+注意：以下接口按模块划分。免登接口多为网页重定向场景；REST 接口需在请求头携带 `Authorization: Bearer <token>`。
 
-Some useful links:
-- [The Bytedesk repository](https://github.com/bytedesk/bytedesk)
-- [The source API definition for the Bytedesk API](https://api.weiyuai.cn/v3/api-docs)
 
 <div
   style={{"marginBottom":"2rem"}}
@@ -57,8 +54,8 @@ Some useful links:
     className={"openapi-tabs__security-schemes"}
   >
     <TabItem
-      label={"API Key: api_key"}
-      value={"api_key"}
+      label={"HTTP: Bearer Auth"}
+      value={"bearerAuth"}
     >
       
       
@@ -71,13 +68,19 @@ Some useful links:
               <th>
                 Security Scheme Type:
               </th><td>
-                apiKey
+                http
               </td>
             </tr><tr>
               <th>
-                Header parameter name:
+                HTTP Authorization Scheme:
               </th><td>
-                api_key
+                bearer
+              </td>
+            </tr><tr>
+              <th>
+                Bearer format:
+              </th><td>
+                JWT
               </td>
             </tr>
           </tbody>

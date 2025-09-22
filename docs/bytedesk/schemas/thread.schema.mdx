@@ -1,0 +1,33 @@
+---
+id: thread
+title: "Thread"
+description: ""
+sidebar_label: "Thread"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"id":"th_10001","type":"visitor","status":"open","topic":"string","createdAt":"2024-07-29T15:51:28.071Z","updatedAt":"2024-07-29T15:51:28.071Z","extra":{}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Thread"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"id":{"type":"string","example":"th_10001"},"type":{"type":"string","enum":["visitor","agent","robot"]},"status":{"type":"string","enum":["open","in_progress","closed","pending"]},"topic":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"},"extra":{"type":"object","additionalProperties":true}},"required":["id","type","status"],"title":"Thread"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

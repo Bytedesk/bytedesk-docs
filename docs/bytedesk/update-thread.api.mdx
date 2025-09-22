@@ -1,0 +1,71 @@
+---
+id: update-thread
+title: "更新会话"
+description: "更新会话"
+sidebar_label: "更新会话"
+hide_title: true
+hide_table_of_contents: true
+api: eJy9Vu9LHEcY/leW91OE9e6UfFpKyRksWEoreiEfzJHM7Y53E293JjOzntdjQUzbaJsYU2iKRhFJUqTQmBJLRS/5Z+Ku+sl/obyze3q5uxRaSj/t7swz78/nfWZboElVgTMDuiYp8RSUbeCCSqIZDyY8cCAUHtG0ZLbBBkXdUDLdBGemBRVKJJXFUNfAmSlHZRsEkcSnmkplACwABwTRNbAhID4FBxhakfReyCT1wNEypDYot0Z9Ak4LdFMgSmnJgipEaBPBVOkx7jUR0XvW5YGmgcYtIkSduSb2/F3FA1zrM80rd6mrwQYhMVPNqDI4TXSo+kOwgQahjyXiggZgAwtuC8mrkioFNrh1riimJGjgIb4c2aC5YO6AbGygC1oODIZ4HsO4SX2yKyzMMEKDTNcRnrbhhmnJVFoWiCJESKoED1Say2ihgA+PKlcygWbBgWR5Lf5+G/6zgjFvYLEWiC9MrLp2e6RQKIxg2inq46WdZ4ppLrEOVQzNBskrXJti/j+NcSUlmnpFPcjRLJc+0eAA1n1YM5/ikXQy/tGRf9n+S8rPpPNjjl+UptxLkIwTVwsjA2iw+Wuyupxs3QeDuDoYsfIuXn4NaKRn79l+8vT1cXvjdG8LbPCprnFUCREaguCkO5DPxCTfYl5kNEPOdxQhlHVwoKa1UE4+TwTLNShrhoTl3AA/8/Mj0Ou0ODlhpTasK1Pj06UhiOxeS41Go8tSn4mbtGIRIS7MFF2XKlXiczSwTtaP4rc/DQFqTUfepnEIUp53i9xF49AtZLqF3ykI7Ozls073P79ZMlXE4Zq61LHxzpRc6k6HxRlFuycq5QyaYcEsN1Fk7R5raupRNWcVJyf6cu5snreX43evTvd+O2+vnLw5OjnaRriVPH2Q7Dw/bz+Mtw+PD1et7pLE3z46WT86Pli1xkw+Vrp8trKfbN1/v7h0K7gVJG92k28en7c3jo9eHh/8kKy+jB8/Tx6uJLs78dbP8fKP8fJ37xeXUlPpbvxi4/jg8OTtk7OdP84ePIpfbcRrT+LNw2R977z9DFtrpcCzzcV4c/d078/k96X4xX6ydhgf/GLdwSZwyb42guV0YvtEY3Cf3jFxYQWp9NVXs9NUzjOXfpQjeYPL1bRfz0SRuGaUqU8YUkuFQnCpr3XRKrKhzlwaKNO67EYrCuLWqDWaK4DdxcrMITG7OS6r+eyoyn8xcX38y+nx4dFcIfUf2YATkvZtJFfIFXBJcKV9EnS56hm/D/p9wU1NF3Re1Akz8ZqAWtloXt7zNjjMQ+WocaVxo9WqEEVvyHoU4fK9kEq85Ms2zBPJSAX5NtMCjyl898CZJXVF+2K4uFzgylSmWkNWR7F6Y8sWSdAEdFMP8QtsmKPN9E8hQtGuUeJRabynG9dTH8OlVAU7B/suM1SJ9ARyW+i/xZa71GzyRglHOfvh8LmHRyRp4L1EGmmM3KRsFMKstaBOgmpIqohNTeLEkg91o0cnTFIDq9BqpQgzeFF0URTDdaxLFP0FAvCflA==
+sidebar_class_name: "put api-method"
+info_path: docs/bytedesk/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"更新会话"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/threads/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+更新会话
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["open","in_progress","closed","pending"]},"topic":{"type":"string"},"extra":{"type":"object","additionalProperties":true}},"title":"ThreadUpdateRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"th_10001"},"type":{"type":"string","enum":["visitor","agent","robot"]},"status":{"type":"string","enum":["open","in_progress","closed","pending"]},"topic":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"},"extra":{"type":"object","additionalProperties":true}},"required":["id","type","status"],"title":"Thread"}}}},"401":{"description":"未授权"},"404":{"description":"未找到"}}}
+>
+  
+</StatusCodes>
+
+
+      

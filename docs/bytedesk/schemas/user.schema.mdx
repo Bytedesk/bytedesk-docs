@@ -1,0 +1,33 @@
+---
+id: user
+title: "User"
+description: ""
+sidebar_label: "User"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"id":"u_123","username":"string","nickname":"string","email":"string","phone":"string","roles":["string"],"createdAt":"2024-07-29T15:51:28.071Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"User"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"id":{"type":"string","example":"u_123"},"username":{"type":"string"},"nickname":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}},"createdAt":{"type":"string","format":"date-time"}},"required":["id","username"],"title":"User"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

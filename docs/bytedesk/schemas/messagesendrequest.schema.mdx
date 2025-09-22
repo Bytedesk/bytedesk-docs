@@ -1,0 +1,33 @@
+---
+id: messagesendrequest
+title: "MessageSendRequest"
+description: ""
+sidebar_label: "MessageSendRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"threadId":"string","type":"text","content":{}}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"MessageSendRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"threadId":{"type":"string"},"type":{"type":"string","enum":["text","image","file","voice","video","sticker","link","location","document","email","button"]},"content":{"type":"object","additionalProperties":true}},"required":["threadId","type","content"],"title":"MessageSendRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

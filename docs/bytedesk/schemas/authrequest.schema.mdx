@@ -1,0 +1,33 @@
+---
+id: authrequest
+title: "AuthRequest"
+description: ""
+sidebar_label: "AuthRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"username":"admin@email.com","password":"string","type":"password"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AuthRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"username":{"type":"string","example":"admin@email.com"},"password":{"type":"string","format":"password"},"type":{"type":"string","description":"登录类型（可选）","enum":["password","email","sms","wechat"]}},"required":["username","password"],"title":"AuthRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

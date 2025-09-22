@@ -1,0 +1,33 @@
+---
+id: ticket
+title: "Ticket"
+description: ""
+sidebar_label: "Ticket"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"id":"tkt_10001","title":"New Ticket Title","content":"Ticket content description","priority":"medium","status":"open","assigneeId":"u_987654321","createdAt":"2024-07-29T15:51:28.071Z","updatedAt":"2024-07-29T15:51:28.071Z"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Ticket"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"id":{"type":"string","example":"tkt_10001"},"title":{"type":"string","example":"New Ticket Title"},"content":{"type":"string","example":"Ticket content description"},"priority":{"type":"string","enum":["low","medium","high"],"example":"medium"},"status":{"type":"string","enum":["open","in_progress","closed"],"example":"open"},"assigneeId":{"type":"string","nullable":true,"example":"u_987654321"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"}},"required":["id","title","content","priority","status"],"title":"Ticket"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

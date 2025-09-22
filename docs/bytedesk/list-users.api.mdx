@@ -1,0 +1,71 @@
+---
+id: list-users
+title: "查询用户列表"
+description: "查询用户列表"
+sidebar_label: "查询用户列表"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVVtPG0cU/iur89RIE69x+7SqqjoVraiqNipEeSBWM6wP9oS9MTMLcayVEGka04RLqrQIaoRoQoUqBRSRCmSc/pmwa/zkv1DNrO0YMFXql/XMOec71+9MFSQtCbAmIRTIBRQI+AFyKpnvjRXBAocJeUuLCAi0Q85kBazJKkwh5cjzoSyDNVmICgQCyqmLUukqBeaBBbMh8goQ8KiLYEFAS6iA7DK6FKwqyEqg7pknsYQcCBRxmoaOBGskishwEMEefChILnslyuwwCCE580oQKQhhcxaoOoAF8aPD9vP9+NV6p1lrPd9Lakfx2rLZXtxv7b82k6UnSb0Rrx51mkugCsFRBL4nUCjkXDarPufxktpa/PM2ELB9T6InlQYNAofZuvLmPaHUqpcDpJxTlQST6IqBe3/qHtoSCARc9U+y1DkrXk6OAN6nbuCoq/CHkdzHKl3V/bQwQ2rhMXvmSiG6lDlDJUHZ94bbcN9B8QFZ9SwiAjZHKrGYl8MSmva5SyVYUKQSr0vmorbhOBsyjkU13qwIA1kWCEgmdQnUcEOkfgQ+yY4M6VX9r2Sllmw91JgXZNu7Zwd/dCeitn62swcEXJRlX3GnhLojVFEEzLDPIj7X40jIHbCgLGUgLNOkAcvMI6uElGVsTx3NuRG46DN/c8xIMYyPvh8dn7gGasTPI83Pzw8gXYK4jVMGDYI+TN62UYgJfwY9o7VxEr/99Zoe5B7hx9UYph0bpH2/Ecptj07qnCoB6f75steer29P6CIyb9rX5t0e3KhILKKYMfI3xy4F2xN2mrX4n/2zg1ed5lLr8KR1sq3UjeS3x8nOi07zabzdOG2sGIO5xI+WWxsnp8crxg0diJFet5feJFsP3y0s3vHueMnhXvLjaqe5eXqye3r8JFnZjVdfJE+Xkr2deGs9rv0S1356t7CYQqXS+OXm6XGj9fZZe+fv9uPleH8zXnsW1xvJxkGn+bvqiZEqtusLcX3v7OAoeb0Yv3yTrDXi4z+Nu6p6PmcPNNetXmyfShXcZ3d1XEBAInfFd9PjyOeYjVc219R6mbJ0ne4+obYmSZeYIMIg8Ln8fGAeIgIOs9ETmp7dhZgPqF1GI5fJKqb0x6nrkGppxucls2sqzG/Gvhj9dnz0ei6TTf1HBNRop30byWQzWb0HfCFd6g24Gkqbc13vj5bE+9IMHMp01DqsapdSA29W2RdSXVSrU1TgLe5EkbpOV74iWpEJOuWoVTBNHYEEZrDy/j2ao06onGkmXaHafXX+W/VCDv3t/j8eEDI88zSI2XMRFNSBMxWCfoMJlJEWkeuMUwPFhkAOWF16ZRRKf2N9NToBBOh5dl9gs0bvLW6vMoBdraYammVRBL2o9WBDVIii6F8IOURT
+sidebar_class_name: "get api-method"
+info_path: docs/bytedesk/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"查询用户列表"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/users"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+查询用户列表
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"page","schema":{"type":"integer","default":1}},{"in":"query","name":"size","schema":{"type":"integer","default":20}},{"in":"query","name":"q","schema":{"type":"string"},"description":"关键字（用户名/邮箱/手机号）"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","example":"u_123"},"username":{"type":"string"},"nickname":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}},"createdAt":{"type":"string","format":"date-time"}},"required":["id","username"],"title":"User"}}}}},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

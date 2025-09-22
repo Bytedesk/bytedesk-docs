@@ -6,7 +6,7 @@ sidebar_label: "User"
 hide_title: true
 hide_table_of_contents: true
 schema: true
-sample: {"id":10,"username":"theUser","firstName":"John","lastName":"James","email":"john@example.com","phone":"12345","userStatus":1}
+sample: {"id":"u_1234567890","username":"admin@email.com","nickname":"Admin","email":"admin@email.com","phone":"+86-13800000000","roles":["ADMIN","AGENT"],"createdAt":"2024-07-29T15:51:28.071Z"}
 custom_edit_url: null
 ---
 
@@ -25,7 +25,7 @@ import Heading from "@theme/Heading";
 
 
 <Schema
-  schema={{"type":"object","properties":{"id":{"type":"integer","format":"int64","example":10},"username":{"type":"string","example":"theUser"},"firstName":{"type":"string","example":"John"},"lastName":{"type":"string","example":"James"},"email":{"type":"string","example":"john@example.com"},"phone":{"type":"string","example":"12345"},"userStatus":{"type":"integer","description":"User Status","format":"int32","example":1}},"xml":{"name":"user"},"title":"User"}}
+  schema={{"type":"object","properties":{"id":{"type":"string","example":"u_1234567890"},"username":{"type":"string","example":"admin@email.com"},"nickname":{"type":"string","example":"Admin"},"email":{"type":"string","example":"admin@email.com"},"phone":{"type":"string","example":"+86-13800000000"},"roles":{"type":"array","items":{"type":"string"},"example":["ADMIN","AGENT"]},"createdAt":{"type":"string","format":"date-time"}},"required":["id","username"],"title":"User"}}
   schemaType={"response"}
 >
   
