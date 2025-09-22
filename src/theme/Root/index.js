@@ -6,6 +6,7 @@ import '@site/src/css/watermark.css';
 import ErrorBoundary from '@site/src/components/ErrorBoundary';
 import { useUltimateDropdownFix } from '@site/src/hooks/useUltimateDropdownFix.js';
 // import { BytedeskConfig } from 'bytedesk-web';
+// import type { BytedeskConfig, FeedbackData } from 'bytedesk-web';
 
 // 默认布局根组件，可用于添加全局 Head 标签和聊天组件
 export default function Root({children}) {
@@ -64,6 +65,43 @@ export default function Root({children}) {
     },
     buttonConfig: {
       show: true,
+    },
+    // 文档反馈功能配置
+    feedbackConfig: {
+      enabled: true,
+      trigger: 'selection',
+      showOnSelection: true,
+      selectionText: '文档反馈',
+      dialogTitle: '文档反馈',
+      placeholder: '请详细描述您的问题或优化建议',
+      submitText: '提交反馈',
+      cancelText: '取消',
+      successMessage: '感谢您的反馈！我们会认真处理您的意见。',
+      // 反馈类型配置
+      categoryNames: [
+        '错别字、拼写错误',
+        '链接跳转有问题',
+        '文档和实操过程不一致',
+        '文档难以理解',
+        '建议或其他'
+      ],
+      requiredTypes: false,
+      typesSectionTitle: '问题类型',
+      typesDescription: '（多选）',
+      submitScreenshot: true,
+      onSubmit: (feedbackData) => {
+        console.log('收到反馈数据:', feedbackData);
+        // 添加到反馈日志
+        setFeedbackLogs(prev => [feedbackData, ...prev]);
+        
+        // 模拟发送到服务器
+        setTimeout(() => {
+          console.log('反馈已发送到服务器');
+        }, 1000);
+      },
+      onCancel: () => {
+        console.log('用户取消了反馈');
+      }
     },
     chatConfig: {
       org: 'df_org_uid',  // 替换为你的组织ID
