@@ -1,0 +1,71 @@
+---
+id: get-scan-status
+title: "轮询扫码状态"
+description: "轮询扫码状态"
+sidebar_label: "轮询扫码状态"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9VG1vG0UQ/iun+dRIh8+J+HRCCBcFFISgioP6oY3U9Xlib3Nv3d2za6yT0vCSpLRpigQoIVUIbVEkRCJooZHtwI+p75x88l+AuT2nLg58ur2d2ZlnZp552qBYTYJ9DVik6rBoQhCiYIoH/lwVbKihKjvMLyumIgkmhEwwDxUKetMG7oMNtyIULTDBZx6CDYo7y6jABIG3Ii6wCrYSEZognTp6DOw2qFZInlIJ7tcgjhfJWYaBL1GSfaZYpE8VpSN4SGDAhnR9K7m7ByY4ga/QV+TBwtDlTgbXuinJrT2ZJqjcRIcAhYKKU1wnkbqmCTgmoB951JIm40rfSIf5PlZ18iUuvOyMt8OsvsXYhEiioI5NRvMj12UVF3UbYhM8lJLV8KJGmKC4Ild41fX5vDMQx+Tw5vQFvUle/Hb611q6u5fFeN12enJ4evRjuvHz4Ic7g7t/pCt3gDCoepAPOBurqoMNFpHAomItOZq4RNEYjTsS7j8B60qF0rYsFvJCE3krYrzg+PRrNabh3+lLV+YMHcO4ND9bXpiC2Pz/SBMhrmLFYGF4HqbkOCjlQrCMvjHY7iYn30wBcUiiEwmuWmVigB5yBZlAUSJuv2o3pYWcj/SvncDMD+8FwmMKbPjg6kLWT+4vBdnzfDaXWwqrKJeN0pW5CbAj47C3nvx5eHr0y7C3MXjWHXT3yN1Iv11L9x8Pe/eSvU6/s2mM15J8cX+w3e0fbxqXMyCGvj7beJ4++uzlyup1/7qfPjtIP38w7O30u0/7x1+lm0+TB4/TexvpwX7y6Ltk/etk/cuXK6s6lLYmT3b6x53BycOz/d/P1u4nhzvJ1sNkt5NuHw1739NMDO14truS7B6cHr1If11NnjxPtzrJ8U/GDepeIPin2ZrZI2xvKQL39o0MF5igUHjy46UyigZ38L9pkvkV6spz81VmTrbK6DFOnJBRGAZCvTPGh9gElztIO2C3RzJTCplTR2OmUARzjE62ZTWbzQLLrIVA1Kz8qbQ+nHt39qPy7BszhaLOH5tA1NZzmy4UC0W6CgOpPOaPpbpwg16b+jm1FN5WVugynqHOYLXz7colVosJffSGLZpQD6Qie7tdYRI/EW4c07XWVdq7KpekIFWwl5grcSL5uSLCpflcdKcMmslFoJaxNa7SDeZG5JRtUIMJrrXqGolaHVkVRQZBvyK2huOvJgSYopyLy/uztEB/AxRXfKs=
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"轮询扫码状态"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/auth/scan/status"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+轮询扫码状态
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"ticket","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"status":{"type":"string","enum":["waiting","scanned","confirmed","expired"]},"userId":{"type":"string","nullable":true},"message":{"type":"string"}},"title":"ScanStatusResponse"}}}},"410":{"description":"已过期"}}}
+>
+  
+</StatusCodes>
+
+
+      

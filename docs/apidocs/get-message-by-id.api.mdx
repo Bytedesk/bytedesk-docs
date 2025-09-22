@@ -1,0 +1,71 @@
+---
+id: get-message-by-id
+title: "获取消息详情"
+description: "获取消息详情"
+sidebar_label: "获取消息详情"
+hide_title: true
+hide_table_of_contents: true
+api: eJx9VV1PG0cU/Sur+xSkjW1QnlZVVVPRiqofKFDlgVjNePfanrBfmZmFuNZKFEJimgRIq6aCQhHKh1ClQqOkDcGQPxPvGp74C+3dtV2DnTzN7ty7d87ce87ZGihWlmBMg4NSsjJKKOjg+SiY4p47boEBZVRfpcHR6rgFOkg0A8FVFYzpGhSRCRT5QFXAmC6EBR18JpiDCoVMErgLBvhMVUAHlzkIBnCqIvBWwAVaYCgRoA7SrKDDwKiBqvqUJZXgbhlCqilQ+p4rUVJ8JJejxUJpCu4TTjAgrq9FP26DDqbnKnQVZTDft7mZ3CR7U1Jarf8Yr3gTTQU6+ILurXh6CLf6oeiAt5nj27TlyPJ3w7lcbhhCHVRFILPGB3wSUrtcC8V7gunGgIPcwKGxKLxN2LjDygg6lLhNy6zHzWTlFno0EcXNGRSgg83dGVq89Nqgg+WZgUMN0QEdxm3QoRgo5blQCM9162I/LvT3wXL8Tz3+Yb/1ohH9fj/a22i+WW5t3InuLkV7b5rHP4MOzLI4pTN7oqeXNF5qg2IqkB+6q0xRWmjzWSRm0NwZLSXGbbRSwAKZQiuvBlUqecJhCgywmMLLijsIYdhLtemUe9159UynPYv/W1LQQXGVDLvNfwhDKnclNzyAf5t/xCv1eGsRkowrgzOW30b1vxJM52MnK6+j1cdpg0/2n8eLS6CDg6ritRVI/CQNGZDtKDVb41aY3EDMdsQWCPu/ahWlfGlks8znmTnk1YDxjOnSa3Z2uG+y+YlxLa2hXbo6Njk1BKH+4Up9Ja5hUWO+3y2TN02UcsqbQVdrrTei41+GgGTccY5JEmGqs17/6A6UjoW2JdB7mkTMTR4+64z5i2tTSTO5W/KSz9vzGq0qtFDOaPmJ8T6wneDZUT16u3ey/+fZ0XLrZaPV2KZ0LX58L955cnb0INo+bB6uaL13iZYettYbzYMVbTQBoqXbp8uv4q3Fd/ML193rbvxyN76zena00Ww8ax7cj1eeRatPSD27O9HWr1H9p6h+9938QloqjUZPN5oHh63jR6c7f5/eexjtbURrj6LNw3h9/+zoN5qJliaebs5Hm7sn+6/jFwvR01fx2mF08Fy7Qd3zBP8+kbzRwfaRInAf30hwEb1ROPKb0iSKWXKP99IkyctUlGO3xcDMRGypexggA9/3hPqkhw8hGY+Jrky8rO3yeZ+ZFdRGMjnQe+hkZLNzc3MZlkQznihn25/K7Jfjn459PTl2eSSTS88PdSBqp3MbzuQyOdryPakc5vYcNVA+56bepRYZata3GU9QJ7BqbWn1/AR1MLhFDlDxpKJIrVZkEr8VdhjS9q0ABf3/CjrMMsFZkWg3XQOLS3q2wCgxW2IfiK7dwqWrbVMa0jrWcxFce5O5VbJ6Zgf0BjrMYDX9iYZkiBVkFork9DRAhPVVzyd9v0GSYtdcPh+bIus+L8ALgkuqD4RTq6UZiRDCsIsu4R4BDMN/Aal1MxI=
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"获取消息详情"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/messages/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+获取消息详情
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"msg_10001"},"threadId":{"type":"string"},"senderId":{"type":"string"},"type":{"type":"string","enum":["text","image","file","voice","video","sticker","link","location","document","email","button"]},"content":{"type":"object","description":"按消息类型定义的内容体","additionalProperties":true},"status":{"type":"string","enum":["sent","delivered","read","failed"]},"createdAt":{"type":"string","format":"date-time"}},"required":["id","threadId","senderId","type","content"],"title":"Message"}}}},"401":{"description":"未授权"},"404":{"description":"未找到"}}}
+>
+  
+</StatusCodes>
+
+
+      

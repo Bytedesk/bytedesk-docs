@@ -1,0 +1,71 @@
+---
+id: create-user
+title: "创建用户"
+description: "创建用户"
+sidebar_label: "创建用户"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVl9vE0cQ/yrWPBXpYidpn05VVYcaKQUCSkJRZayyPm/iJXe3x+5ejGudlIYWTAshVFBESJRGQBVVatIqaUmTUD4MvjN5yldAs2fHR3LJA+qTzzu/+bMz85vZBigyKcEsgi+pkFAygHtUEMW4O1wBEyxBiaKXJBVggKSWL5iqg1lsQJkSQUXeV1Uwi6WgZICg130q1RCv1MFs6L9M0AqYSvjUAIu7iroKRcTzbGZpL7lrkrt4Jq0qdQh+qbpHwQRevkYtBQZ4AmNSjEqUYqAucWgCKZVg7iQEBnhEyhoXlaNCAya4cIgCswcKDHCZNXWsNeoQZqf7qXI3XUdwO46zIyFCkDoYwBR1ZIpGEBiJTBV710tcpmSAYspGNazEaV2T0TjbaEGbkB53Zex6sL8ffypUWoJ5mGUwIWrOhz8uw/9WB5aaZHqDOJ6O1P9mYPBjzMiJBfuQ/CdKGSMCAxxeZna6FYv7rhL1VBmZJoqIE134giHyvWSmdYRNFOqcnJShr8cLXxTGzqKGpDdSwa7vYCNcGjk7cuHyCBhwPn+uAAacKeiPEibGJWWbJgtQ5tymxNV2fY8KzdhUsU7ZV1SwCXachTiZJ2O6zXmeVzQqr9Iu834Lhuu32r9+Fy3OvH39oPV6LXr4b/T4n73Hmx/EG6Mzm47xfFC/ClG0TzGHwmGqsQokuvMQyTq8+iSNSuH92ejRn62te+F8M9p4BBo3kEK5xd+juWa0dFO7PmSj+TTc2W4/XI2aL8EAh6oqx4Hrcam5RnCuQi4ey9gsYhq/cPL6wgYTqkp50szliMeyNcrqPmFZy8W/uemBI6nPXxzOxDYyH40WxsZPQWCcbOmIicu0nCGed2Amb1lUynE+Rd1M+8lO+OrRKcA10N0SYzhI4pomd8VBqdAt3kzDsLk0CIzOx5luAb+8PK7zhwNqtLdiCl1SJVdCr/69TdA76w2bBN3iGZNQjEd776DTmcXuCRKQuRNcX6XTMUN1RStUTmXyF4ePJK4r3N9thv+tvV3/Y3/3Tntjp72zjPBM9MvtaOXZ/u7dcHm7tT2XSeY1/OFe+8lOa2suM6STkomP9+5sRks338zMXnGvuNHGavT9/f3dhdbOi9bWT9Hci/D+s+junWh1JVx6HDZ/Dpu33szMxqZiafh8obW13X71YG/l773b98K1hXD+Qbi4HT1Z3999iv2RiYF7izPh4urb9ZfRX7Ph881ofjvc+i1zFSvJBftWbw6zG9unCoP77KqOCwxQVDjywsQYFdPMose3rMZlq8qxO9uJWJrSB6XxPY8L9XmiNwMDbGZRV+r6d2qa94hVpZnBbD/y+qC1zVyuVqtliZZmuZjMdVRl7tzw6cLIWKFvMNsf+w8MQJrFdRvI9mf79azjUjnETbg6xN705aDoDZXzbMJ0vDqgRofYifdWFQlvFqHRKBNJLwk7CPD4uk9xZxVLBkwTwXDe63eWAVVKKjjciw2YonUw4XS80PvG0S3CbV9P0MPLHRkfa2CLeepEbCkxky5eGBtHXnYedg6voI4gNWQHqYEJgO9G1NZ012cNsIk76ZNJxMY2kcXk/SFwiPT6Vt0N4NYTETYaMUITIAjA6FxF9xwEpSAI3gFiBwbj
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"创建用户"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/users"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+创建用户
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"username":{"type":"string"},"password":{"type":"string","format":"password"},"nickname":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}}},"required":["username","password"],"title":"UserCreateRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"u_123"},"username":{"type":"string"},"nickname":{"type":"string"},"email":{"type":"string","format":"email"},"mobile":{"type":"string"},"country":{"type":"string"},"avatar":{"type":"string","format":"uri"},"description":{"type":"string"},"platform":{"type":"string","example":"BYTEDESK"},"sex":{"type":"string","enum":["UNKNOWN","MALE","FEMALE"]},"enabled":{"type":"boolean"},"superUser":{"type":"boolean"},"emailVerified":{"type":"boolean"},"mobileVerified":{"type":"boolean"},"passwordModifiedAt":{"type":"string","description":"密码最近修改时间"},"roles":{"type":"array","items":{"type":"string"}},"createdAt":{"type":"string","format":"date-time"}},"required":["id","username"],"title":"User"}}}},"400":{"description":"参数不合法"},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

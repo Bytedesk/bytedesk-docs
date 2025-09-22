@@ -1,0 +1,71 @@
+---
+id: refresh-token
+title: "刷新 Bearer Token"
+description: "使用有效的刷新令牌获取新的访问令牌。"
+sidebar_label: "刷新 Bearer Token"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVe9P20YY/les99MquXZAlaZZ01RAbAraCgKqfqCRenGO5Epiu3dn0jSyhChrk40CrVYQLIih0g1NGnRqJxAJ6x9D7MCn/Avb3ZlioOXDNH+xfffc++N5n/feKnCUZ2BNAPJ5ATI65DCzKfE4cR2woH34vvPTdtSoRy9rnbW5sLYXLb9pN7c69fnjhb1wcTlaftNZmzveeX+ysqPWj2ZmQQfXwxQJI+kcWEDxJMWsMO5OYQd0oPiBjxnvd3MVsKryl1CcA4tTH+tguw7HDhdbyPOKxJaGzPtMhFQFZhdwCYkvXvEwWOBm72Obgw4eFW45wUyZTTg9QzNOiZOHINATjifOozM6cMKLAi4XRtXmqIobgkCdZp7rMOWsN5USr/PsRbWl8IcN+N8yQraNGftEQjrgh6jkyaBxZaiQ/cYmw2QoffvRdzduDQx9YRgGyKivZEVY8QjFLJ3cJQ7HeUzhojySdVciiRob3Vat89uLbqueDOnz3lTqIuXJdJJ+E+z3+TwOVXF+46M0r/yi5Hm8uxf9OQsS1/MRXOP3aKEWrT+WxS9hXnCFOD2XSaoRL4AFpmgEkwufZswV6MAwncZUNEoVfFr8N/UC5x6zTBN5xChjUvERMWxH/JrTPZeI6htJa8qG9tno4Nj4NQj0qy1dMnEHZzXkeR/M9J2xp3VWm+Hhy2sQZESotk8Jr4wJUSndZDGimAouEzUVbkVmEgZWDAI9/vjapSXEwYKhO+OSLyHW0bPGHTyt7MVGS0iJOJOu9BhXs7/CcQ6zKa1vJH0pv9PNbqsW/r1zvPtHt1XvvG12mhsCrkXLT6PNV93WfLhx0D5Y0JLph98/66w22/sLWr+MXVPLJ/V30frjo5nZu85dJ3q7Hc0tdltr7ebr9v6P0cLrcPFVNF+PtjfD9ZWw9iKsPTmamVWm1G64tdbeP+gcPj/Z/Ovk6bNwZy1ceh42DqLV3W7rZ1FGTQFPGjNhY1upL9x6Fy0dhPu/avcE4S4lj2SzW6exfSm19dU9GRfowDEtseHJMUyniY0/rSyJMwq8VIwvFGTLCwWXEBEyYr7nuZTfTEgo0KFIbOwwWSYHyTr3ecguYK3XSIGeUKBlmuVy2UBy13Bp3oyPMvPb9MDgrbHB671GSvkPdBDdoOrWY6SMlFgSfVRCTsKVGhfninKx7NWzu/G/D5tY0Rw/5KZXRERmLlOrxm0dzzcd+IcRpFo7o0NB9L81AdVqFjF8mxaDQCw/8DGtgDWR0WEaUYKyQsITmUCHAkY5TOVdMIUrYMGASuH6uIhDwIu+iOfSVS96Xp0Q6vX4ldhM4ooaGR4bF50ZD8ySmxNnKCqLTFAZLJAjV5xWo0+sVaGInLyP8gKrbIrnHza5NCI=
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"刷新 Bearer Token"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/token/refresh"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+使用有效的刷新令牌获取新的访问令牌。
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"refreshToken":{"type":"string"}},"required":["refreshToken"],"title":"TokenRefreshRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"accessToken":{"type":"string","example":"eyJhbGciOiJIUzM4NCJ9..."},"refreshToken":{"type":"string"},"expiresIn":{"type":"integer","description":"访问令牌有效期（秒）","example":7200}},"required":["accessToken","expiresIn"],"title":"AuthToken"}}}},"400":{"description":"无效的请求"},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

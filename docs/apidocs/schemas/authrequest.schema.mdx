@@ -1,0 +1,33 @@
+---
+id: authrequest
+title: "AuthRequest"
+description: ""
+sidebar_label: "AuthRequest"
+hide_title: true
+hide_table_of_contents: true
+schema: true
+sample: {"username":"admin@weiyuai.cn","password":"string","passwordHash":"string","passwordSalt":"string","country":"CN","mobile":13800138000,"email":"user@example.com","code":"string","type":"password","platform":"BYTEDESK","captchaUid":"string","captchaCode":"string","deviceUid":"string","accessToken":"string","channel":"string","device":"string","userUid":"string"}
+custom_edit_url: null
+---
+
+import Schema from "@theme/Schema";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"AuthRequest"}
+>
+</Heading>
+
+
+
+
+
+<Schema
+  schema={{"type":"object","properties":{"username":{"type":"string","example":"admin@weiyuai.cn"},"password":{"type":"string","format":"password"},"passwordHash":{"type":"string","description":"客户端计算的密码哈希（可选）"},"passwordSalt":{"type":"string","description":"密码盐（可选）"},"country":{"type":"string","example":"CN"},"mobile":{"type":"string","example":13800138000},"email":{"type":"string","format":"email"},"code":{"type":"string","description":"短信/邮箱验证码"},"type":{"type":"string","description":"登录/验证码类型","enum":["password","email","mobile","wechat"]},"platform":{"type":"string","description":"平台标识，默认 BYTEDESK","example":"BYTEDESK"},"captchaUid":{"type":"string"},"captchaCode":{"type":"string"},"deviceUid":{"type":"string"},"accessToken":{"type":"string","description":"免登使用的 accessToken"},"channel":{"type":"string","description":"客户端/渠道"},"device":{"type":"string"},"userUid":{"type":"string","description":"目标用户 UID（用于管理员操作等）"}},"required":[],"title":"AuthRequest"}}
+  schemaType={"response"}
+>
+  
+</Schema>
+            

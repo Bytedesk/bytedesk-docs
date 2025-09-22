@@ -1,0 +1,63 @@
+---
+id: get-current-user-profile
+title: "获取当前用户信息"
+description: "通过 Bearer Token 获取当前登录用户信息。"
+sidebar_label: "获取当前用户信息"
+hide_title: true
+hide_table_of_contents: true
+api: eJydVV1PG0cU/Sur+9RIG9vQPq2qqiZ1KpqEoAJFlWM14/UFT9ivzMwaXGslh7TBtAkfbRoUCqIoSYUqFVSFFgqk/Bi8a/zEX6hm1lAbDA998njnzLkz5957bgUEGedgZMHnyDjkdCggNxn1BHUdMKBZXT4+nNH6kDBk2rA7gY52PLcTzr8I3/0Yzj5rvNwP3/3UeL4R1Xbqh+vRo62j6jTo4HrIiOToL4AB4yhu+IyhI0Y4skHmjlELQQeOps+oKIORrUBexUj7oghGNhfkdGDIPdfhyMGoQG8qJX86rxfVFsLv1kAH03UEOkIiiOdZ1FTBkw+4hFWAm0W0iVyJsodggJt/gKYAHTwmrypoHIQW2jBcMOqMgw44RWzPkp/8r3p634dAV3I5xMaL8EAHh5oTl26iTajVLcqYy2wiwGghAh1sNy916sZiur4jWLnrHikRQdiVIXxGJbJDzC5MnkWEPHO1KH1fDmc+yQzdkic4TnUFO74tq2xk4NbA3dEB0OFO+nYGdLiZUYucFMYheQvbE5B3XQuJo3h9D5ksnu7bSrIvkNExehlDLObVGI9wPumywh23oFBp0e0xnSUYbj1p/PIoWqkeHy7WDzej539HS381l7YlH3OtuK5aFIQxUgYdqECbd1FcJpYhEZdFPstfgQi8LqiN6gzDhz5l8lFZWcFt1ZnTQVChsqTECwKJ/yDV06WVVn6L5mrR6mNFaaMouq3WlV1CZFdCUhInvbb+ZSVpG7J9fWaBAUUhPG4kk8SjiUmkZZ/QhOnIv8lSzwXt0oP9Wsyhvfd5Zmj4GgT61UwXKEYxrxHPO6NJmyZyHhtVbE7XQHrJqdUMSSeIk9JuOGday7DyZQomq0OBQG8tbp5m4LPRYSUUdcZcdbwlc19ZYAH5hJYe7L9w2dPNk4Na+M/m8dbvJwezjbf7jf01CdeiFzPR+quTg6fh2l59b05rf0v4rfTa+u5cpxc3Z7ej1cdH1el7zj0nersRfTN/crBc339T3/0+mnsTzr+Kns5GG+vh6lJY+yGsPTmqTsdU8W74erm+u9d4t9hc/7M58yzcXA4XFsOVvejl1snBzzInWgxsrlTDlY3jrZ3oj+nw9Xa0sBfu/qrdl+q5jH6t7NY4vduHQl7uo/vqXqCDQGbzu2NDyErUxMvLROESRWFbLUsnpuqDlmdKF/BcJj5uq4dAB4ua6HDlk7HrQtojZhG13kRKNsNZORnJ5OTkZIKo3YTLxpOtozx5u/9GZmAoc703kYrjBzrI0o7z1pNIJVLKIFwubOK0heoYhm1j8HzuK/+NqP89VFslKnBKJD2LUPV69bxKq0PjOR6PNdWjOR2KLhdyp1LJE44jzAoC+fmhj3J+ZHM6lAij0nvV3NWhiKQgjTZbgQksSzlNEz1pAyVi+crHzo9Y2WFnlvFpZhh0IJ19da6PFPupKzrlNu5KJUYoWYIA9NYlVElBkAuC4F+LTGRD
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"获取当前用户信息"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/user/profile"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+通过 Bearer Token 获取当前登录用户信息。
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"u_123"},"username":{"type":"string"},"nickname":{"type":"string"},"email":{"type":"string","format":"email"},"mobile":{"type":"string"},"country":{"type":"string"},"avatar":{"type":"string","format":"uri"},"description":{"type":"string"},"platform":{"type":"string","example":"BYTEDESK"},"sex":{"type":"string","enum":["UNKNOWN","MALE","FEMALE"]},"enabled":{"type":"boolean"},"superUser":{"type":"boolean"},"emailVerified":{"type":"boolean"},"mobileVerified":{"type":"boolean"},"passwordModifiedAt":{"type":"string","description":"密码最近修改时间"},"roles":{"type":"array","items":{"type":"string"}},"createdAt":{"type":"string","format":"date-time"}},"required":["id","username"],"title":"User"}}}},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

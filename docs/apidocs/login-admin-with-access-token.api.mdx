@@ -1,0 +1,71 @@
+---
+id: login-admin-with-access-token
+title: "使用 AccessToken 登录（管理后台）"
+description: "使用 AccessToken 免登管理后台，通常返回 302 跳转。"
+sidebar_label: "使用 AccessToken 登录（管理后台）"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVF1vG0UU/Sur+wTSsuukiIcVQrgooKAIUBPUhzRSJ+uJd5T96sxsgrtayUqh3UDiuKgpSpoQRU1RhCChSqHGduiPiWdsP/kvwOw6wmkannjajzlzP84998TAUZmBNQso4g7M6VDCzKYk5CTwwYLO6avuo0OtaNuYsZlgEfua+Ga9u9XqHu136/dFvSY2fhu01/rVbdFo9F49Ek9+1K4VxrXey5Pe6S9n1RXQIQgxRSrgZAkscIMy8Yslj/g3CXdGIoMOIaLIwxxTVVIMRJVwJ8K0Ajr4yMNgAbpwgeI7EaG4BBanEdaB2Q72EFgx8Eqo4IxT4pdBB4/4U9gvcwessfeSZE7dZWHgM8wU/FphXD0udt/daonTTZnWxbd74s8/8p5ABwejUlZjDFOBjXJ0fGXyJEkSHd4tFC5n6B2/lM9XOo11UU/lySZkuLHLOLnzs6ylcveeTB9rwzkcPJebKajQDNOlc84i6v4T1+E8ZJZpopAYy5hUIkQM2wfVtoe5E6hBlDHPKFeUgInUREylAjObEKiwdkQJr0yrvnKa5jGimBaVVv5tUyWDIffqOweBPnz5OKAe4mDBpzdnsnKJvxBk1wl3Ff56heMSZota8YtJeF2B54eDdir+Ouod/zpor3ZPWt3WnoJr8vEDuf900F4Te81Os/YGpXYaNe16VsiQuP7qC7l776y6csu/5cuTQ/n1xqC93Wk96zS+k7VnYuOpXFuVh/ti9weRfi/S+2fVlTxUfioOtjuNZvf0YX//9/6DdXG0LeoPxU5Tbh0P2k9uTEzPaDmwv1MVO4f5iMXBC1lvisZP2m3FXkDJ3Uw31nlt73NV3Ae3s7pAB46pxz5fmMZ0idj4ypGaGc5wuOeCDnbgc2RzRS72EFFKYFEYBpR/OKoCHVxiY59hBRzuVTFEtoO1caMA+oiILNNcXl42UHZqBLRsDq8yc2ryo4nPpifeGTcKef5EByXDfG5jRsEoqF9hwLiH/JFUbzCVfNMG7fSir6y+Loc4axH7/P/ypqGEOf6Km6GLSMZO1n48XI1ZyFYD9Nwi9dzAlFU6AePqPI7nEcNfUjdJ1O/csNQulghD865ypwXkMvwfvbx1Y2hkb2tXFbWIK5fsbwm5kUJmi72EKFHpwJqdS0b2/JMJtXZ/A+YOfkY=
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"使用 AccessToken 登录（管理后台）"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/admin/auth/login"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+使用 AccessToken 免登管理后台，通常返回 302 跳转。
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"accessToken","required":true,"schema":{"type":"string","minLength":16}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"302":{"description":"登录成功并跳转","headers":{"Location":{"schema":{"type":"string"}}}},"400":{"description":"请求不合法"},"401":{"description":"未授权或 Token 失效"}}}
+>
+  
+</StatusCodes>
+
+
+      

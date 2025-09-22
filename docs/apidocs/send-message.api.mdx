@@ -1,0 +1,71 @@
+---
+id: send-message
+title: "发送消息"
+description: "发送消息"
+sidebar_label: "发送消息"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVltPG0cU/ivWeWqkxTaoT6uqKkRUomobBFR5cKxm2D3gCXvLzKyJa61EyM004daKVlAoQkkqVKnQiLQlXPpn4l2HJ/5CdGYXMIaiPvSlT7Oey5lzznfx1EGxcQlmCVyUko2jhLIBfoCCKe57AzaYINGzv0hXwQCJVii4qoFZqsMoMoGiN1QVMEvlqGyAwLshStXn2zUw6/onF2iDqUSIBli+p9BTtMSCwOGWvqZwR/oezUmrgi6jL1ULEEzwR++gpcCAQFBSiqPUqxWBzKbsTndKJbg3DpGRTXQuGIBe6FKlCu9RRO6mBY1xh4aqzy09cht9qlNxawIFGOBwb4IGP00WDLB9K3SpDAPQZdwBA0ZDpXwPytG5GjurYLbNKQZzBtvqodZEkdHWrNJZhVk9Z2HLBiiuHIqboTKMnj2U9h2iKI0kA9+TabN6ikUabJSW4IEuwYSksRB/uw7/GSL8EiwMwHvMDXSqrhz/urtYLHZrhK6Cj+iG4v+HbUd/n80kfzaS+9utV/vxz0/jrZXmm5nWysP48aN4603z8Pur2UA5MhXKq2qVaZY2OryKRBvCndEwxriDdpqwQKbQ7lWXRRrzhcsUmGAzhV2KuwidPOSagWdkPEXnX/AyI+OHl/Evnp9Oln5v7s7GC41kZwn0vu5LeLr6azLXSNYe6Mw6YyweTd1P2wwGuKgqPhlW4EtNUEa2BIVTZ6PsRRWF1N4VCgdMqCgVSLNQYAHPTyKvhYznLY9+FqrdF1DtHRzIpTFyHwz1D49cg8i4OtKFEDdxNMeC4DRMr2WhlCP+BHq51vJ+fLh0DchIT3x2mASYaqzdbU/BpGupMr0NzGwTsVZ/fHoC8Wc3R3QLSdhDZybdf6LQdlM9Y0h2SSarM/ZTJO6N+fpchnpfTaGNciLXOzhwoeyTxeODRvz31rvt344PZlo7+639ddqeS354kmw8Pz54Fq/vNffmcu1diR/Ntpb3m7tzuT5dUi6dPpp5naw9eDs1fcu75SU7m8nD+eODleb+y+bu02TuZTz/nDS4uRGv/Rg3vosbj99OTaeh0tX4xUpzd691uHi08cfRk9l4ayVeWIxX95Ll7eODnwjdXLrxaHUqXt18t/1X8mo6fvE6WdiLd3/J3SYcfMG/0cZhnuT2kaLkPr6t86IGonDljbFhFFXyoH8knN6XryjXyfrMLC3Z1INMkGEQ+EJ90sasiOzLQk9q9Dym4e8NmFXBXE++CEYbMc1CYXJyMs/0at4X44XsqCx8PnC9/8vh/q6efDG9PzKARJLi1p0v5os0RaJymdd2VYf8zuFdb2dOIXAY1/nqhOqZMs+/OSokWrME9fook/iVcKKIpu+GKOitUTagygRno0S1EjlbBZmNQkt5AmtgwvWUnV0jqS9VmRNSBhf+1Uiy6QliWaCu3Ftu85XBG8MjJKzsbeP6Np0RbJKcl02CCUBvJzqt9arn6uAwbzwkOzQhjUniYedV3KFaXVW2xLxaW4b1erpDayCKwMhK0bSDqBxF0Xsj7LJh
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"发送消息"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/messages"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+发送消息
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"threadId":{"type":"string"},"type":{"type":"string","enum":["text","image","file","voice","video","sticker","link","location","document","email","button"]},"content":{"type":"object","additionalProperties":true}},"required":["threadId","type","content"],"title":"MessageSendRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"msg_10001"},"threadId":{"type":"string"},"senderId":{"type":"string"},"type":{"type":"string","enum":["text","image","file","voice","video","sticker","link","location","document","email","button"]},"content":{"type":"object","description":"按消息类型定义的内容体","additionalProperties":true},"status":{"type":"string","enum":["sent","delivered","read","failed"]},"createdAt":{"type":"string","format":"date-time"}},"required":["id","threadId","senderId","type","content"],"title":"Message"}}}},"400":{"description":"参数不合法"},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

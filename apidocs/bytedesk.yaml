@@ -106,12 +106,39 @@ paths:
           description: 无效的请求
         '401':
           description: 未授权
-  /auth/login:
+  /auth/v1/register:
     post:
       tags: [auth]
-      summary: 账号密码登录
-      description: 使用用户名与密码获取访问令牌。
-      operationId: loginWithPassword
+      summary: 用户注册
+      description: 通过短信/邮箱验证码完成注册，返回用户信息。
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+      responses:
+        '200':
+          description: 注册成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: 参数不合法
+        '429':
+          description: 发送频率过高
+        '500':
+          description: 服务器错误
+      servers:
+        - url: https://api.weiyuai.cn
+  /auth/v1/login:
+    post:
+      tags: [auth]
+      summary: 用户名密码登录
+      description: 使用用户名与密码登录，返回访问令牌与用户信息。
+      operationId: loginWithUsernamePassword
       requestBody:
         required: true
         content:
@@ -124,23 +151,146 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthToken'
+                $ref: '#/components/schemas/AuthResponse'
         '400':
           description: 参数不合法
         '401':
           description: 认证失败
-  /auth/logout:
+      servers:
+        - url: https://api.weiyuai.cn
+  /auth/v1/send/mobile:
     post:
       tags: [auth]
-      summary: 退出登录
-      operationId: logout
-      security:
-        - bearerAuth: []
+      summary: 发送短信验证码
+      description: 发送登录或验证用短信验证码。
+      operationId: sendMobileCode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CodeSendRequest'
       responses:
-        '204':
-          description: 已退出
+        '200':
+          description: 已发送
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          description: 参数不合法
+        '429':
+          description: 发送频率过高
+      servers:
+        - url: https://api.weiyuai.cn
+  /auth/v1/login/mobile:
+    post:
+      tags: [auth]
+      summary: 手机号验证码登录
+      description: 使用手机号 + 短信验证码登录。
+      operationId: loginWithMobileCode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: 参数不合法
         '401':
-          description: 未授权
+          description: 认证失败
+      servers:
+        - url: https://api.weiyuai.cn
+  /auth/v1/send/email:
+    post:
+      tags: [auth]
+      summary: 发送邮箱验证码
+      description: 发送登录或验证用邮箱验证码。
+      operationId: sendEmailCode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CodeSendRequest'
+      responses:
+        '200':
+          description: 已发送
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          description: 参数不合法
+        '429':
+          description: 发送频率过高
+      servers:
+        - url: https://api.weiyuai.cn
+  /auth/v1/login/email:
+    post:
+      tags: [auth]
+      summary: 邮箱验证码登录
+      description: 使用邮箱 + 验证码登录。
+      operationId: loginWithEmailCode
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 认证失败
+      servers:
+        - url: https://api.weiyuai.cn
+  /auth/v1/login/accessToken:
+    post:
+      tags: [auth]
+      summary: 使用 AccessToken 登录
+      description: 通过 accessToken 免登，返回访问令牌与用户信息。
+      operationId: loginWithAccessToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accessToken:
+                  type: string
+                  minLength: 16
+                channel:
+                  type: string
+                  description: 客户端/渠道标识
+              required: [accessToken]
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 认证失败
+      servers:
+        - url: https://api.weiyuai.cn
   /auth/scan/qrcode:
     get:
       tags: [auth]
@@ -214,6 +364,116 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+        '401':
+          description: 未授权
+  /user/change/password:
+    post:
+      tags: [users]
+      summary: 用户修改密码
+      description: 当前用户使用旧密码修改新密码。
+      operationId: changePassword
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+      responses:
+        '200':
+          description: 修改成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 未授权
+  /user/admin/change/password:
+    post:
+      tags: [users]
+      summary: 管理员重置成员密码
+      description: 需要管理员权限。
+      operationId: adminChangePassword
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminChangePasswordRequest'
+      responses:
+        '200':
+          description: 修改成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '401':
+          description: 未授权
+        '403':
+          description: 权限不足
+  /user/change/email:
+    post:
+      tags: [users]
+      summary: 修改邮箱
+      operationId: changeEmail
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeEmailRequest'
+      responses:
+        '200':
+          description: 修改成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 未授权
+  /user/change/mobile:
+    post:
+      tags: [users]
+      summary: 修改手机号
+      operationId: changeMobile
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeMobileRequest'
+      responses:
+        '200':
+          description: 修改成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OkResponse'
+        '400':
+          description: 参数不合法
+        '401':
+          description: 未授权
+  /user/logout:
+    post:
+      tags: [users]
+      summary: 用户登出
+      operationId: userLogout
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: 已退出
         '401':
           description: 未授权
   /users/{id}:
@@ -587,15 +847,63 @@ components:
       properties:
         username:
           type: string
-          example: admin@email.com
+          example: admin@weiyuai.cn
         password:
           type: string
           format: password
+        passwordHash:
+          type: string
+          description: 客户端计算的密码哈希（可选）
+        passwordSalt:
+          type: string
+          description: 密码盐（可选）
+        country:
+          type: string
+          example: CN
+        mobile:
+          type: string
+          example: 13800138000
+        email:
+          type: string
+          format: email
+        code:
+          type: string
+          description: 短信/邮箱验证码
         type:
           type: string
-          description: 登录类型（可选）
-          enum: [password, email, sms, wechat]
-      required: [username, password]
+          description: 登录/验证码类型
+          enum: [password, email, mobile, wechat]
+        platform:
+          type: string
+          description: 平台标识，默认 BYTEDESK
+          example: BYTEDESK
+        captchaUid:
+          type: string
+        captchaCode:
+          type: string
+        deviceUid:
+          type: string
+        accessToken:
+          type: string
+          description: 免登使用的 accessToken
+        channel:
+          type: string
+          description: 客户端/渠道
+        device:
+          type: string
+        userUid:
+          type: string
+          description: 目标用户 UID（用于管理员操作等）
+      required: []
+    AuthResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiJ9...
+        user:
+          $ref: '#/components/schemas/User'
+      required: [accessToken, user]
     AuthToken:
       type: object
       properties:
@@ -627,8 +935,33 @@ components:
           type: string
         email:
           type: string
-        phone:
+          format: email
+        mobile:
           type: string
+        country:
+          type: string
+        avatar:
+          type: string
+          format: uri
+        description:
+          type: string
+        platform:
+          type: string
+          example: BYTEDESK
+        sex:
+          type: string
+          enum: [UNKNOWN, MALE, FEMALE]
+        enabled:
+          type: boolean
+        superUser:
+          type: boolean
+        emailVerified:
+          type: boolean
+        mobileVerified:
+          type: boolean
+        passwordModifiedAt:
+          type: string
+          description: 密码最近修改时间
         roles:
           type: array
           items:
@@ -637,6 +970,55 @@ components:
           type: string
           format: date-time
       required: [id, username]
+    UserRequest:
+      type: object
+      properties:
+        uid:
+          type: string
+        num:
+          type: string
+        username:
+          type: string
+        nickname:
+          type: string
+        password:
+          type: string
+          format: password
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+        email:
+          type: string
+          format: email
+        country:
+          type: string
+        mobile:
+          type: string
+        code:
+          type: string
+        avatar:
+          type: string
+          format: uri
+        description:
+          type: string
+        sex:
+          type: string
+          enum: [UNKNOWN, MALE, FEMALE]
+        enabled:
+          type: boolean
+        emailVerified:
+          type: boolean
+        mobileVerified:
+          type: boolean
+        platform:
+          type: string
+          example: BYTEDESK
+        captchaUid:
+          type: string
+        captchaCode:
+          type: string
+      required: []
     UserCreateRequest:
       type: object
       properties:
@@ -784,5 +1166,73 @@ components:
         userId:
           type: string
           nullable: true
+        message:
+          type: string
+    ChangePasswordRequest:
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      required: [oldPassword, newPassword]
+    AdminChangePasswordRequest:
+      type: object
+      properties:
+        userUid:
+          type: string
+          description: 目标用户 UID
+        newPassword:
+          type: string
+      required: [userUid, newPassword]
+    ChangeEmailRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        code:
+          type: string
+        captchaUid:
+          type: string
+        captchaCode:
+          type: string
+      required: [email, code]
+    ChangeMobileRequest:
+      type: object
+      properties:
+        mobile:
+          type: string
+        code:
+          type: string
+        captchaUid:
+          type: string
+        captchaCode:
+          type: string
+      required: [mobile, code]
+    CodeSendRequest:
+      type: object
+      properties:
+        mobile:
+          type: string
+        email:
+          type: string
+          format: email
+        type:
+          type: string
+          description: 验证码用途/类型
+        channel:
+          type: string
+        captchaUid:
+          type: string
+        captchaCode:
+          type: string
+      description: 提供手机号或邮箱其一
+    OkResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
         message:
           type: string

@@ -1,0 +1,71 @@
+---
+id: send-mobile-code
+title: "发送短信验证码"
+description: "发送登录或验证用短信验证码。"
+sidebar_label: "发送短信验证码"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVV1PG0cU/SvWfd54DcpLV1UViKhE1ZYIE/WBIGW8HtgN693NzCyOa61k3KaA+DBUkBZCSmmSCrUKlJIWyybJj8G7i5/4C+2dXQcHk0iV6hfbc8/M/Trn3jIIMsVBGwfiCQMmFMhTrjPTFaZjgwZBba1dmY02m8GrjXD+Ufu3pbOD2Wh9L9p50Xqzm/z9efa0UgUFHJcygheH86ABp3b+CydnWvSmk6egAKP3PcrFoJMvgVaWf01G86AJ5lEFdMcW1BZoIq5rmbp8Sr3HMZAycN2gBYK/RMmloIGTu0d1AQq4DB0Lk3K0FqTLLhwXzLSnwFeAFohp9VoUmHRYgYh/040RvpIgepHvVudt/tH6XruyrkaHzeCnRbyvG8S26RXO0EZcoRvktpn/kFkWrdfuX44hrK22Xj8OFxbD7UZQO8YmVfej/cPg4d+tegUUEKbAegA+mKV2fjRuA/g+PsYodx2bx7Xrz2Tw6xIFjv+MWQD/W4+4p+uU8y5gznEsSmxQgD4gBRcDRlb4ChQo52TqPaXo5DYyPZrkkaR1/cpMatVw449WfTlYnQ+PNrDY1/s/ugqH6bZ/WYtW5s7ezLV//1E645TNUIZiKYPHLNDAEMLlmqoS10wXqVnyiJnWbfAnMGxhOCgD1+GyAEQYoIGKMlNn+lRUh5pwFZ/WPWaKUhYLGNcoRwmjbABVeZE6OkS4hGHZJAiU5MenHR5/9tWYDBkbM3ohu6FObS9kckHtRB3gccpuJF1I604BlB4VvGV311EXqXtOYy53cdy0Jx2ZVtK/wZKgecqnUwO3hntU1jGen8wHr/fPDl6cnyxER82ouYPwVPhoLtx9en6yFOw0Wo2V1IDk1pgzTe1U8HA52my26iupQVmgVHzcXngZPvnmtFK9Y9+xw6O98Nva+clWq/m8VV8MV54Htafh0kK4txs8+SGY/z6Y/+60Uo2fiq3Bs61WvRG9Wmvv/tWeWw72t4LVtWC7EW4enJ88Hh3KjqViYHu7EmzvnR0ch4fV4NnLcLUR1H9N3cWuOsz8WqpH68T2scDgPrkr48KqU1bgI5NZymZMnb6XbqrEpQ1RsBKFEl0qtNNQ7rmuw8SNboYqYJk6Rb1oZbCJJNOAS3SDpvrTGVC6CK6parFYTBNpTTtsSk2ucvXz4ZtDX2aHrvWnM7F/XwGUSNy3vnQmncEjlECB2F2ukrXy7hK53Pjyxbj5b3sooaugD4TqWsSU+cqEyokOk3WnwEyfVJ+dB6UjiQkFDNSsNg7lco5weptZvo/H9z3KSqCNTygwQ5hJcsjd8QlfAYOSPGVyMkzTkhy2MvJrYxgKwi0PQ+oZmr7SuYG0dcUHsd1j5dZIdgx1nyzTQqwwRoq4aEkRNJALGW/LcSLPymARe8qT4xTiN/HzD8i6PS8=
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"发送短信验证码"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/v1/send/mobile"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+发送登录或验证用短信验证码。
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"mobile":{"type":"string"},"email":{"type":"string","format":"email"},"type":{"type":"string","description":"验证码用途/类型"},"channel":{"type":"string"},"captchaUid":{"type":"string"},"captchaCode":{"type":"string"}},"description":"提供手机号或邮箱其一","title":"CodeSendRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"已发送","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"message":{"type":"string"}},"title":"OkResponse"}}}},"400":{"description":"参数不合法"},"429":{"description":"发送频率过高"}}}
+>
+  
+</StatusCodes>
+
+
+      

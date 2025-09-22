@@ -1,0 +1,71 @@
+---
+id: change-email
+title: "修改邮箱"
+description: "修改邮箱"
+sidebar_label: "修改邮箱"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVVtPG0cU/iur89RIE69BfVpVVQxyJaqqIEyUB8dSxuvB3rDe3czMQlxrJUTaxrThkqq0goIQSlKhSjWNSFVqO+2PiXcdnvgL1Zldw4IJT33Zy5xv5ty+70wTJK0KMIrgC8YFlAi4HuNUWq4zVQEDzBp1qixfp5YNBAQzfW7JBhjFJpQZ5YznfFkDo1gKSgQ4e+QzISfcSgOMpvq1OKuAIbnPCJiuI5kj0UQ9z7ZM5UZ/KFwH14RZY3WKX7LhMTDALT9kpgQCHsegpMUEWpkK5gImJLecKhCYd3mdSjASRIAeK2wUiQbqSbNG71qVm8yT128PSCq1YuItcVYiIC1pI3zyonSzcWEgCOLNwnMdEWczns3iq8KEyS0PCwIG9P9tRz/+HbU2w+/24X8rnPBNkwmRApZd12bUAQLsMa17GDa2KiBQZ0LQ6geyH2Y4vTCbpJJk9vF1yYQbK9HWH/2TtXCzFR1vgcKNjeKi3d+i9Va090T5uK4gpyvtQfs1YHSy5iI9PVeoPCmSEHQksR5TVmfnnOWLSG2krM9tMKAmpScMXaeelVliVsOnVsZ08FdfHIOrrnMzU1p8hvbRbL4wdwsCcvNJI0fcY2WNet75MTnVhzl3gTnaYLsbvt26BaifobwK2NC4Z2mRnbcC3WJmCoZtVCAgycdnQx18fm9O1RKJMnuhzfyw1+daUuq/k3AgY7r1IZ1T6kpLZmR18hI4IGA5866KOKHKREOyChMLWm5maqQ+Q+NZrxX+035/9PtZb3Vw3B109xGuRT89jQ5enPWehfudfmddS5cv/GZtsN3tn6xrEyp3LV4+XX0T7T15t7xy37nvRMeH0dcbZ72dfvdV/+T7aP1VuPEierYaHR6Eez+HrR/C1rfvllfio2Jr+HKnf9IZvH1+evDn6dO1sL0Tbj4PdzvR9tFZ7xekgRYDT3eXw93D90d/Ra9Xwpdvos1OePKr9gAb5nLrKyVUYxjbJxKD+/SBigsISMbrYnq+wPiiZbIPM1PhMjVZt5NhQE2Z7p7wPc/l8k6KggEB2zIZStNogkMVT3IeNWtMG89kgaQYbOj60tJShiprxuVVPdkq9C+mJvNfFvK3xzPZ2H9AANUU920sk81kcQllWKdOytUVwV7q9zmPJXssdc+mlopXBdRMtBxfSJiuUjNOKJVsiUANNW8UodksU8HucjsIcPmRzzheTCUCi5RbtIy8K5YCAjVGK4yrAbDAGjiZ43l6ew7DQLjtYzgjsxWFHu9AynnyRmwpNZZmpgtzKMfkIqzH6uB0CYh6GgB40eJupXK11gSbOlVfTV2Iz0Tx0svav6J1lVViok4jFWGzGSOUIIIASJKK4iAEpSAI/gPm3g2g
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"修改邮箱"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/user/change/email"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+修改邮箱
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"email":{"type":"string","format":"email"},"code":{"type":"string"},"captchaUid":{"type":"string"},"captchaCode":{"type":"string"}},"required":["email","code"],"title":"ChangeEmailRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"修改成功","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"message":{"type":"string"}},"title":"OkResponse"}}}},"400":{"description":"参数不合法"},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

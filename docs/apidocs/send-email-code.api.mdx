@@ -1,0 +1,71 @@
+---
+id: send-email-code
+title: "发送邮箱验证码"
+description: "发送登录或验证用邮箱验证码。"
+sidebar_label: "发送邮箱验证码"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVV1PG0cU/SvWfd54DcpLV1UViKhEVZUIE/WBIGW8HtgN+5WZWRzXWsm4TQHxYahCWghpSpNUqFWhlLRYNkl/DN41fvJfSO/sGhxMIlWqX2zPPTNz77nn3CmBIDMctEkgvjBgSoE85TozPWG6DmgQVjfa5fnWViN8vRktPm7/unJ2MN96tNeu7Lf2D5O/P82fliuggOtRRnDjaB404NTJj9jEtG66eQoKMHrfp1wMu/kiaCX512Q0D5pgPlVAdx1BHYEh4nmWqcuT1Hsc8ygB1w1qE/wlih4FDdzcPaoLUMBjeK8wKceo7eZMi/bguGCmMwOBAhST6Y8oMO0ym4h/q40RgZIg+pHvknNePhJSfqS2Dhvhj8u4XzeI49ArLsMY8YRukNtm/kNhSVp/PLicQ1Rdb755Ei0tRzv1sHqMPZKtCR/+3ayVQQFhCuQD8MAsdfLjcRsgCPAwRrnnOjzmbjCTwa9LCjj+MxYB/G894r6uU857gDnXtShxQAH6gNgeJoyqCBSwKedk5j1UdGsbmx1P6kjKun5lJdVKtPlHs7Yari9GR5tI9vXBj67CYbntnzdaawtn/yy0f/tBXsYpm6MMvVICn1mggSGExzVVJZ6ZLlCz6BMzrTsQTGHawnDRBZ7LJQFEGKCBii5T5wZUNIcayw1P1n1mimIW+YspylHCKBtCT15UjvchXMKQNQkCJfnxaVfGn305ITPGvoxfuG6kS+2FSy6UnZgDfE7ZjaQJad21Qekzwbm4e5Z6NN23Gku5R+KmM+3KspL2DRcFzVM+mxq6Ndpnsm6wc7IYvtk/O/i9c7LUOmq0Gs8QnooeL0S7zzsnK+GzerO+lhqS0ppwZ6mTCh+utrYazdpaalgSlIqX20uvoqdfn5Yrd5w7TnS0F31T7ZxsNxsvm7XlaO1lWH0erSxFe7vh0+/Dxe/CxW9Py5X4qDgavthu1uqt1xvt3b/aC6vh/na4vhHu1KOtg87Jk/GR7EQqBrZ3yuHO3tnBcXRYCV+8itbrYe2X1F3sqsvMr6R5tG5uHwtM7pO7Mi9knTKbj01nKZszdfpetakSlzaEbSUGJbo0aLeh3Pc8l4kbvQJVwDJ1inbRSuAQKaYhj+gGTQ2mM6D06FtT1UKhkCYymnbZjJps5ernozdHvsiOXBtMZ+L7AwXQIXHfBtKZdAaX0AE2cXquSgz27hNyufGli2nz316hRK6CPhCqZxFT1isLKiU2TB47BeYGpPuc/LkBphQw0LHaJJRKOcLpbWYFAS7f9ykrgjY5pcAcYSbJoXQnpwIFDErylMm5MEuLctTKxK9NYCYIt3zMqG9kBkp3B6rWEx/E9g6VW2PZCbR98pTascEYKeAzSwqggXyNcbecJnKtBBZxZnw5TCE+Ez9vAZAdO5c=
+sidebar_class_name: "post api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"发送邮箱验证码"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/auth/v1/send/email"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+发送登录或验证用邮箱验证码。
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={undefined}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"mobile":{"type":"string"},"email":{"type":"string","format":"email"},"type":{"type":"string","description":"验证码用途/类型"},"channel":{"type":"string"},"captchaUid":{"type":"string"},"captchaCode":{"type":"string"}},"description":"提供手机号或邮箱其一","title":"CodeSendRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"已发送","content":{"application/json":{"schema":{"type":"object","properties":{"success":{"type":"boolean","example":true},"message":{"type":"string"}},"title":"OkResponse"}}}},"400":{"description":"参数不合法"},"429":{"description":"发送频率过高"}}}
+>
+  
+</StatusCodes>
+
+
+      

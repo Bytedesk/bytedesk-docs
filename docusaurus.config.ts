@@ -151,7 +151,7 @@ const config: Config = {
         config: {
           bytedesk: {
             specPath: "apidocs/bytedesk.yaml",
-            outputDir: "docs/bytedesk",
+            outputDir: "docs/apidocs",
             // 可选：代理 URL，用于 API 请求
             // proxy: "http://localhost:3001",
             // 可选：下载 URL

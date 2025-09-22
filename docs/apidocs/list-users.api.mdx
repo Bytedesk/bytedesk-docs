@@ -1,0 +1,71 @@
+---
+id: list-users
+title: "查询用户列表"
+description: "查询用户列表"
+sidebar_label: "查询用户列表"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVltPG0cU/ivWeWqkjW1on1ZVVdM6FU1CogBFFbGa8XpsT9gbM7OAY61ESZOYJtwqWgQ1ojShQpViFEEbapzmx8S7xk/+C+3M2q7BC0r9YnvOOd+5fzNF4CjHQJ0Eh2HKIKWAZWOKOLHM4QyooBPGx6VIAYY1hxJeAHWyCGmMKKYJh+dBnUy5KQVsRJGBudAVCsQEFaYdTAuggIkMDCrYKIcFkJbHBgK1CLxgi3NicpzDFBTI4CxydA7qgOsq4SCMPHhfkMH4hSjTYRCMU2LmwBUQTKPEFnUAFbxHh831ivdyo1UrNdb3/dJrb3Up1lyoNCqvYv7iU79c9VZet2qLIApBMbMtk2EmkAfjcfF1Fs8vrXrf74ACmmVybHKhgWxbJ5qsfOw+E2rF/gARpUgkQTg2WM+5lb6PNQ4K2FT0j5PAOcn0J6cAnkOGrYsj55uBwQ9FuqL7QWFCamESbepCITYQ0cO8ZC1qIP5v8QINVwHDShM9HEWzHJPTQqgMzSCO6KUuHEr6mhaCZOuIC5vLizL09Vjy8+TodWHB8FyosukYYmnGR66P3JoYAQVuJm4kQYFrSfkjJQpjorSOexuQtiwdI1PiOjamYq/CxbJkX2FKsuQihKCYl+vYiLFZi2ZuWhmpleBhyZwb9YPHjV++9cvzp2/X6m8r/vpf/safzY0jgUctHbP3mMZOxUVjKUb8Is/d/mUQx1c5MbC0oXjaIVQkNSkmuGc6UwpwwmWXZPFc8VHgo/hAyI6Vf/eXS/72Q4l5Trazd3rwa3uTSxunu/uggIF53hKcl8Nyk5CgNog5XfajMx1uc6gOKuQ5t5kaiyGbRGcxKTiIRDVT/I3NDPQVNnF7OBJgRD64kxwduwKCmi5D6oOYwOkIsu0uTELTMGNj1hQ2I43NE+/Nj1ckAXWIelTQR9CxXrruNkK47dCgHB2pBEr7x7VOe76cGJNFJGbWkubtHgwVOM5gNhVJ3B7uC7YjbNVK3t+V04OXrdpi4/CkcbIj1CP+T0/83eet2jNvp1qvLkd6c/EeLTU2T+rHy5EhGUgkOG4uHvnbD9/NL9w175r+4b7/3UqrtlU/2asfP/WX97yV5/6zRX9/19ve8Eo/eKXH7+YXAqhA6r3Yqh9XG2/Wmrt/NJ8seZUtb3XNK1f9zYNW7WfRk0ig2CzPe+X904PX/qsF78WRv1r1jn+L3BPVsyh5IDla7cT2MRfBfXJPxgUKcEwNdis7iukM0fDFYyL1onlu6O17AGlySdqEKijCtij/tGceXAV0omGTSRJtX2QJG2l5HBmMxsWmdMdJjcVmZ2ejSEqjFs3F2qYsdmP4s+TIaPLqYDQe+HcVEKMd9G0gGo/GJXtYjBvI7HEVujbhpMvxHI/ZOiIyahlWsb1SPW+NvMW4OCgW04jhcaq7rjgOrmqxaBnC2iyaRTrDCkzhwn/viBmkO8KZ3KQLVNuvhctVz+XQvZX/x8WvhGceBDF9JoKU+EOJCEG+nRTIY5QRd8FksW0gtsHmPVZ9rwOB0mWsL5JjoAA6u93ntlmid4jbLPRgF4uBhtwy14VO1HKwwU25rvsP0APhEw==
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"查询用户列表"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/users"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+查询用户列表
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"query","name":"page","schema":{"type":"integer","default":1}},{"in":"query","name":"size","schema":{"type":"integer","default":20}},{"in":"query","name":"q","schema":{"type":"string"},"description":"关键字（用户名/邮箱/手机号）"}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","example":"u_123"},"username":{"type":"string"},"nickname":{"type":"string"},"email":{"type":"string","format":"email"},"mobile":{"type":"string"},"country":{"type":"string"},"avatar":{"type":"string","format":"uri"},"description":{"type":"string"},"platform":{"type":"string","example":"BYTEDESK"},"sex":{"type":"string","enum":["UNKNOWN","MALE","FEMALE"]},"enabled":{"type":"boolean"},"superUser":{"type":"boolean"},"emailVerified":{"type":"boolean"},"mobileVerified":{"type":"boolean"},"passwordModifiedAt":{"type":"string","description":"密码最近修改时间"},"roles":{"type":"array","items":{"type":"string"}},"createdAt":{"type":"string","format":"date-time"}},"required":["id","username"],"title":"User"}}}}},"401":{"description":"未授权"}}}
+>
+  
+</StatusCodes>
+
+
+      

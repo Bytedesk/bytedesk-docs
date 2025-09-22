@@ -1,0 +1,71 @@
+---
+id: get-thread-by-id
+title: "获取会话详情"
+description: "获取会话详情"
+sidebar_label: "获取会话详情"
+hide_title: true
+hide_table_of_contents: true
+api: eJyVVV1PG0cU/Sur+xSkiW1QnlZVVVPRiqpqUaDKA7GS8e7FnuDdncyMIa61EoKmMW0CpFJTQUEI5UOoUkOrpAoCJ38m3gWe+Avt3V27BruR+mTv3K8z955zpwmGVzTYs2CqCrmrocQgkKi4EYE/6YINFTQziW28MekCA41OXQnTAHu2CWXkClWxbqpgz5bCEgPJFffQoNKJg/DBBslNFRj43EOwQVAWhXfrQqELtlF1ZKCdKnoc7CaYhiQvbZTwKxBSToVaBr5GTfaxQoF+XNSOEpJggg1xayP6YRcYOIFv0DfkwaWsCSe5SP6OJrfmYJmgfAcdAwykomsbkRYR7iAUBniPe7JGR6Z6a7RQKIxCyDKvId5+3aPOLggtTKCAAa8QNAYqKAcGSiEDbbip6w9FBxJ9YCD8W1IFFYVa0y1rgUZqo0TfJX/KZQIpnCEdZOAo5AbdohlWaC5QHjdgg8sNXjXCQwqpS/f/huA9o4a2lruuoCnw2lRfk2nuYdjPhNmUGkl4rzUlBkaYpOkpDSEMKexaYXQIDbZ/i9da8c4KJB7XhnusvotafwAluWg7XXsTrT/ptLdOD3ZOD17EK/eBgYemGmQ6oIYTlW3IZ3LJN4UbJqJQC13K11Xtn2RVY6S283kuRW4RRaPORc7x6TO/MAqXSxenJq00h3Xl+sT0zAiE7MOZBlLcwLLFpeylKToOaj0TzKNvnWweR29/HgESU1e/0ySFlO39Ku6Nj8pCJkz6Tp2AZX8+63LgixszSS+FPxck4dm0xhsGXdTzVnFqcgBs13jebkXvXp4e/H7eXj15dXxyvEvuVvzkQbz39Lz9MNo96hytWf13ie4/Otk87hyuWeMJECs9Plt9He+svF9avunf9ONX+/F36+ftrc7x887hj/Ha82j9afxwNd7fi3Z+iVo/Ra3v3y8tp6lSa/Rsq3N4dPL28dneX2cPHkUvt6KNx9H2Ubx5cN7+lWZipY5n20vR9v7pwZv4z+Xo2et44yg6fGHdpu4FSnyb7Bu7i+0jQ+A+vp3gIm6j8vTXc9OoFoSD/02TxC9XNV4t22ncSZSIHhfECV2XMlDmkz4+hAxqwkFfJ8so27VFyZ0qWmO5ArA+Otn5/OLiYo4n1lygKvksVOe/nPx04qvpiatjuUJaP2RA1E7nNpor5Ap0JANtPO73lRqqngtT71HL4D2TlzUuEtQJrGamrH8fIga2cEn+1UAbMjSbZa7xG1ULQzq+W0dFj1CJwQJXgpeJdbNNcIWm/y7Yc7ymcQBD74WAK9ez1TNiddfOZWzZIfcbQGVqdfoCBvPYSF+ykDZvFbmLKqmeGoiv0vSFDLxFpMTeavl8YobW5EX9XdJbkn0onGYz9Uh0EIY9dAn1CGAY/g1nX/5l
+sidebar_class_name: "get api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"获取会话详情"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"get"}
+  path={"/threads/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+获取会话详情
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={undefined}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"th_10001"},"type":{"type":"string","enum":["visitor","agent","robot"]},"status":{"type":"string","enum":["open","in_progress","closed","pending"]},"topic":{"type":"string"},"createdAt":{"type":"string","format":"date-time"},"updatedAt":{"type":"string","format":"date-time"},"extra":{"type":"object","additionalProperties":true}},"required":["id","type","status"],"title":"Thread"}}}},"401":{"description":"未授权"},"404":{"description":"未找到"}}}
+>
+  
+</StatusCodes>
+
+
+      

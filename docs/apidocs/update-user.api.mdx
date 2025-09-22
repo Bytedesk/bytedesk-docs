@@ -1,0 +1,71 @@
+---
+id: update-user
+title: "更新用户"
+description: "更新用户"
+sidebar_label: "更新用户"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVltvE0cU/iur8wTSYjspT6uqqkONlAIB5VJUGauMdyfxkL0xMxvjWiul0ILTQkgqCgKCKAKqqFIJFWlJkwA/huyaPOUvoDO7dpx4kwfUJ6/Pbc7t+2aaIMmUAKMMgaBcQEUHz6ecSOa5wxYYEPgWkXRCUA46CGoGnMkGGOUmVCnhlBcDWQOjXAkrOviEE4dKjIMGzAUDfCJroINLHAoGMAt04PRywDi1wJA8oDoIs0YdAkYTZMNHKyE5c6cgxJhoTIUc8qwGWuz3NT1XUleiivi+zUyVef6S8FyU9YX2qpeoKUEHn2OdklGBWpeZ00mKfUnoQB3C7EyNX/PcbB/u2UnkVEM4Jw3QgUnqiKxSQx0kkzbKsNkTqu2jSfGoxphU+J4rkriDhQL+WFSYnPlYNBgQtxainx/D/9YWZvWnqgO9QhxfZRp8NzD4GZaLy3Ng/z6luTpMetwhEozUItTB8arMzo5ieoEreSNTR2aIJPzQIwLO0HJPM7PGbROJPoc3Zejb8dJXpbFT6CHolUxjN3AQcxMjp0bOnh8BHc4UT5dAh5Ml9VHBxrikatPeAVQ9z6bEVXEDn3IFyky1atk3lLNJdlCEpJmH2/hEiLrHrTOepayKMquYvSsYrVxv//5DvDT74d3i1rsX8Z3/4nv/bt9b/SRQ6GBySuRBJ3fnh1g5JplDIcFJhyPKCeF0t7OyF2Qpro4XBjKgtPRnPN+KH10DZXE822LubdR6qQ7dp3u4Gt992b6zHLdegw4OlTUP2dQPFMiQEw3IK8rNN5kVKm7lMx3mDLgNBtSk9IWRzxOf5eqUNQLCcqaLf/MzA32NL54b1pIY2pHR0tj4UQj1wyP1hThPqxrx/W6YomlSIca9aepq7fsb0ZvfjgJycucaGEMaSSbaexl0B4XHQsrvarWUEejpx8nO+L4+P656iPQ0usv3pQ6kevm5B0QJc+wKUjbeFaT7Vu5IEFbMnfRUiukeDDUktaiY1ornhvsa0lHubLaity8+rPy1sznXfrXR3niM5lp890b85OnO5s3o8frW+rzW26/op1vt+xtba/PakCpWS8Tbc6vxo2vvZ69ecC+48avl+MfbO5sPtjaeb639Es8/j24/jW/OxctPokf3otavUev6+9mrSahEGz17sLW23n6zuP3kn+0bt6IXD6KFxWhpPb6/srP5EOeuJYbbS7PR0vKHldfx31ejZ6vxwnq09od2ESfkcfa9ug+MTm6fS0zui4sqL9BBUu6Is5NjlM8wkx68isouV5OOnd45xFRA7Y4m8H2Pyy97di7UwWYmdUUy12SmRZ+YNaoN5gqI1u7KGvl8vV7PEaXNeXwqn7qK/OnhE6WRsdKxwVwhOT/UAeGTzG0gV8gVFIN5QjrE7TlqHzKzKV/SKzLv24SpfFVCzRS1nYeSDgazkFBqnpAobjarRNAJbochii8HFO+jckWHGcIZcrmCtsVEyuuTxBa0L4PuzQ1HRlMeO6rhSLIy6/Coiyw6Q+wA/4EO07SRPLZCXPkaJRbeFOVmqjiRnHFsHN13HfteCkggiQduti8Pta300Ny5iXFEefpmczwLXTipIyZJPcnRUyUr8lCyJtjEnQrIFNomIZETyF5K2UchqqjMLjSbiYWCXRh2m6I2HfsShh8BmPcRrQ==
+sidebar_class_name: "put api-method"
+info_path: docs/apidocs/bytedesk-api
+custom_edit_url: null
+---
+
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import ParamsDetails from "@theme/ParamsDetails";
+import RequestSchema from "@theme/RequestSchema";
+import StatusCodes from "@theme/StatusCodes";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+import Heading from "@theme/Heading";
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"更新用户"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"put"}
+  path={"/users/{id}"}
+  context={"endpoint"}
+>
+  
+</MethodEndpoint>
+
+
+
+更新用户
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<ParamsDetails
+  parameters={[{"in":"path","name":"id","required":true,"schema":{"type":"string"}}]}
+>
+  
+</ParamsDetails>
+
+<RequestSchema
+  title={"Body"}
+  body={{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"nickname":{"type":"string"},"email":{"type":"string"},"phone":{"type":"string"},"roles":{"type":"array","items":{"type":"string"}}},"title":"UserUpdateRequest"}}}}}
+>
+  
+</RequestSchema>
+
+<StatusCodes
+  id={undefined}
+  label={undefined}
+  responses={{"200":{"description":"成功","content":{"application/json":{"schema":{"type":"object","properties":{"id":{"type":"string","example":"u_123"},"username":{"type":"string"},"nickname":{"type":"string"},"email":{"type":"string","format":"email"},"mobile":{"type":"string"},"country":{"type":"string"},"avatar":{"type":"string","format":"uri"},"description":{"type":"string"},"platform":{"type":"string","example":"BYTEDESK"},"sex":{"type":"string","enum":["UNKNOWN","MALE","FEMALE"]},"enabled":{"type":"boolean"},"superUser":{"type":"boolean"},"emailVerified":{"type":"boolean"},"mobileVerified":{"type":"boolean"},"passwordModifiedAt":{"type":"string","description":"密码最近修改时间"},"roles":{"type":"array","items":{"type":"string"}},"createdAt":{"type":"string","format":"date-time"}},"required":["id","username"],"title":"User"}}}},"401":{"description":"未授权"},"404":{"description":"未找到"}}}
+>
+  
+</StatusCodes>
+
+
+      
