@@ -29,7 +29,7 @@
     "@docusaurus/theme-search-algolia": "^3.8.0",
     "@easyops-cn/docusaurus-search-local": "^0.52.1",
     "@mdx-js/react": "^3.0.0",
-    "bytedesk-web": "^1.6.5",
+    "bytedesk-web": "^1.6.6",
     "clsx": "^2.0.0",
     "docusaurus-plugin-openapi-docs": "^4.5.1",
     "docusaurus-theme-openapi-docs": "^4.5.1",
