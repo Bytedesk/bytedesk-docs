@@ -34,6 +34,10 @@ sidebar_position: 20
 
 ![llm_zhipu_multi_model_vision](/img/provider/multimodel/llm_zhipu_multi_model_vision.png)
 
+## 预览
+
+![llm_zhipu_multi_model_chat](/img/provider/multimodel/llm_zhipu_multi_model_chat.png)
+
 ## 总结
 
 微语系统的多模态集成能力大大拓展了智能客服的服务边界，使系统能够处理更加丰富的用户输入形式，提供更加全面、精准的服务。通过结合企业知识库，微语系统不仅能够"看懂"和"听懂"用户问题，还能给出专业的解答，真正实现智能化的客户服务体验。
