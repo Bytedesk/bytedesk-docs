@@ -36,7 +36,13 @@ sidebar_position: 20
 
 ## 预览
 
+### 支持图片问答
+
 ![llm_zhipu_multi_model_chat](/img/provider/multimodel/llm_zhipu_multi_model_chat.png)
+
+### 支持显示答案引用来源
+
+![llm_zhipu_source](/img/provider/multimodel/llm_zhipu_source.png)
 
 ## 总结
 
