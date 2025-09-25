@@ -68,6 +68,9 @@ docker compose -p bytedesk -f docker-compose.yaml up -d
 
 # 或使用本地模型
 docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
+
+# 或使用默认不使用ai大模型
+docker compose -p bytedesk -f docker-compose-noai.yaml up -d
 ```
 
 ### 步骤4：下载模型（仅本地模型需要）
