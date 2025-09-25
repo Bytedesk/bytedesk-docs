@@ -52,7 +52,7 @@ cd bytedesk/starter/src/main/resources
 
 # 2. 使用docker-compose启动依赖服务
 docker compose -p bytedesk -f compose.yaml up -d
-# docker compose -p bytedesk -f compose.yaml down
+# docker compose -p bytedesk -f compose.yaml stop
 ```
 
 - 或参考[手动项目依赖](./jar.md#12-安装项目依赖)
@@ -89,7 +89,7 @@ cd bytedesk
 
 ### 3.3 修改配置文件
 
-编辑`starter/src/main/resources/application-dev.properties`文件，配置数据库和Redis连接信息：[请参考应用配置说明](./config.md)。如果不使用ai，可以参考：[application-noai.properties](https://github.com/Bytedesk/bytedesk/blob/main/starter/src/main/resources/application-noai.properties) 配置
+编辑`starter/src/main/resources/application-open.properties`文件，配置数据库和Redis连接信息：[请参考应用配置说明](./config.md)。如果不使用ai，可以参考：[application-noai.properties](https://github.com/Bytedesk/bytedesk/blob/main/starter/src/main/resources/application-noai.properties) 配置
 
 ### 3.4 启动项目
 
