@@ -60,6 +60,7 @@ set BYTEDESK_LICENSE_KEY=your_license_key_here
 - LicenseKey 默认有效期为 30 天，社区版可自行修改有效期，到期后需要重新申请
 - 请妥善保管您的 licenseKey，不要泄露给他人
 - 如需正式版企业版或平台版 licenseKey，请联系客服获取正式授权
+- [申请地址](https://www.weiyuai.cn/admin)
 
 ## 常见问题
 
