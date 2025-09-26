@@ -227,6 +227,58 @@ docker exec -it mysql-bytedesk mysql -u root -p
 docker stats
 ```
 
+## 源地址参考
+
+由于众所周知的原因，镜像可能下载缓慢或者无法下载，建议更换Docker源地址。
+
+### Windows/Mac
+
+可以参考下面的配置
+
+![docker_engine_source](/img/deploy/docker/docker_engine_source.png)
+
+### Linux
+
+编辑或创建 `/etc/docker/daemon.json` 文件，使用下面内容替换，然后重启Docker服务。
+
+```json
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "debug": true,
+  "experimental": true,
+  "insecure-registries": [
+    "121.37.217.138:5000"
+  ],
+  "registry-mirrors": [
+    "https://docker.1ms.run",
+    "https://docker.mybacc.com",
+    "https://dytt.online",
+    "https://lispy.org",
+    "https://docker.xiaogenban1993.com",
+    "https://docker.yomansunter.com",
+    "https://aicarbon.xyz",
+    "https://666860.xyz",
+    "https://docker.zhai.cm",
+    "https://a.ussh.net",
+    "https://hub.littlediary.cn",
+    "https://hub.rat.dev",
+    "https://docker.m.daocloud.io"
+  ]
+}
+```
+
+### 重启Docker服务
+
+```bash
+# 重启Docker服务
+sudo systemctl restart docker
+```
+
 ## 参考链接
 
 - [Docker 官方文档](https://docs.docker.com/)
