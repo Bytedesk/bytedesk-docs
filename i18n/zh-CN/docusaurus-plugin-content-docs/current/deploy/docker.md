@@ -72,17 +72,17 @@ SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
 在bytedesk目录下，执行以下命令启动服务：
 
 ```bash
-# 使用云模型
+# 方式一：使用云模型
 docker compose -p bytedesk -f docker-compose.yaml up -d
 
-# 或使用本地模型
+# 方式二：使用本地模型
 docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
 
-# 或使用默认不使用ai大模型
+# 方式三：默认不使用ai大模型
 docker compose -p bytedesk -f docker-compose-noai.yaml up -d
 ```
 
-### 步骤4：下载模型（仅本地模型需要）
+### 步骤4：下载模型（仅方式二：本地模型需要）
 
 如果使用本地模型，需要下载Ollama模型：
 
