@@ -28,7 +28,9 @@ sidebar_position: 3
 先创建一个目录，用于存放配置文件和数据文件
 
 ```bash
-mkdir -p bytedesk
+# 创建bytedesk目录
+mkdir bytedesk
+# 进入目录
 cd bytedesk
 ```
 
@@ -114,6 +116,14 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 默认账号：admin@email.com
 默认密码：admin
 ```
+
+## 镜像版本
+
+上面docker compose文件中，默认使用的镜像版本是`bytedesk/bytedesk:latest`，如果需要指定其他版本，比如`bytedesk/bytedesk:1.0.0`，可以在docker compose文件中修改。
+
+### 版本号
+
+可以在[Docker Hub](https://hub.docker.com/r/bytedesk/bytedesk)或[Github Release](https://github.com/Bytedesk/bytedesk/releases)查看。
 
 ## 国产信创
 
