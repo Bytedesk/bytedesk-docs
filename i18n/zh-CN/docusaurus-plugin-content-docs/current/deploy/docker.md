@@ -25,20 +25,27 @@ sidebar_position: 3
 
 ### 步骤1：选择部署方式
 
+先创建一个目录，用于存放配置文件和数据文件
+
+```bash
+mkdir -p bytedesk
+cd bytedesk
+```
+
 #### 方式一：使用云模型（推荐新手）
 
-1. 下载 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 文件到本地
+1. 下载 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 文件到本地bytedesk目录
 2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
 3. 修改配置文件中的API Key
 
 #### 方式二：使用本地模型
 
-1. 下载 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件到本地
+1. 下载 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件到本地bytedesk目录
 2. 无需申请API Key，使用本地Ollama模型
 
 #### 方式三：默认不使用ai大模型
 
-1. 下载 [`docker-compose-noai.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-noai.yaml) 文件到本地
+1. 下载 [`docker-compose-noai.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-noai.yaml) 文件到本地bytedesk目录
 
 ### 步骤2：修改配置
 
@@ -61,6 +68,8 @@ SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
 > 💡 **提示**：注意修改镜像默认用户名密码，比如:Mysql/Redis等默认密码。
 
 ### 步骤3：启动服务
+
+在bytedesk目录下，执行以下命令启动服务：
 
 ```bash
 # 使用云模型
