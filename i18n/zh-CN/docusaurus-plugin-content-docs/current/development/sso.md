@@ -652,3 +652,7 @@ networks:
 | `bytedesk.oauth.cas.server-url` | `BYTEDESK_OAUTH_CAS_SERVER_URL` |
 | `bytedesk.oauth.oidc.client-secret` | `BYTEDESK_OAUTH_OIDC_CLIENT_SECRET` |
 | `bytedesk.oauth.openid.username-field` | `BYTEDESK_OAUTH_OPENID_USERNAME_FIELD` |
+
+## 参考链接
+
+- [GitHub OAuth 文档](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps)
