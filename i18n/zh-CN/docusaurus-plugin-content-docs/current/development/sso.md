@@ -102,7 +102,13 @@ services:
 
 1. 访问 [GitHub Developer Settings](https://github.com/settings/applications/new)
 2. 创建新的 OAuth App
-3. 获取 `Client ID` 和 `Client Secret`
+3. 配置回调地址为：`http://服务器IP:端口/admin/auth/login`（需替换为实际服务器IP和端口, 如果是域名可不写端口）
+
+    ![oauth_github_create_app](/img/develop/sso/oauth_github_create_app.png)
+
+4. 获取 `Client ID` 和 `Client Secret`
+
+    ![oauth_github_client_id](/img/develop/sso/oauth_github_client_id.png)
 
 #### GitHub Properties 配置
 
@@ -112,7 +118,7 @@ bytedesk.oauth.github.enabled=true
 bytedesk.oauth.github.client-id=你的GitHub客户端ID
 bytedesk.oauth.github.client-secret=你的GitHub客户端密钥
 # GitHub 完成授权后跳转到前端回调页的地址（可选，若未配置则需要在请求中传入 redirectUri）
-bytedesk.oauth.github.redirect-uri=https://your-domain.com/auth/github/callback
+bytedesk.oauth.github.redirect-uri=http://服务器IP:端口/admin/auth/login
 ```
 
 #### GitHub Docker Compose 配置
