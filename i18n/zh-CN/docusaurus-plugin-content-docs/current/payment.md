@@ -31,7 +31,8 @@ sidebar_position: 11
 | 服务器高级功能源码(后端/Java) | 5万元 |
 | 呼叫中心源码(前后端/React+Java) | 开发中 |
 
-> 注：可以按模块单独购买，技术栈：[java + react](https://www.weiyuai.cn/architecture.html)，前后分离
+- 注：可以按模块单独购买，技术栈：[java + react](https://www.weiyuai.cn/architecture.html)，前后分离
+- 上述价格仅为源码价格，不包含二次定制费用，需要自行部署。
 
 ## 功能对比表
 
