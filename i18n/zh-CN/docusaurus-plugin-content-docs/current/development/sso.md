@@ -15,6 +15,8 @@ Single Sign-On (SSO) 是一种认证方法，允许用户使用单一的登录�
 
 本文档将详细介绍如何配置这些单点登录功能，满足从个人开发者到大型企业的不同认证需求。
 
+![oauth_github_sso](/img/develop/sso/oauth_github_sso.png)
+
 ## 配置概述
 
 微语的单点登录配置分为两个部分：
