@@ -5,9 +5,13 @@ sidebar_position: 1
 
 # 入门手册
 
-## 聊天界面
+## 快捷回复
 
 ![agent preview](/img/manual/agent/agent_preview.png)
+
+## 客服助手
+
+![agent_assistant](/img/manual/agent/agent_assistant.png)
 
 ## 未读消息提示
 

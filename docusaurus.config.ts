@@ -284,6 +284,11 @@ const config: Config = {
           position: "left",
         },
         {
+          href: "https://www.weiyuai.cn/apidocs/",
+          label: "ApiDocs",
+          position: "left",
+        },
+        {
           href: "https://www.weiyuai.cn/javadocs/",
           label: "Javadocs",
           position: "left",
