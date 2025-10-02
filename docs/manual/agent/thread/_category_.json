@@ -1,4 +1,5 @@
 {
+  "key": "manual-agent-thread",
   "label": "会话",
   "position": 2,
   "link": {

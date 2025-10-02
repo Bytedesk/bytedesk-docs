@@ -1,4 +1,5 @@
 {
+  "key": "manual-chat-auth",
   "label": "登录授权",
   "position": 2,
   "link": {
