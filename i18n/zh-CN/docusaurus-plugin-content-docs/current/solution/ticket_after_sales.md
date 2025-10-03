@@ -43,7 +43,7 @@ sidebar_position: 21
 
 生命周期示意图：
 
-<img src="/img/solution/ticket_lifecycle.svg" alt="售后工单生命周期示意" />
+![售后工单生命周期示意](/img/solution/ticket_lifecycle.svg)
 
 ---
 
