@@ -16,7 +16,12 @@ const config: Config = {
   // 启用Mermaid图表支持
   markdown: {
     mermaid: true,
-  },
+    // Moved from deprecated top-level onBrokenMarkdownLinks (present in v3, required in v4)
+    // Cast to any because @docusaurus/types@3.x doesn't include `markdown.hooks` yet.
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  } as any,
   // 主题配置
   themes: ['@docusaurus/theme-mermaid', "docusaurus-theme-openapi-docs"],
 
@@ -36,7 +41,6 @@ const config: Config = {
 
   onBrokenLinks: "warn",
   // onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
