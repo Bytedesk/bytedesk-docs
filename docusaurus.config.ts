@@ -204,7 +204,8 @@ const config: Config = {
   // 添加自定义脚本
   scripts: [
     {
-      src: '/docs/feedback-config.js',
+      // Use baseUrl-relative path so it works in both dev (usually "/") and prod (e.g., "/docs/")
+      src: 'feedback-config.js',
       async: false,
     },
   ],

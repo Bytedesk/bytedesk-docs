@@ -369,11 +369,7 @@ export default function Root({children}) {
             form-action 'self';
           `}
         />
-        {/* 添加X-Frame-Options头以防止点击劫持 */}
-        <meta
-          httpEquiv="X-Frame-Options"
-          content="SAMEORIGIN"
-        />
+        {/* 建议在服务器层设置 X-Frame-Options；此处移除以避免浏览器警告 */}
         {/* 添加X-Content-Type-Options头以防止MIME类型嗅探 */}
         <meta
           httpEquiv="X-Content-Type-Options"
