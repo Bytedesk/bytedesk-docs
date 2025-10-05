@@ -201,14 +201,8 @@ const config: Config = {
   ],
   
 
-  // 添加自定义脚本
-  scripts: [
-    {
-      // Use baseUrl-relative path so it works in both dev (usually "/") and prod (e.g., "/docs/")
-      src: 'feedback-config.js',
-      async: false,
-    },
-  ],
+  // 添加自定义脚本（移除外部脚本，改由 clientModules 动态设置，避免路径/404 导致的 Unexpected token '<'）
+  scripts: [],
 
   // React 配置
   clientModules: [

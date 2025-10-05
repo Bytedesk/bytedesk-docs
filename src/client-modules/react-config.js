@@ -3,6 +3,17 @@ import React from 'react';
 
 // 添加全局错误处理
 if (typeof window !== 'undefined') {
+  // 设置反馈服务全局变量（原 feedback-config.js 迁移到此）
+  try {
+    window.__GITHUB_REPO__ = window.__GITHUB_REPO__ || 'bytedesk/bytedesk';
+    // 可选：按需开启以下配置
+    // window.__FORMSPREE_ID__ = window.__FORMSPREE_ID__ || '';
+    // window.__GITHUB_TOKEN__ = window.__GITHUB_TOKEN__ || '';
+    // window.__FEEDBACK_API__ = window.__FEEDBACK_API__ || '';
+    console.log('反馈服务配置已初始化');
+  } catch (e) {
+    console.warn('初始化反馈服务配置失败:', e);
+  }
   // 捕获未处理的 Promise 错误
   window.addEventListener('unhandledrejection', (event) => {
     console.error('Unhandled promise rejection:', event.reason);
