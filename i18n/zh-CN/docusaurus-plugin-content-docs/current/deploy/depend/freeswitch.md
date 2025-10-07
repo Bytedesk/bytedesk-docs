@@ -9,6 +9,9 @@ sidebar_position: 15
 
 - 操作系统：Ubuntu 22.04 LTS
 - 服务器推荐配置：2核4G内存
+- [微语Freeswitch Docker镜像Github](https://github.com/Bytedesk/bytedesk-freeswitch)
+- 拉取海外Freeswitch Docker镜像: docker pull bytedesk/freeswitch:latest
+- 拉取国内Freeswitch Docker镜像: docker pull registry.cn-hangzhou.aliyuncs.com/bytedesk/freeswitch:latest
 :::
 
 :::info 第三方组件说明
