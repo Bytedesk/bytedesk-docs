@@ -22,12 +22,116 @@ sidebar_position: 15
 
 FreeSwitch 是一个开源的通信软件平台，用于搭建微语呼叫中心模块，如果不需要呼叫中心，可不安装。本文档将指导您完成 FreeSwitch 1.10.12 版本的安装过程。
 
-## 环境准备
+## 安装方式选择
+
+FreeSwitch 提供两种安装方式：
+
+1. **Docker 方式（推荐）** - 快速部署，易于管理，支持多架构（amd64/arm64）
+2. **源码编译方式** - 适合需要深度定制的场景
+
+## 方式一：Docker Compose 安装（推荐）
+
+### 1.1 Docker 镜像信息
+
+- **Docker Hub**: `bytedesk/freeswitch:latest`
+- **阿里云镜像**: `registry.cn-hangzhou.aliyuncs.com/bytedesk/freeswitch:latest`
+- **GitHub 仓库**: [https://github.com/Bytedesk/bytedesk-freeswitch](https://github.com/Bytedesk/bytedesk-freeswitch)
+- **支持架构**: amd64, arm64
+
+### 1.2 创建 Docker Compose 配置
+
+在 `docker-compose.yml` 文件添加：
+
+```yaml
+services:
+  bytedesk-freeswitch:
+    # 海外镜像
+    # image: bytedesk/freeswitch:latest
+    # 国内镜像（推荐）
+    image: registry.cn-hangzhou.aliyuncs.com/bytedesk/freeswitch:latest
+    container_name: freeswitch-bytedesk
+    restart: always
+    # 使用 -nf (no fork) 参数在前台运行，避免容器退出
+    command: ["freeswitch", "-nf", "-nonat", "-nonatmap"]
+    environment:
+      # 时区设置
+      - TZ=Asia/Shanghai
+      # ESL 密码（必须修改！）
+      - FREESWITCH_ESL_PASSWORD=bytedesk123
+      # SIP 用户默认密码（必须修改！）
+      - FREESWITCH_DEFAULT_PASSWORD=123456
+      # SIP 域名或 IP 地址（生产环境建议设置）
+      # - FREESWITCH_DOMAIN=sip.company.com
+      # NAT 穿透外部 IP（公网 IP，生产环境必须设置）
+      # - FREESWITCH_EXTERNAL_IP=203.0.113.10
+      # 完全禁用 IPv6
+      - DISABLE_IPV6=true
+      
+      # 数据库配置（可选，需要数据库集成时启用并取消注释 MySQL 服务）
+      # - FREESWITCH_DB_HOST=bytedesk-mysql
+      # - FREESWITCH_DB_NAME=bytedesk
+      # - FREESWITCH_DB_USER=root
+      # - FREESWITCH_DB_PASSWORD=r8FqfdbWUaN3
+      # - FREESWITCH_DB_PORT=3306
+      # - FREESWITCH_DB_CHARSET=utf8mb4
+      # - FREESWITCH_DB_SCHEME=mariadb
+      # - FREESWITCH_DB_ODBC_DIALECT=mysql
+    # depends_on:
+    #   - bytedesk-mysql  # 启用数据库时取消注释
+    ports:
+      # SIP 端口
+      - "5060:5060/tcp"
+      - "5060:5060/udp"
+      - "5080:5080/tcp"
+      - "5080:5080/udp"
+      - "5061:5061/tcp"  # SIP TLS
+      - "5081:5081/tcp"  # SIP TLS
+      # WebRTC 端口
+      - "5066:5066/tcp"  # WebSocket 信令
+      - "7443:7443/tcp"  # WebRTC WSS
+      # ESL 管理端口
+      - "8021:8021/tcp"
+      # RTP 媒体端口范围（生产环境建议使用完整范围 16384-32768）
+      - "16384-32768:16384-32768/udp"
+    volumes:
+      # 自定义配置文件（可选，如需自定义配置时取消注释）
+      # 注意：必须挂载到 /usr/local/freeswitch/etc/freeswitch 路径
+      # - ./freeswitch-conf:/usr/local/freeswitch/etc/freeswitch
+      
+      # 日志目录
+      - freeswitch_logs:/usr/local/freeswitch/log
+      # 数据持久化目录
+      - freeswitch_data:/usr/local/freeswitch/db
+      # 录音目录
+      - freeswitch_recordings:/usr/local/freeswitch/recordings
+    networks:
+      - bytedesk-network
+    healthcheck:
+      test: ["CMD", "fs_cli", "-p", "MyStr0ng#ESL!Pass2024", "-x", "status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  # mysql_data:  # 启用数据库时取消注释
+  freeswitch_logs:
+  freeswitch_data:
+  freeswitch_recordings:
+
+networks:
+  bytedesk-network:
+    driver: bridge
+```
+
+## 方式二：源码编译安装
+
+### 环境准备
 
 - 本安装指南适用于 Linux 系统（如 Ubuntu/Debian）
 - 所有命令均需在 root 用户权限下执行，无需每次添加 sudo
 
-## 步骤一：安装必要的工具和依赖
+### 2.1 安装必要的工具和依赖
 
 ```bash
 # 安装所有必要的开发工具和依赖包
@@ -37,11 +141,11 @@ apt -y install unixodbc-dev mysql-connector-odbc git build-essential automake au
   pkg-config uuid-dev* yasm libks* cmake libtiff* libpq-dev
 ```
 
-## 步骤二：编译安装依赖库
+### 2.2 编译安装依赖库
 
 以下几个组件需要从源码构建。如果 `git clone` 下载困难，可以从对应 GitHub 页面下载 zip 包后解压使用。
 
-### 1. 安装 libks
+#### 1. 安装 libks
 
 ```bash
 git clone https://github.com/signalwire/libks.git
@@ -51,7 +155,7 @@ make && make install
 cd ..
 ```
 
-### 2. 安装 signalwire-c
+#### 2. 安装 signalwire-c
 
 ```bash
 git clone https://github.com/signalwire/signalwire-c
@@ -61,7 +165,7 @@ make && make install
 cd ..
 ```
 
-### 3. 安装 sofia-sip
+#### 3. 安装 sofia-sip
 
 ```bash
 git clone https://github.com/freeswitch/sofia-sip.git
@@ -73,7 +177,7 @@ ldconfig
 cd ..
 ```
 
-### 4. 安装 spandsp
+#### 4. 安装 spandsp
 
 > **注意**：必须使用特定版本，最新主分支代码可能导致问题
 
@@ -87,7 +191,7 @@ make && make install
 cd ..
 ```
 
-### 5. 安装 Lua 5.3.0
+#### 5. 安装 Lua 5.3.0
 
 ```bash
 curl -R -O http://www.lua.org/ftp/lua-5.3.0.tar.gz
@@ -98,7 +202,7 @@ make install
 cd ..
 ```
 
-### 6. 安装 libav
+#### 6. 安装 libav
 
 ```bash
 git clone -b release/12 https://github.com/libav/libav.git
@@ -109,7 +213,7 @@ make && make install
 cd ..
 ```
 
-### 7. 安装 libuuid
+#### 7. 安装 libuuid
 
 ```bash
 wget https://jaist.dl.sourceforge.net/project/libuuid/libuuid-1.0.3.tar.gz
@@ -120,7 +224,7 @@ make && make install
 cd ..
 ```
 
-## 步骤三：安装 FreeSwitch
+### 2.3 安装 FreeSwitch
 
 > **重要提示**：请勿在 `/usr/local` 目录下编译 FreeSwitch 源码，建议选择其他目录进行编译构建，否则安装阶段可能会遇到问题。
 
@@ -237,7 +341,7 @@ make[2]: Leaving directory '/root/freeswitch/tests/unit'
 make[1]: Leaving directory '/root/freeswitch'
 ```
 
-## 步骤四：配置 FreeSwitch
+### 2.4 配置 FreeSwitch
 
 成功安装后，FreeSwitch 将准备就绪。
 
@@ -273,13 +377,13 @@ shutdown                        # 关闭FreeSWITCH
 /exit                           # 退出CLI         
 ```
 
-## 步骤五：对外开放端口号
+## 步骤三：对外开放端口号
 
 FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据您的实际使用情况配置防火墙规则和云服务器安全组，开放相应端口。
 
-### 5.1 端口分类
+### 3.1 端口分类
 
-#### 🔒 必需开放端口（核心功能）
+#### 必需开放端口（核心功能）
 
 ##### SIP 信令端口
 
@@ -309,7 +413,7 @@ FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据
 | -------- | -------- | -------- | -------- | ---- |
 | **16384-32768** | UDP | RTP | `vars.xml` | RTP 媒体流端口范围，用于音频和视频数据传输 |
 
-#### 🔧 可选开放端口
+#### 可选开放端口
 
 ##### STUN 服务端口
 
@@ -326,7 +430,7 @@ FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据
 | 8081 | TCP | HTTP | FreeSWITCH默认 | 内部 HTTP 服务 |
 | 8082 | TCP | HTTP | FreeSWITCH默认 | 内部 HTTP 服务 |
 
-### 5.2 云服务器安全组配置
+### 3.2 云服务器安全组配置
 
 如果您使用的是云服务器（如阿里云 ECS、腾讯云 CVM、AWS EC2 等），除了系统防火墙外，还需要在云控制台配置安全组规则：
 
@@ -356,9 +460,9 @@ FreeSwitch 运行需要开放多个端口以支持各种通信协议。请根据
 > 6. **生产环境配置**：生产环境中应只开放必要的端口，并定期审查安全组规则
 > 7. **配置文件关联**：端口配置分散在多个配置文件中，修改时需要注意文件对应关系
 
-## 步骤六：通话测试
+## 步骤四：通话测试
 
-### 1. SIP 客户端配置
+### 4.1 SIP 客户端配置
 
 - [LinPhone 下载](https://www.linphone.org/en/download/)
 
@@ -376,7 +480,7 @@ Domain: 自己服务器ip地址
 # UDP
 ```
 
-### 2. 默认测试号码
+### 4.2 默认测试号码
 
 FreeSWITCH 默认 Dialplan 中配置的测试号码如下：
 
@@ -410,7 +514,7 @@ FreeSWITCH 默认 Dialplan 中配置的测试号码如下：
 | 1000～1019 | 默认分机号 |
 | 2000～2002 | 呼叫组 |
 
-### 3. 测试建议
+### 4.3 测试建议
 
 1. **基础连通性测试**：首先拨打 `9196`（无延迟回音测试）验证基本通话功能
 2. **音质测试**：使用 `9195`（延迟回音测试）检查音频质量和延迟
@@ -418,11 +522,11 @@ FreeSWITCH 默认 Dialplan 中配置的测试号码如下：
 4. **会议功能测试**：使用会议号码（如 `3000`）测试多方通话
 5. **分机互拨**：使用两个不同的分机号（如 `1000` 和 `1001`）测试分机间通话
 
-## 步骤七：配置微语对接
+## 步骤五：配置微语对接
 
-### 1. 修改 FreeSwitch 配置
+### 5.1 修改 FreeSwitch 配置
 
-#### 1.1 修改 Event Socket 配置
+#### 修改 Event Socket 配置
 
 编辑 Event Socket 配置文件以允许微语系统连接：
 
@@ -447,7 +551,7 @@ vim /usr/local/freeswitch/conf/autoload_configs/event_socket.conf.xml
 </configuration>
 ```
 
-#### 1.2 配置访问控制列表 (ACL)
+#### 配置访问控制列表 (ACL)
 
 编辑 ACL 配置文件：
 
@@ -487,7 +591,7 @@ vim /usr/local/freeswitch/conf/autoload_configs/acl.conf.xml
 </configuration>
 ```
 
-#### 1.3 重启 FreeSwitch 服务
+#### 重启 FreeSwitch 服务
 
 ```bash
 # 停止 FreeSwitch
@@ -502,7 +606,7 @@ reloadxml
 /exit
 ```
 
-### 2. 微语系统配置
+### 5.2 微语系统配置
 
 在微语系统的配置文件中添加以下 FreeSwitch 相关配置：
 
@@ -552,9 +656,9 @@ environment:
 > - 环境变量中的值都需要用引号包围，特别是布尔值和数字
 > - 确保 FreeSwitch 服务器地址在 Docker 网络中是可访问的
 
-### 3. 验证连接
+### 5.3 验证连接
 
-#### 3.1 检查 FreeSwitch 状态
+#### 检查 FreeSwitch 状态
 
 ```bash
 # 连接到 FreeSwitch CLI
@@ -566,7 +670,7 @@ show channels
 show calls
 ```
 
-#### 3.2 测试 ESL 连接
+#### 测试 ESL 连接
 
 可以使用以下命令测试 ESL 连接是否正常：
 
@@ -578,7 +682,7 @@ telnet 127.0.0.1 8021
 # Content-Type: auth/request
 ```
 
-### 4. 安全建议
+### 5.4 安全建议
 
 > **重要安全提示**：
 
@@ -587,7 +691,7 @@ telnet 127.0.0.1 8021
 3. **防火墙配置**：确保防火墙只开放必要的端口
 4. **定期监控**：定期检查 FreeSwitch 日志文件，监控异常连接
 
-### 5.4 配置文件位置
+### 5.5 配置文件位置
 
 | 配置文件 | 路径 | 说明 |
 |----------|------|------|
@@ -596,21 +700,11 @@ telnet 127.0.0.1 8021
 | 外部SIP配置 | `/usr/local/freeswitch/conf/sip_profiles/external.xml` | 外部SIP配置文件 |
 | ESL配置 | `/usr/local/freeswitch/conf/autoload_configs/event_socket.conf.xml` | ESL事件套接字配置 |
 
-### 5.6 安全建议
-
-> **重要安全提示**：
-
-1. **限制 ESL 端口访问**：ESL 端口 8021 具有高权限，建议只允许特定 IP 访问
-2. **使用 TLS 加密**：生产环境建议启用 SIP TLS（5061/5081 端口）
-3. **定期审查规则**：定期检查安全组和防火墙规则，移除不必要的开放端口
-4. **使用非标准端口**：考虑修改默认端口以减少恶意扫描
-5. **监控连接日志**：定期检查访问日志，发现异常连接及时处理
-6. **最小权限原则**：只开放必要的端口和 IP 范围
-7. **网络分段**：将 FreeSWITCH 放在 DMZ 区域，内外网分离
-
 完成以上配置后，微语系统就可以与 FreeSwitch 正常通信，实现呼叫中心功能。
 
-## Mac 安装 Freeswitch
+## 附录：其他安装方式
+
+### Mac 安装 Freeswitch
 
 ```bash
 brew install freeswitch
