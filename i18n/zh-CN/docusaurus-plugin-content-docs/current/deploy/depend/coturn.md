@@ -36,6 +36,17 @@ Coturn 是一个开源的 STUN/TURN 服务器，用于处理 WebRTC 通信中的
 - **网络**：公网 IP 地址
 - **端口**：3478（默认）+ RTP 端口范围
 
+### 官方测试地址与参考配置
+
+:::tip 官方资源
+- 在线测试地址（微语官方提供）：[https://coturn.weiyuai.cn/](https://coturn.weiyuai.cn/)
+- 参考配置文件与部署示例：[https://github.com/Bytedesk/bytedesk/tree/main/deploy/coturn](https://github.com/Bytedesk/bytedesk/tree/main/deploy/coturn)
+:::
+
+> 你可以直接使用上述测试地址在 WebRTC Trickle ICE 页面中验证连通性，也可以克隆参考仓库中的 `turnserver.conf` 示例进行快速部署与自定义。
+
+---
+
 ## 安装
 
 ### 快速安装
