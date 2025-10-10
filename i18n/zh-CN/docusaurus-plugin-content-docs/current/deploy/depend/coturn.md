@@ -292,6 +292,70 @@ sudo turnserver -c /etc/turnserver.conf --check-config
 
 ## 测试验证
 
+### 配置示例
+
+在您的 WebRTC 应用中配置 TURN/STUN 服务器：
+
+```javascript
+// 完整配置示例（包含多个备选服务器）
+const config = {
+  iceServers: [
+    // 自建 STUN/TURN 服务器
+    {
+      urls: "stun:14.103.165.199:3478"
+    },
+    {
+      urls: "turn:14.103.165.199:3478",
+      username: "username1",
+      credential: "password1"
+    },
+    // 微语官方 STUN/TURN 服务器
+    {
+      urls: "stun:coturn.weiyuai.cn:3478"
+    },
+    {
+      urls: "turn:coturn.weiyuai.cn:3478",
+      username: "username1",
+      credential: "password1"
+    },
+    // Google 公共 STUN 服务器
+    {
+      urls: "stun:stun.l.google.com:19302"
+    },
+    {
+      urls: "stun:stun1.l.google.com:19302"
+    },
+    {
+      urls: "stun:stun2.l.google.com:19302"
+    },
+    {
+      urls: "stun:stun3.l.google.com:19302"
+    },
+    {
+      urls: "stun:stun4.l.google.com:19302"
+    }
+  ],
+  // 可选：ICE 传输策略
+  iceTransportPolicy: "all", // "all" 或 "relay"
+  // 可选：RTCP 复用策略
+  rtcpMuxPolicy: "require"
+};
+
+const pc = new RTCPeerConnection(config);
+```
+
+#### 使用场景说明
+
+- **STUN 服务器**：用于发现客户端的公网 IP 和端口，适用于大多数网络环境
+- **TURN 服务器**：在无法直接建立 P2P 连接时提供中继服务，需要认证
+- **多服务器配置**：提供备选方案，提高连接成功率
+
+:::tip 服务器选择建议
+1. **优先使用 STUN**：Google 的公共 STUN 服务器免费且稳定
+2. **配置 TURN 备用**：在企业网络或严格的 NAT 环境下，TURN 服务器是必需的
+3. **部署私有服务器**：对于生产环境，建议部署自己的 TURN 服务器以确保服务质量和数据安全
+:::
+
 ### 在线测试工具
 
 使用官方测试页面验证 STUN/TURN 服务：

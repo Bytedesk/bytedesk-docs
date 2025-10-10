@@ -134,11 +134,36 @@ networks:
 ### 2.1 安装必要的工具和依赖
 
 ```bash
+# 更新系统包
+apt update && apt upgrade -y
+
 # 安装所有必要的开发工具和依赖包
-apt -y install unixodbc-dev mysql-connector-odbc git build-essential automake autoconf libtool libtool-bin python \
-  zlib1g-dev libjpeg-dev libncurses5-dev libssl-dev libpcre3-dev libspeexdsp-dev \
-  libspeex-dev libcurl4-openssl-dev libopus-dev libsqlite3-dev libldns-dev libedit-dev \
-  pkg-config uuid-dev* yasm libks* cmake libtiff* libpq-dev
+apt -y install \
+  # 基础编译工具
+  git build-essential automake autoconf libtool libtool-bin cmake pkg-config \
+  # Python 开发环境
+  python3 python3-dev python3-distutils \
+  # 编解码和媒体处理库
+  zlib1g-dev libjpeg-dev libncurses5-dev libssl-dev libpcre3-dev \
+  libspeexdsp-dev libspeex-dev libopus-dev libsndfile1-dev \
+  yasm libvpx-dev libx264-dev libavcodec-dev libavformat-dev libavutil-dev libswscale-dev \
+  # 网络和协议库
+  libcurl4-openssl-dev libldns-dev libedit-dev \
+  # 数据库支持
+  unixodbc-dev odbc-mariadb libmariadb-dev libmariadb-dev-compat \
+  libsqlite3-dev libpq-dev \
+  # 加密和安全库
+  libssl-dev libcrypto++-dev libgnutls28-dev \
+  # Redis 客户端库
+  libhiredis-dev redis-tools \
+  # Java 开发环境（如需 mod_java）
+  default-jdk default-jre \
+  # Lua 开发库
+  liblua5.3-dev lua5.3 \
+  # 其他依赖
+  uuid-dev libtiff-dev ca-certificates curl wget
+
+# 注意：如果某些包找不到，可以去掉版本号或调整包名
 ```
 
 ### 2.2 编译安装依赖库
@@ -224,28 +249,184 @@ make && make install
 cd ..
 ```
 
-### 2.3 安装 FreeSwitch
+### 2.3 编译选项说明
+
+在编译 FreeSWITCH 前，可以通过修改 `build/modules.conf.in` 文件来启用或禁用特定模块。以下是推荐启用的模块及其功能说明：
+
+#### 数据库模块
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| `databases/mod_mariadb` | MariaDB/MySQL 支持 | 用于将配置、用户、CDR 等数据存储到数据库 |
+
+#### 事件处理模块
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| `event_handlers/mod_odbc_cdr` | ODBC CDR 记录 | 通过 ODBC 将呼叫详单记录到数据库 |
+| `event_handlers/mod_json_cdr` | JSON CDR | 以 JSON 格式输出呼叫详单，便于集成 |
+| `event_handlers/mod_fail2ban` | 安全防护 | 集成 Fail2ban，防止恶意攻击 |
+
+#### XML 接口模块
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| `xml_int/mod_xml_curl` | 动态 XML 配置 | 从 HTTP 接口动态获取配置（用户、拨号计划等） |
+
+#### 语音报号模块
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| `say/mod_say_zh` | 中文语音报号 | 支持中文数字、时间、日期的语音播报 |
+
+#### 呼叫中心核心模块
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| `applications/mod_callcenter` | 呼叫中心队列 | 核心队列管理、坐席管理、IVR 路由 |
+| `applications/mod_blacklist` | 黑名单 | 阻止特定号码的呼入 |
+| `applications/mod_curl` | HTTP 请求 | 在拨号计划中发起 HTTP 请求 |
+| `applications/mod_hiredis` | Redis 客户端 | 连接 Redis 进行数据缓存和共享 |
+| `applications/mod_redis` | Redis 限速 | 基于 Redis 的速率限制 |
+| `applications/mod_distributor` | 呼叫分配器 | 按权重或轮询分配呼叫 |
+| `applications/mod_lcr` | 最低费用路由 | 根据费率选择最优外呼路由 |
+| `applications/mod_cidlookup` | 来电显示查询 | 查询来电号码归属地或姓名 |
+| `applications/mod_nibblebill` | 计费模块 | 实时计费和余额扣减 |
+| `applications/mod_easyroute` | 简单路由 | 基于数据库的简单路由规则 |
+| `applications/mod_spy` | 通话监听 | 监听、耳语、强插通话 |
+
+#### 高级功能模块
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| `applications/mod_avmd` | 应答机检测 | 检测是否为答录机应答（AMD） |
+| `applications/mod_directory` | 电话簿/目录 | 语音拨号目录查询 |
+| `applications/mod_voicemail_ivr` | 语音信箱 IVR | 增强的语音信箱交互界面 |
+
+#### 语言扩展模块（可选）
+
+| 模块 | 功能 | 说明 |
+|------|------|------|
+| `languages/mod_java` | Java 支持 | 使用 Java 编写扩展脚本（需要 JDK） |
+| `languages/mod_python3` | Python3 支持 | 使用 Python3 编写扩展脚本（需要 Python.h） |
+
+#### 已禁用的模块
+
+| 模块 | 原因 |
+|------|------|
+| `endpoints/mod_verto` | 已废弃，WebRTC 改用 SIP.js + mod_sofia (WS/WSS) 实现 |
+| `applications/mod_signalwire` | 仅在需要 SignalWire 云服务集成时启用 |
+
+> **提示**：
+>
+> - 启用更多模块会增加编译时间和内存占用
+> - 生产环境建议只启用必需的模块
+> - 部分模块需要额外的系统依赖才能编译成功
+
+### 2.4 编译安装 FreeSwitch
 
 > **重要提示**：请勿在 `/usr/local` 目录下编译 FreeSwitch 源码，建议选择其他目录进行编译构建，否则安装阶段可能会遇到问题。
 
 ```bash
 git clone -b v1.10.12 https://github.com/signalwire/freeswitch.git
 cd freeswitch
+
+# 在 bootstrap 前配置需要编译的模块
+# 编辑 build/modules.conf.in 启用或禁用模块
+
+# 1. 彻底禁用 mod_verto（已废弃，改用 SIP.js + mod_sofia 实现 WebRTC）
+sed -i '/mod_verto/s/^[^#]/# &/' build/modules.conf.in
+
+# 2. 禁用 mod_signalwire（除非需要 SignalWire 云服务集成）
+sed -i '/mod_signalwire/s/^[^#]/# &/' build/modules.conf.in
+
+# 3. 启用数据库模块
+# 启用 MariaDB/MySQL 支持
+sed -i 's/^#\(databases\/mod_mariadb\)/\1/' build/modules.conf.in
+
+# 4. 启用事件处理模块
+# ODBC CDR 记录（呼叫详单记录到数据库）
+sed -i 's/^#\(event_handlers\/mod_odbc_cdr\)/\1/' build/modules.conf.in
+# JSON CDR（JSON 格式的呼叫详单）
+sed -i 's/^#\(event_handlers\/mod_json_cdr\)/\1/' build/modules.conf.in
+# Fail2ban 集成（安全防护）
+sed -i 's/^#\(event_handlers\/mod_fail2ban\)/\1/' build/modules.conf.in
+
+# 5. 启用 XML 接口模块
+# XML Curl（用于动态 XML 配置，从 HTTP 接口获取配置）
+sed -i 's/^#\(xml_int\/mod_xml_curl\)/\1/' build/modules.conf.in
+
+# 6. 启用中文语音报号模块
+sed -i 's/^#\(say\/mod_say_zh\)/\1/' build/modules.conf.in
+
+# 7. 启用呼叫中心核心模块
+# 呼叫中心队列
+sed -i 's/^#\(applications\/mod_callcenter\)/\1/' build/modules.conf.in
+# 黑名单
+sed -i 's/^#\(applications\/mod_blacklist\)/\1/' build/modules.conf.in
+# HTTP 请求
+sed -i 's/^#\(applications\/mod_curl\)/\1/' build/modules.conf.in
+# Redis 客户端
+sed -i 's/^#\(applications\/mod_hiredis\)/\1/' build/modules.conf.in
+sed -i 's/^#\(applications\/mod_redis\)/\1/' build/modules.conf.in
+# 呼叫分配器
+sed -i 's/^#\(applications\/mod_distributor\)/\1/' build/modules.conf.in
+# 最低费用路由（Least Cost Routing）
+sed -i 's/^#\(applications\/mod_lcr\)/\1/' build/modules.conf.in
+# 来电显示查询
+sed -i 's/^#\(applications\/mod_cidlookup\)/\1/' build/modules.conf.in
+# 计费模块
+sed -i 's/^#\(applications\/mod_nibblebill\)/\1/' build/modules.conf.in
+# 简单路由
+sed -i 's/^#\(applications\/mod_easyroute\)/\1/' build/modules.conf.in
+# 通话监听
+sed -i 's/^#\(applications\/mod_spy\)/\1/' build/modules.conf.in
+
+# 8. 启用高级呼叫中心功能模块
+# 应答机检测（Answer Machine Detection）
+sed -i 's/^#\(applications\/mod_avmd\)/\1/' build/modules.conf.in
+# 电话簿/目录
+sed -i 's/^#\(applications\/mod_directory\)/\1/' build/modules.conf.in
+# 语音信箱 IVR
+sed -i 's/^#\(applications\/mod_voicemail_ivr\)/\1/' build/modules.conf.in
+
+# 9. 启用语言支持模块（可选）
+# Java 支持（需要 JDK）
+sed -i 's/^#\(languages\/mod_java\)/\1/' build/modules.conf.in
+# Python3 支持（注意：需要确保 Python.h 可用，否则注释掉）
+# sed -i 's/^#\(languages\/mod_python3\)/\1/' build/modules.conf.in
+
+# 执行 bootstrap
 ./bootstrap.sh
-# ./configure
-./configure --enable-core-odbc-support --enable-core-pgsql-support 
+
+# 配置编译选项（启用 ODBC 和 PostgreSQL 支持）
+./configure --prefix=/usr/local/freeswitch \
+            --enable-core-odbc-support \
+            --enable-core-pgsql-support
 
 # 修改 Makefile 禁用编译警告
 # 编辑文件 src/mod/applications/mod_av/Makefile，找到并删除所有的 -Werror 参数
-SWITCH_AM_CFLAGS = -I/usr/local/include/uuid -I/usr/local/include/uuid  -I/root/freeswitch/src/include -I/root/freeswitch/src/include -I/root/freeswitch/libs/libteletone/src -fPIC -ffast-math -Werror -Wno-unused-result -Wno-misleading-indentation -fvisibility=hidden -DSWITCH_API_VISIBILITY=1 -DCJSON_API_VISIBILITY=1 -DHAVE_VISIBILITY=1 -g -ggdb -DHAVE_OPENSSL
+# 原始内容：
+# SWITCH_AM_CFLAGS = ... -Werror -Wno-unused-result ...
+# 修改后内容（删除 -Werror）：
+# SWITCH_AM_CFLAGS = ... -Wno-unused-result ...
+sed -i 's/-Werror //g' src/mod/applications/mod_av/Makefile
 
-# 去掉 -Werror 参数之后为：
-SWITCH_AM_CFLAGS = -I/usr/local/include/uuid -I/usr/local/include/uuid  -I/root/freeswitch/src/include -I/root/freeswitch/src/include -I/root/freeswitch/libs/libteletone/src -fPIC -ffast-math -Wno-unused-result -Wno-misleading-indentation -fvisibility=hidden -DSWITCH_API_VISIBILITY=1 -DCJSON_API_VISIBILITY=1 -DHAVE_VISIBILITY=1 -g -ggdb -DHAVE_OPENSSL
+# 开始编译安装（使用多核加速）
+make -j"$(nproc)" && make install
 
-# 开始安装
-make && make install
+# 单独编译安装 mod_mariadb（如果上面未自动安装）
+make mod_mariadb && make mod_mariadb-install
 
-make mod_mariadb
+# 安装音频文件（可选，根据需要选择）
+# 基础 8kHz 音频包（推荐，体积小）
+make sounds-install && make moh-install
+
+# 或者安装高清 16kHz 音频包
+# make hd-sounds-install && make hd-moh-install
+
+# 或者安装超高清 32kHz/48kHz 音频包
+# make uhd-sounds-install && make uhd-moh-install
 
 # 安装完成，安装目录为 /usr/local/freeswitch 
 
@@ -341,7 +522,67 @@ make[2]: Leaving directory '/root/freeswitch/tests/unit'
 make[1]: Leaving directory '/root/freeswitch'
 ```
 
-### 2.4 配置 FreeSwitch
+### 2.5 启用已编译的模块
+
+安装完成后，需要在配置文件中启用相关模块。编辑 `/usr/local/freeswitch/conf/autoload_configs/modules.conf.xml`：
+
+```bash
+vim /usr/local/freeswitch/conf/autoload_configs/modules.conf.xml
+```
+
+确保以下模块被加载（取消注释或添加）：
+
+```xml
+<configuration name="modules.conf" description="Modules">
+  <modules>
+    <!-- 数据库模块 -->
+    <load module="mod_mariadb"/>
+    
+    <!-- 事件处理模块 -->
+    <load module="mod_odbc_cdr"/>
+    <load module="mod_json_cdr"/>
+    <load module="mod_fail2ban"/>
+    
+    <!-- XML 接口 -->
+    <load module="mod_xml_curl"/>
+    
+    <!-- 中文支持 -->
+    <load module="mod_say_zh"/>
+    
+    <!-- 呼叫中心模块 -->
+    <load module="mod_callcenter"/>
+    <load module="mod_blacklist"/>
+    <load module="mod_curl"/>
+    <load module="mod_hiredis"/>
+    <load module="mod_redis"/>
+    <load module="mod_distributor"/>
+    <load module="mod_lcr"/>
+    <load module="mod_cidlookup"/>
+    <load module="mod_nibblebill"/>
+    <load module="mod_easyroute"/>
+    <load module="mod_spy"/>
+    
+    <!-- 高级功能 -->
+    <load module="mod_avmd"/>
+    <load module="mod_directory"/>
+    <load module="mod_voicemail_ivr"/>
+    
+    <!-- 语言扩展（可选） -->
+    <!-- <load module="mod_java"/> -->
+    <!-- <load module="mod_python3"/> -->
+    
+    <!-- 保留其他已有的核心模块... -->
+  </modules>
+</configuration>
+```
+
+> **注意**：
+>
+> - 只加载实际编译成功的模块
+> - 如果某个模块加载失败，FreeSWITCH 会在日志中报错但仍会继续启动
+> - 可以通过 `fs_cli` 中的 `show modules` 命令查看已加载的模块
+
+### 2.6 配置 FreeSwitch
 
 成功安装后，FreeSwitch 将准备就绪。
 
