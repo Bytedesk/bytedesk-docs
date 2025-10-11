@@ -18,6 +18,12 @@ sidebar_position: 15
 以下说明仅供参考，具体配置和使用方法请参考 [FreeSwitch 官方文档](https://freeswitch.org/confluence/display/FREESWITCH/FreeSWITCH+Explained)。
 :::
 
+### 官方测试地址
+
+:::tip 官方资源
+- 在线测试地址（微语官方提供）：[https://sip.weiyuai.cn/](https://sip.weiyuai.cn/)
+:::
+
 ## 简介
 
 FreeSwitch 是一个开源的通信软件平台，用于搭建微语呼叫中心模块，如果不需要呼叫中心，可不安装。本文档将指导您完成 FreeSwitch 1.10.12 版本的安装过程。
