@@ -1,9 +1,9 @@
 ---
-sidebar_label: 智能外呼解决方案
+sidebar_label: AI智能外呼解决方案
 sidebar_position: 17
 ---
 
-# 智能外呼解决方案
+# AI智能外呼解决方案
 
 ![智能外呼解决方案](/img/solution/call_banner.svg)
 
