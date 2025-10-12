@@ -5,6 +5,8 @@ sidebar_position: 16
 
 # Kamailio
 
+> 相关：如你偏好另一款同类边界代理，请参阅《[OpenSIPS](/docs/deploy/depend/opensips)》。两者能力高度相近，脚本与模块命名略有差异，选型可基于团队经验与生态偏好。
+
 :::tip 系统要求
 
 - 操作系统：Ubuntu 22.04 LTS（或任意主流 Linux）
@@ -42,6 +44,24 @@ Kamailio 是高性能的开源 SIP 服务器，常用于：
 	- 面向公网、大并发、需要多集群调度与抗攻击：在 FreeSWITCH 前增加 Kamailio。
 
 > 结论：两者是互补关系。Kamailio 处理“信令与路由”，FreeSWITCH 处理“媒体与业务”。
+
+## 与 OpenSIPS 的对比与选择
+
+Kamailio 与 OpenSIPS 都是成熟的 SIP 代理/注册/路由服务器，二者历史上同源，能力与性能均属业界一线。选型建议如下：
+
+- 能力与定位：均不承载媒体（RTP），常与 FreeSWITCH/RTPEngine 搭配；均具备 usrloc/registrar、dispatcher、权限控制、NAT 辅助、限速与防刷等能力。
+- 配置与脚本：两者脚本语法风格不同但思路一致；常见路由/事务/对话处理模式都能覆盖。
+- 运维工具：
+	- Kamailio：kamcmd/kamctl 使用广泛。
+	- OpenSIPS：opensips-cli/opensipsctl 体验也很成熟。
+- 性能与扩展：均支持极高并发与横向扩展，性能差异主要取决于场景与脚本实现。
+- 生态与团队经验：已有模板与脚本复用价值很大；社区熟悉度、文档偏好与周边工具链往往决定选择。
+
+简要结论：
+
+- 团队更熟悉谁就选谁；已有脚本/模块的复用优先。
+- 公网/多节点/高并发推荐前置 Kamailio 或 OpenSIPS，后端 FreeSWITCH 专注媒体与业务。
+- 若需要 OpenSIPS 版本的示例或运维方式，可参考《[OpenSIPS](/docs/deploy/depend/opensips)》。
 
 ## 安装方式选择
 
