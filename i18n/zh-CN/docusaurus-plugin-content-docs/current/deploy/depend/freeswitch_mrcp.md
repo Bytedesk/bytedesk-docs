@@ -14,3 +14,7 @@ sidebar_position: 7
 ### 百度云MRCP
 
 ### 腾讯云MRCP
+
+## 参考
+
+- [mod_unimrcp](https://github.com/freeswitch/mod_unimrcp)
