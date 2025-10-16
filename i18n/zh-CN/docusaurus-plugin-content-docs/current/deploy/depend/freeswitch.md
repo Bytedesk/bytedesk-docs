@@ -963,3 +963,4 @@ freeswitch
 ## 参考链接
 
 - [LinPhone下载](https://www.linphone.org/en/download/)
+- [modules.conf.in](https://github.com/signalwire/freeswitch/blob/master/build/modules.conf.in)
