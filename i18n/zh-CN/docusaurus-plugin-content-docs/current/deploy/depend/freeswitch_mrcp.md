@@ -130,6 +130,8 @@ show modules | grep unimrcp
 
 ### 百度云MRCP
 
+- 请参考[百度呼叫中心语音MRCP用户指南](https://ai.baidu.com/ai-doc/SPEECH/Ukarty6aa)
+
 #### 概述
 
 百度云 MRCP Server 集成了呼叫中心 8K 采样率语音识别（ASR）和语音合成（TTS）能力，支持单独或同时使用。
