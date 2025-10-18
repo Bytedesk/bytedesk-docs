@@ -442,3 +442,4 @@ SINGLE_WORD_WHTIL_LIST=/path/to/whitelist.txt
 - [百度呼叫中心语音MRCP用户指南](https://ai.baidu.com/ai-doc/SPEECH/Ukarty6aa)
 - [FunASR](https://github.com/modelscope/FunASR)
 - [MRCP在美团语音交互中的实践和应用](https://tech.meituan.com/2023/03/09/practice-and-application-of-mrcp-in-voice-interaction-of-meituan.html)
+- [腾讯MRCP Server](https://www.weiyuai.cn/download/mrcp_server_tencent.zip)
