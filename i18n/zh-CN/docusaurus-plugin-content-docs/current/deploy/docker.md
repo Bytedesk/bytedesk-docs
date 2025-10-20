@@ -103,10 +103,12 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 
 ### 开放端口
 
-确保服务器开放以下端口：
+如果使用的ip访问，没有使用域名访问的情况下，需要确保服务器开放以下端口：
 
 - **9003** - WebApi/管理界面
 - **9885** - WebSocket端口
+
+如果使用域名访问，则无需特别对外开放端口，只需要开放 80 和 443 分别用于http/https访问即可
 
 ### 登录信息
 
