@@ -36,6 +36,15 @@ Janus 是一个开源的通用 WebRTC 服务器，由 Meetecho 开发。它是�
 - **网络**：公网 IP 或正确配置的 NAT
 - **依赖**：libmicrohttpd、libwebsockets、OpenSSL 等
 
+### 微语官方测试地址与参考配置
+
+:::tip 官方资源
+- 在线测试地址（微语官方提供）：[https://janus.weiyuai.cn/](https://janus.weiyuai.cn/)
+- 参考配置文件与部署示例：[https://github.com/Bytedesk/bytedesk/tree/main/deploy/janus](https://github.com/Bytedesk/bytedesk/tree/main/deploy/janus)
+:::
+
+---
+
 ## 安装
 
 ### 快速安装
