@@ -145,25 +145,92 @@ curl http://127.0.0.1:8088/janus || true
 
 #### 4）Docker 方式（可选）
 
-如果你更倾向使用容器运行，可在仓库根目录使用 Dockerfile 构建镜像并运行：
+推荐使用现成镜像与 docker compose 进行部署，配置更直观，且支持多平台镜像（x86_64/arm64 自动匹配）。以下示例基于开源镜像 `sucwangsr/janus-webrtc-gateway-docker` 的用法进行整理。
 
-```bash
-# 在 janus-gateway 项目根目录构建镜像
-docker build -t janus:local .
+- [参考 Docker Github](https://github.com/pengjinning/janus-webrtc-gateway-docker)
 
-# 启动容器（示例端口映射与配置挂载）
-docker run --name janus --rm \
-    -p 8088:8088 -p 8188:8188 -p 7088:7088 \
-    -p 10000-10200:10000-10200/udp \
-    -v $PWD/conf:/opt/janus/etc/janus:ro \
-    janus:local
+1）准备配置文件
+
+- 在宿主机创建 `conf/` 目录，放入需要覆盖的 Janus 配置（可从官方仓库的 `conf/` 目录拷贝并按需修改）。常用：
+    - `janus.jcfg`
+    - `janus.transport.http.jcfg`
+    - `janus.transport.websockets.jcfg`
+    - （可选）`janus.eventhandler.sampleevh.jcfg`
+
+2）Linux（network_mode: host）方案
+
+- 适用于 Linux 主机，使用 host 网络无需逐一映射端口（需确保宿主机端口未被占用）。
+
+```yaml
+version: '3.8'
+services:
+    janus-gateway:
+        image: sucwangsr/janus-webrtc-gateway-docker:latest
+        # 仅启动 Janus：
+        # command: ["/usr/local/bin/janus", "-F", "/usr/local/etc/janus"]
+        # 同时启动 Nginx(默认 8086) 与 Janus：
+        command: ["sh", "-c", "nginx && /usr/local/bin/janus -F /usr/local/etc/janus"]
+        network_mode: "host"
+        volumes:
+            - ./conf/janus.transport.http.jcfg:/usr/local/etc/janus/janus.transport.http.jcfg:ro
+            - ./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg:ro
+            - ./conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg:ro
+            - ./conf/janus.eventhandler.sampleevh.jcfg:/usr/local/etc/janus/janus.eventhandler.sampleevh.jcfg:ro
+        restart: always
 ```
 
-说明：
+3）macOS/Windows 方案（端口映射）
 
-- 将宿主机上的 `conf` 目录（自行准备或使用 `make configs` 生成的示例）挂载到容器的 `/opt/janus/etc/janus`。
-- 依据你的部署需要调整端口范围（特别是 RTP/RTCP 媒体端口段）。
-- 生产环境建议配合外部反向代理（如 Nginx）与 HTTPS/WSS。
+- 这些平台通常不支持 host 网络模式，改用端口映射并开放媒体端口段（示例为 10000–10200/udp，可按需扩大）。
+
+```yaml
+version: '3.8'
+services:
+    janus-gateway:
+        image: sucwangsr/janus-webrtc-gateway-docker:latest
+        command: ["sh", "-c", "nginx && /usr/local/bin/janus -F /usr/local/etc/janus"]
+        ports:
+            - "8088:8088"   # HTTP API
+            - "8188:8188"   # WS API
+            - "7088:7088"   # Admin HTTP
+            - "8086:8086"   # 内置 Nginx（如启用）
+            - "10000-10200:10000-10200/udp"  # RTP/RTCP 媒体端口段
+        volumes:
+            - ./conf/janus.transport.http.jcfg:/usr/local/etc/janus/janus.transport.http.jcfg:ro
+            - ./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg:ro
+            - ./conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg:ro
+        restart: always
+```
+
+4）可选：docker run 方式
+
+```bash
+docker run --name janus --rm \
+    -p 8088:8088 -p 8188:8188 -p 7088:7088 -p 8086:8086 \
+    -p 10000-10200:10000-10200/udp \
+    -v $PWD/conf/janus.transport.http.jcfg:/usr/local/etc/janus/janus.transport.http.jcfg:ro \
+    -v $PWD/conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg:ro \
+    -v $PWD/conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg:ro \
+    sucwangsr/janus-webrtc-gateway-docker:latest
+```
+
+说明与注意：
+
+- 容器内 Janus 可执行文件：`/usr/local/bin/janus`；配置目录：`/usr/local/etc/janus`。
+- 使用 `network_mode: host` 时，请确认宿主机端口（8088/8188/7088 等）未被占用。
+- 若启用内置 Nginx，默认会开放 8086（可在镜像内的 nginx 配置中调整）。
+- 生产环境建议在反向代理层开启 HTTPS/WSS，并结合本页“端口配置”“安全配置”进行加固。
+- 镜像支持多平台（1.3.1+ 标签合并），建议固定版本标签或使用 `:latest` 按需更新。
+
+5）运行后验证
+
+```bash
+# API 探活
+curl http://127.0.0.1:8088/janus || true
+
+# 如启用内置 Nginx，可访问：
+# http://127.0.0.1:8086/
+```
 
 #### 5）下一步
 
