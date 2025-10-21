@@ -49,7 +49,127 @@ Janus 是一个开源的通用 WebRTC 服务器，由 Meetecho 开发。它是�
 
 ### 快速安装
 
-- 参考[Janus 安装指南](https://github.com/meetecho/janus-gateway?tab=readme-ov-file)
+以下步骤基于 Janus 官方 README 的通用流程，覆盖主流 Linux 与 macOS 的源码编译方式，并提供可选的 Docker 用法。请根据你的操作系统选择对应小节。更多细节可参考官方仓库的安装说明。
+
+- 官方说明（英文）：https://github.com/meetecho/janus-gateway?tab=readme-ov-file
+
+#### 1）准备依赖
+
+Janus 采用 Autotools 构建，需要一组基础开发工具与库。不同系统的包名略有差异，下面给出常见环境的安装示例（尽量选用较新的版本，部分组件为可选但推荐安装，以获得更完整的功能）。
+
+- Ubuntu/Debian
+
+```bash
+sudo apt update
+sudo apt install -y \
+    git build-essential autoconf automake libtool pkg-config cmake \
+    libmicrohttpd-dev libjansson-dev libssl-dev libsrtp2-dev \
+    libglib2.0-dev libopus-dev libogg-dev libcurl4-openssl-dev \
+    libwebsockets-dev libnice-dev libusrsctp-dev
+
+# 可选（特定插件才需要，例如 SIP 插件）
+# sudo apt install -y libsofia-sip-ua-dev
+```
+
+- CentOS/RHEL（8+/Stream 建议使用 dnf，7 可能需要从源安装部分依赖或自行编译）
+
+```bash
+sudo dnf groupinstall -y "Development Tools" || sudo yum groupinstall -y "Development Tools"
+sudo dnf install -y \
+    git autoconf automake libtool pkgconfig cmake \
+    libmicrohttpd-devel jansson-devel openssl-devel \
+    glib2-devel opus-devel libogg-devel libcurl-devel \
+    libwebsockets-devel libnice-devel usrsctp-devel \
+    libsrtp-devel || true
+
+# 说明：
+# - 某些发行版将 libsrtp2 命名为 libsrtp；若版本过旧，建议从源码安装 libsrtp2。
+# - SIP 插件可选：sudo dnf install -y sofia-sip-devel
+```
+
+- macOS（基于 Homebrew）
+
+```bash
+# 安装编译工具与依赖
+brew update
+brew install autoconf automake libtool pkg-config cmake \
+    jansson openssl@3 libsrtp libmicrohttpd glib opus libogg curl \
+    libwebsockets libnice usrsctp
+
+# 指定 OpenSSL 的 pkg-config 路径（Apple 自带 OpenSSL 不可用）
+export PKG_CONFIG_PATH="$(brew --prefix openssl@3)/lib/pkgconfig:$PKG_CONFIG_PATH"
+```
+
+#### 2）获取源码并编译安装
+
+以下命令默认将 Janus 安装到 `/opt/janus`。你也可以将 `--prefix` 改为其它路径（确保有写权限）。
+
+```bash
+git clone https://github.com/meetecho/janus-gateway.git
+cd janus-gateway
+
+# 生成构建脚本
+sh autogen.sh
+
+# 配置与编译（可按需添加/移除选项）
+./configure --prefix=/opt/janus --disable-static
+make -j$(getconf _NPROCESSORS_ONLN 2>/dev/null || sysctl -n hw.ncpu || echo 2)
+
+# 安装二进制与资源
+sudo make install
+
+# 安装示例配置到 /opt/janus/etc/janus
+sudo make configs
+```
+
+常见可选 configure 开关（仅列举几个示例，按需选择）：
+
+- `--enable-websockets`：启用 WebSocket 传输（检测到 libwebsockets 时通常默认启用）
+- `--enable-post-processing`：启用录制后的处理工具
+- `--disable-data-channels`：禁用 DataChannel（不安装 usrsctp 时可能需要）
+
+#### 3）快速验证
+
+```bash
+# 校验配置文件语法
+/opt/janus/bin/janus --check-config
+
+# 前台运行（调试）
+/opt/janus/bin/janus
+
+# 另开终端简单连通性检查
+curl http://127.0.0.1:8088/janus || true
+```
+
+若能看到 Janus 的 HTTP 响应或在控制台看到成功启动的日志，即表示安装成功。随后请继续参考本文的“端口配置”“基本配置”“启动和运行”等小节完成生产化配置。
+
+#### 4）Docker 方式（可选）
+
+如果你更倾向使用容器运行，可在仓库根目录使用 Dockerfile 构建镜像并运行：
+
+```bash
+# 在 janus-gateway 项目根目录构建镜像
+docker build -t janus:local .
+
+# 启动容器（示例端口映射与配置挂载）
+docker run --name janus --rm \
+    -p 8088:8088 -p 8188:8188 -p 7088:7088 \
+    -p 10000-10200:10000-10200/udp \
+    -v $PWD/conf:/opt/janus/etc/janus:ro \
+    janus:local
+```
+
+说明：
+
+- 将宿主机上的 `conf` 目录（自行准备或使用 `make configs` 生成的示例）挂载到容器的 `/opt/janus/etc/janus`。
+- 依据你的部署需要调整端口范围（特别是 RTP/RTCP 媒体端口段）。
+- 生产环境建议配合外部反向代理（如 Nginx）与 HTTPS/WSS。
+
+#### 5）下一步
+
+- 按需调整 `janus.transport.http.jcfg` 与 `janus.transport.websockets.jcfg`（本页“基本配置”章节有示例）。
+- 在防火墙/安全组开放对应端口（见“端口配置”章节）。
+- 若存在 NAT/内网穿透需求，尽快配置 STUN/TURN（见“STUN/TURN 服务器配置”章节）。
 
 ## 端口配置
 
