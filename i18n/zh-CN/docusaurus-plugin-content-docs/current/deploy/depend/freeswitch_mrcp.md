@@ -156,10 +156,10 @@ show modules | grep unimrcp
    
    # 使用 wget 下载（如果下载链接有效）
    # 注意：百度可能需要登录才能下载，如果以下命令失败，请使用方式一
-   wget -O baidu-mrcp-server.tar.gz "https://www.weiyuai.cn/download/baidu-MRCPServer-20200609.tar.gz"
+   wget -O baidu-mrcp-server.tar.gz "https://www.weiyuai.cn/download/mrcp_server_baidu.tar.gz"
    
    # 或使用 curl 下载
-   curl -L -o baidu-mrcp-server.tar.gz "https://www.weiyuai.cn/download/baidu-MRCPServer-20200609.tar.gz"
+   curl -L -o baidu-mrcp-server.tar.gz "https://www.weiyuai.cn/download/mrcp_server_baidu.tar.gz"
    
    # 解压文件
    tar -xzf baidu-mrcp-server.tar.gz
