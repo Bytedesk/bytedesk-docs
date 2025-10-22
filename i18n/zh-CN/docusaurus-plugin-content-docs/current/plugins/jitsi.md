@@ -7,6 +7,8 @@ sidebar_position: 1
 
 微语视频会议系统基于开源的 Jitsi 平台打造，为企业提供安全、高效、易用的视频会议解决方案，支持 WebRTC、SIP 和 TURN 协议，确保跨平台兼容性和稳定连接体验。
 
+- [微语视频会议Github](https://github.com/Bytedesk/bytedesk-conference/blob/main/README.zh.md)
+
 ## 主要功能特点
 
 ### 🌟 高质量视频会议体验
