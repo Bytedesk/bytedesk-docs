@@ -51,6 +51,14 @@ Jitsi 是一套开源的视频会议解决方案，核心由以下组件构成�
 
 > 注意：实际端口以你的部署/反向代理为准；尽量仅对外暴露 443 与 JVB UDP 端口，Coturn 暴露 3478/5349。
 
+## 微语官方测试地址与参考配置
+
+:::tip 官方资源
+- 在线测试地址（微语官方提供）：[https://jitsi.weiyuai.cn/](https://jitsi.weiyuai.cn/)
+- 参考配置文件与部署示例：[https://github.com/Bytedesk/bytedesk/tree/main/deploy/jitsi](https://github.com/Bytedesk/bytedesk/tree/main/deploy/jitsi)
+:::
+
+
 ## 快速安装（Quickstart）
 
 以下为“最快可用”的两条路径，建议先选其一完成可用性验证：
@@ -374,3 +382,4 @@ Jibri 用于“合流录制/直播”。建议独立机器/容器部署；一台
 	- Janus 文档（端口与安全思路可参考）：[Janus 部署](./janus.md)
 - [Kurento](https://github.com/Kurento/kurento)
 - [Jitsi Dockers](https://hub.docker.com/u/jitsi/)
+- [开发指南](https://jitsi.github.io/handbook/docs/category/developer-guide)
