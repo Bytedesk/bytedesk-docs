@@ -10,7 +10,7 @@ import nin1Image from '/img/nin1.png';
 
 **微语**是基于AI全新打造的一款开源企业级[多租户](./development/saas.md)团队智能协同平台，提供一站式客户服务解决方案/客服中心，能够显著提高内部员工和外部客户沟通效率。
 
-> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能呼叫中心](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[Agent智能体](modules/ai.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[视频客服](plugins/webrtc.md)、客户管理Scrm、[开放平台](modules/open.md)
+> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能呼叫中心](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[AI Agent](modules/ai.md)、[表单问卷](modules/form.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[视频客服](plugins/webrtc.md)、[客户管理Scrm](modules/crm.md)、[开放平台](modules/open.md)
 
 <img src={nin1Image} alt="微语功能集成" />
 
