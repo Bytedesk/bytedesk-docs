@@ -81,6 +81,7 @@ sidebar_position: 11
 | [自动回复](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [黑名单](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [留言处理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [商品信息](./development/goodsinfo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单对接](./development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 品牌自定义 | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -132,17 +133,17 @@ sidebar_position: 11
 | [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
-### Plus 功能插件
+### 功能插件 Plus
 
-默认不包含在源码版，额外收费
+默认不包含在企业版/平台版/源码版中，额外收费
 
 | 插件名称 | 功能描述 | 价格 | 备注 |
 |---------|---------|------|------|
 | [呼叫中心](./plugins/freeswitch.md) | 语音通话、IVR、自动话务分配 | 待定 | 开发中 |
 | [视频客服](./plugins/webrtc.md) | 一对一视频通话、屏幕共享 | 待定 | 开发中 |
+| [视频会议](./plugins/jitsi.md) | 多人视频会议、协同办公 | 待定 | 开发中 |
 | [远程协助](./plugins/remote.md) | 无障碍远程支持，随时随地解决问题 | 待定 | 开发中 |
 <!-- | [工作流](./modules/workflow.md) | 大模型工作流 | 待定 | 开发中 | -->
-<!-- | [视频会议](./plugins/jitsi.md) | 多人视频会议、协同办公 | 待定 | 开发中 | -->
 <!-- | [看板插件](./plugins/kanban.md) | 可视化任务与项目管理 | 待定 | 开发中 | -->
 
 <!-- ### 开放平台 -->
