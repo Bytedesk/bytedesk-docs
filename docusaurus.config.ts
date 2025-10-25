@@ -147,57 +147,57 @@ const config: Config = {
     ],
     // 需要运行下面命令重新生成docs： yarn docusaurus gen-api-docs all
     // 清理已生成的docs：yarn docusaurus clean-api-docs all
-    [
-      'docusaurus-plugin-openapi-docs',
-      {
-        id: "api", // plugin id
-        docsPluginId: "classic", // configured for preset-classic
-        config: {
-          bytedesk: {
-            specPath: "apidocs/bytedesk.yaml",
-            outputDir: "docs/apidocs",
-            // 可选：代理 URL，用于 API 请求
-            // proxy: "http://localhost:3001",
-            // 可选：下载 URL
-            downloadUrl: "https://api.weiyuai.cn/v3/api-docs",
-            // 可选：隐藏发送 API 请求按钮
-            hideSendButton: false,
-            // 可选：显示扩展信息
-            showExtensions: false,
-            // 可选：显示模式页面
-            showSchemas: true,
-            sidebarOptions: {
-              groupPathsBy: "tagGroup",
-              categoryLinkSource: "tag", // 使用 tag 描述作为分类链接
-              sidebarCollapsible: true,
-              sidebarCollapsed: true,
-              customProps: {
-                // 自定义侧边栏属性
-                apiLabel: "API Reference",
-              },
-            },
-            // 可选：版本配置
-            // version: "1.0.0",
-            // label: "Latest",
-            // baseUrl: "/api/v1",
-            // versions: {
-            //   "1.0.0": {
-            //     specPath: "examples/petstore-v1.yaml",
-            //     outputDir: "docs/petstore/v1",
-            //     label: "Version 1.0",
-            //     baseUrl: "/api/v1",
-            //   },
-            //   "2.0.0": {
-            //     specPath: "examples/petstore-v2.yaml", 
-            //     outputDir: "docs/petstore/v2",
-            //     label: "Version 2.0",
-            //     baseUrl: "/api/v2",
-            //   },
-            // },
-          } satisfies OpenApiPlugin.Options,
-        }
-      },
-    ]
+    // [
+    //   'docusaurus-plugin-openapi-docs',
+    //   {
+    //     id: "api", // plugin id
+    //     docsPluginId: "classic", // configured for preset-classic
+    //     config: {
+    //       bytedesk: {
+    //         specPath: "apidocs/bytedesk.yaml",
+    //         outputDir: "docs/apidocs",
+    //         // 可选：代理 URL，用于 API 请求
+    //         // proxy: "http://localhost:3001",
+    //         // 可选：下载 URL
+    //         downloadUrl: "https://api.weiyuai.cn/v3/api-docs",
+    //         // 可选：隐藏发送 API 请求按钮
+    //         hideSendButton: false,
+    //         // 可选：显示扩展信息
+    //         showExtensions: false,
+    //         // 可选：显示模式页面
+    //         showSchemas: true,
+    //         sidebarOptions: {
+    //           groupPathsBy: "tagGroup",
+    //           categoryLinkSource: "tag", // 使用 tag 描述作为分类链接
+    //           sidebarCollapsible: true,
+    //           sidebarCollapsed: true,
+    //           customProps: {
+    //             // 自定义侧边栏属性
+    //             apiLabel: "API Reference",
+    //           },
+    //         },
+    //         // 可选：版本配置
+    //         // version: "1.0.0",
+    //         // label: "Latest",
+    //         // baseUrl: "/api/v1",
+    //         // versions: {
+    //         //   "1.0.0": {
+    //         //     specPath: "examples/petstore-v1.yaml",
+    //         //     outputDir: "docs/petstore/v1",
+    //         //     label: "Version 1.0",
+    //         //     baseUrl: "/api/v1",
+    //         //   },
+    //         //   "2.0.0": {
+    //         //     specPath: "examples/petstore-v2.yaml", 
+    //         //     outputDir: "docs/petstore/v2",
+    //         //     label: "Version 2.0",
+    //         //     baseUrl: "/api/v2",
+    //         //   },
+    //         // },
+    //       } satisfies OpenApiPlugin.Options,
+    //     }
+    //   },
+    // ]
   ],
   
 
