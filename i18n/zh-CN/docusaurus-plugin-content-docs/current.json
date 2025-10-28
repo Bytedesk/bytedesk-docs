@@ -132,7 +132,7 @@
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.BI": {
-    "message": "BI智能分析",
+    "message": "数据分析",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Setting": {
