@@ -83,6 +83,7 @@ sidebar_position: 11
 | [留言处理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [商品信息](./development/goodsinfo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单对接](./development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [客户管理](./development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 品牌自定义 | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 商业版源码 | ❌ | ❌ | ❌ | ❌ | ✅ |
