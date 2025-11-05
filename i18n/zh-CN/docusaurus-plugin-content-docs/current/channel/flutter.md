@@ -20,7 +20,7 @@ Flutter是Google开发的跨平台UI框架，一套代码可以同时构建Andro
 - SDK源码100%开源
 - 支持安卓、iOS、Web、Mac、Windows
 - 机器人对话
-- 技能组客服
+- 工作组客服
 - 一对一客服
 - 支持发送电商商品信息(支持点击商品回调)
 - 支持发送附言消息
@@ -74,5 +74,5 @@ BytedeskKefu.init(orgUid);
 
 ### 第三步：联系客服
 
-- 获取技能组workGroupWid：登录后台->客服管理->技能组->唯一wid
-- BytedeskKefu.startWorkGroupChat(context, workGroupWid, "技能组客服wid");
+- 获取工作组workGroupWid：登录后台->客服管理->工作组->唯一wid
+- BytedeskKefu.startWorkGroupChat(context, workGroupWid, "工作组客服wid");

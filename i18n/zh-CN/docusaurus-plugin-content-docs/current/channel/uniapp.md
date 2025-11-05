@@ -104,7 +104,7 @@ bytedesk.init(orgUid);
 - 第三步：开始会话
 
 ```js
-// 第三步：获取技能组uid，登录后台->客服->渠道->uniapp
+// 第三步：获取工作组uid，登录后台->客服->渠道->uniapp
 // http://www.weiyuai.cn/admin/cs/channel
 startChat () {
   uni.navigateTo({

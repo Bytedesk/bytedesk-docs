@@ -1,15 +1,64 @@
+---
 sidebar_label: Postgresql
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # PostgreSQL 16
 
 :::tip
-
 - 操作系统：Ubuntu 22.04 LTS
 - 服务器推荐配置2核4G内存
-
 :::
+
+## 对接微语
+
+修改微语.properties配置文件
+
+```bash
+# 连接信息
+spring.datasource.url=jdbc:postgresql://127.0.0.1:5433/bytedesk
+spring.datasource.username=root
+spring.datasource.password=密码
+# 驱动信息
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+# Kingbase与PostgreSQL兼容，但Spring Boot无法自动识别其驱动，显式指定平台以加载Quartz的PostgreSQL建表脚本
+# Quartz官方脚本文件名为 tables_postgres.sql，这里平台必须设置为 postgres（不是 postgresql）
+spring.quartz.jdbc.platform=postgres
+# 指定批处理脚本的平台为 PostgreSQL（Kingbase 兼容）
+spring.batch.jdbc.platform=postgres
+# 使用 PostgreSQL 数据库（Kingbase 兼容）
+spring.batch.database-type=POSTGRES
+# 数据库类型通过配置传递，供 Flowable 使用：
+# - Kingbase / PostgreSQL: 设置为 postgres
+# - MySQL: 设置为 mysql
+# - 其他：oracle / mssql / db2 / h2 ...
+flowable.database-type=postgres
+```
+
+docker compose格式
+
+```bash
+# 连接信息
+SPRING_DATASOURCE_URL: jdbc:postgresql://127.0.0.1:5433/bytedesk
+SPRING_DATASOURCE_USERNAME: root
+SPRING_DATASOURCE_PASSWORD: 密码
+# 驱动信息
+SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+# Kingbase与PostgreSQL兼容，但Spring Boot无法自动识别其驱动，显式指定平台以加载Quartz的PostgreSQL建表脚本
+# Quartz官方脚本文件名为 tables_postgres.sql，这里平台必须设置为 postgres（不是 postgresql）
+SPRING_QUARTZ_JDBC_PLATFORM: postgres
+# 指定批处理脚本的平台为 PostgreSQL（Kingbase 兼容）
+SPRING_BATCH_JDBC_PLATFORM: postgres
+# 使用 PostgreSQL 数据库（Kingbase 兼容）
+SPRING_BATCH_DATABASE_TYPE: POSTGRES
+# 数据库类型通过配置传递，供 Flowable 使用：
+# - Kingbase / PostgreSQL: 设置为 postgres
+# - MySQL: 设置为 mysql
+# - 其他：oracle / mssql / db2 / h2 ...
+FLOWABLE_DATABASE_TYPE: postgres
+```
 
 ## 安装
 

@@ -17,6 +17,16 @@ sidebar_position: 18
 本文档主要介绍**客服间会话转接功能**。如需了解机器人转人工功能，请参考：[机器人转人工](./transfer_bot.md)
 :::
 
+## 预览
+
+### 会话转接入口
+
+![thread_transfer](/img/thread/thread_transfer.png)
+
+### 创建会话转接
+
+![thread_transfer_create](/img/thread/thread_transfer_create.png)
+
 ### 核心价值
 
 - **专业分工**：将问题分配给最具专业能力的客服处理

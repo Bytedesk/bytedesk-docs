@@ -107,6 +107,7 @@ const config = {
 基本链接格式如下：
 
 ```javascript
+// sid: 客服UID/工作组UID/机器人UID
 https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&goodsInfo=商品信息JSON
 ```
 

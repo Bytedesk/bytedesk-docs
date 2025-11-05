@@ -77,6 +77,7 @@ kubectl get storageclass
 
 ## 参考链接
 
+- [KubeSphere](https://kubesphere.io/zh/projects/)
 - [安装Kubernetes](./depend/kubernetes.md)
 - [申请licenseKey](../development/license.md)
 - [微语项目仓库](https://github.com/Bytedesk/bytedesk)

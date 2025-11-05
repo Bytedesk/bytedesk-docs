@@ -67,8 +67,6 @@ mkdir -p /var/www/html/nginx/cache/webserver
 
 - 方式一：从[Github仓库](https://github.com/Bytedesk/bytedesk/tree/main/starter/src/main/resources/static)下载，最新，推荐
 - 方式二：从[Github Release](https://github.com/Bytedesk/bytedesk/releases) 下载
-- 方式三：下载[server压缩包](https://www.weiyuai.cn/download/weiyu-server.zip) 并解压
-- 方式四：从[Gitee仓库](https://github.com/Bytedesk/bytedesk/tree/main/starter/src/main/resources/static)下载
 
 下载解压后的文件结构如下：
 

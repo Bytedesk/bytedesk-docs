@@ -1,6 +1,6 @@
 ---
-sidebar_label: 技能组
+sidebar_label: 工作组
 sidebar_position: 2
 ---
 
-# 技能组客服
+# 工作组客服

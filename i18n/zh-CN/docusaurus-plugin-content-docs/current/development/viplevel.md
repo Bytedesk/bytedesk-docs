@@ -170,7 +170,7 @@ export default VipLevelDemo;
 
 基本链接格式如下：
 
-```text
+```javascript
 https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&visitorUid=用户ID&nickname=用户昵称&avatar=头像URL&vipLevel=用户等级&extra=附加信息JSON
 ```
 
@@ -178,7 +178,7 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&visitorUid=用�
 
 - `org`: 您的组织ID
 - `t`: 会话类型，通常为1
-- `sid`: 会话ID
+- `sid`: 客服UID/工作组UID/机器人UID
 - `visitorUid`: 用户唯一标识符
 - `nickname`: 用户昵称(需URL编码)
 - `avatar`: 用户头像URL(需URL编码)

@@ -17,6 +17,16 @@ sidebar_position: 19
 本文档主要介绍**客服端协作邀请功能**。如需了解访客端邀请对话框功能，请参考：[访客邀请对话框](./invite_visitor.md)
 :::
 
+## 预览
+
+### 会话邀请入口
+
+![thread_invite](/img/thread/thread_invite.png)
+
+### 创建会话邀请
+
+![thread_invite_create](/img/thread/thread_invite_create.png)
+
 ### 核心价值
 
 - **专业协作**：多名客服共同解决复杂问题，发挥团队专业优势

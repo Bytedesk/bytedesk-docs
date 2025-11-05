@@ -1,6 +1,6 @@
 ---
 sidebar_label: Postgresql
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # PostgreSQL 16

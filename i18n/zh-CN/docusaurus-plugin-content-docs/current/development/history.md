@@ -37,7 +37,7 @@ chatConfig: {
   // 必填参数
   org: 'df_org_uid',        // 您的组织ID
   t: "1",                   // 会话类型
-  sid: 'df_wg_uid',         // 会话ID
+  sid: 'df_wg_uid',         // 客服UID/工作组UID/机器人UID
   
   // 历史记录参数 - 这是控制历史记录加载的关键
   loadHistory: "1",         // 值为"1"时加载历史记录，其他值不加载
@@ -57,7 +57,8 @@ chatConfig: {
 
 基本链接格式如下：
 
-```text
+```javascript
+// sid: 客服UID/工作组UID/机器人UID
 https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&loadHistory=1
 ```
 

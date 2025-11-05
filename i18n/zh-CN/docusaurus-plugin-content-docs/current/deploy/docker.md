@@ -169,6 +169,7 @@ docker pull --platform linux/arm64 bytedesk/bytedesk:latest
 
 ## 参考链接
 
+- [Harbor私有镜像管理](https://goharbor.io/)
 - [申请licenseKey](../development/license.md)
 - [微语项目仓库](https://github.com/Bytedesk/bytedesk)
 - [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
