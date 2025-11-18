@@ -16,7 +16,7 @@ sidebar_position: 27
 ### 获取方法
 
 1. 使用手机号登录官方 [微语管理后台](https://www.weiyuai.cn/admin)
-2. 点击 **设置** -> **License 管理**
+2. 点击 **个人设置** -> **License**
 3. 即可获取试用版 license
 4. 找到 **激活秘钥**，复制粘贴到配置文件中即可。
 
@@ -60,7 +60,8 @@ set BYTEDESK_LICENSE_KEY=your_license_key_here
 - LicenseKey 默认有效期为 30 天，社区版可自行修改有效期，到期后需要重新申请
 - 请妥善保管您的 licenseKey，不要泄露给他人
 - 如需正式版企业版或平台版 licenseKey，请联系客服获取正式授权
-- [申请地址](https://www.weiyuai.cn/admin)
+- 填写licenseKey之后，需要重启服务器才会生效
+- [申请地址](https://www.weiyuai.cn/admin/setting/license)
 
 ## 常见问题
 

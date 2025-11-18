@@ -33,6 +33,7 @@ import type { BytedeskConfig } from 'bytedesk-web';
 
 ### 配置参数
 
+- [全部配置参数定义](https://github.com/Bytedesk/bytedesk-web/blob/master/src/types/index.ts)
 - 支持切换左右侧栏，默认右侧
 - 支持自定义颜色主题，默认蓝色
 - 支持自定义是否显示气泡，默认显示

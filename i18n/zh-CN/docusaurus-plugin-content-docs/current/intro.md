@@ -18,7 +18,7 @@ import nin1Image from '/img/nin1.png';
 
 ## 宗旨
 
-把一切重复工作自动化
+减少客户服务重复性劳动，提升客户服务工作效率，提高客户服务满意度
 
 ---
 
@@ -184,7 +184,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 处理常见问题，减轻人工客服工作量
 - 实现24小时不间断服务
 
-### 4. [知识库/帮助中心](modules/kbase.md)
+### 4. [知识库](modules/kbase.md)
 
 📚 **企业知识管理平台**
 

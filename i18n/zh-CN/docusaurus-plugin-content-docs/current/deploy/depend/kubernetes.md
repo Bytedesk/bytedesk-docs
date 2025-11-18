@@ -590,4 +590,3 @@ sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sud
 ## 更新日志
 
 - **2025-10-30**: 完成初始安装，Kubernetes v1.28.15 + KubeSphere v3.4.1
-
