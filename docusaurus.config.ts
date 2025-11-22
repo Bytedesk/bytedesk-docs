@@ -271,7 +271,11 @@ const config: Config = {
           position: "left",
           label: "Docs",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        { 
+          to: "/blog", 
+          label: "Blog", 
+          position: "left" 
+        },
         {
           to: "/docs/payment",
           label: "Price",
@@ -302,16 +306,24 @@ const config: Config = {
           position: "left",
           items: [
             {
-              label: "管理后台",
+              label: "Admin",
               href: "https://www.weiyuai.cn/admin/",
             },
             {
-              label: "客服工作台",
+              label: "Agent",
               href: "https://www.weiyuai.cn/agent/",
             },
             {
-              label: "访客端演示",
+              label: "Visitor",
               href: "https://www.weiyuai.cn/reactdemo/",
+            },
+            {
+              label: "Forum",
+              href: "https://www.weiyuai.cn/forum",
+            },
+            {
+              label: "Helpcenter",
+              href: "https://www.weiyuai.cn/helpcenter/df_org_uid_df_kb_hc_uid/",
             },
           ],
         },

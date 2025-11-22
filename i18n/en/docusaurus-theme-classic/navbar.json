@@ -42,5 +42,20 @@
   "item.label.Price": {
     "message": "Price",
     "description": "Navbar item with label Price"
+  },
+  "item.label.Admin": {
+    "message": "Admin Demo"
+  },
+  "item.label.Agent": {
+    "message": "Agent Demo"
+  },
+  "item.label.Visitor": {
+    "message": "Visitor Demo"
+  },
+  "item.label.Forum": {
+    "message": "Forum Demo"
+  },
+  "item.label.Helpcenter": {
+    "message": "Helpcenter Demo"
   }
 }

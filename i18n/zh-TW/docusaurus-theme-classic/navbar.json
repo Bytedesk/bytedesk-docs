@@ -42,5 +42,20 @@
   "item.label.Price": {
     "message": "價格",
     "description": "Navbar item with label Price"
+  },
+  "item.label.Admin": {
+    "message": "管理後台示範"
+  },
+  "item.label.Agent": {
+    "message": "客服工作台示範"
+  },
+  "item.label.Visitor": {
+    "message": "訪客端示範"
+  },
+  "item.label.Forum": {
+    "message": "客戶論壇示範"
+  },
+  "item.label.Helpcenter": {
+    "message": "幫助中心示範"
   }
 }

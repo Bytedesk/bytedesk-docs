@@ -20,19 +20,39 @@ sidebar_position: 7
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
 | :------- | :---------------------- | :------- | :------- |
-| `bytedesk.custom.enabled` | 是否启用自定义配置（名称、logo、说明等） | `true` | `BYTEDESK_CUSTOM_ENABLED: false` |
+| `bytedesk.custom.enabled` | 是否启用自定义配置（名称、logo、说明等） | `true` | `BYTEDESK_CUSTOM_ENABLED: true` |
 | `bytedesk.custom.name` | 自定义产品名称，默认为空则使用默认名称 | - | `BYTEDESK_CUSTOM_NAME:` |
 | `bytedesk.custom.logo` | 自定义产品logo，默认为空则使用默认logo | - | `BYTEDESK_CUSTOM_LOGO:` |
 | `bytedesk.custom.description` | 自定义产品描述，默认为空则使用"Chat As A Service" | - | `BYTEDESK_CUSTOM_DESCRIPTION:` |
-| `bytedesk.custom.show-right-corner-chat` | 是否显示右下角对话窗口 | `false` | `BYTEDESK_CUSTOM_SHOW_RIGHT_CORNER_CHAT: true` |
+| `bytedesk.custom.show-right-corner-chat` | 是否显示右下角对话窗口 | `false` | `BYTEDESK_CUSTOM_SHOW_RIGHT_CORNER_CHAT: false` |
+| `bytedesk.custom.right-corner-chat-placement` | 浮窗位置：`bottom-right`/`bottom-left` | `bottom-right` | `BYTEDESK_CUSTOM_RIGHT_CORNER_CHAT_PLACEMENT: bottom-right` |
 | `bytedesk.custom.show-demo` | 是否显示默认演示 | `true` | `BYTEDESK_CUSTOM_SHOW_DEMO: true` |
-| `bytedesk.custom.privacy-policy-url` | 隐私政策URL地址 | - | `BYTEDESK_CUSTOM_PRIVACY_POLICY_URL:` |
-| `bytedesk.custom.terms-of-service-url` | 服务条款URL地址 | - | `BYTEDESK_CUSTOM_TERMS_OF_SERVICE_URL:` |
+| `bytedesk.custom.privacy-policy-url` | 隐私政策URL地址 | `` | `BYTEDESK_CUSTOM_PRIVACY_POLICY_URL: ` |
+| `bytedesk.custom.terms-of-service-url` | 服务条款URL地址 | `` | `BYTEDESK_CUSTOM_TERMS_OF_SERVICE_URL: ` |
 | `bytedesk.custom.login-username-enable` | 是否启用用户名登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_USERNAME_ENABLE: true` |
+| `bytedesk.custom.login-2fa-enable` | 是否启用双重验证（用户名密码 + 手机号验证码） | `false` | `BYTEDESK_CUSTOM_LOGIN_2FA_ENABLE: false` |
+| `bytedesk.custom.login-max-retry-count` | 密码错误最大重试次数，`0` 表示不限制 | `3` | `BYTEDESK_CUSTOM_LOGIN_MAX_RETRY_COUNT: 3` |
+| `bytedesk.custom.login-max-retry-lock-time` | 超过次数后的锁定时长（分钟），`0` 表示不锁定 | `10` | `BYTEDESK_CUSTOM_LOGIN_MAX_RETRY_LOCK_TIME: 10` |
 | `bytedesk.custom.login-mobile-enable` | 是否启用手机号登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_MOBILE_ENABLE: true` |
 | `bytedesk.custom.login-scan-enable` | 是否启用扫码登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE: true` |
+| `bytedesk.custom.login-wechat-enable` | 是否启用微信登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_WECHAT_ENABLE: false` |
+| `bytedesk.custom.login-github-enable` | 是否启用GitHub登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_GITHUB_ENABLE: true` |
+| `bytedesk.custom.login-facebook-enable` | 是否启用Facebook登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_FACEBOOK_ENABLE: false` |
+| `bytedesk.custom.login-google-enable` | 是否启用Google登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_GOOGLE_ENABLE: false` |
+| `bytedesk.custom.login-dingtalk-enable` | 是否启用钉钉登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_DINGTALK_ENABLE: false` |
+| `bytedesk.custom.login-douyin-enable` | 是否启用抖音登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_DOUYIN_ENABLE: false` |
+| `bytedesk.custom.login-feishu-enable` | 是否启用飞书登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_FEISHU_ENABLE: false` |
+| `bytedesk.custom.login-ldap-enable` | 是否启用LDAP登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_LDAP_ENABLE: false` |
+| `bytedesk.custom.login-cas-enable` | 是否启用CAS登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_CAS_ENABLE: false` |
+| `bytedesk.custom.login-oidc-enable` | 是否启用OIDC登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_OIDC_ENABLE: false` |
+| `bytedesk.custom.login-openid-enable` | 是否启用OpenID登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_OPENID_ENABLE: false` |
 | `bytedesk.custom.doc-url-show` | 是否显示文档链接 | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
-| `bytedesk.custom.doc-url` | 文档URL地址 | `https://...` | `BYTEDESK_CUSTOM_DOC_URL: https://www.....` |
+| `bytedesk.custom.doc-url` | 文档URL地址 | `` | `BYTEDESK_CUSTOM_DOC_URL: ` |
+| `bytedesk.custom.lang` | 登录页语言，`zh-CN`/`en-US`/`zh-TW` | `zh-CN` | `BYTEDESK_CUSTOM_LANG: zh-CN` |
+| `bytedesk.custom.allow-register` | 是否允许自助注册 | `true` | `BYTEDESK_CUSTOM_ALLOW_REGISTER: true` |
+| `bytedesk.custom.force-validate-mobile` | 是否强制验证手机号 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_MOBILE: true` |
+| `bytedesk.custom.force-validate-email` | 是否强制验证邮箱 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_EMAIL: true` |
+| `bytedesk.custom.force-visitor-auth` | 是否强制访客身份认证 | `false` | `BYTEDESK_CUSTOM_FORCE_VISITOR_AUTH: false` |
 
 ## 管理员配置
 
