@@ -7,6 +7,8 @@ description: 集成微语客服系统常见问题
 
 ## 问题0：是否可以不用大模型
 
+import login2Fa from '/img/develop/admin/login_2fa.png';
+
 ### 答案0：可以
 
 ### 配置步骤0
@@ -401,3 +403,25 @@ BYTEDESK_LICENSE_KEY: <KEY>
 ```
 
 更多详情参考 [licenseKey配置](./development/license.md)
+
+## 问题14：如何开启双重验证
+
+<img src={login2Fa} width="360"/>
+
+### 修改方法
+
+#### 源码配置文件
+
+```bash
+# enable 2fa 双重验证开启
+bytedesk.custom.login-2fa-enable=true
+```
+
+#### Docker 部署配置
+
+在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 文件中修改：
+
+```bash
+# enable 2fa 双重验证开启
+BYTEDESK_CUSTOM_LOGIN_2FA_ENABLE: "true"
+```

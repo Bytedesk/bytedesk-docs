@@ -7,6 +7,8 @@ sidebar_position: 7
 
 本文檔詳細說明微語伺服器（基於Spring Boot 3.x開發）的配置參數及其用法。
 
+> 如需在配置中加密、解密或託管密鑰，請參考 [Jasypt 加密說明](./depend/jasypt)。
+
 ## 基礎配置
 
 | 參數名 | 說明 | 範例值 | Docker環境變數 |

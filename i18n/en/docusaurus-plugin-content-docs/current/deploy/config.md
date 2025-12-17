@@ -7,6 +7,8 @@ sidebar_position: 7
 
 This document provides detailed explanation of Weiyu server configuration parameters (based on Spring Boot 3.x development) and their usage.
 
+> Need to encrypt configuration secrets? See the [Jasypt encryption guide](./depend/jasypt) for CLI steps and property usage.
+
 ## Basic Configuration
 
 | Parameter | Description | Example Value | Docker Environment Variable |

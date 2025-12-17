@@ -74,7 +74,7 @@ mkdir -p /var/www/html/nginx/cache/webserver
 server/
 ├── admin         # 管理后台
 ├── agent         # 客服工作台
-├── agenticflow   # AI代理流程模块，用于编辑工作流和工单流程
+├── workflow   # AI代理流程模块，用于编辑工作流和工单流程
 ├── notebase      # 知识库模块，用于知识库编辑
 ├── kanban        # 看板模块，用于项目看板
 ├── chat          # 访客端
@@ -87,13 +87,13 @@ server/
 1. 将各个前端模块复制到`/var/www/html/weiyuai/`文件夹下
    - `admin`：管理后台模块，用于系统管理员配置和监控整个系统
    - `agent`：客服工作台模块，客服人员使用的操作界面
-   - `agenticflow`：AI代理流程模块，用于编辑工作流和工单流程
+   - `workflow`：AI代理流程模块，用于编辑工作流和工单流程
    - `notebase`：知识库模块，用于知识库编辑
    - `kanban`：看板模块，用于项目看板管理
    - `chat`：访客端模块，供最终用户访问的聊天界面
 2. 修改各个模块的配置文件，使其指向正确的服务器地址
 
-每个模块都有一个`config.json`配置文件，配置方式有以下几种情况（**根据实际环境二选一**）。注意，`agenticflow`、`notebase`和`kanban`这三个模块的配置文件与`agent`文件夹中的`config.json`配置相同：
+每个模块都有一个`config.json`配置文件，配置方式有以下几种情况（**根据实际环境二选一**）。注意，`workflow`、`notebase`和`kanban`这三个模块的配置文件与`agent`文件夹中的`config.json`配置相同：
 
 ### 方法1：使用域名（线上环境）
 
@@ -206,8 +206,8 @@ server {
     }
     
     # AI代理流程模块配置
-    location /agenticflow/ {
-        try_files $uri $uri/ /agenticflow/index.html;
+    location /workflow/ {
+        try_files $uri $uri/ /workflow/index.html;
     }
     
     # 知识库模块配置
@@ -268,8 +268,8 @@ server {
     }
     
     # AI代理流程模块配置
-    location /agenticflow/ {
-        try_files $uri $uri/ /agenticflow/index.html;
+    location /workflow/ {
+        try_files $uri $uri/ /workflow/index.html;
     }
     
     # 知识库模块配置

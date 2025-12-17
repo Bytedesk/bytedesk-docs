@@ -7,6 +7,8 @@ sidebar_position: 7
 
 本文档详细说明微语服务器（基于Spring Boot 3.x开发）的配置参数及其用法。
 
+> 若需了解如何为配置项加密、解密或注入密钥，请参阅 [Jasypt 加密说明](./depend/jasypt)。
+
 ## 基础配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
@@ -53,6 +55,114 @@ sidebar_position: 7
 | `bytedesk.custom.force-validate-mobile` | 是否强制验证手机号 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_MOBILE: true` |
 | `bytedesk.custom.force-validate-email` | 是否强制验证邮箱 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_EMAIL: true` |
 | `bytedesk.custom.force-visitor-auth` | 是否强制访客身份认证 | `false` | `BYTEDESK_CUSTOM_FORCE_VISITOR_AUTH: false` |
+
+## OAuth 与第三方登录配置
+
+> 启用第三方登录时，需要同时打开对应的 `bytedesk.custom.login-xxx-enable` 开关，确保前端展示入口。
+
+### GitHub 登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.github.enabled` | 是否启用GitHub登录 | `true` | `BYTEDESK_OAUTH_GITHUB_ENABLED: true` |
+| `bytedesk.oauth.github.client-id` | GitHub OAuth应用的Client ID | `Ov23lilbd9l79m8dQdUG` | `BYTEDESK_OAUTH_GITHUB_CLIENT_ID: Ov23lilbd9l79m8dQdUG` |
+| `bytedesk.oauth.github.client-secret` | GitHub OAuth应用的Client Secret | `your-github-client-secret` | `BYTEDESK_OAUTH_GITHUB_CLIENT_SECRET: your-github-client-secret` |
+| `bytedesk.oauth.github.redirect-uri` | GitHub授权完成后的回调地址 | `http://127.0.0.1:9004/admin/auth/login` | `BYTEDESK_OAUTH_GITHUB_REDIRECT_URI: http://127.0.0.1:9004/admin/auth/login` |
+
+### Google 登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.google.enabled` | 是否启用Google登录 | `true` | `BYTEDESK_OAUTH_GOOGLE_ENABLED: true` |
+| `bytedesk.oauth.google.client-id` | Google OAuth客户端ID | `your-google-client-id` | `BYTEDESK_OAUTH_GOOGLE_CLIENT_ID: your-google-client-id` |
+| `bytedesk.oauth.google.client-secret` | Google OAuth客户端密钥 | `your-google-client-secret` | `BYTEDESK_OAUTH_GOOGLE_CLIENT_SECRET: your-google-client-secret` |
+| `bytedesk.oauth.google.redirect-uri` | Google授权回调地址 | `https://example.com/oauth/google/callback` | `BYTEDESK_OAUTH_GOOGLE_REDIRECT_URI: https://example.com/oauth/google/callback` |
+
+### 微信登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.wechat.enabled` | 是否启用微信登录（开放平台/公众号网页授权） | `true` | `BYTEDESK_OAUTH_WECHAT_ENABLED: true` |
+| `bytedesk.oauth.wechat.app-id` | 微信开放平台应用AppID | `your-wechat-app-id` | `BYTEDESK_OAUTH_WECHAT_APP_ID: your-wechat-app-id` |
+| `bytedesk.oauth.wechat.app-secret` | 微信开放平台应用Secret | `your-wechat-app-secret` | `BYTEDESK_OAUTH_WECHAT_APP_SECRET: your-wechat-app-secret` |
+| `bytedesk.oauth.wechat.redirect-uri` | 微信授权回调地址 | `https://example.com/oauth/wechat/callback` | `BYTEDESK_OAUTH_WECHAT_REDIRECT_URI: https://example.com/oauth/wechat/callback` |
+
+### Facebook 登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.facebook.enabled` | 是否启用Facebook登录 | `true` | `BYTEDESK_OAUTH_FACEBOOK_ENABLED: true` |
+| `bytedesk.oauth.facebook.client-id` | Facebook应用ID | `your-facebook-client-id` | `BYTEDESK_OAUTH_FACEBOOK_CLIENT_ID: your-facebook-client-id` |
+| `bytedesk.oauth.facebook.client-secret` | Facebook应用密钥 | `your-facebook-client-secret` | `BYTEDESK_OAUTH_FACEBOOK_CLIENT_SECRET: your-facebook-client-secret` |
+| `bytedesk.oauth.facebook.redirect-uri` | Facebook授权回调地址 | `https://example.com/oauth/facebook/callback` | `BYTEDESK_OAUTH_FACEBOOK_REDIRECT_URI: https://example.com/oauth/facebook/callback` |
+
+### 钉钉登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.dingtalk.enabled` | 是否启用钉钉登录 | `true` | `BYTEDESK_OAUTH_DINGTALK_ENABLED: true` |
+| `bytedesk.oauth.dingtalk.app-id` | 钉钉应用AppKey/AppID | `your-dingtalk-app-id` | `BYTEDESK_OAUTH_DINGTALK_APP_ID: your-dingtalk-app-id` |
+| `bytedesk.oauth.dingtalk.app-secret` | 钉钉应用AppSecret | `your-dingtalk-app-secret` | `BYTEDESK_OAUTH_DINGTALK_APP_SECRET: your-dingtalk-app-secret` |
+| `bytedesk.oauth.dingtalk.redirect-uri` | 钉钉授权回调地址 | `https://example.com/oauth/dingtalk/callback` | `BYTEDESK_OAUTH_DINGTALK_REDIRECT_URI: https://example.com/oauth/dingtalk/callback` |
+
+### 抖音登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.douyin.enabled` | 是否启用抖音登录 | `true` | `BYTEDESK_OAUTH_DOUYIN_ENABLED: true` |
+| `bytedesk.oauth.douyin.client-key` | 抖音开放平台Client Key | `your-douyin-client-key` | `BYTEDESK_OAUTH_DOUYIN_CLIENT_KEY: your-douyin-client-key` |
+| `bytedesk.oauth.douyin.client-secret` | 抖音开放平台Client Secret | `your-douyin-client-secret` | `BYTEDESK_OAUTH_DOUYIN_CLIENT_SECRET: your-douyin-client-secret` |
+| `bytedesk.oauth.douyin.redirect-uri` | 抖音授权回调地址 | `https://example.com/oauth/douyin/callback` | `BYTEDESK_OAUTH_DOUYIN_REDIRECT_URI: https://example.com/oauth/douyin/callback` |
+
+### 飞书登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.feishu.enabled` | 是否启用飞书登录 | `true` | `BYTEDESK_OAUTH_FEISHU_ENABLED: true` |
+| `bytedesk.oauth.feishu.app-id` | 飞书应用AppID | `your-feishu-app-id` | `BYTEDESK_OAUTH_FEISHU_APP_ID: your-feishu-app-id` |
+| `bytedesk.oauth.feishu.app-secret` | 飞书应用AppSecret | `your-feishu-app-secret` | `BYTEDESK_OAUTH_FEISHU_APP_SECRET: your-feishu-app-secret` |
+| `bytedesk.oauth.feishu.redirect-uri` | 飞书授权回调地址 | `https://example.com/oauth/feishu/callback` | `BYTEDESK_OAUTH_FEISHU_REDIRECT_URI: https://example.com/oauth/feishu/callback` |
+
+### LDAP 模式
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.ldap.enabled` | 是否启用内置LDAP登录适配 | `false` | `BYTEDESK_OAUTH_LDAP_ENABLED: false` |
+| `bytedesk.oauth.ldap.default-email-domain` | 登录时若无邮箱按该域名拼接 | `yourdomain.com` | `BYTEDESK_OAUTH_LDAP_DEFAULT_EMAIL_DOMAIN: yourdomain.com` |
+
+### CAS 单点登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.cas.enabled` | 是否启用CAS | `false` | `BYTEDESK_OAUTH_CAS_ENABLED: false` |
+| `bytedesk.oauth.cas.server-url` | CAS服务器地址 | `https://cas.example.com` | `BYTEDESK_OAUTH_CAS_SERVER_URL: https://cas.example.com` |
+| `bytedesk.oauth.cas.login-path` | CAS登录路径 | `/login` | `BYTEDESK_OAUTH_CAS_LOGIN_PATH: /login` |
+| `bytedesk.oauth.cas.validate-path` | CAS校验路径，建议使用p3接口 | `/p3/serviceValidate` | `BYTEDESK_OAUTH_CAS_VALIDATE_PATH: /p3/serviceValidate` |
+| `bytedesk.oauth.cas.service-redirect-uri` | 当前系统在CAS注册的回调地址 | `https://example.com/oauth/cas/callback` | `BYTEDESK_OAUTH_CAS_SERVICE_REDIRECT_URI: https://example.com/oauth/cas/callback` |
+| `bytedesk.oauth.cas.default-email-domain` | 当CAS响应中无邮箱时用于拼接的域名 | `example.com` | `BYTEDESK_OAUTH_CAS_DEFAULT_EMAIL_DOMAIN: example.com` |
+
+### OIDC 标准登录
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.oidc.enabled` | 是否启用OIDC登录 | `false` | `BYTEDESK_OAUTH_OIDC_ENABLED: false` |
+| `bytedesk.oauth.oidc.issuer` | Issuer地址 | `https://login.microsoftonline.com/{tenant}/v2.0` | `BYTEDESK_OAUTH_OIDC_ISSUER: https://login.microsoftonline.com/{tenant}/v2.0` |
+| `bytedesk.oauth.oidc.client-id` | OIDC客户端ID | `your-oidc-client-id` | `BYTEDESK_OAUTH_OIDC_CLIENT_ID: your-oidc-client-id` |
+| `bytedesk.oauth.oidc.client-secret` | OIDC客户端密钥 | `your-oidc-client-secret` | `BYTEDESK_OAUTH_OIDC_CLIENT_SECRET: your-oidc-client-secret` |
+| `bytedesk.oauth.oidc.redirect-uri` | OIDC授权回调地址 | `https://example.com/oauth/oidc/callback` | `BYTEDESK_OAUTH_OIDC_REDIRECT_URI: https://example.com/oauth/oidc/callback` |
+
+### OpenID 自定义模式
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.oauth.openid.enabled` | 是否启用OpenID通用模式 | `false` | `BYTEDESK_OAUTH_OPENID_ENABLED: false` |
+| `bytedesk.oauth.openid.authorization-endpoint` | 授权端点 | `https://example.com/oauth2/authorize` | `BYTEDESK_OAUTH_OPENID_AUTHORIZATION_ENDPOINT: https://example.com/oauth2/authorize` |
+| `bytedesk.oauth.openid.token-endpoint` | Token端点 | `https://example.com/oauth2/token` | `BYTEDESK_OAUTH_OPENID_TOKEN_ENDPOINT: https://example.com/oauth2/token` |
+| `bytedesk.oauth.openid.user-info-endpoint` | 用户信息端点 | `https://example.com/oauth2/userinfo` | `BYTEDESK_OAUTH_OPENID_USER_INFO_ENDPOINT: https://example.com/oauth2/userinfo` |
+| `bytedesk.oauth.openid.client-id` | OpenID客户端ID | `your-openid-client-id` | `BYTEDESK_OAUTH_OPENID_CLIENT_ID: your-openid-client-id` |
+| `bytedesk.oauth.openid.client-secret` | OpenID客户端密钥 | `your-openid-client-secret` | `BYTEDESK_OAUTH_OPENID_CLIENT_SECRET: your-openid-client-secret` |
+| `bytedesk.oauth.openid.redirect-uri` | OpenID授权回调地址 | `https://example.com/oauth/openid/callback` | `BYTEDESK_OAUTH_OPENID_REDIRECT_URI: https://example.com/oauth/openid/callback` |
+| `bytedesk.oauth.openid.username-field` | 作为用户名的字段，默认`email` | `email` | `BYTEDESK_OAUTH_OPENID_USERNAME_FIELD: email` |
 
 ## 管理员配置
 
@@ -388,3 +498,85 @@ BYTEDESK_ADMIN_VALIDATE_CODE: 123456
 ### 百度翻译相关资源链接
 
 - [百度翻译开放平台](https://fanyi-api.baidu.com/doc/21) - 百度翻译API文档
+
+## 文件上传安全配置
+
+文件上传安全配置用于保护系统免受恶意文件上传的攻击，提高上传文件的安全性。
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.upload.security.max-file-size` | 最大文件大小（字节），默认10MB=10485760 | `10485760` | `BYTEDESK_UPLOAD_SECURITY_MAX_FILE_SIZE: 10485760` |
+| `bytedesk.upload.security.enable-image-validation` | 是否启用图片内容验证（检查图片完整性和格式） | `true` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_IMAGE_VALIDATION: true` |
+| `bytedesk.upload.security.enable-file-name-filter` | 是否启用文件名过滤（检查文件名是否包含危险字符） | `true` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_FILE_NAME_FILTER: true` |
+| `bytedesk.upload.security.force-rename` | 是否强制重命名文件（使用UUID重命名上传的文件） | `true` | `BYTEDESK_UPLOAD_SECURITY_FORCE_RENAME: true` |
+| `bytedesk.upload.security.max-file-name-length` | 文件名最大长度（字符数），默认255 | `255` | `BYTEDESK_UPLOAD_SECURITY_MAX_FILE_NAME_LENGTH: 255` |
+| `bytedesk.upload.security.enable-upload-log` | 是否记录上传日志（记录所有上传操作用于审计） | `true` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_UPLOAD_LOG: true` |
+| `bytedesk.upload.security.enable-virus-scan` | 是否启用病毒扫描（预留接口，可与第三方扫描引擎集成） | `false` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_VIRUS_SCAN: false` |
+| `bytedesk.upload.security.allowed-extensions` | 允许的文件扩展名白名单（逗号分隔，可选配置） | `jpg,jpeg,png,gif,pdf` | `BYTEDESK_UPLOAD_SECURITY_ALLOWED_EXTENSIONS: jpg,jpeg,png,gif,pdf` |
+| `bytedesk.upload.security.dangerous-extensions` | 危险文件扩展名黑名单（逗号分隔，可选配置） | `exe,bat,cmd,sh` | `BYTEDESK_UPLOAD_SECURITY_DANGEROUS_EXTENSIONS: exe,bat,cmd,sh` |
+| `bytedesk.upload.security.allowed-mime-types` | 允许的MIME类型（逗号分隔，可选配置） | `image/jpeg,image/png` | `BYTEDESK_UPLOAD_SECURITY_ALLOWED_MIME_TYPES: image/jpeg,image/png` |
+
+### 文件上传安全配置说明
+
+**配置文件方式：**
+
+```properties
+# ===============================
+# = 文件上传安全配置
+# ===============================
+# 最大文件大小 (10MB = 10485760 bytes)
+bytedesk.upload.security.max-file-size=10485760
+# 是否启用图片内容验证
+bytedesk.upload.security.enable-image-validation=true
+# 是否启用文件名过滤
+bytedesk.upload.security.enable-file-name-filter=true
+# 是否强制重命名文件
+bytedesk.upload.security.force-rename=true
+# 文件名最大长度
+bytedesk.upload.security.max-file-name-length=255
+# 是否记录上传日志
+bytedesk.upload.security.enable-upload-log=true
+# 是否启用病毒扫描（预留接口）
+bytedesk.upload.security.enable-virus-scan=false
+
+# 允许的文件扩展名白名单（可选配置，默认使用代码中的配置）
+# bytedesk.upload.security.allowed-extensions=jpg,jpeg,png,gif,bmp,webp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar,7z,tar,gz,mp3,wav,aac,ogg,flac,m4a,mp4,avi,mov,wmv,flv,mkv,webm
+
+# 危险文件扩展名黑名单（可选配置，默认使用代码中的配置）
+# bytedesk.upload.security.dangerous-extensions=exe,msi,dmg,app,deb,rpm,jsp,php,asp,aspx,sh,bat,cmd,vbs,ps1,js,html,htm,xml,xhtml,jar,war,class,java,dll,com,cgi,scr,pif,lnk,reg,hta
+
+# 允许的MIME类型（可选配置，默认使用代码中的配置）
+# bytedesk.upload.security.allowed-mime-types=image/jpeg,image/png,image/gif,image/bmp,image/webp,image/svg+xml,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,text/plain,application/zip,application/x-rar-compressed,application/x-7z-compressed,application/x-tar,application/gzip,audio/mpeg,audio/wav,audio/aac,audio/ogg,audio/flac,audio/mp4,video/mp4,video/avi,video/quicktime,video/x-ms-wmv,video/x-flv,video/x-matroska,video/webm
+```
+
+**Docker环境变量方式：**
+
+```yaml
+# 文件上传安全配置
+BYTEDESK_UPLOAD_SECURITY_MAX_FILE_SIZE: 10485760
+BYTEDESK_UPLOAD_SECURITY_ENABLE_IMAGE_VALIDATION: "true"
+BYTEDESK_UPLOAD_SECURITY_ENABLE_FILE_NAME_FILTER: "true"
+BYTEDESK_UPLOAD_SECURITY_FORCE_RENAME: "true"
+BYTEDESK_UPLOAD_SECURITY_MAX_FILE_NAME_LENGTH: 255
+BYTEDESK_UPLOAD_SECURITY_ENABLE_UPLOAD_LOG: "true"
+BYTEDESK_UPLOAD_SECURITY_ENABLE_VIRUS_SCAN: "false"
+# 可选配置
+# BYTEDESK_UPLOAD_SECURITY_ALLOWED_EXTENSIONS: jpg,jpeg,png,gif,bmp,webp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar,7z,tar,gz,mp3,wav,aac,ogg,flac,m4a,mp4,avi,mov,wmv,flv,mkv,webm
+# BYTEDESK_UPLOAD_SECURITY_DANGEROUS_EXTENSIONS: exe,msi,dmg,app,deb,rpm,jsp,php,asp,aspx,sh,bat,cmd,vbs,ps1,js,html,htm,xml,xhtml,jar,war,class,java,dll,com,cgi,scr,pif,lnk,reg,hta
+# BYTEDESK_UPLOAD_SECURITY_ALLOWED_MIME_TYPES: image/jpeg,image/png,image/gif,image/bmp,image/webp,image/svg+xml,application/pdf,application/msword,...
+```
+
+### 配置参数详解
+
+- **max-file-size**: 限制单个上传文件的大小，超过此大小的文件将被拒绝。单位为字节。
+- **enable-image-validation**: 启用后会验证上传的图片文件是否完整有效，防止上传破损或伪装的图片。
+- **enable-file-name-filter**: 启用后会过滤文件名中的危险字符（如 `../`, `..\\` 等），防止目录遍历攻击。
+- **force-rename**: 启用后上传的文件将被强制使用UUID重命名，防止通过文件名执行恶意操作。
+- **max-file-name-length**: 限制文件名的最大长度，防止过长文件名导致的问题。
+- **enable-upload-log**: 启用后所有上传操作都将被记录，方便进行审计和追踪。
+- **enable-virus-scan**: 启用后可与第三方防病毒引擎集成，对上传的文件进行病毒扫描（需要自行实现具体集成逻辑）。
+- **allowed-extensions**: 文件扩展名白名单，仅允许上传指定扩展名的文件（如果未配置则使用代码默认值）。
+- **dangerous-extensions**: 危险文件扩展名黑名单，拒绝上传指定扩展名的文件（如如果未配置则使用代码默认值）。
+- **allowed-mime-types**: 允许的MIME类型，仅允许上传指定MIME类型的文件（如果未配置则使用代码默认值）。
+
+> **建议：** 为了安全起见，推荐在生产环境中启用所有安全配置，特别是 `enable-image-validation`、`enable-file-name-filter` 和 `force-rename`。
