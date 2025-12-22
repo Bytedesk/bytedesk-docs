@@ -52,8 +52,8 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 
 # 拉取最新代码
-echo -e "${GREEN}拉取最新代码...${NC}"
-git pull origin main || git pull origin master || true
+# echo -e "${GREEN}拉取最新代码...${NC}"
+# git pull origin main || git pull origin master || true
 
 # 同步文件（排除 node_modules, .git, build 等）
 echo -e "${GREEN}同步文件...${NC}"
