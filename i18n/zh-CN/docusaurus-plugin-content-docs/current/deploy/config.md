@@ -253,6 +253,32 @@ sidebar_position: 7
 - `/file` 对应 `bytedesk.upload.dir` 配置的最后一级目录名
 - `/2025/05/21/20250521112410_pigeon_blue.png` 为系统自动生成的文件存储路径和文件名
 
+## 文件上传安全配置
+
+> 默认策略：仅拦截“危险文件后缀黑名单”（例如 `exe/jsp/php/sh` 等）。
+> 
+> MIME 类型过滤默认不启用（避免浏览器无法准确识别文件 MIME 导致误拦截）。如需更严格校验，可手动开启。
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.upload.security.max-file-size` | 最大文件大小（字节），默认 10MB | `10485760` | `BYTEDESK_UPLOAD_SECURITY_MAX_FILE_SIZE: 10485760` |
+| `bytedesk.upload.security.max-file-name-length` | 文件名最大长度 | `255` | `BYTEDESK_UPLOAD_SECURITY_MAX_FILE_NAME_LENGTH: 255` |
+| `bytedesk.upload.security.enable-file-name-filter` | 是否启用文件名过滤（清理危险字符） | `true` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_FILE_NAME_FILTER: true` |
+| `bytedesk.upload.security.force-rename` | 是否强制重命名（生成安全文件名） | `true` | `BYTEDESK_UPLOAD_SECURITY_FORCE_RENAME: true` |
+| `bytedesk.upload.security.enable-image-validation` | 是否启用图片内容验证（避免伪装图片），默认关闭 | `false` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_IMAGE_VALIDATION: false` |
+| `bytedesk.upload.security.enable-mime-type-validation` | 是否启用 MIME 类型过滤校验（默认关闭） | `false` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_MIME_TYPE_VALIDATION: false` |
+| `bytedesk.upload.security.enable-upload-log` | 是否记录上传安全日志，默认关闭 | `false` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_UPLOAD_LOG: false` |
+
+### 黑名单后缀说明
+
+- `bytedesk.upload.security.dangerous-extensions`：危险文件后缀黑名单。命中即拒绝上传。
+- 该黑名单会通过访客接口下发给前端用于提示与禁用发送。
+
+### MIME 白名单说明（可选）
+
+- `bytedesk.upload.security.allowed-mime-types`：允许的 MIME 类型白名单。
+- 仅当 `bytedesk.upload.security.enable-mime-type-validation=true` 时生效。
+
 ## 知识库配置
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
@@ -503,6 +529,9 @@ BYTEDESK_ADMIN_VALIDATE_CODE: 123456
 
 文件上传安全配置用于保护系统免受恶意文件上传的攻击，提高上传文件的安全性。
 
+> 说明：扩展名校验采用“黑名单”策略：只要不在 `bytedesk.upload.security.dangerous-extensions` 中，默认允许；
+> 若服务端能识别到 `Content-Type`，还会额外按 `bytedesk.upload.security.allowed-mime-types` 进行校验。
+
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
 | :------- | :---------------------- | :------- | :------- |
 | `bytedesk.upload.security.max-file-size` | 最大文件大小（字节），默认10MB=10485760 | `10485760` | `BYTEDESK_UPLOAD_SECURITY_MAX_FILE_SIZE: 10485760` |
@@ -512,7 +541,7 @@ BYTEDESK_ADMIN_VALIDATE_CODE: 123456
 | `bytedesk.upload.security.max-file-name-length` | 文件名最大长度（字符数），默认255 | `255` | `BYTEDESK_UPLOAD_SECURITY_MAX_FILE_NAME_LENGTH: 255` |
 | `bytedesk.upload.security.enable-upload-log` | 是否记录上传日志（记录所有上传操作用于审计） | `true` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_UPLOAD_LOG: true` |
 | `bytedesk.upload.security.enable-virus-scan` | 是否启用病毒扫描（预留接口，可与第三方扫描引擎集成） | `false` | `BYTEDESK_UPLOAD_SECURITY_ENABLE_VIRUS_SCAN: false` |
-| `bytedesk.upload.security.allowed-extensions` | 允许的文件扩展名白名单（逗号分隔，可选配置） | `jpg,jpeg,png,gif,pdf` | `BYTEDESK_UPLOAD_SECURITY_ALLOWED_EXTENSIONS: jpg,jpeg,png,gif,pdf` |
+| `bytedesk.upload.security.allowed-extensions` | 允许的文件扩展名列表（逗号分隔，可选配置；服务端默认以黑名单为准，未命中黑名单即允许） | `jpg,jpeg,png,gif,pdf` | `BYTEDESK_UPLOAD_SECURITY_ALLOWED_EXTENSIONS: jpg,jpeg,png,gif,pdf` |
 | `bytedesk.upload.security.dangerous-extensions` | 危险文件扩展名黑名单（逗号分隔，可选配置） | `exe,bat,cmd,sh` | `BYTEDESK_UPLOAD_SECURITY_DANGEROUS_EXTENSIONS: exe,bat,cmd,sh` |
 | `bytedesk.upload.security.allowed-mime-types` | 允许的MIME类型（逗号分隔，可选配置） | `image/jpeg,image/png` | `BYTEDESK_UPLOAD_SECURITY_ALLOWED_MIME_TYPES: image/jpeg,image/png` |
 
@@ -539,7 +568,7 @@ bytedesk.upload.security.enable-upload-log=true
 # 是否启用病毒扫描（预留接口）
 bytedesk.upload.security.enable-virus-scan=false
 
-# 允许的文件扩展名白名单（可选配置，默认使用代码中的配置）
+# 允许的文件扩展名列表（可选配置；服务端默认以黑名单为准，未命中黑名单即允许）
 # bytedesk.upload.security.allowed-extensions=jpg,jpeg,png,gif,bmp,webp,svg,pdf,doc,docx,xls,xlsx,ppt,pptx,txt,zip,rar,7z,tar,gz,mp3,wav,aac,ogg,flac,m4a,mp4,avi,mov,wmv,flv,mkv,webm
 
 # 危险文件扩展名黑名单（可选配置，默认使用代码中的配置）
