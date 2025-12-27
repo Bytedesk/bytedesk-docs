@@ -231,9 +231,14 @@ sidebar_position: 7
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
 | :------- | :---------------------- | :------- | :------- |
-| `bytedesk.cache.level` | 缓存级别：0(不使用缓存)、1(使用Caffeine缓存)、2(使用Caffeine + Redis缓存) | `0` | `BYTEDESK_CACHE_LEVEL: 0` |
+| `bytedesk.cache.level` | 缓存级别：0(不使用缓存)、1(使用Caffeine缓存)、2(使用Caffeine + Redis缓存) | `2` | `BYTEDESK_CACHE_LEVEL: 2` |
 | `bytedesk.cache.prefix` | 缓存前缀 | `bytedeskim` | `BYTEDESK_CACHE_PREFIX: bytedeskim` |
 | `bytedesk.cache.redis-stream-key` | Redis流键名 | `bytedeskim:stream` | `BYTEDESK_CACHE_REDIS_STREAM_KEY: bytedeskim:stream` |
+| `spring.cache.type` | Spring Cache 类型（建议：`redis`） | `redis` | `SPRING_CACHE_TYPE: redis` |
+| `spring.cache.redis.time-to-live` | Spring Cache Redis TTL（毫秒） | `1800000` | `SPRING_CACHE_REDIS_TIME_TO_LIVE: 1800000` |
+| `spring.cache.redis.cache-null-values` | 是否缓存 null 值 | `false` | `SPRING_CACHE_REDIS_CACHE_NULL_VALUES: "false"` |
+| `spring.cache.redis.use-key-prefix` | 是否启用 key 前缀 | `true` | `SPRING_CACHE_REDIS_USE_KEY_PREFIX: "true"` |
+| `spring.cache.redis.key-prefix` | key 前缀 | `bytedeskim:cache:` | `SPRING_CACHE_REDIS_KEY_PREFIX: "bytedeskim:cache:"` |
 
 ## 上传配置
 
