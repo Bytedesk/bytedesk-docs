@@ -15,7 +15,7 @@ This document provides detailed explanation of Weiyu server configuration parame
 | :------- | :---------------------- | :------- | :------- |
 | `server.port` | Server port | `9003` | `SERVER_PORT: 9003` |
 | `bytedesk.debug` | Whether to enable debug mode | `true` | `BYTEDESK_DEBUG: true` |
-| `bytedesk.version` | Product version number | `0.7.8` | `BYTEDESK_VERSION: 0.7.8` |
+| `bytedesk.version` | Product version number | `1.2.0` | `BYTEDESK_VERSION: 1.2.0` |
 | `bytedesk.appkey` | Authorization key | `ZjoyMDI...` | `BYTEDESK_APPKEY: ZjoyMDI...` |
 
 ## Custom Configuration

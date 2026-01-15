@@ -187,7 +187,7 @@ import Trademark from '/img/right/trademark.png';
 ## 下载演示资料
 
 - [PPT](https://www.weiyuai.cn/download/ppt/)
-- [文档](https://www.weiyuai.cn/download/docx/)
+- [合同模板及文档](https://www.weiyuai.cn/download/docx/)
 - [功能清单](https://www.weiyuai.cn/download/file/)
 - [更多](https://www.weiyuai.cn/download/)
 

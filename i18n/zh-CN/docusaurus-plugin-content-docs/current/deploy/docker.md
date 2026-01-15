@@ -37,7 +37,7 @@ cd bytedesk
 #### 方式一：使用云模型（推荐新手）
 
 1. 下载 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 文件到本地bytedesk目录
-2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
+2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)，下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
 3. 修改配置文件中的API Key
 
 #### 方式二：使用本地模型
@@ -108,7 +108,11 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 - **9003** - WebApi/管理界面
 - **9885** - WebSocket端口
 
-如果使用域名访问，则无需特别对外开放端口，只需要开放 80 和 443 分别用于http/https访问即可
+如果使用域名访问（Nginx/反向代理），则无需特别对外开放 9003/9885，只需要开放 80/443 分别用于 http/https 访问即可。
+
+当 WebSocket 端口（默认 9885）不对外开放时，请增加以下配置，确保前端长连接正常：
+
+- `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://api.你的域名/websocket`
 
 ### 登录信息
 

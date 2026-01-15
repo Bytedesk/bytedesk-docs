@@ -60,6 +60,7 @@ BYTEDESK_LICENSE_KEY:
 #### 2.2 云模型配置（智谱AI）
 
 如果选择云模型方式，在 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 中配置：
+下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
 
 ```yaml
 environment:
@@ -126,6 +127,11 @@ ollama pull bge-m3:latest
 
 - **9003** - WebApi/管理界面
 - **9885** - WebSocket端口
+
+如果你使用域名 + Nginx 反向代理方式对外仅开放 80/443，则 **无需** 对外开放 9003/9885。
+此时请在 docker compose 的环境变量中增加：
+
+- `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://api.你的域名/websocket`
 
 ### 登录信息
 

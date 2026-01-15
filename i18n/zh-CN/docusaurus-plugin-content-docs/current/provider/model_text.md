@@ -87,6 +87,7 @@ environment:
 ```
 
 > 参考文档：[智谱AI官方](https://docs.spring.io/spring-ai/reference/api/chat/zhipuai-chat.html)
+> 下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
 
 ---
 

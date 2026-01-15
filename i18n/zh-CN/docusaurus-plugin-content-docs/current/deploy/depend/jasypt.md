@@ -13,52 +13,7 @@ sidebar_position: 18
 
 Jasypt（Java Simplified Encryption）为 Bytedesk 的 Spring Boot 模块提供基于口令的加密与哈希能力，可安全地把敏感数据写入 `application-*.properties`、`.env` 或 Docker Compose，而无需暴露明文密钥。
 
-## 命令行准备
-
-1. 切换到工具目录并赋权：
-	```bash
-	cd deploy/jasypt-1.9.3
-	chmod +x bin/*.sh
-	```
-2. Windows 直接运行同名 `.bat` 文件，无需 chmod。
-
-## 常用脚本
-
-| 脚本 | 功能 |
-| --- | --- |
-| `bin/encrypt.sh` | 输入明文，输出 BASE64 密文 |
-| `bin/decrypt.sh` | 解密 `encrypt.sh` 生成的密文 |
-| `bin/digest.sh` | 生成单向哈希（用于口令存储） |
-| `bin/listAlgorithms.sh` | 列出当前 JDK 可用算法 |
-
-## 加密敏感信息
-
-1. 生成强口令，供脚本与 Spring Boot 共用：
-	```bash
-	export JASYPT_ENCRYPTOR_PASSWORD="$(openssl rand -base64 32)"
-	```
-2. 执行加密（替换 `mySecret` 为真实值）：
-	```bash
-	./bin/encrypt.sh input="mySecret" \
-		 password="$JASYPT_ENCRYPTOR_PASSWORD" \
-		 algorithm=PBEWITHHMACSHA512ANDAES_256
-	```
-3. 将输出结果包裹成 `ENC(...)` 并写入配置：
-	```properties
-	spring.datasource.password=ENC(ekPdwvAUc3QxZ0...)
-	```
-
-## 解密或校验
-
-```bash
-./bin/decrypt.sh input="<ciphertext>" \
-	 password="$JASYPT_ENCRYPTOR_PASSWORD" \
-	 algorithm=PBEWITHHMACSHA512ANDAES_256
-```
-
-仅需验证哈希是否一致时，可改用 `bin/digest.sh`。
-
-## REST API 方式（推荐）
+## 方法一：REST API 方式（推荐）
 
 为避免依赖命令行工具，可使用 微语 内置的 REST API 接口进行加密/解密。**启动服务后，直接调用 HTTP 接口即可**，无需下载、安装、学习 Jasypt CLI。
 
@@ -156,6 +111,51 @@ curl -X GET "http://127.0.0.1:9003/jasypt/info"
 启动服务后，访问 `http://127.0.0.1:9003/swagger-ui/index.html`，在 **jasypt - 加密解密** 分类下可找到三个接口，点击 **Try it out** 即可在线测试。
 
 > **提示**：参数 `password` 为可选，可留空。如果留空，则使用应用启动时配置的 `JASYPT_ENCRYPTOR_PASSWORD`。
+
+## 方法二：命令行方式
+
+1. 切换到工具目录并赋权：
+	```bash
+	cd deploy/jasypt-1.9.3
+	chmod +x bin/*.sh
+	```
+2. Windows 直接运行同名 `.bat` 文件，无需 chmod。
+
+### 常用脚本
+
+| 脚本 | 功能 |
+| --- | --- |
+| `bin/encrypt.sh` | 输入明文，输出 BASE64 密文 |
+| `bin/decrypt.sh` | 解密 `encrypt.sh` 生成的密文 |
+| `bin/digest.sh` | 生成单向哈希（用于口令存储） |
+| `bin/listAlgorithms.sh` | 列出当前 JDK 可用算法 |
+
+### 加密敏感信息
+
+1. 生成强口令，供脚本与 Spring Boot 共用：
+	```bash
+	export JASYPT_ENCRYPTOR_PASSWORD="$(openssl rand -base64 32)"
+	```
+2. 执行加密（替换 `mySecret` 为真实值）：
+	```bash
+	./bin/encrypt.sh input="mySecret" \
+		 password="$JASYPT_ENCRYPTOR_PASSWORD" \
+		 algorithm=PBEWITHHMACSHA512ANDAES_256
+	```
+3. 将输出结果包裹成 `ENC(...)` 并写入配置：
+	```properties
+	spring.datasource.password=ENC(ekPdwvAUc3QxZ0...)
+	```
+
+### 解密或校验
+
+```bash
+./bin/decrypt.sh input="<ciphertext>" \
+	 password="$JASYPT_ENCRYPTOR_PASSWORD" \
+	 algorithm=PBEWITHHMACSHA512ANDAES_256
+```
+
+仅需验证哈希是否一致时，可改用 `bin/digest.sh`。
 
 ## 应用启动密钥 vs 自定义密码
 

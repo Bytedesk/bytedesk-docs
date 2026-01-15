@@ -115,6 +115,18 @@ server/
     "websocketUrl": "wss://api.weiyuai.cn/stomp", // 注意：chat使用stomp协议 (请替换为自己的域名)
     "htmlUrl": "https://www.weiyuai.cn"      // (请替换为自己的域名)
 }
+
+:::tip WebSocket 端口不对外开放的场景（推荐）
+生产环境一般只对外开放 80/443，通过 Nginx 反向代理 `location /websocket` 到后端 WebSocket 服务（默认 9885）。
+此时外网无法直接访问 `:9885`，前端若硬编码 `:9885` 会导致长连接失败。
+
+微语支持通过配置项指定“外网可访问的 MQTT WebSocket 地址”，前端会优先使用该地址：
+
+- properties：`bytedesk.custom.mqtt-websocket-url=wss://api.yourdomain.com/websocket`
+- Docker 环境变量：`BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://api.yourdomain.com/websocket`
+
+说明：该 URL 应当与 Nginx 中 `/websocket` 的对外访问地址一致。
+:::
 ```
 
 ### 方法2：使用服务器IP（无域名环境）

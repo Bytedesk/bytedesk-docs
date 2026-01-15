@@ -15,7 +15,7 @@ sidebar_position: 7
 | :------- | :---------------------- | :------- | :------- |
 | `server.port` | 服务器端口 | `9003` | `SERVER_PORT: 9003` |
 | `bytedesk.debug` | 是否开启调试模式 | `true` | `BYTEDESK_DEBUG: true` |
-| `bytedesk.version` | 产品版本号 | `0.7.8` | `BYTEDESK_VERSION: 0.7.8` |
+| `bytedesk.version` | 产品版本号 | `1.2.0` | `BYTEDESK_VERSION: 1.2.0` |
 | `bytedesk.appkey` | 授权密钥 | `ZjoyMDI...` | `BYTEDESK_APPKEY: ZjoyMDI...` |
 
 ## 自定义配置
@@ -31,6 +31,7 @@ sidebar_position: 7
 | `bytedesk.custom.show-demo` | 是否显示默认演示 | `true` | `BYTEDESK_CUSTOM_SHOW_DEMO: true` |
 | `bytedesk.custom.privacy-policy-url` | 隐私政策URL地址 | `` | `BYTEDESK_CUSTOM_PRIVACY_POLICY_URL: ` |
 | `bytedesk.custom.terms-of-service-url` | 服务条款URL地址 | `` | `BYTEDESK_CUSTOM_TERMS_OF_SERVICE_URL: ` |
+| `bytedesk.custom.mqtt-websocket-url` | 外网可访问的 MQTT WebSocket 地址（完整URL），用于 Nginx/反向代理场景，避免前端硬编码端口 | `wss://api.example.com/websocket` | `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://api.example.com/websocket` |
 | `bytedesk.custom.login-username-enable` | 是否启用用户名登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_USERNAME_ENABLE: true` |
 | `bytedesk.custom.login-2fa-enable` | 是否启用双重验证（用户名密码 + 手机号验证码） | `false` | `BYTEDESK_CUSTOM_LOGIN_2FA_ENABLE: false` |
 | `bytedesk.custom.login-max-retry-count` | 密码错误最大重试次数，`0` 表示不限制 | `3` | `BYTEDESK_CUSTOM_LOGIN_MAX_RETRY_COUNT: 3` |
@@ -341,6 +342,8 @@ sidebar_position: 7
 | `spring.ai.ollama.embedding.options.model` | Ollama嵌入模型 | `bge-m3:latest` | `SPRING_AI_OLLAMA_EMBEDDING_OPTIONS_MODEL: bge-m3:latest` |
 
 ### 智谱AI配置
+
+下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
 | :------- | :---------------------- | :------- | :------- |

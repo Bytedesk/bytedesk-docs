@@ -15,7 +15,7 @@ sidebar_position: 7
 | :------- | :---------------------- | :------- | :------- |
 | `server.port` | 伺服器埠 | `9003` | `SERVER_PORT: 9003` |
 | `bytedesk.debug` | 是否開啟除錯模式 | `true` | `BYTEDESK_DEBUG: true` |
-| `bytedesk.version` | 產品版本號 | `0.7.8` | `BYTEDESK_VERSION: 0.7.8` |
+| `bytedesk.version` | 產品版本號 | `1.2.0` | `BYTEDESK_VERSION: 1.2.0` |
 | `bytedesk.appkey` | 授權金鑰 | `ZjoyMDI...` | `BYTEDESK_APPKEY: ZjoyMDI...` |
 
 ## 自訂配置

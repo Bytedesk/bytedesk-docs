@@ -174,6 +174,10 @@ stop.bat
 - 9003
 - 9885
 
+如果生产环境通过域名 + Nginx 反向代理对外仅开放 80/443（不直接暴露 9885），请在配置文件中设置：
+
+- `bytedesk.custom.mqtt-websocket-url=wss://api.你的域名/websocket`
+
 ### 5.1 本地访问
 
 ```bash
