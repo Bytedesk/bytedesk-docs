@@ -3,7 +3,7 @@
 
 # Production
 /build
-cicd/
+/cicd
 
 # Generated files
 .docusaurus
