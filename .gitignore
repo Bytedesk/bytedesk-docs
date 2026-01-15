@@ -4,6 +4,7 @@
 # Production
 /build
 /cicd
+.venv/
 
 # Generated files
 .docusaurus
