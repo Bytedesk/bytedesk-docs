@@ -1,5 +1,7 @@
 # 微语文档
 
+**语言 / Language:** [中文](README.zh.md) | [English](README.md)
+
 ## 开发步骤
 
 ```bash
