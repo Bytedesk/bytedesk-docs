@@ -85,6 +85,13 @@ cd bytedesk
 
 # 在项目根目录下执行编译（跳过测试以加快速度）
 ./mvnw install -Dmaven.test.skip=true
+
+# 如果提示 下面几个类找不到
+# import com.bytedesk.core.socket.protobuf.model.MessageProto;
+# import com.bytedesk.core.socket.protobuf.model.ThreadProto;
+# import com.bytedesk.core.socket.protobuf.model.UserProto;
+# 可尝试执行下面命令
+# ./mvnw -f pom.xml -pl modules/core -am -DskipTests -T 1C compile
 ```
 
 ### 3.3 修改配置文件

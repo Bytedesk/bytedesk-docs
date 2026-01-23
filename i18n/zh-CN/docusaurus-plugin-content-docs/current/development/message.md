@@ -5,25 +5,7 @@ sidebar_position: 12
 
 # 对话消息结构
 
-微语系统支持多种消息类型，满足不同场景下的沟通需求。每种消息类型有其特定的数据结构和显示方式。
-
-:::info 消息发送函数说明
-本文档中所有代码示例都使用 `mqttSendMessage` 函数来发送消息。该函数的详细实现和使用方法请参考 [MQTT长连接文档](./mqtt.md#发送消息)。
-
-**函数签名：**
-
-```javascript
-mqttSendMessage(messageUid, messageType, messageContent, currentThread)
-```
-
-**参数说明：**
-
-- `messageUid`: 消息唯一标识符
-- `messageType`: 消息类型（如 "TEXT", "IMAGE", "FILE" 等）
-- `messageContent`: 消息内容（文本消息为字符串，其他类型为JSON字符串）
-- `currentThread`: 当前会话对象
-
-:::
+本文仅描述消息 `type` 与 `content` 的结构。
 
 ## 消息基础结构
 
@@ -33,719 +15,773 @@ mqttSendMessage(messageUid, messageType, messageContent, currentThread)
 type MessageResponse = {
   uid?: string;           // 消息唯一标识
   type: string;          // 消息类型
-  content?: string;      // 消息内容（JSON字符串或纯文本）
+  content?: unknown;     // 消息内容：部分类型为字符串（如 TEXT/NOTICE/CONTINUE/READ/DELIVERED/RECALL）；其它类型为对象（见下方结构定义）
   status: string;        // 消息状态
   createdAt?: string;    // 创建时间
   channel?: string;      // 发送渠道
-  extra?: MessageExtra;  // 扩展信息
+  extra?: unknown;       // 扩展信息：格式不固定
   timestamp?: number;    // 时间戳
   thread?: THREAD.ThreadResponse;  // 会话信息
   user?: USER.UserProtobuf;        // 用户信息
 };
+```
 
-type MessageExtra = {
-  translation?: string;     // 翻译内容
-  orgUid?: string;         // 企业ID
+## content 对象结构对照
+
+说明：本文仅展示已确认 `content` 结构的消息类型；结构尚未明确的类型不在此页展示。
+
+## 消息类型结构
+
+### WELCOME（欢迎消息）
+
+```typescript
+type WelcomeContent = {
+  content?: string; // 欢迎消息文本
+  faqs?: Array<{
+    uid?: string; // FAQ uid
+    question?: string; // 问题
+    answer?: string; // 答案
+    type?: string; // 类型
+  }>; // 常见问题列表（精简结构）
+  kbUid?: string; // 关联知识库 uid
 };
 ```
 
-## 消息类型
+### CONTINUE（继续会话）
 
-### 文本消息
-
-最基础的消息类型，用于发送纯文本内容。文本消息的content字段直接存储字符串，无需JSON格式包装。
-
-**代码示例：**
-
-```javascript
-// 发送文本消息
-const sendTextMessage = (content) => {
-  const message = {
-    uid: generateMessageId(),
-    type: "TEXT",
-    content: content,  // 直接传入字符串，不需要JSON.stringify
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendTextMessage("您好，请问有什么可以帮助您的吗？");
+```typescript
+type ContinueContent = string; // 继续会话提示文本
 ```
 
-**使用场景：**
+### SYSTEM（系统消息）
 
-- 一般文字交流
-- 简单问答
-- 指令发送
+```typescript
+type SystemContent = string; // 系统消息文本（目前以字符串为主）
+```
 
-### 图片消息
+### NOTICE（通知消息）
 
-用于发送和显示图片。
+```typescript
+type NoticeContent = string; // 通知消息文本
+```
 
-**数据结构：**
+### TEXT（文本消息）
+
+说明：`content` 为字符串，支持任意格式（纯文本/Markdown/HTML/JSON 字符串等）。
+
+```typescript
+type TextContent = string; // 文本内容：支持任意格式字符串（纯文本/Markdown/HTML/JSON 字符串等）
+```
+
+### IMAGE（图片消息）
 
 ```typescript
 type ImageContent = {
-  url: string;           // 图片URL
-  width?: string;        // 图片宽度
-  height?: string;       // 图片高度
-  label?: string;        // 图片标签/说明
-  mimeType?: string;     // MIME类型 (如: image/jpeg, image/png)
-  size?: string;         // 文件大小 (字节)
-  hash?: string;         // 文件哈希值 (SHA256)
-  thumbnail?: string;    // 缩略图URL
-  filename?: string;     // 文件名
+  url?: string; // 图片 URL
+  content?: string; // HTML 正文
+  textContent?: string; // 纯文本正文
+  attachments?: Array<{
+    filename?: string; // 文件名
+    name?: string; // 显示名称
+    mimeType?: string; // MIME 类型
+    size?: string; // 大小（字节，字符串存储）
+    url?: string; // 附件 URL
+    hash?: string; // 哈希
+    description?: string; // 描述
+    contentId?: string; // Content-ID（内联附件）
+    isInline?: boolean; // 是否内联
+  }>; // 附件列表
+  label?: string; // 标签/说明
 };
 ```
 
-**代码示例：**
-
-```javascript
-// 发送图片消息
-const sendImageMessage = (imageUrl, options = {}) => {
-  const imageContent = {
-    url: imageUrl,
-    width: options.width || "300",
-    height: options.height || "200",
-    mimeType: options.mimeType || "image/jpeg",
-    size: options.size,
-    filename: options.filename,
-    label: options.label || "图片"
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "IMAGE",
-    content: JSON.stringify(imageContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendImageMessage("https://example.com/product.jpg", {
-  width: "400",
-  height: "300",
-  filename: "product.jpg",
-  label: "产品展示图"
-});
-```
-
-**使用场景：**
-
-- 产品展示
-- 问题截图
-- 图片资料分享
-
-### 语音消息
-
-用于发送语音录音。
-
-**数据结构：**
-
-```typescript
-type VoiceContent = {
-  url: string;       // 语音文件URL
-  duration?: string; // 语音时长（秒）
-  format?: string;   // 文件格式（如ogg, mp3）
-  caption?: string;  // 语音说明文字
-  label?: string;    // 语音标签
-};
-```
-
-**代码示例：**
-
-```javascript
-// 发送语音消息
-const sendVoiceMessage = (voiceUrl, duration, options = {}) => {
-  const voiceContent = {
-    url: voiceUrl,
-    duration: duration.toString(),
-    format: options.format || "ogg",
-    caption: options.caption,
-    label: options.label || "语音消息"
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "VOICE",
-    content: JSON.stringify(voiceContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendVoiceMessage("https://example.com/voice.ogg", 15, {
-  format: "ogg",
-  caption: "语音回复",
-  label: "客服语音"
-});
-```
-
-**使用场景：**
-
-- 语音留言
-- 语音回复
-- 语音指导
-
-### 视频消息
-
-用于发送视频内容。
-
-**数据结构：**
-
-```typescript
-type VideoContent = {
-  url: string;           // 视频URL
-  coverUrl?: string;     // 视频封面URL
-  duration?: string;     // 视频时长 (秒)
-  width?: string;        // 视频宽度
-  height?: string;       // 视频高度
-  format?: string;       // 视频格式 (兼容性字段)
-  mimeType?: string;     // MIME类型 (如: video/mp4, video/avi)
-  label?: string;        // 视频标签/说明
-  size?: string;         // 文件大小 (字节)
-  hash?: string;         // 文件哈希值 (SHA256)
-  filename?: string;     // 文件名
-  caption?: string;      // 视频说明文字
-};
-```
-
-**代码示例：**
-
-```javascript
-// 发送视频消息
-const sendVideoMessage = (videoUrl, options = {}) => {
-  const videoContent = {
-    url: videoUrl,
-    coverUrl: options.coverUrl,
-    duration: options.duration?.toString(),
-    width: options.width || "640",
-    height: options.height || "480",
-    mimeType: options.mimeType || "video/mp4",
-    size: options.size,
-    filename: options.filename,
-    caption: options.caption,
-    label: options.label || "视频"
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "VIDEO",
-    content: JSON.stringify(videoContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendVideoMessage("https://example.com/demo.mp4", {
-  coverUrl: "https://example.com/cover.jpg",
-  duration: 120,
-  width: "800",
-  height: "600",
-  filename: "product_demo.mp4",
-  caption: "产品演示视频"
-});
-```
-
-**使用场景：**
-
-- 产品演示视频
-- 操作指导视频
-- 视频反馈
-
-### 文件消息
-
-用于发送各类文件。
-
-**数据结构：**
-
-```typescript
-type FileContent = {
-  url: string;           // 文件URL
-  name?: string;         // 文件名称
-  size?: string;         // 文件大小 (字节)
-  type?: string;         // 文件MIME类型
-  label?: string;        // 文件标签/说明
-  hash?: string;         // 文件哈希值 (SHA256)
-  filename?: string;     // 文件名 (兼容性字段)
-};
-```
-
-**代码示例：**
-
-```javascript
-// 发送文件消息
-const sendFileMessage = (fileUrl, options = {}) => {
-  const fileContent = {
-    url: fileUrl,
-    name: options.name || options.filename,
-    size: options.size?.toString(),
-    type: options.type || "application/octet-stream",
-    label: options.label || "文件",
-    hash: options.hash,
-    filename: options.filename
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "FILE",
-    content: JSON.stringify(fileContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendFileMessage("https://example.com/contract.pdf", {
-  name: "服务合同.pdf",
-  size: "1024000",
-  type: "application/pdf",
-  label: "合同文件",
-  filename: "contract.pdf"
-});
-```
-
-**使用场景：**
-
-- 文档传输
-- 合同发送
-- 资料共享
-
-### 文档消息
-
-专门用于各类文档的发送和显示。
-
-**数据结构：**
+### DOCUMENT（文档消息）
 
 ```typescript
 type DocumentContent = {
-  url: string;           // 文档文件URL
-  name?: string;         // 文件名称
-  size?: string;         // 文件大小 (字节)
-  type?: string;         // 文件MIME类型
-  caption?: string;      // 文档说明文字
-  thumbnail?: string;    // 缩略图URL
-  label?: string;        // 文档标签
-  hash?: string;         // 文件哈希值 (SHA256)
-  filename?: string;     // 文件名 (兼容性字段)
+  url?: string; // 文档 URL
+  name?: string; // 展示名称
+  size?: string; // 文件大小（字节，字符串存储）
+  type?: string; // MIME 类型
+  caption?: string; // 说明文字
+  thumbnail?: string; // 缩略图 URL
+  label?: string; // 标签/说明
+  hash?: string; // 文件哈希
+  filename?: string; // 文件名（兼容字段）
 };
 ```
 
-**代码示例：**
-
-```javascript
-// 发送文档消息
-const sendDocumentMessage = (docUrl, options = {}) => {
-  const documentContent = {
-    url: docUrl,
-    name: options.name,
-    size: options.size?.toString(),
-    type: options.type || "application/pdf",
-    caption: options.caption,
-    thumbnail: options.thumbnail,
-    label: options.label || "文档",
-    hash: options.hash,
-    filename: options.filename
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "DOCUMENT",
-    content: JSON.stringify(documentContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendDocumentMessage("https://example.com/manual.pdf", {
-  name: "用户手册.pdf",
-  size: "2048000",
-  type: "application/pdf",
-  caption: "产品使用手册，请仔细阅读",
-  thumbnail: "https://example.com/manual_thumb.jpg",
-  label: "用户手册"
-});
-```
-
-**使用场景：**
-
-- PDF文档共享
-- Office文档分享
-- 技术文档传输
-
-### 音频消息
-
-用于发送音频文件。
-
-**数据结构：**
+### AUDIO（音频消息）
 
 ```typescript
 type AudioContent = {
-  url: string;           // 音频URL
-  duration?: string;     // 音频时长 (秒)
-  format?: string;       // 音频格式 (兼容性字段)
-  mimeType?: string;     // MIME类型 (如: audio/mp3, audio/wav)
-  label?: string;        // 音频标签/说明
-  size?: string;         // 文件大小 (字节)
-  hash?: string;         // 文件哈希值 (SHA256)
-  filename?: string;     // 文件名
-  caption?: string;      // 音频说明文字
+  url?: string; // 音频 URL
+  duration?: string; // 时长（秒，字符串存储）
+  format?: string; // 格式（兼容字段）
+  mimeType?: string; // MIME 类型
+  label?: string; // 标签/说明
+  size?: string; // 文件大小（字节，字符串存储）
+  hash?: string; // 文件哈希
+  filename?: string; // 文件名
+  caption?: string; // 说明文字
 };
 ```
 
-**代码示例：**
+### VOICE（语音消息）
 
-```javascript
-// 发送音频消息
-const sendAudioMessage = (audioUrl, options = {}) => {
-  const audioContent = {
-    url: audioUrl,
-    duration: options.duration?.toString(),
-    mimeType: options.mimeType || "audio/mp3",
-    label: options.label || "音频",
-    size: options.size?.toString(),
-    filename: options.filename,
-    caption: options.caption
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "AUDIO",
-    content: JSON.stringify(audioContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
+```typescript
+type VoiceContent = {
+  url?: string; // 语音 URL
+  duration?: string; // 时长（秒，字符串存储）
+  format?: string; // 格式（如 ogg/mp3）
+  caption?: string; // 说明文字
+  label?: string; // 标签/说明
 };
-
-// 使用示例
-sendAudioMessage("https://example.com/audio.mp3", {
-  duration: 180,
-  mimeType: "audio/mp3",
-  filename: "background_music.mp3",
-  caption: "背景音乐文件",
-  label: "音频文件"
-});
 ```
 
-**使用场景：**
+### VIDEO（视频消息）
 
-- 音乐分享
-- 音频资料
+```typescript
+type VideoContent = {
+  url?: string; // 视频 URL
+  coverUrl?: string; // 封面 URL
+  duration?: string; // 时长（秒，字符串存储）
+  width?: string; // 宽度
+  height?: string; // 高度
+  format?: string; // 格式（兼容字段）
+  mimeType?: string; // MIME 类型
+  label?: string; // 标签/说明
+  size?: string; // 文件大小（字节，字符串存储）
+  hash?: string; // 文件哈希
+  filename?: string; // 文件名
+  caption?: string; // 说明文字
+};
+```
 
-### 音乐消息
-
-专门用于音乐分享的消息类型。
-
-**数据结构：**
+### MUSIC（音乐消息）
 
 ```typescript
 type MusicContent = {
-  url: string;
-  title?: string;
-  artist?: string;
-  album?: string;
-  coverUrl?: string;
-  duration?: string;
-  label?: string;
+  url?: string; // 音乐 URL
+  title?: string; // 标题
+  artist?: string; // 艺术家
+  album?: string; // 专辑
+  coverUrl?: string; // 封面 URL
+  duration?: string; // 时长（秒，字符串存储）
+  label?: string; // 标签/说明
 };
 ```
 
-**代码示例：**
-
-```javascript
-// 发送音乐消息
-const sendMusicMessage = (musicUrl, options = {}) => {
-  const musicContent = {
-    url: musicUrl,
-    title: options.title || "未知歌曲",
-    artist: options.artist || "未知艺术家",
-    album: options.album,
-    coverUrl: options.coverUrl,
-    duration: options.duration?.toString(),
-    label: options.label || "音乐分享"
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "MUSIC",
-    content: JSON.stringify(musicContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendMusicMessage("https://example.com/song.mp3", {
-  title: "夜空中最亮的星",
-  artist: "逃跑计划",
-  album: "世界",
-  coverUrl: "https://example.com/album_cover.jpg",
-  duration: 240,
-  label: "推荐歌曲"
-});
-```
-
-**使用场景：**
-
-- 音乐推荐
-- 音乐分享
-
-### 位置消息
-
-用于分享地理位置信息。
-
-**数据结构：**
+### LOCATION（位置消息）
 
 ```typescript
 type LocationContent = {
-  latitude?: string;      // 纬度
-  longitude?: string;     // 经度
-  address?: string;       // 地址
-  label?: string;         // 位置标签/名称
+  latitude?: string; // 纬度
+  longitude?: string; // 经度
+  address?: string; // 地址
+  label?: string; // 位置标签/名称
 };
 ```
 
-**代码示例：**
-
-```javascript
-// 发送位置消息
-const sendLocationMessage = (options = {}) => {
-  const locationContent = {
-    latitude: options.latitude?.toString(),
-    longitude: options.longitude?.toString(),
-    address: options.address,
-    label: options.label || "位置信息"
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "LOCATION",
-    content: JSON.stringify(locationContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
-};
-
-// 使用示例
-sendLocationMessage({
-  latitude: 39.9042,
-  longitude: 116.4074,
-  address: "北京市东城区天安门广场",
-  label: "天安门广场"
-});
-```
-
-**使用场景：**
-
-- 位置共享
-- 商家地址发送
-- 集合地点说明
-
-### 链接消息
-
-用于分享网页链接或其他URL资源。
-
-**数据结构：**
+### LINK（链接消息）
 
 ```typescript
 type LinkContent = {
-  url?: string;            // 链接地址
-  title?: string;          // 链接标题
-  description?: string;    // 链接描述
-  imageUrl?: string;       // 预览图片URL
-  label?: string;          // 链接标签
+  url?: string; // 链接 URL
+  title?: string; // 标题
+  description?: string; // 描述
+  imageUrl?: string; // 预览图 URL
+  label?: string; // 标签/说明
 };
 ```
 
-**代码示例：**
+### URL（网址消息）
 
-```javascript
-// 发送链接消息
-const sendLinkMessage = (options = {}) => {
-  const linkContent = {
-    url: options.url,
-    title: options.title || "链接分享",
-    description: options.description,
-    imageUrl: options.imageUrl,
-    label: options.label
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "LINK", 
-    content: JSON.stringify(linkContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
+```typescript
+type UrlContent = {
+  url?: string; // URL
+  target?: string; // 打开方式（如 _blank/_self）
+  title?: string; // 标题
+  description?: string; // 描述
+  imageUrl?: string; // 预览图
+  label?: string; // 标签/说明
 };
-
-// 使用示例
-sendLinkMessage({
-  url: "https://www.example.com",
-  title: "技术博客",
-  description: "最新的技术分享和开发教程",
-  imageUrl: "https://www.example.com/preview.jpg",
-  label: "推荐阅读"
-});
 ```
 
-**使用场景：**
-
-- 网页分享
-- 产品推荐
-- 文档链接
-- 文章推荐
-- 产品链接
-
-### 按钮消息
-
-用于发送包含交互按钮的消息。
-
-**数据结构：**
+### BUTTON（按钮消息）
 
 ```typescript
 type ButtonContent = {
-  type?: string;        // 按钮类型 (web_url, postback, phone_number等)
-  title?: string;       // 按钮文本标题  
-  payload?: string;     // 按钮载荷数据（用于回调）
-  url?: string;         // 按钮点击跳转链接（适用于web_url类型）
+  type?: string; // 按钮类型（web_url/postback/phone_number/...）
+  title?: string; // 标题
+  payload?: string; // 回传载荷
+  url?: string; // URL
+  webviewHeightRatio?: string; // webview 高度（compact/tall/full）
+  messengerExtensions?: boolean; // 是否启用扩展
+  fallbackUrl?: string; // 备用 URL
+  webviewShareButton?: string; // webview 分享按钮设置
+  viewStyle?: string; // 视图样式
+  enableShareButton?: boolean; // 是否启用分享按钮
+  gameMetadata?: {
+    playerId?: string; // 玩家ID
+    contextId?: string; // 上下文ID
+  }; // 游戏元数据
+  timezone?: string; // 时区
 };
 ```
 
-**代码示例：**
+### QUOTATION（引用消息）
 
-```javascript
-// 发送按钮消息
-const sendButtonMessage = (options = {}) => {
-  const buttonContent = {
-    type: options.type || "postback",
-    title: options.title || "点击按钮",
-    payload: options.payload,
-    url: options.url
-  };
-  
-  const message = {
-    uid: generateMessageId(),
-    type: "BUTTON",
-    content: JSON.stringify(buttonContent),
-    status: "SENDING",
-    createdAt: new Date().toISOString(),
-    channel: "web"
-  };
-  
-  mqttSendMessage(message.uid, message.type, message.content, currentThread);
+```typescript
+type QuotationContent = {
+  content?: string; // 当前消息的文本内容
+  quotedMessageType?: string; // 被引用消息类型（枚举名字符串）
+  quotedContent?: string; // 被引用消息原始内容（文本或 JSON 字符串）
+  quotedMessageUid?: string; // 被引用消息 uid
+  quotedSenderName?: string; // 被引用消息发送人名称
+  quotedSenderUid?: string; // 被引用消息发送人 uid
+  quotedCreatedAt?: string; // 被引用消息发送时间（字符串化时间）
 };
-
-// 使用示例 - 网页链接按钮
-sendButtonMessage({
-  type: "web_url",
-  title: "查看详情",
-  url: "https://www.example.com/details"
-});
-
-// 使用示例 - 回调按钮
-sendButtonMessage({
-  type: "postback",
-  title: "确认操作",
-  payload: "CONFIRM_ACTION"
-});
-
-// 使用示例 - 电话按钮
-sendButtonMessage({
-  type: "phone_number",
-  title: "联系客服",
-  payload: "+86-400-123-4567"
-});
 ```
 
-**使用场景：**
+### STICKER（贴纸）
 
-- 菜单选择
-- 快捷操作
-- 引导式交互
-- 确认对话框
+```typescript
+type StickerContent = {
+  url?: string; // 贴纸 URL
+  label?: string; // 标签/说明
+  mimeType?: string; // MIME 类型
+  size?: string; // 文件大小（字节，字符串存储）
+  hash?: string; // 文件哈希
+  filename?: string; // 文件名
+  caption?: string; // 说明文字
+};
+```
 
-### 机器人消息
+### TYPING（正在输入）
 
-AI机器人自动回复的消息。
+```typescript
+type TypingContent = {}; // 正在输入（当前无字段）
+```
 
-**属性：**
+### PREVIEW（消息预知）
 
-- 问题内容
-- 答案内容
-- 相关推荐
+```typescript
+type PreviewContent = {
+  v?: number; // 版本号
+  content?: string; // 预览文本
+  clear?: boolean; // 是否清空预览
+  ts?: number; // 时间戳（毫秒）
+};
+```
 
-**使用场景：**
+### PROCESSING（正在处理）
 
-- 自动问答
-- 智能客服
-- 知识库查询
+```typescript
+type ProcessingContent = {}; // 处理中（通常仅作为状态提示）
+```
 
-## 消息撤回
+### RECALL（撤回）
 
-微语支持消息撤回功能，允许用户在发送后的一定时间内撤回已发送的消息。
+```typescript
+type RecallContent = string; // 被撤回消息 uid
+```
 
-**撤回限制：**
+### DELIVERED（回执：已送达）
 
-- 时间限制：消息发送后5分钟内可撤回
-- 权限限制：只能撤回自己发送的消息
+```typescript
+type DeliveredContent = string; // 被回执消息 uid
+```
 
-**撤回显示：**
+### READ（回执：已读）
 
-- 撤回后，双方会看到"此消息已撤回"的提示
+```typescript
+type ReadContent = string; // 被回执消息 uid
+```
 
-## 消息引用
+### QUEUE（排队消息）
 
-支持引用回复功能，可以引用之前的消息内容进行回复，便于消息关联。
+```typescript
+type QueueContent = {
+  content?: string; // 排队提示文本
+  position?: number; // 排队位置（从 1 开始）
+  queueSize?: number; // 队列总人数（含自己）
+  waitSeconds?: number; // 预计等待秒数（可为 null 表示无法估算）
+  estimatedWaitTime?: string; // 人性化等待时间描述（如 "约5分钟"）
+  serverTimestamp?: number; // 服务端时间戳（毫秒）
+};
+```
 
-## 相关文档
+### QUEUE_UPDATE（排队更新消息）
 
-:::tip 完整实现指南
-本文档提供了各种消息类型的数据结构和基本使用示例。要了解完整的消息发送实现，包括MQTT连接管理、错误处理、HTTP降级等详细功能，请查看：
+```typescript
+type QueueUpdateContent = {
+  content?: string; // 排队提示文本
+  position?: number; // 排队位置（从 1 开始）
+  queueSize?: number; // 队列总人数（含自己）
+  waitSeconds?: number; // 预计等待秒数
+  estimatedWaitTime?: string; // 人性化等待时间
+  serverTimestamp?: number; // 服务端时间戳（毫秒）
+};
+```
 
-📖 **[MQTT长连接文档](./mqtt.md)** - 包含完整的mqttSendMessage函数实现和使用指南
+### QUEUE_ACCEPT（排队接受消息）
 
-该文档详细介绍了：
+```typescript
+type QueueAcceptContent = {
+  content?: string; // 排队提示文本
+  position?: number;
+  queueSize?: number;
+  waitSeconds?: number;
+  estimatedWaitTime?: string;
+  serverTimestamp?: number;
+};
+```
 
-- MQTT连接建立和管理
-- 消息发送的完整流程
-- 自动降级到HTTP的处理机制
-- 错误处理和重试策略
-- 最佳实践建议
+### QUEUE_TIMEOUT（排队超时消息）
 
-:::
+```typescript
+type QueueTimeoutContent = {
+  content?: string; // 排队提示文本
+  position?: number;
+  queueSize?: number;
+  waitSeconds?: number;
+  estimatedWaitTime?: string;
+  serverTimestamp?: number;
+};
+```
+
+### QUEUE_CANCEL（排队取消消息）
+
+```typescript
+type QueueCancelContent = {
+  content?: string; // 排队提示文本
+  position?: number;
+  queueSize?: number;
+  waitSeconds?: number;
+  estimatedWaitTime?: string;
+  serverTimestamp?: number;
+};
+```
+
+### QUEUE_NOTICE（排队通知消息）
+
+```typescript
+type QueueNotificationContent = {
+  queueMemberUid?: string; // 队列成员 uid
+  threadUid?: string; // 会话 uid
+  threadTopic?: string; // 会话 topic
+  position?: number; // 排队位置
+  queueSize?: number; // 队列总人数
+  estimatedWaitMs?: number; // 预计等待毫秒
+  serverTimestamp?: number; // 服务端时间戳（毫秒）
+  user?: string; // 访客信息（UserProtobuf 的 JSON 字符串）
+};
+```
+
+### FORM（表单）
+
+```typescript
+type FormContent = {
+  formUid?: string; // 表单 uid
+  formSchema?: string; // 表单 schema 快照（字符串/JSON）
+  formVersion?: number; // 表单版本
+};
+```
+
+### FORM_SUBMIT（表单提交）
+
+```typescript
+type FormSubmitContent = {
+  formUid?: string; // 表单 uid
+  formSchema?: string; // 表单 schema 快照（字符串/JSON）
+  formVersion?: number; // 表单版本
+};
+```
+
+### CHOICE（选择消息）
+
+```typescript
+type ChoiceContent = {
+  choiceUid?: string; // 选择消息 uid
+  content?: string; // 提示文本/问题
+  hint?: string; // 辅助说明
+  multiple?: boolean; // 是否多选
+  minSelect?: number; // 最少选择数量
+  maxSelect?: number; // 最多选择数量
+  options?: Array<{
+    optionUid?: string; // 选项 uid
+    title?: string; // 标题
+    value?: string; // 值（提交/回传）
+    description?: string; // 描述
+    payload?: string; // payload（兼容按钮/回传）
+    disabled?: boolean; // 是否禁用
+  }>; // 选项列表
+  selectedValues?: string[]; // 已选值
+};
+```
+
+### CHOICE_SUBMIT（选择提交）
+
+```typescript
+type ChoiceSubmitContent = {
+  choiceUid?: string;
+  content?: string;
+  hint?: string;
+  multiple?: boolean;
+  minSelect?: number;
+  maxSelect?: number;
+  options?: Array<{
+    optionUid?: string;
+    title?: string;
+    value?: string;
+    description?: string;
+    payload?: string;
+    disabled?: boolean;
+  }>;
+  selectedValues?: string[];
+};
+```
+
+### LEAVE_MSG（留言）
+
+```typescript
+type LeaveMsgContent = {
+  content?: string; // 留言内容
+  status?: string; // 状态
+};
+```
+
+### LEAVE_MSG_SUBMIT（留言提交）
+
+```typescript
+type LeaveMsgSubmitContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### LEAVE_MSG_REPLIED（留言回复）
+
+```typescript
+type LeaveMsgRepliedContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### ROBOT（机器人消息）
+
+```typescript
+type RobotContent = {
+  question?: string; // 用户提问
+  questionUid?: string; // 提问消息 uid（用于配对）
+  answer?: string; // 机器人答案
+  reasonContent?: string; // 推理内容
+  sources?: Array<{
+    sourceType?: string; // 来源类型（faq/text/chunk/...）
+    sourceUid?: string; // 来源 uid
+    sourceName?: string; // 来源名称
+    fileName?: string; // 文件名
+    fileUrl?: string; // 文件 URL
+    fileUid?: string; // 文件 uid
+    contentSummary?: string; // 内容摘要
+    score?: number; // 相似度
+    highlighted?: boolean; // 是否高亮
+  }>; // 引用来源
+  regenerationContext?: string; // 重新生成上下文
+  kbUid?: string; // 知识库 uid
+  robotUid?: string; // 机器人 uid
+};
+```
+
+### ROBOT_CANCEL（机器人回答取消）
+
+```typescript
+type RobotCancelContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_UNANSWERED（机器人未回答）
+
+```typescript
+type RobotUnansweredContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_ERROR（机器人错误消息）
+
+```typescript
+type RobotErrorContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_STREAM（机器人流式响应）
+
+```typescript
+type RobotStreamContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_STREAM_START（机器人流式响应开始）
+
+```typescript
+type RobotStreamStartContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_STREAM_END（机器人流式响应结束）
+
+```typescript
+type RobotStreamEndContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_STREAM_CANCEL（机器人流式响应取消）
+
+```typescript
+type RobotStreamCancelContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_STREAM_UNANSWERED（机器人流式响应未回答）
+
+```typescript
+type RobotStreamUnansweredContent = RobotContent; // 同 ROBOT
+```
+
+### ROBOT_STREAM_ERROR（机器人流式响应错误）
+
+```typescript
+type RobotStreamErrorContent = RobotContent; // 同 ROBOT
+```
+
+### RATE_INVITE（邀请评价）
+
+```typescript
+type RateInviteContent = {
+  content?: string; // 文本
+  status?: string; // 状态
+};
+```
+
+### RATE（访客主动评价）
+
+```typescript
+type RateContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### RATE_SUBMIT（访客提交评价）
+
+```typescript
+type RateSubmitContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### RATE_CANCEL（访客取消评价）
+
+```typescript
+type RateCancelContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### AUTO_CLOSED（自动关闭）
+
+```typescript
+type AutoClosedContent = string; // 自动关闭提示文本
+```
+
+### AGENT_CLOSED（客服关闭）
+
+```typescript
+type AgentClosedContent = string; // 客服关闭提示文本
+```
+
+### TRANSFER（会话转接）
+
+```typescript
+type TransferContent = {
+  content?: string; // 文本
+  status?: string; // 状态
+};
+```
+
+### TRANSFER_REJECT（转接拒绝）
+
+```typescript
+type TransferRejectContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### TRANSFER_ACCEPT（转接接受）
+
+```typescript
+type TransferAcceptContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### TRANSFER_TIMEOUT（转接超时）
+
+```typescript
+type TransferTimeoutContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### TRANSFER_CANCEL（转接取消）
+
+```typescript
+type TransferCancelContent = {
+  content?: string;
+  status?: string;
+};
+```
+
+### NOTIFICATION_AGENT_REPLY_TIMEOUT（客服回复超时提醒）
+
+```typescript
+type NotificationAgentReplyTimeoutContent = string; // 提醒文本
+```
+
+### NOTIFICATION_RATE_SUBMITTED（访客评价提交提醒）
+
+```typescript
+type NotificationRateSubmittedContent = string; // 提醒文本
+```
+
+### GOODS（商品消息）
+
+```typescript
+type GoodsContent = {
+  uid?: string; // 商品 uid
+  title?: string; // 标题
+  image?: string; // 图片 URL
+  description?: string; // 描述
+  price?: number; // 价格
+  url?: string; // 商品链接
+  tagList?: string[]; // 标签列表
+  extra?: string; // 业务扩展（建议 JSON 字符串）
+  quantity?: number; // 数量
+};
+```
+
+### ORDER（订单）
+
+```typescript
+type OrderContent = {
+  uid?: string; // 订单号
+  time?: string; // 下单时间（字符串）
+  status?: string; // 订单状态
+  statusText?: string; // 状态文案
+  goods?: GoodsContent; // 商品信息
+  totalAmount?: number; // 总金额
+  shippingAddress?: {
+    name?: string; // 收货人
+    phone?: string; // 电话
+    address?: string; // 地址
+  }; // 收货地址
+  paymentMethod?: string; // 支付方式
+  extra?: string; // 业务扩展（建议 JSON 字符串）
+};
+```
+
+### ARTICLE（文章）
+
+```typescript
+type ArticleContent = {
+  title?: string; // 标题
+  kbUid?: string; // 知识库 uid
+  uid?: string; // 文章 uid
+  summary?: string; // 摘要
+  contentMarkdown?: string; // Markdown 正文
+  contentHtml?: string; // HTML 正文
+  type?: string; // 内容类型（TEXT/MARKDOWN/HTML）
+  coverImageUrl?: string; // 封面图 URL
+};
+```
+
+### FAQ（常见问题）
+
+```typescript
+type FaqContent = {
+  faqUid?: string; // FAQ uid
+  faqQuestion?: string; // 问题
+  faqAnswer?: string; // 答案
+};
+```
+
+### FAQ_QUESTION（常见问题问题）
+
+```typescript
+type FaqQuestionContent = {
+  faqUid?: string;
+  faqQuestion?: string;
+  faqAnswer?: string;
+};
+```
+
+### FAQ_ANSWER（常见问题答案）
+
+```typescript
+type FaqAnswerContent = {
+  faqUid?: string;
+  faqQuestion?: string;
+  faqAnswer?: string;
+};
+```
+
+### PHONE_NUMBER（电话号码）
+
+```typescript
+type PhoneNumberContent = {
+  phoneNumber?: string; // 电话号码
+};
+```
+
+### EMAILL_ADDRESS（邮箱地址）
+
+```typescript
+type EmailAddressContent = {
+  emailAddress?: string; // 邮箱地址
+  emailSubject?: string; // 邮件主题
+  emailBody?: string; // 邮件正文
+};
+```
+### WECHAT_NUMBER（微信号）
+
+```typescript
+type WechatNumberContent = {
+  wechatNumber?: string; // 微信号
+};
+```
+
+### EMAIL（邮件）
+
+```typescript
+type EmailContent = {
+  subject?: string; // 主题
+  content?: string; // HTML 正文
+  textContent?: string; // 纯文本正文
+  attachments?: Array<{
+    filename?: string; // 文件名
+    name?: string; // 显示名称
+    mimeType?: string; // MIME 类型
+    size?: string; // 大小（字节，字符串存储）
+    url?: string; // 附件 URL
+    hash?: string; // 哈希
+    description?: string; // 描述
+    contentId?: string; // Content-ID（内联附件）
+    isInline?: boolean; // 是否内联
+  }>; // 附件列表
+  label?: string; // 标签/说明
+};
+```
+
+## 参考
+
+- [MessageEntity.java（GitHub）](https://github.com/Bytedesk/bytedesk/blob/main/modules/core/src/main/java/com/bytedesk/core/message/MessageEntity.java)
