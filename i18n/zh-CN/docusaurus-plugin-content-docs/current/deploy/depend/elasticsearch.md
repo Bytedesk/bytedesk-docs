@@ -42,9 +42,62 @@ Elasticsearch 提供强大的全文搜索能力，在微语系统中用于：
 - KNN（K近邻）检索
 - 高维向量索引优化
 
+## IK 分词插件（elasticsearch-analysis-ik-8.18.0.zip）
+
+### 用途说明
+
+`elasticsearch-analysis-ik` 是中文分词插件，提供更准确的中文文本切分能力。在微语系统中主要用于：
+
+- 中文全文检索的分词与检索召回提升
+- 知识库与对话内容的中文搜索体验优化
+
+> 插件版本需与 Elasticsearch 版本严格匹配。本文以 8.18.0 为例。
+
 ## 方式一：Docker安装
 
 - [使用Docker安装](../jar.md#12-安装项目依赖)
+
+### Docker 安装 IK 插件（推荐）
+
+#### 1）准备插件包
+
+将插件包放在 compose 文件同级目录，例如：
+
+```
+elasticsearch-analysis-ik-8.18.0.zip
+```
+
+如本地没有文件，可从以下地址下载：
+
+```
+https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip
+```
+
+如需其他版本，请到以下地址下载：
+
+```
+https://release.infinilabs.com/analysis-ik/stable/
+```
+
+#### 2）启动容器时自动安装
+
+在 `bytedesk-elasticsearch` 服务中加入安装逻辑（已在官方 compose 中集成）：
+
+```yaml
+entrypoint: ["bash", "-c", "if [ ! -d /usr/share/elasticsearch/plugins/analysis-ik ]; then echo 'Installing IK plugin...'; if [ -f /tmp/elasticsearch-analysis-ik-8.18.0.zip ]; then /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-ik-8.18.0.zip; else curl -fsSL -o /tmp/elasticsearch-analysis-ik-8.18.0.zip https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip && /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-ik-8.18.0.zip; fi; fi; exec /usr/local/bin/docker-entrypoint.sh"]
+volumes:
+	- ./elasticsearch-analysis-ik-8.18.0.zip:/tmp/elasticsearch-analysis-ik-8.18.0.zip:ro
+```
+
+#### 3）验证插件已安装
+
+容器启动后执行：
+
+```bash
+curl -u elastic:bytedesk123 http://127.0.0.1:9200/_cat/plugins?v
+```
+
+输出包含 `analysis-ik` 即表示安装成功。
 
 ## 方式二：非 Docker 安装（Tarball + systemd）
 
@@ -141,6 +194,38 @@ EOF
 sudo systemctl daemon-reload
 sudo systemctl enable --now elasticsearch
 ```
+
+### 非 Docker 安装 IK 插件
+
+#### 1）下载插件包
+
+```bash
+cd /tmp
+wget https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip
+```
+
+#### 2）安装插件
+
+确保 Elasticsearch 已停止：
+
+```bash
+sudo systemctl stop elasticsearch
+```
+
+执行安装：
+
+```bash
+sudo /opt/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-ik-8.18.0.zip
+```
+
+#### 3）启动并验证
+
+```bash
+sudo systemctl start elasticsearch
+curl -u elastic:<你的密码> http://127.0.0.1:9200/_cat/plugins?v
+```
+
+输出包含 `analysis-ik` 即表示安装成功。
 
 至此，Elasticsearch 将作为系统服务运行，并随开机自启。
 
@@ -331,27 +416,6 @@ spring.elasticsearch.username=elastic
 spring.elasticsearch.password=bytedesk123
 ```
 
-### 索引管理
+### 参考
 
-微语系统会自动创建和管理以下索引：
-
-- **bytedesk-messages**: 存储消息数据和向量
-- **bytedesk-knowledge**: 存储知识库文档和向量
-- **bytedesk-logs**: 存储系统操作日志
-
-## 性能优化建议
-
-1. **硬件资源**：生产环境建议至少 4GB 内存，8GB 或更高更佳
-2. **索引设置**：根据数据特点调整分片数和副本数
-3. **批量操作**：使用批量API进行数据写入，减少请求次数
-4. **查询优化**：使用过滤器和聚合优化查询性能
-5. **定期维护**：设置索引生命周期管理策略
-
-## 常见问题排查
-
-1. **内存不足**：调整 ES_JAVA_OPTS 增加 JVM 堆内存
-2. **连接超时**：检查网络配置和防火墙设置
-3. **集群状态异常**：使用 `GET /_cluster/health` API 检查集群状态
-4. **索引错误**：检查索引映射配置和数据类型
-
-> **注意**：生产环境部署时，建议进一步加强安全措施，包括设置HTTPS、IP限制和角色权限管理。
+- [下载elasticsearch-analysis-ik](https://release.infinilabs.com/analysis-ik/stable/)

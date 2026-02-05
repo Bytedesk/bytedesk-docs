@@ -14,11 +14,11 @@ sidebar_position: 3
 
 ## Dependencies
 
-- [JDK](/docs/deploy/depend/jdk)
-- [MySQL](/docs/deploy/depend/mysql) or [PostgreSQL](/docs/deploy/depend/postgresql)
-- [Redis](/docs/deploy/depend/redis)
-- [Nginx](/docs/deploy/depend/nginx)
-- [Let's Encrypt](/docs/deploy/depend/letsencrypt)
+- [JDK](/docs/docs/deploy/depend/jdk)
+- [MySQL](/docs/docs/deploy/depend/mysql) or [PostgreSQL](/docs/docs/deploy/depend/postgresql)
+- [Redis](/docs/docs/deploy/depend/redis)
+- [Nginx](/docs/docs/deploy/depend/nginx)
+- [Let's Encrypt](/docs/docs/deploy/depend/letsencrypt)
 
 ## Download
 
@@ -64,7 +64,7 @@ spring.data.redis.password=password
 
 Not required for local deployment, only recommended for production environment where Nginx serves as reverse proxy.
 
-## [AI](./depend/ai)
+## [Ollama](./depend/ollama)
 
 Optional, only used for knowledge base Q&A, can be skipped. If only using AI model for conversation, just fill in Zhipu AI key in configuration file.
 

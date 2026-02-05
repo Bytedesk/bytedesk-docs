@@ -169,6 +169,11 @@ Native 模式连接到外部独立的 Artemis broker，适合生产环境部署�
 
 ## 微语应用配置
 
+:::note 多消息中间件支持
+系统已支持多种消息中间件：**Artemis（默认）** 与 **RabbitMQ（可配置启用）**。Kafka/RocketMQ 将在后续版本支持。
+通过统一配置切换，无需修改代码。RabbitMQ 说明见 [RabbitMQ 消息中间件文档](./rabbitmq.md)。
+:::
+
 ### Native 模式配置（生产环境推荐）
 
 在微语中配置连接到Docker中的Artemis。下面分别展示配置与对应的Docker环境变量设置方式：
@@ -184,6 +189,33 @@ spring.artemis.mode=native
 spring.artemis.broker-url=tcp://127.0.0.1:16161
 spring.artemis.user=admin
 spring.artemis.password=admin
+
+# ===============================
+# = MQ 类型切换（默认 artemis）
+# ===============================
+bytedesk.mq.type=artemis
+```
+
+### RabbitMQ 配置示例（可选）
+
+如需切换到 RabbitMQ，请将 `bytedesk.mq.type` 设置为 `rabbitmq`，并配置连接信息：
+
+```properties
+# ===============================
+# = MQ 类型切换
+# ===============================
+bytedesk.mq.type=rabbitmq
+
+# ===============================
+# = RabbitMQ 连接配置
+# ===============================
+bytedesk.mq.rabbitmq.enabled=true
+spring.rabbitmq.host=127.0.0.1
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=admin
+spring.rabbitmq.password=admin
+spring.rabbitmq.virtual-host=/
+spring.rabbitmq.connection-timeout=5000
 ```
 
 ## 配置模式切换

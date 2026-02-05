@@ -8,7 +8,7 @@ sidebar_position: 8
 :::tip 前置條件
 
 - 僅平台版支援此功能，如需要，請[掃碼聯絡微信](/img/wechat.png)
-- 需要試用版License？請參考：[問題13：如何申請licenseKey](/docs/faq#問題13如何申請licensekey)
+- 需要試用版License？請參考：[問題13：如何申請licenseKey](../faq#問題13如何申請licensekey)
 :::
 
 微語系統支援SaaS多租戶模式，允許多個組織在同一系統內獨立營運。本文件介紹如何配置和使用SaaS模式。

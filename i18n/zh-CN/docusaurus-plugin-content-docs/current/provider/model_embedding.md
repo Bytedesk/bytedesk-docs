@@ -13,7 +13,19 @@ sidebar_position: 22
 在 `application.properties` 或环境变量中配置：
 
 ```bash
-# 可选项：none（关闭）、ollama（本地）、zhipuai（智谱AI）、dashscope（阿里云）
+# 可选项：
+# - none（关闭）
+# - ollama（本地）
+# - zhipuai（智谱AI）
+# - dashscope（阿里云百炼）
+# - minimax（MiniMax）
+# - openai（OpenAI）
+# - openrouter（OpenRouter，OpenAI 兼容）
+# - gitee（Gitee，OpenAI 兼容）
+# - baidu（百度千帆，OpenAI 兼容）
+# - tencent（腾讯混元，OpenAI 兼容）
+# - volcengine（火山引擎，OpenAI 兼容）
+# - silicon（SiliconFlow，OpenAI 兼容；注意这里是 silicon 不是 siliconflow）
 spring.ai.model.embedding=zhipuai
 ```
 
@@ -33,6 +45,65 @@ environment:
 
 ## 二、各模型详细配置
 
+> 说明：本项目中，部分厂商的 Embedding/Chat 通过 OpenAI 兼容接口接入（基于 `OpenAiApi`）。
+> 这类 provider 的常见配置项一致：
+>
+> - `spring.ai.<provider>.base-url`
+> - `spring.ai.<provider>.api-key`
+> - `spring.ai.<provider>.embedding.enabled=true`
+> - `spring.ai.<provider>.embedding.options.model=...`
+> - （可选）`spring.ai.<provider>.embedding.options.dimensions=...`（仅当该服务端支持“指定输出维度”时才生效）
+>
+> 另外，`spring.ai.model.embedding` 用于选择“哪一个 EmbeddingModel Bean 生效”，它的值与项目内常量一致（见 `LlmProviderConstants`）。
+>
+> 注意：各 provider 的 embedding 默认是关闭的（`enabled=false`），只有明确设置为 `true` 才会装配对应的 `EmbeddingModel`。
+> 同一时刻建议只开启一个 provider 的 embedding，避免出现多个 `EmbeddingModel` Bean 导致注入歧义。
+
+### 关于 enabled（重要）
+
+在本项目中，向量模型有两层开关：
+
+- `spring.ai.<provider>.embedding.enabled=true|false`：控制是否创建该 provider 的 Embedding 相关 Bean（不启用就不会装配）。
+- `spring.ai.model.embedding=<provider>`：在已装配的模型中，选择哪个作为当前系统使用的“主 EmbeddingModel”。
+
+**推荐做法：只启用一个 embedding provider**（避免启动时出现多个 `EmbeddingModel` Bean 导致注入歧义）。
+
+例如选择智谱（zhipuai）：
+
+```bash
+spring.ai.model.embedding=zhipuai
+
+spring.ai.zhipuai.embedding.enabled=true
+# spring.ai.ollama.embedding.enabled=false
+# spring.ai.dashscope.embedding.enabled=false
+# spring.ai.minimax.embedding.enabled=false
+# spring.ai.openai.embedding.enabled=false
+# spring.ai.openrouter.embedding.enabled=false
+# spring.ai.gitee.embedding.enabled=false
+# spring.ai.baidu.embedding.enabled=false
+# spring.ai.tencent.embedding.enabled=false
+# spring.ai.volcengine.embedding.enabled=false
+# spring.ai.siliconflow.embedding.enabled=false
+```
+
+Docker 环境变量示例：
+
+```yaml
+environment:
+  SPRING_AI_MODEL_EMBEDDING: zhipuai
+  SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
+  # SPRING_AI_OLLAMA_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_DASHSCOPE_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_MINIMAX_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_OPENAI_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_OPENROUTER_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_GITEE_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_BAIDU_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_TENCENT_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_VOLCENGINE_EMBEDDING_ENABLED: "false"
+  # SPRING_AI_SILICONFLOW_EMBEDDING_ENABLED: "false"
+```
+
 ### 1. Ollama（本地部署，免费）
 
 适合本地开发和测试，无需联网。
@@ -43,6 +114,8 @@ spring.ai.ollama.base-url=http://127.0.0.1:11434
 spring.ai.ollama.embedding.enabled=true
 # 推荐中文场景用BGE模型：维度1024
 spring.ai.ollama.embedding.options.model=bge-m3:latest
+
+# Ollama 的向量维度由模型决定（例如 bge-m3 输出 1024 维），无需配置 dimensions
 ```
 
 **Docker 环境变量写法：**
@@ -106,6 +179,8 @@ spring.ai.dashscope.base-url=https://dashscope.aliyuncs.com
 spring.ai.dashscope.embedding.enabled=true
 # 推荐模型：text-embedding-v1（也可选v2/v3），
 spring.ai.dashscope.embedding.options.model=text-embedding-v1
+
+# DashScope 的向量维度由模型决定（例如 text-embedding-v1 为 1536），无需配置 dimensions
 ```
 
 > 注意：text-embedding-v1 维度1536，务必将 elasticsearch.dimensions 同步设置为 1536，否则检索异常！
@@ -125,6 +200,209 @@ environment:
 
 ---
 
+### 4. MiniMax（minimax，云服务，需 API Key）
+
+```bash
+spring.ai.minimax.api-key=你的APIKey
+spring.ai.minimax.base-url=https://api.minimax.chat
+spring.ai.minimax.embedding.enabled=true
+spring.ai.minimax.embedding.options.model=text-embedding-v1
+
+# MiniMax 的向量维度由模型决定；如服务端支持指定维度，可配置：
+# spring.ai.minimax.embedding.options.dimensions=1024
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_MINIMAX_API_KEY: 你的APIKey
+  SPRING_AI_MINIMAX_BASE_URL: https://api.minimax.chat
+  SPRING_AI_MINIMAX_EMBEDDING_ENABLED: "true"
+  SPRING_AI_MINIMAX_EMBEDDING_OPTIONS_MODEL: text-embedding-v1
+  # SPRING_AI_MINIMAX_EMBEDDING_OPTIONS_DIMENSIONS: 1024
+```
+
+---
+
+### 5. OpenAI（openai，云服务，需 API Key）
+
+```bash
+spring.ai.openai.base-url=https://api.openai.com
+spring.ai.openai.api-key=你的APIKey
+spring.ai.openai.embedding.enabled=true
+spring.ai.openai.embedding.options.model=text-embedding-3-small
+
+# 可选：仅当你希望指定输出维度且模型/服务端支持时配置
+# 例如 text-embedding-3-* 支持指定维度时，可配置：
+# spring.ai.openai.embedding.options.dimensions=1536
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_OPENAI_BASE_URL: https://api.openai.com
+  SPRING_AI_OPENAI_API_KEY: 你的APIKey
+  SPRING_AI_OPENAI_EMBEDDING_ENABLED: "true"
+  SPRING_AI_OPENAI_EMBEDDING_OPTIONS_MODEL: text-embedding-3-small
+  # SPRING_AI_OPENAI_EMBEDDING_OPTIONS_DIMENSIONS: 1536
+```
+
+---
+
+### 6. OpenRouter（openrouter，OpenAI 兼容，需 API Key）
+
+```bash
+spring.ai.openrouter.base-url=https://api.openrouter.com
+spring.ai.openrouter.api-key=你的APIKey
+spring.ai.openrouter.embedding.enabled=true
+spring.ai.openrouter.embedding.options.model=text-embedding-3-small
+
+# 可选：仅当服务端支持时配置
+# spring.ai.openrouter.embedding.options.dimensions=1536
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_OPENROUTER_BASE_URL: https://api.openrouter.com
+  SPRING_AI_OPENROUTER_API_KEY: 你的APIKey
+  SPRING_AI_OPENROUTER_EMBEDDING_ENABLED: "true"
+  SPRING_AI_OPENROUTER_EMBEDDING_OPTIONS_MODEL: text-embedding-3-small
+  # SPRING_AI_OPENROUTER_EMBEDDING_OPTIONS_DIMENSIONS: 1536
+```
+
+---
+
+### 7. SiliconFlow（silicon，OpenAI 兼容，需 API Key）
+
+> 注意：`spring.ai.model.embedding` 的值是 `silicon`（不是 `siliconflow`），但 provider 配置前缀仍然是 `spring.ai.siliconflow.*`。
+
+```bash
+spring.ai.siliconflow.base-url=https://api.siliconflow.cn
+spring.ai.siliconflow.api-key=你的APIKey
+spring.ai.siliconflow.embedding.enabled=true
+spring.ai.siliconflow.embedding.options.model=BAAI/bge-m3
+
+# 可选：仅当服务端支持“指定输出维度”时配置（BGE 系列通常不需要配置）
+# spring.ai.siliconflow.embedding.options.dimensions=1024
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_SILICONFLOW_BASE_URL: https://api.siliconflow.cn
+  SPRING_AI_SILICONFLOW_API_KEY: 你的APIKey
+  SPRING_AI_SILICONFLOW_EMBEDDING_ENABLED: "true"
+  SPRING_AI_SILICONFLOW_EMBEDDING_OPTIONS_MODEL: BAAI/bge-m3
+  # SPRING_AI_SILICONFLOW_EMBEDDING_OPTIONS_DIMENSIONS: 1024
+```
+
+---
+
+### 8. 百度千帆（baidu，OpenAI 兼容，需 API Key）
+
+```bash
+spring.ai.baidu.base-url=https://qianfan.baidubce.com/v2
+spring.ai.baidu.api-key=你的APIKey
+spring.ai.baidu.embedding.enabled=true
+spring.ai.baidu.embedding.options.model=embedding-v1
+
+# 可选：仅当服务端支持时配置
+# spring.ai.baidu.embedding.options.dimensions=1024
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_BAIDU_BASE_URL: https://qianfan.baidubce.com/v2
+  SPRING_AI_BAIDU_API_KEY: 你的APIKey
+  SPRING_AI_BAIDU_EMBEDDING_ENABLED: "true"
+  SPRING_AI_BAIDU_EMBEDDING_OPTIONS_MODEL: embedding-v1
+  # SPRING_AI_BAIDU_EMBEDDING_OPTIONS_DIMENSIONS: 1024
+```
+
+---
+
+### 9. 腾讯混元（tencent，OpenAI 兼容，需 API Key）
+
+```bash
+spring.ai.tencent.base-url=https://api.hunyuan.cloud.tencent.com
+spring.ai.tencent.api-key=你的APIKey
+spring.ai.tencent.embedding.enabled=true
+spring.ai.tencent.embedding.options.model=hunyuan-embedding
+
+# 可选：仅当服务端支持时配置
+# spring.ai.tencent.embedding.options.dimensions=1024
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_TENCENT_BASE_URL: https://api.hunyuan.cloud.tencent.com
+  SPRING_AI_TENCENT_API_KEY: 你的APIKey
+  SPRING_AI_TENCENT_EMBEDDING_ENABLED: "true"
+  SPRING_AI_TENCENT_EMBEDDING_OPTIONS_MODEL: hunyuan-embedding
+  # SPRING_AI_TENCENT_EMBEDDING_OPTIONS_DIMENSIONS: 1024
+```
+
+---
+
+### 10. 火山引擎（volcengine，OpenAI 兼容，需 API Key）
+
+```bash
+spring.ai.volcengine.base-url=https://ark.cn-beijing.volces.com/api/v3
+spring.ai.volcengine.api-key=你的APIKey
+spring.ai.volcengine.embedding.enabled=true
+spring.ai.volcengine.embedding.options.model=doubao-embedding
+
+# 可选：仅当服务端支持时配置
+# spring.ai.volcengine.embedding.options.dimensions=1024
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_VOLCENGINE_BASE_URL: https://ark.cn-beijing.volces.com/api/v3
+  SPRING_AI_VOLCENGINE_API_KEY: 你的APIKey
+  SPRING_AI_VOLCENGINE_EMBEDDING_ENABLED: "true"
+  SPRING_AI_VOLCENGINE_EMBEDDING_OPTIONS_MODEL: doubao-embedding
+  # SPRING_AI_VOLCENGINE_EMBEDDING_OPTIONS_DIMENSIONS: 1024
+```
+
+---
+
+### 11. Gitee（gitee，OpenAI 兼容，需 API Key）
+
+```bash
+spring.ai.gitee.base-url=https://api.gitee.com
+spring.ai.gitee.api-key=你的APIKey
+spring.ai.gitee.embedding.enabled=true
+spring.ai.gitee.embedding.options.model=text-embedding-3-small
+
+# 可选：仅当服务端支持时配置
+# spring.ai.gitee.embedding.options.dimensions=1536
+```
+
+**Docker 环境变量写法（可选）**：
+
+```yaml
+environment:
+  SPRING_AI_GITEE_BASE_URL: https://api.gitee.com
+  SPRING_AI_GITEE_API_KEY: 你的APIKey
+  SPRING_AI_GITEE_EMBEDDING_ENABLED: "true"
+  SPRING_AI_GITEE_EMBEDDING_OPTIONS_MODEL: text-embedding-3-small
+  # SPRING_AI_GITEE_EMBEDDING_OPTIONS_DIMENSIONS: 1536
+```
+
+---
+
 ## 三、向量数据库配置
 
 向量数据库用于存储和检索向量数据，常用 elasticsearch。
@@ -135,6 +413,7 @@ spring.ai.vectorstore.type=elasticsearch
 # - Ollama BGE-M3 / 智谱 embedding-2：1024
 # - 智谱 embedding-3：默认 2048（也可配 256/512/1024/2048，但必须与 embedding.options.dimensions 一致）
 # - dashscope text-embedding-v1：1536
+# - 其他 OpenAI 兼容 provider：请以所选 embedding 模型实际输出维度为准
 spring.ai.vectorstore.elasticsearch.dimensions=1024
 ```
 

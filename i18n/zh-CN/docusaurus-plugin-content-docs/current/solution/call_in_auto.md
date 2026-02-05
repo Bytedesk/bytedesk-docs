@@ -10,7 +10,7 @@ sidebar_position: 20
 适用行业：互联网、电商、教育、医疗、政务、金融、制造、物流、物业等。
 
 相关方案：
-- 患者回访外呼：见《[患者回访外呼解决方案](./patient_follow_up)》
+- 患者回访外呼：见《[患者回访外呼解决方案](./call_patient_follow_up)》
 - 售后服务工单：见《[售后服务工单解决方案](./ticket_after_sales)》
 
 ---

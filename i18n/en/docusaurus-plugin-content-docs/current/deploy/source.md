@@ -6,7 +6,7 @@ sidebar_position: 2
 # Source Code Deployment Guide
 
 :::info Trial License
-Need a trial license? Please refer to: [Question 13: How to apply for licenseKey](/docs/faq#question-13-how-to-apply-for-licensekey)
+Need a trial license? Please refer to: [Question 13: How to apply for licenseKey](../faq#question-13-how-to-apply-for-licensekey)
 :::
 
 This document provides detailed source code deployment steps to help you quickly deploy and run the project.
@@ -49,7 +49,7 @@ If JDK 17 is not installed, please refer to: [JDK 17 Installation Guide](./depen
 
 ### 2.2 Install Project Dependencies
 
-- [Install Project Dependencies](./jar.md#12-install-project-dependencies)
+- [Install Project Dependencies](./jar.md#dependencies)
 
 ## 3. Compilation and Startup
 

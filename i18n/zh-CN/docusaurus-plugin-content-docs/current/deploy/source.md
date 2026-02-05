@@ -6,7 +6,7 @@ sidebar_position: 2
 # 源码部署指南
 
 :::info 试用版License
-需要试用版License？请参考：[问题13：如何申请licenseKey](/docs/faq#问题13如何申请licensekey)
+需要试用版License？请参考：[问题13：如何申请licenseKey](../faq#问题13如何申请licensekey)
 :::
 
 本文档提供详细的源码部署步骤，帮助您快速部署和运行项目。
@@ -142,7 +142,7 @@ cd starter
 
 ## 常见问题
 
-部署过程中遇到问题？请查看：[常见问题解答](/docs/faq)
+部署过程中遇到问题？请查看：[常见问题解答](../faq)
 
 如需技术支持，请通过以下方式联系我们：
 

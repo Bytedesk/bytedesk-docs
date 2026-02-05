@@ -14,8 +14,8 @@ sidebar_position: 3
 
 ## Dependencies
 
-- [Nginx](/docs/deploy/depend/nginx)
-- [Let's Encrypt](/docs/deploy/depend/letsencrypt)
+- [Nginx](/docs/docs/deploy/depend/nginx)
+- [Let's Encrypt](/docs/docs/deploy/depend/letsencrypt)
 
 ## Download
 

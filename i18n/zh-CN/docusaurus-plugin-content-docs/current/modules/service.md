@@ -34,7 +34,7 @@ sidebar_position: 3
 
 #### 消息处理增强
 
-- **[消息撤回](../development/message.md#消息撤回)**：支持消息撤回功能，避免误发消息
+- **[消息撤回](../development/message.md#recall撤回)**：支持消息撤回功能，避免误发消息
 - **[消息翻译](../development/translate.md)**：实时多语言翻译，突破语言障碍
 - **[敏感词过滤](../development/taboo.md)**：智能敏感词检测和过滤，保障交流环境
 

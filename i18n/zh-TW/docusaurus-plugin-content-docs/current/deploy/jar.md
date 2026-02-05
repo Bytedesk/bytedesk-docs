@@ -58,7 +58,7 @@ spring.data.redis.password=密码
 
 本地部署可不需要，仅在生产环境推荐安装nginx，nginx做反向代理，
 
-## [AI](./depend/ai)
+## [Ollama](./depend/ollama)
 
 可选，仅用于知识库对话，可跳过。如果仅仅是对话大模型，则直接在配置文件里面填写智谱AI的key就行
 

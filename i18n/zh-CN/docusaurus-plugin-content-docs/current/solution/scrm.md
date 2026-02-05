@@ -10,7 +10,7 @@ sidebar_position: 22
 相关方案：
 - 呼入智能接待：见《[呼入智能接待解决方案](./call_in_auto)》
 - 售后服务工单：见《[售后服务工单解决方案](./ticket_after_sales)》
-- 患者回访外呼：见《[患者回访外呼解决方案](./patient_follow_up)》
+- 患者回访外呼：见《[患者回访外呼解决方案](./call_patient_follow_up)》
 
 ---
 

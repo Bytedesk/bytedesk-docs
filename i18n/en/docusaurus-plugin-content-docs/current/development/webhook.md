@@ -8,7 +8,7 @@ sidebar_position: 27
 :::tip Prerequisites
 
 - This feature is only supported in Enterprise and Platform editions. If needed, please [scan QR code to contact WeChat](/img/wechat.png)
-- Need trial version License? Please refer to: [Question 13: How to apply for licenseKey](/docs/faq#question-13-how-to-apply-for-licensekey)
+- Need trial version License? Please refer to: [Question 13: How to apply for licenseKey](../faq#question-13-how-to-apply-for-licensekey)
 :::
 
 ## Feature Introduction

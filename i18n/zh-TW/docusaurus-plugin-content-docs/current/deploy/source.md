@@ -6,7 +6,7 @@ sidebar_position: 2
 # 源碼部署指南
 
 :::info 試用版License
-需要試用版License？請參考：[問題13：如何申請licenseKey](/docs/faq#問題13如何申請licensekey)
+需要試用版License？請參考：[問題13：如何申請licenseKey](../faq#問題13如何申請licensekey)
 :::
 
 本文檔提供詳細的源碼部署步驟，幫助您快速部署和執行專案。

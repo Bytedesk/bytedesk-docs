@@ -56,8 +56,8 @@ spring:
 
 ### Database Cluster
 
-Refer to [MySQL Cluster](/docs/deploy/depend/mysql) or [PostgreSQL Cluster](/docs/deploy/depend/postgresql) documentation.
+Refer to [MySQL Cluster](/docs/docs/deploy/depend/mysql) or [PostgreSQL Cluster](/docs/docs/deploy/depend/postgresql) documentation.
 
 ### Redis Cluster
 
-Refer to [Redis Cluster](/docs/deploy/depend/redis) documentation.
+Refer to [Redis Cluster](/docs/docs/deploy/depend/redis) documentation.

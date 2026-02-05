@@ -6,7 +6,7 @@ sidebar_position: 3
 # Docker Deployment
 
 :::info Trial License
-Need a trial license? Please refer to: [Question 13: How to apply for licenseKey](/docs/faq#question-13-how-to-apply-for-licensekey)
+Need a trial license? Please refer to: [Question 13: How to apply for licenseKey](../faq#question-13-how-to-apply-for-licensekey)
 :::
 
 :::tip

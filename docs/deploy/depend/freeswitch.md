@@ -31,4 +31,4 @@ FreeSwitch 是一个开源的通信软件平台，用于搭建微语呼叫中心
 ## 参考链接
 
 - [LinPhone下载](https://www.linphone.org/en/download/)
-- [中文完整文档](/zh-CN/docs/deploy/depend/freeswitch)
+- [中文完整文档](/docs/zh-CN/docs/deploy/depend/freeswitch)

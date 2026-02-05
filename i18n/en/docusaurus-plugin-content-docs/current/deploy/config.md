@@ -99,4 +99,47 @@ This document provides detailed explanation of Weiyu server configuration parame
 | `bytedesk.jwt.expiration` | JWT expiration time (milliseconds), default 30 days | `2592000000` | `BYTEDESK_JWT_EXPIRATION: 2592000000` |
 | `bytedesk.jwt.refresh-token-expiration` | Refresh token expiration time (milliseconds), default 60 days | `5184000000` | `BYTEDESK_JWT_REFRESH_TOKEN_EXPIRATION: 5184000000` |
 
+## Alibaba Cloud SMS Service Configuration - Mobile Login Verification Code
+
+| Parameter | Description | Example Value | Docker Environment Variable |
+| :------- | :---------------------- | :------- | :------- |
+| `aliyun.region.id` | Alibaba Cloud region ID | `cn-hangzhou` | `ALIYUN_REGION_ID: cn-hangzhou` |
+| `aliyun.access.key.id` | Alibaba Cloud AccessKey ID | - | `ALIYUN_ACCESS_KEY_ID:` |
+| `aliyun.access.key.secret` | Alibaba Cloud AccessKey secret | - | `ALIYUN_ACCESS_KEY_SECRET:` |
+| `aliyun.sms.signname` | SMS sign name | `Weiyu` | `ALIYUN_SMS_SIGNNAME: Weiyu` |
+| `aliyun.sms.templatecode` | SMS template code | `SMS_xxxxxxxxx` | `ALIYUN_SMS_TEMPLATECODE: SMS_xxxxxxxxx` |
+
+### Related resources
+
+- [Alibaba Cloud Region ID](https://api.aliyun.com/product/Dysmsapi) - Region ID reference for SMS service
+- [Alibaba Cloud AccessKey](https://ram.console.aliyun.com/profile/access-keys) - AccessKey management
+- [Alibaba Cloud SMS Sign](https://dysms.console.aliyun.com/domestic/text/sign) - SMS sign management
+- [Alibaba Cloud SMS Template](https://dysms.console.aliyun.com/domestic/text/template) - SMS template management
+
+### Default test mobile numbers and verification code
+
+Configure a default mobile whitelist so those numbers use a fixed verification code (recommended for dev/test only):
+
+**Configuration file:**
+
+```properties
+# Mobile whitelist for testing
+bytedesk.admin.mobile-whitelist=18888888000,18888888001,18888888002,18888888003,18888888004,18888888005,18888888006
+
+# Fixed verification code for whitelisted mobiles/emails; otherwise a random 6-digit code is generated
+bytedesk.admin.validate-code=123456
+```
+
+**Docker environment variables:**
+
+```yaml
+# Mobile whitelist for testing
+BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001,18888888002,18888888003,18888888004,18888888005
+
+# Fixed verification code for whitelisted mobiles/emails
+BYTEDESK_ADMIN_VALIDATE_CODE: 123456
+```
+
+> Note: Whitelisted numbers use a fixed verification code and should only be used in development/testing.
+
 ## Cache Configuration

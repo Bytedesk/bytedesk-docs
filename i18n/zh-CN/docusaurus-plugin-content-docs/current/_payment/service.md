@@ -69,7 +69,7 @@ sidebar_position: 11
 | [商品信息对接](../development/goodsinfo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单信息对接](../development/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [单点登录SSO](../development/sso.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [消息撤回](../development/message.md#消息撤回) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [消息撤回](../development/message.md#recall撤回) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [消息翻译](../development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [敏感词过滤](../development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Ip过滤拦截](../development/ip.md) | ❌ | ✅ | ✅ | ✅ | ✅ |

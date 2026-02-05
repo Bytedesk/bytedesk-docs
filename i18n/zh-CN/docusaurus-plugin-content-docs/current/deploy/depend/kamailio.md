@@ -5,7 +5,7 @@ sidebar_position: 16
 
 # Kamailio
 
-> 相关：如你偏好另一款同类边界代理，请参阅《[OpenSIPS](/docs/deploy/depend/opensips)》。两者能力高度相近，脚本与模块命名略有差异，选型可基于团队经验与生态偏好。
+> 相关：如你偏好另一款同类边界代理，请参阅《[OpenSIPS](./opensips)》。两者能力高度相近，脚本与模块命名略有差异，选型可基于团队经验与生态偏好。
 
 :::tip 系统要求
 
@@ -61,7 +61,7 @@ Kamailio 与 OpenSIPS 都是成熟的 SIP 代理/注册/路由服务器，二者
 
 - 团队更熟悉谁就选谁；已有脚本/模块的复用优先。
 - 公网/多节点/高并发推荐前置 Kamailio 或 OpenSIPS，后端 FreeSWITCH 专注媒体与业务。
-- 若需要 OpenSIPS 版本的示例或运维方式，可参考《[OpenSIPS](/docs/deploy/depend/opensips)》。
+- 若需要 OpenSIPS 版本的示例或运维方式，可参考《[OpenSIPS](./opensips)》。
 
 ## 安装方式选择
 
@@ -326,7 +326,7 @@ sudo systemctl status --no-pager -l kamailio
 
 参考：
 
-- FreeSWITCH 部署与端口说明见《[Freeswitch 安装指南](/docs/deploy/depend/freeswitch)》。
+- FreeSWITCH 部署与端口说明见《[Freeswitch 安装指南](./freeswitch)》。
 
 ## 参考链接
 
@@ -516,7 +516,7 @@ printf 'OPTIONS sip:weiyuai.cn SIP/2.0\r\nVia: SIP/2.0/UDP 124.220.58.234:5060;b
 - 客户端：
 	- 注册到 `sip:用户名@sip.weiyuai.cn:5060`，失败时抓包对照 Kamailio/FreeSWITCH 日志
 
-> FreeSWITCH 的部署与外网端口配置，可参考《Freeswitch 安装指南》：/docs/deploy/depend/freeswitch
+> FreeSWITCH 的部署与外网端口配置，可参考《Freeswitch 安装指南》：./freeswitch
 
 ---
 

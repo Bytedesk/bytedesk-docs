@@ -5,7 +5,7 @@ sidebar_position: 3
 ---
 
 :::info 试用版License
-需要试用版License？请参考：[问题13：如何申请licenseKey](/docs/faq#问题13如何申请licensekey)
+需要试用版License？请参考：[问题13：如何申请licenseKey](../faq#问题13如何申请licensekey)
 :::
 
 ## 系统要求
@@ -161,7 +161,7 @@ ollama pull bge-m3:latest
 
 ## 常见问题
 
-- 参考 [常见问题](/docs/faq)
+- 参考 [常见问题](../faq)
 - 更多Docker命令参考：[Docker常用命令](./depend/docker#升级bytedesk镜像)
 
 ## 参考链接

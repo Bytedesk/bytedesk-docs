@@ -60,7 +60,7 @@ OpenSIPS 与 Kamailio 都是成熟的高性能 SIP 代理/注册/路由服务器
 
 - 团队熟悉哪一个就优先选哪一个；已有脚本/模板可复用可显著降低成本。
 - 面向公网/多节点/高并发，建议前置 OpenSIPS 或 Kamailio，后端对接 FreeSWITCH 集群。
-- 如需了解 Kamailio 版示例，可参见《[Kamailio](/docs/deploy/depend/kamailio)》。
+- 如需了解 Kamailio 版示例，可参见《[Kamailio](./kamailio)》。
 
 ## 安装方式选择
 
@@ -304,8 +304,8 @@ systemctl status opensips
 
 参考：
 
-- FreeSWITCH 部署与端口说明见《[Freeswitch 安装指南](/docs/deploy/depend/freeswitch)》。
-- 另可参考《[Kamailio](/docs/deploy/depend/kamailio)》，两者用法与思路高度相近。
+- FreeSWITCH 部署与端口说明见《[Freeswitch 安装指南](./freeswitch)》。
+- 另可参考《[Kamailio](./kamailio)》，两者用法与思路高度相近。
 
 ## 参考链接
 

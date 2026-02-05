@@ -21,7 +21,7 @@ sidebar_position: 8
 
 1. **负载均衡层**：Nginx或云服务商提供的负载均衡服务
 2. **应用服务层**：多个微语服务实例
-3. **消息中间件**：Apache ActiveMQ Artemis
+3. **消息中间件**：Apache ActiveMQ Artemis（默认），可配置切换 RabbitMQ（Kafka/RocketMQ 后续支持）
 4. **数据存储层**：MySQL、ElasticSearch、Redis集群
 5. **文件存储层**：MinIO对象存储或共享文件系统
 
@@ -41,7 +41,8 @@ sidebar_position: 8
 
 集群部署的核心是让多个微语服务实例共享同一个消息中间件。首先，我们需要部署 Artemis：
 
-> **详细说明**：有关 Artemis 消息中间件的安装部署、配置及使用的完整说明，请参考 [Artemis 消息中间件文档](./depend/artemis.md)
+> **详细说明**：有关 Artemis 消息中间件的安装部署、配置及使用的完整说明，请参考 [Artemis 消息中间件文档](./depend/artemis.md)。
+> 如需切换到 RabbitMQ，请参考 [RabbitMQ 消息中间件文档](./depend/rabbitmq.md)。
 
 ### 2. 配置微语服务连接Artemis
 
@@ -53,7 +54,23 @@ sidebar_position: 8
 
 > **重要提示**：请确保所有服务实例使用相同的Artemis服务器地址。在生产环境中，建议使用内网地址以提高消息传输效率并增强安全性。
 
-配置具体示例及详细参数设置请参考 [Artemis 消息中间件文档](./depend/artemis.md#spring-boot-应用配置)
+配置具体示例及详细参数设置请参考 [Artemis 消息中间件文档](./depend/artemis.md#微语应用配置)
+
+> **提示**：在多实例集群中，所有节点必须使用相同的 `bytedesk.mq.type` 与同一套消息中间件连接地址。
+
+### 消息中间件类型切换
+
+系统默认使用 Artemis，如需切换 RabbitMQ，修改以下配置即可（无需改代码）：
+
+```properties
+# 默认 Artemis
+bytedesk.mq.type=artemis
+
+# 切换 RabbitMQ
+# bytedesk.mq.type=rabbitmq
+```
+
+RabbitMQ 连接参数示例请参考 [RabbitMQ 消息中间件文档](./depend/rabbitmq.md)。
 
 ### 3. 部署多个微语服务实例
 

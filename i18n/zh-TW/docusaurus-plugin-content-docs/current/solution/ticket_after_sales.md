@@ -7,6 +7,6 @@ sidebar_position: 21
 
 此頁面待翻譯，請先參考簡體版內容。相關方案：
 - 呼入智能接待：《[呼入智能接待解决方案](./call_in_auto)》
-- 患者回訪外呼：《[患者回访外呼解决方案](./patient_follow_up)》
+- 患者回訪外呼：《[患者回访外呼解决方案](./call_patient_follow_up)》
 
 <img src="/img/solution/ticket_lifecycle.svg" alt="售後工單生命週期示意" />

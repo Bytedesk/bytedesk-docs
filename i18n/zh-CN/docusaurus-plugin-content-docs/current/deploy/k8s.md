@@ -6,7 +6,7 @@ sidebar_position: 9
 # Kubernetes部署
 
 :::info 试用版License
-需要试用版License？请参考：[问题13：如何申请licenseKey](/docs/faq#问题13如何申请licensekey)
+需要试用版License？请参考：[问题13：如何申请licenseKey](../faq#问题13如何申请licensekey)
 :::
 
 ## 系统要求

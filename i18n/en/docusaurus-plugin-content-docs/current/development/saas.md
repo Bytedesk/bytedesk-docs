@@ -8,7 +8,7 @@ sidebar_position: 8
 :::tip Prerequisites
 
 - This feature is only supported in Platform Edition. If needed, please [scan QR code to contact WeChat](/img/wechat.png)
-- Need a trial license? Please refer to: [Question 13: How to apply for licenseKey](/docs/faq#question-13-how-to-apply-for-licensekey)
+- Need a trial license? Please refer to: [Question 13: How to apply for licenseKey](../faq#question-13-how-to-apply-for-licensekey)
 :::
 
 The Weiyu system supports SaaS multi-tenant mode, allowing multiple organizations to operate independently within the same system. This document introduces how to configure and use SaaS mode.

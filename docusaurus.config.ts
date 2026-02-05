@@ -277,7 +277,8 @@ const config: Config = {
           position: "left" 
         },
         {
-          to: "/docs/payment",
+          type: "doc",
+          docId: "payment",
           label: "Price",
           position: "left",
         },
@@ -401,7 +402,7 @@ const config: Config = {
             },
             {
               label: "Pricing",
-              to: "/docs/payment",
+              to: "docs/payment",
             },
             {
               label: "Privacy",

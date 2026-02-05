@@ -8,7 +8,7 @@ sidebar_position: 27
 :::tip 前置條件
 
 - 僅企業版和平台版支援此功能，如需要，請[掃碼聯絡微信](/img/wechat.png)
-- 需要試用版License？請參考：[問題13：如何申請licenseKey](/docs/faq#問題13如何申請licensekey)
+- 需要試用版License？請參考：[問題13：如何申請licenseKey](../faq#問題13如何申請licensekey)
 :::
 
 ## 功能簡介
