@@ -57,6 +57,52 @@ sidebar_position: 48
 - 客服坐席上限（默认 20）
 - 工作组上限（默认 20）
 
+## 新组织默认值与配置项
+
+新创建组织会自动设置“默认有效期”和“配额上限”。如果未在请求中显式传入，将使用服务端配置的默认值。
+
+默认值（内置）：
+
+- 有效期：365 天
+- 成员上限：20
+- 客服坐席上限：20
+- 工作组上限：20
+
+可配置项（properties）：
+
+- `bytedesk.organization.default-vip-days`
+- `bytedesk.organization.default-max-members`
+- `bytedesk.organization.default-max-agents`
+- `bytedesk.organization.default-max-workgroups`
+
+对应 Docker 环境变量：
+
+- `BYTEDESK_ORGANIZATION_DEFAULT_VIP_DAYS`
+- `BYTEDESK_ORGANIZATION_DEFAULT_MAX_MEMBERS`
+- `BYTEDESK_ORGANIZATION_DEFAULT_MAX_AGENTS`
+- `BYTEDESK_ORGANIZATION_DEFAULT_MAX_WORKGROUPS`
+
+## 登录时：无组织用户是否允许创建/加入组织
+
+当用户登录后，如果检测到该用户尚未加入任何组织（`userInfo.currentOrganization` 为空），前端会弹出创建/加入组织的引导弹窗。
+
+此时可以通过 properties 控制：
+
+- 是否允许“创建组织”
+- 是否允许“加入组织/申请加入”
+
+默认值：两者都允许。
+
+可配置项（properties）：
+
+- `bytedesk.organization.allow-create-org`（默认 `true`）
+- `bytedesk.organization.allow-join-org`（默认 `true`）
+
+对应 Docker 环境变量：
+
+- `BYTEDESK_ORGANIZATION_ALLOW_CREATE_ORG`
+- `BYTEDESK_ORGANIZATION_ALLOW_JOIN_ORG`
+
 ### 登录时的成员数检查
 
 系统会记录登录情况，并在用户登录后检查：
@@ -89,6 +135,7 @@ sidebar_position: 48
 - 有效期字段：`vipExpireDate`、`vip`
 - 到期限制开关：`vipExpireLoginCheckEnabled`
 - 成员上限字段：`maxMembers`（同一用户多端登录按 1 个成员统计）
+- 无组织时引导弹窗开关：`bytedesk.organization.allow-create-org`、`bytedesk.organization.allow-join-org`
 
 :::
 

@@ -10,7 +10,7 @@ import nin1Image from '/img/nin1.png';
 
 **微语**是基于AI全新打造的一款开源企业级[多租户](./development/saas.md)团队智能协同平台，提供一站式客户服务解决方案/客服中心，能够显著提高内部员工和外部客户沟通效率。
 
-> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能呼叫中心](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[AI Agent](modules/ai.md)、[表单问卷](modules/form.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[视频客服](plugins/webrtc.md)、[客户管理](modules/crm.md)、[开放平台](modules/open.md)
+> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能呼叫中心](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[AI Agent](modules/ai.md)、[表单问卷](modules/form.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[视频客服](plugins/video.md)、[客户管理](modules/crm.md)、[客服培训](modules/training.md)、[开放平台](modules/open.md)
 
 <img src={nin1Image} alt="微语功能集成" />
 
@@ -208,7 +208,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持自定义审批流程、任务分配
 - 状态跟踪，提高团队协作效率
 
-### 7. [视频客服-开发中...](plugins/webrtc.md)
+### 7. [视频客服-开发中...](plugins/video.md)
 
 📹 **实时视频服务解决方案**
 
@@ -240,7 +240,15 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 全渠道互动记录与跟进提醒
 - 商机、合同、订单全流程协同
 
-### 11. [开放平台](modules/open.md)
+### 11. [客服培训](modules/training.md)
+
+🎯 **客服培训与能力提升**
+
+- 课程学习、实操演练、线上考核全流程闭环
+- AI陪练结合质检结果，针对薄弱环节定向提升
+- 参与率与考核数据可视化，管理更可控
+
+### 12. [开放平台](modules/open.md)
 
 🔌 **企业级API开放平台**
 

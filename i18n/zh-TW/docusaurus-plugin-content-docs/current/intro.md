@@ -10,7 +10,7 @@ import nin1Image from '/img/nin1.png';
 
 **微語**是基於AI全新打造的一款開源企業級[多租戶](./development/saas.md)團隊協作工具，整合多種功能於一體：
 
-> [企業IM](modules/team.md)、[線上客服](modules/service.md)、[企業知識庫/幫助文檔](modules/kbase.md)、[工單系統](modules/ticket.md)、[AI Agent智能體](modules/ai.md)、[工作流](modules/workflow.md)、[客戶之聲](modules/voc.md)、[呼叫中心](plugins/freeswitch.md)、[視訊客服](plugins/webrtc.md)、[開放平台](modules/open.md)
+> [企業IM](modules/team.md)、[線上客服](modules/service.md)、[企業知識庫/幫助文檔](modules/kbase.md)、[工單系統](modules/ticket.md)、[AI Agent智能體](modules/ai.md)、[工作流](modules/workflow.md)、[客戶之聲](modules/voc.md)、[呼叫中心](plugins/freeswitch.md)、[視訊客服](plugins/video.md)、[開放平台](modules/open.md)
 
 <img src={nin1Image} alt="微語功能整合" />
 
@@ -210,7 +210,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支援來電彈屏、自動分配、通話錄音
 - 資料統計，語音與文字服務無縫整合
 
-### 8. [視訊客服-開發中...](plugins/webrtc.md)
+### 8. [視訊客服-開發中...](plugins/video.md)
 
 📹 **即時視訊服務解決方案**
 

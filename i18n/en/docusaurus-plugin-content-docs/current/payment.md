@@ -115,7 +115,7 @@ Note: Prices are one-time charges
 | Plugin Name | Feature Description | Price | Notes |
 |---------|---------|------|------|
 | [Call Center](./plugins/freeswitch.md) | Voice calls, IVR, automatic call distribution | TBD | In Development |
-| [Video Customer Service](./plugins/webrtc.md) | One-on-one video calls, screen sharing | TBD | In Development |
+| [Video Customer Service](./plugins/video.md) | One-on-one video calls, screen sharing | TBD | In Development |
 | [BI Intelligent Analytics](./plugins/bi.md) | AI-driven data intelligent decision platform | TBD | In Development |
 <!-- | [Workflow](./modules/workflow.md) | Large model workflow | TBD | In Development | -->
 <!-- | [Video Conference](./plugins/jitsi.md) | Multi-person video conference, collaborative office | TBD | In Development | -->

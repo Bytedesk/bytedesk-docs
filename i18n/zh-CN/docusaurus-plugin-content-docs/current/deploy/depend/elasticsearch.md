@@ -42,68 +42,42 @@ Elasticsearch 提供强大的全文搜索能力，在微语系统中用于：
 - KNN（K近邻）检索
 - 高维向量索引优化
 
-## IK 分词插件（elasticsearch-analysis-ik-8.18.0.zip）
+## 安装 Elasticsearch（版本：8.18.0）
 
-### 用途说明
+本文 Elasticsearch 版本统一为 **8.18.0**，与项目默认 compose 保持一致（见 `starter/src/main/resources/compose.yaml`）。
 
-`elasticsearch-analysis-ik` 是中文分词插件，提供更准确的中文文本切分能力。在微语系统中主要用于：
+## 方式一：Docker 安装（推荐）
 
-- 中文全文检索的分词与检索召回提升
-- 知识库与对话内容的中文搜索体验优化
+可直接使用项目内 compose 启动（更完整的依赖启动流程参考：[使用Docker安装](../jar.md#12-安装项目依赖)）。
 
-> 插件版本需与 Elasticsearch 版本严格匹配。本文以 8.18.0 为例。
+### 1）启动 Elasticsearch
 
-## 方式一：Docker安装
-
-- [使用Docker安装](../jar.md#12-安装项目依赖)
-
-### Docker 安装 IK 插件（推荐）
-
-#### 1）准备插件包
-
-将插件包放在 compose 文件同级目录，例如：
-
-```
-elasticsearch-analysis-ik-8.18.0.zip
-```
-
-如本地没有文件，可从以下地址下载：
-
-```
-https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip
-```
-
-如需其他版本，请到以下地址下载：
-
-```
-https://release.infinilabs.com/analysis-ik/stable/
-```
-
-#### 2）启动容器时自动安装
-
-在 `bytedesk-elasticsearch` 服务中加入安装逻辑（已在官方 compose 中集成）：
-
-```yaml
-entrypoint: ["bash", "-c", "if [ ! -d /usr/share/elasticsearch/plugins/analysis-ik ]; then echo 'Installing IK plugin...'; if [ -f /tmp/elasticsearch-analysis-ik-8.18.0.zip ]; then /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-ik-8.18.0.zip; else curl -fsSL -o /tmp/elasticsearch-analysis-ik-8.18.0.zip https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip && /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-ik-8.18.0.zip; fi; fi; exec /usr/local/bin/docker-entrypoint.sh"]
-volumes:
-	- ./elasticsearch-analysis-ik-8.18.0.zip:/tmp/elasticsearch-analysis-ik-8.18.0.zip:ro
-```
-
-#### 3）验证插件已安装
-
-容器启动后执行：
+在 compose 文件所在目录执行：
 
 ```bash
-curl -u elastic:bytedesk123 http://127.0.0.1:9200/_cat/plugins?v
+cd starter/src/main/resources
+docker compose up -d bytedesk-elasticsearch
 ```
 
-输出包含 `analysis-ik` 即表示安装成功。
+### 2）验证 Elasticsearch 运行
+
+compose 默认将容器 `9200` 映射到宿主机 `19200`（以 compose 为准）：
+
+```bash
+curl -u elastic:你的密码 http://127.0.0.1:19200
+```
+
+如果你的 Elasticsearch 启用了 HTTP TLS（https），可改为（本机测试可先用 `-k` 忽略证书校验）：
+
+```bash
+curl -k -u elastic:你的密码 https://127.0.0.1:19200
+```
 
 ## 方式二：非 Docker 安装（Tarball + systemd）
 
 本项目需要搜索能力支持。以下给出使用官方二进制包（tarball）在 Ubuntu 22.04 上安装并作为 systemd 服务运行 Elasticsearch（单机/开发模式）的完整指南，便于复现与维护。
 
-提示：以下示例使用版本 9.2.0，若下载失败或版本不可用，请替换为官网最新稳定版，版本号以官网为准。
+提示：以下示例使用版本 **8.18.0**（与 compose 一致）。若下载失败或版本不可用，请替换为官网可用的同系列稳定版。
 
 ### 环境要求
 
@@ -111,18 +85,18 @@ curl -u elastic:bytedesk123 http://127.0.0.1:9200/_cat/plugins?v
 - 端口占用：9200（HTTP）在本机回环地址 127.0.0.1 监听
 - 最低内存建议：2 GB（示例配置将 JVM 堆设置为 512MB，可按需调整）
 
-### 一键安装（已在本机按此部署）
+### 一键安装
 
 以下步骤使用官方二进制包（tarball）安装为 systemd 服务，避免包管理器依赖冲突：
 
-1) 下载与解压（版本示例：9.2.0）
+1) 下载与解压（版本示例：8.18.0）
 
 ```bash
 sudo mkdir -p /opt
 cd /opt
-wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.2.0-linux-x86_64.tar.gz
-tar -xzf elasticsearch-9.2.0-linux-x86_64.tar.gz
-ln -sfn elasticsearch-9.2.0 elasticsearch
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.18.0-linux-x86_64.tar.gz
+tar -xzf elasticsearch-8.18.0-linux-x86_64.tar.gz
+ln -sfn elasticsearch-8.18.0 elasticsearch
 ```
 
 2) 创建运行用户与目录权限
@@ -130,7 +104,7 @@ ln -sfn elasticsearch-9.2.0 elasticsearch
 ```bash
 sudo id -u elasticsearch >/dev/null 2>&1 || sudo useradd -r -s /usr/sbin/nologin -d /opt/elasticsearch elasticsearch
 sudo mkdir -p /opt/elasticsearch/data /opt/elasticsearch/logs
-sudo chown -R elasticsearch:elasticsearch /opt/elasticsearch-9.2.0 /opt/elasticsearch
+sudo chown -R elasticsearch:elasticsearch /opt/elasticsearch-8.18.0 /opt/elasticsearch
 ```
 
 3) 最小化配置（开发/单机）
@@ -144,6 +118,7 @@ path.logs: /opt/elasticsearch/logs
 network.host: 127.0.0.1
 http.port: 9200
 discovery.type: single-node
+# 开发环境可关闭安全；生产建议开启并配置 TLS
 xpack.security.enabled: false
 EOF
 ```
@@ -195,7 +170,81 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now elasticsearch
 ```
 
-### 非 Docker 安装 IK 插件
+### 运行验证
+
+```bash
+curl http://127.0.0.1:9200
+```
+
+预期返回类似（版本号为 8.18.0）：
+
+```json
+{
+	"name": "node-1",
+	"cluster_name": "weiyuai-es",
+	"version": { "number": "8.18.0" },
+	"tagline": "You Know, for Search"
+}
+```
+
+## 安装 IK 分词插件（elasticsearch-analysis-ik-8.18.0.zip）
+
+`elasticsearch-analysis-ik` 是中文分词插件，提供更准确的中文文本切分能力。在微语系统中主要用于：
+
+- 中文全文检索的分词与检索召回提升
+- 知识库与对话内容的中文搜索体验优化
+
+> 插件版本需与 Elasticsearch 版本严格匹配。本文以 8.18.0 为例。
+
+### Docker 场景：启动容器时自动安装（推荐）
+
+#### 1）准备插件包
+
+将插件包放在 compose 文件同级目录，例如：
+
+```
+elasticsearch-analysis-ik-8.18.0.zip
+```
+
+如本地没有文件，可从以下地址下载：
+
+```
+https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip
+```
+
+如需其他版本，请到以下地址下载：
+
+```
+https://release.infinilabs.com/analysis-ik/stable/
+```
+
+#### 2）启动容器时自动安装
+
+在 `bytedesk-elasticsearch` 服务中加入安装逻辑（已在官方 compose 中集成）：
+
+```yaml
+entrypoint: ["bash", "-c", "if [ ! -d /usr/share/elasticsearch/plugins/analysis-ik ]; then echo 'Installing IK plugin...'; if [ -f /tmp/elasticsearch-analysis-ik-8.18.0.zip ]; then /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-ik-8.18.0.zip; else curl -fsSL -o /tmp/elasticsearch-analysis-ik-8.18.0.zip https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip && /usr/share/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/elasticsearch-analysis-ik-8.18.0.zip; fi; fi; exec /usr/local/bin/docker-entrypoint.sh"]
+volumes:
+  - ./elasticsearch-analysis-ik-8.18.0.zip:/tmp/elasticsearch-analysis-ik-8.18.0.zip:ro
+```
+
+#### 3）验证插件已安装
+
+容器启动后执行：
+
+```bash
+curl -u elastic:你的密码 http://127.0.0.1:19200/_cat/plugins?v
+```
+
+如启用了 HTTP TLS，则使用：
+
+```bash
+curl -k -u elastic:你的密码 https://127.0.0.1:19200/_cat/plugins?v
+```
+
+输出包含 `analysis-ik` 即表示安装成功。
+
+### 非 Docker 场景：手动安装 IK 插件
 
 #### 1）下载插件包
 
@@ -222,7 +271,7 @@ sudo /opt/elasticsearch/bin/elasticsearch-plugin install --batch file:///tmp/ela
 
 ```bash
 sudo systemctl start elasticsearch
-curl -u elastic:<你的密码> http://127.0.0.1:9200/_cat/plugins?v
+curl http://127.0.0.1:9200/_cat/plugins?v
 ```
 
 输出包含 `analysis-ik` 即表示安装成功。
@@ -241,23 +290,6 @@ systemctl status elasticsearch
 sudo systemctl start elasticsearch
 sudo systemctl stop elasticsearch
 sudo systemctl restart elasticsearch
-```
-
-### 运行验证
-
-```bash
-curl http://127.0.0.1:9200
-```
-
-预期返回类似：
-
-```json
-{
-	"name": "node-1",
-	"cluster_name": "weiyuai-es",
-	"version": { "number": "9.2.0" },
-	"tagline": "You Know, for Search"
-}
 ```
 
 ### 常见配置
@@ -336,11 +368,17 @@ xpack.security.enabled: true
 
 ```bash
 sudo systemctl restart elasticsearch
+# 确认监听地址（看到 *:9200 或 [::]:9200 说明已对外监听）
+ss -lntp | grep ':9200'
 # 本机验证返回 401（未认证），说明端口已对外监听
 curl -s -o /dev/null -w '%{http_code}\n' http://127.0.0.1:9200
+# 若刚启用了安全认证，先重置/生成 elastic 密码（命令会输出新密码）
+sudo /opt/elasticsearch/bin/elasticsearch-reset-password -u elastic -b
 # 远程机器验证（请替换为你的服务器 IP，并提供凭据）
 curl -u elastic:<你的密码> http://<你的服务器IP>:9200
 ```
+
+补充：如果你只希望某个网卡/IP 可访问（而不是 0.0.0.0 全网卡监听），可将 `network.host` 改为服务器的内网 IP 或公网 IP，并重启服务。
 
 4) 防火墙/安全组开放：
 	- 开放 TCP 9200 端口，仅允许可信来源 IP（建议限制来源）。
@@ -396,7 +434,7 @@ journalctl -u elasticsearch -f
 sudo systemctl disable --now elasticsearch
 sudo rm -f /etc/systemd/system/elasticsearch.service
 sudo systemctl daemon-reload
-sudo rm -rf /opt/elasticsearch /opt/elasticsearch-9.2.0 /etc/sysctl.d/99-elasticsearch.conf
+sudo rm -rf /opt/elasticsearch /opt/elasticsearch-8.18.0 /etc/sysctl.d/99-elasticsearch.conf
 sudo sysctl -p || true
 sudo userdel elasticsearch 2>/dev/null || true
 ```
@@ -413,9 +451,19 @@ sudo userdel elasticsearch 2>/dev/null || true
 # Elasticsearch 配置
 spring.elasticsearch.uris=http://elasticsearch-bytedesk:9200
 spring.elasticsearch.username=elastic
-spring.elasticsearch.password=bytedesk123
+spring.elasticsearch.password=<你的密码>
+```
+
+如果你的应用直接连接宿主机端口（使用 compose 暴露的端口），可将 `spring.elasticsearch.uris` 改为：
+
+```properties
+spring.elasticsearch.uris=http://127.0.0.1:19200
 ```
 
 ### 参考
 
-- [下载elasticsearch-analysis-ik](https://release.infinilabs.com/analysis-ik/stable/)
+- [微语下载elasticsearch](https://www.weiyuai.cn/download/elasticsearch-8.18.0-linux-x86_64.tar.gz)
+- [微语下载elasticsearch-analysis-ik](https://www.weiyuai.cn/download/elasticsearch-analysis-ik-8.18.0.zip)
+- [官方地址下载elasticsearch](https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.18.0-linux-x86_64.tar.gz)
+- [官方地址下载elasticsearch-analysis-ik](https://release.infinilabs.com/analysis-ik/stable/)
+- [更多微语下载地址](https://www.weiyuai.cn/download/)

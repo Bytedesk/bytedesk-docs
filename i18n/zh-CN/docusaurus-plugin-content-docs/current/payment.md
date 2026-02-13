@@ -101,6 +101,9 @@ sidebar_position: 11
 | [订单对接](./development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [客户管理](./development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [会话小结](./development/summary.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [会话监控](./development/monitor.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [意见反馈](./development/feedback.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [客服培训](./modules/training.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 品牌自定义 | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 商业版源码 | ❌ | ❌ | ❌ | ❌ | ✅ |
@@ -160,7 +163,7 @@ sidebar_position: 11
 | [视频会议](./plugins/jitsi.md) | 多人视频会议、协同办公 | 待定 | 开发中 |
 | [远程协助](./plugins/remote.md) | 无障碍远程支持，随时随地解决问题 | 待定 | 开发中 |
 <!-- | [呼叫中心](./plugins/freeswitch.md) | 语音通话、IVR、自动话务分配 | 待定 | 开发中 | -->
-<!-- | [音频客服/视频客服](./plugins/webrtc.md) | 一对一音频通话、视频通话、屏幕共享 | 待定 | 开发中 | -->
+<!-- | [音频客服/视频客服](./plugins/video.md) | 一对一音频通话、视频通话、屏幕共享 | 待定 | 开发中 | -->
 <!-- | [工作流](./modules/workflow.md) | 大模型工作流 | 待定 | 开发中 | -->
 <!-- | [看板插件](./plugins/kanban.md) | 可视化任务与项目管理 | 待定 | 开发中 | -->
 

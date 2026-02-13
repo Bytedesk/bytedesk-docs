@@ -10,7 +10,7 @@ import nin1Image from '/img/nin1.png';
 
 **Weiyu** is a newly built open-source enterprise-level [multi-tenant](./development/saas.md) team collaboration tool based on AI, integrating multiple functions into one:
 
-> [Enterprise IM](modules/team.md), [Online Customer Service](modules/service.md), [Enterprise Knowledge Base/Help Documentation](modules/kbase.md), [Ticket System](modules/ticket.md), [AI Agent](modules/ai.md), [Workflow](modules/workflow.md), [Voice of Customer](modules/voc.md), [Call Center](plugins/freeswitch.md), [Video Customer Service](plugins/webrtc.md), [Open Platform](modules/open.md)
+> [Enterprise IM](modules/team.md), [Online Customer Service](modules/service.md), [Enterprise Knowledge Base/Help Documentation](modules/kbase.md), [Ticket System](modules/ticket.md), [AI Agent](modules/ai.md), [Workflow](modules/workflow.md), [Voice of Customer](modules/voc.md), [Call Center](plugins/freeswitch.md), [Video Customer Service](plugins/video.md), [Open Platform](modules/open.md)
 
 <img src={nin1Image} alt="Weiyu Function Integration" />
 
@@ -210,7 +210,7 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Supports incoming call popup, automatic assignment, call recording
 - Data statistics, seamless integration of voice and text services
 
-### 8. [Video Customer Service - In Development...](plugins/webrtc.md)
+### 8. [Video Customer Service - In Development...](plugins/video.md)
 
 📹 **Real-time Video Service Solution**
 
