@@ -104,6 +104,7 @@ server/
 {
     "enabled": true,         // 必须设置为true才能启用模块
     "apiUrl": "https://api.weiyuai.cn",      // API服务器地址 (请替换为自己的域名)
+    "uploadApiUrl": "https://upload.weiyuai.cn", // 可选：上传专用地址(不带上传路径)，多节点反向代理建议配置
     "websocketUrl": "wss://api.weiyuai.cn/websocket", // WebSocket连接地址 (请替换为自己的域名)
     "htmlUrl": "https://www.weiyuai.cn"      // 网站根地址 (请替换为自己的域名)
 }
@@ -112,6 +113,7 @@ server/
 {
     "enabled": true,         // 必须设置为true才能启用模块
     "apiUrl": "https://api.weiyuai.cn",      // (请替换为自己的域名)
+    "uploadApiUrl": "https://upload.weiyuai.cn", // 可选：上传专用地址(不带上传路径)
     "websocketUrl": "wss://api.weiyuai.cn/stomp", // 注意：chat使用stomp协议 (请替换为自己的域名)
     "htmlUrl": "https://www.weiyuai.cn"      // (请替换为自己的域名)
 }
@@ -127,6 +129,17 @@ server/
 
 说明：该 URL 应当与 Nginx 中 `/websocket` 的对外访问地址一致。
 :::
+
+:::tip 多台后端节点上传落盘不一致场景（可选）
+当 `api` 通过负载均衡到多台 Spring Boot 且文件未使用共享存储（如 MinIO/NAS）时，上传与访问可能命中不同节点导致文件不可读。
+
+可通过以下两种方式之一指定“上传专用入口”（完整URL，不带上传路径），前端会优先使用该地址上传：
+
+- `config.json`：`"uploadApiUrl": "https://upload.yourdomain.com"`
+- properties：`bytedesk.custom.upload-api-url=https://upload.yourdomain.com`
+
+未配置时仍默认使用 `apiUrl` 上传。
+:::
 ```
 
 ### 方法2：使用服务器IP（无域名环境）
@@ -138,6 +151,7 @@ server/
 {
     "enabled": true,          // 必须设置为true才能启用模块
     "apiUrl": "http://服务器IP:9003",           // API地址改为服务器IP
+    "uploadApiUrl": "http://服务器IP:9003",     // 可选：上传专用地址(不带上传路径)
     "websocketUrl": "ws://服务器IP:9885/websocket", // WebSocket改为ws协议
     "htmlUrl": "http://服务器IP:9003"           // HTML地址改为服务器IP
 }
@@ -146,6 +160,7 @@ server/
 {
     "enabled": true,          // 必须设置为true才能启用模块
     "apiUrl": "http://服务器IP:9003",
+    "uploadApiUrl": "http://服务器IP:9003",     // 可选：上传专用地址(不带上传路径)
     "websocketUrl": "ws://服务器IP:9003/stomp", // chat模块使用stomp协议
     "htmlUrl": "http://服务器IP:9003"
 }

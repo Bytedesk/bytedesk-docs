@@ -32,27 +32,91 @@ cd bytedesk
 
 ## 2. 环境准备
 
-### 2.1 安装JDK 17
+### 2.1 安装JDK 21
 
-项目基于Spring Boot 3开发，**必须**使用JDK 17或更高版本：
+项目基于Spring Boot 3开发，**必须**使用JDK 21或更高版本：
 
 ```bash
 # 检查Java版本
 java --version
-# 应显示: java 17.x.x 或更高版本
+# 应显示: java 21.x.x 或更高版本
 ```
 
-如果没有安装JDK 17，请参考：[JDK 17安装指南](./depend/jdk)
+如果没有安装JDK 21，请参考：[JDK 21安装指南](./depend/jdk)
 
 ### 2.2 安装项目依赖
 
 ```bash
-# 1. 进入项目资源目录
-cd bytedesk/starter/src/main/resources
+# 1. 进入 deploy/docker 目录
+cd bytedesk/deploy/docker
 
-# 2. 使用docker-compose启动依赖服务
-docker compose -p bytedesk -f compose.yaml up -d
-# docker compose -p bytedesk -f compose.yaml stop
+# 2. 启动依赖服务（默认 MySQL）
+# start.sh <db> <mq> <scenario> [all|middleware]
+
+# Artemis + MySQL（默认）
+./start.sh mysql artemis standard middleware
+
+# RabbitMQ + MySQL（默认）
+./start.sh mysql rabbitmq standard middleware
+
+# 停止（保留容器）
+# ./stop.sh mysql artemis standard stop middleware
+# ./stop.sh mysql rabbitmq standard stop middleware
+
+# 下线（删除容器，保留卷）
+# ./stop.sh mysql artemis standard down middleware
+# ./stop.sh mysql rabbitmq standard down middleware
+
+# 3. 如需切换 PostgreSQL
+
+# Artemis + PostgreSQL
+./start.sh postgresql artemis standard middleware
+
+# RabbitMQ + PostgreSQL
+./start.sh postgresql rabbitmq standard middleware
+
+# Artemis + Oracle
+./start.sh oracle artemis standard middleware
+
+# RabbitMQ + Oracle
+./start.sh oracle rabbitmq standard middleware
+
+# 仅中间件（源码启动推荐，默认）
+./start.sh mysql artemis standard middleware
+./start.sh mysql rabbitmq standard middleware
+
+# 全量（中间件 + bytedesk 镜像）
+./start.sh mysql artemis standard all
+./start.sh mysql rabbitmq standard all
+
+# 可选：通过环境变量切换项目名
+# PROJECT_NAME=bytedesk ./start.sh mysql artemis standard middleware
+
+# 4. 等价原生命令示例
+
+# 先切到 deploy/docker 目录
+# cd deploy/docker
+
+# Artemis + MySQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+
+# Artemis + PostgreSQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+
+# RabbitMQ + MySQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+
+# RabbitMQ + PostgreSQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+
+# Artemis + Oracle
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+
+# RabbitMQ + Oracle
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+
+# 全量（中间件 + bytedesk 镜像）示例
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
 ```
 
 - 或参考[手动项目依赖](./jar.md#12-安装项目依赖)

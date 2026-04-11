@@ -1,32 +1,30 @@
 ---
-title: 社区管理
-description: 用户社区与互动管理
+title: Community Management
+description: Manage user communities and engagement
 sidebar_position: 7
 ---
 
-# 社区管理
+## Overview
 
-## 概述
+The Community Management module helps organizations build and manage user communities, encourage engagement between users, and strengthen loyalty to the product and brand.
 
-社区管理模块帮助企业建立和管理用户社区，促进用户间交流互动，增强用户粘性和品牌忠诚度。
+## Key Features
 
-## 主要功能
+- **Community Content Management**: Review and manage posts and comments.
+- **User Management**: Manage user profiles, permissions, and behavior.
+- **Event Management**: Organize and manage online events.
+- **Community Analytics**: Analyze activity levels and participation.
+- **Moderation Roles**: Assign community administrators and moderators.
+- **Points System**: Reward user contributions with an incentive mechanism.
+- **Announcements**: Publish important notices to the community.
 
-- **社区内容管理**：帖子、评论审核与管理
-- **用户管理**：用户资料、权限与行为管理
-- **活动管理**：在线活动组织和管理
-- **社区统计**：活跃度、参与度等数据分析
-- **社区版主**：指定社区管理员和版主
-- **积分系统**：用户贡献与激励机制
-- **社区公告**：重要信息发布通知
+## Use Cases
 
-## 使用场景
+- Building product user communities
+- Sharing and discussing professional knowledge
+- Running peer-to-peer self-service communities
+- Operating fan communities around a brand
 
-- 产品用户社区建设
-- 专业知识分享与交流
-- 用户自助互助平台
-- 品牌粉丝社区运营
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问社区管理模块：[社区管理](/social/)
+You can access the Community Management module here: [Community Management](/social/)

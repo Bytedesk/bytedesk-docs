@@ -1,6 +1,6 @@
 ---
-sidebar_label: 千牛
+sidebar_label: Qianniu
 sidebar_position: 16
 ---
 
-# 千牛
+# Qianniu

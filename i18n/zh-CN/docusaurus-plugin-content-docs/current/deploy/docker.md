@@ -22,69 +22,26 @@ sidebar_position: 3
 :::
 
 ## 快速开始
-
-### 步骤1：选择部署方式
-
-先创建一个目录，用于存放配置文件和数据文件
+### 步骤1：准备与进入目录
 
 ```bash
-# 创建bytedesk目录
-mkdir bytedesk
-# 进入目录
-cd bytedesk
+git clone https://github.com/Bytedesk/bytedesk.git
+cd bytedesk/deploy/docker
+
+# 如需自定义环境变量，先复制模板
+cp .env.example .env
 ```
 
-#### 方式一：使用云模型（推荐新手）
-
-1. 下载 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 文件到本地bytedesk目录
-2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)，下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
-3. 修改配置文件中的API Key
-
-#### 方式二：使用本地模型
-
-1. 下载 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件到本地bytedesk目录
-2. 无需申请API Key，使用本地Ollama模型
-
-#### 方式三：默认不使用ai大模型
-
-1. 下载 [`docker-compose-noai.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-noai.yaml) 文件到本地bytedesk目录
-
-### 步骤2：修改配置
-
-在下载的配置文件中，将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置[licenseKey](../development/license.md)，
-申请[智谱AI API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
-
-```yaml
-# 请将 127.0.0.1 替换为你的服务器IP或域名
-BYTEDESK_UPLOAD_URL: http://你的服务器IP:9003
-BYTEDESK_KBASE_API_URL: http://你的服务器IP:9003
-BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
-
-# 官方微语管理后台-》设置-》License-》申请licenseKey
-BYTEDESK_LICENSE_KEY: 
-
-# 申请智谱AI API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys
-SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
-```
-
-> 💡 **提示**：注意修改镜像默认用户名密码，比如:Mysql/Redis等默认密码。
-
-### 步骤3：启动服务
-
-在bytedesk目录下，执行以下命令启动服务：
+### 步骤2：默认启动（推荐）
 
 ```bash
-# 方式一：使用云模型
-docker compose -p bytedesk -f docker-compose.yaml up -d
-
-# 方式二：使用本地模型
-docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
-
-# 方式三：默认不使用ai大模型
-docker compose -p bytedesk -f docker-compose-noai.yaml up -d
+# 默认：MySQL + Artemis + standard 场景，仅中间件
+./start.sh mysql artemis standard middleware
 ```
 
-### 步骤4：下载模型（仅方式二：本地模型需要）
+> 💡 更多组合（PostgreSQL/Oracle、RabbitMQ、noai、call、全量 all）请参考：`deploy/docker/readme.zh.md`
+
+### 步骤3：下载模型（可选）
 
 如果使用本地模型，需要下载Ollama模型：
 

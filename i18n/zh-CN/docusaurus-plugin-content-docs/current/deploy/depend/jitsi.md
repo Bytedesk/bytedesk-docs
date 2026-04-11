@@ -31,10 +31,10 @@ Jitsi 是一套开源的视频会议解决方案，核心由以下组件构成�
 
 - 域名与 DNS：如 `jitsi.weiyuai.cn`（A 记录指向公网 IP）
 - 服务器：
-	- Core（Prosody/Jicofo/Web）：2 vCPU / 4GB RAM
-	- JVB：4 vCPU / 8GB RAM / ≥300 Mbps 带宽（起步）
-	- Jibri：4 vCPU / 8GB RAM（每台建议同时只录制 1 场）
-	- Coturn：2 vCPU / 4GB RAM / 公网 IP
+  - Core（Prosody/Jicofo/Web）：2 vCPU / 4GB RAM
+  - JVB：4 vCPU / 8GB RAM / ≥300 Mbps 带宽（起步）
+  - Jibri：4 vCPU / 8GB RAM（每台建议同时只录制 1 场）
+  - Coturn：2 vCPU / 4GB RAM / 公网 IP
 - 操作系统：Ubuntu 20.04+/Debian/CentOS/RHEL 均可（推荐 Ubuntu 22.04 LTS）
 - 证书：生产建议使用有效的 TLS 证书（可用反代 + Let’s Encrypt）
 
@@ -56,22 +56,22 @@ Jitsi 是一套开源的视频会议解决方案，核心由以下组件构成�
 ## 微语官方测试地址与参考配置
 
 :::tip 官方资源
+
 - 在线测试地址（微语官方提供）：[https://jitsi.weiyuai.cn/](https://jitsi.weiyuai.cn/)
 - 参考配置文件与部署示例：[https://github.com/Bytedesk/bytedesk/tree/main/deploy/jitsi](https://github.com/Bytedesk/bytedesk/tree/main/deploy/jitsi)
 :::
-
 
 ## 快速安装（Quickstart）
 
 以下为“最快可用”的两条路径，建议先选其一完成可用性验证：
 
-- 官方 Quickstart：https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-quickstart
+- 官方 Quickstart：[Jitsi Handbook Quickstart](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-quickstart)
 
 ### A. Ubuntu/Debian
 
 以下为基于 Ubuntu 22.04（Debian 同理）的完整安装步骤，涵盖仓库/密钥（Prosody ≥ 0.12）、分步安装、状态检查与证书。
 
-#### 前置条件
+#### 安装前置条件
 
 - 公网服务器，推荐 Ubuntu 22.04 LTS
 - 已解析的域名（例：`jitsi.weiyuai.cn`），A 记录指向本机公网 IP
@@ -99,15 +99,15 @@ sudo apt install -y curl gnupg ca-certificates software-properties-common lsb-re
 # Jitsi 仓库与密钥
 sudo install -d -m 0755 /usr/share/keyrings
 curl -fsSL https://download.jitsi.org/jitsi-key.gpg.key \
-		| sudo gpg --dearmor -o /usr/share/keyrings/jitsi-keyring.gpg
+  | sudo gpg --dearmor -o /usr/share/keyrings/jitsi-keyring.gpg
 echo 'deb [signed-by=/usr/share/keyrings/jitsi-keyring.gpg] https://download.jitsi.org stable/' \
-		| sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
+  | sudo tee /etc/apt/sources.list.d/jitsi-stable.list > /dev/null
 
 # Prosody 仓库与密钥（确保 ≥ 0.12）
 curl -fsSL https://prosody.im/files/prosody-debian-packages.key \
-		| sudo gpg --dearmor -o /usr/share/keyrings/prosody-archive-keyring.gpg
+  | sudo gpg --dearmor -o /usr/share/keyrings/prosody-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/prosody-archive-keyring.gpg] https://packages.prosody.im/debian $(lsb_release -cs) main" \
-		| sudo tee /etc/apt/sources.list.d/prosody.list > /dev/null
+  | sudo tee /etc/apt/sources.list.d/prosody.list > /dev/null
 
 sudo apt update
 
@@ -211,7 +211,6 @@ docker compose up -d
 
 说明：官方工程包含 web/prosody/jicofo/jvb 的编排；若分离 JVB，确保对外映射 UDP 10000。TURN 与 Jibri 见下文。
 
-
 ## 日志位置
 
 - JVB：`/var/log/jitsi/jvb.log`
@@ -224,45 +223,44 @@ docker compose up -d
 以下为通过官方仓库安装在 Ubuntu/Debian 上的典型路径，供快速定位配置、日志与服务。
 
 - Jitsi Meet Web（前端静态站点）
-	- 静态资源：`/usr/share/jitsi-meet`
-	- Web 配置：`/etc/jitsi/meet/<你的域名>-config.js`
-	- Nginx 站点：`/etc/nginx/sites-available/<你的域名>.conf`（并在 `sites-enabled/` 建链接）
-	- 证书（Let’s Encrypt）：`/etc/letsencrypt/live/<你的域名>/{fullchain.pem, privkey.pem}`
-	- 查看包文件：`dpkg -L jitsi-meet-web`、`dpkg -L jitsi-meet-web-config`
+  - 静态资源：`/usr/share/jitsi-meet`
+  - Web 配置：`/etc/jitsi/meet/<你的域名>-config.js`
+  - Nginx 站点：`/etc/nginx/sites-available/<你的域名>.conf`（并在 `sites-enabled/` 建链接）
+  - 证书（Let’s Encrypt）：`/etc/letsencrypt/live/<你的域名>/{fullchain.pem, privkey.pem}`
+  - 查看包文件：`dpkg -L jitsi-meet-web`、`dpkg -L jitsi-meet-web-config`
 
 - Prosody（XMPP）
-	- 主配置：`/etc/prosody/prosody.cfg.lua`
-	- 站点配置：`/etc/prosody/conf.avail/<你的域名>.cfg.lua`（启用链接在 `conf.d/`）
-	- 证书：`/etc/prosody/certs`
-	- 数据：`/var/lib/prosody`
-	- 日志：`/var/log/prosody/prosody.log`
-	- 服务名：`prosody`（systemd 单元：`/lib/systemd/system/prosody.service`）
-	- 查看包文件：`dpkg -L prosody`，版本信息：`prosodyctl about`
+  - 主配置：`/etc/prosody/prosody.cfg.lua`
+  - 站点配置：`/etc/prosody/conf.avail/<你的域名>.cfg.lua`（启用链接在 `conf.d/`）
+  - 证书：`/etc/prosody/certs`
+  - 数据：`/var/lib/prosody`
+  - 日志：`/var/log/prosody/prosody.log`
+  - 服务名：`prosody`（systemd 单元：`/lib/systemd/system/prosody.service`）
+  - 查看包文件：`dpkg -L prosody`，版本信息：`prosodyctl about`
 
 - Jicofo（会议控制器）
-	- 配置：`/etc/jitsi/jicofo/jicofo.conf`（HOCON），兼容旧：`/etc/jitsi/jicofo/sip-communicator.properties`
-	- 可执行/资源：`/usr/share/jicofo`
-	- 日志：`/var/log/jitsi/jicofo.log`
-	- 服务名：`jicofo`（单元：`/lib/systemd/system/jicofo.service`）
-	- 查看包文件：`dpkg -L jicofo`
+  - 配置：`/etc/jitsi/jicofo/jicofo.conf`（HOCON），兼容旧：`/etc/jitsi/jicofo/sip-communicator.properties`
+  - 可执行/资源：`/usr/share/jicofo`
+  - 日志：`/var/log/jitsi/jicofo.log`
+  - 服务名：`jicofo`（单元：`/lib/systemd/system/jicofo.service`）
+  - 查看包文件：`dpkg -L jicofo`
 
 - Jitsi Videobridge（JVB，媒体转发 UDP 10000）
-	- 配置：`/etc/jitsi/videobridge/jvb.conf`（HOCON），兼容旧：`/etc/jitsi/videobridge/sip-communicator.properties`
-	- 可执行/资源：`/usr/share/jitsi-videobridge`
-	- 日志：`/var/log/jitsi/jvb.log`
-	- 服务名：`jitsi-videobridge2`（单元：`/lib/systemd/system/jitsi-videobridge2.service`）
-	- 查看包文件：`dpkg -L jitsi-videobridge2`
+  - 配置：`/etc/jitsi/videobridge/jvb.conf`（HOCON），兼容旧：`/etc/jitsi/videobridge/sip-communicator.properties`
+  - 可执行/资源：`/usr/share/jitsi-videobridge`
+  - 日志：`/var/log/jitsi/jvb.log`
+  - 服务名：`jitsi-videobridge2`（单元：`/lib/systemd/system/jitsi-videobridge2.service`）
+  - 查看包文件：`dpkg -L jitsi-videobridge2`
 
 - jitsi-meet-prosody（Prosody 插件与集成）
-	- 插件目录：`/usr/share/jitsi-meet/prosody-plugins`
-	- 影响的站点配置：`/etc/prosody/conf.avail/<你的域名>.cfg.lua`
-	- 查看包文件：`dpkg -L jitsi-meet-prosody`
+  - 插件目录：`/usr/share/jitsi-meet/prosody-plugins`
+  - 影响的站点配置：`/etc/prosody/conf.avail/<你的域名>.cfg.lua`
+  - 查看包文件：`dpkg -L jitsi-meet-prosody`
 
 - jitsi-meet-turnserver（可选，打包 Coturn）
-	- 配置：`/etc/turnserver.conf` 或 `/etc/coturn/turnserver.conf`（随发行包而异）
-	- 服务名：`coturn`（单元：`/lib/systemd/system/coturn.service`）
-	- 查看包文件：`dpkg -L jitsi-meet-turnserver`、`dpkg -L coturn`
-
+  - 配置：`/etc/turnserver.conf` 或 `/etc/coturn/turnserver.conf`（随发行包而异）
+  - 服务名：`coturn`（单元：`/lib/systemd/system/coturn.service`）
+  - 查看包文件：`dpkg -L jitsi-meet-turnserver`、`dpkg -L coturn`
 
 常用自检命令：
 
@@ -282,7 +280,7 @@ systemctl status prosody jicofo jitsi-videobridge2 nginx
 ss -ltn '( sport = :80 or sport = :443 )'
 ss -lun 'sport = :10000'
 ```
- 
+
 ## Jibri（录制/直播）
 
 Jibri 用于“合流录制/直播”。建议独立机器/容器部署；一台 Jibri 通常只服务一场录制并发。
@@ -290,8 +288,8 @@ Jibri 用于“合流录制/直播”。建议独立机器/容器部署；一台
 - 资源建议：≥4 vCPU / 8GB RAM，`/dev/shm` 适当增大；
 - 输出：本地磁盘、NFS 或对象存储；
 - 官方参考：
-	- Jitsi Handbook 中的 Jibri 章节（安装与配置）；
-	- docker-jitsi-meet 文档中的 Jibri 配置段落；
+  - Jitsi Handbook 中的 Jibri 章节（安装与配置）；
+  - docker-jitsi-meet 文档中的 Jibri 配置段落；
 - 小贴士：先在测试房间验证“开始/停止录制”，确认输出文件与时间戳；直播可按需配置 RTMP 推流。
 
 ## 鉴权与安全
@@ -308,11 +306,11 @@ Jibri 用于“合流录制/直播”。建议独立机器/容器部署；一台
 
 - 指标与可视化：Jitsi Videobridge 支持导出运行指标（Prometheus 等），关注码率、丢包、拥塞与并发；
 - 日志定位：
-	- Ubuntu 包安装：`/var/log/jitsi/jvb.log`、`/var/log/jitsi/jicofo.log`、`/var/log/prosody/prosody.log`；
-	- Docker：容器日志（`docker compose logs -f`）；
+  - Ubuntu 包安装：`/var/log/jitsi/jvb.log`、`/var/log/jitsi/jicofo.log`、`/var/log/prosody/prosody.log`；
+  - Docker：容器日志（`docker compose logs -f`）；
 - 健康检查：
-	- 443/WSS 可达；UDP 10000 通畅；
-	- 浏览器 `chrome://webrtc-internals` 观察 ICE、码率与分辨率自适应；
+  - 443/WSS 可达；UDP 10000 通畅；
+  - 浏览器 `chrome://webrtc-internals` 观察 ICE、码率与分辨率自适应；
 - 扩容路径：增加 JVB 实例、跨地域桥接（Octo），并结合带宽容量规划；
 - 官方参考：Jitsi Handbook 的运维与监控章节。
 
@@ -334,16 +332,16 @@ Jibri 用于“合流录制/直播”。建议独立机器/容器部署；一台
 ## 常见问题与排查
 
 - 无法入会或断流：
-	- 检查 443/tcp 与 10000/udp 是否开放；
-	- 确认反向代理的 WebSocket 转发与证书有效；
-	- 查看 JVB 日志与浏览器 WebRTC Internals（码率/ICE 失败）。
+  - 检查 443/tcp 与 10000/udp 是否开放；
+  - 确认反向代理的 WebSocket 转发与证书有效；
+  - 查看 JVB 日志与浏览器 WebRTC Internals（码率/ICE 失败）。
 - 录制失败：
-	- Jibri 机器资源是否足够（CPU、内存、/dev/shm）；
-	- 与 Prosody 的 XMPP 凭证是否匹配；
-	- 录制输出目录权限与磁盘空间。
+  - Jibri 机器资源是否足够（CPU、内存、/dev/shm）；
+  - 与 Prosody 的 XMPP 凭证是否匹配；
+  - 录制输出目录权限与磁盘空间。
 - 弱网进不来：
-	- TURN 3478/5349 是否可达，凭证是否下发到客户端；
-	- 防火墙/运营商对 UDP 的限制。
+  - TURN 3478/5349 是否可达，凭证是否下发到客户端；
+  - 防火墙/运营商对 UDP 的限制。
 
 ## 扩展与优化
 
@@ -356,32 +354,30 @@ Jibri 用于“合流录制/直播”。建议独立机器/容器部署；一台
 ## 移动端与开源客户端
 
 - 开源客户端（Android/iOS，React Native）
-	- 名称：Jitsi Meet
-	- 源码仓库：https://github.com/jitsi/jitsi-meet
-	- 许可证：Apache 2.0
+  - 名称：Jitsi Meet
+  - 源码仓库：[jitsi/jitsi-meet](https://github.com/jitsi/jitsi-meet)
+  - 许可证：Apache 2.0
 
 - 移动端 SDK（将会议能力嵌入自有 App）
-	- Android SDK 指南：https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-android-sdk
-	- iOS SDK 指南：https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ios-sdk
-	- 示例工程：https://github.com/jitsi/jitsi-meet-sdk-samples
+  - Android SDK 指南：[Android SDK Guide](https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-android-sdk)
+  - iOS SDK 指南：[iOS SDK Guide](https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-ios-sdk)
+  - 示例工程：[jitsi-meet-sdk-samples](https://github.com/jitsi/jitsi-meet-sdk-samples)
 
 - 应用商店客户端（可直接使用）
-	- 在 Google Play / App Store 搜索 “Jitsi Meet”
+  - 在 Google Play / App Store 搜索 “Jitsi Meet”
 
 - 白标与集成建议
-	- 源码白标：替换图标/名称/配色，预置你的服务器 URL 与鉴权策略；
-	- SDK 集成：在现有 App 内嵌会控能力，结合 SSO/JWT 完成登录与权限；
-	- 与本文档部署联动：将移动端默认指向自建域名（PUBLIC_URL），并确保 TURN 可用以适配弱网/NAT。
+  - 源码白标：替换图标/名称/配色，预置你的服务器 URL 与鉴权策略；
+  - SDK 集成：在现有 App 内嵌会控能力，结合 SSO/JWT 完成登录与权限；
+  - 与本文档部署联动：将移动端默认指向自建域名（PUBLIC_URL），并确保 TURN 可用以适配弱网/NAT。
 
 ## 相关链接
 
 - 官方文档与项目：
-	- Jitsi Handbook：https://jitsi.github.io/handbook/
-	- Jitsi Meet：https://github.com/jitsi/jitsi-meet
-	- Docker（建议作为模板参考）：https://github.com/jitsi/docker-jitsi-meet
+  - Jitsi Handbook：[官方手册](https://jitsi.github.io/handbook/)
+  - Jitsi Meet：[GitHub 仓库](https://github.com/jitsi/jitsi-meet)
+  - Docker（建议作为模板参考）：[docker-jitsi-meet](https://github.com/jitsi/docker-jitsi-meet)
 - 本站相关文档：
-	- TURN/Coturn 配置与优化：[Coturn 文档](./coturn.md)
-	- Janus 文档（端口与安全思路可参考）：[Janus 部署](./janus.md)
 - [Kurento](https://github.com/Kurento/kurento)
 - [Jitsi Dockers](https://hub.docker.com/u/jitsi/)
 - [开发指南](https://jitsi.github.io/handbook/docs/category/developer-guide)

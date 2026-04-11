@@ -196,6 +196,40 @@ spring.artemis.password=admin
 bytedesk.mq.type=artemis
 ```
 
+### Artemis 集群配置（生产环境推荐）
+
+当您有多节点 Artemis Broker 时，微语服务端支持通过 `bytedesk.mq.artemis.cluster.*` 自动生成 `failover:(...)?...` 连接地址，无需手写复杂 `spring.artemis.broker-url`。
+
+```properties
+# 1) 必须使用 native 模式
+spring.artemis.mode=native
+spring.artemis.user=admin
+spring.artemis.password=admin
+
+# 2) 开启 Artemis 集群
+bytedesk.mq.artemis.cluster.enabled=true
+
+# 3) 集群节点（支持 host:port 或 tcp://host:port）
+bytedesk.mq.artemis.cluster.nodes=10.0.0.11:61616,10.0.0.12:61616,10.0.0.13:61616
+
+# 4) failover 参数（可选）
+bytedesk.mq.artemis.cluster.ha=true
+bytedesk.mq.artemis.cluster.randomize=true
+bytedesk.mq.artemis.cluster.reconnect-attempts=-1
+bytedesk.mq.artemis.cluster.initial-connect-attempts=-1
+bytedesk.mq.artemis.cluster.retry-interval=1000
+bytedesk.mq.artemis.cluster.retry-interval-multiplier=2.0
+bytedesk.mq.artemis.cluster.max-retry-interval=30000
+```
+
+:::tip 兼容性说明
+
+- 未开启 `bytedesk.mq.artemis.cluster.enabled` 时，系统保持现有行为，继续使用 `spring.artemis.broker-url`。
+- 开启集群但未配置 `bytedesk.mq.artemis.cluster.nodes` 时，应用会在启动期报错，避免错误配置进入生产。
+- 集群配置仅在 `spring.artemis.mode=native` 且 `bytedesk.mq.type=artemis` 时生效。
+
+:::
+
 ### RabbitMQ 配置示例（可选）
 
 如需切换到 RabbitMQ，请将 `bytedesk.mq.type` 设置为 `rabbitmq`，并配置连接信息：
@@ -498,7 +532,7 @@ Apache ActiveMQ Artemis 作为微语系统的消息中间件，在实时通讯�
 作为消息中间件领域的后起之秀，Artemis在多个方面展现出了相比RabbitMQ、Kafka、RocketMQ等流行消息队列系统的独特优势。下面从多个维度对比了几种主流消息队列系统，帮助您理解微语系统选择Artemis的原因：
 
 | 对比项 | Artemis | RabbitMQ | Kafka | RocketMQ |
-|-------|---------|----------|-------|----------|
+| ------- | --------- | ---------- | ------- | ---------- |
 | **定位** | 全能型消息中间件 | 可靠性优先的消息代理 | 高吞吐量的流处理平台 | 金融级消息中间件 |
 | **性能** | 极高（百万级TPS） | 中等（数万级TPS） | 极高（百万级TPS） | 高（十万级TPS） |
 | **易用性** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |

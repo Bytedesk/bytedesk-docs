@@ -198,7 +198,7 @@ Docker 容器時區配置錯誤。
 
 #### 操作方法
 
-在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 檔案中，將 `127.0.0.1` 替換為實際的伺服器IP地址或網域名稱：
+在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`），將 `127.0.0.1` 替換為實際的伺服器IP地址或網域名稱：
 
 ```bash
 # 請將 127.0.0.1 替換為你的伺服器IP或網域名稱
@@ -217,7 +217,7 @@ BYTEDESK_FEATURES_AVATAR_BASE_URL: http://127.0.0.1:9003
 
 **Docker 部署：**
 
-在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 檔案中修改：
+在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）修改：
 
 ```bash
 BYTEDESK_ADMIN_EMAIL: admin@email.com
@@ -286,7 +286,7 @@ bytedesk.member.password=123456
 
 #### Docker 部署配置
 
-在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 檔案中修改：
+在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）修改：
 
 ```bash
 BYTEDESK_MEMBER_PASSWORD: 123456
@@ -312,7 +312,7 @@ bytedesk.custom.show-demo=false
 
 #### Docker 部署配置
 
-在 `docker-compose.yaml` 或 `docker-compose-ollama.yaml` 檔案中修改：
+在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）修改：
 
 ```bash
 BYTEDESK_CUSTOM_SHOW_DEMO: "false"

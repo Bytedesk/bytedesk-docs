@@ -1,6 +1,8 @@
 ---
-sidebar_label: 微信小程序
+sidebar_label: WeChat Mini Program
 sidebar_position: 10
 ---
 
-# 微信小程序
+# WeChat Mini Program
+
+WeChat Mini Program channel integration documentation.

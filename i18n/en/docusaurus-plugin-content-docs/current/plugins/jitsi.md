@@ -1,14 +1,14 @@
 ---
-sidebar_label: jitsi视频会议
+sidebar_label: Jitsi Video Meeting
 sidebar_position: 1
 ---
 
-# Jitsi 集成
+# Jitsi Integration
 
-Jitsi 是一个开源的视频会议平台，支持 WebRTC、SIP 和 TURN 协议。
+Jitsi is an open-source video conferencing platform that supports WebRTC, SIP, and TURN.
 
-## 链接
+## Links
 
-- [docs](https://jitsi.github.io/handbook/docs/intro)
-- [github](https://github.com/jitsi/jitsi-meet)
-- [官网](https://jitsi.org/jitsi-meet/)
+- [Docs](https://jitsi.github.io/handbook/docs/intro)
+- [GitHub](https://github.com/jitsi/jitsi-meet)
+- [Official Website](https://jitsi.org/jitsi-meet/)

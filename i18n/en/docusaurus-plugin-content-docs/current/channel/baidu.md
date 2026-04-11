@@ -1,6 +1,8 @@
 ---
-sidebar_label: 百度
+sidebar_label: Baidu
 sidebar_position: 15
 ---
 
-# 百度
+# Baidu
+
+Baidu channel integration documentation.

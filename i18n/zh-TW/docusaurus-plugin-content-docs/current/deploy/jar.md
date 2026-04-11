@@ -20,7 +20,53 @@ sidebar_position: 1
 
 ```bash
 java --version
-# java 17.0.4 2022-07-19 LTS
+# java 21.0.4 2022-07-19 LTS
+```
+
+### 使用 Docker 啟動依賴（MySQL / PostgreSQL / Oracle）
+
+```bash
+# 進入 deploy/docker 目錄
+cd bytedesk/deploy/docker
+
+# start.sh <db> <mq> <scenario> [all|middleware]
+
+# Artemis + MySQL（預設）
+./start.sh mysql artemis standard middleware
+
+# RabbitMQ + MySQL（預設）
+./start.sh mysql rabbitmq standard middleware
+
+# 切換 PostgreSQL
+./start.sh postgresql artemis standard middleware
+./start.sh postgresql rabbitmq standard middleware
+
+# 切換 Oracle
+./start.sh oracle artemis standard middleware
+./start.sh oracle rabbitmq standard middleware
+
+# 僅中介服務（建議用於源碼啟動，預設）
+# ./start.sh mysql artemis standard middleware
+# ./start.sh mysql rabbitmq standard middleware
+
+# 全量（中介服務 + bytedesk 映像）
+# ./start.sh mysql artemis standard all
+# ./start.sh mysql rabbitmq standard all
+
+# stop.sh <db> <mq> <scenario> [stop|down] [all|middleware]
+# ./stop.sh mysql artemis standard stop middleware
+# ./stop.sh mysql artemis standard down all
+
+# 等價原生命令（先切到 deploy/docker）
+# cd deploy/docker
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# 全量示例（中介服務 + bytedesk 映像）
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
 ```
 
 ### [Mysql 8.0](./depend/mysql)

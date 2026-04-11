@@ -25,7 +25,7 @@ sidebar_position: 5
 
 ### AccessToken 登录
 
-使用 [AccessToken](./token.md) 实现管理后台和客服工作台免登录。
+使用 [AccessToken](./token_info.md) 实现管理后台和客服工作台免登录。
 
 ## 第三方登录
 

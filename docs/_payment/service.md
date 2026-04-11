@@ -1,10 +1,13 @@
+---
 sidebar_label: "Intelligent CS Pricing"
 sidebar_position: 11
 ---
 
-# Intelligent Customer Service Pricing
+Intelligent Customer Service Pricing
+===================================
 
-## Community Edition
+Community Edition
+-----------------
 
 For documentation, please visit:
 
@@ -13,7 +16,8 @@ For documentation, please visit:
 - [Knowledge Base](../manual/admin/kbase/helpcenter)
 - [Ticket System](../manual/admin/ticket/waiting)
 
-## Enterprise Edition
+Enterprise Edition
+------------------
 
 - Advanced features
 - Priority support

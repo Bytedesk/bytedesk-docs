@@ -152,12 +152,13 @@ sidebar_position: 1
 ChatBox组件支持多种参数配置：
 
 | 参数名 | 类型 | 说明 | 默认值 |
-|-------|------|------|--------|
+| --- | --- | --- | --- |
 | org | string | 企业UID | - |
 | t | string | 会话类型(0:一对一; 1:工作组, 2:机器人, 16:历史) | "1" |
 | sid | string | 会话ID(客服UID/工作组UID/机器人UID) | - |
 | lang | string | 语言设置("zh-cn"/"zh-tw"/"en") | "zh-cn" |
 | mode | string | 主题模式(light/dark/system) | "system" |
+| channel | string | 接入渠道。优先使用后端 `ChannelEnum` 常量（如 `WEB_VISITOR`、`WEB_FLOAT`、`WECHAT` 等），也支持按业务扩展自定义渠道值 | 默认 `HTTP_CHANNEL`（通常为 `WEB_VISITOR`） |
 | backgroundColor | string | 自定义导航背景色 | - |
 | textColor | string | 自定义导航文字颜色 | - |
 | referer | string | 来源页面 | - |
@@ -171,9 +172,9 @@ ChatBox组件支持多种参数配置：
 | vipLevel | string | 访客VIP等级 | "0" |
 | extra | string | 自定义访客额外信息（JSON格式） | - |
 | loadHistory | string | 是否自动加载历史聊天记录，值为"1"时加载，其他值不加载，详见[历史消息](./history) | - |
-| goodsInfo | string | 商品信息（JSON格式），详见[商品信息对接](./goodsinfo.md) | - |
+| goodsInfo | string | 商品信息（JSON格式），详见[商品信息对接](./goods_info.md) | - |
 | orderInfo | string | 订单信息（JSON格式），详见[订单信息对接](./order_info.md) | - |
-| userInfo | string | 用户信息（JSON格式），详见[用户信息对接](./userinfo.md) | - |
+| userInfo | string | 用户信息（JSON格式），详见[用户信息对接](./user_info.md) | - |
 
 ## 常见问题
 
@@ -192,8 +193,55 @@ ChatBox组件支持多种参数配置：
 ### 相关功能
 
 - [历史消息](./history) - 了解如何加载和展示历史聊天记录
-- [商品信息对接](./goodsinfo.md) - 了解如何传递商品信息给客服
+- [商品信息对接](./goods_info.md) - 了解如何传递商品信息给客服
 - [订单信息对接](./order_info.md) - 了解如何传递订单信息给客服
-- [用户信息对接](./userinfo.md) - 了解如何传递用户信息给客服
+- [用户信息对接](./user_info.md) - 了解如何传递用户信息给客服
 - [千人千面](./viplevel.md) - 了解如何根据用户等级提供差异化服务
 - [国际化](./i18n.md) - 了解如何支持多语言
+
+## channel 参数完整说明
+
+`channel` 用于标识访客来源渠道，建议优先使用后端 `ChannelEnum` 中的标准常量。
+
+### 使用规则
+
+1. 推荐使用大写下划线风格，如 `WEB_VISITOR`、`WECHAT`。
+2. 后端按不区分大小写方式解析（`equalsIgnoreCase`），但仍建议统一大写，便于排查问题。
+3. 未传值时通常使用默认 `HTTP_CHANNEL`（一般映射为 `WEB_VISITOR`）。
+4. 如需业务自定义，可使用 `CUSTOM`，并在业务侧约定扩展含义。
+
+### 推荐值（访客端常见）
+
+- `WEB_VISITOR`: Web 访客页
+- `WEB_FLOAT`: Web 悬浮窗
+- `WEB_H5`: H5 页面
+- `WECHAT`: 微信渠道
+- `WECHAT_MINI`: 微信小程序
+- `IOS`: iOS App
+- `ANDROID`: Android App
+- `FLUTTER_WEB` / `FLUTTER_IOS` / `FLUTTER_ANDROID`: Flutter 多端
+
+### ChannelEnum 全量可选值
+
+以下取值与后端 `ChannelEnum` 保持一致：
+
+- 系统与Web: `SYSTEM`, `WEB`, `WEB_PC`, `WEB_H5`, `WEB_VISITOR`, `WEB_FLOAT`, `WEB_ADMIN`
+- 移动与桌面: `IOS`, `ANDROID`, `ELECTRON`, `LINUX`, `MACOS`, `WINDOWS`
+- Flutter: `FLUTTER`, `FLUTTER_WEB`, `FLUTTER_ANDROID`, `FLUTTER_IOS`, `FLUTTER_MACOS`, `FLUTTER_WINDOWS`, `FLUTTER_LINUX`
+- UniApp: `UNIAPP`, `UNIAPP_WEB`, `UNIAPP_ANDROID`, `UNIAPP_IOS`
+- 微信生态: `WECHAT`, `WECHAT_MINI`, `WECHAT_MP`, `WECHAT_WORK`, `WECHAT_KEFU`, `WECHAT_CHANNEL`
+- 国内社媒: `XIAOHONGSHU`, `DOUYIN`, `KUAISHOU`, `BILIBILI`, `WEIBO`, `ZHIHU`, `TOUTIAO`, `DOUBAN`
+- 国内电商: `TAOBAO`, `TMALL`, `JD`, `PINDUODUO`, `MEITUAN`, `ELEME`, `DIANPING`
+- 企业办公: `DINGTALK`, `FEISHU`, `LARK`, `CUSTOM`
+- 其他渠道: `EMAIL`, `SMS`, `PHONE`
+- 海外Meta: `MESSENGER`, `INSTAGRAM`, `WHATSAPP`
+- 海外社媒: `TWITTER`, `FACEBOOK`, `LINKEDIN`, `YOUTUBE`, `TIKTOK`, `PINTEREST`, `REDDIT`, `SNAPCHAT`
+- 海外IM: `TELEGRAM`, `LINE`, `KAKAO`, `VIBER`, `SIGNAL`, `DISCORD`, `SLACK`
+- 海外电商: `AMAZON`, `EBAY`, `SHOPIFY`, `LAZADA`, `SHOPEE`
+- 测试: `TEST`
+
+### 示例
+
+```bash
+https://chat.example.com?org=df_org_uid&t=1&sid=df_wg_uid&channel=WEB_VISITOR
+```

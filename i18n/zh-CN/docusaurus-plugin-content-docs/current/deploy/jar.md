@@ -20,17 +20,17 @@ sidebar_position: 1
 
 ## 1. 环境准备
 
-### 1.1 安装JDK 17
+### 1.1 安装JDK 21
 
-微语系统基于Spring Boot 3开发，**必须**使用JDK 17或更高版本：
+微语系统基于Spring Boot 3开发，**必须**使用JDK 21或更高版本：
 
 ```bash
 # 检查Java版本
 java --version
-# 应显示: java 17.x.x 或更高版本
+# 应显示: java 21.x.x 或更高版本
 ```
 
-如果没有安装JDK 17，请参考：[JDK 17安装指南](./depend/jdk)
+如果没有安装JDK 21，请参考：[JDK 21安装指南](./depend/jdk)
 
 ### 1.2 安装项目依赖
 
@@ -48,11 +48,48 @@ sudo systemctl start docker   # 如需启动Docker服务
 # 2. 需要提前Clone或下载项目：https://github.com/Bytedesk/bytedesk，在项目根目录下进入配置目录
 git clone https://github.com/Bytedesk/bytedesk.git
 
-# 3. 进入项目配置目录
-cd bytedesk/starter/src/main/resources
+# 3. 进入 deploy/docker 目录
+cd bytedesk/deploy/docker
 
-# 4. 一键启动所有依赖服务
-docker compose -p bytedesk -f compose.yaml up -d
+# 4. 启动依赖服务（默认 MySQL）
+# start.sh <db> <mq> <scenario> [all|middleware]
+
+# Artemis + MySQL（默认）
+./start.sh mysql artemis standard middleware
+
+# RabbitMQ + MySQL（默认）
+./start.sh mysql rabbitmq standard middleware
+
+# 如需切换 PostgreSQL
+# ./start.sh postgresql artemis standard middleware
+# ./start.sh postgresql rabbitmq standard middleware
+
+# 如需切换 Oracle
+# ./start.sh oracle artemis standard middleware
+# ./start.sh oracle rabbitmq standard middleware
+
+# 仅中间件（源码启动推荐，默认）
+# ./start.sh mysql artemis standard middleware
+# ./start.sh mysql rabbitmq standard middleware
+
+# 全量（中间件 + bytedesk 镜像）
+# ./start.sh mysql artemis standard all
+# ./start.sh mysql rabbitmq standard all
+
+# stop.sh <db> <mq> <scenario> [stop|down] [all|middleware]
+# ./stop.sh mysql artemis standard stop middleware
+# ./stop.sh mysql artemis standard down all
+
+# 等价原生命令示例（先切到 deploy/docker）
+# cd deploy/docker
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# 全量（中间件 + bytedesk 镜像）示例
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
 
 # 5. 安装Ollama对话模型
 docker exec ollama-bytedesk ollama pull qwen3:0.6b
@@ -63,8 +100,11 @@ docker exec ollama-bytedesk ollama pull bge-m3:latest
 # 7. 查看容器运行状态
 docker ps | grep bytedesk
 
-# 如需停止服务
-# docker compose -p bytedesk -f compose.yaml down
+# 如需停止/删除容器
+# ./stop.sh mysql artemis standard stop middleware
+# ./stop.sh mysql rabbitmq standard stop middleware
+# ./stop.sh mysql artemis standard down middleware
+# ./stop.sh mysql rabbitmq standard down middleware
 ```
 
 > 💡 **提示**：使用Docker方式，无需手动安装每个依赖，容器会自动配置好网络和初始设置。

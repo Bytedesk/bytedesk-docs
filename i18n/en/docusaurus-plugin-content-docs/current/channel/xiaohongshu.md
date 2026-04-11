@@ -1,6 +1,8 @@
 ---
-sidebar_label: 小红书
+sidebar_label: Xiaohongshu
 sidebar_position: 15
 ---
 
-# 小红书
+# Xiaohongshu
+
+Xiaohongshu channel integration documentation.

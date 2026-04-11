@@ -289,4 +289,4 @@ iframe.contentWindow.postMessage({
 - `WORKGROUP`: 工作组客服会话
 - `ROBOT`: 机器人客服会话
 - `MEMBER`: 同事一对一会话
-- `GROUP`: 群组会话 
+- `GROUP`: 群组会话

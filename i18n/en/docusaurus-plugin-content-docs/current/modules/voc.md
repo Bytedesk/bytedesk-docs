@@ -1,32 +1,30 @@
 ---
-title: 客户之声
-description: 收集与管理客户反馈
+title: Voice of Customer
+description: Collect and manage customer feedback
 sidebar_position: 9
 ---
 
-# 客户之声
+## Overview
 
-## 概述
+The Voice of Customer (VOC) module focuses on collecting, analyzing, and managing customer feedback so teams can better understand customer needs and improve products and services.
 
-客户之声(VOC-Voice of Customer)模块专注于收集、分析和管理客户反馈，帮助企业了解客户需求，改进产品和服务。
+## Key Features
 
-## 主要功能
+- **Feedback Collection**: Gather customer feedback from multiple channels.
+- **Feedback Classification**: Automatically categorize feedback by type and priority.
+- **Feedback Handling**: Manage workflows and task assignment.
+- **Feedback Tracking**: Track the full status of each feedback item.
+- **Customer Communication**: Keep customers updated during follow-up.
+- **Trend Analysis**: Analyze feedback data and trends.
+- **Closed-Loop Management**: Ensure each feedback item is properly handled.
 
-- **反馈收集**：多渠道客户反馈收集
-- **反馈分类**：按类型、优先级自动分类
-- **反馈处理**：工作流程管理和任务分配
-- **反馈追踪**：全流程状态跟踪
-- **客户沟通**：与反馈客户保持互动更新
-- **趋势分析**：反馈数据统计和趋势分析
-- **闭环管理**：确保每条反馈得到妥善处理
+## Use Cases
 
-## 使用场景
+- Collecting product improvement suggestions
+- Handling service quality feedback
+- Researching user experience improvements
+- Managing customer satisfaction
 
-- 产品改进建议收集
-- 服务质量问题反馈
-- 用户体验优化调研
-- 客户满意度管理
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问客户之声模块：[客户之声](/voc/)
+You can access the Voice of Customer module here: [Voice of Customer](/voc/)

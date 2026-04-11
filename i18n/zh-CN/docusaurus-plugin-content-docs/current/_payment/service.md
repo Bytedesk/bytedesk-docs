@@ -59,14 +59,14 @@ sidebar_position: 11
 | 工作组客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [对接大模型](../provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [知识库](../modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [用户信息对接](../development/userinfo.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [用户信息对接](../development/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ### 高级功能
 
 | 功能 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|
 | [千人千面](../development/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品信息对接](../development/goodsinfo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [商品信息对接](../development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [订单信息对接](../development/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [单点登录SSO](../development/sso.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [消息撤回](../development/message.md#recall撤回) | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -82,8 +82,8 @@ sidebar_position: 11
 | [自动回复](../development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [黑名单](../development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [留言处理](../development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品信息](../development/goodsinfo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [订单对接](../development/order_select.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [商品信息](../development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [订单对接](../development/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [客户管理](../development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [会话小结](../development/summary.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](../deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |

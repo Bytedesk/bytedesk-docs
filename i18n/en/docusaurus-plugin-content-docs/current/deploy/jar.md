@@ -20,13 +20,59 @@ sidebar_position: 3
 - [Nginx](/docs/docs/deploy/depend/nginx)
 - [Let's Encrypt](/docs/docs/deploy/depend/letsencrypt)
 
+### Start dependencies with Docker (MySQL / PostgreSQL / Oracle selectable)
+
+```bash
+# Enter deploy/docker directory
+cd bytedesk/deploy/docker
+
+# start.sh <db> <mq> <scenario> [all|middleware]
+
+# Artemis + MySQL (default)
+./start.sh mysql artemis standard middleware
+
+# RabbitMQ + MySQL (default)
+./start.sh mysql rabbitmq standard middleware
+
+# Switch to PostgreSQL
+./start.sh postgresql artemis standard middleware
+./start.sh postgresql rabbitmq standard middleware
+
+# Switch to Oracle
+./start.sh oracle artemis standard middleware
+./start.sh oracle rabbitmq standard middleware
+
+# Middleware only (recommended for source startup, default)
+# ./start.sh mysql artemis standard middleware
+# ./start.sh mysql rabbitmq standard middleware
+
+# Full stack (middleware + bytedesk image)
+# ./start.sh mysql artemis standard all
+# ./start.sh mysql rabbitmq standard all
+
+# stop.sh <db> <mq> <scenario> [stop|down] [all|middleware]
+# ./stop.sh mysql artemis standard stop middleware
+# ./stop.sh mysql artemis standard down all
+
+# Equivalent native compose commands (first go to deploy/docker)
+# cd deploy/docker
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# Full stack example (middleware + bytedesk image)
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+```
+
 ## Download
 
 ```bash
 # Download JAR package
 wget https://github.com/bytedesk/bytedesk/releases/download/v1.0.0/bytedesk.jar
 java --version
-# java 17.0.4 2022-07-19 LTS
+# java 21.0.4 2022-07-19 LTS
 ```
 
 ### [MySQL 8.0](./depend/mysql)

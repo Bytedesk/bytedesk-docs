@@ -1,32 +1,30 @@
 ---
-title: 智能助手
-description: AI赋能的客服与工作流解决方案
+title: AI Assistant
+description: AI-powered customer service and workflow solutions
 sidebar_position: 5
 ---
 
-# AI智能助手
+## Overview
 
-## 概述
+The AI Assistant module integrates advanced artificial intelligence capabilities into the customer service platform to improve service efficiency and response accuracy.
 
-AI智能助手模块融合了先进的人工智能技术，为客服系统带来智能化能力，提升服务效率和准确性。
+## Key Features
 
-## 主要功能
+- **AI Customer Service Bot**: Automatically answers common questions and reduces the workload on human agents.
+- **Intent Recognition**: Accurately understands customer questions and request intent.
+- **Automatic Classification**: Classifies customer issues intelligently and routes them to the right agent.
+- **Smart Recommendations**: Recommends relevant knowledge and solutions during conversations.
+- **Sentiment Analysis**: Detects customer sentiment and escalates to a human agent when appropriate.
+- **Conversation Summaries**: Generates automatic conversation summaries for follow-up work.
+- **Continuous Learning**: Improves response quality continuously based on customer interactions.
 
-- **智能客服机器人**：自动回答常见问题，减轻人工客服压力
-- **意图识别**：准确理解客户问题和需求意图
-- **自动分类**：智能对客户问题进行分类，指派给合适的客服
-- **智能推荐**：在对话中推荐相关知识和解决方案
-- **情感分析**：识别客户情绪，适时转人工服务
-- **对话摘要**：自动生成会话摘要，提升后续处理效率
-- **自动学习**：通过客户交互持续优化回复质量
+## Use Cases
 
-## 使用场景
+- 24/7 automated customer service
+- Agent assistance during peak traffic periods
+- Intelligent triage and priority management
+- Agent training and knowledge support
 
-- 7×24小时自动客户服务
-- 高峰期客服辅助回答
-- 智能分流和优先级管理
-- 客服培训和知识辅助
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问AI智能助手模块：[智能助手](/ai/)
+You can access the AI Assistant module here: [AI Assistant](/ai/)

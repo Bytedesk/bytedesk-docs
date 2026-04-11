@@ -1,32 +1,30 @@
 ---
-title: 知识库
-description: 智能知识库管理与应用
+title: Knowledge Base
+description: Intelligent knowledge base management and application
 sidebar_position: 4
 ---
 
-# 知识库
+## Overview
 
-## 概述
+The Knowledge Base module is an intelligent system for centrally managing enterprise knowledge assets. It helps organizations build a structured knowledge system and improve customer service efficiency and quality.
 
-知识库模块是集中管理企业知识资产的智能系统，帮助企业构建结构化的知识体系，提高客服效率和服务质量。
+## Key Features
 
-## 主要功能
+- **Knowledge Category Management**: Organize knowledge content with multi-level categories.
+- **Rich Media Support**: Support multiple content formats including text, images, and video.
+- **Smart Search**: Provide full-text and semantic search capabilities.
+- **Quick Replies**: Allow agents to insert knowledge entries with one click.
+- **Knowledge Review**: Support content review and version control workflows.
+- **Knowledge Analytics**: Analyze usage and effectiveness.
+- **Public Knowledge Base**: Provide a self-service knowledge center for customers.
 
-- **知识分类管理**：多级分类组织知识内容
-- **富媒体支持**：文本、图片、视频等多种内容格式
-- **智能搜索**：全文检索和语义搜索能力
-- **快捷回复**：客服可一键调用知识条目
-- **知识审核**：内容审核和版本控制流程
-- **知识统计**：使用率和有效性分析
-- **公开知识库**：面向客户的自助服务知识中心
+## Use Cases
 
-## 使用场景
+- Agent training and business knowledge learning
+- Standard reply and solution management
+- Customer self-service support
+- Reducing time spent answering repeated questions
 
-- 客服培训和业务知识学习
-- 标准回复和解决方案管理
-- 客户自助服务支持
-- 减少重复问题解答时间
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问知识库模块：[知识库](/kbase/)
+You can access the Knowledge Base module here: [Knowledge Base](/kbase/)

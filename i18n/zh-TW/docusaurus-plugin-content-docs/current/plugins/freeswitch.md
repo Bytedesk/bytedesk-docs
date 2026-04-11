@@ -3,7 +3,7 @@ sidebar_label: 呼叫中心
 sidebar_position: 3
 ---
 
-# FreeSwitch 集成
+# FreeSwitch 整合
 
-呼叫中心系统，需要集成 FreeSwitch，才能实现呼叫、录音、转人工等功能。
-FreeSwitch 是一个开源的语音通信平台，它提供了一套完整的语音通信解决方案，包括语音路由、语音处理、语音通信等功能。
+呼叫中心系統需要整合 FreeSwitch，才能實現通話、錄音與轉人工等功能。
+FreeSwitch 是一個開源的語音通訊平台，提供完整的語音通訊解決方案，包括語音路由、語音處理與語音通訊能力。

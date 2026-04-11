@@ -28,7 +28,7 @@ bytedesk.testing.disable-ip-filter=true
 
 ### 方式二：Docker Compose 环境变量
 
-如果使用 Docker Compose 部署，在 `docker-compose.yml` 或 `docker-compose-ollama.yaml` 文件中添加以下环境变量：
+如果使用 Docker Compose 部署，在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）添加以下环境变量：
 
 ```yaml
 # Performance Testing config

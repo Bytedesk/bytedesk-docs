@@ -1,32 +1,30 @@
 ---
-title: 看板插件
-description: ByteDesk看板任务管理插件
+title: Kanban Plugin
+description: Bytedesk kanban task management plugin
 sidebar_position: 10
 ---
 
-# 看板插件
+## Overview
 
-## 概述
+The Kanban plugin is a visual task and project management tool based on kanban methodology. It helps teams manage workflows and task progress more intuitively.
 
-看板插件是一种可视化任务与项目管理工具，基于看板方法学，帮助团队直观地管理工作流程和任务进度。
+## Key Features
 
-## 主要功能
+- **Kanban View**: Visualize task status and workflow clearly.
+- **Task Cards**: Include task details, priority, due dates, and more.
+- **Drag and Drop**: Update task status with simple drag-and-drop actions.
+- **Custom Columns**: Configure kanban columns to match your workflow.
+- **Member Assignment**: Assign owners and collaborators to tasks.
+- **Tag System**: Categorize tasks using color tags.
+- **Filtering and Search**: Quickly find tasks that need attention.
 
-- **看板视图**：直观展示任务状态和工作流程
-- **任务卡片**：包含任务详情、优先级、截止日期等信息
-- **拖拽操作**：简单拖拽即可更新任务状态
-- **自定义列**：根据工作流程自定义看板列
-- **成员分配**：为任务指定负责人和协作者
-- **标签系统**：使用颜色标签分类任务
-- **筛选和搜索**：快速找到需要关注的任务
+## Use Cases
 
-## 使用场景
+- Agile development task management
+- Work allocation and tracking for customer service teams
+- Marketing campaign execution management
+- General visual project progress management
 
-- 敏捷开发团队任务管理
-- 客服团队工作分配和跟踪
-- 营销活动执行管理
-- 一般项目进度可视化管理
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问看板插件：[看板插件](/plugins/kanban/)
+You can access the Kanban plugin here: [Kanban Plugin](/plugins/kanban/)

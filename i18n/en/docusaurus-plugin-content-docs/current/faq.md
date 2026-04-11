@@ -198,7 +198,7 @@ Modify upload address settings in configuration file.
 
 #### Operation Method
 
-In `docker-compose.yaml` or `docker-compose-ollama.yaml` file, replace `127.0.0.1` with actual server IP address or domain name:
+In your Docker deployment config (for example `deploy/docker/compose-app-bytedesk.yaml`), replace `127.0.0.1` with actual server IP address or domain name:
 
 ```bash
 # Please replace 127.0.0.1 with your server IP or domain name
@@ -217,7 +217,7 @@ BYTEDESK_FEATURES_AVATAR_BASE_URL: http://127.0.0.1:9003
 
 **Docker deployment:**
 
-Modify in `docker-compose.yaml` or `docker-compose-ollama.yaml` file:
+Modify in your Docker deployment config (for example `deploy/docker/compose-app-bytedesk.yaml`):
 
 ```bash
 BYTEDESK_ADMIN_EMAIL: admin@email.com
@@ -286,7 +286,7 @@ bytedesk.member.password=123456
 
 #### Docker deployment configuration
 
-Modify in `docker-compose.yaml` or `docker-compose-ollama.yaml` file:
+Modify in your Docker deployment config (for example `deploy/docker/compose-app-bytedesk.yaml`):
 
 ```bash
 BYTEDESK_MEMBER_PASSWORD: 123456
@@ -312,7 +312,7 @@ bytedesk.custom.show-demo=false
 
 #### Docker deployment configuration
 
-Modify in `docker-compose.yaml` or `docker-compose-ollama.yaml` file:
+Modify in your Docker deployment config (for example `deploy/docker/compose-app-bytedesk.yaml`):
 
 ```bash
 BYTEDESK_CUSTOM_SHOW_DEMO: "false"

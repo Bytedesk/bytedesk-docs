@@ -13,10 +13,10 @@ sidebar_position: 5
 
 - 演示链接：[千人千面演示](https://weiyuai.cn/reactdemo)
 - 演示代码：
-- [千人千面示例-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/vipLevelDemo.tsx)
+- [千人千面示例-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/VipLevelDemo.tsx)
 - [千人千面示例-Vue](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/vue-demo/src/pages/vipLevelDemo.vue)
 
-> 注意：请确保您已经完成了[用户信息对接](./userinfo.md)的基本配置，才能更好地实现千人千面功能。
+> 注意：请确保您已经完成了[用户信息对接](./user_info.md)的基本配置，才能更好地实现千人千面功能。
 
 ![千人千面示例](/img/develop/faq/faq_1.png)
 
@@ -44,7 +44,7 @@ sidebar_position: 5
 chatConfig: {
   // 必填参数
   org: 'df_org_uid',        // 您的组织ID
-  t: "1",                   // 会话类型
+    t: "1",                   // 会话类型：0：一对一，1：工作组，2：机器人
   sid: 'df_wg_uid',         // 会话ID
   
   // 用户信息参数
@@ -162,6 +162,35 @@ const VipLevelDemo = () => {
 export default VipLevelDemo;
 ```
 
+### vipLevel / extra 参数组成与转换
+
+建议按以下步骤构造参数，便于组件接入与 URL 直连两种场景复用：
+
+```javascript
+// Step 1: 业务对象
+const profilePayload = {
+    vipLevel: 4,
+    extra: {
+        userType: 'vip',
+        registerTime: '2025-01-01',
+        memberLevel: '黄金会员'
+    }
+};
+
+// Step 2: JSON 字符串
+const profileJson = JSON.stringify(profilePayload);
+
+// Step 3: URL 编码（用于 extra 或整段参数拼接）
+const encodedExtra = encodeURIComponent(JSON.stringify(profilePayload.extra));
+const encodedProfile = encodeURIComponent(profileJson);
+```
+
+说明：
+
+- 组件方式：`vipLevel` 可直接传数字或字符串；`extra` 建议传 `JSON.stringify(...)` 后的字符串。
+- URL 方式：`vipLevel` 可直接放在 query；`extra` 建议先 `encodeURIComponent`。
+- 如果使用 `URLSearchParams` 统一拼接，编码可由浏览器自动处理。
+
 ## H5链接对接方法
 
 除了组件集成方式外，微语客服系统还支持通过URL参数直接传递VIP等级信息，适用于H5页面或快速集成场景。
@@ -177,7 +206,7 @@ https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&visitorUid=用�
 各参数说明：
 
 - `org`: 您的组织ID
-- `t`: 会话类型，通常为1
+- `t`: 会话类型（0：一对一，1：工作组，2：机器人）
 - `sid`: 客服UID/工作组UID/机器人UID
 - `visitorUid`: 用户唯一标识符
 - `nickname`: 用户昵称(需URL编码)

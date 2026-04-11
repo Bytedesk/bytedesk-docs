@@ -35,6 +35,31 @@ This document provides detailed explanation of Weiyu server configuration parame
 | `bytedesk.custom.login-scan-enable` | Whether to enable QR code login | `true` | `BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE: true` |
 | `bytedesk.custom.doc-url-show` | Whether to show documentation link | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
 | `bytedesk.custom.doc-url` | Documentation URL address | `https://...` | `BYTEDESK_CUSTOM_DOC_URL: https://www.....` |
+| `bytedesk.custom.auto-register-on-login` | Whether to auto-create an account when a user logs in with mobile/email and is not registered yet | `true` | `BYTEDESK_CUSTOM_AUTO_REGISTER_ON_LOGIN: true` |
+
+### Brand Customization Example (Important)
+
+> You must enable `bytedesk.custom.enabled=true` first, then update `name`, `logo`, `description`, and related fields; otherwise these custom values will not take effect.
+
+```properties
+# enable custom config: name, logo, description
+bytedesk.custom.enabled=true
+
+# default null use default name
+bytedesk.custom.name=
+
+# default null use default logo
+bytedesk.custom.logo=
+
+# default null use: Chat As A Service
+bytedesk.custom.description=
+
+# privacy policy url
+bytedesk.custom.privacy-policy-url=https://www.weiyuai.cn/pages/privacy.html
+
+# terms of service url
+bytedesk.custom.terms-of-service-url=https://www.weiyuai.cn/pages/terms.html
+```
 
 ## Administrator Configuration
 
@@ -42,15 +67,11 @@ This document provides detailed explanation of Weiyu server configuration parame
 | :------- | :---------------------- | :------- | :------- |
 | `bytedesk.admin.email` | Administrator email | `admin@email.com` | `BYTEDESK_ADMIN_EMAIL: admin@email.com` |
 | `bytedesk.admin.password` | Administrator default password | `admin` | `BYTEDESK_ADMIN_PASSWORD: admin` |
-| `bytedesk.admin.password-default` | Default password for creating/importing members | `123456` | `BYTEDESK_ADMIN_PASSWORD_DEFAULT: 123456` |
 | `bytedesk.admin.nickname` | Administrator nickname | `SuperAdmin` | `BYTEDESK_ADMIN_NICKNAME: SuperAdmin` |
 | `bytedesk.admin.mobile` | Administrator mobile number | `13345678000` | `BYTEDESK_ADMIN_MOBILE: 13345678000` |
 | `bytedesk.admin.mobile-whitelist` | Mobile number whitelist, separated by commas | `18888888000,18888888001,...` | `BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001...` |
 | `bytedesk.admin.email-whitelist` | Email whitelist, separated by commas | `100@email.com,101@email.com,...` | `BYTEDESK_ADMIN_EMAIL_WHITELIST: 100@email.com,101@email.com...` |
 | `bytedesk.admin.validate-code` | Verification code for whitelisted mobile numbers and emails, otherwise generates random 6-digit number | `123456` | `BYTEDESK_ADMIN_VALIDATE_CODE: 123456` |
-| `bytedesk.admin.allow-register` | Whether to allow registration of new accounts | `true` | `BYTEDESK_FEATURES_ENABLE_REGISTRATION: false` |
-| `bytedesk.admin.force-validate-mobile` | Whether to force mobile number validation | `true` | `BYTEDESK_ADMIN_FORCE_VALIDATE_MOBILE: true` |
-| `bytedesk.admin.force-validate-email` | Whether to force email validation | `true` | `BYTEDESK_ADMIN_FORCE_VALIDATE_EMAIL: true` |
 
 ## Member Configuration
 

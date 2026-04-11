@@ -1,6 +1,6 @@
 ---
-sidebar_label: 淘宝
+sidebar_label: 淘寶
 sidebar_position: 17
 ---
 
-# 淘宝
+# 淘寶

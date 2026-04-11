@@ -11,6 +11,18 @@
     "message": "开发指南",
     "description": "The label for category Private Deployment in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.development": {
+    "message": "开发指南",
+    "description": "The label for category development in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.integration": {
+    "message": "系统对接",
+    "description": "The label for category integration in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Integration": {
+    "message": "系统对接",
+    "description": "The label for category Integration in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Private Deployment": {
     "message": "私有部署",
     "description": "The label for category Private Deployment in sidebar tutorialSidebar"
@@ -123,12 +135,16 @@
     "message": "客户之声",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.CallCenter": {
-    "message": "呼叫中心",
+  "sidebar.tutorialSidebar.category.callcenter": {
+    "message": "电话客服",
+    "description": "The label for category callcenter in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.webrtc": {
+    "message": "音视频客服",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.WebRTC": {
-    "message": "视频客服",
+  "sidebar.tutorialSidebar.category.meet": {
+    "message": "音视频会议",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.BI": {

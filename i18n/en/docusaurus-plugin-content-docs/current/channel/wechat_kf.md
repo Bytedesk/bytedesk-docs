@@ -1,6 +1,6 @@
 ---
-sidebar_label: 微信客服
+sidebar_label: WeChat Customer Service
 sidebar_position: 12
 ---
 
-# 微信客服
+# WeChat Customer Service

@@ -8,7 +8,7 @@ sidebar_position: 3
 ## Installation
 
 ```bash
-# Install OpenJDK 17
+# Install OpenJDK 21
 sudo apt update
 sudo apt install openjdk-17-jdk
 # Verify installation

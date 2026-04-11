@@ -1,6 +1,6 @@
 ---
-sidebar_label: 天猫
+sidebar_label: Tmall
 sidebar_position: 18
 ---
 
-# 天猫
+# Tmall

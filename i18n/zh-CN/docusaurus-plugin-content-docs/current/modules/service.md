@@ -61,7 +61,7 @@ sidebar_position: 3
 
 #### 业务集成
 
-- **[订单对接](../development/order_select.md)**：与业务系统的订单信息集成
+- **[订单对接](../development/order_api.md)**：与业务系统的订单信息集成
 - **[数据统计报表](../development/statistic.md)**：全面的数据分析和报表功能
 
 #### 部署与支持

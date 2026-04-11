@@ -101,42 +101,35 @@ docker top bytedesk
 ## 停止和重启服务
 
 ```bash
-# 停止所有服务（保留数据）
-docker compose -p bytedesk -f docker-compose.yaml down
-# docker compose -p bytedesk -f docker-compose-ollama.yaml down
-# 或
-docker stop bytedesk redis-bytedesk elasticsearch-bytedesk ollama-bytedesk mysql-bytedesk artemis-bytedesk
+# 推荐：使用统一脚本停止/下线
+cd bytedesk/deploy/docker
+./stop.sh mysql artemis standard stop all
+./stop.sh mysql artemis standard down all
 
-# 停止所有服务并删除数据卷（谨慎操作，会删除所有数据）
-docker compose -p bytedesk -f docker-compose.yaml down -v
-# docker compose -p bytedesk -f docker-compose-ollama.yaml down -v
+# 也可使用分层 compose（MySQL + Artemis + standard + app）
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml down
 
 # 重启特定服务
-docker compose -p bytedesk -f docker-compose.yaml restart bytedesk
-# docker compose -p bytedesk -f docker-compose-ollama.yaml restart bytedesk
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml restart bytedesk
 
 # 重启所有服务
-docker compose -p bytedesk -f docker-compose.yaml restart
-# docker compose -p bytedesk -f docker-compose-ollama.yaml restart
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml restart
 ```
 
 ## 升级bytedesk镜像
 
 ```bash
 # 1. 停止当前服务
-docker compose -p bytedesk -f docker-compose.yaml down
-# docker compose -p bytedesk -f docker-compose-ollama.yaml down
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml down
 
 # 2. 拉取最新镜像
 docker pull registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest
 
 # 3. 重新启动服务（会自动使用最新镜像）
-docker compose -p bytedesk -f docker-compose.yaml up -d
-# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
 
 # 或者使用以下命令强制重新构建并启动
-docker compose -p bytedesk -f docker-compose.yaml up -d --force-recreate bytedesk
-# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d --force-recreate bytedesk
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d --force-recreate bytedesk
 ```
 
 ## 删除MySQL数据挂载
@@ -145,15 +138,13 @@ docker compose -p bytedesk -f docker-compose.yaml up -d --force-recreate bytedes
 
 ```bash
 # 1. 停止所有服务
-docker compose -p bytedesk -f docker-compose.yaml down
-# docker compose -p bytedesk -f docker-compose-ollama.yaml down
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml down
 
 # 2. 删除MySQL数据卷（谨慎操作，会删除所有数据库数据）
 docker volume rm bytedesk_mysql_data
 
 # 3. 重新启动服务（会自动创建新的数据卷和数据库）
-docker compose -p bytedesk -f docker-compose.yaml up -d
-# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
 
 # 注意：删除数据卷后，所有数据都会丢失，需要重新初始化管理员账户
 ```
@@ -192,10 +183,8 @@ docker logs mysql-bytedesk
 docker logs bytedesk
 
 # 如果服务启动失败，可以尝试重启
-docker compose -p bytedesk -f docker-compose.yaml down
-# docker compose -p bytedesk -f docker-compose-ollama.yaml down
-docker compose -p bytedesk -f docker-compose.yaml up -d
-# docker compose -p bytedesk -f docker-compose-ollama.yaml up -d
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml down
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
 
 # 检查网络连接
 docker network inspect bytedesk-network
@@ -208,16 +197,13 @@ docker system prune -f
 
 ```bash
 # 查看服务状态
-docker compose -p bytedesk -f docker-compose.yaml ps
-# docker compose -p bytedesk -f docker-compose-ollama.yaml ps
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml ps
 
 # 查看服务日志
-docker compose -p bytedesk -f docker-compose.yaml logs
-# docker compose -p bytedesk -f docker-compose-ollama.yaml logs
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml logs
 
 # 查看特定服务日志
-docker compose -p bytedesk -f docker-compose.yaml logs bytedesk
-# docker compose -p bytedesk -f docker-compose-ollama.yaml logs bytedesk
+docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml logs bytedesk
 
 # 进入容器内部
 docker exec -it bytedesk /bin/bash

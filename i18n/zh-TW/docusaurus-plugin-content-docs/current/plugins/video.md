@@ -3,6 +3,6 @@ sidebar_label: WebRTC
 sidebar_position: 2
 ---
 
-# WebRTC 集成
+# WebRTC 整合
 
-音视频对话、视音频客服解决方案，需要集成 WebRTC SDK，才能实现音视频通话、视频客服等功能。
+音訊與視訊對話，以及視音訊客服解決方案，需要整合 WebRTC SDK，才能實現語音通話、視訊通話與視訊客服等功能。

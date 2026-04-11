@@ -1,0 +1,8 @@
+{
+  "key": "callcenter",
+  "label": "CallCenter",
+  "position": 6,
+  "link": {
+    "type": "generated-index"
+  }
+}

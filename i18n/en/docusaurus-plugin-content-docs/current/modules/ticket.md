@@ -1,33 +1,31 @@
 ---
-title: 工单系统
-description: 客户问题跟踪与处理系统
+title: Ticketing System
+description: Customer issue tracking and resolution workflow
 sidebar_position: 6
 ---
 
-# 工单系统
+## Overview
 
-## 概述
+The Ticketing System module provides a structured workflow for tracking and resolving customer issues. It is designed for complex requests that require multiple steps and cross-team collaboration.
 
-工单系统模块提供结构化的客户问题跟踪和处理流程，适用于需要多步骤、多部门协作解决的复杂客户问题。
+## Key Features
 
-## 主要功能
+- **Ticket Creation**: Create and submit tickets from multiple channels.
+- **Ticket Classification**: Classify tickets by issue type and priority.
+- **Ticket Assignment**: Assign tickets automatically or manually to the appropriate owner.
+- **Ticket Collaboration**: Support multi-department collaboration for complex issues.
+- **Ticket Status Tracking**: Record the full lifecycle of ticket processing.
+- **SLA Management**: Monitor service-level agreements and trigger alerts.
+- **Ticket Evaluation**: Collect customer satisfaction ratings and feedback.
+- **Ticket Analytics**: Analyze issue categories and handling efficiency.
 
-- **工单创建**：多渠道工单创建与录入
-- **工单分类**：按问题类型和优先级分类
-- **工单分配**：自动或手动分配给合适的处理人
-- **工单协作**：支持多部门协作处理复杂问题
-- **工单状态跟踪**：完整记录工单处理全过程
-- **SLA管理**：服务级别协议监控和预警
-- **工单评价**：客户满意度评价和反馈收集
-- **工单分析**：问题类型、处理效率等数据分析
+## Use Cases
 
-## 使用场景
+- After-sales issue handling and follow-up
+- Technical support request management
+- Internal service request processing
+- Complaint and suggestion handling
 
-- 售后问题处理与跟踪
-- 技术支持请求管理
-- 内部服务请求处理
-- 客户投诉与建议处理
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问工单系统模块：[工单系统](/ticket/)
+You can access the Ticketing System module here: [Ticketing System](/ticket/)

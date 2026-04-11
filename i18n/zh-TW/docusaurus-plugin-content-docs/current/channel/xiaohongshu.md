@@ -1,6 +1,8 @@
 ---
-sidebar_label: 小红书
+sidebar_label: 小紅書
 sidebar_position: 15
 ---
 
-# 小红书
+# 小紅書
+
+小紅書渠道整合說明。

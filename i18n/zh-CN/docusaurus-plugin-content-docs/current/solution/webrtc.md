@@ -1,9 +1,9 @@
 ---
-sidebar_label: AI智能视频客服解决方案
+sidebar_label: 智能视频客服解决方案
 sidebar_position: 23
 ---
 
-# AI智能视频客服解决方案
+# 智能视频客服解决方案
 
 ![视频客服方案横幅](/img/solution/webrtc_banner.svg)
 

@@ -3,6 +3,6 @@ sidebar_label: WebRTC
 sidebar_position: 2
 ---
 
-# WebRTC 集成
+# WebRTC Integration
 
-音视频对话、视音频客服解决方案，需要集成 WebRTC SDK，才能实现音视频通话、视频客服等功能。
+Audio and video conversations, as well as multimedia customer service solutions, require integrating the WebRTC SDK to enable voice calls, video calls, and video-based customer service features.

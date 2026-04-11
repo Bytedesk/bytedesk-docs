@@ -319,6 +319,10 @@ const config: Config = {
               href: "https://www.weiyuai.cn/reactdemo/",
             },
             {
+              label: "AI Agent Demo",
+              href: "https://www.weiyuai.cn/demos/",
+            },
+            {
               label: "Forum",
               href: "https://www.weiyuai.cn/forum",
             },

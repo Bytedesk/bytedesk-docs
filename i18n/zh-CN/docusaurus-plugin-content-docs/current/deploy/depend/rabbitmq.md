@@ -75,9 +75,39 @@ spring.rabbitmq.virtual-host=/
 spring.rabbitmq.connection-timeout=5000
 ```
 
+## RabbitMQ 集群配置（生产推荐）
+
+当部署多个 RabbitMQ 节点时，微语服务端支持通过 `bytedesk.mq.rabbitmq.cluster.*` 自动写入 `ConnectionFactory.addresses`，实现客户端在节点间自动切换。
+
+```properties
+# 必须切换到 rabbitmq
+bytedesk.mq.type=rabbitmq
+bytedesk.mq.rabbitmq.enabled=true
+
+# 认证信息仍使用 spring.rabbitmq.*
+spring.rabbitmq.username=admin
+spring.rabbitmq.password=admin
+spring.rabbitmq.virtual-host=/
+spring.rabbitmq.connection-timeout=5000
+
+# 开启集群（可选）
+bytedesk.mq.rabbitmq.cluster.enabled=true
+
+# 集群节点（host:port，逗号分隔）
+bytedesk.mq.rabbitmq.cluster.nodes=10.0.0.11:5672,10.0.0.12:5672,10.0.0.13:5672
+```
+
+:::tip 兼容性说明
+
+- 未开启 `bytedesk.mq.rabbitmq.cluster.enabled` 时，保持原有单节点行为。
+- 开启集群但未配置 `bytedesk.mq.rabbitmq.cluster.nodes` 时，服务启动会失败并提示配置缺失。
+- 推荐所有微语实例使用同一组 RabbitMQ 集群节点配置，避免连接拓扑不一致。
+
+:::
+
 ## 管理控制台
 
-- 访问地址：http://127.0.0.1:15673
+- 访问地址：[http://127.0.0.1:15673](http://127.0.0.1:15673)
 - 默认账号：admin / admin
 
 ## 注意事项

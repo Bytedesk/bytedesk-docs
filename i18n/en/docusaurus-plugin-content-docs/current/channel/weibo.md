@@ -1,6 +1,8 @@
 ---
-sidebar_label: 微博
+sidebar_label: Weibo
 sidebar_position: 16
 ---
 
-# 微博
+# Weibo
+
+Weibo channel integration documentation.

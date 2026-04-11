@@ -23,13 +23,22 @@ Need a trial license? Please refer to: [Question 13: How to apply for licenseKey
 
 :::
 
-## Method 1: One-line command startup, requires separate ollama installation
+## Quick Start
 
 ```bash
-git clone https://github.com/Bytedesk/bytedesk.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose.yaml up -d
+git clone https://github.com/Bytedesk/bytedesk.git
+cd bytedesk/deploy/docker
+
+# optional: copy env template
+cp .env.example .env
+
+# default startup: MySQL + Artemis + standard scenario, middleware only
+./start.sh mysql artemis standard middleware
 ```
 
-### Since the project uses ollama qwen3:0.6b model by default, you need to pull the model separately
+For more combinations (PostgreSQL/Oracle, RabbitMQ, noai, call, full stack), see `deploy/docker/readme.md`.
+
+### Optional: Pull models (when using local Ollama)
 
 ```bash
 # Chat model
@@ -38,22 +47,14 @@ ollama pull qwen3:0.6b
 ollama pull bge-m3:latest
 ```
 
-## Method 2: Use docker compose ollama, ollama integrated by default
-
-```bash
-git clone https://github.com/Bytedesk/bytedesk.git && cd weiyu/deploy/docker && docker compose -p weiyu -f docker-compose-ollama.yaml up -d
-# Chat model
-docker exec ollama-bytedesk ollama pull qwen3:0.6b
-# Vector model
-docker exec ollama-bytedesk ollama pull bge-m3:latest
-```
-
 ## Stop Containers
 
 ```bash
-docker compose -p weiyu -f docker-compose.yaml stop
-# or
-docker compose -p weiyu -f docker-compose-ollama.yaml stop
+# stop current middleware stack (keep containers)
+./stop.sh mysql artemis standard stop middleware
+
+# remove current middleware stack containers (keep volumes)
+./stop.sh mysql artemis standard down middleware
 ```
 
 ## Open Ports
@@ -74,12 +75,22 @@ Default account: admin@email.com
 Default password: admin
 ```
 
-## Orchestration Content (Choose One)
+## Orchestration Content (Layered)
 
-- [Latest docker-compose.yaml - Uses Zhipu AI by default](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml)
-- [Latest docker-compose-ollama.yaml - Uses ollama by default](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml)
+- [compose-base.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-base.yaml)
+- [compose-db-mysql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-mysql.yaml)
+- [compose-db-postgresql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-postgresql.yaml)
+- [compose-db-oracle.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-oracle.yaml)
+- [compose-mq-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-mq-artemis.yaml)
+- [compose-mq-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-mq-rabbitmq.yaml)
+- [compose-scenario-standard.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-standard.yaml)
+- [compose-scenario-noai.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-noai.yaml)
+- [compose-scenario-call.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-call.yaml)
+- [compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-bytedesk.yaml)
+- [compose-app-mq-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-mq-artemis.yaml)
+- [compose-app-mq-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-mq-rabbitmq.yaml)
 
-If using docker-compose.yaml - you need to fill in Zhipu AI related configuration yourself, refer to the following configuration:
+If you use cloud models (such as ZhipuAI), configure it in `compose-app-bytedesk.yaml`:
 
 ```yaml
 # Apply for Zhipu AI API Key: https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys

@@ -1,9 +1,9 @@
 ---
-sidebar_label: 订单信息
+sidebar_label: 访客端订单信息
 sidebar_position: 6
 ---
 
-# 订单信息对接
+# 访客端订单信息对接
 
 :::tip 提示
 社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
@@ -100,7 +100,7 @@ const config = {
   // 聊天配置
   chatConfig: {
     org: 'df_org_uid',    // 替换为您的组织ID
-    t: "1",
+    t: "1",              // 会话类型（0：一对一，1：工作组，2：机器人）
     sid: 'df_wg_uid',     // 替换为您的SID
     
     // 可选：传入用户信息
@@ -167,6 +167,7 @@ const config = {
 基本链接格式如下：
 
 ```javascript
+// t: 会话类型（0：一对一，1：工作组，2：机器人）
 https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&orderInfo=订单信息JSON
 ```
 

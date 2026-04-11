@@ -1,6 +1,6 @@
 ---
-sidebar_label: 企业微信群聊机器人
+sidebar_label: WeCom Group Chat Bot
 sidebar_position: 12
 ---
 
-# 企业微信群聊机器人
+# WeCom Group Chat Bot

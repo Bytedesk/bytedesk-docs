@@ -72,7 +72,7 @@ bytedesk.minio.secure=false
 
 ## Docker Compose 配置
 
-如果您使用Docker部署，可以在`docker-compose.yaml`檔案中配置檔案上傳服務：
+如果您使用Docker部署，可以在 `deploy/docker/compose-app-bytedesk.yaml` 中配置檔案上傳服務：
 
 ```yaml
 # MinIO配置（當使用MinIO時）

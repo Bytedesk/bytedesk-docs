@@ -12,7 +12,7 @@ sidebar_position: 5
 - [千人千面範例-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/vipLevelDemo.tsx)
 - [千人千面範例-Vue](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/vue-demo/src/pages/vipLevelDemo.vue)
 
-> 注意：請確保您已經完成了[使用者資訊對接](./userinfo.md)的基本配置，才能更好地實現千人千面功能。
+> 注意：請確保您已經完成了[使用者資訊對接](./user_info.md)的基本配置，才能更好地實現千人千面功能。
 
 ![千人千面範例](/img/develop/faq/faq_1.png)
 

@@ -15,7 +15,7 @@ sidebar_position: 7
 | :------- | :---------------------- | :------- | :------- |
 | `server.port` | 服务器端口 | `9003` | `SERVER_PORT: 9003` |
 | `bytedesk.debug` | 是否开启调试模式 | `true` | `BYTEDESK_DEBUG: true` |
-| `bytedesk.version` | 产品版本号 | `1.2.0` | `BYTEDESK_VERSION: 1.2.0` |
+| `bytedesk.version` | 产品版本号 | `1.6.0` | `BYTEDESK_VERSION: 1.6.0` |
 | `bytedesk.appkey` | 授权密钥 | `ZjoyMDI...` | `BYTEDESK_APPKEY: ZjoyMDI...` |
 
 ## 自定义配置
@@ -25,12 +25,14 @@ sidebar_position: 7
 | `bytedesk.custom.enabled` | 是否启用自定义配置（名称、logo、说明等） | `true` | `BYTEDESK_CUSTOM_ENABLED: true` |
 | `bytedesk.custom.name` | 自定义产品名称，默认为空则使用默认名称 | - | `BYTEDESK_CUSTOM_NAME:` |
 | `bytedesk.custom.logo` | 自定义产品logo，默认为空则使用默认logo | - | `BYTEDESK_CUSTOM_LOGO:` |
+| `bytedesk.custom.favicon` | 自定义站点 favicon，默认为空则回退使用 `bytedesk.custom.logo` | - | `BYTEDESK_CUSTOM_FAVICON:` |
 | `bytedesk.custom.description` | 自定义产品描述，默认为空则使用"Chat As A Service" | - | `BYTEDESK_CUSTOM_DESCRIPTION:` |
 | `bytedesk.custom.show-right-corner-chat` | 是否显示右下角对话窗口 | `false` | `BYTEDESK_CUSTOM_SHOW_RIGHT_CORNER_CHAT: false` |
 | `bytedesk.custom.right-corner-chat-placement` | 浮窗位置：`bottom-right`/`bottom-left` | `bottom-right` | `BYTEDESK_CUSTOM_RIGHT_CORNER_CHAT_PLACEMENT: bottom-right` |
 | `bytedesk.custom.show-demo` | 是否显示默认演示 | `true` | `BYTEDESK_CUSTOM_SHOW_DEMO: true` |
-| `bytedesk.custom.privacy-policy-url` | 隐私政策URL地址 | `` | `BYTEDESK_CUSTOM_PRIVACY_POLICY_URL: ` |
-| `bytedesk.custom.terms-of-service-url` | 服务条款URL地址 | `` | `BYTEDESK_CUSTOM_TERMS_OF_SERVICE_URL: ` |
+| `bytedesk.custom.privacy-policy-url` | 隐私政策URL地址 | - | `BYTEDESK_CUSTOM_PRIVACY_POLICY_URL:` |
+| `bytedesk.custom.terms-of-service-url` | 服务条款URL地址 | - | `BYTEDESK_CUSTOM_TERMS_OF_SERVICE_URL:` |
+| `bytedesk.custom.upload-api-url` | 外网可访问的上传 API 地址（完整URL，不带上传路径），用于多节点/反向代理上传场景 | `https://upload.example.com` | `BYTEDESK_CUSTOM_UPLOAD_API_URL: https://upload.example.com` |
 | `bytedesk.custom.mqtt-websocket-url` | 外网可访问的 MQTT WebSocket 地址（完整URL），用于 Nginx/反向代理场景，避免前端硬编码端口 | `wss://api.example.com/websocket` | `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://api.example.com/websocket` |
 | `bytedesk.custom.login-username-enable` | 是否启用用户名登录 | `true` | `BYTEDESK_CUSTOM_LOGIN_USERNAME_ENABLE: true` |
 | `bytedesk.custom.login-2fa-enable` | 是否启用双重验证（用户名密码 + 手机号验证码） | `false` | `BYTEDESK_CUSTOM_LOGIN_2FA_ENABLE: false` |
@@ -50,12 +52,40 @@ sidebar_position: 7
 | `bytedesk.custom.login-oidc-enable` | 是否启用OIDC登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_OIDC_ENABLE: false` |
 | `bytedesk.custom.login-openid-enable` | 是否启用OpenID登录 | `false` | `BYTEDESK_CUSTOM_LOGIN_OPENID_ENABLE: false` |
 | `bytedesk.custom.doc-url-show` | 是否显示文档链接 | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
-| `bytedesk.custom.doc-url` | 文档URL地址 | `` | `BYTEDESK_CUSTOM_DOC_URL: ` |
+| `bytedesk.custom.doc-url` | 文档URL地址 | - | `BYTEDESK_CUSTOM_DOC_URL:` |
 | `bytedesk.custom.lang` | 登录页语言，`zh-CN`/`en-US`/`zh-TW` | `zh-CN` | `BYTEDESK_CUSTOM_LANG: zh-CN` |
 | `bytedesk.custom.allow-register` | 是否允许自助注册 | `true` | `BYTEDESK_CUSTOM_ALLOW_REGISTER: true` |
+| `bytedesk.custom.auto-register-on-login` | 手机号/邮箱登录时，若用户未注册，是否自动创建账号 | `true` | `BYTEDESK_CUSTOM_AUTO_REGISTER_ON_LOGIN: true` |
 | `bytedesk.custom.force-validate-mobile` | 是否强制验证手机号 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_MOBILE: true` |
 | `bytedesk.custom.force-validate-email` | 是否强制验证邮箱 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_EMAIL: true` |
 | `bytedesk.custom.force-visitor-auth` | 是否强制访客身份认证 | `false` | `BYTEDESK_CUSTOM_FORCE_VISITOR_AUTH: false` |
+
+### 品牌自定义配置示例（关键）
+
+> 首先需要启用 `bytedesk.custom.enabled=true`，然后再修改 `name` 品牌名、`logo`、`favicon`、`description` 等信息；否则上述自定义配置不会生效。
+
+```properties
+# enable custom config: name, logo, description
+bytedesk.custom.enabled=true
+
+# default null use default name
+bytedesk.custom.name=
+
+# default null use default logo
+bytedesk.custom.logo=
+
+# default null use logo config as favicon
+bytedesk.custom.favicon=
+
+# default null use: Chat As A Service
+bytedesk.custom.description=
+
+# privacy policy url
+bytedesk.custom.privacy-policy-url=https://www.weiyuai.cn/pages/privacy.html
+
+# terms of service url
+bytedesk.custom.terms-of-service-url=https://www.weiyuai.cn/pages/terms.html
+```
 
 ## OAuth 与第三方登录配置
 
@@ -171,15 +201,11 @@ sidebar_position: 7
 | :------- | :---------------------- | :------- | :------- |
 | `bytedesk.admin.email` | 管理员邮箱 | `admin@email.com` | `BYTEDESK_ADMIN_EMAIL: admin@email.com` |
 | `bytedesk.admin.password` | 管理员默认密码 | `admin` | `BYTEDESK_ADMIN_PASSWORD: admin` |
-| `bytedesk.admin.password-default` | 创建/导入成员的默认密码 | `123456` | `BYTEDESK_ADMIN_PASSWORD_DEFAULT: 123456` |
 | `bytedesk.admin.nickname` | 管理员昵称 | `SuperAdmin` | `BYTEDESK_ADMIN_NICKNAME: SuperAdmin` |
 | `bytedesk.admin.mobile` | 管理员手机号 | `13345678000` | `BYTEDESK_ADMIN_MOBILE: 13345678000` |
 | `bytedesk.admin.mobile-whitelist` | 手机号白名单，使用逗号分隔 | `18888888000,18888888001,...` | `BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001...` |
 | `bytedesk.admin.email-whitelist` | 邮箱白名单，使用逗号分隔 | `100@email.com,101@email.com,...` | `BYTEDESK_ADMIN_EMAIL_WHITELIST: 100@email.com,101@email.com...` |
 | `bytedesk.admin.validate-code` | 白名单手机号和邮箱的验证码，否则生成随机6位数字 | `123456` | `BYTEDESK_ADMIN_VALIDATE_CODE: 123456` |
-| `bytedesk.admin.allow-register` | 是否允许注册新账户 | `true` | `BYTEDESK_FEATURES_ENABLE_REGISTRATION: false` |
-| `bytedesk.admin.force-validate-mobile` | 是否强制验证手机号 | `true` | `BYTEDESK_ADMIN_FORCE_VALIDATE_MOBILE: true` |
-| `bytedesk.admin.force-validate-email` | 是否强制验证邮箱 | `true` | `BYTEDESK_ADMIN_FORCE_VALIDATE_EMAIL: true` |
 
 ## 成员配置
 
@@ -197,6 +223,69 @@ sidebar_position: 7
 | `bytedesk.testing.account-password` | 测试账号密码 | `password` | `BYTEDESK_TESTING_ACCOUNT_PASSWORD: password` |
 | `bytedesk.testing.disable-captcha` | 是否禁用验证码 | `true` | `BYTEDESK_TESTING_DISABLE_CAPTCHA: true` |
 | `bytedesk.testing.disable-ip-filter` | 是否禁用IP过滤 | `true` | `BYTEDESK_TESTING_DISABLE_IP_FILTER: true` |
+
+## IP 归属地配置
+
+系统支持两种 IP 归属地数据库实现：`ip2region` 和 `maxmind`。可通过配置切换默认 provider，也可以在默认 provider 不可用时自动回退到另一种实现。
+
+| 参数名 | 说明 | 示例值 | Docker环境变量 |
+| :------- | :---------------------- | :------- | :------- |
+| `bytedesk.ip.provider` | 默认 IP 归属地 provider，可选：`ip2region` / `maxmind` | `ip2region` | `BYTEDESK_IP_PROVIDER: ip2region` |
+| `bytedesk.ip.fallback-enabled` | 当默认 provider 不可用时，是否自动回退到其他可用 provider | `true` | `BYTEDESK_IP_FALLBACK_ENABLED: true` |
+| `bytedesk.ip.ip2region.db-file` | `ip2region` 数据库文件的 classpath 路径 | `ipdb/ip2region.xdb` | `BYTEDESK_IP_IP2REGION_DB_FILE: ipdb/ip2region.xdb` |
+| `bytedesk.ip.maxmind.city-db-file` | MaxMind City 数据库文件的 classpath 路径 | `ipdb/GeoLite2-City.mmdb` | `BYTEDESK_IP_MAXMIND_CITY_DB_FILE: ipdb/GeoLite2-City.mmdb` |
+| `bytedesk.ip.maxmind.locales` | MaxMind 地名语言优先级，多个值使用逗号分隔 | `zh-CN,en` | `BYTEDESK_IP_MAXMIND_LOCALES: zh-CN,en` |
+
+### Provider 切换说明
+
+- `bytedesk.ip.provider=ip2region`：默认使用 `ip2region` 查询。
+- `bytedesk.ip.provider=maxmind`：默认使用 MaxMind 查询。
+- `bytedesk.ip.fallback-enabled=true`：若默认 provider 初始化失败、数据库文件缺失或当前 provider 不可用，系统会自动尝试其他可用 provider。
+- `bytedesk.ip.fallback-enabled=false`：只使用当前指定 provider，不自动切换。
+
+### 数据库文件放置说明
+
+- 建议将数据库文件统一放在 `starter/src/main/resources/ipdb/` 目录下。
+- 当前默认文件名约定如下：
+  - `starter/src/main/resources/ipdb/ip2region.xdb`
+  - `starter/src/main/resources/ipdb/GeoLite2-City.mmdb`
+- 配置项填写的是 classpath 相对路径，而不是操作系统绝对路径。
+- 如果你改了文件名或目录，需要同步修改 `bytedesk.ip.ip2region.db-file` 和 `bytedesk.ip.maxmind.city-db-file`。
+
+### 配置示例
+
+```properties
+# 默认使用 ip2region
+bytedesk.ip.provider=ip2region
+
+# 当 ip2region 不可用时，自动回退到 MaxMind
+bytedesk.ip.fallback-enabled=true
+
+# ip2region 数据库文件
+bytedesk.ip.ip2region.db-file=ipdb/ip2region.xdb
+
+# MaxMind City 数据库文件
+bytedesk.ip.maxmind.city-db-file=ipdb/GeoLite2-City.mmdb
+
+# MaxMind 地名语言优先级
+bytedesk.ip.maxmind.locales=zh-CN,en
+```
+
+### Docker 环境变量示例
+
+```yaml
+BYTEDESK_IP_PROVIDER: ip2region
+BYTEDESK_IP_FALLBACK_ENABLED: "true"
+BYTEDESK_IP_IP2REGION_DB_FILE: ipdb/ip2region.xdb
+BYTEDESK_IP_MAXMIND_CITY_DB_FILE: ipdb/GeoLite2-City.mmdb
+BYTEDESK_IP_MAXMIND_LOCALES: zh-CN,en
+```
+
+### 使用建议
+
+- 国内部署优先可使用 `ip2region` 作为默认 provider，查询速度和部署便利性更好。
+- 需要更完整海外地理信息时，可切换为 `maxmind`，或开启 fallback 作为补充。
+- 若使用 MaxMind，请确保 `.mmdb` 文件已下载并放入 resources 对应路径，否则启动后查询会自动回退或返回不可用。
 
 ## 组织配置
 
@@ -262,7 +351,7 @@ sidebar_position: 7
 ## 文件上传安全配置
 
 > 默认策略：仅拦截“危险文件后缀黑名单”（例如 `exe/jsp/php/sh` 等）。
-> 
+>
 > MIME 类型过滤默认不启用（避免浏览器无法准确识别文件 MIME 导致误拦截）。如需更严格校验，可手动开启。
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
@@ -343,7 +432,7 @@ sidebar_position: 7
 
 ### 智谱AI配置
 
-下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
+下单立减10%金额，享限时惊喜价！[智谱AI折扣链接](https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI)
 
 | 参数名 | 说明 | 示例值 | Docker环境变量 |
 | :------- | :---------------------- | :------- | :------- |
@@ -533,7 +622,7 @@ BYTEDESK_ADMIN_VALIDATE_CODE: 123456
 
 - [百度翻译开放平台](https://fanyi-api.baidu.com/doc/21) - 百度翻译API文档
 
-## 文件上传安全配置
+## 文件上传安全配置补充说明
 
 文件上传安全配置用于保护系统免受恶意文件上传的攻击，提高上传文件的安全性。
 

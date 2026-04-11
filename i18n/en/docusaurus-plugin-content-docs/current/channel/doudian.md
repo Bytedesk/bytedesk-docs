@@ -1,6 +1,6 @@
 ---
-sidebar_label: 抖店
+sidebar_label: Douyin Store
 sidebar_position: 15
 ---
 
-# 抖店
+# Douyin Store

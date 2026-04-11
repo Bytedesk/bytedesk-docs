@@ -3,12 +3,24 @@ sidebar_label: Postgresql
 sidebar_position: 3
 ---
 
-# PostgreSQL 16
+# PostgreSQL
 
 :::tip
+
 - 操作系统：Ubuntu 22.04 LTS
 - 服务器推荐配置2核4G内存
+
 :::
+
+:::info 第三方组件说明
+以下说明仅供参考，具体配置和使用方法请参考 [PostgreSQL 官方文档](https://www.postgresql.org/docs/)。
+:::
+
+## 方式一：Docker安装
+
+- [使用Docker安装](../jar.md#12-安装项目依赖)
+
+## 方式二：直接安装
 
 ## 对接微语
 
@@ -16,8 +28,8 @@ sidebar_position: 3
 
 ```bash
 # 连接信息
-spring.datasource.url=jdbc:postgresql://127.0.0.1:5433/bytedesk
-spring.datasource.username=root
+spring.datasource.url=jdbc:postgresql://127.0.0.1:15432/bytedesk
+spring.datasource.username=postgres
 spring.datasource.password=密码
 # 驱动信息
 spring.datasource.driver-class-name=org.postgresql.Driver
@@ -36,12 +48,56 @@ spring.batch.database-type=POSTGRES
 flowable.database-type=postgres
 ```
 
+### 微语服务端 PostgreSQL 主从读写分离配置（新增）
+
+> 适用版本：服务端已支持 `bytedesk.datasource.postgresql-replication.*` 配置。  
+> 兼容性：不开启时保持原有单库行为。
+
+```bash
+# 保持主库（兼容原有配置）
+spring.datasource.url=jdbc:postgresql://127.0.0.1:15432/bytedesk
+spring.datasource.username=postgres
+spring.datasource.password=密码
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# 开启主从
+bytedesk.datasource.postgresql-replication.enabled=true
+# 仅对 @Transactional(readOnly=true) 路由从库
+bytedesk.datasource.postgresql-replication.read-only-route-enabled=true
+# round-robin / random
+bytedesk.datasource.postgresql-replication.read-balance=round-robin
+
+# 主库（可选；不配置则回退 spring.datasource.*）
+bytedesk.datasource.postgresql.master.url=jdbc:postgresql://127.0.0.1:15432/bytedesk
+bytedesk.datasource.postgresql.master.username=postgres
+bytedesk.datasource.postgresql.master.password=密码
+bytedesk.datasource.postgresql.master.driver-class-name=org.postgresql.Driver
+
+# 从库1
+bytedesk.datasource.postgresql.replicas[0].url=jdbc:postgresql://127.0.0.1:25432/bytedesk
+bytedesk.datasource.postgresql.replicas[0].username=postgres
+bytedesk.datasource.postgresql.replicas[0].password=密码
+bytedesk.datasource.postgresql.replicas[0].driver-class-name=org.postgresql.Driver
+
+# 从库2（可选）
+bytedesk.datasource.postgresql.replicas[1].url=jdbc:postgresql://127.0.0.1:35432/bytedesk
+bytedesk.datasource.postgresql.replicas[1].username=postgres
+bytedesk.datasource.postgresql.replicas[1].password=密码
+bytedesk.datasource.postgresql.replicas[1].driver-class-name=org.postgresql.Driver
+```
+
+说明：
+
+- 写请求与非只读事务统一走主库。
+- 只读事务（`@Transactional(readOnly=true)`）走从库。
+- 未配置从库或从库不可用时，自动回退主库。
+
 docker compose格式
 
 ```bash
 # 连接信息
-SPRING_DATASOURCE_URL: jdbc:postgresql://127.0.0.1:5433/bytedesk
-SPRING_DATASOURCE_USERNAME: root
+SPRING_DATASOURCE_URL: jdbc:postgresql://127.0.0.1:15432/bytedesk
+SPRING_DATASOURCE_USERNAME: postgres
 SPRING_DATASOURCE_PASSWORD: 密码
 # 驱动信息
 SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
@@ -60,7 +116,27 @@ SPRING_BATCH_DATABASE_TYPE: POSTGRES
 FLOWABLE_DATABASE_TYPE: postgres
 ```
 
+PostgreSQL 主从读写分离环境变量示例：
+
+```bash
+BYTEDESK_DATASOURCE_POSTGRESQL_REPLICATION_ENABLED: true
+BYTEDESK_DATASOURCE_POSTGRESQL_REPLICATION_READ_ONLY_ROUTE_ENABLED: true
+BYTEDESK_DATASOURCE_POSTGRESQL_REPLICATION_READ_BALANCE: round-robin
+
+BYTEDESK_DATASOURCE_POSTGRESQL_MASTER_URL: jdbc:postgresql://127.0.0.1:15432/bytedesk
+BYTEDESK_DATASOURCE_POSTGRESQL_MASTER_USERNAME: postgres
+BYTEDESK_DATASOURCE_POSTGRESQL_MASTER_PASSWORD: 密码
+BYTEDESK_DATASOURCE_POSTGRESQL_MASTER_DRIVER_CLASS_NAME: org.postgresql.Driver
+
+BYTEDESK_DATASOURCE_POSTGRESQL_REPLICAS_0_URL: jdbc:postgresql://127.0.0.1:25432/bytedesk
+BYTEDESK_DATASOURCE_POSTGRESQL_REPLICAS_0_USERNAME: postgres
+BYTEDESK_DATASOURCE_POSTGRESQL_REPLICAS_0_PASSWORD: 密码
+BYTEDESK_DATASOURCE_POSTGRESQL_REPLICAS_0_DRIVER_CLASS_NAME: org.postgresql.Driver
+```
+
 ## 安装
+
+### Ubuntu 安装
 
 ```bash
 # ubuntu
@@ -108,3 +184,9 @@ netstat -tunlp | grep 5432
 # 创建数据库 bytedesk
 # 给刚创建的数据库bytedesk添加扩展vector（右键扩展，创建->General->名称：vector）
 ```
+
+## 参考
+
+- [Docker](https://hub.docker.com/_/postgres)
+- [PostgreSQL 官方下载](https://www.postgresql.org/download/)
+- [PostgreSQL 官方文档](https://www.postgresql.org/docs/)

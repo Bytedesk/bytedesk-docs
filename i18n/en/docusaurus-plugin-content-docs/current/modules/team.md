@@ -1,30 +1,28 @@
 ---
-title: 团队管理
-description: 企业IM && 团队组织结构管理
+title: Team Management
+description: Enterprise IM and organizational structure management
 sidebar_position: 2
 ---
 
-# 团队管理
+## Overview
 
-## 概述
+The Team Management module is the foundational organizational management system of the Bytedesk platform. It provides capabilities for organization structure, member management, and permission control.
 
-团队管理模块是ByteDesk平台的基础组织架构管理系统，提供组织结构、成员管理和权限控制功能。
+## Key Features
 
-## 主要功能
+- **Organizational Structure Management**: Create and maintain company departments and organizational structure.
+- **Team Member Management**: Add, edit, and remove team members.
+- **Roles and Permissions**: Assign roles and permissions to different members.
+- **Workgroup Management**: Create dedicated workgroups to handle specific types of customer requests.
+- **Reception Group Management**: Configure agent reception order and automatic assignment rules.
 
-- **组织架构管理**：创建和维护公司部门组织架构
-- **团队成员管理**：添加、编辑和删除团队成员
-- **角色与权限控制**：为不同成员分配角色和权限
-- **工作组管理**：创建专门的工作组处理特定类型的客户请求
-- **接待组管理**：设置客服接待顺序和自动分配规则
+## Use Cases
 
-## 使用场景
+- Building customer service team structures
+- Managing agents and their working status
+- Setting different levels of management permissions
+- Optimizing service resource allocation and efficiency
 
-- 构建客服团队组织结构
-- 管理客服人员及其工作状态
-- 设置不同级别的管理权限
-- 优化客服资源配置和工作效率
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问团队管理模块：[团队管理](/team/)
+You can access the Team Management module here: [Team Management](/team/)

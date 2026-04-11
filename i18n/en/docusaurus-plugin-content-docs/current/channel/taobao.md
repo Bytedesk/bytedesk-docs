@@ -1,6 +1,6 @@
 ---
-sidebar_label: 淘宝
+sidebar_label: Taobao
 sidebar_position: 17
 ---
 
-# 淘宝
+# Taobao

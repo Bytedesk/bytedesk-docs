@@ -1,6 +1,8 @@
 ---
-sidebar_label: 快手
+sidebar_label: Kuaishou
 sidebar_position: 14
 ---
 
-# 快手
+# Kuaishou
+
+Kuaishou channel integration documentation.

@@ -35,21 +35,73 @@ cd weiyu  # 或 cd bytedesk
 
 ## 2. 環境準備
 
-### 2.1 安裝JDK 17
+### 2.1 安裝JDK 21
 
-專案基於Spring Boot 3開發，**必須**使用JDK 17或更高版本：
+專案基於Spring Boot 3開發，**必須**使用JDK 21或更高版本：
 
 ```bash
 # 檢查Java版本
 java --version
-# 應顯示: java 17.x.x 或更高版本
+# 應顯示: java 21.x.x 或更高版本
 ```
 
-如果沒有安裝JDK 17，請參考：[JDK 17安裝指南](./depend/jdk)
+如果沒有安裝JDK 21，請參考：[JDK 21安裝指南](./depend/jdk)
 
 ### 2.2 安裝專案依賴
 
-- [安裝專案依賴](./jar.md#12-安裝專案依賴)
+```bash
+# 1. 進入 deploy/docker 目錄
+cd bytedesk/deploy/docker
+
+# 2. 啟動依賴（預設 MySQL）
+# start.sh <db> <mq> <scenario> [all|middleware]
+
+# Artemis + MySQL（預設）
+./start.sh mysql artemis standard middleware
+
+# RabbitMQ + MySQL（預設）
+./start.sh mysql rabbitmq standard middleware
+
+# 停止（保留容器）
+# ./stop.sh mysql artemis standard stop middleware
+# ./stop.sh mysql rabbitmq standard stop middleware
+
+# 下線（刪除容器，保留資料卷）
+# ./stop.sh mysql artemis standard down middleware
+# ./stop.sh mysql rabbitmq standard down middleware
+
+# 3. 切換 PostgreSQL（可選）
+./start.sh postgresql artemis standard middleware
+./start.sh postgresql rabbitmq standard middleware
+
+# 4. 切換 Oracle（可選）
+./start.sh oracle artemis standard middleware
+./start.sh oracle rabbitmq standard middleware
+
+# 5. 僅中介服務（建議用於源碼啟動，預設）
+./start.sh mysql artemis standard middleware
+./start.sh mysql rabbitmq standard middleware
+
+# 6. 全量（中介服務 + bytedesk 映像）
+./start.sh mysql artemis standard all
+./start.sh mysql rabbitmq standard all
+
+# 可選：透過環境變數切換專案名
+# PROJECT_NAME=bytedesk ./start.sh mysql artemis standard middleware
+
+# 等價原生命令（先切到 deploy/docker）
+# cd deploy/docker
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# 全量示例（中介服務 + bytedesk 映像）
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+```
+
+- 或參考 [安裝專案依賴](./jar.md#前期准备)
 
 ## 3. 編譯與啟動
 

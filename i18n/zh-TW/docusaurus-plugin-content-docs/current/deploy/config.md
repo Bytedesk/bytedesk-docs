@@ -35,6 +35,31 @@ sidebar_position: 7
 | `bytedesk.custom.login-scan-enable` | 是否啟用掃碼登入 | `true` | `BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE: true` |
 | `bytedesk.custom.doc-url-show` | 是否顯示文檔連結 | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
 | `bytedesk.custom.doc-url` | 文檔URL地址 | `https://...` | `BYTEDESK_CUSTOM_DOC_URL: https://www.....` |
+| `bytedesk.custom.auto-register-on-login` | 使用手機號或郵箱登入且使用者尚未註冊時，是否自動建立帳號 | `true` | `BYTEDESK_CUSTOM_AUTO_REGISTER_ON_LOGIN: true` |
+
+### 品牌自訂配置範例（關鍵）
+
+> 首先需要啟用 `bytedesk.custom.enabled=true`，然後再修改 `name` 品牌名、`logo`、`description` 等資訊；否則上述自訂配置不會生效。
+
+```properties
+# enable custom config: name, logo, description
+bytedesk.custom.enabled=true
+
+# default null use default name
+bytedesk.custom.name=
+
+# default null use default logo
+bytedesk.custom.logo=
+
+# default null use: Chat As A Service
+bytedesk.custom.description=
+
+# privacy policy url
+bytedesk.custom.privacy-policy-url=https://www.weiyuai.cn/pages/privacy.html
+
+# terms of service url
+bytedesk.custom.terms-of-service-url=https://www.weiyuai.cn/pages/terms.html
+```
 
 ## 管理員配置
 
@@ -42,15 +67,11 @@ sidebar_position: 7
 | :------- | :---------------------- | :------- | :------- |
 | `bytedesk.admin.email` | 管理員郵箱 | `admin@email.com` | `BYTEDESK_ADMIN_EMAIL: admin@email.com` |
 | `bytedesk.admin.password` | 管理員預設密碼 | `admin` | `BYTEDESK_ADMIN_PASSWORD: admin` |
-| `bytedesk.admin.password-default` | 建立/匯入成員的預設密碼 | `123456` | `BYTEDESK_ADMIN_PASSWORD_DEFAULT: 123456` |
 | `bytedesk.admin.nickname` | 管理員暱稱 | `SuperAdmin` | `BYTEDESK_ADMIN_NICKNAME: SuperAdmin` |
 | `bytedesk.admin.mobile` | 管理員手機號 | `13345678000` | `BYTEDESK_ADMIN_MOBILE: 13345678000` |
 | `bytedesk.admin.mobile-whitelist` | 手機號白名單，使用逗號分隔 | `18888888000,18888888001,...` | `BYTEDESK_ADMIN_MOBILE_WHITELIST: 18888888000,18888888001...` |
 | `bytedesk.admin.email-whitelist` | 郵箱白名單，使用逗號分隔 | `100@email.com,101@email.com,...` | `BYTEDESK_ADMIN_EMAIL_WHITELIST: 100@email.com,101@email.com...` |
 | `bytedesk.admin.validate-code` | 白名單手機號和郵箱的驗證碼，否則產生隨機6位數字 | `123456` | `BYTEDESK_ADMIN_VALIDATE_CODE: 123456` |
-| `bytedesk.admin.allow-register` | 是否允許註冊新帳戶 | `true` | `BYTEDESK_FEATURES_ENABLE_REGISTRATION: false` |
-| `bytedesk.admin.force-validate-mobile` | 是否強制驗證手機號 | `true` | `BYTEDESK_ADMIN_FORCE_VALIDATE_MOBILE: true` |
-| `bytedesk.admin.force-validate-email` | 是否強制驗證郵箱 | `true` | `BYTEDESK_ADMIN_FORCE_VALIDATE_EMAIL: true` |
 
 ## 成員配置
 

@@ -12,7 +12,7 @@ This page explains how to implement personalized service experiences for differe
 - [Personalized Service Example-React](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/vipLevelDemo.tsx)
 - [Personalized Service Example-Vue](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/vue-demo/src/pages/vipLevelDemo.vue)
 
-> Note: Please ensure you have completed the basic configuration of [User Information Integration](./userinfo.md) to better implement personalized service functionality.
+> Note: Please ensure you have completed the basic configuration of [User Information Integration](./user_info.md) to better implement personalized service functionality.
 
 ![Personalized Service Example](/img/develop/faq/faq_1.png)
 

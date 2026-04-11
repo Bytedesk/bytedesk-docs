@@ -1,6 +1,6 @@
 ---
-sidebar_label: 拼多多
+sidebar_label: Pinduoduo
 sidebar_position: 17
 ---
 
-# 拼多多
+# Pinduoduo

@@ -11,5 +11,5 @@ sidebar_position: 38
 
 ## 参考链接
 
-- [Janus](../deploy/depend/janus.md)
-- [Coturn](../deploy/depend/coturn.md)
+- [Janus](../webrtc/janus.md)
+- [Coturn](../webrtc/coturn.md)

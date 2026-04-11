@@ -1,5 +1,5 @@
 ---
-title: 开放平台
-description: 对接第三方平台
+title: Open Platform
+description: Connect with third-party platforms
 sidebar_position: 10
 ---

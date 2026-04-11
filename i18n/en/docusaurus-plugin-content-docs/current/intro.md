@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+<!-- markdownlint-disable MD033 -->
+
 # Weiyu Collaboration Platform
 
 import nin1Image from '/img/nin1.png';
@@ -10,7 +12,7 @@ import nin1Image from '/img/nin1.png';
 
 **Weiyu** is a newly built open-source enterprise-level [multi-tenant](./development/saas.md) team collaboration tool based on AI, integrating multiple functions into one:
 
-> [Enterprise IM](modules/team.md), [Online Customer Service](modules/service.md), [Enterprise Knowledge Base/Help Documentation](modules/kbase.md), [Ticket System](modules/ticket.md), [AI Agent](modules/ai.md), [Workflow](modules/workflow.md), [Voice of Customer](modules/voc.md), [Call Center](plugins/freeswitch.md), [Video Customer Service](plugins/video.md), [Open Platform](modules/open.md)
+> [Enterprise IM](modules/team.md), [Online Customer Service](modules/service.md), [Enterprise Knowledge Base/Help Documentation](modules/kbase.md), [Ticket System](modules/ticket.md), [AI Agent](modules/ai.md), [Workflow](modules/workflow.md), [Voice of Customer](modules/voc.md), [Call Center](plugins/freeswitch.md), [Video Customer Service](plugins/video.md), [Customer Management](modules/crm.md), [Training Management](modules/training.md), [Marketing Management](modules/marketing.md), [Open Platform](modules/open.md)
 
 <img src={nin1Image} alt="Weiyu Function Integration" />
 
@@ -226,7 +228,37 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Helps enterprises understand customer needs and pain points
 - Discovers product and service improvement opportunities
 
-### 10. [Open Platform...](modules/open.md)
+### 10. [Customer Management](modules/crm.md)
+
+👥 **Customer Relationship Management System**
+
+- Unified management of customer profiles and tagging systems
+- Cross-channel interaction records and follow-up reminders
+- End-to-end collaboration across opportunities, contracts, and orders
+
+### 11. [Training Management](modules/training.md)
+
+🎯 **Service Training and Capability Improvement**
+
+- Closed-loop process with course learning, simulation practice, and online assessment
+- AI role-play with quality insights for targeted skill improvement
+- Visualized participation and assessment metrics for better governance
+
+### 12. [Marketing Management](modules/marketing.md)
+
+📣 **Omni-channel Growth Marketing Platform**
+
+- Aggregate traffic from domestic and global social channels with unified lead intake
+- Run segmented outreach and automation to improve conversion efficiency
+- Review campaign performance through dashboards and optimize continuously
+
+### 13. [Open Platform](modules/open.md)
+
+🔌 **Enterprise-grade API Open Platform**
+
+- Provides comprehensive RESTful APIs and SDK toolkits
+- Enables seamless integration and data interoperability with third-party systems
+- Multi-language SDK support to simplify integration development
 
 <!-- ## Download
 

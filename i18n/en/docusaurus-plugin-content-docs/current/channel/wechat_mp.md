@@ -1,6 +1,8 @@
 ---
-sidebar_label: 微信公众号
+sidebar_label: WeChat Official Account
 sidebar_position: 9
 ---
 
-# 微信公众号
+# WeChat Official Account
+
+WeChat Official Account channel integration documentation.

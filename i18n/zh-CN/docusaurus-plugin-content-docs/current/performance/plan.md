@@ -25,7 +25,7 @@ sidebar_position: 1
 ### 2.2 软件环境
 
 - 操作系统: Linux (推荐 Ubuntu 20.04/22.04 或 CentOS 8)
-- JDK版本: JDK 17
+- JDK版本: JDK 21
 - 应用服务器: Spring Boot 3.4.4
 - 数据库: MySQL 8.0+ / PostgreSQL 14+
 - 测试工具: Apache JMeter 5.5+, Gatling 3.9+

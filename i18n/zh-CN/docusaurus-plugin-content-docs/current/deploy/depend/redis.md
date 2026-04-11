@@ -163,6 +163,52 @@ redis-stack-server
 redisinsight
 ```
 
+## 微语服务端集群配置
+
+从当前版本开始，微语服务端已支持 Redis 单机与集群两种模式。
+
+### 1) 单机模式（默认）
+
+保留以下配置即可：
+
+```properties
+spring.data.redis.host=127.0.0.1
+spring.data.redis.port=6379
+spring.data.redis.password=your-password
+spring.data.redis.database=0
+spring.data.redis.timeout=10000
+```
+
+### 2) 集群模式
+
+启用方式（二选一）：
+
+- 显式开启：`bytedesk.redis.cluster.enabled=true`
+- 或仅配置 `spring.data.redis.cluster.nodes`（系统会自动识别为集群模式）
+
+示例：
+
+```properties
+# 显式开关（可选）
+bytedesk.redis.cluster.enabled=true
+
+# Redis 集群节点（至少 3 个）
+spring.data.redis.cluster.nodes=10.0.0.11:7001,10.0.0.12:7002,10.0.0.13:7003
+
+# 最大重定向次数（可选）
+spring.data.redis.cluster.max-redirects=3
+
+# 集群模式下仍支持密码
+spring.data.redis.password=your-password
+spring.data.redis.timeout=10000
+```
+
+### 3) 兼容性说明
+
+- 已有单机配置无需改动。
+- 当 `bytedesk.redis.cluster.enabled=true` 且未配置 `spring.data.redis.cluster.nodes` 时，服务端会在启动期报错并阻止启动。
+- 集群模式下 Redis 不支持按库号切换，建议统一使用默认 `database=0`。
+
 ## 参考资料
 
 - [Redis 官方安装文档](https://redis.io/docs/install/install-stack/docker/)

@@ -1,6 +1,8 @@
 ---
-sidebar_label: 抖音
+sidebar_label: Douyin
 sidebar_position: 14
 ---
 
-# 抖音
+# Douyin
+
+Douyin channel integration documentation.

@@ -26,24 +26,25 @@ sidebar_position: 3
 
 #### 方式一：使用云模型（推荐新手）
 
-1. 下载 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 文件
+1. 克隆项目并进入 `deploy/docker` 目录
 2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
-3. 修改配置文件中的API Key
+3. 在 `compose-app-bytedesk.yaml` 中填入 API Key
 
 #### 方式二：使用本地模型
 
-1. 下载 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 文件
-2. 无需申请API Key，使用本地Ollama模型
+1. 克隆项目并进入 `deploy/docker` 目录
+2. 使用 `./start.sh mysql artemis standard all` 启动
+3. 拉取本地 Ollama 模型
 
 #### 方式三：默认不使用ai大模型
 
-1. 下载 [`docker-compose-noai.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-noai.yaml) 文件到本地
+1. 使用 `./start.sh mysql artemis noai all` 启动
 
 ### 步骤2：修改配置
 
 #### 2.1 服务器IP配置
 
-在下载的配置文件中，将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置[licenseKey](../development/license.md)：
+在 Docker 部署配置中（例如 `compose-app-bytedesk.yaml`），将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置 [licenseKey](../development/license.md)：
 
 ```yaml
 # 请将 127.0.0.1 替换为你的服务器IP或域名
@@ -59,7 +60,7 @@ BYTEDESK_LICENSE_KEY:
 
 #### 2.2 云模型配置（智谱AI）
 
-如果选择云模型方式，在 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 中配置：
+如果选择云模型方式，在 `compose-app-bytedesk.yaml` 中配置：
 下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
 
 ```yaml
@@ -74,7 +75,7 @@ environment:
 
 #### 2.3 本地模型配置（Ollama）
 
-如果选择本地模型方式，在 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 中已预配置，无需额外设置。
+如果选择本地模型方式，在 `compose-base.yaml` + `compose-app-bytedesk.yaml` 的默认配置中已包含 Ollama 组件，无需额外切换文件。
 
 ### 步骤3：宝塔面板操作
 
@@ -88,10 +89,14 @@ environment:
 
 #### 3.3 复制编排内容
 
-将修改后的配置文件内容复制到宝塔面板的容器编排中：
+将分层 compose 文件内容按顺序复制到宝塔面板的容器编排中（建议至少包含以下文件）：
 
-- **云模型**：复制 [`docker-compose.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose.yaml) 内容
-- **本地模型**：复制 [`docker-compose-ollama.yaml`](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/docker-compose-ollama.yaml) 内容
+- `compose-base.yaml`
+- `compose-db-mysql.yaml`
+- `compose-mq-artemis.yaml`
+- `compose-scenario-standard.yaml`（或 `compose-scenario-noai.yaml`）
+- `compose-app-bytedesk.yaml`
+- `compose-app-mq-artemis.yaml`
 
 #### 3.4 等待部署完成
 
@@ -115,7 +120,7 @@ ollama pull qwen3:0.6b
 ollama pull bge-m3:latest
 ```
 
-如果你使用的是docker-compose-ollama.yaml（默认集成ollama），参考下图安装模型：
+如果你使用的是标准场景（默认集成 ollama），参考下图安装模型：
 
 ![Ollama模型安装](/img/deploy/baota/baota-ollama.png)
 

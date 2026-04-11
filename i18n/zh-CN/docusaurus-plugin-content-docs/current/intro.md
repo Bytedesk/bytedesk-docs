@@ -1,8 +1,13 @@
 ---
+title: 微语介绍
+sidebar_label: 微语介绍
 sidebar_position: 1
+description: 微语系统基本介绍
 ---
 
-# 微语协同平台
+<!-- markdownlint-disable MD033 -->
+
+<!-- # 微语协同平台 -->
 
 import nin1Image from '/img/nin1.png';
 
@@ -10,7 +15,7 @@ import nin1Image from '/img/nin1.png';
 
 **微语**是基于AI全新打造的一款开源企业级[多租户](./development/saas.md)团队智能协同平台，提供一站式客户服务解决方案/客服中心，能够显著提高内部员工和外部客户沟通效率。
 
-> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能呼叫中心](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[AI Agent](modules/ai.md)、[表单问卷](modules/form.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[视频客服](plugins/video.md)、[客户管理](modules/crm.md)、[客服培训](modules/training.md)、[开放平台](modules/open.md)
+> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能电话客服](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[AI Agent](modules/ai.md)、[表单问卷](modules/form.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[音频客服](plugins/video.md)、[视频客服](plugins/video.md)、[客户管理](modules/crm.md)、[客服培训](modules/training.md)、[营销管理](modules/marketing.md)、[舆情管理](modules/opinion.md)、[开放平台](modules/open.md)
 
 <img src={nin1Image} alt="微语功能集成" />
 
@@ -200,7 +205,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 自定义工作流与优先级管理
 - 确保客户问题得到及时有效解决
 
-### 6. [工作流-开发中...](modules/workflow.md)
+### 6. [工作流](modules/workflow.md)
 
 ⚙️ **业务流程设计平台**
 
@@ -208,7 +213,15 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持自定义审批流程、任务分配
 - 状态跟踪，提高团队协作效率
 
-### 7. [视频客服-开发中...](plugins/video.md)
+### 7. [音频客服](plugins/video.md)
+
+🎧 **实时音频服务解决方案**
+
+- 基于WebRTC技术的实时语音通话
+- 支持一键语音对话与人工协作转接
+- 适用于弱网环境和快速沟通服务场景
+
+### 8. [视频客服](plugins/video.md)
 
 📹 **实时视频服务解决方案**
 
@@ -216,7 +229,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持一键视频对话与屏幕共享
 - 适用于需要直观展示的服务场景
 
-### 8. [呼叫中心-开发中...](plugins/freeswitch.md)
+### 9. [电话客服-开发中...](plugins/freeswitch.md)
 
 ☎️ **全功能呼叫系统**
 
@@ -224,7 +237,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持来电弹屏、自动分配、通话录音
 - 数据统计，语音与文字服务无缝集成
 
-### 9. [客户之声-开发中...](modules/voc.md)
+### 10. [客户之声-开发中...](modules/voc.md)
 
 📣 **客户反馈管理系统**
 
@@ -232,7 +245,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 帮助企业了解客户需求与痛点
 - 发现产品和服务改进机会
 
-### 10. [客户管理](modules/crm.md)
+### 11. [客户管理](modules/crm.md)
 
 👥 **客户关系管理系统**
 
@@ -240,7 +253,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 全渠道互动记录与跟进提醒
 - 商机、合同、订单全流程协同
 
-### 11. [客服培训](modules/training.md)
+### 12. [客服培训-开发中...](modules/training.md)
 
 🎯 **客服培训与能力提升**
 
@@ -248,7 +261,23 @@ import archFrontImage from '/img/arch/arch_front.png';
 - AI陪练结合质检结果，针对薄弱环节定向提升
 - 参与率与考核数据可视化，管理更可控
 
-### 12. [开放平台](modules/open.md)
+### 13. [营销管理-开发中...](modules/marketing.md)
+
+📣 **社交聚合营销增长平台**
+
+- 聚合国内外社媒多渠道流量入口，统一承接与管理营销线索
+- 自动化触达与分层运营，提升线索培育与转化效率
+- 通过营销看板复盘投放效果，持续优化增长策略
+
+### 14. [舆情管理-开发中...](modules/opinion.md)
+
+📡 **全网舆情监测与应对平台**
+
+- 聚合多平台舆情信息，实时识别品牌与事件风险信号
+- 支持情绪分析、主题聚类与分级预警，提升风险发现效率
+- 联动公关与客服协同处置，形成“监测-响应-复盘”闭环
+
+### 15. [开放平台](modules/open.md)
 
 🔌 **企业级API开放平台**
 

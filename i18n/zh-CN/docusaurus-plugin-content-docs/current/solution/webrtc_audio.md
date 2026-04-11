@@ -1,9 +1,9 @@
 ---
-sidebar_label: AI智能音频客服解决方案
+sidebar_label: 智能音频客服解决方案
 sidebar_position: 24
 ---
 
-# AI智能音频客服解决方案
+# 智能音频客服解决方案
 
 ![音频客服方案横幅](/img/solution/webrtc_audio_banner.svg)
 

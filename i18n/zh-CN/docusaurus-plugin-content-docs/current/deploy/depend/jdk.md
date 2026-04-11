@@ -112,7 +112,7 @@ sudo update-alternatives --install /usr/bin/java java /usr/java/jdk-17.0.10/bin/
 ## 加密策略配置（JCE）
 
 :::note
-JDK 17默认已包含无限制加密策略。对于JDK 8及以下版本，可能需要手动安装JCE（Java Cryptography Extension）无限制强度加密策略文件。
+JDK 21默认已包含无限制加密策略。对于JDK 8及以下版本，可能需要手动安装JCE（Java Cryptography Extension）无限制强度加密策略文件。
 :::
 
 对于JDK 8，由于受到美国对出口软件的限制，某些加密功能（如高强度加密算法）需要单独安装JCE策略文件：
@@ -138,6 +138,6 @@ sudo cp local_policy.jar /usr/java/jdk1.8.0_351/jre/lib/security/
 
 ## 其他资源
 
-- [JDK 17官方文档](https://docs.oracle.com/en/java/javase/17/)
+- [JDK 21官方文档](https://docs.oracle.com/en/java/javase/17/)
 - [Java语言规范](https://docs.oracle.com/javase/specs/jls/se17/html/index.html)
 - [JDK工具参考](https://docs.oracle.com/en/java/javase/17/docs/specs/man/index.html)

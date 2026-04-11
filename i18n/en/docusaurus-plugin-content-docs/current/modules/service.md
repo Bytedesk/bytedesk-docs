@@ -1,31 +1,29 @@
 ---
-title: 客服管理
-description: 在线客服系统与管理
+title: Customer Service Management
+description: Online customer service system and management
 sidebar_position: 3
 ---
 
-# 客服管理
+## Overview
 
-## 概述
+The Customer Service Management module is a core component of the Bytedesk platform. It provides omnichannel customer communication and service management capabilities to help organizations manage service workflows efficiently.
 
-客服管理模块是ByteDesk平台的核心组件，提供全渠道客户沟通与服务管理功能，帮助企业有效管理客户服务流程。
+## Key Features
 
-## 主要功能
+- **Multi-Channel Access**: Manage websites, apps, WeChat, mini programs, and other channels in one place.
+- **Session Management**: Support real-time sessions, historical session queries, and statistics.
+- **Agent Status Management**: Switch between online, busy, offline, and other service states.
+- **Intelligent Assignment**: Automatically assign customers based on agent skills and workload.
+- **Conversation Monitoring**: Allow supervisors to monitor conversation quality in real time.
+- **Quality Evaluation**: Support customer satisfaction scoring and service quality analysis.
 
-- **多渠道接入**：网站、APP、微信、小程序等多渠道统一管理
-- **会话管理**：实时会话、历史会话查询与统计
-- **客服状态管理**：在线、忙碌、离线等状态切换
-- **智能分配**：根据客服技能、工作量自动分配客户
-- **会话监控**：主管可实时监控客服会话质量
-- **质量评估**：客户满意度评价和服务质量分析
+## Use Cases
 
-## 使用场景
+- Providing online customer support for websites
+- Handling mobile app user inquiries
+- Managing customer service on social media
+- Delivering pre-sales and after-sales support for e-commerce
 
-- 提供网站在线客服支持
-- 处理移动应用用户咨询
-- 社交媒体客户服务管理
-- 电商售前售后咨询服务
+## Access
 
-## 访问方式
-
-您可以通过以下链接访问客服管理模块：[客服管理](/service/)
+You can access the Customer Service Management module here: [Customer Service Management](/service/)

@@ -47,11 +47,11 @@ sidebar_position: 42
 系统会在嵌入 URL 上自动追加参数 `visitorUid`，用于标识当前访客/用户。
 
 - 若原 URL 没有查询参数：使用 `?visitorUid=...`
-	- 例：`https://example.com/page` → `https://example.com/page?visitorUid=1832567980425344`
+  - 例：`https://example.com/page` → `https://example.com/page?visitorUid=1832567980425344`
 - 若原 URL 已有查询参数：使用 `&visitorUid=...`
-	- 例：`https://example.com/page?from=weiyu` → `https://example.com/page?from=weiyu&visitorUid=1832567980425344`
+  - 例：`https://example.com/page?from=weiyu` → `https://example.com/page?from=weiyu&visitorUid=1832567980425344`
 
-> `visitorUid` 如何传入（前端组件/H5 链接等）请参考：[访客端/用户端用户信息对接](./userinfo.md)
+> `visitorUid` 如何传入（前端组件/H5 链接等）请参考：[访客端/用户端用户信息对接](./user_info.md)
 
 ## 最佳实践
 

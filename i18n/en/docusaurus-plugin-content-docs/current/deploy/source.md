@@ -35,21 +35,94 @@ cd weiyu  # or cd bytedesk
 
 ## 2. Environment Preparation
 
-### 2.1 Install JDK 17
+### 2.1 Install JDK 21
 
-The project is developed based on Spring Boot 3, **must** use JDK 17 or higher version:
+The project is developed based on Spring Boot 3, **must** use JDK 21 or higher version:
 
 ```bash
 # Check Java version
 java --version
-# Should display: java 17.x.x or higher version
+# Should display: java 21.x.x or higher version
 ```
 
-If JDK 17 is not installed, please refer to: [JDK 17 Installation Guide](./depend/jdk)
+If JDK 21 is not installed, please refer to: [JDK 21 Installation Guide](./depend/jdk)
 
 ### 2.2 Install Project Dependencies
 
-- [Install Project Dependencies](./jar.md#dependencies)
+```bash
+# 1. Enter deploy/docker directory
+cd bytedesk/deploy/docker
+
+# 2. Start dependencies (default MySQL)
+# start.sh <db> <mq> <scenario> [all|middleware]
+
+# Artemis + MySQL (default)
+./start.sh mysql artemis standard middleware
+
+# RabbitMQ + MySQL (default)
+./start.sh mysql rabbitmq standard middleware
+
+# Stop (keep containers)
+# ./stop.sh mysql artemis standard stop middleware
+# ./stop.sh mysql rabbitmq standard stop middleware
+
+# Remove containers
+# ./stop.sh mysql artemis standard down middleware
+# ./stop.sh mysql rabbitmq standard down middleware
+
+# 3. Switch to PostgreSQL if needed
+
+# Artemis + PostgreSQL
+./start.sh postgresql artemis standard middleware
+
+# RabbitMQ + PostgreSQL
+./start.sh postgresql rabbitmq standard middleware
+
+# Artemis + Oracle
+./start.sh oracle artemis standard middleware
+
+# RabbitMQ + Oracle
+./start.sh oracle rabbitmq standard middleware
+
+# Middleware only (recommended for source startup, default)
+./start.sh mysql artemis standard middleware
+./start.sh mysql rabbitmq standard middleware
+
+# Full stack (middleware + bytedesk image)
+./start.sh mysql artemis standard all
+./start.sh mysql rabbitmq standard all
+
+# Optional: use PROJECT_NAME env
+# PROJECT_NAME=bytedesk ./start.sh mysql artemis standard middleware
+
+# 4. Equivalent native compose commands
+
+# First go to deploy/docker directory
+# cd deploy/docker
+
+# Artemis + MySQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+
+# Artemis + PostgreSQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+
+# RabbitMQ + MySQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+
+# RabbitMQ + PostgreSQL
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+
+# Artemis + Oracle
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+
+# RabbitMQ + Oracle
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+
+# Full stack example (middleware + bytedesk image)
+# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+```
+
+- Or refer to [Install Project Dependencies](./jar.md#dependencies)
 
 ## 3. Compilation and Startup
 
