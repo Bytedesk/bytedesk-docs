@@ -42,3 +42,23 @@ LLM:
   label: LLM
   permalink: /llm
   description: 大型语言模型(Large Language Model)
+
+DeepSeek:
+  label: DeepSeek
+  permalink: /deepseek
+  description: DeepSeek 模型與接入更新
+
+Agent:
+  label: Agent
+  permalink: /agent
+  description: Agent 工作流與自動化能力
+
+大數據:
+  label: 大數據
+  permalink: /bigdata
+  description: 大數據技術與應用
+
+客服:
+  label: 客服
+  permalink: /customer-service
+  description: 客戶服務相關內容

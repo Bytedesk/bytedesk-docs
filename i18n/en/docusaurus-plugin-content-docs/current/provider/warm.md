@@ -1,4 +1,6 @@
 ---
-sidebar_label: 热力燃气行业解决方案
+sidebar_label: Heating & Gas Industry Solutions
 sidebar_position: 24
 ---
+
+# Heating & Gas Industry Solutions

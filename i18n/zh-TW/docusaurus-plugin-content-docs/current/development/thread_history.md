@@ -10,7 +10,7 @@ sidebar_position: 10
 - 演示連結：[歷史會話演示](https://weiyuai.cn/reactdemo)
 - 演示程式碼：
 	- [ThreadHistoryDemo（React 範例）](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/ThreadHistoryDemo.tsx)
-	- [ThreadList（訪客端實作）](https://github.com/Bytedesk/bytedesk-1x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
+	- [ThreadList（訪客端實作）](https://github.com/Bytedesk/bytedesk-2x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
 
 > 注意：建議先完成 [React 整合指南](../channel/react.md) 的基礎接入，再進行歷史會話能力對接。
 

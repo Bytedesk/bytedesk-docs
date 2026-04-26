@@ -1,5 +1,5 @@
 ---
-sidebar_label: 访客端订单信息
+sidebar_label: 访客端订单信息对接
 sidebar_position: 6
 ---
 
@@ -168,10 +168,11 @@ const config = {
 
 ```javascript
 // t: 会话类型（0：一对一，1：工作组，2：机器人）
-https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&orderInfo=订单信息JSON
+// autoSendBizInfo: 是否自动发送商品/订单卡片，默认 1；传 0 时改为右下角弹窗确认发送
+https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&orderInfo=订单信息JSON&autoSendBizInfo=0
 ```
 
-其中`orderInfo`参数需要进行URL编码，示例如下：
+其中`orderInfo`参数需要进行URL编码；`autoSendBizInfo`为可选参数，默认值为`1`，示例如下：
 
 ```javascript
 // 1. 准备订单信息对象
@@ -194,11 +195,14 @@ const orderInfo = {
 const orderInfoStr = encodeURIComponent(JSON.stringify(orderInfo));
 
 // 3. 拼接完整URL
-const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_aftersales&orderInfo=${orderInfoStr}`;
+const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_aftersales&orderInfo=${orderInfoStr}&autoSendBizInfo=0`;
 
 // 4. 使用该链接进行跳转
 window.location.href = chatUrl;
 ```
+
+- `autoSendBizInfo=1`: 聊天初始化后自动发送订单卡片
+- `autoSendBizInfo=0`: 在右下角弹出订单预览卡片，用户点击发送后才真正下发消息
 
 ### 使用场景
 

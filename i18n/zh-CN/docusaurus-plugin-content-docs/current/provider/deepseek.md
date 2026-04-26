@@ -51,6 +51,24 @@ import ProviderChat from '/img/deploy/provider/provider-chat.png';
 
 <img src={ProviderChat} alt="聊天效果展示" width="360" />
 
+## 推荐模型
+
+DeepSeek 已发布 DeepSeek-V4 预览版。在微语中，建议新配置优先使用以下模型名：
+
+| 模型 | 推荐方式 | 说明 |
+| --- | --- | --- |
+| deepseek-v4-flash | 推荐默认使用 | 响应更快、成本更优，适合大多数在线客服场景 |
+| deepseek-v4-pro | 复杂场景优先 | 更适合复杂推理、长任务链路和 Agent 工作流 |
+| deepseek-chat | 仅兼容旧配置 | 将于 2026-07-24 停止使用 |
+| deepseek-reasoner | 仅兼容旧配置 | 将于 2026-07-24 停止使用 |
+
+根据 DeepSeek 官方说明，在当前过渡阶段：
+
+- deepseek-chat 对应 deepseek-v4-flash 的非思考模式
+- deepseek-reasoner 对应 deepseek-v4-flash 的思考模式
+
+因此，无论是新建机器人，还是调整租户默认模型，都建议直接选择 deepseek-v4-flash 或 deepseek-v4-pro。
+
 ## 配置说明（可选）
 
 ### Docker部署配置参数
@@ -62,7 +80,7 @@ SPRING_AI_DEEPSEEK_API_KEY: 'sk-xxx'                   # 替换为你的 DeepSee
 SPRING_AI_DEEPSEEK_CHAT_ENABLED: true                  # 启用 DeepSeek 对话功能
 
 # 模型配置
-SPRING_AI_DEEPSEEK_CHAT_OPTIONS_MODEL: deepseek-chat   # 可选值：deepseek-chat 或 deepseek-reasoner
+SPRING_AI_DEEPSEEK_CHAT_OPTIONS_MODEL: deepseek-v4-flash   # 推荐值：deepseek-v4-flash 或 deepseek-v4-pro
 SPRING_AI_DEEPSEEK_CHAT_OPTIONS_TEMPERATURE: 0.7       # 温度参数，控制输出的随机性，范围 0-1
 SPRING_AI_DEEPSEEK_EMBEDDING_ENABLED: true            # 启用 DeepSeek 文本嵌入功能
 ```
@@ -76,9 +94,18 @@ spring.ai.deepseek.api-key=sk-xxx                      # 替换为你的 DeepSee
 spring.ai.deepseek.chat.enabled=true                   # 启用 DeepSeek 对话功能
 
 # 模型配置
-spring.ai.deepseek.chat.options.model=deepseek-chat    # 可选值：deepseek-chat 或 deepseek-reasoner
+spring.ai.deepseek.chat.options.model=deepseek-v4-flash    # 推荐值：deepseek-v4-flash 或 deepseek-v4-pro
 spring.ai.deepseek.chat.options.temperature=0.7        # 温度参数，控制输出的随机性，范围 0-1
 ```
+
+### 迁移建议
+
+如果你还在使用旧模型名，建议尽快完成迁移：
+
+- deepseek-chat -> deepseek-v4-flash
+- deepseek-reasoner -> deepseek-v4-pro 或 deepseek-v4-flash
+
+迁移时无需修改 base-url，只需要调整模型名称。
 
 :::tip 配置说明
 
@@ -98,13 +125,19 @@ spring.ai.deepseek.chat.options.temperature=0.7        # 温度参数，控制�
    - 检查网络连接
    - 确认服务器配置是否满足要求
    - 可以适当调整 temperature 参数
+   - 如果更关注响应速度，优先选择 deepseek-v4-flash
 
 3. **文本嵌入功能异常**
    - 确认 `SPRING_AI_DEEPSEEK_EMBEDDING_ENABLED` 设置为 true
    - 检查 API Key 是否支持文本嵌入功能
 
+4. **仍在使用旧模型名**
+   - `deepseek-chat` 与 `deepseek-reasoner` 将于 2026-07-24 停止使用
+   - 建议尽快迁移到 `deepseek-v4-flash` 或 `deepseek-v4-pro`
+
 ## 相关资源
 
 - [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
 - [Spring AI 文档](https://docs.spring.io/spring-ai/reference/api/chat/deepseek-chat.html)
+- [DeepSeek-V4 预览版：迈入百万上下文普惠时代](https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg)
 - [微语文档中心](/docs/intro)

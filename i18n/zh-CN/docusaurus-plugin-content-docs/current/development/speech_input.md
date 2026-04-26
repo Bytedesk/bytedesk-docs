@@ -26,8 +26,8 @@ spring.ai.dashscope.audio.transcription.enabled=true
 # 可选：优先使用音频转写专用 key（未配置时回退到 spring.ai.dashscope.api-key）
 spring.ai.dashscope.audio.transcription.api-key=
 
-# 可选：实时识别模型（默认 fun-asr-realtime）
-spring.ai.dashscope.audio.transcription.realtime-model=fun-asr-realtime
+# 可选：实时识别模型（默认 paraformer-realtime-v2）
+spring.ai.dashscope.audio.transcription.realtime-model=paraformer-realtime-v2
 ```
 
 > 说明：
@@ -48,7 +48,7 @@ environment:
   SPRING_AI_DASHSCOPE_BASE_URL: https://dashscope.aliyuncs.com
   SPRING_AI_DASHSCOPE_API_KEY: sk-xxx
   SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_ENABLED: "true"
-  SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_REALTIME_MODEL: fun-asr-realtime
+  SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_REALTIME_MODEL: paraformer-realtime-v2
 ```
 
 修改后重启服务。

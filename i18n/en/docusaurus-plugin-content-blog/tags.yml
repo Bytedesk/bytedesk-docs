@@ -42,3 +42,33 @@ LLM:
   label: LLM
   permalink: /llm
   description: Large Language Model
+
+DeepSeek:
+  label: DeepSeek
+  permalink: /deepseek
+  description: DeepSeek models and integration updates
+
+Agent:
+  label: Agent
+  permalink: /agent
+  description: Agent workflows and automation capabilities
+
+BigData:
+  label: Big Data
+  permalink: /bigdata
+  description: Big data technologies and applications
+
+CustomerService:
+  label: Customer Service
+  permalink: /customer-service
+  description: Customer service related content
+
+大数据:
+  label: Big Data
+  permalink: /bigdata
+  description: Big data technologies and applications
+
+客服:
+  label: Customer Service
+  permalink: /customer-service
+  description: Customer service related content

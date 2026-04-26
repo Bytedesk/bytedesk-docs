@@ -47,9 +47,7 @@ description: 微语对接 Gitee AI 魔力方舟大模型的配置说明和步骤
 
 配置完成后，你可以在网站中看到如下效果：
 
-import ProviderChat from '/img/deploy/provider/provider-chat.png';
-
-<img src={ProviderChat} alt="聊天效果展示" width="360" />
+![聊天效果展示](/img/deploy/provider/provider-chat.png)
 
 ## 配置说明（可选）
 
@@ -79,6 +77,23 @@ spring.ai.gitee.chat.enabled=true                     # 启用 Gitee AI 魔力�
 spring.ai.gitee.chat.options.model=qwen               # 模型名称，如 qwen、moonshot 等
 spring.ai.gitee.chat.options.temperature=0.7          # 温度参数，控制输出的随机性，范围 0-1
 ```
+
+### 内置能力说明
+
+微语仓库内置了完整的 Gitee provider 实现，包含：
+
+- Gitee ChatModel 与 ChatClient 注入
+- 同步响应与 SSE 流式响应
+- 模型发现接口
+- token 用量记录与机器人级别模型选择
+
+系统内部还提供模型查询接口：
+
+```text
+GET /gitee/api/v1/models
+```
+
+如果你需要先确认模型列表，再回到后台进行机器人绑定，可以先调用该接口验证连通性。
 
 :::tip 配置说明
 
@@ -112,3 +127,4 @@ spring.ai.gitee.chat.options.temperature=0.7          # 温度参数，控制输
 - [Gitee AI 魔力方舟官方文档](https://gitee.com/docs)
 - [Spring AI 文档](https://docs.spring.io/spring-ai/reference/)
 - [微语文档中心](/docs/intro)
+- [对接 微语](llm_bytedesk)

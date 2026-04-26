@@ -109,10 +109,11 @@ const config = {
 ```javascript
 // sid: 客服UID/工作组UID/机器人UID
 // t: 会话类型（0：一对一，1：工作组，2：机器人）
-https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&goodsInfo=商品信息JSON
+// autoSendBizInfo: 是否自动发送商品/订单卡片，默认 1；传 0 时改为右下角弹窗确认发送
+https://www.weiyuai.cn/chat/?org=您的组织ID&t=1&sid=会话ID&goodsInfo=商品信息JSON&autoSendBizInfo=0
 ```
 
-其中`goodsInfo`参数需要进行URL编码，示例如下：
+其中`goodsInfo`参数需要进行URL编码；`autoSendBizInfo`为可选参数，默认值为`1`，示例如下：
 
 ```javascript
 // 1. 准备商品信息对象
@@ -129,13 +130,16 @@ const goodsInfo = {
 const goodsInfoStr = encodeURIComponent(JSON.stringify(goodsInfo));
 
 // 3. 拼接完整URL
-const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&goodsInfo=${goodsInfoStr}`;
+const chatUrl = `https://www.weiyuai.cn/chat/?org=df_org_uid&t=1&sid=df_wg_uid&goodsInfo=${goodsInfoStr}&autoSendBizInfo=0`;
 
 // 4. 跳转到客服咨询页面
 window.location.href = chatUrl;
 // 或者创建一个链接
 // <a href="${chatUrl}" target="_blank">咨询客服</a>
 ```
+
+- `autoSendBizInfo=1`: 聊天初始化后自动发送商品卡片
+- `autoSendBizInfo=0`: 在右下角弹出商品预览卡片，用户点击发送后才真正下发消息
 
 ### 使用场景
 

@@ -10,7 +10,7 @@ This page explains how to retrieve and display historical conversation threads (
 - Demo link: [Thread History Demo](https://weiyuai.cn/reactdemo)
 - Demo code:
 	- [ThreadHistoryDemo (React example)](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/ThreadHistoryDemo.tsx)
-	- [ThreadList (visitor implementation)](https://github.com/Bytedesk/bytedesk-1x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
+	- [ThreadList (visitor implementation)](https://github.com/Bytedesk/bytedesk-2x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
 
 > Note: It is recommended to complete the basic integration from the [React Integration Guide](../channel/react.md) before enabling thread history.
 

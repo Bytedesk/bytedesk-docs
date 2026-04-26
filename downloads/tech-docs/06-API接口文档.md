@@ -14706,7 +14706,7 @@ Taboo word management APIs for content filtering
 ### 更新主题
 
 **方法**: ` POST `  
-**路径**: `/api/v1/topic/update`  
+**路径**: `/api/v1/topic/subscription/update`  
 **操作ID**: `update_45`  
 
 **描述**: 更新已存在的主题信息
@@ -14724,7 +14724,7 @@ Taboo word management APIs for content filtering
 ### 取消订阅主题
 
 **方法**: ` POST `  
-**路径**: `/api/v1/topic/unsubscribe`  
+**路径**: `/api/v1/topic/subscription/unsubscribe`  
 **操作ID**: `unsubscribe`  
 
 **描述**: 取消订阅指定主题
@@ -14742,7 +14742,7 @@ Taboo word management APIs for content filtering
 ### 订阅主题
 
 **方法**: ` POST `  
-**路径**: `/api/v1/topic/subscribe`  
+**路径**: `/api/v1/topic/subscription/subscribe`  
 **操作ID**: `subscribe`  
 
 **描述**: 订阅指定主题
@@ -14760,7 +14760,7 @@ Taboo word management APIs for content filtering
 ### 删除主题
 
 **方法**: ` POST `  
-**路径**: `/api/v1/topic/delete`  
+**路径**: `/api/v1/topic/subscription/delete`  
 **操作ID**: `delete_45`  
 
 **描述**: 删除指定主题
@@ -14775,10 +14775,10 @@ Taboo word management APIs for content filtering
 
 ---
 
-### POST /api/v1/topic/delete/org
+### POST /api/v1/topic/subscription/delete/org
 
 **方法**: ` POST `  
-**路径**: `/api/v1/topic/delete/org`  
+**路径**: `/api/v1/topic/subscription/delete/org`  
 **操作ID**: `deleteByOrgUid_45`  
 #### 请求体
 
@@ -14793,7 +14793,7 @@ Taboo word management APIs for content filtering
 ### 创建主题
 
 **方法**: ` POST `  
-**路径**: `/api/v1/topic/create`  
+**路径**: `/api/v1/topic/subscription/create`  
 **操作ID**: `create_47`  
 
 **描述**: 创建新的主题
@@ -14811,7 +14811,7 @@ Taboo word management APIs for content filtering
 ### 根据用户查询主题
 
 **方法**: ` GET `  
-**路径**: `/api/v1/topic/query`  
+**路径**: `/api/v1/topic/subscription/query`  
 **操作ID**: `queryByUser_45`  
 
 **描述**: 返回当前用户的主题列表
@@ -14831,7 +14831,7 @@ Taboo word management APIs for content filtering
 ### 根据UID查询主题
 
 **方法**: ` GET `  
-**路径**: `/api/v1/topic/query/uid`  
+**路径**: `/api/v1/topic/subscription/query/uid`  
 **操作ID**: `queryByUid_45`  
 
 **描述**: 通过唯一标识符查询主题
@@ -14851,7 +14851,7 @@ Taboo word management APIs for content filtering
 ### 根据组织查询主题
 
 **方法**: ` GET `  
-**路径**: `/api/v1/topic/query/org`  
+**路径**: `/api/v1/topic/subscription/query/org`  
 **操作ID**: `queryByOrg_45`  
 
 **描述**: 返回当前组织的主题列表
@@ -14868,10 +14868,10 @@ Taboo word management APIs for content filtering
 
 ---
 
-### GET /api/v1/topic/is/subscribed
+### GET /api/v1/topic/subscription/is/subscribed
 
 **方法**: ` GET `  
-**路径**: `/api/v1/topic/is/subscribed`  
+**路径**: `/api/v1/topic/subscription/is/subscribed`  
 **操作ID**: `isSubscribed`  
 #### 请求参数
 
@@ -14888,7 +14888,7 @@ Taboo word management APIs for content filtering
 ### 导出主题列表
 
 **方法**: ` GET `  
-**路径**: `/api/v1/topic/export`  
+**路径**: `/api/v1/topic/subscription/export`  
 **操作ID**: `export_45`  
 
 **描述**: 将主题数据导出为Excel格式
@@ -18081,10 +18081,10 @@ Booking management APIs for organizing and categorizing content with bookings
 ### Query Bookings by Organization
 
 **方法**: ` GET `  
-**路径**: `/demo/api/v1/booking/query/org`  
+**路径**: `/visitor/api/v1/booking/query/org`  
 **操作ID**: `queryByOrg_3`  
 
-**描述**: Retrieve bookings for the current organization
+**描述**: Retrieve bookings for the specified organization with anonymous visitor access
 
 #### 请求参数
 
@@ -19049,10 +19049,10 @@ Consumer management APIs for organizing and categorizing content with consumers
 ### Query Consumers by Organization
 
 **方法**: ` GET `  
-**路径**: `/demo/api/v1/consumer/query/org`  
+**路径**: `/visitor/api/v1/consumer/query/org`  
 **操作ID**: `queryByOrg_2`  
 
-**描述**: Retrieve consumers for the current organization
+**描述**: Retrieve consumers for the specified organization with anonymous visitor access
 
 #### 请求参数
 

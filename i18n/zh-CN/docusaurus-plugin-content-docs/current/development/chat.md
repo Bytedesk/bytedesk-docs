@@ -161,9 +161,8 @@ ChatBox组件支持多种参数配置：
 | channel | string | 接入渠道。优先使用后端 `ChannelEnum` 常量（如 `WEB_VISITOR`、`WEB_FLOAT`、`WECHAT` 等），也支持按业务扩展自定义渠道值 | 默认 `HTTP_CHANNEL`（通常为 `WEB_VISITOR`） |
 | backgroundColor | string | 自定义导航背景色 | - |
 | textColor | string | 自定义导航文字颜色 | - |
-| referer | string | 来源页面 | - |
-| title | string | 来源页面浏览记录标题 | - |
-| url | string | 来源页面浏览记录URL | - |
+| title | string | 自定义当前 chatbox 对话页面浏览器 tab 标题 | - |
+| browse | string | 浏览上下文（JSON格式，包含 `referer`、`title`、`url`） | - |
 | navbar | boolean | 是否显示导航栏，0表示隐藏 | true |
 | navbarTheme | string | 导航栏主题 | - |
 | visitorUid | string | 自定义访客唯一ID | 自动生成 |
@@ -175,6 +174,19 @@ ChatBox组件支持多种参数配置：
 | goodsInfo | string | 商品信息（JSON格式），详见[商品信息对接](./goods_info.md) | - |
 | orderInfo | string | 订单信息（JSON格式），详见[订单信息对接](./order_info.md) | - |
 | userInfo | string | 用户信息（JSON格式），详见[用户信息对接](./user_info.md) | - |
+
+`browse` 参数示例：
+
+```bash
+https://chat.example.com/chat?org=df_org_uid&t=1&sid=df_wg_uid&title=%E5%AE%A2%E6%9C%8D%E5%92%A8%E8%AF%A2&browse=%7B%22referer%22%3A%22https%3A%2F%2Fwww.example.com%2Flanding%22%2C%22title%22%3A%22%E6%B4%BB%E5%8A%A8%E8%90%BD%E5%9C%B0%E9%A1%B5%22%2C%22url%22%3A%22https%3A%2F%2Fwww.example.com%2Flanding%3Fsku%3D1001%22%7D
+```
+
+说明：
+
+- `title`：自定义当前 chatbox 对话页面浏览器 tab 标题
+- `browse.referer`：来源页面
+- `browse.url`：当前浏览页面 URL
+- `browse.title`：来源页面标题
 
 ## 常见问题
 
