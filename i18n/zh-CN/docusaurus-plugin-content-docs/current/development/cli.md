@@ -38,9 +38,9 @@ CLI 配置文件保存在 `~/.bytedesk/config.properties`。
 ## 构建命令
 
 ```bash
-./control/mvnw -f pom.xml -pl modules/cli,enterprise/cli -am -DskipTests compile
-./control/mvnw -f pom.xml -pl modules/cli -am -Dtest=BytedeskCliTests -Dsurefire.failIfNoSpecifiedTests=false test
-./control/mvnw -f pom.xml -pl enterprise/cli -am -Dtest=com.bytedesk.cli.EnterpriseCliTests -Dsurefire.failIfNoSpecifiedTests=false test
+./starter/mvnw -f pom.xml -pl modules/cli,enterprise/cli -am -DskipTests compile
+./starter/mvnw -f pom.xml -pl modules/cli -am -Dtest=BytedeskCliTests -Dsurefire.failIfNoSpecifiedTests=false test
+./starter/mvnw -f pom.xml -pl enterprise/cli -am -Dtest=com.bytedesk.cli.EnterpriseCliTests -Dsurefire.failIfNoSpecifiedTests=false test
 ```
 
 ## 直接运行 CLI jar

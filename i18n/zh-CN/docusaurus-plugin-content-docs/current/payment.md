@@ -16,7 +16,7 @@ sidebar_position: 11
 | **社区版** | **免费** | **免费** | 基本功能开源，可商用，单租户，**[社区版源码，保留源码版权声明](./deploy/source.md)**，用户数/客服/机器人/知识库数量不限，保留微语logo，不支持[品牌自定义](./deploy/config.md#自定义配置) |
 | **企业版** | **¥49,800** | **¥22,800/年** | 单租户，功能完整，**[私有化部署包](./deploy/docker.md)，不含源码**，用户数/客服/机器人/知识库数量不限，支持[品牌自定义](./deploy/config.md#自定义配置) |
 | **平台版（最受欢迎）** | **¥79,800** | **¥32,800/年** | **[多租户SaaS](./development/saas.md)**，功能完整，**[私有化部署包](./deploy/docker.md)，不含源码**，用户数/客服/机器人/知识库数量不限，支持[品牌自定义](./deploy/config.md#自定义配置) |
-| **源码版（企业常选）** | 参考源码模块定价 | **不支持** | **包含完整源码，含高级功能**，支持按模块单独购买。含平台版所有功能，无需再购买企业版或平台版，所购买模块无需授权licenseKey。区别于企业版：可以自行修改源码，支持定制化开发。 |
+| **源码版（企业常选）** | 参考源码模块定价 | **不支持** | **包含完整源码，含高级功能**，支持按模块单独购买。含平台版所有功能，无需再购买企业版或平台版，所购买服务器模块无需授权licenseKey。区别于企业版：可以自行修改源码，支持定制化开发。 |
 
 - 买断价格为永久授权，按年付费需每年续费。价格均不含税点（公司小规模，如需发票，普票加收1%税点，专票加收1%或3%税点，可选）。
 - 上述价格为软件价格，不含运维服务
@@ -30,11 +30,11 @@ sidebar_position: 11
 | 客服工作台源码 | ¥59,800 | 前端/React，支持Web和PC端 [演示](https://www.weiyuai.cn/agent/) |
 | 知识库帮助中心编辑源码 | ¥19,800 | 前端/React [演示](https://www.weiyuai.cn/notebase/)|
 | 工单流程/工作流/表单低代码源码 | ¥29,800 | 前端/React [演示](https://www.weiyuai.cn/workflow/)|
-| 数据大屏模块源码 | ¥19,800 | 前端/React |
+| 数据大屏模块源码 | ¥19,800 | 前端/React，开发中 |
 | 培训考试模块源码 | ¥29,800 | 前端/React，开发中 |
-| 手机App客服端源码 | ¥59,800 | 安卓/iOS/Web/Mac/Windows，Flutter |
-| 小程序客服端源码 | ¥59,800 | 微信小程序等，开发中 |
-| 访客端H5聊天源码 | ¥39,800 | 前端/React，含在线客服&智能客服聊天对话 [演示](https://www.weiyuai.cn/reactdemo/)|
+| 手机App客服端源码 | ¥59,800 | App/Flutter，安卓/iOS/Web/Mac/Windows [下载](https://www.weiyuai.cn/pages/download.html)|
+| Uniapp客服端源码 | ¥59,800 | Uniapp/Vue，支持[微信小程序](https://www.weiyuai.cn/assets/qr/qr_miniapp.jpg)、App、[H5客服端](https://weiyuai.cn/agenth5/)等 [演示](https://www.weiyuai.cn/pages/download.html)|
+| 访客端H5聊天源码 | ¥49,800 | 前端/React，含在线客服&访客工单&智能客服聊天对话 [演示](https://www.weiyuai.cn/reactdemo/)|
 | 服务器高级功能源码 | ¥59,800 | 后端/Java, [高级功能](#高级功能) |
 
 ### 呼叫中心(电话客服)模块源码定价
@@ -43,7 +43,8 @@ sidebar_position: 11
 | --- | --- | --- |
 | 呼叫中心管理后台源码 | ¥59,800 | 前端/React |
 | 呼叫中心IVR流程低代码源码 | ¥29,800 | 前端/React |
-| 呼叫中心桌面端模块源码 | ¥29,800 | 前端/React，支持Web和PC端，此模块为客服工作台子模块，前提需要购买在线客服工作台源码 |
+| 呼叫中心智能质检模块源码 | ¥59,800 | 前端/React，开发中 |
+| 呼叫中心桌面端模块源码 | ¥59,800 | 前端/React，支持Web和PC端，此模块为客服工作台子模块|
 | 呼叫中心服务器高级源码 | ¥99,800 | 后端/Java |
 | 呼叫中心访客端源码 | ¥19,800 | 前端/React|
 
@@ -65,16 +66,25 @@ sidebar_position: 11
 | 视频会议手机App端源码 | ¥59,800 | 安卓/iOS/Web/Mac/Windows，Flutter |
 | 视频会议服务器高级源码 | ¥59,800 | 后端/Java |
 
+### 远程协助模块源码定价
+
+| 模块 | 价格 | 说明 |
+| --- | --- | --- |
+| 远程协助桌面端源码 | ¥59,800 | 前端/React，支持Web和PC端 |
+| 远程协助手机App端源码 | ¥59,800 | 安卓/iOS/Web/Mac/Windows，Flutter |
+| 远程协助服务器高级源码 | ¥59,800 | 后端/Java |
+
 - 注：可以按模块单独购买，技术栈：[java + react](https://www.weiyuai.cn/architecture.html)，前后分离
 - 上述价格仅为源码价格，不包含二次定制费用，不含运维服务，需要自行部署。
 
-### 购买须知
+## 购买须知
 
 - 默认价格不含税点（如需发票，普票加收1%税点，专票加收1%或3%税点，可选）
 - 自购买之日起，三个月之内，升级版本（比如：企业版 升级为 平台版，或者升级为 源码版）之前已经支付的费用可以抵扣，支付差价即可。超过三个月需要支付全款
 - 一年内免费升级（源码版购买时需明确），一年后可选支付15%/年维护费，包括：bug修复、版本升级、远程协助（不含运维，仅提供协助）等
 - 提供30天免费试用，付款后支持7天无理由退款（如已交付源码或授权license，则不支持退款）
 - 可提供定制开发服务，按 ¥2,000/人天 计算。
+- 不做远程或现场演示，如果需要可以直接参考[文档本地安装部署](./category/private-deployment/)或登录[线上演示系统](https://www.weiyuai.cn/admin)
 
 ## 功能对比表
 
@@ -100,16 +110,16 @@ sidebar_position: 11
 | 工作组客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [对接大模型](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [知识库](./modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [用户信息对接](./development/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [用户信息对接](./integration/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ### 高级功能
 
 | 功能 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|
 | [会话路由](./development/router.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [千人千面](./development/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品信息对接](./development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [订单信息对接](./development/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [千人千面](./integration/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [商品信息对接](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [订单信息对接](./integration/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [单点登录SSO](./development/sso.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [消息撤回](./development/message.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -124,8 +134,8 @@ sidebar_position: 11
 | [自动回复](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [黑名单](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [留言处理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品信息](./development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [订单对接](./development/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [商品信息](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [订单对接](./integration/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [客户管理](./development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [会话小结](./development/summary.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -180,20 +190,6 @@ sidebar_position: 11
 | [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
-
-### 功能插件 Plus
-
-默认不包含在企业版/平台版/源码版中，额外收费
-
-| 插件名称 | 功能描述 | 价格 | 备注 |
-|---------|---------|------|------|
-| [远程协助](./plugins/remote.md) | 无障碍远程支持，随时随地解决问题 | 待定 | 开发中 |
-<!-- | [呼叫中心](./plugins/freeswitch.md) | 语音通话、IVR、自动话务分配 | 待定 | 开发中 | -->
-<!-- | [音频客服/视频客服](./plugins/video.md) | 一对一音频通话、视频通话、屏幕共享 | 待定 | 开发中 | -->
-<!-- | [工作流](./modules/workflow.md) | 大模型工作流 | 待定 | 开发中 | -->
-<!-- | [看板插件](./plugins/kanban.md) | 可视化任务与项目管理 | 待定 | 开发中 | -->
-
-<!-- ### 开放平台 -->
 
 ### 服务条款
 

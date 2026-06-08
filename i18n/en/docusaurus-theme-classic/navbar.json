@@ -27,9 +27,9 @@
     "message": "JavaDocs",
     "description": "Navbar item with label Javadocs"
   },
-  "item.label.Trial": {
-    "message": "Trial",
-    "description": "Navbar item with label Trial"
+  "item.label.Portals": {
+    "message": "Portals",
+    "description": "Navbar item with label Portals"
   },
   "item.label.GitHub": {
     "message": "GitHub",
@@ -43,19 +43,31 @@
     "message": "Price",
     "description": "Navbar item with label Price"
   },
-  "item.label.Admin": {
-    "message": "Admin Demo"
+  "item.label.Admin Console": {
+    "message": "Admin Console"
   },
-  "item.label.Agent": {
-    "message": "Agent Demo"
+  "item.label.Agent Workspace": {
+    "message": "Agent Workspace"
   },
-  "item.label.Visitor": {
+  "item.label.Knowledge Base": {
+    "message": "Knowledge Base"
+  },
+  "item.label.Workflow": {
+    "message": "Workflow"
+  },
+  "item.label.Call Center": {
+    "message": "Call Center"
+  },
+  "item.label.Visitor Demo": {
     "message": "Visitor Demo"
   },
-  "item.label.Forum": {
-    "message": "Forum Demo"
+  "item.label.AI Agent Demo": {
+    "message": "AI Agent Demo"
   },
-  "item.label.Helpcenter": {
-    "message": "Helpcenter Demo"
+  "item.label.Forum": {
+    "message": "Forum"
+  },
+  "item.label.Help Center": {
+    "message": "Help Center"
   }
 }

@@ -9,8 +9,8 @@ sidebar_position: 4
 
 微语AI 智能客服系统面向 B2B2C 平台提供一体化智能交互方案，兼顾平台、商家与终端消费者三方体验。系统将大语言模型与多租户业务流程深度融合，覆盖商家 onboarding、商品上新、营销导购、履约售后等关键环节，实现“平台治理 + 智能服务 + 生态增值”的一站式闭环。
 
-- [商品信息](../development/goods_info.md)
-- [订单对接](../development/order_api.md)
+- [商品信息](../integration/goods_info.md)
+- [订单对接](../integration/order_api.md)
 
 ## B2B2C 模式典型挑战
 

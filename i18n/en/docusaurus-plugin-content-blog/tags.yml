@@ -53,22 +53,17 @@ Agent:
   permalink: /agent
   description: Agent workflows and automation capabilities
 
+SkillForge:
+  label: SkillForge
+  permalink: /skillforge
+  description: Self-evolving agent skills and enterprise skill operations
+
 BigData:
   label: Big Data
   permalink: /bigdata
   description: Big data technologies and applications
 
 CustomerService:
-  label: Customer Service
-  permalink: /customer-service
-  description: Customer service related content
-
-大数据:
-  label: Big Data
-  permalink: /bigdata
-  description: Big data technologies and applications
-
-客服:
   label: Customer Service
   permalink: /customer-service
   description: Customer service related content

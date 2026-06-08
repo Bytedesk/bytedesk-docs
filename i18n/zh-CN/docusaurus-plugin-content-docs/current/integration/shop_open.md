@@ -1,9 +1,9 @@
 ---
-sidebar_label: 电商系统对接指南-简版
+sidebar_label: 店铺对接
 sidebar_position: 1
 ---
 
-# 电商系统对接指南-简版
+# 店铺对接
 
 ## 目标
 
@@ -132,6 +132,93 @@ http://example.com/api/v1/shop/open/onboard
  }
 }
 ```
+
+#### 1.1 前端透传 goodsInfo / orderInfo 的接入方式
+
+当业务系统需要在访客端聊天页中展示商品卡片或订单卡片时，可以在打开聊天页时额外传入 `goodsInfo` 或 `orderInfo`。
+
+接入规则：
+
+- `goodsInfo` 与 `orderInfo` 都使用 JSON 字符串传递
+- 推荐通过 `URLSearchParams` 或 `encodeURIComponent(JSON.stringify(...))` 方式拼接到聊天页 URL 中
+- `navigateToPath` 为可选字段，用于指定微信小程序环境下点击商品卡片或订单卡片后的跳转路径
+- `navigateToPath` 中建议显式带上 `type`，以及 `goodsUid`、`orderUid`、`shopUid` 等业务主键
+
+`goodsInfo` 示例：
+
+```json
+{
+ "uid": "goods_demo_001",
+ "type": "GOODS",
+ "shopUid": "shop_demo_005",
+ "title": "演示商品",
+ "description": "商品描述",
+ "price": 99,
+ "image": "https://example.com/goods.png",
+ "url": "https://example.com/goods/1",
+ "quantity": 1,
+ "navigateToPath": "/pages/goods/detail/index?type=goods&goodsUid=goods_demo_001&shopUid=shop_demo_005"
+}
+```
+
+`orderInfo` 示例：
+
+```json
+{
+ "uid": "order_demo_001",
+ "type": "ORDER",
+ "visitorUid": "visitor_demo_001",
+ "shopUid": "shop_demo_005",
+ "time": "2026-03-11 10:30:00",
+ "status": "paid",
+ "statusText": "待发货",
+ "totalAmount": 99,
+ "paymentMethod": "支付宝",
+ "navigateToPath": "/pages/order/detail/index?type=order&orderUid=order_demo_001&shopUid=shop_demo_005",
+ "goods": {
+    "uid": "goods_demo_001",
+    "title": "演示商品",
+    "shopUid": "shop_demo_005",
+    "navigateToPath": "/pages/goods/detail/index?type=goods&goodsUid=goods_demo_001&shopUid=shop_demo_005"
+ }
+}
+```
+
+URL 拼接示例：
+
+```javascript
+const goodsInfo = {
+        uid: 'goods_demo_001',
+        type: 'GOODS',
+        shopUid: 'shop_demo_005',
+        title: '演示商品',
+        price: 99,
+        quantity: 1,
+        navigateToPath: '/pages/goods/detail/index?type=goods&goodsUid=goods_demo_001&shopUid=shop_demo_005'
+};
+
+const orderInfo = {
+        uid: 'order_demo_001',
+        type: 'ORDER',
+        shopUid: 'shop_demo_005',
+        navigateToPath: '/pages/order/detail/index?type=order&orderUid=order_demo_001&shopUid=shop_demo_005'
+};
+
+const params = new URLSearchParams();
+params.append('org', 'df_org_uid');
+params.append('t', '1');
+params.append('sid', 'df_wg_uid');
+params.append('goodsInfo', JSON.stringify(goodsInfo));
+params.append('orderInfo', JSON.stringify(orderInfo));
+
+const chatUrl = `https://cdn.weiyuai.cn/chat?${params.toString()}`;
+```
+
+路径优先级说明：
+
+- 若 `goodsInfo` / `orderInfo` 中显式传入 `navigateToPath`，访客端在微信小程序环境点击卡片时会优先使用该路径
+- 若未传 `navigateToPath`，服务端会回退到默认配置路径 `bytedesk.custom.wechat-mini-program.goods-detail-path` 或 `bytedesk.custom.wechat-mini-program.order-detail-path`
+- 若服务端也未配置，则前端最终回退到内置默认值：商品为 `/pages/goods/detail/index`，订单为 `/pages/order/detail/index`
 
 ### 2) 通过店铺 uid 查询绑定信息
 
@@ -285,7 +372,7 @@ http://example.com/api/v1/shop/open/update
 }
 ```
 
-### 4) 仅更新店铺版本
+### 4) 更新店铺会员版本与组织容量
 
 - Method: POST
 - Path: /api/v1/shop/open/shop/vip-level
@@ -300,17 +387,26 @@ http://example.com/api/v1/shop/open/shop/vip-level
 
 请求示例：
 
-```json
+```jsonc
 {
  "shopUid": "shop_demo_005",
- "vipLevel": 1
+ "vipLevel": 1,
+ "vipExpireDate": "2027-09-10T23:59:59+08:00", // 过期时间
+ "maxMembers": 100, // 最大成员数
+ "maxAgents": 30, // 最大客服数
+ "maxWorkgroups": 10 // 最大工作组数
 }
 ```
 
 说明：
 
 - `shopUid` 必填
-- `vipLevel` 必填，仅支持 `0`、`1`, `vipLevel=0` 基础版，`vipLevel=1` 高级版
+- `vipLevel` 必填，仅支持 `0`、`1`；`vipLevel=0` 基础版，`vipLevel=1` 高级版
+- `vipExpireDate` 可选；过期时间，具体请在自己业务系统中记录业务过期时间，过期时，需要调用接口更新最大成员数/客服数/工作组数等。客服系统仅做对齐左右。
+- `maxMembers` 可选：最大成员数，且必须大于 `0`
+- `maxAgents` 可选：最大客服数，且必须大于 `0`
+- `maxWorkgroups` 可选：最大工作组数，且必须大于 `0`
+- 服务端会同步更新对应 `OrganizationEntity.vipLevel`
 - 已购买的额外坐席数量与现有到期时间保持不变
 
 返回示例：

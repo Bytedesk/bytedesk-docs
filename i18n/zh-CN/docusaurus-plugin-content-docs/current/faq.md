@@ -425,3 +425,7 @@ bytedesk.custom.login-2fa-enable=true
 # enable 2fa 双重验证开启
 BYTEDESK_CUSTOM_LOGIN_2FA_ENABLE: "true"
 ```
+
+### 从1.x升级到2.x
+
+首先升级docker镜像到1.9.6版本，然后再升级docker镜像到最新2.x版本

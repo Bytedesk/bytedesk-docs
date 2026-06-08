@@ -303,19 +303,31 @@ const config: Config = {
           position: "left",
         },
         {
-          label: "Trial",
+          label: "Portals",
           position: "left",
           items: [
             {
-              label: "Admin",
+              label: "Admin Console",
               href: "https://www.weiyuai.cn/admin/",
             },
             {
-              label: "Agent",
+              label: "Agent Workspace",
               href: "https://www.weiyuai.cn/agent/",
             },
             {
-              label: "Visitor",
+              label: "Knowledge Base",
+              href: "https://www.weiyuai.cn/notebase/",
+            },
+            {
+              label: "Workflow",
+              href: "https://www.weiyuai.cn/workflow/",
+            },
+            {
+              label: "Call Center",
+              href: "https://www.weiyuai.cn/ippbx/",
+            },
+            {
+              label: "Visitor Demo",
               href: "https://www.weiyuai.cn/reactdemo/",
             },
             {
@@ -327,7 +339,7 @@ const config: Config = {
               href: "https://www.weiyuai.cn/forum",
             },
             {
-              label: "Helpcenter",
+              label: "Help Center",
               href: "https://www.weiyuai.cn/helpcenter/df_org_uid_df_kb_hc_uid/",
             },
           ],

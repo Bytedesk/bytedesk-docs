@@ -51,7 +51,7 @@ Weiyu automatically appends `visitorUid` to the embed URL so your page can ident
 - If the original URL already has query parameters, Weiyu uses `&visitorUid=...`
 	- Example: `https://example.com/page?from=weiyu` → `https://example.com/page?from=weiyu&visitorUid=1832567980425344`
 
-> To learn how `visitorUid` is provided from the web widget / H5 link, see: [User Information Integration](./user_info.md)
+> To learn how `visitorUid` is provided from the web widget / H5 link, see: [User Information Integration](../integration/user_info.md)
 
 ## Best practices
 

@@ -88,16 +88,16 @@ sidebar_position: 11
 | 工作組客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [對接大模型](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [知識庫](./modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [用戶資訊對接](./development/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [用戶資訊對接](./integration/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ### 高級功能
 
 | 功能 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
 | --- | --- | --- | --- | --- | --- |
 | [會話路由](./development/router.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [千人千面](./development/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品資訊對接](./development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [訂單資訊對接](./development/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [千人千面](./integration/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [商品資訊對接](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [訂單資訊對接](./integration/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [單點登入 SSO](./development/sso.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [訊息撤回](./development/message.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [訊息翻譯](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -112,8 +112,8 @@ sidebar_position: 11
 | [自動回覆](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [黑名單](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [留言處理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品資訊](./development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [訂單對接](./development/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [商品資訊](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [訂單對接](./integration/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [客戶管理](./development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [會話小結](./development/summary.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [叢集部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |

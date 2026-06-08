@@ -51,7 +51,7 @@ sidebar_position: 42
 - 若原 URL 已有查詢參數：使用 `&visitorUid=...`
 	- 例：`https://example.com/page?from=weiyu` → `https://example.com/page?from=weiyu&visitorUid=1832567980425344`
 
-> `visitorUid` 如何傳入（前端元件/H5 連結等）請參考：[使用者資訊對接](./user_info.md)
+> `visitorUid` 如何傳入（前端元件/H5 連結等）請參考：[使用者資訊對接](../integration/user_info.md)
 
 ## 最佳實務
 

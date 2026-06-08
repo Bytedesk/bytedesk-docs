@@ -62,6 +62,7 @@ set BYTEDESK_LICENSE_KEY=your_license_key_here
 - 如需正式版企业版或平台版 licenseKey，请联系客服获取正式授权
 - 填写licenseKey之后，需要重启服务器才会生效
 - [申请地址](https://www.weiyuai.cn/admin/setting/license)
+- 本地测试查看license地址: [http://127.0.0.1:9003/config/bytedesk/properties](http://127.0.0.1:9003/config/bytedesk/properties)，或将上述127.0.0.1换成自己服务器ip地址
 
 ## 常见问题
 

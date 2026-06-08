@@ -64,6 +64,78 @@ bytedesk.custom.auto-register-on-login=true
 - organization
 - shopList
 
+### 1.1) 前端透传商品/订单卡片参数
+
+访客端嵌入聊天页时，可以通过 URL 参数或 SDK chatConfig 传入 `goodsInfo` / `orderInfo`。
+
+要求说明：
+
+- `goodsInfo` 与 `orderInfo` 的值均为 JSON 字符串
+- 若传入 `navigateToPath`，访客端在微信小程序环境点击消息气泡时会优先使用该路径跳转
+- 若未传 `navigateToPath`，服务端会回退到配置中的默认路径：
+  - `bytedesk.custom.wechat-mini-program.goods-detail-path`
+  - `bytedesk.custom.wechat-mini-program.order-detail-path`
+- 默认路径仍未配置时，前端最终回退到内置默认值：
+  - 商品：`/pages/goods/detail/index`
+  - 订单：`/pages/order/detail/index`
+
+`goodsInfo` 示例：
+
+```json
+{
+ "uid": "goods_demo_001",
+ "type": "GOODS",
+ "shopUid": "shop_demo_001",
+ "title": "演示商品",
+ "description": "商品描述",
+ "price": 99,
+ "image": "https://example.com/goods.png",
+ "url": "https://example.com/goods/1",
+ "quantity": 1,
+ "navigateToPath": "/pages/goods/detail/index?type=goods&goodsUid=goods_demo_001&shopUid=shop_demo_001"
+}
+```
+
+`orderInfo` 示例：
+
+```json
+{
+ "uid": "order_demo_001",
+ "type": "ORDER",
+ "visitorUid": "visitor_demo_001",
+ "shopUid": "shop_demo_001",
+ "time": "2026-03-11 10:30:00",
+ "status": "paid",
+ "statusText": "待发货",
+ "totalAmount": 99,
+ "paymentMethod": "支付宝",
+ "navigateToPath": "/pages/order/detail/index?type=order&orderUid=order_demo_001&shopUid=shop_demo_001",
+ "goods": {
+  "uid": "goods_demo_001",
+  "title": "演示商品",
+  "shopUid": "shop_demo_001",
+  "navigateToPath": "/pages/goods/detail/index?type=goods&goodsUid=goods_demo_001&shopUid=shop_demo_001"
+ }
+}
+```
+
+SDK 接入示例：
+
+```json
+{
+ "chatConfig": {
+  "goodsInfo": "{...JSON.stringify(goodsInfo)}",
+  "orderInfo": "{...JSON.stringify(orderInfo)}"
+ }
+}
+```
+
+URL 接入示例：
+
+```text
+/chat?org=org_demo&t=1&sid=wg_demo&goodsInfo=%7B...%7D
+```
+
 ### 2) 通过店铺 uid 查询绑定信息
 
 - Method: GET

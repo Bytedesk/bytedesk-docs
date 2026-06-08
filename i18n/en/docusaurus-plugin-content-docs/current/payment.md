@@ -88,16 +88,16 @@ The Weiyu system offers multiple editions to meet the needs of organizations of 
 | Workgroup Customer Service | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [Large Model Integration](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 | [Knowledge Base](./modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [User Information Integration](./development/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [User Information Integration](./integration/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ### Advanced Features
 
 | Feature | Community Edition | Enterprise Edition | Platform Edition | Product Agency | Source Code Edition |
 | --- | --- | --- | --- | --- | --- |
 | [Session Routing](./development/router.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Personalized Service](./development/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Product Information Integration](./development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Order Information Integration](./development/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Personalized Service](./integration/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Product Information Integration](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Order Information Integration](./integration/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Single Sign-On SSO](./development/sso.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Message Recall](./development/message.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Message Translation](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
@@ -112,8 +112,8 @@ The Weiyu system offers multiple editions to meet the needs of organizations of 
 | [Auto Reply](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Blacklist](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Leave Message Handling](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Product Information](./development/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Order Integration](./development/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Product Information](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Order Integration](./integration/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Customer Management](./development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Session Summary](./development/summary.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Cluster Deployment](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |

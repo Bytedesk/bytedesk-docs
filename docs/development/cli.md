@@ -38,9 +38,9 @@ Common keys:
 ## Build
 
 ```bash
-./control/mvnw -f pom.xml -pl modules/cli,enterprise/cli -am -DskipTests compile
-./control/mvnw -f pom.xml -pl modules/cli -am -Dtest=BytedeskCliTests -Dsurefire.failIfNoSpecifiedTests=false test
-./control/mvnw -f pom.xml -pl enterprise/cli -am -Dtest=com.bytedesk.cli.EnterpriseCliTests -Dsurefire.failIfNoSpecifiedTests=false test
+./starter/mvnw -f pom.xml -pl modules/cli,enterprise/cli -am -DskipTests compile
+./starter/mvnw -f pom.xml -pl modules/cli -am -Dtest=BytedeskCliTests -Dsurefire.failIfNoSpecifiedTests=false test
+./starter/mvnw -f pom.xml -pl enterprise/cli -am -Dtest=com.bytedesk.cli.EnterpriseCliTests -Dsurefire.failIfNoSpecifiedTests=false test
 ```
 
 ## Run standalone CLI jars

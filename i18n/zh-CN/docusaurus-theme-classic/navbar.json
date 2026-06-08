@@ -27,9 +27,9 @@
     "message": "JavaDocs",
     "description": "Navbar item with label Javadocs"
   },
-  "item.label.Trial": {
-    "message": "演示体验",
-    "description": "Navbar item with label 演示体验"
+  "item.label.Portals": {
+    "message": "系统入口",
+    "description": "Navbar item with label 系统入口"
   },
   "item.label.GitHub": {
     "message": "GitHub",
@@ -43,19 +43,31 @@
     "message": "价格",
     "description": "Navbar item with label Price"
   },
-  "item.label.Admin": {
-    "message": "管理后台演示"
+  "item.label.Admin Console": {
+    "message": "管理后台"
   },
-  "item.label.Agent": {
-    "message": "客服工作台演示"
+  "item.label.Agent Workspace": {
+    "message": "客服工作台"
   },
-  "item.label.Visitor": {
+  "item.label.Knowledge Base": {
+    "message": "企业知识库"
+  },
+  "item.label.Workflow": {
+    "message": "工作流"
+  },
+  "item.label.Call Center": {
+    "message": "呼叫中心"
+  },
+  "item.label.Visitor Demo": {
     "message": "访客端演示"
+  },
+  "item.label.AI Agent Demo": {
+    "message": "AI Agent 演示"
   },
   "item.label.Forum": {
     "message": "客户论坛演示"
   },
-  "item.label.Helpcenter": {
+  "item.label.Help Center": {
     "message": "帮助中心演示"
   }
 }

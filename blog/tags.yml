@@ -53,6 +53,11 @@ Agent:
   permalink: /agent
   description: Agent workflows and automation capabilities
 
+SkillForge:
+  label: SkillForge
+  permalink: /skillforge
+  description: Self-evolving agent skills and enterprise skill operations
+
 大数据:
   label: 大数据
   permalink: /bigdata

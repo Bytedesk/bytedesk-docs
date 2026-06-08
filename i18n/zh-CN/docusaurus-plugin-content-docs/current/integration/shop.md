@@ -1,9 +1,9 @@
 ---
-sidebar_label: 电商系统对接指南
-sidebar_position: 2
+sidebar_label: 对接指南
+sidebar_position: 10
 ---
 
-# 电商系统对接指南
+# 对接指南
 
 本文面向技术对接人员，说明第三方电商系统如何与微语客服系统完成基础数据、业务对象和客服入口的集成。
 
@@ -152,8 +152,8 @@ sidebar_position: 2
 
 ## 注册用户对接
 
-- [用户信息](../development/user_info.md)
-- [用户接口](../development/user_api.md)
+- [用户信息](../integration/user_info.md)
+- [用户接口](../integration/user_api.md)
 
 建议重点关注：
 
@@ -198,8 +198,8 @@ sidebar_position: 2
 
 ## 店铺信息对接
 
-- [店铺信息](../development/shop_info.md)
-- [店铺接口](../development/shop_api.md)
+- [店铺信息](../integration/shop_info.md)
+- [店铺接口](../integration/shop_api.md)
 
 典型用途：
 
@@ -210,8 +210,8 @@ sidebar_position: 2
 ## 商品信息对接
 
 - [商品对接演示](https://www.weiyuai.cn/reactdemo/)
-- [商品信息](../development/goods_info.md)
-- [商品接口](../development/goods_api.md)
+- [商品信息](../integration/goods_info.md)
+- [商品接口](../integration/goods_api.md)
 
 典型用途：
 
@@ -222,8 +222,8 @@ sidebar_position: 2
 ## 订单信息对接
 
 - [订单对接演示](https://www.weiyuai.cn/reactdemo/)
-- [订单信息](../development/order_info.md)
-- [订单接口](../development/order_api.md)
+- [订单信息](../integration/order_info.md)
+- [订单接口](../integration/order_api.md)
 
 典型用途：
 

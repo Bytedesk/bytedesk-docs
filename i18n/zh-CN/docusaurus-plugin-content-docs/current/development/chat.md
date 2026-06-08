@@ -149,31 +149,76 @@ sidebar_position: 1
 
 ### 参数配置
 
-ChatBox组件支持多种参数配置：
+当前访客端页面参数以运行时 `chatConfig`、`browseConfig`、`theme` 序列化结果为准。空字符串、`undefined`、`null` 默认不会写入 URL；以下为常用参数及最新行为说明。
 
-| 参数名 | 类型 | 说明 | 默认值 |
-| --- | --- | --- | --- |
-| org | string | 企业UID | - |
-| t | string | 会话类型(0:一对一; 1:工作组, 2:机器人, 16:历史) | "1" |
-| sid | string | 会话ID(客服UID/工作组UID/机器人UID) | - |
-| lang | string | 语言设置("zh-cn"/"zh-tw"/"en") | "zh-cn" |
-| mode | string | 主题模式(light/dark/system) | "system" |
-| channel | string | 接入渠道。优先使用后端 `ChannelEnum` 常量（如 `WEB_VISITOR`、`WEB_FLOAT`、`WECHAT` 等），也支持按业务扩展自定义渠道值 | 默认 `HTTP_CHANNEL`（通常为 `WEB_VISITOR`） |
-| backgroundColor | string | 自定义导航背景色 | - |
-| textColor | string | 自定义导航文字颜色 | - |
-| title | string | 自定义当前 chatbox 对话页面浏览器 tab 标题 | - |
-| browse | string | 浏览上下文（JSON格式，包含 `referer`、`title`、`url`） | - |
-| navbar | boolean | 是否显示导航栏，0表示隐藏 | true |
-| navbarTheme | string | 导航栏主题 | - |
-| visitorUid | string | 自定义访客唯一ID | 自动生成 |
-| nickname | string | 自定义访客昵称 | "访客" |
-| avatar | string | 自定义访客头像 | 默认头像 |
-| vipLevel | string | 访客VIP等级 | "0" |
-| extra | string | 自定义访客额外信息（JSON格式） | - |
-| loadHistory | string | 是否自动加载历史聊天记录，值为"1"时加载，其他值不加载，详见[历史消息](./history) | - |
-| goodsInfo | string | 商品信息（JSON格式），详见[商品信息对接](./goods_info.md) | - |
-| orderInfo | string | 订单信息（JSON格式），详见[订单信息对接](./order_info.md) | - |
-| userInfo | string | 用户信息（JSON格式），详见[用户信息对接](./user_info.md) | - |
+#### 必填参数
+
+| 参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| org | string | 企业 UID |
+| t | string | 会话类型。常见值：`0` 一对一、`1` 工作组、`2` 机器人、`16` 历史会话 |
+| sid | string | 会话 ID。根据 `t` 不同可表示客服 UID、工作组 UID、机器人 UID 等 |
+
+#### 常用显示与主题参数
+
+| 参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| lang | string | 语言，例如 `zh-cn`、`zh-tw`、`en`、`ja-jp`、`ko-kr` |
+| mode | string | 主题模式：`light`、`dark`、`system` |
+| backgroundColor | string | 导航栏背景色，例如 `#0066FF` |
+| textColor | string | 导航栏文字颜色 |
+| title | string | 当前聊天页浏览器 tab 标题 |
+| navbar | string | 导航栏显示控制。传 `0` 表示隐藏，不传则显示 |
+| qrcode | string | 当前对话二维码按钮显示控制。默认 PC 端显示、移动端隐藏；传 `1`/`true` 强制显示，传 `0`/`false` 隐藏 |
+| threadDetail | string | 会话详情按钮显示控制。默认不显示；传 `1`/`true`/`yes`/`on` 时显示 |
+| visitorProfile | string | 访客资料按钮显示控制。默认不显示；传 `1`/`true`/`yes`/`on` 时显示 |
+| loadHistory | string | 是否自动加载历史消息。传 `1` 时启用，未传时关闭。详见 [历史消息](./history) |
+
+#### 访客与业务参数
+
+| 参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| uid | string | 系统内部用户 ID。通常由系统生成，不建议业务侧自行传入 |
+| visitorUid | string | 自定义访客唯一标识，推荐与业务用户 ID 对齐 |
+| nickname | string | 自定义访客昵称 |
+| avatar | string | 自定义访客头像 URL |
+| mobile | string | 自定义手机号 |
+| email | string | 自定义邮箱 |
+| note | string | 自定义备注 |
+| vipLevel | string | 访客等级 |
+| channel | string | 访客来源渠道。建议优先使用后端 `ChannelEnum` 常量，例如 `WEB_VISITOR`、`WEB_FLOAT`、`WECHAT` |
+| goodsInfo | string | 商品信息 JSON 字符串，详见 [商品信息对接](../integration/goods_info.md) |
+| orderInfo | string | 订单信息 JSON 字符串，详见 [订单信息对接](../integration/order_info.md) |
+| extra | string | 扩展字段 JSON 字符串。用于补充自定义业务上下文 |
+| settingsUid | string | 设置项唯一 ID，主要用于调试或指定特定配置 |
+
+#### 调试与灰度参数
+
+| 参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| debug | string | 调试模式。SDK 内部布尔值为 `true` 时会序列化为 `debug=1` |
+| draft | string | 灰度模式标记。SDK 内部布尔值为 `true` 时会序列化为 `draft=1` |
+
+#### 浏览上下文参数
+
+| 参数名 | 类型 | 说明 |
+| --- | --- | --- |
+| browse | string | 浏览上下文 JSON 字符串，内部通常包含 `referer`、`title`、`url` |
+
+#### 自定义透传参数
+
+除上述字段外，`chatConfig` 中其他非空字段也会按 `key=value` 方式继续透传到聊天页，适合承载业务自定义参数。
+
+### 参数序列化规则
+
+为避免联调时出现“为什么 URL 没带上这个参数”的误判，建议注意以下规则：
+
+1. 空字符串、`undefined`、`null` 不会进入最终 URL。
+2. `debug`、`draft`、`loadHistory` 只有在值为 `true` 时才会分别输出为 `debug=1`、`draft=1`、`loadHistory=1`。
+3. `goodsInfo`、`orderInfo` 推荐传 JSON 字符串；若在 SDK 嵌入模式下传对象，SDK 会自动 `JSON.stringify` 后再拼接到 URL。
+4. `extra` 推荐传 JSON 字符串；若 `extra` 中包含 `goodsInfo` 或 `orderInfo`，SDK 会先移除这两个重复字段，再写入 URL。
+5. `browse` 由 `browseConfig` 合并序列化而来，最终统一进入一个 `browse` 参数，而不是拆成多个独立 query 参数。
+6. 手工拼接 URL 时，`title`、`browse`、颜色值以及任意 JSON 内容都应先做 URL 编码。
 
 `browse` 参数示例：
 
@@ -187,6 +232,7 @@ https://chat.example.com/chat?org=df_org_uid&t=1&sid=df_wg_uid&title=%E5%AE%A2%E
 - `browse.referer`：来源页面
 - `browse.url`：当前浏览页面 URL
 - `browse.title`：来源页面标题
+- SDK 嵌入模式下如果使用 `browseConfig.referrer`，也会兼容写入 `browse.referer`
 
 ## 常见问题
 
@@ -197,7 +243,7 @@ https://chat.example.com/chat?org=df_org_uid&t=1&sid=df_wg_uid&title=%E5%AE%A2%E
 1. **URL参数传递**：在初始化聊天窗口时，通过URL参数传递用户信息
 
    ```bash
-   https://chat.example.com?visitorUid=user123&nickname=张三&avatar=https://example.com/avatar.jpg&vipLevel=2
+   https://chat.example.com/chat?org=df_org_uid&t=1&sid=df_wg_uid&visitorUid=user123&nickname=张三&avatar=https%3A%2F%2Fexample.com%2Favatar.jpg&vipLevel=2&channel=WEB_VISITOR
    ```
 
 ## 进阶使用
@@ -205,10 +251,10 @@ https://chat.example.com/chat?org=df_org_uid&t=1&sid=df_wg_uid&title=%E5%AE%A2%E
 ### 相关功能
 
 - [历史消息](./history) - 了解如何加载和展示历史聊天记录
-- [商品信息对接](./goods_info.md) - 了解如何传递商品信息给客服
-- [订单信息对接](./order_info.md) - 了解如何传递订单信息给客服
-- [用户信息对接](./user_info.md) - 了解如何传递用户信息给客服
-- [千人千面](./viplevel.md) - 了解如何根据用户等级提供差异化服务
+- [商品信息对接](../integration/goods_info.md) - 了解如何传递商品信息给客服
+- [订单信息对接](../integration/order_info.md) - 了解如何传递订单信息给客服
+- [用户信息对接](../integration/user_info.md) - 了解如何传递用户信息给客服
+- [千人千面](../integration/viplevel.md) - 了解如何根据用户等级提供差异化服务
 - [国际化](./i18n.md) - 了解如何支持多语言
 
 ## channel 参数完整说明

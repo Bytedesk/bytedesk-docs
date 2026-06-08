@@ -1,6 +1,6 @@
 ---
 sidebar_label: E-commerce Integration Guide
-sidebar_position: 2
+sidebar_position: 10
 ---
 
 # E-commerce Integration Guide
@@ -130,8 +130,8 @@ Used for:
 
 ## Registered User Integration
 
-- [User Information](../development/user_info.md)
-- [User API](../development/user_api.md)
+- [User Information](../integration/user_info.md)
+- [User API](../integration/user_api.md)
 
 Focus on:
 
@@ -164,20 +164,20 @@ Focus on:
 
 ## Shop Integration
 
-- [Shop Information](../development/shop_info.md)
-- [Shop API](../development/shop_api.md)
+- [Shop Information](../integration/shop_info.md)
+- [Shop API](../integration/shop_api.md)
 
 ## Goods Integration
 
 - [Goods Demo](https://www.weiyuai.cn/reactdemo/)
-- [Goods Information](../development/goods_info.md)
-- [Goods API](../development/goods_api.md)
+- [Goods Information](../integration/goods_info.md)
+- [Goods API](../integration/goods_api.md)
 
 ## Order Integration
 
 - [Order Demo](https://www.weiyuai.cn/reactdemo/)
-- [Order Information](../development/order_info.md)
-- [Order API](../development/order_api.md)
+- [Order Information](../integration/order_info.md)
+- [Order API](../integration/order_api.md)
 
 ## Agent Integration
 

@@ -20,6 +20,16 @@ sidebar_position: 16
 
 ## 简介
 
+:::info 当前环境映射
+
+- FreeSWITCH 服务器 IP：`118.25.178.96`
+- FreeSWITCH 访问域名：`sip.weiyuai.cn`
+- Kamailio 服务器 IP：`124.220.58.234`
+- Kamailio 访问域名：`call.weiyuai.cn`
+
+说明：`call.weiyuai.cn` 当前表示 Kamailio 服务器访问域名，不自动等同于 SIP 注册域名。若由 Kamailio 接管公网 SIP 入口，可以继续保留 `sip.weiyuai.cn` 作为 SIP 业务域名，但需要把 DNS 或终端 SIP Server 改为指向 Kamailio。
+:::
+
 Kamailio 是高性能的开源 SIP 服务器，常用于：
 
 - 作为“边界/入口”SIP 代理与注册服务器（Registrar）
@@ -31,17 +41,17 @@ Kamailio 是高性能的开源 SIP 服务器，常用于：
 ## Kamailio 与 FreeSWITCH 的对比与关系
 
 - 定位与能力
-	- Kamailio：SIP 代理/注册/路由/负载均衡，擅长高并发信令转发，不处理媒体（RTP）。
-	- FreeSWITCH：软交换/媒体服务器（B2BUA），负责通话建立、编解码、会议、IVR、录音等媒体与业务逻辑。
+  - Kamailio：SIP 代理/注册/路由/负载均衡，擅长高并发信令转发，不处理媒体（RTP）。
+  - FreeSWITCH：软交换/媒体服务器（B2BUA），负责通话建立、编解码、会议、IVR、录音等媒体与业务逻辑。
 - 资源消耗与扩展
-	- Kamailio：超轻量，单机即可承载百万级注册与高 QPS 信令；横向扩容简单。
-	- FreeSWITCH：因处理媒体与业务，CPU/带宽消耗更高；通常通过前置 Kamailio 做横向伸缩与保护。
+  - Kamailio：超轻量，单机即可承载百万级注册与高 QPS 信令；横向扩容简单。
+  - FreeSWITCH：因处理媒体与业务，CPU/带宽消耗更高；通常通过前置 Kamailio 做横向伸缩与保护。
 - 典型部署
-	- 单用 FreeSWITCH：小规模、功能型快速落地。
-	- Kamailio + FreeSWITCH：生产级架构，Kamailio 负责边界、鉴权、LB 与安全；FreeSWITCH 专注媒体/业务。
+  - 单用 FreeSWITCH：小规模、功能型快速落地。
+  - Kamailio + FreeSWITCH：生产级架构，Kamailio 负责边界、鉴权、LB 与安全；FreeSWITCH 专注媒体/业务。
 - 何时选谁
-	- 只需 PBX/IVR/会议/录音：FreeSWITCH 即可。
-	- 面向公网、大并发、需要多集群调度与抗攻击：在 FreeSWITCH 前增加 Kamailio。
+  - 只需 PBX/IVR/会议/录音：FreeSWITCH 即可。
+  - 面向公网、大并发、需要多集群调度与抗攻击：在 FreeSWITCH 前增加 Kamailio。
 
 > 结论：两者是互补关系。Kamailio 处理“信令与路由”，FreeSWITCH 处理“媒体与业务”。
 
@@ -52,8 +62,8 @@ Kamailio 与 OpenSIPS 都是成熟的 SIP 代理/注册/路由服务器，二者
 - 能力与定位：均不承载媒体（RTP），常与 FreeSWITCH/RTPEngine 搭配；均具备 usrloc/registrar、dispatcher、权限控制、NAT 辅助、限速与防刷等能力。
 - 配置与脚本：两者脚本语法风格不同但思路一致；常见路由/事务/对话处理模式都能覆盖。
 - 运维工具：
-	- Kamailio：kamcmd/kamctl 使用广泛。
-	- OpenSIPS：opensips-cli/opensipsctl 体验也很成熟。
+  - Kamailio：kamcmd/kamctl 使用广泛。
+  - OpenSIPS：opensips-cli/opensipsctl 体验也很成熟。
 - 性能与扩展：均支持极高并发与横向扩展，性能差异主要取决于场景与脚本实现。
 - 生态与团队经验：已有模板与脚本复用价值很大；社区熟悉度、文档偏好与周边工具链往往决定选择。
 
@@ -82,36 +92,36 @@ Kamailio 与 OpenSIPS 都是成熟的 SIP 代理/注册/路由服务器，二者
 
 ```yaml
 services:
-	kamailio:
-		image: kamailio/kamailio:5.9
-		container_name: kamailio-edge
-		restart: always
-		environment:
-			- TZ=Asia/Shanghai
-		# 如需在容器前台查看日志，使用: command: ["kamailio", "-DD", "-E"]
-		# 生产环境可简化为后台运行: command: ["kamailio", "-DD"]
-		command: ["kamailio", "-DD", "-E", "-f", "/etc/kamailio/kamailio.cfg"]
-		ports:
-			- "5060:5060/udp"
-			- "5060:5060/tcp"
-			- "5061:5061/tcp"   # SIP TLS（可选）
-			- "5066:5066/tcp"   # WebSocket（可选）
-			- "7443:7443/tcp"   # WebSocket Secure（可选）
-		volumes:
-			- ./kamailio/kamailio.cfg:/etc/kamailio/kamailio.cfg:ro
-			- ./kamailio/dispatcher.list:/etc/kamailio/dispatcher.list:ro
-		networks:
-			- bytedesk-network
+ kamailio:
+  image: kamailio/kamailio:5.9
+  container_name: kamailio-edge
+  restart: always
+  environment:
+   - TZ=Asia/Shanghai
+  # 如需在容器前台查看日志，使用: command: ["kamailio", "-DD", "-E"]
+  # 生产环境可简化为后台运行: command: ["kamailio", "-DD"]
+  command: ["kamailio", "-DD", "-E", "-f", "/etc/kamailio/kamailio.cfg"]
+  ports:
+   - "5060:5060/udp"
+   - "5060:5060/tcp"
+   - "5061:5061/tcp"   # SIP TLS（可选）
+   - "5066:5066/tcp"   # WebSocket（可选）
+   - "7443:7443/tcp"   # WebSocket Secure（可选）
+  volumes:
+   - ./kamailio/kamailio.cfg:/etc/kamailio/kamailio.cfg:ro
+   - ./kamailio/dispatcher.list:/etc/kamailio/dispatcher.list:ro
+  networks:
+   - bytedesk-network
 
-	# 仅示例：后端 FreeSWITCH 可按需放在同一网络
-	# freeswitch:
-	#   image: registry.cn-hangzhou.aliyuncs.com/bytedesk/freeswitch:latest
-	#   networks:
-	#     - bytedesk-network
+ # 仅示例：后端 FreeSWITCH 可按需放在同一网络
+ # freeswitch:
+ #   image: registry.cn-hangzhou.aliyuncs.com/bytedesk/freeswitch:latest
+ #   networks:
+ #     - bytedesk-network
 
 networks:
-	bytedesk-network:
-		driver: bridge
+ bytedesk-network:
+  driver: bridge
 ```
 
 ### 1.3 最小可用配置（核心片段）
@@ -170,40 +180,40 @@ modparam("dispatcher", "cnt_avp", "$avp(ds_cnt)")
 
 #### 路由逻辑 ####
 request_route {
-		# 丢弃过深的转发链
-		if (!mf_process_maxfwd(10)) { sl_send_reply("483", "Too Many Hops"); exit; }
+  # 丢弃过深的转发链
+  if (!mf_process_maxfwd(10)) { sl_send_reply("483", "Too Many Hops"); exit; }
 
-		# 响应心跳
-		if (is_method("OPTIONS") && $rU=="ping") { sl_send_reply("200", "OK"); exit; }
+  # 响应心跳
+  if (is_method("OPTIONS") && $rU=="ping") { sl_send_reply("200", "OK"); exit; }
 
-		# 处理对话内请求
-		if (has_totag()) { route(WITHINDLG); exit; }
+  # 处理对话内请求
+  if (has_totag()) { route(WITHINDLG); exit; }
 
-		# 注册
-		if (is_method("REGISTER")) { save("location"); exit; }
+  # 注册
+  if (is_method("REGISTER")) { save("location"); exit; }
 
-		# 初始 INVITE 等转发到后端 FreeSWITCH
-		route(DISPATCH);
+  # 初始 INVITE 等转发到后端 FreeSWITCH
+  route(DISPATCH);
 }
 
 route[WITHINDLG] {
-		if (loose_route()) { route(RELAY); exit; }
-		if (is_method("BYE")) { route(RELAY); exit; }
-		if (is_method("ACK")) { route(RELAY); exit; }
-		route(RELAY);
+  if (loose_route()) { route(RELAY); exit; }
+  if (is_method("BYE")) { route(RELAY); exit; }
+  if (is_method("ACK")) { route(RELAY); exit; }
+  route(RELAY);
 }
 
 route[DISPATCH] {
-		if (!ds_select_dst("1", "4")) {   # 选择组1，算法4（按权重轮询）
-				sl_send_reply("500", "No FS Destinations"); exit;
-		}
-		xlog("L_INFO", "Routing to FS dst: $du\n");
-		route(RELAY);
+  if (!ds_select_dst("1", "4")) {   # 选择组1，算法4（按权重轮询）
+    sl_send_reply("500", "No FS Destinations"); exit;
+  }
+  xlog("L_INFO", "Routing to FS dst: $du\n");
+  route(RELAY);
 }
 
 route[RELAY] {
-		if (!t_relay()) { sl_reply_error(); }
-		exit;
+  if (!t_relay()) { sl_reply_error(); }
+  exit;
 }
 ```
 
@@ -223,9 +233,9 @@ route[RELAY] {
 
 - 启动容器后，查看日志中是否出现 “listening on udp: 0.0.0.0:5060”。
 - 常用命令（容器内）：
-	- `kamcmd dispatcher.list` 查看后端列表
-	- `kamcmd dispatcher.reload` 重新加载 `dispatcher.list`
-	- `kamctl ul show` 查看注册状态（若镜像包含 kamctl）
+  - `kamcmd dispatcher.list` 查看后端列表
+  - `kamcmd dispatcher.reload` 重新加载 `dispatcher.list`
+  - `kamctl ul show` 查看注册状态（若镜像包含 kamctl）
 
 ## 方式二：Debian/Ubuntu 软件包安装
 
@@ -245,6 +255,7 @@ sudo systemctl status --no-pager -l kamailio
 ```
 
 > 生产环境建议：
+>
 > - 将 usrloc/registrar 切换为数据库持久化（如 MySQL/PostgreSQL）
 > - 结合 fail2ban/iptables/限速模块做防刷与防攻击
 > - 开启 TLS/WSS 时妥善管理证书与密钥
@@ -258,34 +269,43 @@ sudo systemctl status --no-pager -l kamailio
 
 ### 3.2 FreeSWITCH 信任 Kamailio 边界
 
-在 FreeSWITCH 服务器上，建议将 Kamailio 出口 IP 加入信任/ACL，避免二次鉴权导致回环：
+在 FreeSWITCH 服务器上，建议给 Kamailio 单独定义一个专用 ACL，并绑定到 external profile，避免二次鉴权和放行范围过大：
 
 ```xml
 <!-- /usr/local/freeswitch/conf/autoload_configs/acl.conf.xml -->
-<list name="trusted" default="deny">
-	<node type="allow" cidr="10.0.0.0/8"/>
-	<node type="allow" cidr="192.168.0.0/16"/>
-	<!-- Kamailio 出口公网IP（按需填写） -->
-	<!-- <node type="allow" cidr="203.0.113.10/32"/> -->
-	<!-- 明确添加 Kamailio 容器所在主机网卡 IP -->
-	<node type="allow" cidr="10.0.0.5/32"/>
-	<node type="allow" cidr="127.0.0.1/32"/>
-	<node type="allow" cidr="::1/128"/>
-	<node type="deny" cidr="0.0.0.0/0"/>
-	<node type="deny" cidr="::/0"/>
-	<node type="allow" cidr="192.168.1.0/24"/>
-	<node type="allow" cidr="172.16.0.0/12"/>
+<list name="kamailio_only" default="deny">
+ <node type="allow" cidr="127.0.0.0/8"/>
+ <node type="allow" cidr="::1/128"/>
+ <!-- Kamailio 出口公网IP -->
+ <node type="allow" cidr="124.220.58.234/32"/>
+ <!-- 如果 Kamailio 走内网转发，再补充它的内网出口 IP /32 -->
 </list>
 ```
 
-重载配置：在 `fs_cli` 中执行 `reloadxml`。
+并在 external profile 中启用这个 ACL：
 
-> 提示：可在 FreeSWITCH external profile（`sip_profiles/external.xml`）中确认是否需要取消“来话鉴权”，避免从 Kamailio 转发来的呼叫被拒绝。
+```xml
+<!-- /usr/local/freeswitch/conf/sip_profiles/external.xml -->
+<param name="local-network-acl" value="localnet.auto"/>
+<param name="apply-inbound-acl" value="kamailio_only"/>
+```
+
+重载配置：在 `fs_cli` 中执行 `reloadxml`、`reloadacl`，然后重启 `external` profile。
+
+> 提示：如果 Kamailio 后续改为走内网出口，请把 Kamailio 的内网 IP 也按 `/32` 加入 `kamailio_only`。
 
 ### 3.3 WebRTC 方案选择
 
 - 简化方案：直接让终端 WebRTC 连接 FreeSWITCH（WSS:7443/WS:5066），Kamailio 只做 SIP/UDP/TCP 边界。
 - 标准边界方案：让 WebRTC 连接到 Kamailio 的 WS/WSS，再由 Kamailio 转发到 FreeSWITCH。此时通常需要部署媒体代理（如 rtpengine）以解决 NAT/ICE 场景的媒体中转。
+
+### 3.4 与 Nginx 的集成边界
+
+- HTTP/HTTPS、WS/WSS：通常继续由 Nginx 对外提供入口与 TLS 终结。
+- SIP/UDP、SIP/TCP、SIP/TLS：通常由 Kamailio 作为公网 SIP 边界处理。
+- FreeSWITCH：专注媒体与业务处理，尽量不要继续直接暴露给公网 SIP 终端。
+
+在当前环境中，可把 `call.weiyuai.cn` 理解为 Kamailio 服务器访问域名，把 `sip.weiyuai.cn` 理解为对外 SIP 业务域名；只要最终 SIP 目标指向 Kamailio，这种拆分就是成立的。
 
 ## 需要开放的端口
 
@@ -309,13 +329,20 @@ sudo systemctl status --no-pager -l kamailio
 ### 5.2 常见问题
 
 1. 反复 401/407 鉴权循环：
-	 - 可能 Kamailio 与 FreeSWITCH 同时对来话鉴权，导致回环。让 Kamailio 负责外部鉴权，FreeSWITCH 对来自 Kamailio 的来话放行（ACL 信任）。
-2. 单向/无声音：
-	 - 媒体（RTP）未达，检查 FreeSWITCH 的 RTP 端口范围与云安全组；公网/NAT 场景考虑引入 rtpengine 并在 Kamailio 中正确标记方向。
-3. 488 Not acceptable here：
-	 - 编解码不匹配。确保终端、FreeSWITCH 支持的编解码一致（如 PCMU/PCMA/OPUS）。
-4. 477/479/Timeout：
-	 - NAT/路由问题。检查 DNS、外网 IP 公布、Record-Route/Contact、`set_contact_alias()` 等 NAT 处理是否正确。
+
+- 可能 Kamailio 与 FreeSWITCH 同时对来话鉴权，导致回环。让 Kamailio 负责外部鉴权，FreeSWITCH 对来自 Kamailio 的来话放行（ACL 信任）。
+
+1. 单向/无声音：
+
+- 媒体（RTP）未达，检查 FreeSWITCH 的 RTP 端口范围与云安全组；公网/NAT 场景考虑引入 rtpengine 并在 Kamailio 中正确标记方向。
+
+1. 488 Not acceptable here：
+
+- 编解码不匹配。确保终端、FreeSWITCH 支持的编解码一致（如 PCMU/PCMA/OPUS）。
+
+1. 477/479/Timeout：
+
+- NAT/路由问题。检查 DNS、外网 IP 公布、Record-Route/Contact、`set_contact_alias()` 等 NAT 处理是否正确。
 
 ## 与微语系统的对接建议
 
@@ -330,20 +357,23 @@ sudo systemctl status --no-pager -l kamailio
 
 ## 参考链接
 
-- Kamailio 官网与文档：https://www.kamailio.org/
-- 配置模块参考：https://kamailio.org/docs/modules/stable/
-- 负载均衡（dispatcher）：https://kamailio.org/docs/modules/stable/modules/dispatcher.html
-- NAT/媒体代理（rtpengine）：https://github.com/sipwise/rtpengine
- 
+- Kamailio 官网与文档：[https://www.kamailio.org/](https://www.kamailio.org/)
+- 配置模块参考：[https://kamailio.org/docs/modules/stable/](https://kamailio.org/docs/modules/stable/)
+- 负载均衡（dispatcher）：[https://kamailio.org/docs/modules/stable/modules/dispatcher.html](https://kamailio.org/docs/modules/stable/modules/dispatcher.html)
+- NAT/媒体代理（rtpengine）：[https://github.com/sipwise/rtpengine](https://github.com/sipwise/rtpengine)
+
 ## 实战：Kamailio 部署与配置指南（反代 FreeSWITCH 的 5060/UDP）
 
 本文档指导你将 Nginx 的 5060/UDP 转发切换为由 Kamailio 负责的专业 SIP 代理，以解决 UDP/NAT 回包路径问题。Nginx 继续用于 HTTP/WS/WSS（例如 WSS 到 FreeSWITCH）。
 
 :::info 适用环境（示例）
+
 - OS: Ubuntu 24.04（命令对 Debian/Ubuntu 通用）
 - 公网 IP（Kamailio）：`124.220.58.234`
 - FreeSWITCH 公网 IP：`118.25.178.96`
-- SIP 域名：`sip.weiyuai.cn`
+- FreeSWITCH 访问域名：`sip.weiyuai.cn`
+- Kamailio 访问域名：`call.weiyuai.cn`
+- SIP 业务域名：本文示例使用 `sip.weiyuai.cn`，如你的实际 SIP 域名不同，请同步替换
 - 协议/端口：SIP/UDP 5060
 
 若你的实际 IP/域名不同，请将文档中的示例值替换为你的真实值。
@@ -380,6 +410,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y kamailio kamailio-extra-m
 ### 3. 配置 Kamailio（最小可用代理到 FreeSWITCH）
 
 三个关键点：
+
 - Kamailio 监听 0.0.0.0:5060，并 advertise 公网 IP，确保 Via/Record-Route 对外可用
 - 转发所有 SIP 请求到 FreeSWITCH：`118.25.178.96:5060`
 - 基础 NAT 处理：`force_rport` 与 `fix_nated_contact`
@@ -407,6 +438,7 @@ enable_sctp=no
 
 listen=udp:0.0.0.0:5060 advertise 124.220.58.234:5060
 alias="sip.weiyuai.cn"
+alias="call.weiyuai.cn"
 
 mpath="/usr/lib/x86_64-linux-gnu/kamailio/modules/"
 
@@ -438,40 +470,40 @@ modparam("dispatcher", "ds_probing_mode", 1)
 modparam("nathelper", "received_avp", "$avp(rcv)")
 
 route[DISPATCH] {
-		if(!ds_select_dst(1, 0)) {
-				send_reply(500, "No Upstream");
-				exit;
-		}
-		t_on_reply("NAT_REPLY");
-		if(!t_relay()) {
-				sl_reply_error();
-		}
-		exit;
+  if(!ds_select_dst(1, 0)) {
+    send_reply(500, "No Upstream");
+    exit;
+  }
+  t_on_reply("NAT_REPLY");
+  if(!t_relay()) {
+    sl_reply_error();
+  }
+  exit;
 }
 
 onreply_route[NAT_REPLY] {
-		if(isflagset(5)) {
-				fix_nated_contact();
-		}
+  if(isflagset(5)) {
+    fix_nated_contact();
+  }
 }
 
 request_route {
-		if (!sanity_check("1511", "7")) {
-				send_reply(400, "Bad Request");
-				exit;
-		}
+  if (!sanity_check("1511", "7")) {
+    send_reply(400, "Bad Request");
+    exit;
+  }
 
-		# Basic NAT handling
-		force_rport();
-		if (nat_uac_test(19)) {
-				setflag(5);
-				fix_nated_contact();
-		}
+  # Basic NAT handling
+  force_rport();
+  if (nat_uac_test(19)) {
+    setflag(5);
+    fix_nated_contact();
+  }
 
-		# Stay in the signaling path
-		record_route();
+  # Stay in the signaling path
+  record_route();
 
-		route(DISPATCH);
+  route(DISPATCH);
 }
 EOF
 ```
@@ -507,14 +539,14 @@ printf 'OPTIONS sip:weiyuai.cn SIP/2.0\r\nVia: SIP/2.0/UDP 124.220.58.234:5060;b
 ### 5. 需要同时检查的外部条件
 
 - 云安全组/防火墙：
-	- Kamailio 机（124.220.58.234）入站放行 UDP/5060
-	- FreeSWITCH 机（118.25.178.96）入站允许来自 124.220.58.234 的 UDP/5060
+  - Kamailio 机（124.220.58.234）入站放行 UDP/5060
+  - FreeSWITCH 机（118.25.178.96）入站允许来自 124.220.58.234 的 UDP/5060
 - FreeSWITCH：
-	- external_sip_ip 与 external_rtp_ip 设置为 118.25.178.96（公网）
-	- 外部 profile 监听端口确认与上游一致（5060 或 5080）
-	- ACL 允许 124.220.58.234
+  - external_sip_ip 与 external_rtp_ip 设置为 118.25.178.96（公网）
+  - 外部 profile 监听端口确认与上游一致（5060 或 5080）
+  - ACL 允许 124.220.58.234
 - 客户端：
-	- 注册到 `sip:用户名@sip.weiyuai.cn:5060`，失败时抓包对照 Kamailio/FreeSWITCH 日志
+  - 注册到 `sip:用户名@sip.weiyuai.cn:5060`，失败时抓包对照 Kamailio/FreeSWITCH 日志
 
 > FreeSWITCH 的部署与外网端口配置，可参考《Freeswitch 安装指南》：./freeswitch
 
@@ -523,14 +555,14 @@ printf 'OPTIONS sip:weiyuai.cn SIP/2.0\r\nVia: SIP/2.0/UDP 124.220.58.234:5060;b
 ### 6. 常见问题排查
 
 - `config file ok` 但服务起不来：
-	- `journalctl -xeu kamailio` 查看错误详细
+  - `journalctl -xeu kamailio` 查看错误详细
 - 返回 4xx/5xx 或无回包：
-	- Kamailio：`journalctl -u kamailio -f`
-	- FreeSWITCH 日志：检查是否收到请求、是否 ACL 拒绝
-	- 核对安全组/端口是否放通
+  - Kamailio：`journalctl -u kamailio -f`
+  - FreeSWITCH 日志：检查是否收到请求、是否 ACL 拒绝
+  - 核对安全组/端口是否放通
 - Via/Contact 显示内网地址：
-	- 确保 Kamailio 配置了 `advertise 公网IP`
-	- FreeSWITCH external_sip_ip/external_rtp_ip 设置是否正确
+  - 确保 Kamailio 配置了 `advertise 公网IP`
+  - FreeSWITCH external_sip_ip/external_rtp_ip 设置是否正确
 
 ---
 

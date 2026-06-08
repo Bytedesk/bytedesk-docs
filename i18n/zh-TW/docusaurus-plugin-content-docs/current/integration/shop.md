@@ -83,8 +83,8 @@ sidebar_position: 2
 
 ## 註冊使用者對接
 
-- [使用者資訊](../development/user_info.md)
-- [使用者介面](../development/user_api.md)
+- [使用者資訊](../integration/user_info.md)
+- [使用者介面](../integration/user_api.md)
 
 重點：
 
@@ -116,20 +116,20 @@ sidebar_position: 2
 
 ## 店鋪資訊對接
 
-- [店鋪資訊](../development/shop_info.md)
-- [店鋪介面](../development/shop_api.md)
+- [店鋪資訊](../integration/shop_info.md)
+- [店鋪介面](../integration/shop_api.md)
 
 ## 商品資訊對接
 
 - [商品對接演示](https://www.weiyuai.cn/reactdemo/)
-- [商品資訊](../development/goods_info.md)
-- [商品介面](../development/goods_api.md)
+- [商品資訊](../integration/goods_info.md)
+- [商品介面](../integration/goods_api.md)
 
 ## 訂單資訊對接
 
 - [訂單對接演示](https://www.weiyuai.cn/reactdemo/)
-- [訂單資訊](../development/order_info.md)
-- [訂單介面](../development/order_api.md)
+- [訂單資訊](../integration/order_info.md)
+- [訂單介面](../integration/order_api.md)
 
 ## 工作組對接
 

@@ -24,9 +24,16 @@ sidebar_position: 27
 
 ### 1. 管理后台 ASR 测试与配置
 
-管理后台已提供 ASR 测试入口，支持上传语音文件进行识别，也支持直接调用麦克风进行识别测试。
+管理后台已提供 3 类 ASR 入口：
 
-测试调用会同步记录到 AsrEntity 表中，便于统一查看识别记录、定位问题和评估识别效果。
+- 语音文件识别：走后台执行链路，适合批量或需要保留执行记录的场景
+- 本地语音识别：界面上当前显示为“测试识别”，上传单个语音文件后直接调用本地 ttsasr 服务返回结果，适合私有化部署、内网文件识别、低延迟识别和本地模型接入场景
+- 麦克风识别：直接调用麦克风进行实时识别测试
+
+这里需要特别说明：
+
+- 走后台执行链路的文件识别、桌面端语音输入、语音消息转文字等能力，会把执行结果同步写入 AsrEntity，便于统一查看识别记录、定位问题和评估识别效果
+- 管理后台中的本地语音识别入口走独立部署的 ttsasr 服务，默认同步返回识别结果，不写入后台执行记录；这一入口承载的是本地 ASR 服务接入能力，而不是仅用于测试
 
 ![asr_admin](/img/asr/asr_admin.png)
 
@@ -64,7 +71,12 @@ sidebar_position: 27
 
 ## 三、项目 ASR 配置说明
 
-微语当前的 ASR 能力主要基于 DashScope 提供，但实际执行并不是简单依赖通用的 Spring AI 自动路由，而是由项目内部的 ASR 执行链路统一承接。因此在对接时，除了看 provider 开关，也要关注默认模型、实时模型、源格式和轮询超时等项目级参数。
+微语当前的 ASR 能力同时支持两类识别服务：
+
+- 本地语音识别转换服务：基于独立部署的 ttsasr 容器，适合局域网、本地上传文件、私有地址文件和快速联调场景
+- 云语音识别服务：当前主要基于 DashScope，适合公网可访问音频 URL、异步批量转写和统一云端模型能力场景
+
+实际执行时，并不是简单依赖通用的 Spring AI 自动路由，而是由项目内部的 ASR 执行链路统一承接。因此在对接时，除了看 provider 开关，也要关注默认模型、实时模型、源格式、轮询超时以及本地 ttsasr 服务地址等项目级参数。
 
 ### 1. 启用音频与 ASR 能力
 
@@ -126,15 +138,61 @@ spring.ai.dashscope.audio.transcription.realtime-model=paraformer-realtime-v2
 
 - 公网可访问音频 URL：优先走 DashScope 录音文件转写任务
 - 本地文件或私有 URL：优先走本地文件识别链路
+- 管理后台本地语音识别入口：优先走独立部署的 ttsasr 本地识别服务
 
 这两条路径在模型选择上也有差异：
 
 - 公网 URL 场景下，系统默认更偏向离线文件识别模型，当前默认值来源于 `spring.ai.dashscope.audio.transcription.options.model`
 - 本地文件或私有 URL 场景下，后端会优先切换到更适合本地识别链路的模型，当前代码中的兜底模型为 `fun-asr-realtime`
+- ttsasr 本地识别场景下，默认模型来自 `bytedesk.ai.asr.ttsasr.model`，默认语言来自 `bytedesk.ai.asr.ttsasr.language`
 
 另外，当前后端会根据音频格式自动决定是否先通过 `ffmpeg` 转成 16k 单声道 wav 再送入识别链路，因此如果部署环境需要识别本地上传文件，建议同时确保容器或宿主机中具备 `ffmpeg`。
 
-### 5. 项目级 ASR 默认源格式、超时与轮询间隔
+### 5. 本地 ttsasr 镜像与服务配置
+
+为了支持本地语音识别服务，项目增加了独立部署的 ttsasr 镜像和一组面向该服务的配置项。这个本地服务并不是只用于测试，而是可以作为企业内网、本地私有化、数据不出域或低延迟场景下的正式 ASR 识别服务，与云端 DashScope ASR 并行使用。
+
+本地镜像地址为：
+
+```text
+registry.cn-hangzhou.aliyuncs.com/bytedesk/ttsasr:latest
+```
+
+如果需要单独启动本地识别服务，可以直接使用 Docker 命令：
+
+```bash
+docker run -d \
+ --name ttsasr-bytedesk \
+ -p 18000:8000 \
+ -e FUNASR_DEVICE=cpu \
+ -e FUNASR_MODEL=iic/SenseVoiceSmall \
+ -e FUNASR_VAD_MODEL=fsmn-vad \
+ registry.cn-hangzhou.aliyuncs.com/bytedesk/ttsasr:latest
+```
+
+如果使用项目自带的 Docker Compose，则 `compose-base.yaml` 已默认包含该镜像服务。
+
+项目侧对应的配置项如下：
+
+```properties
+bytedesk.ai.asr.ttsasr.enabled=true
+bytedesk.ai.asr.ttsasr.base-url=http://127.0.0.1:18000
+bytedesk.ai.asr.ttsasr.model=funasr
+bytedesk.ai.asr.ttsasr.language=auto
+# bytedesk.ai.asr.ttsasr.response-format=json
+```
+
+它们的意义分别是：
+
+- `bytedesk.ai.asr.ttsasr.enabled`：是否启用本地 ttsasr 识别服务
+- `bytedesk.ai.asr.ttsasr.base-url`：ttsasr 服务地址；源码本地启动默认走 `http://127.0.0.1:18000`
+- `bytedesk.ai.asr.ttsasr.model`：即时测试默认模型
+- `bytedesk.ai.asr.ttsasr.language`：即时测试默认语言，`auto` 表示自动识别
+- `bytedesk.ai.asr.ttsasr.response-format`：返回格式，当前默认值为 `json`
+
+这些配置主要作用在管理后台的本地语音识别入口，以及后端对本地 ASR 服务的调用链路上。用户上传音频后，后端会先把文件解析为本地可访问文件，再以 multipart 方式提交给 ttsasr 服务并同步返回文本结果。
+
+### 6. 项目级 ASR 默认源格式、超时与轮询间隔
 
 除了 DashScope 提供方配置，项目还维护了一组更贴近业务执行接口和管理后台测试页的默认参数：
 
@@ -152,9 +210,53 @@ bytedesk.ai.asr.poll-interval-ms=1500
 
 当前默认组合为 `mp3 + 180000ms + 1500ms`，适合常见客服语音文件和普通公网 URL 转写场景。如果企业上传的是时长较长的录音，或者网络环境对 OSS 结果下载存在波动，可以适当提高 `timeout-ms`。
 
-### 6. Docker Compose 部署下的配置说明
+### 7. Docker Compose 部署下的配置说明
 
-如果项目通过 Docker Compose 部署，那么同一套 ASR 配置会以环境变量形式出现在容器编排文件中，例如 [deploy/docker/compose-app-bytedesk.yaml](deploy/docker/compose-app-bytedesk.yaml)。
+如果项目通过 Docker Compose 部署，那么现在推荐同时关注两部分：
+
+- `compose-base.yaml` 中的 `ttsasr` 本地识别镜像服务
+- `compose-app-bytedesk.yaml` 中 bytedesk 应用容器读取的 ASR 环境变量
+
+其中，基础编排已经默认加入本地 ASR 镜像：
+
+```yaml
+bytedesk-ttsasr:
+  image: registry.cn-hangzhou.aliyuncs.com/bytedesk/ttsasr:latest
+  container_name: ttsasr-bytedesk
+  ports:
+    - "18000:8000"
+```
+
+这意味着：
+
+- 宿主机可通过 `http://127.0.0.1:18000` 访问 ttsasr 服务
+- Docker 网络内的 bytedesk 应用容器可通过 `http://ttsasr-bytedesk:8000` 访问 ttsasr 服务
+
+对应的 bytedesk 应用容器环境变量例如 [deploy/docker/compose-app-bytedesk.yaml](deploy/docker/compose-app-bytedesk.yaml)：
+
+```yaml
+BYTEDESK_AI_ASR_TTSASR_ENABLED: "true"
+BYTEDESK_AI_ASR_TTSASR_BASE_URL: http://ttsasr-bytedesk:8000
+BYTEDESK_AI_ASR_TTSASR_MODEL: funasr
+BYTEDESK_AI_ASR_TTSASR_LANGUAGE: auto
+```
+
+如果只是希望在源码环境启用本地语音识别服务，先启动 `deploy/docker` 中的中间件组合即可，例如：
+
+```bash
+cd deploy/docker
+./start.sh mysql artemis standard middleware
+```
+
+启动完成后，只要 `ttsasr-bytedesk` 容器健康检查通过，源码启动的后端就可以直接通过 `http://127.0.0.1:18000` 调用本地识别服务。
+
+因此在部署层面，企业可以按业务需求自由选择：
+
+- 只启用本地 ttsasr 镜像，构建完全本地化的语音识别能力
+- 只启用 DashScope 等云语音识别服务，统一走公网或云端模型能力
+- 同时启用本地镜像和云服务，由系统根据文件来源、网络环境和业务需求自动选择更合适的执行路径
+
+除了本地 ttsasr 服务外，同一套 Compose 场景下，云语音识别配置仍然可以通过 properties 和环境变量同时保留。
 
 在 Compose 场景下，properties 写法与环境变量写法的关系大致如下：
 
@@ -168,6 +270,10 @@ spring.ai.dashscope.audio.transcription.realtime-model=paraformer-realtime-v2
 bytedesk.ai.asr.source-format=mp3
 bytedesk.ai.asr.timeout-ms=180000
 bytedesk.ai.asr.poll-interval-ms=1500
+bytedesk.ai.asr.ttsasr.enabled=true
+bytedesk.ai.asr.ttsasr.base-url=http://127.0.0.1:18000
+bytedesk.ai.asr.ttsasr.model=funasr
+bytedesk.ai.asr.ttsasr.language=auto
 ```
 
 对应到 Compose 环境变量通常是：
@@ -182,24 +288,19 @@ SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_REALTIME_MODEL: paraformer-realtime-v2
 BYTEDESK_AI_ASR_SOURCE_FORMAT: mp3
 BYTEDESK_AI_ASR_TIMEOUT_MS: 180000
 BYTEDESK_AI_ASR_POLL_INTERVAL_MS: 1500
+BYTEDESK_AI_ASR_TTSASR_ENABLED: "true"
+BYTEDESK_AI_ASR_TTSASR_BASE_URL: http://ttsasr-bytedesk:8000
+BYTEDESK_AI_ASR_TTSASR_MODEL: funasr
+BYTEDESK_AI_ASR_TTSASR_LANGUAGE: auto
 ```
 
-这里可以重点关注 4 类变量：
+这里可以重点关注 5 类变量：
 
 - `SPRING_AI_MODEL_AUDIO`：声明音频能力默认 provider
 - `SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_ENABLED`：显式开启 DashScope ASR
 - `SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_OPTIONS_MODEL` 与 `SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_REALTIME_MODEL`：定义容器部署下的默认离线模型与实时模型
 - `BYTEDESK_AI_ASR_SOURCE_FORMAT`、`BYTEDESK_AI_ASR_TIMEOUT_MS`、`BYTEDESK_AI_ASR_POLL_INTERVAL_MS`：定义管理台表单和执行接口共享的默认业务参数
-
-需要注意的是，当前仓库里的 Compose 示例默认将：
-
-- `SPRING_AI_MODEL_AUDIO` 配成了 `zhipuai`
-- `SPRING_AI_DASHSCOPE_ENABLED` 配成了 `false`
-- `SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_ENABLED` 配成了 `false`
-- `SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_OPTIONS_MODEL` 配成了 `qwen3-asr-flash`
-- `SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_REALTIME_MODEL` 配成了 `fun-asr-realtime`
-
-这意味着如果直接使用当前默认 Compose 配置启动，DashScope ASR 实际上是关闭状态；同时 Compose 示例里的模型默认值也更偏向容器部署下的实际可用配置，而不完全等同于本地 properties 示例中的 `paraformer-v2 / paraformer-realtime-v2`。
+- `BYTEDESK_AI_ASR_TTSASR_*`：定义本地 ttsasr 服务是否启用、服务地址以及即时测试默认模型参数
 
 如果你希望在 Docker Compose 部署中启用当前文档所描述的 DashScope ASR，至少需要把这些变量调整为：
 
@@ -214,27 +315,34 @@ SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_REALTIME_MODEL: paraformer-realtime-v2
 BYTEDESK_AI_ASR_SOURCE_FORMAT: mp3
 BYTEDESK_AI_ASR_TIMEOUT_MS: 180000
 BYTEDESK_AI_ASR_POLL_INTERVAL_MS: 1500
+BYTEDESK_AI_ASR_TTSASR_ENABLED: "true"
+BYTEDESK_AI_ASR_TTSASR_BASE_URL: http://ttsasr-bytedesk:8000
+BYTEDESK_AI_ASR_TTSASR_MODEL: funasr
+BYTEDESK_AI_ASR_TTSASR_LANGUAGE: auto
 ```
 
 其中：
 
 - 如果 `SPRING_AI_DASHSCOPE_AUDIO_TRANSCRIPTION_API_KEY` 留空，系统会回退到 `SPRING_AI_DASHSCOPE_API_KEY`
-- 如果只是快速验证后台上传识别或公网 URL 转写，保留 `mp3 + 180000 + 1500` 即可
+- 如果只是快速接入后台上传识别、本地语音识别或公网 URL 转写，保留 `mp3 + 180000 + 1500` 即可
+- 如果只是希望启用本地识别服务而暂时不接入云识别，也至少应确保 `BYTEDESK_AI_ASR_TTSASR_ENABLED` 与 `BYTEDESK_AI_ASR_TTSASR_BASE_URL` 配置正确
 - 如果部署场景依赖本地上传文件识别，建议同时确认镜像内具备 `ffmpeg`
 - 如果要做生产部署，建议配合 `.env` 文件或 CI/CD Secret 管理 API Key，而不要直接把明文 Key 写进 Compose 文件
 
-### 7. 推荐配置方式
+### 8. 推荐配置方式
 
 对于大多数企业接入，建议按下面顺序完成配置：
 
+- 先确定是否需要本地识别服务；如果需要私有化部署、内网文件识别、数据不出域或低延迟场景，先部署 ttsasr 镜像
 - 确认 `spring.ai.model.audio=dashscope`
 - 确认 `spring.ai.dashscope.enabled=true`
 - 配置 `spring.ai.dashscope.api-key`，必要时单独补充 `spring.ai.dashscope.audio.transcription.api-key`
+- 配置 `bytedesk.ai.asr.ttsasr.base-url` 等本地识别服务参数
 - 根据主要业务场景选择默认离线模型和实时模型
 - 根据上传音频格式和识别任务时长调整 `bytedesk.ai.asr.source-format`、`bytedesk.ai.asr.timeout-ms` 和 `bytedesk.ai.asr.poll-interval-ms`
 - 如果包含本地文件识别场景，确认运行环境具备 `ffmpeg`
 
-如果只是本地开发或管理后台试听验证，保持当前默认配置即可；如果是面向生产环境，建议同时明确模型策略、超时策略、私有文件解析策略以及本地音频转码依赖。
+如果只是本地开发，保持当前默认配置即可；如果是面向生产环境，建议同时明确模型策略、超时策略、私有文件解析策略、本地音频转码依赖，以及本地识别服务和云识别服务各自承担的业务边界。
 
 ## 四、典型应用场景
 
@@ -275,6 +383,7 @@ BYTEDESK_AI_ASR_POLL_INTERVAL_MS: 1500
 
 ## 七、总结
 
-微语已具备完整的客服向 ASR 基础能力，包括后台测试、前端语音输入转文字、语音消息一键转文字以及识别记录落库。对于语音沟通频繁的客服团队，这项能力能够明显提升处理效率，并为后续 AI 自动化和质检分析提供可靠的数据基础。
+微语已具备完整的客服向 ASR 基础能力，包括本地语音识别服务、云语音识别服务、后台文件识别、前端语音输入转文字、语音消息一键转文字以及识别记录落库。对于语音沟通频繁的客服团队，这项能力能够明显提升处理效率，并为后续 AI 自动化和质检分析提供可靠的数据基础。
 
 - [阿里云语音识别](https://help.aliyun.com/zh/model-studio/recording-file-recognition)
+- [bytedesk-ttsasr镜像Github地址](https://github.com/Bytedesk/bytedesk-ttsasr)

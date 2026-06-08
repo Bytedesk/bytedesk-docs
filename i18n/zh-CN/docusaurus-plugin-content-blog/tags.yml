@@ -53,6 +53,11 @@ Agent:
   permalink: /agent
   description: Agent 工作流与自动化能力
 
+SkillForge:
+  label: SkillForge
+  permalink: /skillforge
+  description: 自进化 Agent Skills 与企业技能运营
+
 大数据:
   label: 大数据
   permalink: /bigdata

@@ -62,7 +62,7 @@ sidebar_position: 26
 - 提交后系统自动保存留言，并进入后续处理队列
 - 访客后续可基于留言结果继续等待回复或接受回访
 
-![message_leave_form](/img/form/message_leave_form.png)
+![message_leave_form](/img/form/message_leave_form_visitor.png)
 
 ### 4. 客服端处理留言
 
