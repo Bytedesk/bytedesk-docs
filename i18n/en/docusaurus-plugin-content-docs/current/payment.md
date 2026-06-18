@@ -24,14 +24,15 @@ The Weiyu system offers multiple editions to meet the needs of organizations of 
 
 ### Online Module Source Code Pricing
 
-- [Online Module Source Code Pricing](./price/online-module)
+- [Instant Messaging Module Source Code Pricing](./price/instant-messaging.md)
+- [Online Module Source Code Pricing](./price/online-module.md)
 
 ### Specialized Module Source Code Pricing (Split)
 
-- [Call Center Module Source Code Pricing](./price/call-center)
-- [Audio and Video Customer Service Module Source Code Pricing](./price/audio-video-service)
-- [Video Conference Module Source Code Pricing](./price/video-conference)
-- [Remote Assistance Module Source Code Pricing](./price/remote-assistance)
+- [Call Center Module Source Code Pricing](./price/call-center.md)
+- [Audio and Video Customer Service Module Source Code Pricing](./price/audio-video-service.md)
+- [Video Conference Module Source Code Pricing](./price/video-conference.md)
+- [Remote Assistance Module Source Code Pricing](./price/remote-assistance.md)
 
 - Note: Modules can be purchased separately. Tech stack: [java + react](https://www.weiyuai.cn/architecture.html), with frontend-backend separation.
 - The prices above are source code prices only. They do not include secondary customization fees, nor operations and maintenance services. Deployment must be handled by the customer.
@@ -112,26 +113,26 @@ The Weiyu system offers multiple editions to meet the needs of organizations of 
 
 | Channel | Community Edition | Enterprise Edition | Platform Edition | Product Agency | Source Code Edition |
 | --- | --- | --- | --- | --- | --- |
-| [Website/H5](./channel/web) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [React](./channel/react) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vue](./channel/vue) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Svelte](./channel/svelte) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Angular](./channel/angular) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Nextjs](./channel/nextjs) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vanilla](./channel/vanilla) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [iOS](./channel/ios) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Android](./channel/android) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Uniapp](./channel/uniapp) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Flutter](./channel/flutter) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Website/H5](./channel/web.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [React](./channel/react.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vue](./channel/vue.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Svelte](./channel/svelte.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Angular](./channel/angular.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Nextjs](./channel/nextjs.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vanilla](./channel/vanilla.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [iOS](./channel/ios.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Android](./channel/android.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Uniapp](./channel/uniapp.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Flutter](./channel/flutter.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 #### Social Media Channels
 
 | Channel | Community Edition | Enterprise Edition | Platform Edition | Product Agency | Source Code Edition |
 | --- | --- | --- | --- | --- | --- |
-| [WeChat Work](./channel/wechat_work) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [WeChat Customer Service](./channel/wechat_kf) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [WeChat Official Account](./channel/wechat_mp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [WeChat Mini Program](./channel/mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WeChat Work](./channel/wechat_work.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WeChat Customer Service](./channel/wechat_kf.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WeChat Official Account](./channel/wechat_mp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WeChat Mini Program](./channel/mini.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | More Integration Channels | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 #### Overseas Media Channels
@@ -140,12 +141,12 @@ Not included in the Source Code Edition by default. Additional charges apply: so
 
 | Channel | Community Edition | Enterprise Edition | Platform Edition | Product Agency | Source Code Edition |
 | --- | --- | --- | --- | --- | --- |
-| [WhatsApp](./channel/whatsapp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Facebook](./channel/facebook) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Instagram](./channel/instagram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Line](./channel/line) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WhatsApp](./channel/whatsapp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Facebook](./channel/facebook.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Instagram](./channel/instagram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Line](./channel/line.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Telegram](./channel/telegram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Email](./channel/email.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | More Integration Channels | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 ### Plus Feature Plugins

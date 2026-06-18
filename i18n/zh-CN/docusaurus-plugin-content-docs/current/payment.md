@@ -24,12 +24,12 @@ sidebar_position: 11
 
 ## 模块源码定价
 
-- [即时通讯模块源码定价](./price/instant-messaging)
-- [在线客服模块源码定价](./price/online-module)
-- [呼叫中心模块源码定价](./price/call-center)
-- [音视频客服模块源码定价](./price/audio-video-service)
-- [视频会议模块源码定价](./price/video-conference)
-- [远程协助模块源码定价](./price/remote-assistance)
+- [即时通讯模块源码定价](./price/instant-messaging.md)
+- [在线客服模块源码定价](./price/online-module.md)
+- [呼叫中心模块源码定价](./price/call-center.md)
+- [音视频客服模块源码定价](./price/audio-video-service.md)
+- [视频会议模块源码定价](./price/video-conference.md)
+- [远程协助模块源码定价](./price/remote-assistance.md)
 
 - 注：可以按模块单独购买，技术栈：[java + react](https://www.weiyuai.cn/architecture.html)，前后分离
 - 上述价格仅为源码价格，不包含二次定制费用，不含运维服务，需要自行部署。
@@ -41,7 +41,7 @@ sidebar_position: 11
 - 一年内免费升级（源码版购买时需明确），一年后可选支付15%/年维护费，包括：bug修复、版本升级（不含运维，仅提供协助）等
 - 提供30天免费试用，付款后支持7天无理由退款（如已交付源码或授权license，则不支持退款）
 - 可提供定制开发服务，按 ¥2,000/人天 计算
-- 原则上不做远程或现场演示，如果需要可以直接参考[文档本地安装部署](./category/private-deployment/)或登录[线上演示系统](https://www.weiyuai.cn/admin)
+- 原则上不做远程或现场演示，如果需要可以直接参考[文档本地安装部署](../category/private-deployment)或登录[线上演示系统](https://www.weiyuai.cn/admin)
 - 开发者为 OPC（一人公司）
 
 ## 功能对比表
@@ -113,26 +113,26 @@ sidebar_position: 11
 
 | 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|
-| [网站/H5](./channel/web) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [React](./channel/react) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vue](./channel/vue) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Svelte](./channel/svelte) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Angular](./channel/angular) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Nextjs](./channel/nextjs) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vanilla](./channel/vanilla) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [iOS](./channel/ios) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Android](./channel/android) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Uniapp](./channel/uniapp) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Flutter](./channel/flutter) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [网站/H5](./channel/web.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [React](./channel/react.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vue](./channel/vue.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Svelte](./channel/svelte.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Angular](./channel/angular.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Nextjs](./channel/nextjs.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vanilla](./channel/vanilla.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [iOS](./channel/ios.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Android](./channel/android.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Uniapp](./channel/uniapp.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Flutter](./channel/flutter.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 #### 社交媒体渠道
 
 | 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|
-| [企业微信](./channel/wechat_work) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信客服](./channel/wechat_kf) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信公众号](./channel/wechat_mp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [小程序](./channel/mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [企业微信](./channel/wechat_work.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信客服](./channel/wechat_kf.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信公众号](./channel/wechat_mp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [小程序](./channel/mini.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 #### 海外媒体渠道
@@ -141,12 +141,12 @@ sidebar_position: 11
 
 | 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|
-| [WhatsApp](./channel/whatsapp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Facebook](./channel/facebook) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Instagram](./channel/instagram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Line](./channel/line) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WhatsApp](./channel/whatsapp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Facebook](./channel/facebook.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Instagram](./channel/instagram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Line](./channel/line.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Telegram](./channel/telegram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Email](./channel/email.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 ### 服务条款

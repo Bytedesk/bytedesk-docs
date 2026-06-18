@@ -24,12 +24,12 @@ sidebar_position: 11
 
 ### 模組源碼定價
 
-- [即時通訊模組源碼定價](./price/instant-messaging)
-- [線上模組源碼定價](./price/online-module)
-- [呼叫中心模組源碼定價](./price/call-center)
-- [音視頻客服模組源碼定價](./price/audio-video-service)
-- [視訊會議模組源碼定價](./price/video-conference)
-- [遠端協助模組源碼定價](./price/remote-assistance)
+- [即時通訊模組源碼定價](./price/instant-messaging.md)
+- [線上模組源碼定價](./price/online-module.md)
+- [呼叫中心模組源碼定價](./price/call-center.md)
+- [音視頻客服模組源碼定價](./price/audio-video-service.md)
+- [視訊會議模組源碼定價](./price/video-conference.md)
+- [遠端協助模組源碼定價](./price/remote-assistance.md)
 
 - 註：可按模組單獨購買，技術棧：[java + react](https://www.weiyuai.cn/architecture.html)，前後端分離。
 - 上述價格僅為源碼價格，不包含二次客製化費用，不含維運服務，需自行部署。
@@ -110,26 +110,26 @@ sidebar_position: 11
 
 | 渠道 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
 | --- | --- | --- | --- | --- | --- |
-| [網站/H5](./channel/web) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [React](./channel/react) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vue](./channel/vue) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Svelte](./channel/svelte) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Angular](./channel/angular) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Nextjs](./channel/nextjs) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vanilla](./channel/vanilla) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [iOS](./channel/ios) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Android](./channel/android) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Uniapp](./channel/uniapp) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Flutter](./channel/flutter) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [網站/H5](./channel/web.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [React](./channel/react.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vue](./channel/vue.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Svelte](./channel/svelte.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Angular](./channel/angular.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Nextjs](./channel/nextjs.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Vanilla](./channel/vanilla.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [iOS](./channel/ios.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Android](./channel/android.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Uniapp](./channel/uniapp.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Flutter](./channel/flutter.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 #### 社交媒體渠道
 
 | 渠道 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
 | --- | --- | --- | --- | --- | --- |
-| [企業微信](./channel/wechat_work) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信客服](./channel/wechat_kf) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信公眾號](./channel/wechat_mp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信小程序](./channel/mini) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [企業微信](./channel/wechat_work.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信客服](./channel/wechat_kf.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信公眾號](./channel/wechat_mp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [微信小程序](./channel/mini.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多對接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 #### 海外媒體渠道
@@ -138,12 +138,12 @@ sidebar_position: 11
 
 | 渠道 | 社區版 | 企業版 | 平台版 | 產品代理 | 源碼版 |
 | --- | --- | --- | --- | --- | --- |
-| [WhatsApp](./channel/whatsapp) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Facebook](./channel/facebook) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Instagram](./channel/instagram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Line](./channel/line) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Telegram](./channel/telegram) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Email](./channel/email) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [WhatsApp](./channel/whatsapp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Facebook](./channel/facebook.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Instagram](./channel/instagram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Line](./channel/line.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Telegram](./channel/telegram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Email](./channel/email.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | 更多對接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 ### 功能插件 Plus
