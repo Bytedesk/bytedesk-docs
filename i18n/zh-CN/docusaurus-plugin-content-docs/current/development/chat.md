@@ -172,7 +172,7 @@ sidebar_position: 1
 | qrcode | string | 当前对话二维码按钮显示控制。默认 PC 端显示、移动端隐藏；传 `1`/`true` 强制显示，传 `0`/`false` 隐藏 |
 | threadDetail | string | 会话详情按钮显示控制。默认不显示；传 `1`/`true`/`yes`/`on` 时显示 |
 | visitorProfile | string | 访客资料按钮显示控制。默认不显示；传 `1`/`true`/`yes`/`on` 时显示 |
-| loadHistory | string | 是否自动加载历史消息。传 `1` 时启用，未传时关闭。详见 [历史消息](./history) |
+| loadHistory | string | 是否自动加载历史消息。传 `1` 时启用，未传时关闭。详见 [历史消息](./message_history.md) |
 
 #### 访客与业务参数
 
@@ -250,7 +250,7 @@ https://chat.example.com/chat?org=df_org_uid&t=1&sid=df_wg_uid&title=%E5%AE%A2%E
 
 ### 相关功能
 
-- [历史消息](./history) - 了解如何加载和展示历史聊天记录
+- [历史消息](./message_history.md) - 了解如何加载和展示历史聊天记录
 - [商品信息对接](../integration/goods_info.md) - 了解如何传递商品信息给客服
 - [订单信息对接](../integration/order_info.md) - 了解如何传递订单信息给客服
 - [用户信息对接](../integration/user_info.md) - 了解如何传递用户信息给客服

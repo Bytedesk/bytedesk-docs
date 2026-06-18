@@ -170,7 +170,7 @@ ChatBox元件支援多種參數配置：
 | avatar | string | 自訂訪客頭像 | 預設頭像 |
 | vipLevel | string | 訪客VIP等級 | "0" |
 | extra | string | 自訂訪客額外資訊（JSON格式） | - |
-| loadHistory | string | 是否自動載入歷史聊天記錄，值為"1"時載入，其他值不載入，詳見[歷史訊息](./history) | - |
+| loadHistory | string | 是否自動載入歷史聊天記錄，值為"1"時載入，其他值不載入，詳見[歷史訊息](./message_history.md) | - |
 | goodsInfo | string | 商品資訊（JSON格式），詳見[商品資訊對接](../integration/goods_info.md) | - |
 | orderInfo | string | 訂單資訊（JSON格式），詳見[訂單資訊對接](../integration/order_info.md) | - |
 | userInfo | string | 使用者資訊（JSON格式），詳見[使用者資訊對接](../integration/user_info.md) | - |
@@ -191,7 +191,7 @@ ChatBox元件支援多種參數配置：
 
 ### 相關功能
 
-- [歷史訊息](./history) - 了解如何載入和展示歷史聊天記錄
+- [歷史訊息](./message_history.md) - 了解如何載入和展示歷史聊天記錄
 - [商品資訊對接](../integration/goods_info.md) - 了解如何傳遞商品資訊給客服
 - [訂單資訊對接](../integration/order_info.md) - 了解如何傳遞訂單資訊給客服
 - [使用者資訊對接](../integration/user_info.md) - 了解如何傳遞使用者資訊給客服

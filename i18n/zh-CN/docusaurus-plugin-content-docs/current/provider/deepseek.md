@@ -140,4 +140,4 @@ spring.ai.deepseek.chat.options.temperature=0.7        # 温度参数，控制�
 - [DeepSeek API 文档](https://api-docs.deepseek.com/zh-cn/)
 - [Spring AI 文档](https://docs.spring.io/spring-ai/reference/api/chat/deepseek-chat.html)
 - [DeepSeek-V4 预览版：迈入百万上下文普惠时代](https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg)
-- [微语文档中心](/docs/intro)
+- [微语文档中心](../intro.md)

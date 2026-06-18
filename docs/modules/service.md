@@ -26,4 +26,4 @@ sidebar_position: 3
 
 ## 访问方式
 
-您可以通过以下链接访问客服管理模块：[客服管理](/service/)
+您可以通过以下文档了解客服管理模块配置与使用：[客服管理](../manual/admin/service/agent.md)

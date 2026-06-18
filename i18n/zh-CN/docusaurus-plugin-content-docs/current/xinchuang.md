@@ -9,6 +9,21 @@ import login2Fa from '/img/develop/admin/login_2fa.png';
 
 微语系统全面支持等保2.0各级别认证要求，为企业提供安全可靠的信创解决方案。本文档列出了系统在等保信创环境下的兼容性支持情况，包括CPU、操作系统、数据库等多方面的适配情况。
 
+## 支持架构
+
+arm64 和 amd64架构均支持。
+
+![arches](/img/deploy/docker/docker_arches.png)
+
+对于国产服务器，比如麒麟920，arm64架构，在拉取镜像时，需要指明系统架构：
+
+```bash
+# 拉取国内镜像（arm64）
+docker pull --platform linux/arm64 registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest
+# 或直接拉取docker官网镜像（arm64）
+docker pull --platform linux/arm64 bytedesk/bytedesk:latest
+```
+
 ## 等保合规能力
 
 微语系统支持不同等级的等保认证，满足企业在不同场景下的安全合规需求

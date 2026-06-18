@@ -24,34 +24,14 @@ The Weiyu system offers multiple editions to meet the needs of organizations of 
 
 ### Online Module Source Code Pricing
 
-| Module | Price | Description |
-| --- | --- | --- |
-| Admin Console Source Code | ¥59,800 | Frontend/React |
-| Customer Service Workspace Source Code | ¥59,800 | Frontend/React, supports Web and desktop |
-| Knowledge Base Help Center Editor Source Code | ¥19,800 | Frontend/React |
-| Ticket Flow / Workflow / Form Low-Code Source Code | ¥39,800 | Frontend/React |
-| Data Dashboard Module Source Code | ¥19,800 | Frontend/React |
-| Training and Examination Module Source Code | ¥29,800 | Frontend/React, in development |
-| Mobile App Customer Service Source Code | ¥59,800 | Android / iOS / Web / Mac / Windows, Flutter |
-| Mini Program Customer Service Source Code | ¥59,800 | WeChat Mini Program and similar, in development |
-| Visitor H5 Chat Source Code | ¥39,800 | Frontend/React, includes online customer service and AI chat dialogue |
-| Server Advanced Features Source Code | ¥59,800 | Backend/Java, [advanced features](#advanced-features) |
+- [Online Module Source Code Pricing](./price/online-module)
 
-### Call Center Module Source Code Pricing
+### Specialized Module Source Code Pricing (Split)
 
-| Module | Price | Description |
-| --- | --- | --- |
-| Call Center Admin Console Source Code | ¥59,800 | Frontend/React |
-| Call Center Customer Service Workspace Source Code | ¥59,800 | Frontend/React, supports Web and desktop |
-| Call Center Server Advanced Source Code | ¥99,800 | Backend/Java |
-| Call Center Visitor Source Code | ¥19,800 | Frontend/React, mainly used for web-based conversation testing |
-
-### Voice Module Source Code Pricing
-
-| Module | Price | Description |
-| --- | --- | --- |
-| Audio and Video Customer Service Source Code | ¥99,800 | Frontend and backend/React + Java. Because it is integrated as a module into the admin console and customer service workspace, and also has a separate H5 visitor audio/video module, purchase is supported only when both the admin console source code and customer service workspace source code are purchased. |
-| Video Conference Source Code | ¥199,800 | Includes server advanced feature source code (Java), Web/desktop client (React/Electron), mobile app (Flutter). Does not include admin console source code. Supports video conferencing, remote teaching, video interviews, screen sharing, whiteboards, video recording, and more. |
+- [Call Center Module Source Code Pricing](./price/call-center)
+- [Audio and Video Customer Service Module Source Code Pricing](./price/audio-video-service)
+- [Video Conference Module Source Code Pricing](./price/video-conference)
+- [Remote Assistance Module Source Code Pricing](./price/remote-assistance)
 
 - Note: Modules can be purchased separately. Tech stack: [java + react](https://www.weiyuai.cn/architecture.html), with frontend-backend separation.
 - The prices above are source code prices only. They do not include secondary customization fees, nor operations and maintenance services. Deployment must be handled by the customer.

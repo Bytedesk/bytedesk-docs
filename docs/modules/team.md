@@ -25,4 +25,4 @@ sidebar_position: 2
 
 ## 访问方式
 
-您可以通过以下链接访问团队管理模块：[团队管理](/team/)
+您可以通过以下文档了解团队管理模块配置与使用：[团队管理](../manual/admin/team/member.md)

@@ -115,4 +115,4 @@ spring.ai.deepseek.chat.options.temperature=0.7
 - [DeepSeek API Docs](https://api-docs.deepseek.com/zh-cn/)
 - [Spring AI DeepSeek](https://docs.spring.io/spring-ai/reference/api/chat/deepseek-chat.html)
 - [DeepSeek-V4 預覽版：邁入百萬上下文普惠時代](https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg)
-- [微語文件中心](/docs/intro)
+- [微語文件中心](../intro.md)

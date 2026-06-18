@@ -49,7 +49,7 @@ export default function Root({children}) {
 
   // 配置客服组件
   const config = {
-    placement: 'bottom-left',
+    placement: 'bottom-right',
     autoPopup: false,
     inviteConfig: {
       show: false,

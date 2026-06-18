@@ -1,9 +1,11 @@
 ---
-sidebar_label: 访客端工单
+sidebar_label: 访客/客户端工单
 sidebar_position: 28
 ---
 
-# 访客端工单对接
+<!-- markdownlint-disable MD060 MD033 -->
+
+# 访客/客户端工单对接
 
 :::tip 提示
 社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)

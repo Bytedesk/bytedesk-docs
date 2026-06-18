@@ -70,6 +70,19 @@ IVR 工作流用于把语音菜单、队列分配、转人工、超时处理、�
 
 ![call_agent](/img/callcenter/call_agent.png)
 
+### 私有部署
+
+- 如果是私有部署服务器，则需要修改配置文件中参数，开启呼叫中心，默认关闭
+
+```bash
+# 源码 31-call-freeswitch.properties 配置
+bytedesk.call.freeswitch.enabled=true
+# 或 docker compose 配置
+BYTEDESK_CALL_FREESWITCH_ENABLED: "true"
+```
+
+![call_center_entrance](/img/callcenter/call_center_entrance.png)
+
 ## 文档下载
 
 如需向团队内部汇报、做方案评审或交付实施文档，可直接下载以下 PPT 和 Word 版本资料。

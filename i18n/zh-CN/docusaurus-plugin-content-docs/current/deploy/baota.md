@@ -13,7 +13,7 @@ sidebar_position: 3
 :::tip 最低配置
 
 - **操作系统**：Ubuntu 22.04 LTS（推荐）
-- **服务器配置**：4核8G内存
+- **服务器配置**：推荐 8核16G内存，如果使用4核8G至少2台，需要将中间件单独部署
 - **宝塔面板**：已安装宝塔面板
 
 :::info 配置优化建议
@@ -24,44 +24,51 @@ sidebar_position: 3
 
 ### 步骤1：选择部署方式
 
-#### 方式一：使用云模型（推荐新手）
+配置仓库地址 [Gitee](https://gitee.com/270580156/bytedesk-docker-compose) 或者 [Github](https://github.com/Bytedesk/bytedesk-docker-compose)。可以直接clone或下载zip解压。或者只需要[下载docker-compose.yaml](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/one/docker-compose.yaml) 或[复制docker-compose.yaml](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/one/docker-compose.yaml)内容并在本地创建同名文件。
 
-1. 克隆项目并进入 `deploy/docker` 目录
-2. 申请智谱AI [API Key](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
-3. 在 `compose-app-bytedesk.yaml` 中填入 API Key
-
-#### 方式二：使用本地模型
-
-1. 克隆项目并进入 `deploy/docker` 目录
-2. 使用 `./start.sh mysql artemis standard all` 启动
-3. 拉取本地 Ollama 模型
-
-#### 方式三：默认不使用ai大模型
-
-1. 使用 `./start.sh mysql artemis noai all` 启动
+```bash
+git clone https://gitee.com/270580156/bytedesk-docker-compose.git
+# 或 
+# git clone https://github.com/Bytedesk/bytedesk-docker-compose.git
+```
 
 ### 步骤2：修改配置
 
+从 bytedesk-docker-compose/one 文件夹中选择任意一个compose文件，根据自己需要选择任何一个即可
+
+```bash
+├── docker-compose-all.yaml # 包含ai、在线客服、呼叫中心、视频客服等全部内容
+├── docker-compose-noai.yaml # 不使用ai，无机器人问答
+├── docker-compose-ollama.yaml # 启动微语，内含ollama，默认使用ollama对话
+├── docker-compose-rabbitmq.yaml # 启动微语，使用rabbitmq替换默认artemismq，不内含ollama，默认使用zhipuai
+├── docker-compose.yaml # 启动微语，不内含ollama，默认使用zhipuai
+```
+
+在 下面以 docker-compose.yaml 为例说明，
+
 #### 2.1 服务器IP配置
 
-在 Docker 部署配置中（例如 `compose-app-bytedesk.yaml`），将 `127.0.0.1` 替换为你的服务器IP地址或域名，并配置 [licenseKey](../development/license.md)：
+将 `127.0.0.1` 替换为你的服务器IP地址或域名
 
 ```yaml
 # 请将 127.0.0.1 替换为你的服务器IP或域名
 BYTEDESK_UPLOAD_URL: http://你的服务器IP:9003
 BYTEDESK_KBASE_API_URL: http://你的服务器IP:9003
 BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
+```
 
+#### 2.2 配置licenseKey
+
+- 并配置 [licenseKey](../development/license.md)：
+
+```yaml
 # 官方微语管理后台-》设置-》License-》申请licenseKey
 BYTEDESK_LICENSE_KEY: 
 ```
 
-> 💡 **提示**：注意修改镜像默认用户名密码，比如:Mysql/Redis等默认密码。
+#### 2.3 云模型配置（智谱AI）
 
-#### 2.2 云模型配置（智谱AI）
-
-如果选择云模型方式，在 `compose-app-bytedesk.yaml` 中配置：
-下单立减10%金额，享限时惊喜价！智谱AI折扣链接：https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI
+智谱AI链接：[https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI](https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI)
 
 ```yaml
 environment:
@@ -73,9 +80,7 @@ environment:
   SPRING_AI_ZHIPUAI_EMBEDDING_OPTIONS_MODEL: embedding-2
 ```
 
-#### 2.3 本地模型配置（Ollama）
-
-如果选择本地模型方式，在 `compose-base.yaml` + `compose-app-bytedesk.yaml` 的默认配置中已包含 Ollama 组件，无需额外切换文件。
+> 💡 **提示**：注意修改镜像默认用户名密码，比如:Mysql/Redis等默认密码。
 
 ### 步骤3：宝塔面板操作
 
@@ -89,14 +94,7 @@ environment:
 
 #### 3.3 复制编排内容
 
-将分层 compose 文件内容按顺序复制到宝塔面板的容器编排中（建议至少包含以下文件）：
-
-- `compose-base.yaml`
-- `compose-db-mysql.yaml`
-- `compose-mq-artemis.yaml`
-- `compose-scenario-standard.yaml`（或 `compose-scenario-noai.yaml`）
-- `compose-app-bytedesk.yaml`
-- `compose-app-mq-artemis.yaml`
+将上述 docker-compose.yaml 文件内容复制到宝塔面板的容器编排中
 
 #### 3.4 等待部署完成
 
@@ -108,22 +106,6 @@ environment:
 
 ![安装完成](/img/deploy/baota/baota_5.png)
 
-### 步骤4：下载模型（仅本地模型需要）
-
-如果使用本地模型，需要下载Ollama模型：
-
-```bash
-# 对话模型
-ollama pull qwen3:0.6b
-
-# 嵌入模型
-ollama pull bge-m3:latest
-```
-
-如果你使用的是标准场景（默认集成 ollama），参考下图安装模型：
-
-![Ollama模型安装](/img/deploy/baota/baota-ollama.png)
-
 ## 访问系统
 
 ### 开放端口
@@ -134,9 +116,12 @@ ollama pull bge-m3:latest
 - **9885** - WebSocket端口
 
 如果你使用域名 + Nginx 反向代理方式对外仅开放 80/443，则 **无需** 对外开放 9003/9885。
-此时请在 docker compose 的环境变量中增加：
+此时请在 docker compose 的环境变量中增加，并重启
 
-- `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://api.你的域名/websocket`
+```bash
+# 注意替换域名，注意提前在NGINX配置https证书
+BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://你的域名/websocket
+```
 
 ### 登录信息
 

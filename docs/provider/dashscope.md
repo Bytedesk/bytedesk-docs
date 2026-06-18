@@ -94,4 +94,4 @@ spring.ai.dashscope.audio.synthesis.enabled=false
 
 - [Alibaba Cloud Bailian](https://bailian.console.aliyun.com/?spm=a2c4g.11186623.0.0.11c67980m5X2VR#/model-market)
 - [Spring AI DashScope](https://docs.spring.io/spring-ai/reference/api/chat/dashscope-chat.html)
-- [Bytedesk Docs](/docs/intro)
+- [Bytedesk Docs](../intro.md)

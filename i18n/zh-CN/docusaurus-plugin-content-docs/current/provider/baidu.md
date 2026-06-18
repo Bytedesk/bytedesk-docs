@@ -113,4 +113,4 @@ spring.ai.baidu.chat.options.temperature=0.7               # 温度参数，控�
 - [百度千帆 API 文档](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Fm2vrveyu)
 - [百度智能云控制台](https://console.bce.baidu.com)
 - [Spring AI 文档](https://docs.spring.io/spring-ai/reference/)
-- [微语文档中心](/docs/intro)
+- [微语文档中心](../intro.md)

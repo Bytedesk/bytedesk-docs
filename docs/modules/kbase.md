@@ -27,4 +27,4 @@ sidebar_position: 4
 
 ## 访问方式
 
-您可以通过以下链接访问知识库模块：[知识库](/kbase/)
+您可以通过以下文档了解知识库模块配置与使用：[帮助中心](../manual/admin/kbase/helpcenter.md)

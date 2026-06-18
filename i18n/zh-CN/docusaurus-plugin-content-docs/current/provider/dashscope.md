@@ -122,4 +122,4 @@ spring.ai.nacos.prompt.template.enabled=false           # Nacos 提示词模板�
 
 - [阿里云百炼大模型文档](https://bailian.console.aliyun.com/?spm=a2c4g.11186623.0.0.11c67980m5X2VR#/model-market)
 - [Spring AI 文档](https://docs.spring.io/spring-ai/reference/api/chat/dashscope-chat.html)
-- [微语文档中心](/docs/intro)
+- [微语文档中心](../intro.md)

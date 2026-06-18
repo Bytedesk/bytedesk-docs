@@ -115,4 +115,4 @@ The base URL does not change. Only the model value needs to be updated.
 - [DeepSeek API Docs](https://api-docs.deepseek.com/zh-cn/)
 - [Spring AI DeepSeek](https://docs.spring.io/spring-ai/reference/api/chat/deepseek-chat.html)
 - [DeepSeek-V4 Preview Announcement](https://mp.weixin.qq.com/s/8bxXqS2R8Fx5-1TLDBiEDg)
-- [Bytedesk Docs](/docs/intro)
+- [Bytedesk Docs](../intro.md)

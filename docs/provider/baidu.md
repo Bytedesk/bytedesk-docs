@@ -60,4 +60,4 @@ spring.ai.baidu.chat.options.temperature=0.7
 
 - [Baidu Qianfan Docs](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Fm2vrveyu)
 - [Baidu Cloud Console](https://console.bce.baidu.com)
-- [Bytedesk Docs](/docs/intro)
+- [Bytedesk Docs](../intro.md)

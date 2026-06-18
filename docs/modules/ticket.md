@@ -28,4 +28,4 @@ sidebar_position: 6
 
 ## 访问方式
 
-您可以通过以下链接访问工单系统模块：[工单系统](/ticket/)
+您可以通过以下文档了解工单系统配置与使用：[工单系统](../manual/admin/ticket/ticket.md)

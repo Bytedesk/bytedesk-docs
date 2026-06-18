@@ -1,9 +1,8 @@
 ---
+title: Docker部署
 sidebar_label: Docker部署
 sidebar_position: 3
 ---
-
-# Docker部署
 
 :::info 试用版License
 需要试用版License？请参考：[问题13：如何申请licenseKey](../faq#问题13如何申请licensekey)
@@ -14,7 +13,7 @@ sidebar_position: 3
 :::tip 最低配置
 
 - **操作系统**：Ubuntu 22.04 LTS（推荐）
-- **服务器配置**：4核8G内存
+- **服务器配置**：推荐 8核16G内存，如果使用4核8G至少2台，需要将中间件单独部署
 - **Docker**：已安装Docker和Docker Compose
 
 :::info 配置优化建议
@@ -22,36 +21,82 @@ sidebar_position: 3
 :::
 
 ## 快速开始
+
 ### 步骤1：准备与进入目录
 
+配置仓库地址 [Gitee](https://gitee.com/270580156/bytedesk-docker-compose) 或者 [Github](https://github.com/Bytedesk/bytedesk-docker-compose)。可以直接clone或下载zip解压。或者只需要[下载docker-compose.yaml](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/one/docker-compose.yaml) 或[复制docker-compose.yaml](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/one/docker-compose.yaml)内容并在本地创建同名文件。
+
 ```bash
-git clone https://github.com/Bytedesk/bytedesk.git
-cd bytedesk/deploy/docker
+git clone https://gitee.com/270580156/bytedesk-docker-compose.git
+# 或 
+# git clone https://github.com/Bytedesk/bytedesk-docker-compose.git
+cd bytedesk-docker-compose
 
 # 如需自定义环境变量，先复制模板
 cp .env.example .env
 ```
 
-### 步骤2：默认启动（推荐）
+### 步骤2：修改配置
 
-```bash
-# 默认：MySQL + Artemis + standard 场景，仅中间件
-./start.sh mysql artemis standard middleware
+#### 2.1 服务器IP配置
+
+将 `127.0.0.1` 替换为你的服务器IP地址或域名
+
+```yaml
+# 请将 127.0.0.1 替换为你的服务器IP或域名
+BYTEDESK_UPLOAD_URL: http://你的服务器IP:9003
+BYTEDESK_KBASE_API_URL: http://你的服务器IP:9003
+BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
 ```
 
-> 💡 更多组合（PostgreSQL/Oracle、RabbitMQ、noai、call、全量 all）请参考：`deploy/docker/readme.zh.md`
+#### 2.2 配置licenseKey
 
-### 步骤3：下载模型（可选）
+- 并配置 [licenseKey](../development/license.md)：
+
+```yaml
+# 官方微语管理后台-》设置-》License-》申请licenseKey
+BYTEDESK_LICENSE_KEY: 
+```
+
+#### 2.3 云模型配置（智谱AI）
+
+智谱AI链接：[https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI](https://www.bigmodel.cn/glm-coding?ic=QVGU6DW7QI)
+
+```yaml
+environment:
+  SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'  # 替换为你的智谱AI API Key
+  SPRING_AI_ZHIPUAI_CHAT_ENABLED: "true"
+  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
+  SPRING_AI_ZHIPUAI_CHAT_OPTIONS_TEMPERATURE: 0.7
+  SPRING_AI_ZHIPUAI_EMBEDDING_ENABLED: "true"
+  SPRING_AI_ZHIPUAI_EMBEDDING_OPTIONS_MODEL: embedding-2
+```
+
+> 💡 **提示**：注意修改镜像默认用户名密码，比如:Mysql/Redis等默认密码。
+
+### 步骤3：默认启动（推荐）
+
+```bash
+# 1) MySQL + Artemis + 标准场景（默认发布组合）
+# 启动
+./start.sh mysql artemis standard all
+# 停止
+./stop.sh mysql artemis standard stop all
+# 或 停止
+./stop.sh mysql artemis standard down all
+```
+
+> 💡 更多组合（PostgreSQL/Oracle、RabbitMQ、noai、call、全量 all）请参考：`readme.zh.md`
+
+### 步骤4：下载模型（可选）
 
 如果使用本地模型，需要下载Ollama模型：
 
 ```bash
 # 对话模型
 docker exec ollama-bytedesk ollama pull qwen3:0.6b
-
 # 嵌入模型
 docker exec ollama-bytedesk ollama pull bge-m3:latest
-
 # 重新排序模型
 docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 ```
@@ -69,7 +114,10 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 
 当 WebSocket 端口（默认 9885）不对外开放时，请增加以下配置，确保前端长连接正常：
 
-- `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://api.你的域名/websocket`
+```bash
+# 注意替换域名，注意提前在NGINX配置https证书
+BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://你的域名/websocket
+```
 
 ### 登录信息
 
@@ -84,7 +132,7 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 
 上面docker compose文件中，默认使用的镜像版本是`bytedesk/bytedesk:latest`，如果需要指定其他版本，比如`bytedesk/bytedesk:1.0.0`，可以在docker compose文件中修改。
 
-### 版本号
+### 镜像版本号
 
 可以在[Docker Hub](https://hub.docker.com/r/bytedesk/bytedesk)或[Github Release](https://github.com/Bytedesk/bytedesk/releases)查看。
 
@@ -101,7 +149,7 @@ arm64 和 amd64架构均支持。
 ```bash
 # 拉取国内镜像（arm64）
 docker pull --platform linux/arm64 registry.cn-hangzhou.aliyuncs.com/bytedesk/bytedesk:latest
-# 或直接拉取官方镜像（arm64）
+# 或直接拉取docker官网镜像（arm64）
 docker pull --platform linux/arm64 bytedesk/bytedesk:latest
 ```
 

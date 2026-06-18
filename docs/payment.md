@@ -20,3 +20,15 @@ For documentation, please visit:
 - Priority support
 - Custom development
 - Contact us for pricing
+
+## Online Module Pricing
+
+- [Instant Messaging Module Source Code Pricing](./price/instant-messaging)
+- [Online Module Source Code Pricing](./price/online-module)
+
+## Specialized Module Pricing
+
+- [Call Center Module Pricing](./price/call-center)
+- [Audio/Video Customer Service Module Pricing](./price/audio-video-service)
+- [Video Conference Module Pricing](./price/video-conference)
+- [Remote Assistance Module Pricing](./price/remote-assistance)
