@@ -9,8 +9,8 @@ sidebar_position: 10
 
 - 演示連結：[歷史會話演示](https://weiyuai.cn/reactdemo)
 - 演示程式碼：
-	- [ThreadHistoryDemo（React 範例）](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/ThreadHistoryDemo.tsx)
-	- [ThreadList（訪客端實作）](https://github.com/Bytedesk/bytedesk-2x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
+  - [ThreadHistoryDemo（React 範例）](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/ThreadHistoryDemo.tsx)
+  - [ThreadList（訪客端實作）](https://github.com/Bytedesk/bytedesk-3x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
 
 > 注意：建議先完成 [React 整合指南](../channel/react.md) 的基礎接入，再進行歷史會話能力對接。
 
@@ -45,26 +45,26 @@ import { BytedeskReact } from '@bytedesk/web/adapters/react';
 import type { BytedeskConfig } from '@bytedesk/web/types';
 
 const config: BytedeskConfig = {
-	chatPath: '/chat/thread',
-	autoPopup: false,
-	placement: 'bottom-right',
-	marginBottom: 20,
-	marginSide: 20,
-	chatConfig: {
-		org: 'df_org_uid',
-		t: '1',
-		sid: 'df_wg_uid',
+ chatPath: '/chat/thread',
+ autoPopup: false,
+ placement: 'bottom-right',
+ marginBottom: 20,
+ marginSide: 20,
+ chatConfig: {
+  org: 'df_org_uid',
+  t: '1',
+  sid: 'df_wg_uid',
 
-		// 建議傳入，便於穩定命中訪客歷史會話
-		visitorUid: 'visitor_001',
-		nickname: '訪客小明',
-		avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg',
-	},
-	locale: 'zh-tw',
+  // 建議傳入，便於穩定命中訪客歷史會話
+  visitorUid: 'visitor_001',
+  nickname: '訪客小明',
+  avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg',
+ },
+ locale: 'zh-tw',
 };
 
 export default function Demo() {
-	return <BytedeskReact {...config} />;
+ return <BytedeskReact {...config} />;
 }
 ```
 
@@ -117,25 +117,25 @@ ThreadList 頁面內部呼叫介面：`/visitor/api/v1/threads`
 
 ```bash
 curl --request GET \
-	--url 'https://{YOUR_API_HOST}/visitor/api/v1/threads?orgUid=df_org_uid&uid=visitor_001&visitorUid=visitor_001&pageNumber=0&pageSize=10&searchText='
+ --url 'https://{YOUR_API_HOST}/visitor/api/v1/threads?orgUid=df_org_uid&uid=visitor_001&visitorUid=visitor_001&pageNumber=0&pageSize=10&searchText='
 ```
 
 ```ts
 const params = new URLSearchParams({
-	orgUid: 'df_org_uid',
-	uid: 'visitor_001',
-	visitorUid: 'visitor_001',
-	pageNumber: '0',
-	pageSize: '10',
-	searchText: '',
+ orgUid: 'df_org_uid',
+ uid: 'visitor_001',
+ visitorUid: 'visitor_001',
+ pageNumber: '0',
+ pageSize: '10',
+ searchText: '',
 });
 
 const response = await fetch(
-	`https://{YOUR_API_HOST}/visitor/api/v1/threads?${params.toString()}`,
-	{
-		method: 'GET',
-		credentials: 'include',
-	}
+ `https://{YOUR_API_HOST}/visitor/api/v1/threads?${params.toString()}`,
+ {
+  method: 'GET',
+  credentials: 'include',
+ }
 );
 const data = await response.json();
 ```
@@ -145,30 +145,36 @@ const data = await response.json();
 以下行為來自目前 ThreadList 實作：
 
 1. **身份優先級**
-	 - 已登入使用者：使用 `userInfo.uid`
-	 - URL 傳入 `visitorUid`：優先使用 URL 的訪客標識
-	 - 否則回退到本地 `anonymousVisitor/currentVisitor`
 
-2. **匿名初始化**
-	 - 當未登入、且沒有可用訪客 uid 時，會嘗試呼叫 `initVisitor`
-	 - 初始化至少需要提供 `org + sid`
-	 - 初始化成功後，寫入 `currentVisitor` 與 `anonymousVisitor`
+- 已登入使用者：使用 `userInfo.uid`
+- URL 傳入 `visitorUid`：優先使用 URL 的訪客標識
+- 否則回退到本地 `anonymousVisitor/currentVisitor`
 
-3. **防重複請求**
-	 - 使用請求鍵：`orgUid|uid|pageNumber|pageSize|searchText`
-	 - 相同請求在進行中或剛成功時會被攔截，避免重複拉取
+1. **匿名初始化**
 
-4. **403 冷卻機制**
-	 - 命中 403 後，對相同請求鍵進入 `30s` 冷卻
-	 - 冷卻期間相同請求不再發起
+- 當未登入、且沒有可用訪客 uid 時，會嘗試呼叫 `initVisitor`
+- 初始化至少需要提供 `org + sid`
+- 初始化成功後，寫入 `currentVisitor` 與 `anonymousVisitor`
 
-5. **滾動載入**
-	 - 列表底部閾值約 `80px` 時自動載入下一頁
-	 - 新頁資料會去重合併
+1. **防重複請求**
 
-6. **會話詳情查看**
-	 - 點擊「查看」後開啟 Drawer
-	 - 透過 `ChatBox` 傳入 `type=history` 與 `sid=threadUid` 展示歷史訊息
+- 使用請求鍵：`orgUid|uid|pageNumber|pageSize|searchText`
+- 相同請求在進行中或剛成功時會被攔截，避免重複拉取
+
+1. **403 冷卻機制**
+
+- 命中 403 後，對相同請求鍵進入 `30s` 冷卻
+- 冷卻期間相同請求不再發起
+
+1. **滾動載入**
+
+- 列表底部閾值約 `80px` 時自動載入下一頁
+- 新頁資料會去重合併
+
+1. **會話詳情查看**
+
+- 點擊「查看」後開啟 Drawer
+- 透過 `ChatBox` 傳入 `type=history` 與 `sid=threadUid` 展示歷史訊息
 
 ## 常見問題
 

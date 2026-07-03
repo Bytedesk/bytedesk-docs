@@ -9,8 +9,8 @@ This page explains how to retrieve and display historical conversation threads (
 
 - Demo link: [Thread History Demo](https://weiyuai.cn/reactdemo)
 - Demo code:
-	- [ThreadHistoryDemo (React example)](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/ThreadHistoryDemo.tsx)
-	- [ThreadList (visitor implementation)](https://github.com/Bytedesk/bytedesk-2x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
+  - [ThreadHistoryDemo (React example)](https://github.com/Bytedesk/bytedesk-web/blob/master/examples/react-demo/src/pages/ThreadHistoryDemo.tsx)
+  - [ThreadList (visitor implementation)](https://github.com/Bytedesk/bytedesk-3x/blob/master/frontend/apps/visitor/src/pages/Thread/index.tsx)
 
 > Note: It is recommended to complete the basic integration from the [React Integration Guide](../channel/react.md) before enabling thread history.
 
@@ -45,26 +45,26 @@ import { BytedeskReact } from '@bytedesk/web/adapters/react';
 import type { BytedeskConfig } from '@bytedesk/web/types';
 
 const config: BytedeskConfig = {
-	chatPath: '/chat/thread',
-	autoPopup: false,
-	placement: 'bottom-right',
-	marginBottom: 20,
-	marginSide: 20,
-	chatConfig: {
-		org: 'df_org_uid',
-		t: '1',
-		sid: 'df_wg_uid',
+ chatPath: '/chat/thread',
+ autoPopup: false,
+ placement: 'bottom-right',
+ marginBottom: 20,
+ marginSide: 20,
+ chatConfig: {
+  org: 'df_org_uid',
+  t: '1',
+  sid: 'df_wg_uid',
 
-		// Strongly recommended for stable history matching
-		visitorUid: 'visitor_001',
-		nickname: 'Visitor Xiao Ming',
-		avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg',
-	},
-	locale: 'en',
+  // Strongly recommended for stable history matching
+  visitorUid: 'visitor_001',
+  nickname: 'Visitor Xiao Ming',
+  avatar: 'https://weiyuai.cn/assets/images/avatar/02.jpg',
+ },
+ locale: 'en',
 };
 
 export default function Demo() {
-	return <BytedeskReact {...config} />;
+ return <BytedeskReact {...config} />;
 }
 ```
 
@@ -117,25 +117,25 @@ ThreadList internally calls: `/visitor/api/v1/threads`
 
 ```bash
 curl --request GET \
-	--url 'https://{YOUR_API_HOST}/visitor/api/v1/threads?orgUid=df_org_uid&uid=visitor_001&visitorUid=visitor_001&pageNumber=0&pageSize=10&searchText='
+ --url 'https://{YOUR_API_HOST}/visitor/api/v1/threads?orgUid=df_org_uid&uid=visitor_001&visitorUid=visitor_001&pageNumber=0&pageSize=10&searchText='
 ```
 
 ```ts
 const params = new URLSearchParams({
-	orgUid: 'df_org_uid',
-	uid: 'visitor_001',
-	visitorUid: 'visitor_001',
-	pageNumber: '0',
-	pageSize: '10',
-	searchText: '',
+ orgUid: 'df_org_uid',
+ uid: 'visitor_001',
+ visitorUid: 'visitor_001',
+ pageNumber: '0',
+ pageSize: '10',
+ searchText: '',
 });
 
 const response = await fetch(
-	`https://{YOUR_API_HOST}/visitor/api/v1/threads?${params.toString()}`,
-	{
-		method: 'GET',
-		credentials: 'include',
-	}
+ `https://{YOUR_API_HOST}/visitor/api/v1/threads?${params.toString()}`,
+ {
+  method: 'GET',
+  credentials: 'include',
+ }
 );
 const data = await response.json();
 ```
@@ -143,30 +143,36 @@ const data = await response.json();
 ## Key runtime behaviors (aligned with current implementation)
 
 1. **Identity priority**
-	 - Logged-in user: use `userInfo.uid`
-	 - URL `visitorUid`: has higher priority
-	 - Otherwise fallback to local `anonymousVisitor/currentVisitor`
 
-2. **Anonymous initialization**
-	 - If not logged in and no available visitor uid, it calls `initVisitor`
-	 - Requires at least `org + sid`
-	 - On success, writes both `currentVisitor` and `anonymousVisitor`
+- Logged-in user: use `userInfo.uid`
+- URL `visitorUid`: has higher priority
+- Otherwise fallback to local `anonymousVisitor/currentVisitor`
 
-3. **Duplicate request protection**
-	 - Request key format: `orgUid|uid|pageNumber|pageSize|searchText`
-	 - Duplicate in-flight or recently successful requests are skipped
+1. **Anonymous initialization**
 
-4. **403 cooldown**
-	 - If a request returns 403, the same request key enters `30s` cooldown
-	 - During cooldown, the same request is blocked
+- If not logged in and no available visitor uid, it calls `initVisitor`
+- Requires at least `org + sid`
+- On success, writes both `currentVisitor` and `anonymousVisitor`
 
-5. **Scroll loading**
-	 - Loads next page when distance to bottom is around `80px`
-	 - New pages are merged with deduplication
+1. **Duplicate request protection**
 
-6. **Thread detail view**
-	 - Click “View” to open Drawer
-	 - Uses `ChatBox` with `type=history` and `sid=threadUid`
+- Request key format: `orgUid|uid|pageNumber|pageSize|searchText`
+- Duplicate in-flight or recently successful requests are skipped
+
+1. **403 cooldown**
+
+- If a request returns 403, the same request key enters `30s` cooldown
+- During cooldown, the same request is blocked
+
+1. **Scroll loading**
+
+- Loads next page when distance to bottom is around `80px`
+- New pages are merged with deduplication
+
+1. **Thread detail view**
+
+- Click “View” to open Drawer
+- Uses `ChatBox` with `type=history` and `sid=threadUid`
 
 ## FAQ
 

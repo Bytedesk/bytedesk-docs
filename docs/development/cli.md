@@ -17,9 +17,10 @@ Bytedesk CLI provides a lightweight command-line runtime for automation, agent i
 
 - `auth`: login, session inspection, logout
 - `org`: list organizations, inspect current organization, switch organization, get by uid
+- `knowledge`: semantic or mixed knowledge-base search backed by HTTP API
 - `ticket`: list tickets, get ticket detail, create ticket, close ticket
 - `config`: inspect and change local CLI configuration
-- `thread`, `message`, `knowledge`: scaffolded placeholders for later API wiring
+- `thread`, `message`: scaffolded placeholders for later API wiring
 - `license`, `seat`, `audit`: enterprise placeholder command groups
 
 ## Local configuration
@@ -34,6 +35,8 @@ Common keys:
 - `auth.channel`
 - `auth.current-org-uid`
 - `auth.current-org-name`
+- `auth.current-user-uid`
+- `auth.current-user-nickname`
 
 ## Build
 
@@ -90,6 +93,43 @@ java -jar starter/target/bytedesk-starter.jar cli auth login \
   --password your-password
 java -jar starter/target/bytedesk-starter.jar cli org list
 java -jar starter/target/bytedesk-starter.jar cli org switch --org your-org-uid
+java -jar starter/target/bytedesk-starter.jar cli knowledge search \
+  --query "refund flow" \
+  --kb your-kb-uid \
+  --search-type MIXED \
+  --topk 5
+java -jar starter/target/bytedesk-starter.jar cli ticket create \
+  --title "Payment callback failed" \
+  --description "Production callback returned 500" \
+  --priority HIGH \
+  --type BUG
+```
+
+## Knowledge search
+
+The `knowledge search` command calls the server-side HTTP search endpoint and returns the same structured result shape used by the MCP knowledge tool.
+
+```bash
+java -jar starter/target/bytedesk-starter.jar cli knowledge search \
+  --query "refund flow" \
+  --kb your-kb-uid \
+  --search-type MIXED \
+  --source-type FAQ \
+  --topk 5
+```
+
+If `--org` is omitted, CLI falls back to the cached `auth.current-org-uid` value from `auth login` or `org switch`.
+
+## Ticket create notes
+
+`ticket create` now depends on the current authenticated user identity. Run `auth login` or `auth whoami` first so CLI can cache:
+
+- `auth.current-user-uid`
+- `auth.current-user-nickname`
+
+Then create the ticket:
+
+```bash
 java -jar starter/target/bytedesk-starter.jar cli ticket create \
   --title "Payment callback failed" \
   --description "Production callback returned 500" \
@@ -103,12 +143,13 @@ Use `--format=json` before the command name for scripts and agent workflows.
 
 ```bash
 java -jar starter/target/bytedesk-starter.jar cli --format=json auth whoami
+java -jar starter/target/bytedesk-starter.jar cli --format=json knowledge search --query "refund flow" --kb your-kb-uid
 java -jar starter/target/bytedesk-starter.jar cli --format=json ticket list --page 0 --size 5
 ```
 
 ## Current limitations
 
-- `thread`, `message`, and `knowledge` are still placeholders
+- `thread` and `message` are still placeholders
 - enterprise command groups are currently placeholders
 - CLI API calls expect the standard Bytedesk JSON envelope: `code`, `message`, `data`
 - local usage usually assumes the backend is reachable on `http://127.0.0.1:9003`

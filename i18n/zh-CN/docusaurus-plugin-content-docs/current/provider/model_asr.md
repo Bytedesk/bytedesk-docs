@@ -232,7 +232,7 @@ bytedesk-ttsasr:
 - 宿主机可通过 `http://127.0.0.1:18000` 访问 ttsasr 服务
 - Docker 网络内的 bytedesk 应用容器可通过 `http://ttsasr-bytedesk:8000` 访问 ttsasr 服务
 
-对应的 bytedesk 应用容器环境变量例如 [deploy/docker/compose-app-bytedesk.yaml](deploy/docker/compose-app-bytedesk.yaml)：
+对应的 bytedesk 应用容器环境变量例如 [deploy/docker/compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-bytedesk.yaml)：
 
 ```yaml
 BYTEDESK_AI_ASR_TTSASR_ENABLED: "true"

@@ -5,8 +5,8 @@ sidebar_position: 70
 
 # 客服监控、强插 以及 接管
 
-:::tip 提示
-社区版暂不支持该功能，请升级到企业版或平台版后使用。
+:::tip 版本说明
+社区版不支持，请升级到企业版或平台版。请替换[licenseKey](../development/license.md)
 :::
 
 ## 概述

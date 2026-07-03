@@ -90,7 +90,7 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: <Link to="docs/plugins/webrtc">{translate({ id: 'homepage.feature.videocs.title', message: 'Video Customer Service', })}</Link>,
+    title: <Link to="docs/webrtc/intro">{translate({ id: 'homepage.feature.videocs.title', message: 'Video Customer Service', })}</Link>,
     Svg: require('@site/static/img/features/video-customer-service.svg').default,
     description: (
       <>

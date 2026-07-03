@@ -159,7 +159,7 @@ bytedesk.ai.tts.audio-format=mp3
 
 ### 5. Docker Compose 部署下的配置说明
 
-如果项目通过 Docker Compose 部署，那么同一套 TTS 配置会以环境变量形式出现在容器编排文件中，例如 [deploy/docker/compose-app-bytedesk.yaml](deploy/docker/compose-app-bytedesk.yaml)。
+如果项目通过 Docker Compose 部署，那么同一套 TTS 配置会以环境变量形式出现在容器编排文件中，例如 [deploy/docker/compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-bytedesk.yaml)。
 
 在 Compose 场景下，properties 写法与环境变量写法的关系大致如下：
 

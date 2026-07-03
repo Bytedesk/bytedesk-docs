@@ -25,7 +25,7 @@ sidebar_position: 11
 ## 模块源码定价
 
 - [即时通讯模块源码定价](./price/instant-messaging.md)
-- [在线客服模块源码定价](./price/online-module.md)
+- [在线/工单客服模块源码定价](./price/online-module.md)
 - [呼叫中心模块源码定价](./price/call-center.md)
 - [音视频客服模块源码定价](./price/audio-video-service.md)
 - [视频会议模块源码定价](./price/video-conference.md)
@@ -36,120 +36,16 @@ sidebar_position: 11
 
 ## 购买须知
 
+- 所有价格公开透明，无隐藏收费。一口价，不议价。
 - 默认价格不含税点（如需发票，普票加收1%税点，专票加收1%或3%税点，可选）
 - 自购买之日起，三个月之内，升级版本（比如：企业版 升级为 平台版，或者升级为 源码版）之前已经支付的费用可以抵扣，支付差价即可。超过三个月需要支付全款
 - 一年内免费升级（源码版购买时需明确），一年后可选支付15%/年维护费，包括：bug修复、版本升级（不含运维，仅提供协助）等
 - 提供30天免费试用，付款后支持7天无理由退款（如已交付源码或授权license，则不支持退款）
 - 可提供定制开发服务，按 ¥2,000/人天 计算
-- 原则上不做远程或现场演示，如果需要可以直接参考[文档本地安装部署](../category/private-deployment)或登录[线上演示系统](https://www.weiyuai.cn/admin)
-- 开发者为 OPC（一人公司）
+- 原则上不做远程或现场演示，如果需要可以直接参考[文档本地安装部署](./deploy/docker)或登录[线上演示系统](https://www.weiyuai.cn/admin)。如有初步意向，请[扫码联系微信](/img/wechat.png)，备注：微语
+- 开发者为 OPC（一人公司）。如有任何建议或反馈或交个朋友，随时欢迎[扫码联系微信](/img/wechat.png)，备注：微语
 
-## 功能对比表
-
-### 基础功能
-
-| 功能 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
-|------|--------|--------|--------|----------|--------|
-| 多租户支持 | ❌ | ❌ | ✅ | ✅ | ✅ |
-| 用户数量 | 不限 | 不限 | 不限 | 不限 | 不限 |
-| 客服数量 | 不限 | 不限 | 不限 | 不限 | 不限 |
-| 机器人数量 | 不限 | 不限 | 不限 | 不限 | 不限 |
-| 知识库数量 | 不限 | 不限 | 不限 | 不限 | 不限 |
-| 单聊 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 群聊 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [文本消息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [图片消息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [语音消息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [视频消息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [文件消息](./development/message.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 机器人消息 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 机器人客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 一对一客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 工作组客服 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [对接大模型](./provider/deepseek.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [知识库](./modules/kbase.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [用户信息对接](./integration/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-
-### 高级功能
-
-| 功能 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
-|------|--------|--------|--------|----------|--------|
-| [会话路由](./development/router.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [千人千面](./integration/viplevel.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品信息对接](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [订单信息对接](./integration/order_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [单点登录SSO](./development/sso.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [消息撤回](./development/message.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [敏感词过滤](./development/taboo.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Ip过滤拦截](./development/ip.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [数据分析](./development/statistic.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [转接会话](./development/transfer.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [邀请会话](./development/invite.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [满意度评分](./development/rating.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [智能工单](./development/ticket.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [会话质检](./development/qualitycheck.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [自动回复](./development/autoreply.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [黑名单](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [留言处理](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [商品信息](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [订单对接](./integration/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [客户管理](./development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [会话小结](./development/summary.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [集群部署](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [品牌自定义](./deploy/config.md#自定义配置) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| 商业版源码 | ❌ | ❌ | ❌ | ❌ | ✅ |
-| 官方技术支持 | ❌ | ✅ | ✅ | ✅ | ✅ |
-<!-- | [消息翻译](./development/translate.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
-<!-- | [文本转语音TTS](./development/tts.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
-<!-- | [语音转文本ASR/STT](./development/asr.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
-<!-- | [会话监控](./development/monitor.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
-<!-- | [意见反馈](./development/feedback.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
-<!-- | [客服培训](./modules/training.md) | ❌ | ✅ | ✅ | ✅ | ✅ | -->
-
-### 支持渠道
-
-#### 网页与应用框架
-
-| 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
-|------|--------|--------|--------|----------|--------|
-| [网站/H5](./channel/web.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [React](./channel/react.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vue](./channel/vue.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Svelte](./channel/svelte.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Angular](./channel/angular.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Nextjs](./channel/nextjs.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Vanilla](./channel/vanilla.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [iOS](./channel/ios.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Android](./channel/android.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Uniapp](./channel/uniapp.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Flutter](./channel/flutter.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
-
-#### 社交媒体渠道
-
-| 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
-|------|--------|--------|--------|----------|--------|
-| [企业微信](./channel/wechat_work.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信客服](./channel/wechat_kf.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [微信公众号](./channel/wechat_mp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [小程序](./channel/mini.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
-
-#### 海外媒体渠道
-
-默认不包含在源码版，额外收费：每个渠道源码1w
-
-| 渠道 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
-|------|--------|--------|--------|----------|--------|
-| [WhatsApp](./channel/whatsapp.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Facebook](./channel/facebook.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Instagram](./channel/instagram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Line](./channel/line.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Telegram](./channel/telegram.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Email](./channel/email.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| 更多对接渠道 | ❌ | ✅ | ✅ | ✅ | ✅ |
-
-### 服务条款
+## 服务条款
 
 | 项目 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|-------|-------|-------|----------|-------|
@@ -157,7 +53,7 @@ sidebar_position: 11
 | 1年后升级维护费 | - | 15%/年 | 15%/年 | 15%/年 | 15%/年 |
 | 定制开发支持 | ❌ | ✅ | ✅ | ✅ | ✅ |
 
-### 权利声明
+## 权利声明
 
 import Copyright from '/img/right/copyright.png';
 import Trademark from '/img/right/trademark.png';

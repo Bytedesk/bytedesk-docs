@@ -261,7 +261,7 @@ const unreadCount = (window as any).bytedesk?.getUnreadMessageCount();
 ## 推荐阅读
 
 - [访客端开发文档](../development/chat)：查看聊天页 URL 参数、`channel` 取值和浏览上下文规则
-- [历史消息](../development/history)：查看 `loadHistory` 和历史会话相关用法
+- [历史消息](../development/message_history)：查看 `loadHistory` 和历史会话相关用法
 - [商品信息对接](../integration/goods_info.md)
 - [订单信息对接](../integration/order_info.md)
 - [用户信息对接](../integration/user_info.md)
