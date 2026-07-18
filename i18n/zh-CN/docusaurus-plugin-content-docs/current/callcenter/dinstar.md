@@ -60,7 +60,7 @@ import dinstar_0 from '/img/callcenter/dinstar/dinstar_0.jpg';
 - 用于对接运营商外线
 - FXO对应端口：2、3
 - 填写SIP账号和密码
-- 代拨号码即从运营商出购买的座机号码，需要填写包括区号和座机号码
+- 代拨号码即从运营商购买的座机号码，需要填写包括区号和座机号码
 
 ![dinstar_3.png](/img/callcenter/dinstar/dinstar_3.png)
 
@@ -162,4 +162,5 @@ import dinstar_0 from '/img/callcenter/dinstar/dinstar_0.jpg';
 
 ## 常用链接
 
-- [鼎信通达官方文档下载](https://www.dinstar.cn/Download/Analog-VoIP-Gateway/datasheet/?coseeId=7152701868)
+- [鼎信通达-官方文档下载](https://www.dinstar.cn/Download/Analog-VoIP-Gateway/datasheet/?coseeId=7152701868)
+- [鼎信通达-微语官网下载](https://www.weiyuai.cn/download/dinstar)

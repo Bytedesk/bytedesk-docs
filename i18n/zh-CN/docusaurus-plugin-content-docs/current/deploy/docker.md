@@ -86,7 +86,7 @@ environment:
 ./stop.sh mysql artemis standard down all
 ```
 
-> 💡 更多组合（PostgreSQL/Oracle、RabbitMQ、noai、call、全量 all）请参考：`readme.zh.md`
+> 💡 更多组合（PostgreSQL/Oracle、RabbitMQ、noai、call、全量 all）请参考：[Gitee-readme.zh.md](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/readme.zh.md) 或 [Github-readme.zh.md](https://github.com/Bytedesk/bytedesk-docker-compose/blob/main/readme.zh.md)
 
 ### 步骤4：下载模型（可选）
 

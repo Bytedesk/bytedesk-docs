@@ -30,5 +30,13 @@
   "sidebar.tutorialSidebar.category.SDKs": {
     "message": "SDKs",
     "description": "The label for category SDKs in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Ops Monitoring": {
+    "message": "運維監控",
+    "description": "The label for category Ops Monitoring in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Digital Human Service": {
+    "message": "數位人客服",
+    "description": "The label for category Digital Human Service in sidebar tutorialSidebar"
   }
 }

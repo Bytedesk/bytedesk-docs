@@ -99,6 +99,10 @@
     "message": "性能测试",
     "description": "The label for category Solutions in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.Ops Monitoring": {
+    "message": "运维监控",
+    "description": "The label for category Ops Monitoring in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Compare": {
     "message": "同业对比",
     "description": "The label for category Solutions in sidebar tutorialSidebar"
@@ -142,6 +146,10 @@
   "sidebar.tutorialSidebar.category.webrtc": {
     "message": "音视频客服",
     "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Digital Human Service": {
+    "message": "数字人客服",
+    "description": "The label for category Digital Human Service in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.meet": {
     "message": "音视频会议",

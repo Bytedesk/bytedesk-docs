@@ -181,7 +181,7 @@ show modules | grep unimrcp
 #### 音频格式要求
 
 | 参数 | 要求 |
-|------|------|
+| ---- | ---- |
 | 编码格式 | PCMU、PCMA、L16 |
 | 采样率 | 8KHz |
 | 采样精度 | 16bits |
@@ -397,7 +397,7 @@ tail -f ${SERVER_ROOT}/mrcp-server/log/comlog.log
 
 训练完成后，在 MRCP 请求的 `vendor_specific_params` 参数中添加模型 ID：
 
-```
+```bash
 lmid=your_model_id
 ```
 
@@ -412,7 +412,7 @@ DETECT_START_OF_INPUT_BY_VAD=0
 SINGLE_WORD_WHTIL_LIST=/path/to/whitelist.txt
 ```
 
-#### 常见问题
+#### 常见问题faq
 
 1. **服务启动失败**
    - 检查端口是否被占用：`netstat -nlp | grep -E '5060|1544|1554'`
@@ -431,6 +431,127 @@ SINGLE_WORD_WHTIL_LIST=/path/to/whitelist.txt
    - 确保音频清晰，无明显噪音
    - 考虑使用自训练模型优化特定词汇识别
 
+#### Docker 镜像部署
+
+Bytedesk 已将百度 MRCP Server 打包为 Docker 镜像，开箱即用，省去手动编译 GCC 8.2 和配置依赖的繁琐步骤。
+
+镜像仓库地址：
+
+- **阿里云（国内推荐）**：`registry.cn-hangzhou.aliyuncs.com/bytedesk/mrcp`
+- **Docker Hub**：`bytedesk/mrcp`
+
+:::info 平台支持
+镜像仅支持 **linux/amd64** 架构。在 Apple Silicon (ARM64) 机器上构建时需设置 `DOCKER_DEFAULT_PLATFORM=linux/amd64`。
+:::
+
+##### 快速启动（从镜像仓库拉取）
+
+1. **准备配置文件**
+
+镜像内置了默认配置，如需自定义，先创建外部配置目录：
+
+```bash
+mkdir -p conf docker/log docker/audio
+cp mrcp-server/conf/unimrcpserver.xml conf/
+cp mrcp-server/conf/mrcp-asr.conf conf/
+```
+
+编辑 `conf/unimrcpserver.xml` 修改 IP 地址，编辑 `conf/mrcp-asr.conf` 修改鉴权信息：
+
+```bash
+# conf/mrcp-asr.conf 中修改
+AUTH_APPID=your_app_id          # 百度 AppID
+AUTH_APPKEY=your_api_key        # 百度 API Key
+```
+
+> ⚠️ **重要**：如果使用外部 conf 目录挂载，必须包含完整的配置文件（至少 `unimrcpserver.xml`、`mrcp-asr.conf`、`dirlayout.xml`），否则容器将因缺少配置而启动失败。
+
+1. **编写 docker-compose.yaml**
+
+```yaml
+services:
+  mrcp-server:
+    image: registry.cn-hangzhou.aliyuncs.com/bytedesk/mrcp:latest
+    pull_policy: always
+    container_name: mrcp-server
+    ports:
+      - "1544:1544"         # MRCP 控制端口
+      - "1554:1554"         # RTSP 端口
+      - "5060:5060/udp"     # SIP 信令 (UDP)
+      - "5060:5060/tcp"     # SIP 信令 (TCP)
+      - "5000-6000:5000-6000/udp"  # RTP 媒体端口范围
+    volumes:
+      - ./mrcp-server/conf:/opt/mrcp-server/conf:ro
+      - ./docker/log:/opt/mrcp-server/log
+      - ./docker/audio:/opt/mrcp-server/audio
+    restart: unless-stopped
+```
+
+1. **拉取并启动**
+
+```bash
+docker compose up -d
+```
+
+1. **查看日志**
+
+```bash
+docker compose logs -f mrcp-server
+```
+
+1. **停止服务**
+
+```bash
+docker compose down
+```
+
+##### 环境变量
+
+| 变量 | 默认值 | 说明 |
+| ---- | ---- | ---- |
+| `MRCP_IMAGE` | `registry.cn-hangzhou.aliyuncs.com/bytedesk/mrcp` | 镜像地址 |
+| `MRCP_TAG` | `latest` | 镜像标签 |
+| `MRCP_CONTAINER_NAME` | `mrcp-server` | 容器名 |
+| `MRCP_PORT` | `1544` | MRCP 端口 |
+| `RTSP_PORT` | `1554` | RTSP 端口 |
+| `SIP_PORT` | `5060` | SIP 端口 |
+| `RTP_PORT_RANGE` | `5000-6000` | RTP 端口范围 |
+| `MRCP_CONF_DIR` | `./mrcp-server/conf` | 配置文件目录 |
+| `MRCP_LOG_DIR` | `./docker/log` | 日志目录 |
+| `MRCP_AUDIO_DIR` | `./docker/audio` | 音频目录 |
+
+使用 Docker Hub 镜像：
+
+```bash
+MRCP_IMAGE=bytedesk/mrcp docker compose up -d
+```
+
+##### 本地构建镜像
+
+如需修改源码或插件后自行构建：
+
+```bash
+# 拉取 Git LFS 大文件
+git lfs pull
+
+# 构建镜像（Apple Silicon 需指定平台）
+DOCKER_DEFAULT_PLATFORM=linux/amd64 docker compose build
+
+# 启动
+docker compose up -d
+```
+
+##### 端口说明
+
+| 端口 | 协议 | 说明 |
+| ---- | ---- | ---- |
+| 1544 | TCP | MRCP 控制端口 |
+| 1554 | TCP | RTSP 端口 |
+| 5060 | TCP/UDP | SIP 信令端口 |
+| 5000-6000 | UDP | RTP 媒体端口范围 |
+
+> **注意**：部署到云主机或容器平台时需同步放通以上端口段。
+
 ### 腾讯云MRCP
 
 ### 科大讯飞MRCP
@@ -445,3 +566,4 @@ SINGLE_WORD_WHTIL_LIST=/path/to/whitelist.txt
 - [FunASR](https://github.com/modelscope/FunASR)
 - [MRCP在美团语音交互中的实践和应用](https://tech.meituan.com/2023/03/09/practice-and-application-of-mrcp-in-voice-interaction-of-meituan.html)
 - [腾讯MRCP Server](https://www.weiyuai.cn/download/mrcp_server_tencent.zip)
+- [Bytedesk MRCP Docker 镜像](https://github.com/Bytedesk/bytedesk-mrcp)

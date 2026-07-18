@@ -67,3 +67,13 @@ SkillForge:
   label: 客服
   permalink: /customer-service
   description: 客户服务相关内容
+
+MCP:
+  label: MCP
+  permalink: /mcp
+  description: 模型上下文协议(Model Context Protocol)
+
+Skill:
+  label: Skill
+  permalink: /skill
+  description: Agent 技能模块与可复用能力单元

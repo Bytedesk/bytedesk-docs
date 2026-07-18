@@ -15,6 +15,7 @@ sidebar_position: 1
 | 工单流程/工作流/表单低代码源码 | ¥29,800 | 前端/React [演示](https://www.weiyuai.cn/workflow/) |
 | 数据大屏模块源码 | ¥19,800 | 前端/React，开发中 |
 | 培训考试模块源码 | ¥29,800 | 前端/React，开发中 |
+| 数字人客服模块源码 | ¥59,800 | 前端/React，开发中，[说明](../digital-human-service/intro.md) |
 | 手机App客服端源码 | ¥59,800 | App/Flutter，安卓/iOS/Web/Mac/Windows [下载](https://www.weiyuai.cn/pages/download.html) |
 | Uniapp客服端源码 | ¥59,800 | Uniapp/Vue，支持[微信小程序](https://www.weiyuai.cn/assets/qr/qr_miniapp.jpg)、App、[H5客服端](https://weiyuai.cn/agenth5/)等 [演示](https://www.weiyuai.cn/pages/download.html) |
 | 访客端H5聊天源码 | ¥49,800 | 前端/React，含在线客服&访客工单&智能客服聊天对话 [演示](https://www.weiyuai.cn/reactdemo/) |
@@ -47,6 +48,8 @@ sidebar_position: 1
 | [用户信息对接](../integration/user_info.md) | ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ### 高级功能
+
+升级企业版或平台版联系[扫码联系微信](/img/wechat.png)，备注：微语
 
 | 功能 | 社区版 | 企业版 | 平台版 | 产品代理 | 源码版 |
 |------|--------|--------|--------|----------|--------|

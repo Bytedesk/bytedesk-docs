@@ -67,3 +67,13 @@ CustomerService:
   label: Customer Service
   permalink: /customer-service
   description: Customer service related content
+
+MCP:
+  label: MCP
+  permalink: /mcp
+  description: Model Context Protocol
+
+Skill:
+  label: Skill
+  permalink: /skill
+  description: Agent skill modules and reusable capability units

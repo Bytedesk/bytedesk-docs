@@ -1,0 +1,8 @@
+{
+  "label": "运维监控",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "微语系统运维监控指南 — Spring Boot Admin 监控面板、健康检查、指标采集及告警通知。"
+  }
+}
