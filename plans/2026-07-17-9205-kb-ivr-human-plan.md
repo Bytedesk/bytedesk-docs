@@ -10,27 +10,27 @@
 
 | 工作包 | 名称 | 状态 | 完成度 | 备注 |
 | ------ | ------ | ------ | ------ | ------ |
-| A | 9205 配置与热线数据底座 | ✅ 已完成 | ~95% | AiBotSettings 全部文件已创建，Liquibase 已注册，VoicemailEntity 字段已补齐；仅缺 `package-info.java`（非阻塞） |
+| A | 9205 配置与热线数据底座 | ✅ 已完成 | ~95% | ExtensionSettings 全部文件已创建，Liquibase 已注册，VoicemailEntity 字段已补齐；仅缺 `package-info.java`（非阻塞） |
 | B | 通用热线 workflow 与 Java 决策底座 | ⚠️ 部分完成 | ~85% | 节点类型枚举、HotlineHandoffDecisionService、IvrMenuHttapiController 的 human_handoff / acd_enqueue / leave_message / voice_bot / business_http 运行时均已落地，且针对 IvrMenuHttapiController 的 11 条单测已通过；默认 schema 发布治理仍待补齐 |
 | C | FreeSWITCH 通用模板与 9205 拨号计划 | ⚠️ 部分完成 | ~85% | 9205 回合制 dialplan 已完成 ACD_ENQUEUE / LEAVE_MESSAGE / HANGUP 路由和留言录音；acd_dispatcher / leave_msg_dispatcher 已在 DialplanRestService 中初始化，通用模板基本落地 |
 | D | 9205 AI 知识库与转人工主链路 | ✅ 已完成 | ~90% | QwenRealtimeVoiceAgentService 已集成 KB 检索、转人工决策、instructions 装配；HttapiController 透传参数 |
 | E | callAdmin 页面与发布阻断能力 | ⚠️ 部分完成 | ~92% | 前端 CRUD 页面与最小发布入口已完成（表格+抽屉+路由+发布按钮）；后端已补 `status/publishedVersion` 字段、“运行时只读 PUBLISHED 配置”约束、显式 `/publish` 入口、最小引用阻断校验、对应 Liquibase 字段迁移，以及“编辑已发布配置时转入 DRAFT 副本、发布时归档旧 PUBLISHED”语义；组织查询已按 `botDid + orgUid + type` 聚合为当前工作副本视图，并补充 `timeConditionUid` 启用态阻断；剩余缺口主要是更细粒度引用状态校验与版本管理 |
-| F | 测试与端到端验证 | ⚠️ 已开始 | ~75% | IvrMenuHttapiController 定向单测 11/11 已通过；QwenRealtimeVoiceAgentService 新增 3 条主链路单测已通过（知识库命中、转人工留言、默认组织 published 配置回退）；AiBotSettingsRestService 新增 11 条单测已通过（含发布成功、跨租户阻断、编辑已发布配置生成 DRAFT、副本发布归档旧线上态、timeCondition 启用态阻断、列表聚合优先 DRAFT）；callAdmin 留言管理页已补 DID、队列、留言原因、回呼状态、录音地址、转写内容与处理时间展示；真实拨测与端到端场景仍未补齐 |
+| F | 测试与端到端验证 | ⚠️ 已开始 | ~75% | IvrMenuHttapiController 定向单测 11/11 已通过；QwenRealtimeVoiceAgentService 新增 3 条主链路单测已通过（知识库命中、转人工留言、默认组织 published 配置回退）；ExtensionSettingsRestService 新增 11 条单测已通过（含发布成功、跨租户阻断、编辑已发布配置生成 DRAFT、副本发布归档旧线上态、timeCondition 启用态阻断、列表聚合优先 DRAFT）；callAdmin 留言管理页已补 DID、队列、留言原因、回呼状态、录音地址、转写内容与处理时间展示；真实拨测与端到端场景仍未补齐 |
 
 ### 已完成的关键交付物
 
 **后端 (enterprise/call)**：
 
-- `ai_bot/AiBotSettingsEntity.java` — 完整实体，包含运行时字段与 `status/publishedVersion` 发布态字段
-- `ai_bot/AiBotSettingsRepository.java`
-- `ai_bot/AiBotSettingsRequest.java` / `AiBotSettingsResponse.java`
-- `ai_bot/AiBotSettingsRestService.java` — 含 `findByBotDidAndOrgUid()`、`findPublishedByBotDidAndOrgUid()`、`getOrCreateDefault()`、`publish()`，并在更新已发布配置时自动分流到 DRAFT 副本，组织查询按当前工作副本聚合
-- `ai_bot/AiBotSettingsRestController.java` — 完整 CRUD + 导出 API (`/api/v1/ai/bot/settings`)
-- `ai_bot/AiBotSettingsInitializer.java` — 默认 9205 配置初始化
-- `ai_bot/AiBotSettingsPermissions.java` — 权限定义
-- `ai_bot/AiBotSettingsExcel.java` — 导出 Excel 定义
-- `ai_bot/AiBotSettingsEventListener.java` / `AiBotSettingsEntityListener.java`
-- `ai_bot/AiBotSettingsSpecification.java`
+- `ai_bot/ExtensionSettingsEntity.java` — 完整实体，包含运行时字段与 `status/publishedVersion` 发布态字段
+- `ai_bot/ExtensionSettingsRepository.java`
+- `ai_bot/ExtensionSettingsRequest.java` / `ExtensionSettingsResponse.java`
+- `ai_bot/ExtensionSettingsRestService.java` — 含 `findByBotDidAndOrgUid()`、`findPublishedByBotDidAndOrgUid()`、`getOrCreateDefault()`、`publish()`，并在更新已发布配置时自动分流到 DRAFT 副本，组织查询按当前工作副本聚合
+- `ai_bot/ExtensionSettingsRestController.java` — 完整 CRUD + 导出 API (`/api/v1/ai/bot/settings`)
+- `ai_bot/ExtensionSettingsInitializer.java` — 默认 9205 配置初始化
+- `ai_bot/ExtensionSettingsPermissions.java` — 权限定义
+- `ai_bot/ExtensionSettingsExcel.java` — 导出 Excel 定义
+- `ai_bot/ExtensionSettingsEventListener.java` / `ExtensionSettingsEntityListener.java`
+- `ai_bot/ExtensionSettingsSpecification.java`
 
 **数据库**：
 
@@ -48,7 +48,7 @@
 
 **9205 AI 主链路 (QwenRealtimeVoiceAgentService)**：
 
-- `findAiBotSettings()` — 按 botDid + orgUid 加载已发布配置
+- `findExtensionSettings()` — 按 botDid + orgUid 加载已发布配置
 - `resolveKnowledgeBaseReply()` — 知识库检索 + 阈值判断
 - `resolveHandoffDecision()` — 转人工意图识别 + 调用 HotlineHandoffDecisionService
 - `buildInstructions()` — systemPrompt 装配
@@ -63,15 +63,15 @@
 
 **前端 (callAdmin)**：
 
-- `pages/Dashboard/Call/AiBotSettings/index.tsx` — 页面入口
-- `pages/Dashboard/Call/AiBotSettings/AiBotSettingsTable.tsx` — ProTable 列表（含测试呼叫、发布按钮、状态/发布版本展示）
-- `pages/Dashboard/Call/AiBotSettings/AiBotSettingsDrawer.tsx` — ProForm 表单（含知识库/队列/时间条件下拉选择）
+- `pages/Dashboard/Call/ExtensionSettings/index.tsx` — 页面入口
+- `pages/Dashboard/Call/ExtensionSettings/ExtensionSettingsTable.tsx` — ProTable 列表（含测试呼叫、发布按钮、状态/发布版本展示）
+- `pages/Dashboard/Call/ExtensionSettings/ExtensionSettingsDrawer.tsx` — ProForm 表单（含知识库/队列/时间条件下拉选择）
 - `pages/Dashboard/Call/Voicemail/VoicemailTable.tsx` — 留言管理列表已展示 DID、队列、留言原因、回呼状态、录音地址、转写内容、处理时间
 - `apis/call/ai_bot_settings.ts` — API 调用（含 `/publish`）
 - `@types/call/ai_bot_settings.d.ts` — TypeScript 类型定义（含 `status` / `publishedVersion`）
 - `@types/call/voicemail.d.ts` — TypeScript 类型定义已补热线扩展字段
 - `config/routes.ts` — 路由 `/call/ai-bot-settings` 已注册
-- `access.ts` — `canAiBotSettings` 权限已定义
+- `access.ts` — `canExtensionSettings` 权限已定义
 - `utils/authorities.ts` — `AI_BOT_SETTINGS` 权限常量
 
 ### 待完成的关键事项
@@ -80,12 +80,12 @@
 
 - [ ] 工作包 F：补齐 9205 端到端测试验证（排队、后台配置生效、真实 HTTAPI 回合制链路）
 - [ ] 发布阻断增强：补齐队列发布态模型、更多引用对象状态校验，以及更完整的引用完整性校验
-- [x] 为 `AiBotSettings` / `QwenRealtimeVoiceAgentService` 增加最小可执行测试，覆盖查询、默认 9205 配置读取、更新、知识库命中与转人工分支
+- [x] 为 `ExtensionSettings` / `QwenRealtimeVoiceAgentService` 增加最小可执行测试，覆盖查询、默认 9205 配置读取、更新、知识库命中与转人工分支
 - [x] 为 `92-ai-bot.xml -> /ai-bot -> /visitor/api/v1/call/voice-agent/turn` 的 9205 回合制路由补充最小单测，覆盖 `ACD_ENQUEUE` / `LEAVE_MESSAGE` 返回值到 `bot_route`、队列、留言变量的映射
 
 **重要级**：
 
-- [x] `AiBotSettings` 的 Liquibase migration 补齐 `settings_status` / `published_version` 字段
+- [x] `ExtensionSettings` 的 Liquibase migration 补齐 `settings_status` / `published_version` 字段
 - [x] `VoicemailEntity` 的 Liquibase migration 已包含热线扩展字段
 - [x] callAdmin 留言管理页面已对接扩展后的 `VoicemailEntity` 主要展示字段
 - [ ] `package-info.java` 补充
@@ -171,7 +171,7 @@
 1. 首期能力生效路径：`92-ai-bot.xml` 中 9205 的 `record -> httapi -> playback -> loop` 回合制流程。
 2. 首期不覆盖路径：`mod_audio_stream + QwenRealtimeMediaWebSocketHandler` 实时媒体桥模式。
 3. 部署要求：首期上线时，9205 应保持或切换为回合制模式，避免出现“后台已配置但实时媒体桥未生效”的双轨行为。
-4. 后续若需要同时支持实时媒体桥，应单独增加第二阶段规划，把 `AiBotSettings` 同步接入实时媒体桥的 `model / voice / instructions / handoff` 逻辑。
+4. 后续若需要同时支持实时媒体桥，应单独增加第二阶段规划，把 `ExtensionSettings` 同步接入实时媒体桥的 `model / voice / instructions / handoff` 逻辑。
 
 同时需要明确，首期提到的 `human_handoff / leave_message / keyboard` 仅表示**复用热线 workflow 的节点语义与已有服务能力**，并不表示 9205 会在首期直接切换为 `IvrMenuHttapiController` 驱动的 workflow 运行时：
 
@@ -184,7 +184,7 @@
 ```text
 用户拨打 9205
   → CallRoute 命中 9205
-  → 加载 9205 配置（AiBotSettings）
+  → 加载 9205 配置（ExtensionSettings）
   → AI 语音对话循环：
       │
       ├─ 1. TTS 播报欢迎语（可配置）
@@ -255,7 +255,7 @@
 
 | 模块 | 职责 | 9205 映射 |
 | ------ | ------ | ----------- |
-| `enterprise/call` | 热线运行时主编排、热线决策、留言、队列适配 | 新增 `AiBotSettings`，复用热线服务 |
+| `enterprise/call` | 热线运行时主编排、热线决策、留言、队列适配 | 新增 `ExtensionSettings`，复用热线服务 |
 | `modules/core` | workflow 节点类型、默认 schema、通用流程模型 | 继续作为 IVR/workflow 节点定义底座 |
 | `modules/service` | 服务时间、通知、回呼、工单等联动能力 | 继续作为通用支撑服务 |
 | `enterprise/ai` | ASR/TTS、机器人接待、意图识别、失败回退 | 9205 首期主要落在这里 |
@@ -289,7 +289,7 @@
 3. `offlineAction`、`overflowAction`、`noAnswerAction` 只能引用允许的节点类型：`acd_enqueue`、`leave_message`、`end`、`keyboard`
 4. `fallbackNodeId` 若存在，必须在同一 workflow 且不能形成自循环
 
-9205 映射：首期不直接运行该 workflow 节点，但 `AiBotSettings.queueUid / timeConditionUid / ringTimeoutSeconds` 与它语义对齐，并最终组装为 `HotlineHandoffDecisionRequest`。
+9205 映射：首期不直接运行该 workflow 节点，但 `ExtensionSettings.queueUid / timeConditionUid / ringTimeoutSeconds` 与它语义对齐，并最终组装为 `HotlineHandoffDecisionRequest`。
 
 #### acd_enqueue
 
@@ -340,7 +340,7 @@
 2. `notifyTargetType=USER` 时 `notifyTargetValue` 必填
 3. `createTicket=true` 时需校验工单能力或保留降级路径
 
-9205 映射：`AiBotSettings.voicemailPrompt / maxRecordSeconds / enableVoicemail` 与该节点语义保持一致。
+9205 映射：`ExtensionSettings.voicemailPrompt / maxRecordSeconds / enableVoicemail` 与该节点语义保持一致。
 
 #### voice_bot
 
@@ -365,7 +365,7 @@
 2. `maxTurns` 取值范围建议为 `1-20`
 3. `returnToMenuNodeId` 必须指向 `keyboard` 或主菜单类节点
 
-9205 映射：9205 首期不通过该 workflow 节点执行，而是直接由 `AiBotSettings` + `QwenRealtimeVoiceAgentService` 驱动，但字段语义应尽量对齐。
+9205 映射：9205 首期不通过该 workflow 节点执行，而是直接由 `ExtensionSettings` + `QwenRealtimeVoiceAgentService` 驱动，但字段语义应尽量对齐。
 
 #### business_http
 
@@ -395,7 +395,7 @@
 
 1. IVR 执行轨迹继续落到 `IvrRecordEntity`
 2. 电话留言继续扩展 `VoicemailEntity`
-3. 队列配置优先复用 `CallCenterQueue`
+3. 队列配置优先复用 `CallQueue`
 4. 时间策略优先复用 `TimeCondition`
 
 `VoicemailEntity` 建议继续补充以下热线字段：
@@ -447,7 +447,7 @@
 2. IvrMenu
 3. Workflow schema
 4. TimeCondition
-5. CallCenterQueue / ACD 策略
+5. CallQueue / ACD 策略
 6. 通用 Dialplan 模板
 
 发布前阻断校验：
@@ -489,11 +489,11 @@ FreeSWITCH 侧不新增任何业务相关 dialplan 文件。所有热线逻辑�
 
 ## 6. 9205 示例专属实施计划
 
-### 阶段 1：后台配置能力（AiBotSettingsEntity）
+### 阶段 1：后台配置能力（ExtensionSettingsEntity）
 
 **目标**：让 9205 的参数可在 callAdmin 后台编辑，不再硬编码。
 
-**新增实体**：`AiBotSettingsEntity`（在 `enterprise/call` 模块）
+**新增实体**：`ExtensionSettingsEntity`（在 `enterprise/call` 模块）
 
 | 字段 | 类型 | 说明 |
 | ------ | ------ | ------ |
@@ -524,18 +524,18 @@ FreeSWITCH 侧不新增任何业务相关 dialplan 文件。所有热线逻辑�
 
 **新增文件**：
 
-- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsEntity.java`
-- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRepository.java`
-- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRequest.java`
-- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsResponse.java`
-- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRestController.java`
-- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRestService.java`
-- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsInitializer.java`（初始化默认 9205 配置）
+- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsEntity.java`
+- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRepository.java`
+- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRequest.java`
+- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsResponse.java`
+- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRestController.java`
+- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRestService.java`
+- `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsInitializer.java`（初始化默认 9205 配置）
 - `starter/src/main/resources/db/liquibase/changelog/260717_add_ai_bot_settings.xml`
 
 **前端新增**：
 
-- `frontend/apps/callAdmin/src/pages/AiBotSettings/` 管理页面
+- `frontend/apps/callAdmin/src/pages/ExtensionSettings/` 管理页面
 - 路由注册与菜单入口
 
 ### 阶段 2：知识库检索集成
@@ -576,9 +576,9 @@ secondTurnVoiceAgent():
 
 ```java
 // 检测转人工意图
-if (aiBotSettings.isEnableHumanHandoff() && containsHumanHandoffIntent(transcript)) {
+if (ExtensionSettings.isEnableHumanHandoff() && containsHumanHandoffIntent(transcript)) {
   // 不再继续 AI 对话，转而进入现有热线转人工决策
-    return buildHumanHandoffResponse(xml, vars, request, aiBotSettings);
+    return buildHumanHandoffResponse(xml, vars, request, ExtensionSettings);
 }
 ```
 
@@ -589,7 +589,7 @@ if (aiBotSettings.isEnableHumanHandoff() && containsHumanHandoffIntent(transcrip
 ```text
 HotlineHandoffDecisionService.decide():
   1. 查询 timeCondition → 判断是否工作时间
-  2. 查询 CallCenterQueue → 判断队列状态
+  2. 查询 CallQueue → 判断队列状态
   3. 查询 AcdAgentState → 判断坐席可用性
   4. 决策分支：
      ├─ 工作时间 + 在线可接待 → AcdService.enqueue() → transfer 到队列
@@ -598,7 +598,7 @@ HotlineHandoffDecisionService.decide():
      └─ 振铃超时无应答 → leave_message 节点 → 提示留言
 ```
 
-  9205 只需要补一层适配，把 `AiBotSettings` 中的 `queueUid / queueName / timeConditionUid / ringTimeoutSeconds / allowQueue` 组装成 `HotlineHandoffDecisionRequest` 即可。
+  9205 只需要补一层适配，把 `ExtensionSettings` 中的 `queueUid / queueName / timeConditionUid / ringTimeoutSeconds / allowQueue` 组装成 `HotlineHandoffDecisionRequest` 即可。
 
 **FreeSWITCH 侧变更**：
 
@@ -620,7 +620,7 @@ HotlineHandoffDecisionService.decide():
 
 **目标**：在 callAdmin 后台提供 9205 的完整配置界面。
 
-**前端页面**：`frontend/apps/callAdmin/src/pages/AiBotSettings/`
+**前端页面**：`frontend/apps/callAdmin/src/pages/ExtensionSettings/`
 
 - **基本设置**：号码、欢迎语、绑定知识库、最大轮数
 - **AI 设置**：模型选择、音色选择、系统提示词编辑
@@ -632,13 +632,13 @@ HotlineHandoffDecisionService.decide():
 
 | 模块 | 变更范围 | 说明 |
 | ------ | ---------- | ------ |
-| `enterprise/call` | 新增 AiBotSettingsEntity + 服务类 | 核心配置实体 |
+| `enterprise/call` | 新增 ExtensionSettingsEntity + 服务类 | 核心配置实体 |
 | `enterprise/call` | 修改 QwenRealtimeVoiceAgentService | 9205 专属知识库增强与提示词装配 |
 | `enterprise/call` | 复用 HotlineHandoffDecisionService / HotlineLeaveMessageService | 转人工、排队、留言复用现有热线能力 |
 | `modules/call` | 修改 HttapiController / VoiceAgentHttpClient | 加载配置、透传参数、触发 9205 专属分支 |
 | `modules/kbase` | 依赖注入 FaqElasticService | 提供知识库检索 API（已存在，无需改） |
 | `deploy/freeswitch` | 修改 92-ai-bot.xml | 增加 transfer/留言分支支持 |
-| `frontend/apps/callAdmin` | 新增 AiBotSettings 配置页 | 后台管理界面 |
+| `frontend/apps/callAdmin` | 新增 ExtensionSettings 配置页 | 后台管理界面 |
 | `starter` | Liquibase changelog | 新增 ai_bot_settings 表 |
 
 ## 8. 数据流示例
@@ -778,13 +778,13 @@ HotlineHandoffDecisionService.decide():
 
 ### 13.1 工作包 A：9205 配置与热线数据底座 &nbsp; ✅ 已完成 (~95%)
 
-> 状态：AiBotSettings 全部 12 个文件已创建，Liquibase 已注册，VoicemailEntity 热线字段已补齐。仅缺 `package-info.java`（非阻塞）。
+> 状态：ExtensionSettings 全部 12 个文件已创建，Liquibase 已注册，VoicemailEntity 热线字段已补齐。仅缺 `package-info.java`（非阻塞）。
 
 目标：先把 9205 配置对象和热线留言主对象补齐，为后续运行时改造提供稳定输入。
 
 包含内容：
 
-1. 新增 `AiBotSettingsEntity`、Repository、Request/Response、RestService、RestController。
+1. 新增 `ExtensionSettingsEntity`、Repository、Request/Response、RestService、RestController。
 2. 增加 Liquibase `bytedesk_call_ai_bot_settings` 表。
 3. 增加默认 9205 初始化数据。
 4. 补齐 `VoicemailEntity` 的 `callUuid`、`didNumber`、`queueUid`、`leaveReason`、`callbackStatus` 等热线扩展字段。
@@ -798,18 +798,18 @@ HotlineHandoffDecisionService.decide():
 
 #### 13.1.1 文件级改动清单
 
-基于当前仓库状态，工作包 A 不再是“全部新增”。其中 `Voicemail` 相关基础结构已经存在，`AiBotSettings` 相关结构尚不存在。
+基于当前仓库状态，工作包 A 不再是“全部新增”。其中 `Voicemail` 相关基础结构已经存在，`ExtensionSettings` 相关结构尚不存在。
 
 预计新增文件：
 
-1. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsEntity.java`
-2. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRepository.java`
-3. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRequest.java`
-4. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsResponse.java`
-5. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRestService.java`
-6. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsRestController.java`
-7. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsInitializer.java`
-8. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/AiBotSettingsPermissions.java`
+1. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsEntity.java`
+2. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRepository.java`
+3. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRequest.java`
+4. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsResponse.java`
+5. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRestService.java`
+6. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsRestController.java`
+7. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsInitializer.java`
+8. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/ExtensionSettingsPermissions.java`
 9. `enterprise/call/src/main/java/com/bytedesk/call/ai_bot/package-info.java`
 10. `starter/src/main/resources/db/changelog/migration/260717_add_ai_bot_settings.xml`
 
@@ -832,7 +832,7 @@ HotlineHandoffDecisionService.decide():
 6. `enterprise/call/src/main/java/com/bytedesk/call/voicemail/VoicemailRestController.java`
   任务：一般不需要结构性改动，仅在后续若新增 9205 专用查询接口时再评估。
 7. `enterprise/call/src/main/java/com/bytedesk/call/voicemail/VoicemailInitializer.java`
-  任务：参考其权限初始化模式，为 `AiBotSettingsInitializer` 提供实现样式。
+  任务：参考其权限初始化模式，为 `ExtensionSettingsInitializer` 提供实现样式。
 
 建议实现顺序：
 
@@ -842,7 +842,7 @@ HotlineHandoffDecisionService.decide():
 
 工作包 A 的本地判断结论：
 
-1. `AiBotSettings` 线是新增为主。
+1. `ExtensionSettings` 线是新增为主。
 2. `Voicemail` 线是核对与补齐为主。
 3. migration 实际目录是 `starter/src/main/resources/db/changelog/migration/`，不是旧草案里写的 `db/liquibase/changelog/`。
 
@@ -891,7 +891,7 @@ HotlineHandoffDecisionService.decide():
 
 包含内容：
 
-1. 在 `HttapiController` 的 `secondTurnVoiceAgent()` 或等效入口加载 `AiBotSettings`。
+1. 在 `HttapiController` 的 `secondTurnVoiceAgent()` 或等效入口加载 `ExtensionSettings`。
 2. 透传 `kbUid`、知识库阈值、人工队列、留言配置等参数。
 3. 保证非 9205 的通用 visitor 语音场景不受影响。
 4. 在 `QwenRealtimeVoiceAgentService` 中新增知识库搜索与 prompt 增强逻辑。
@@ -913,7 +913,7 @@ HotlineHandoffDecisionService.decide():
 
 包含内容：
 
-1. 新增 AiBotSettings 页面。
+1. 新增 ExtensionSettings 页面。
 2. 支持基本设置、AI 设置、知识库设置、转人工设置、留言设置。
 3. 支持保存、读取、基础表单校验。
 4. 补齐 `DRAFT / PUBLISHED / DISABLED / ARCHIVED` 流程。进行中，后端最小 `DRAFT -> PUBLISHED` 已完成。
@@ -927,11 +927,11 @@ HotlineHandoffDecisionService.decide():
 
 ### 13.6 工作包 F：测试与端到端验证 &nbsp; ⚠️ 已开始 (~75%)
 
-> 状态：已完成后端最小验证集。`enterprise/call` 已补 `AiBotSettingsRestService`、`QwenRealtimeVoiceAgentService`、`IvrMenuHttapiController` 定向单测；`modules/call` 已补 `HttapiController` 的 9205 回合制路由映射单测；其中 `AiBotSettingsRestService` 已新增发布成功、跨租户阻断、编辑已发布配置生成 DRAFT、发布归档旧线上态、timeCondition 启用态阻断和列表聚合优先 DRAFT 验证，`QwenRealtimeVoiceAgentService` 已新增“租户无已发布配置时回退默认组织 published 配置”验证；callAdmin 留言管理页也已接入热线扩展字段展示。真实拨测、排队与留言端到端场景仍待执行。
+> 状态：已完成后端最小验证集。`enterprise/call` 已补 `ExtensionSettingsRestService`、`QwenRealtimeVoiceAgentService`、`IvrMenuHttapiController` 定向单测；`modules/call` 已补 `HttapiController` 的 9205 回合制路由映射单测；其中 `ExtensionSettingsRestService` 已新增发布成功、跨租户阻断、编辑已发布配置生成 DRAFT、发布归档旧线上态、timeCondition 启用态阻断和列表聚合优先 DRAFT 验证，`QwenRealtimeVoiceAgentService` 已新增“租户无已发布配置时回退默认组织 published 配置”验证；callAdmin 留言管理页也已接入热线扩展字段展示。真实拨测、排队与留言端到端场景仍待执行。
 
 包含内容：
 
-1. `AiBotSettings` API 查询、默认 9205 配置创建、更新、已有配置复用、发布成功、跨租户阻断、编辑已发布配置生成 DRAFT、发布归档旧线上态、timeCondition 启用态阻断、列表聚合优先 DRAFT 验证。已完成。
+1. `ExtensionSettings` API 查询、默认 9205 配置创建、更新、已有配置复用、发布成功、跨租户阻断、编辑已发布配置生成 DRAFT、发布归档旧线上态、timeCondition 启用态阻断、列表聚合优先 DRAFT 验证。已完成。
 2. `QwenRealtimeVoiceAgentService` 知识库命中 / 转人工留言分支 / 默认组织 published 配置回退验证。已完成。
 3. `IvrMenuHttapiController` 通用 IVR 收号、转人工、转接、静态 voice_bot 验证。已完成。
 4. `HttapiController` 对 9205 回合制 `ACD_ENQUEUE` / `LEAVE_MESSAGE` 路由变量映射验证。已完成。
@@ -960,7 +960,7 @@ HotlineHandoffDecisionService.decide():
 
 ## 14. 待确认事项
 
-1. **知识库范围**：9205 查询知识库时，是查整个组织的知识库，还是可以单独指定某个知识库？→ 建议支持在 AiBotSettings 中指定 kbUid。
+1. **知识库范围**：9205 查询知识库时，是查整个组织的知识库，还是可以单独指定某个知识库？→ 建议支持在 ExtensionSettings 中指定 kbUid。
 2. **DTMF 菜单**：是否需要在 AI 对话中支持按键菜单降级？→ 建议作为阶段 4 可选能力，不阻塞知识库 + 转人工主链路。
 3. **留言通知方式**：留言后如何通知管理员？→ 建议通过站内通知 + 服务号推送 + 可选项。
 4. **与 TtsRealtime 的关系**：TODO 中还提到"修改 TtsRealtime 实时语音对话支持对接微语知识库"。9205 的改动是否同时覆盖 TtsRealtime？→ 建议本次专注于 9205 电话侧，TtsRealtime 前端侧作为后续独立需求。

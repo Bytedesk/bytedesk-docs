@@ -12,4 +12,4 @@ sidebar_position: 2
 | 呼叫中心智能质检源码 | ¥59,800 | 前端/React，开发中 |
 | 呼叫中心客服工作台源码 | ¥59,800 | 前端/React，支持Web和PC端，此模块为客服工作台子模块  [演示](https://www.weiyuai.cn/agent/) |
 | 呼叫中心服务器高级源码 | ¥99,800 | 后端/Java |
-| 呼叫中心访客端源码 | ¥19,800 | 前端/React |
+| 呼叫中心访客端源码 | ¥19,800 | 前端/React [演示](https://www.weiyuai.cn/reactdemo/callCenter) |
