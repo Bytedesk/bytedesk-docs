@@ -1,9 +1,9 @@
 ---
-sidebar_label: K8s部署
+sidebar_label: K8S
 sidebar_position: 9
 ---
 
-# Kubernetes部署
+# Kubernetes （文档完善中）
 
 :::info 试用版License
 需要试用版License？请参考：[问题13：如何申请licenseKey](../faq#问题13如何申请licensekey)
@@ -39,7 +39,7 @@ Docker (容器运行时)
 ### 2. 分工协作
 
 | 功能 | Docker | Kubernetes |
-|------|--------|------------|
+| ------ | -------- | ------------ |
 | 容器创建 | ✅ 负责 | ❌ 不直接创建 |
 | 镜像管理 | ✅ 拉取、构建镜像 | ❌ 不管理镜像 |
 | 容器编排 | ❌ 简单编排 | ✅ 复杂编排 |
@@ -58,7 +58,7 @@ Docker (容器运行时)
 
 ### 步骤1：准备Kubernetes集群
 
-- [安装Kubernetes](./depend/kubernetes.md)
+- [安装Kubernetes](../deploy/depend/kubernetes.md)
 
 确保你的Kubernetes集群已经正确配置：
 
@@ -78,7 +78,7 @@ kubectl get storageclass
 ## 参考链接
 
 - [KubeSphere](https://kubesphere.io/zh/projects/)
-- [安装Kubernetes](./depend/kubernetes.md)
+- [安装Kubernetes](../deploy/depend/kubernetes.md)
 - [申请licenseKey](../development/license.md)
 - [微语项目仓库](https://github.com/Bytedesk/bytedesk)
 - [微语社区版Docker镜像](https://hub.docker.com/r/bytedesk/bytedesk-ce)
