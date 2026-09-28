@@ -24,3 +24,5 @@ yarn-error.log*
 *.out
 # docx/
 plans/
+scripts/
+项目验收材料/
