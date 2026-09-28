@@ -206,13 +206,13 @@ bytedesk.security.jwt-secret=ENC(EXAMPLE_JWT_SECRET_CIPHERTEXT)
 
 ## Docker Compose 场景
 
-- 在 `.env` 或 `deploy/docker/compose-app-bytedesk.yaml` 中保持 `ENC(...)` 格式。
+- 在 `.env` 或 `deploy/docker/compose/compose-bytedesk.yaml` 中保持 `ENC(...)` 格式。
 - 仅在本地 `.env` 保存 `JASYPT_ENCRYPTOR_PASSWORD`，禁止提交仓库。
 - 执行 `docker compose up` 时变量会自动注入，容器启动即完成解密。
 
 ### Docker Compose 文件中的 `ENC(...)` 配置实例
 
-示例一：在 `deploy/docker/compose-app-bytedesk.yaml` 的环境变量中直接传入 `ENC(...)` 值。
+示例一：在 `deploy/docker/compose/compose-bytedesk.yaml` 的环境变量中直接传入 `ENC(...)` 值。
 
 ```yaml
 services:
@@ -237,7 +237,7 @@ JASYPT_ENCRYPTOR_PASSWORD=<your-jasypt-password>
 SPRING_DATASOURCE_PASSWORD=ENC(EXAMPLE_DB_PASSWORD_CIPHERTEXT)
 ```
 
-`deploy/docker/compose-app-bytedesk.yaml`：
+`deploy/docker/compose/compose-bytedesk.yaml`：
 
 ```yaml
 services:

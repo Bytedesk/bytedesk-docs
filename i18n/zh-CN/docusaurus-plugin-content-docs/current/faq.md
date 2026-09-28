@@ -38,7 +38,7 @@ spring.ai.dashscope.enabled=false
 spring.ai.vectorstore.elasticsearch.enabled=false
 ```
 
-或者参考 `deploy/docker/compose-scenario-noai.yaml` 与 `deploy/docker/compose-app-bytedesk.yaml` 组合配置：
+或者参考 `deploy/docker/compose/compose-bytedesk.yaml`（AI 开关通过 .env 配置，默认关闭等价 noai）：
 
 ```yaml
 # 关闭文本对话配置
@@ -69,12 +69,12 @@ SPRING_AI_VECTORSTORE_ELASTICSEARCH_ENABLED: "false"
 
 ### 配置步骤
 
-参考 `deploy/docker/compose-app-bytedesk.yaml`（配合 `compose-base.yaml` / `compose-db-*` / `compose-mq-*` / `compose-scenario-*`）
+参考 `deploy/docker/compose/compose-bytedesk.yaml`（数据库/中间件通过 `compose/compose-mysql.yaml` / `compose/compose-artemis.yaml` 等一镜像一文件自由组合）
 
 #### 1. 修改默认模型为智谱AI，关闭 Ollama 服务
 
 ```yaml
-# 在 deploy/docker/compose-app-bytedesk.yaml 中关闭 Ollama 服务
+# 在 deploy/docker/compose/compose-bytedesk.yaml 中关闭 Ollama 服务
 # 修改默认模型为智谱AI
 SPRING_AI_MODEL_CHAT: zhipuai
 SPRING_AI_MODEL_EMBEDDING: zhipuai
@@ -103,7 +103,7 @@ spring.ai.ollama.embedding.enabled=false
 获取API Key：[智谱AI控制台](https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys)
 
 ```yaml
-# 在 deploy/docker/compose-app-bytedesk.yaml 中配置
+# 在 deploy/docker/compose/compose-bytedesk.yaml 中配置
 SPRING_AI_ZHIPUAI_API_KEY: 'sk-xxx'
 SPRING_AI_ZHIPUAI_CHAT_ENABLED: true
 SPRING_AI_ZHIPUAI_CHAT_OPTIONS_MODEL: glm-4-flash
@@ -145,7 +145,7 @@ spring.ai.zhipuai.embedding.enabled=true
 修改 Ollama 服务地址配置：
 
 ```yaml
-# 在 deploy/docker/compose-app-bytedesk.yaml 中修改为实际的 Ollama 服务地址
+# 在 deploy/docker/compose/compose-bytedesk.yaml 中修改为实际的 Ollama 服务地址
 SPRING_AI_OLLAMA_BASE_URL: http://host.docker.internal:11434
 ```
 
@@ -258,7 +258,7 @@ Docker 容器时区配置错误。
 
 #### 操作方法
 
-在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`），将 `127.0.0.1` 替换为实际的服务器IP地址或域名：
+在 Docker 部署配置中（例如 `deploy/docker/compose/compose-bytedesk.yaml`），将 `127.0.0.1` 替换为实际的服务器IP地址或域名：
 
 ```bash
 # 请将 127.0.0.1 替换为你的服务器IP或域名
@@ -277,7 +277,7 @@ BYTEDESK_FEATURES_AVATAR_BASE_URL: http://127.0.0.1:9003
 
 **Docker 部署：**
 
-在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）修改：
+在 Docker 部署配置中（例如 `deploy/docker/compose/compose-bytedesk.yaml`）修改：
 
 ```bash
 BYTEDESK_ADMIN_EMAIL: admin@email.com
@@ -348,7 +348,7 @@ bytedesk.member.password=123456
 
 #### Docker 部署配置
 
-在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）修改：
+在 Docker 部署配置中（例如 `deploy/docker/compose/compose-bytedesk.yaml`）修改：
 
 ```bash
 BYTEDESK_MEMBER_PASSWORD: 123456
@@ -374,7 +374,7 @@ bytedesk.custom.show-demo=false
 
 #### Docker 部署配置
 
-在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）修改：
+在 Docker 部署配置中（例如 `deploy/docker/compose/compose-bytedesk.yaml`）修改：
 
 ```bash
 BYTEDESK_CUSTOM_SHOW_DEMO: "false"
@@ -419,7 +419,7 @@ bytedesk.custom.login-2fa-enable=true
 
 #### Docker 部署配置
 
-在 Docker 部署配置中（例如 `deploy/docker/compose-app-bytedesk.yaml`）修改：
+在 Docker 部署配置中（例如 `deploy/docker/compose/compose-bytedesk.yaml`）修改：
 
 ```bash
 # enable 2fa 双重验证开启
@@ -429,3 +429,9 @@ BYTEDESK_CUSTOM_LOGIN_2FA_ENABLE: "true"
 ### 从1.x升级到2.x
 
 首先升级docker镜像到1.9.6版本，然后再升级docker镜像到最新2.x版本
+
+### 从2.x升级到4.x 或 从3.x升级到4.x
+
+1. 先升级到 bytedesk docker 镜像 到3.x最新版本：3.4.0，并启动
+2. 停止服务器所有镜像运行，然后升级 elasticsearch docker 镜像到 9.4.2，参考 [elasticsearch](./deploy/depend/elasticsearch.md)
+3. 再升级 bytedesk docker 镜像到最新4.0.0版本，启动所有镜像

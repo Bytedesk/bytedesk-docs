@@ -23,7 +23,7 @@ Coturn 是一个开源的 STUN/TURN 服务器，用于处理 WebRTC 通信中的
 
 ### 应用场景
 
-- WebRTC 视频会议
+- WebRTC 微语会议
 - 实时音视频通信
 - P2P 文件传输
 - 在线游戏
@@ -39,6 +39,7 @@ Coturn 是一个开源的 STUN/TURN 服务器，用于处理 WebRTC 通信中的
 ### 微语官方测试地址与参考配置
 
 :::tip 官方资源
+
 - 在线测试地址（微语官方提供）：[https://coturn.weiyuai.cn/](https://coturn.weiyuai.cn/)
 - 参考配置文件与部署示例：[https://github.com/Bytedesk/bytedesk/tree/main/deploy/coturn](https://github.com/Bytedesk/bytedesk/tree/main/deploy/coturn)
 :::
@@ -181,7 +182,7 @@ no-cli
 Coturn 需要开放以下端口：
 
 | 端口类型 | 默认端口 | 协议 | 说明 |
-|---------|---------|------|------|
+| --------- | --------- | ------ | ------ |
 | STUN/TURN | 3478 | UDP/TCP | 主要服务端口 |
 | STUNS/TURNS | 5349 | UDP/TCP | 安全服务端口（可选） |
 | RTP 媒体端口 | 10000-20000 | UDP | 媒体传输端口范围 |
@@ -351,6 +352,7 @@ const pc = new RTCPeerConnection(config);
 - **多服务器配置**：提供备选方案，提高连接成功率
 
 :::tip 服务器选择建议
+
 1. **优先使用 STUN**：Google 的公共 STUN 服务器免费且稳定
 2. **配置 TURN 备用**：在企业网络或严格的 NAT 环境下，TURN 服务器是必需的
 3. **部署私有服务器**：对于生产环境，建议部署自己的 TURN 服务器以确保服务质量和数据安全

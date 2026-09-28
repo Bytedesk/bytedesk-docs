@@ -77,3 +77,113 @@ Skill:
   label: Skill
   permalink: /skill
   description: Agent 技能模块与可复用能力单元
+
+SpringBoot:
+  label: SpringBoot
+  permalink: /springboot
+  description: Spring Boot 框架相关
+
+SpringAI:
+  label: SpringAI
+  permalink: /spring-ai
+  description: Spring AI 相关
+
+Flowable:
+  label: Flowable
+  permalink: /flowable
+  description: Flowable 工作流引擎相关
+
+springdoc:
+  label: springdoc
+  permalink: /springdoc
+  description: springdoc-openapi 相关
+
+Elasticsearch:
+  label: Elasticsearch
+  permalink: /elasticsearch
+  description: Elasticsearch 搜索引擎相关
+
+版本升级:
+  label: 版本升级
+  permalink: /version-upgrade
+  description: 版本升级说明
+
+Upgrade:
+  label: Upgrade
+  permalink: /upgrade
+  description: 版本升级
+
+PostgreSQL:
+  label: PostgreSQL
+  permalink: /postgresql
+  description: PostgreSQL 数据库相关更新
+
+ParadeDB:
+  label: ParadeDB
+  permalink: /paradedb
+  description: ParadeDB 搜索与分析数据库相关更新
+
+Docker:
+  label: Docker
+  permalink: /docker
+  description: Docker 部署与容器运行时更新
+
+版本升級:
+  label: 版本升級
+  permalink: /version-upgrade-tw
+  description: 版本升級說明
+
+VOC:
+  label: VOC
+  permalink: /voc
+  description: 客户之声（Voice of Customer）
+
+客户之声:
+  label: 客户之声
+  permalink: /voice-of-customer
+  description: 客户之声反馈管理
+
+CSAT:
+  label: CSAT
+  permalink: /csat
+  description: 客户满意度（Customer Satisfaction Score）
+
+NPS:
+  label: NPS
+  permalink: /nps
+  description: 净推荐值（Net Promoter Score）
+
+意见反馈:
+  label: 意见反馈
+  permalink: /feedback
+  description: 意见反馈功能
+
+Meet:
+  label: Meet
+  permalink: /meet
+  description: 微语会议（Bytedesk Meet）开源音视频会议系统
+
+WebRTC:
+  label: WebRTC
+  permalink: /webrtc
+  description: WebRTC 实时音视频通信
+
+Janus:
+  label: Janus
+  permalink: /janus
+  description: Janus WebRTC 服务端网关
+
+开源:
+  label: 开源
+  permalink: /open-source
+  description: 开源软件与自主部署
+
+飞书:
+  label: 飞书
+  permalink: /feishu
+  description: 飞书（Lark）开放平台与渠道对接
+
+知识库:
+  label: 知识库
+  permalink: /kbase
+  description: 微语知识库与数据源导入

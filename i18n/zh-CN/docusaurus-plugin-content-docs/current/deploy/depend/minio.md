@@ -74,7 +74,7 @@ services:
     command: minio server /data --console-address ":9001"
     networks:
       - bytedesk-network
-    restart: always     # 自动重启
+ restart: always     # 自动重启
     healthcheck:        # 健康检查
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 30s

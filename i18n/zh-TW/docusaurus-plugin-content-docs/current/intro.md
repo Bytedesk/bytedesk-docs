@@ -8,11 +8,17 @@ import nin1Image from '/img/nin1.png';
 
 ## 📚 概述
 
-**微語**是基於AI全新打造的一款開源企業級[多租戶](./development/saas.md)團隊協作工具，整合多種功能於一體：
+**微語**是基於AI全新打造的一款開源企業級[多租戶](./development/saas.md)團隊智能協作平台，提供雲聯絡中心/客服中心/服務行銷一體化平台，能夠顯著提高內部員工和外部客戶溝通效率：
 
-> [企業IM](modules/team.md)、[線上客服](modules/service.md)、[企業知識庫/幫助文檔](modules/kbase.md)、[工單系統](modules/ticket.md)、[AI Agent智能體](modules/ai.md)、[工作流](modules/workflow.md)、[客戶之聲](modules/voc.md)、[呼叫中心](plugins/freeswitch.md)、[視訊客服](plugins/video.md)、[開放平台](modules/open.md)
+> [企業IM](modules/team.md)、[智能客服](modules/service.md)、[智能工單](modules/ticket.md)、[智能電話客服](plugins/freeswitch.md)、[企業知識庫](modules/kbase.md)、[AI Agent](modules/ai.md)、[表單問卷](modules/form.md)、[工作流](modules/workflow.md)、[客戶之聲](modules/voc.md)、[音頻客服](plugins/video.md)、[視訊客服](plugins/video.md)、[視訊會議](meet/intro.md)、[客戶管理](modules/crm.md)、[客服培訓](modules/training.md)、[行銷管理](modules/marketing.md)、[輿情管理](modules/opinion.md)、[微語文件](office/intro.md)、[開放平台](modules/open.md)
 
 <img src={nin1Image} alt="微語功能整合" />
+
+---
+
+## 宗旨
+
+減少客戶服務重複性勞動，提升客戶服務工作效率，提高客戶服務滿意度
 
 ---
 
@@ -178,7 +184,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 處理常見問題，減輕人工客服工作量
 - 實現24小時不間斷服務
 
-### 4. [知識庫/幫助中心](modules/kbase.md)
+### 4. [知識庫](modules/kbase.md)
 
 📚 **企業知識管理平台**
 
@@ -194,7 +200,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 自訂工作流與優先級管理
 - 確保客戶問題得到及時有效解決
 
-### 6. [工作流-開發中...](modules/workflow.md)
+### 6. [工作流](modules/workflow.md)
 
 ⚙️ **業務流程設計平台**
 
@@ -202,15 +208,15 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支援自訂審批流程、任務分配
 - 狀態追蹤，提高團隊協作效率
 
-### 7. [呼叫中心-開發中...](plugins/freeswitch.md)
+### 7. [音頻客服](plugins/video.md)
 
-☎️ **全功能呼叫系統**
+🎧 **即時音訊服務解決方案**
 
-- 基於FreeSwitch的專業呼叫平台
-- 支援來電彈屏、自動分配、通話錄音
-- 資料統計，語音與文字服務無縫整合
+- 基於WebRTC技術的即時語音通話
+- 支援一鍵語音對話與人工協作轉接
+- 適用於弱網環境和快速溝通服務場景
 
-### 8. [視訊客服-開發中...](plugins/video.md)
+### 8. [視訊客服](plugins/video.md)
 
 📹 **即時視訊服務解決方案**
 
@@ -218,7 +224,23 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支援一鍵視訊對話與螢幕共享
 - 適用於需要直觀展示的服務場景
 
-### 9. [客戶之聲-開發中...](modules/voc.md)
+### 9. [視訊會議-開發中...](meet/intro.md)
+
+🎥 **企業級音視頻會議系統**
+
+- 支援多人音視頻會議、會議預約與快速入會
+- 提供螢幕共享、會議控制與協同溝通能力
+- 適用於遠端協作、線上培訓與跨團隊會議場景
+
+### 10. [電話客服](plugins/freeswitch.md)
+
+☎️ **全功能呼叫系統**
+
+- 基於FreeSwitch的專業呼叫平台
+- 支援來電彈屏、自動分配、通話錄音
+- 資料統計，語音與文字服務無縫整合
+
+### 11. [客戶之聲](modules/voc.md)
 
 📣 **客戶反饋管理系統**
 
@@ -226,7 +248,47 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 幫助企業了解客戶需求與痛點
 - 發現產品和服務改進機會
 
-### 10. [開放平台...](modules/open.md)
+### 12. [客戶管理](modules/crm.md)
+
+👥 **客戶關係管理系統**
+
+- 客戶資訊與標籤體系統一管理
+- 全渠道互動記錄與跟進提醒
+- 商機、合約、訂單全流程協同
+
+### 13. [客服培訓-開發中...](modules/training.md)
+
+🎯 **客服培訓與能力提升**
+
+- 課程學習、實操演練、線上考核全流程閉環
+- AI陪練結合質檢結果，針對薄弱環節定向提升
+- 參與率與考核數據可視化，管理更可控
+
+### 14. [行銷管理-開發中...](modules/marketing.md)
+
+📣 **社交聚合行銷增長平台**
+
+- 聚合國內外社媒多渠道流量入口，統一承接與管理行銷線索
+- 自動化觸達與分層營運，提升線索培育與轉化效率
+- 透過行銷看板復盤投放效果，持續優化增長策略
+
+### 15. [輿情管理-開發中...](modules/opinion.md)
+
+📡 **全網輿情監測與應對平台**
+
+- 聚合多平台輿情資訊，即時識別品牌與事件風險訊號
+- 支援情緒分析、主題聚類與分級預警，提升風險發現效率
+- 聯動公關與客服協同處置，形成「監測-回應-復盤」閉環
+
+### 16. [微語文件](office/intro.md)
+
+📄 **AI辦公文件工作台**
+
+- 支援Word、Excel、PPT、PDF、Markdown五類文件的線上建立與編輯
+- 內建AI助理：從零起草、潤飾全文、AI排版、批次修改，一句話完成
+- 相容微軟Office真實格式，編輯後的檔案在Office中開啟格式不亂
+
+### 17. [開放平台](modules/open.md)
 
 <!-- ## 下載
 

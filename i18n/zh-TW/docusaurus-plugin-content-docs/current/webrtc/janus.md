@@ -133,7 +133,7 @@ services:
             - ./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg:ro
             - ./conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg:ro
             - ./conf/janus.eventhandler.sampleevh.jcfg:/usr/local/etc/janus/janus.eventhandler.sampleevh.jcfg:ro
-        restart: always
+ restart: always
 ```
 
 macOS/Windows（埠映射）：
@@ -153,7 +153,7 @@ services:
             - ./conf/janus.transport.http.jcfg:/usr/local/etc/janus/janus.transport.http.jcfg:ro
             - ./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg:ro
             - ./conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg:ro
-        restart: always
+ restart: always
 
 # 若使用內建 Nginx 的鏡像且採用 nginx + janus 啟動，再額外映射對應 Web 埠（例如 80/443 或鏡像約定埠）。
 ```

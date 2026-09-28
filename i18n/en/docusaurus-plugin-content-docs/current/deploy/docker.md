@@ -32,8 +32,8 @@ cd bytedesk/deploy/docker
 # optional: copy env template
 cp .env.example .env
 
-# default startup: MySQL + Artemis + standard scenario, middleware only
-./start.sh mysql artemis standard middleware
+# default startup: MySQL + Artemis, middleware only (keywords, any order)
+./start mysql artemis middleware
 ```
 
 For more combinations (PostgreSQL/Oracle, RabbitMQ, noai, call, full stack), see `deploy/docker/readme.md`.
@@ -51,10 +51,10 @@ ollama pull bge-m3:latest
 
 ```bash
 # stop current middleware stack (keep containers)
-./stop.sh mysql artemis standard stop middleware
+./stop mysql artemis stop middleware
 
 # remove current middleware stack containers (keep volumes)
-./stop.sh mysql artemis standard down middleware
+./stop mysql artemis down middleware
 ```
 
 ## Open Ports
@@ -77,20 +77,16 @@ Default password: admin
 
 ## Orchestration Content (Layered)
 
-- [compose-base.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-base.yaml)
-- [compose-db-mysql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-mysql.yaml)
-- [compose-db-postgresql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-postgresql.yaml)
-- [compose-db-oracle.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-oracle.yaml)
-- [compose-mq-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-mq-artemis.yaml)
-- [compose-mq-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-mq-rabbitmq.yaml)
-- [compose-scenario-standard.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-standard.yaml)
-- [compose-scenario-noai.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-noai.yaml)
-- [compose-scenario-call.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-call.yaml)
-- [compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-bytedesk.yaml)
-- [compose-app-mq-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-mq-artemis.yaml)
-- [compose-app-mq-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-mq-rabbitmq.yaml)
+- [compose/compose-elasticsearch.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-elasticsearch.yaml)
+- [compose/compose-mysql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-mysql.yaml)
+- [compose/compose-postgresql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-postgresql.yaml)
+- [compose/compose-oracle.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-oracle.yaml)
+- [compose/compose-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-artemis.yaml)
+- [compose/compose-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-rabbitmq.yaml)
+- [compose/compose-freeswitch.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-freeswitch.yaml)
+- [compose/compose-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-bytedesk.yaml)
 
-If you use cloud models (such as ZhipuAI), configure it in `compose-app-bytedesk.yaml`:
+If you use cloud models (such as ZhipuAI), configure it in `compose/compose-bytedesk.yaml`:
 
 ```yaml
 # Apply for Zhipu AI API Key: https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys

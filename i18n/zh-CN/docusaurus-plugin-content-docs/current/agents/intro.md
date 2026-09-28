@@ -17,6 +17,7 @@ sidebar_position: 1
 - [售后 Agent](./after-sales-agent.md)：处理订单、物流、退款、退换货、质保、投诉和工单跟进等场景。
 - [语音服务 Agent](./voice-service-agent.md)：把呼入接待、语音 IVR、报修受理、预约确认、工单派发、服务回访和客诉预警串成服务履约闭环。
 - [运营 Agent](./operations-agent.md)：把服务数据转化为用户分群、活动触达、复购运营和增长分析。
+- [追问功能](./ask-user-question.md)：内置的澄清能力，让 AI 智能体在需要访客补充信息时，主动以结构化选项的形式提问。
 
 ## 产品理念
 

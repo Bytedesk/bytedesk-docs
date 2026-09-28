@@ -1,5 +1,5 @@
 ---
-slug: bytedesk-3x-agent-roadmap
+slug: bytedesk-main-agent-roadmap
 title: 微语 3.x 路线图：聚焦 Agent，让 AI 更方便地使用微语
 authors: jackning
 tags: [bytedesk, AI, Agent, 客服, LLM, MCP, Skill]
@@ -82,7 +82,7 @@ Agent 的能力上限，很大程度上取决于知识库的质量。微语 3.x 
 
 微语 MCP 模块基于 [Model Context Protocol](https://modelcontextprotocol.io/) 标准，为第三方 Agent 提供标准化的工具调用接口：
 
-```
+```text
 ┌─────────────────┐     MCP Protocol     ┌─────────────────┐
 │  第三方 Agent    │ ◄──────────────────► │   微语 MCP Server │
 │ (Claude/Copilot) │                      │                  │
@@ -99,7 +99,7 @@ Agent 的能力上限，很大程度上取决于知识库的质量。微语 3.x 
 目前已经支持的核心 MCP 工具：
 
 | 工具分类 | 工具名称 | 功能描述 |
-|---------|---------|---------|
+| --------- | --------- | --------- |
 | 知识库 | `search_knowledge` | 检索知识库中的 FAQ 和文档 |
 | 知识库 | `list_knowledge_categories` | 获取知识库分类目录 |
 | 工单 | `create_ticket` | 创建新的工单 |

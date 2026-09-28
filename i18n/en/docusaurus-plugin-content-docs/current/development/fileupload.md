@@ -72,7 +72,7 @@ bytedesk.minio.secure=false
 
 ## Docker Compose Configuration
 
-If you use Docker deployment, you can configure the file upload service in `deploy/docker/compose-app-bytedesk.yaml`:
+If you use Docker deployment, you can configure the file upload service in `deploy/docker/compose/compose-bytedesk.yaml`:
 
 ```yaml
 # MinIO configuration (when using MinIO)

@@ -484,7 +484,7 @@ services:
       - ./mrcp-server/conf:/opt/mrcp-server/conf:ro
       - ./docker/log:/opt/mrcp-server/log
       - ./docker/audio:/opt/mrcp-server/audio
-    restart: unless-stopped
+ restart: unless-stopped
 ```
 
 1. **拉取并启动**

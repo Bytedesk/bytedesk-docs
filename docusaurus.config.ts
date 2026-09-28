@@ -125,6 +125,45 @@ const config: Config = {
   
   // 配置插件
   plugins: [
+    // 客户端重定向：manual/admin 目录按菜单重构后的旧路径 301 跳转
+    // 映射规则见 docs/plans/2026-09-03-admin-manual-menu-restructure-plan.md
+    [
+      require.resolve('@docusaurus/plugin-client-redirects'),
+      {
+        redirects: [
+          // kbase -> kb
+          { from: '/docs/manual/admin/kbase/article', to: '/docs/manual/admin/kb/article' },
+          { from: '/docs/manual/admin/kbase/llm', to: '/docs/manual/admin/kb/llm' },
+          { from: '/docs/manual/admin/kbase/faq', to: '/docs/manual/admin/kb/llm' },
+          { from: '/docs/manual/admin/kbase/autoreply', to: '/docs/manual/admin/kb/autoreply' },
+          { from: '/docs/manual/admin/kbase/quickreply', to: '/docs/manual/admin/kb/quickreply' },
+          { from: '/docs/manual/admin/kbase/taboo', to: '/docs/manual/admin/kb/taboo' },
+          { from: '/docs/manual/admin/kbase/keyword', to: '/docs/manual/admin/kb/llm' },
+          // ai/llm -> ai/model
+          { from: '/docs/manual/admin/ai/llm', to: '/docs/manual/admin/ai/model' },
+          // ticket/ticket -> ticket/data
+          { from: '/docs/manual/admin/ticket/ticket', to: '/docs/manual/admin/ticket/data' },
+          { from: '/docs/manual/admin/ticket/waiting', to: '/docs/manual/admin/ticket/data' },
+          // bi/bi -> bi
+          { from: '/docs/manual/admin/bi/bi', to: '/docs/manual/admin/bi' },
+          // setting/settings -> setting
+          { from: '/docs/manual/admin/setting/settings', to: '/docs/manual/admin/setting' },
+          { from: '/docs/manual/admin/setting/changepassword', to: '/docs/manual/admin/setting' },
+          // service/customer -> crm/customer；service/quality -> quality；service/statistic -> bi
+          { from: '/docs/manual/admin/service/customer', to: '/docs/manual/admin/crm/customer' },
+          { from: '/docs/manual/admin/service/quality', to: '/docs/manual/admin/quality' },
+          { from: '/docs/manual/admin/service/statistic', to: '/docs/manual/admin/bi' },
+          // voc/voc -> voc/feedback；webrtc -> audio/data
+          { from: '/docs/manual/admin/voc/voc', to: '/docs/manual/admin/voc/feedback' },
+          { from: '/docs/manual/admin/webrtc/webrtc', to: '/docs/manual/admin/audio/data' },
+          // price/video-conference -> price/meet
+          { from: '/docs/price/video-conference', to: '/docs/price/meet' },
+          // price/instant-messaging -> price/im；price/online-module -> price/service
+          { from: '/docs/price/instant-messaging', to: '/docs/price/im' },
+          { from: '/docs/price/online-module', to: '/docs/price/service' },
+        ],
+      },
+    ],
     // 本地搜索插件
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),

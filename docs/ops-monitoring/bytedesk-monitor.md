@@ -51,7 +51,7 @@ cd bytedesk-monitor
 The bytedesk starter already includes `spring-boot-admin-starter-client` and is pre-configured.
 
 ```bash
-cd bytedesk-3x
+cd bytedesk-main
 JASYPT_ENCRYPTOR_PASSWORD=<your-password> ./starter/mvnw -f starter/pom.xml spring-boot:run
 ```
 
@@ -90,7 +90,7 @@ spring.security.user.password=admin
 
 ### Client (Local Development)
 
-In bytedesk-starter `properties/local/51-jpa-web-actuator.properties`:
+In bytedesk-starter `properties/local/actuator.properties`:
 
 ```properties
 spring.boot.admin.client.url=http://127.0.0.1:9103

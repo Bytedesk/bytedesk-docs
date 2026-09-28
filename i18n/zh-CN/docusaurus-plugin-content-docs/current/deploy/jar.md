@@ -52,44 +52,44 @@ git clone https://github.com/Bytedesk/bytedesk.git
 cd bytedesk/deploy/docker
 
 # 4. 启动依赖服务（默认 MySQL）
-# start.sh <db> <mq> <scenario> [all|middleware]
+# start.sh [keywords...] (db/mq/components/target, any order)
 
 # Artemis + MySQL（默认）
-./start.sh mysql artemis standard middleware
+./start mysql artemis middleware
 
 # RabbitMQ + MySQL（默认）
-./start.sh mysql rabbitmq standard middleware
+./start mysql rabbitmq middleware
 
 # 如需切换 PostgreSQL
-# ./start.sh postgresql artemis standard middleware
-# ./start.sh postgresql rabbitmq standard middleware
+# ./start postgresql artemis middleware
+# ./start postgresql rabbitmq middleware
 
 # 如需切换 Oracle
-# ./start.sh oracle artemis standard middleware
-# ./start.sh oracle rabbitmq standard middleware
+# ./start oracle artemis middleware
+# ./start oracle rabbitmq middleware
 
 # 仅中间件（源码启动推荐，默认）
-# ./start.sh mysql artemis standard middleware
-# ./start.sh mysql rabbitmq standard middleware
+# ./start mysql artemis middleware
+# ./start mysql rabbitmq middleware
 
 # 全量（中间件 + bytedesk 镜像）
-# ./start.sh mysql artemis standard all
-# ./start.sh mysql rabbitmq standard all
+# ./start mysql artemis all
+# ./start mysql rabbitmq all
 
-# stop.sh <db> <mq> <scenario> [stop|down] [all|middleware]
-# ./stop.sh mysql artemis standard stop middleware
-# ./stop.sh mysql artemis standard down all
+# stop.sh [stop|down] [keywords...]
+# ./stop mysql artemis stop middleware
+# ./stop mysql artemis down all
 
 # 等价原生命令示例（先切到 deploy/docker）
 # cd deploy/docker
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-rabbitmq.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-rabbitmq.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-rabbitmq.yaml up -d
 # 全量（中间件 + bytedesk 镜像）示例
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml -f compose/compose-bytedesk.yaml up -d
 
 # 5. 安装Ollama对话模型
 docker exec ollama-bytedesk ollama pull qwen3:0.6b
@@ -101,10 +101,10 @@ docker exec ollama-bytedesk ollama pull bge-m3:latest
 docker ps | grep bytedesk
 
 # 如需停止/删除容器
-# ./stop.sh mysql artemis standard stop middleware
-# ./stop.sh mysql rabbitmq standard stop middleware
-# ./stop.sh mysql artemis standard down middleware
-# ./stop.sh mysql rabbitmq standard down middleware
+# ./stop mysql artemis stop middleware
+# ./stop mysql rabbitmq stop middleware
+# ./stop mysql artemis down middleware
+# ./stop mysql rabbitmq down middleware
 ```
 
 > 💡 **提示**：使用Docker方式，无需手动安装每个依赖，容器会自动配置好网络和初始设置。

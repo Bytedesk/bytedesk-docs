@@ -152,7 +152,7 @@
     "description": "The label for category Digital Human Service in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.meet": {
-    "message": "音视频会议",
+    "message": "微语会议",
     "description": "The label for category Team in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.BI": {
@@ -162,6 +162,14 @@
   "sidebar.tutorialSidebar.category.Setting": {
     "message": "设置",
     "description": "The label for category Team in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AI Agents": {
+    "message": "AI 智能体",
+    "description": "The label for category AI Agents in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Weiyu Docs": {
+    "message": "微语文档",
+    "description": "The label for category Weiyu Docs in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.doc.Member": {
     "message": "成员",

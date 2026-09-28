@@ -23,12 +23,13 @@ For documentation, please visit:
 
 ## Online Module Pricing
 
-- [Instant Messaging Module Source Code Pricing](./price/instant-messaging.md)
-- [Online Module Source Code Pricing](./price/online-module.md)
+- [Instant Messaging Module Source Code Pricing](./price/im.md)
+- [Online Module Source Code Pricing](./price/service.md)
 
 ## Specialized Module Pricing
 
 - [Call Center Module Pricing](./price/call-center.md)
 - [Audio/Video Customer Service Module Pricing](./price/audio-video-service.md)
-- [Video Conference Module Pricing](./price/video-conference.md)
+- [Video Conference Module Pricing](./price/meet.md)
 - [Remote Assistance Module Pricing](./price/remote-assistance.md)
+- [Weiyu Docs Module Pricing](./price/office.md)

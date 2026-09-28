@@ -25,10 +25,10 @@ If you use the built-in project scripts:
 cd bytedesk/deploy/docker
 
 # Artemis + Oracle
-./start.sh oracle artemis standard middleware
+./start oracle artemis middleware
 
 # RabbitMQ + Oracle
-./start.sh oracle rabbitmq standard middleware
+./start oracle rabbitmq middleware
 ```
 
 ## Option 2: Container Command Example

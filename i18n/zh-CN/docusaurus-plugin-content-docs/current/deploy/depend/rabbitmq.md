@@ -27,7 +27,7 @@ services:
   bytedesk-rabbitmq:
     image: rabbitmq:4.2.3-management
     container_name: rabbitmq-bytedesk
-    restart: always
+ restart: always
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin

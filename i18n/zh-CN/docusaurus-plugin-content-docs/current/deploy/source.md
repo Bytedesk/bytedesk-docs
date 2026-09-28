@@ -34,7 +34,7 @@ cd bytedesk
 
 ### 2.1 安装JDK 21
 
-项目基于Spring Boot 3开发，**必须**使用JDK 21或更高版本：
+项目基于Spring Boot 4开发，**必须**使用JDK 21或更高版本：
 
 ```bash
 # 检查Java版本
@@ -52,7 +52,7 @@ cd deploy/docker
 # create .env
 cp .env.example .env
 # default startup (MySQL + Artemis + standard, middleware only)
-./start.sh mysql artemis standard middleware
+./start mysql artemis middleware
 ```
 
 - 或参考[手动项目依赖](./jar.md#12-安装项目依赖)
@@ -98,7 +98,33 @@ cd bytedesk
 
 编辑`starter/src/main/resources/application-open.properties`文件，配置数据库和Redis连接信息：[请参考应用配置说明](./config.md)。如果不使用ai，可以参考：[application-noai.properties](https://github.com/Bytedesk/bytedesk/blob/main/starter/src/main/resources/application-noai.properties) 配置
 
-### 3.4 启动项目
+### 3.4 服务器地址（URL）配置
+
+默认配置中的访问地址均为 `http://127.0.0.1:9003`，仅适用于本地调试。部署到服务器时，需要将其替换为服务器实际IP地址或域名，否则浏览器无法访问上传文件、头像、知识库（帮助中心/博客）等资源。
+
+这些地址集中在 `starter/src/main/resources/properties/open/upload.properties` 文件中（本地调试对应 `properties/local/upload.properties`）：
+
+```properties
+# 上传文件的访问地址，请修改为服务器实际的地址
+bytedesk.upload.url=http://你的服务器IP:9003
+# 头像的访问地址，请修改为服务器实际的地址
+bytedesk.features.avatar-base-url=http://你的服务器IP:9003
+# 知识库的访问地址，请修改为服务器实际的地址
+bytedesk.kbase.api-url=http://你的服务器IP:9003
+# 帮助中心的访问地址（可选，不配置时使用 bytedesk.kbase.api-url）
+bytedesk.kbase.helpcenter.api-url=http://你的服务器IP:9003
+# 博客的访问地址（可选，不配置时使用 bytedesk.kbase.api-url）
+bytedesk.kbase.blog.api-url=http://你的服务器IP:9003
+# 访客工单页面地址（用于邮件中的工单会话直达链接）
+bytedesk.custom.ticket-html-url=http://你的服务器IP:9003/ticket
+
+# 外网可访问的 MQTT WebSocket 完整地址；当 WebSocket 端口（默认 9885）不对外开放（Nginx/反向代理）时配置
+# bytedesk.custom.mqtt-websocket-url=wss://你的域名/websocket
+# 外网可访问的上传 API 地址（完整URL，不带上传路径），用于多节点/反向代理上传场景
+# bytedesk.custom.upload-api-url=https://你的服务器IP:9003
+```
+
+### 3.5 启动项目
 
 ```bash
 # 进入启动模块目录
@@ -122,7 +148,7 @@ cd starter
 默认密码：admin
 ```
 
-> ⚠️ **注意**：如在服务器部署，请将127.0.0.1替换为服务器实际IP地址。
+> ⚠️ **注意**：如在服务器部署，请参考上文「3.4 服务器地址（URL）配置」将 `127.0.0.1` 替换为服务器实际IP地址。
 
 ### 4.2 端口说明
 

@@ -82,7 +82,7 @@
 
 ## 技术栈
 
-- **后端框架**: Spring Boot 3.5.8
+- **后端框架**: Spring Boot 4.1.0
 - **Java 版本**: JDK 21+
 - **数据库**: MySQL / PostgreSQL / H2 / Oracle / KingBase
 - **缓存**: Redis + Caffeine

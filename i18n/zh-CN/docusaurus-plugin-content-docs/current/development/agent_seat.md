@@ -51,7 +51,7 @@ services:
 
 - `"false"` 表示默认关闭客服坐席约束，系统仍按组织的 `maxAgents` 等基础容量规则运行
 - 改为 `"true"` 后，才会启用坐席绑定、坐席数量限制以及登录时的坐席有效期校验
-- 在仓库示例配置 [deploy/docker/compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/bytedesk-1.x/deploy/docker/compose-app-bytedesk.yaml) 中，该项默认值也是 `"false"`
+- 在仓库示例配置 [deploy/docker/compose-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/bytedesk-1.x/deploy/docker/compose-bytedesk.yaml) 中，该项默认值也是 `"false"`
 
 ## 业务规则
 

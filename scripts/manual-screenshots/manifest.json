@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "defaults": {
+    "locale": "zh-CN",
+    "colorScheme": "light",
+    "timezoneId": "Asia/Shanghai",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    }
+  },
+  "services": [
+    {
+      "id": "backend",
+      "url": "http://127.0.0.1:9003/system/health",
+      "start": "env JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-21.jdk/Contents/Home ./starter/mvnw -f starter/pom.xml spring-boot:run",
+      "cwd": "../.."
+    },
+    {
+      "id": "admin",
+      "url": "http://127.0.0.1:9004/admin/",
+      "start": "pnpm --dir frontend/apps/admin dev",
+      "cwd": "../.."
+    },
+    {
+      "id": "desktop",
+      "url": "http://127.0.0.1:9005/agent/",
+      "start": "pnpm --dir frontend/apps/desktop dev",
+      "cwd": "../.."
+    },
+    {
+      "id": "visitor",
+      "url": "http://127.0.0.1:9006/chat/",
+      "start": "pnpm --dir frontend/apps/visitor dev",
+      "cwd": "../.."
+    },
+    {
+      "id": "visitorTicket",
+      "url": "http://127.0.0.1:9017/ticket/",
+      "start": "pnpm --dir frontend/apps/visitorTicket dev",
+      "cwd": "../.."
+    }
+  ],
+  "screenshots": [
+    {
+      "id": "admin-login",
+      "service": "admin",
+      "path": "/admin/auth/login",
+      "output": "admin/auth/login.png",
+      "requiresAuth": false
+    },
+    {
+      "id": "admin-welcome",
+      "service": "admin",
+      "path": "/admin/welcome",
+      "output": "admin/welcome-new.png",
+      "requiresAuth": true,
+      "readySelector": "main, .ant-pro-layout, table",
+      "settleMs": 3000
+    },
+    {
+      "id": "admin-team-member",
+      "service": "admin",
+      "path": "/admin/team/member",
+      "output": "admin/team/member-new.png",
+      "requiresAuth": true,
+      "readySelector": "table, .ant-table",
+      "settleMs": 3000
+    },
+    {
+      "id": "admin-service-agent",
+      "service": "admin",
+      "path": "/admin/service/agent",
+      "output": "admin/service/agent-new.png",
+      "requiresAuth": true,
+      "readySelector": "table, .ant-table",
+      "settleMs": 3000
+    },
+    {
+      "id": "admin-ai-model",
+      "service": "admin",
+      "path": "/admin/ai/model",
+      "output": "admin/ai/model-new.png",
+      "requiresAuth": true,
+      "readySelector": "table, .ant-table",
+      "settleMs": 3000
+    },
+    {
+      "id": "admin-ai-robot",
+      "service": "admin",
+      "path": "/admin/ai/robot",
+      "output": "admin/ai/robot-new.png",
+      "requiresAuth": true,
+      "readySelector": "table, .ant-table",
+      "settleMs": 3000
+    },
+    {
+      "id": "desktop-login",
+      "service": "desktop",
+      "path": "/agent/auth/login",
+      "output": "agent/auth/login.png",
+      "requiresAuth": false
+    },
+    {
+      "id": "desktop-chat",
+      "service": "desktop",
+      "path": "/agent/chat",
+      "output": "agent/chat.png",
+      "requiresAuth": true,
+      "authChannel": "WEB_AGENT",
+      "readySelector": ".ant-layout, main, [class*=thread]",
+      "settleMs": 5000
+    },
+    {
+      "id": "desktop-contact",
+      "service": "desktop",
+      "path": "/agent/contact",
+      "output": "agent/contact.png",
+      "requiresAuth": true,
+      "authChannel": "WEB_AGENT",
+      "readySelector": ".ant-layout, main",
+      "settleMs": 3000
+    },
+    {
+      "id": "desktop-ticket",
+      "service": "desktop",
+      "path": "/agent/ticket",
+      "output": "agent/ticket.png",
+      "requiresAuth": true,
+      "authChannel": "WEB_AGENT",
+      "readySelector": ".ant-layout, main",
+      "settleMs": 3000
+    },
+    {
+      "id": "visitor-chat",
+      "service": "visitor",
+      "path": "/chat?org=df_org_uid&t=1&sid=df_wg_uid&lang=zh-cn&",
+      "output": "chat/gettting_started.png",
+      "requiresAuth": false,
+      "settleMs": 5000
+    },
+    {
+      "id": "visitor-ticket-list",
+      "service": "visitorTicket",
+      "path": "/ticket?org=df_org_uid&t=1&sid=df_wg_uid&lang=zh-cn&",
+      "output": "ticket/gettting_started.png",
+      "requiresAuth": false,
+      "settleMs": 5000
+    }
+  ]
+}

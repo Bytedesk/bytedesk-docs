@@ -1,8 +1,9 @@
 {
-  "label": "工单",
-  "position": 5,
+  "key": "manual-admin-ticket",
+  "label": "工單管理",
+  "position": 8,
   "link": {
     "type": "generated-index",
-    "description": "5分钟快速上手使用 微语工单."
+    "description": "Get started with Weiyu Ticket System in 5 minutes."
   }
 }

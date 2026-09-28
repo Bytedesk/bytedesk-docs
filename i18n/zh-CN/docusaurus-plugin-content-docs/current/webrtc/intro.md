@@ -251,8 +251,8 @@ bytedesk.webrtc.janus.audio-bridge.default-permanent=false
 
 当前建议的组合方式是：
 
-- 应用服务使用 [deploy/docker/compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/deploy/docker/compose-app-bytedesk.yaml)
-- WebRTC 基础设施使用 `compose-scenario-webrtc.yaml`
+- 应用服务使用 [deploy/docker/compose/compose-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/deploy/docker/compose/compose-bytedesk.yaml)
+- WebRTC 基础设施使用 `deploy/docker/compose/compose-coturn.yaml`
 - 两者加入同一个 `bytedesk-network` 网络后，应用容器即可通过服务名访问 Janus 与 Coturn
 
 ### `.env` 中建议保留的变量
@@ -265,7 +265,7 @@ JANUS_ADMIN_SECRET=janusoverlord
 
 ### Compose 中的引用方式
 
-在 compose 文件中，普通 WebRTC 配置直接写在文件里，只有敏感值通过 `.env` 注入。当前 [deploy/docker/compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/deploy/docker/compose-app-bytedesk.yaml) 与 `deploy/docker/one` 下的一体化 compose 文件已经调整为以下形式：
+在 compose 文件中，普通 WebRTC 配置直接写在文件里，只有敏感值通过 `.env` 注入。当前 [deploy/docker/compose/compose-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/deploy/docker/compose/compose-bytedesk.yaml) 与 `deploy/docker/one` 下的一体化 compose 文件已经调整为以下形式：
 
 ```yaml
     BYTEDESK_WEBRTC_JANUS_ENABLED: "true"

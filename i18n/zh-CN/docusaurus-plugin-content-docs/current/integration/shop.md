@@ -211,7 +211,7 @@ sidebar_position: 10
 
 - [商品对接演示](https://www.weiyuai.cn/reactdemo/)
 - [商品信息](../integration/goods_info.md)
-- [商品接口](../integration/goods_api.md)
+- [商品接口](../integration/goods_open.md)
 
 典型用途：
 
@@ -223,7 +223,7 @@ sidebar_position: 10
 
 - [订单对接演示](https://www.weiyuai.cn/reactdemo/)
 - [订单信息](../integration/order_info.md)
-- [订单接口](../integration/order_api.md)
+- [订单接口](../integration/order_open.md)
 
 典型用途：
 

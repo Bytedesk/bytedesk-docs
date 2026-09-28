@@ -1,9 +1,0 @@
-{
-  "key": "manual-admin-setting",
-  "label": "Setting",
-  "position": 17,
-  "link": {
-    "type": "generated-index",
-    "description": "Get started with Weiyu AI Assistant in 5 minutes."
-  }
-}

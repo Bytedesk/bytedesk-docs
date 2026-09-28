@@ -33,7 +33,7 @@
     "message": "隐私政策"
   },
   "homepage.tagline": {
-    "message": "开源一站式客户服务系统/客服中心/联络中心"
+    "message": "做智能客服界的“张雪机车”"
   },
   "homepage.quickstart": {
     "message": "快速开始"
@@ -96,7 +96,7 @@
     "message": "基于WebRTC技术的高清视频通话，支持一键视频对话与屏幕共享，适用于需要直观展示的服务场景"
   },
   "homepage.feature.conference.title": {
-    "message": "视频会议"
+    "message": "微语会议"
   },
   "homepage.feature.conference.description": {
     "message": "集成Jitsi的专业会议平台，支持多人在线会议、屏幕共享，会议录制等功能，满足远程协作需求"

@@ -1,0 +1,9 @@
+{
+  "key": "manual-chat-ticket",
+  "label": "My Tickets",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Create, search, and track visitor tickets."
+  }
+}

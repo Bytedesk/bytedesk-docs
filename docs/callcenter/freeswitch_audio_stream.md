@@ -287,14 +287,14 @@ docker exec freeswitch-bytedesk fs_cli -p bytedesk123 -x "show modules" | grep m
 
 ### Environment Variables
 
-Configured in `compose-scenario-call.yaml` and `.env`:
+Configured in `compose/compose-freeswitch.yaml` and `.env`:
 
 | Environment Variable | Default | Description |
 | -------------------- | ------- | ----------- |
 | `FREESWITCH_QWEN_REALTIME_MEDIA_BRIDGE_ENABLED` | `false` | Enable Qwen-Audio-Realtime media bridge (requires `mod_audio_stream` loaded) |
 | `FREESWITCH_QWEN_REALTIME_MEDIA_WS_URL` | `ws://host.docker.internal:9003/visitor/api/v1/call/voice-agent/qwen-realtime/media?output=mod_audio_stream&events=false&model=qwen-audio-3.0-realtime-plus&voice=longanqian&outputSampleRate=24000` | Real-time media bridge WebSocket URL |
 
-### compose-scenario-call.yaml Configuration
+### compose/compose-freeswitch.yaml Configuration
 
 ```yaml
 services:

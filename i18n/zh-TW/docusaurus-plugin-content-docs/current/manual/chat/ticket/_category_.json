@@ -1,0 +1,9 @@
+{
+  "key": "manual-chat-ticket",
+  "label": "我的工單",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "创建、查询和跟踪访客工单。"
+  }
+}

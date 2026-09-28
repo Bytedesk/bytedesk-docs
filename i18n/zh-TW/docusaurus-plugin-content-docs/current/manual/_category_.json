@@ -1,8 +1,8 @@
 {
-  "label": "使用手册",
+  "label": "User Manual",
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "5分钟快速上手使用 微语."
+    "description": "Get started with Weiyu in 5 minutes."
   }
 }

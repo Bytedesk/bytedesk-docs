@@ -54,51 +54,51 @@ java --version
 cd bytedesk/deploy/docker
 
 # 2. 啟動依賴（預設 MySQL）
-# start.sh <db> <mq> <scenario> [all|middleware]
+# start.sh [keywords...] (db/mq/components/target, any order)
 
 # Artemis + MySQL（預設）
-./start.sh mysql artemis standard middleware
+./start mysql artemis middleware
 
 # RabbitMQ + MySQL（預設）
-./start.sh mysql rabbitmq standard middleware
+./start mysql rabbitmq middleware
 
 # 停止（保留容器）
-# ./stop.sh mysql artemis standard stop middleware
-# ./stop.sh mysql rabbitmq standard stop middleware
+# ./stop mysql artemis stop middleware
+# ./stop mysql rabbitmq stop middleware
 
 # 下線（刪除容器，保留資料卷）
-# ./stop.sh mysql artemis standard down middleware
-# ./stop.sh mysql rabbitmq standard down middleware
+# ./stop mysql artemis down middleware
+# ./stop mysql rabbitmq down middleware
 
 # 3. 切換 PostgreSQL（可選）
-./start.sh postgresql artemis standard middleware
-./start.sh postgresql rabbitmq standard middleware
+./start postgresql artemis middleware
+./start postgresql rabbitmq middleware
 
 # 4. 切換 Oracle（可選）
-./start.sh oracle artemis standard middleware
-./start.sh oracle rabbitmq standard middleware
+./start oracle artemis middleware
+./start oracle rabbitmq middleware
 
 # 5. 僅中介服務（建議用於源碼啟動，預設）
-./start.sh mysql artemis standard middleware
-./start.sh mysql rabbitmq standard middleware
+./start mysql artemis middleware
+./start mysql rabbitmq middleware
 
 # 6. 全量（中介服務 + bytedesk 映像）
-./start.sh mysql artemis standard all
-./start.sh mysql rabbitmq standard all
+./start mysql artemis all
+./start mysql rabbitmq all
 
 # 可選：透過環境變數切換專案名
-# PROJECT_NAME=bytedesk ./start.sh mysql artemis standard middleware
+# PROJECT_NAME=bytedesk ./start mysql artemis middleware
 
 # 等價原生命令（先切到 deploy/docker）
 # cd deploy/docker
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-rabbitmq.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-rabbitmq.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-rabbitmq.yaml up -d
 # 全量示例（中介服務 + bytedesk 映像）
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml -f compose/compose-bytedesk.yaml up -d
 ```
 
 - 或參考 [安裝專案依賴](./jar.md#前期准备)
@@ -134,7 +134,46 @@ protoc --version
 
 編輯`starter/src/main/resources/application-dev.properties`檔案，配置資料庫和Redis連線資訊：[請參考應用配置說明](./config.md)
 
-### 3.4 啟動專案
+### 3.4 伺服器位址（URL）配置
+
+預設配置中的存取位址均為 `http://127.0.0.1:9003`，僅適用於本地除錯。部署到伺服器時，需要將其替換為伺服器實際IP位址或網域，否則瀏覽器無法存取上傳檔案、頭像、知識庫（幫助中心/部落格）等資源。
+
+這些位址集中在 `starter/src/main/resources/properties/open/upload.properties` 檔案中（本地除錯對應 `properties/local/upload.properties`）：
+
+```properties
+# 上傳檔案的存取位址，請修改為伺服器實際的位址
+bytedesk.upload.url=http://你的伺服器IP:9003
+# 頭像的存取位址，請修改為伺服器實際的位址
+bytedesk.features.avatar-base-url=http://你的伺服器IP:9003
+# 知識庫的存取位址，請修改為伺服器實際的位址
+bytedesk.kbase.api-url=http://你的伺服器IP:9003
+# 幫助中心的存取位址（可選，不配置時使用 bytedesk.kbase.api-url）
+bytedesk.kbase.helpcenter.api-url=http://你的伺服器IP:9003
+# 部落格的存取位址（可選，不配置時使用 bytedesk.kbase.api-url）
+bytedesk.kbase.blog.api-url=http://你的伺服器IP:9003
+# 訪客工單頁面位址（用於郵件中的工單會話直達連結）
+bytedesk.custom.ticket-html-url=http://你的伺服器IP:9003/ticket
+
+# 外網可存取的 MQTT WebSocket 完整位址；當 WebSocket 埠（預設 9885）不對外開放（Nginx/反向代理）時配置
+# bytedesk.custom.mqtt-websocket-url=wss://你的網域/websocket
+# 外網可存取的上傳 API 位址（完整URL，不帶上傳路徑），用於多節點/反向代理上傳場景
+# bytedesk.custom.upload-api-url=https://upload.你的網域
+```
+
+> 💡 **提示**：這些配置項與 Docker 部署中 `.env` 檔案的環境變數一一對應（參見 [Docker部署](./docker.md)），完整屬性說明請參考 [應用配置說明](./config.md)：
+
+| 配置項（properties） | Docker 環境變數（.env） | 說明 |
+| --- | --- | --- |
+| `bytedesk.upload.url` | `BYTEDESK_UPLOAD_URL` | 上傳檔案的存取位址 |
+| `bytedesk.features.avatar-base-url` | `BYTEDESK_FEATURES_AVATAR_BASE_URL` | 頭像的存取位址 |
+| `bytedesk.kbase.api-url` | `BYTEDESK_KBASE_API_URL` | 知識庫的存取位址 |
+| `bytedesk.kbase.helpcenter.api-url` | `BYTEDESK_KBASE_HELPCENTER_API_URL` | 幫助中心的存取位址 |
+| `bytedesk.kbase.blog.api-url` | `BYTEDESK_KBASE_BLOG_API_URL` | 部落格的存取位址 |
+| `bytedesk.custom.ticket-html-url` | `BYTEDESK_CUSTOM_TICKET_HTML_URL` | 訪客工單頁面位址 |
+| `bytedesk.custom.mqtt-websocket-url` | `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL` | 外網 MQTT WebSocket 位址（反向代理場景） |
+| `bytedesk.custom.upload-api-url` | `BYTEDESK_CUSTOM_UPLOAD_API_URL` | 外網上傳 API 位址（多節點場景） |
+
+### 3.5 啟動專案
 
 ```bash
 # 進入啟動模組目錄

@@ -255,8 +255,8 @@ There is one important runtime difference to keep in mind:
 
 The current recommended combination is:
 
-- The application service uses [deploy/docker/compose-app-bytedesk.yaml](deploy/docker/compose-app-bytedesk.yaml)
-- The WebRTC infrastructure uses `compose-scenario-webrtc.yaml`
+- The application service uses [deploy/docker/compose/compose-bytedesk.yaml](deploy/docker/compose/compose-bytedesk.yaml)
+- The WebRTC infrastructure uses `deploy/docker/compose/compose-coturn.yaml`
 - Both join the same `bytedesk-network`, so the application container can reach Janus and Coturn by service name
 
 ### Values That Belong in `.env`

@@ -487,8 +487,10 @@ bytedesk.custom.login-google-enable=false
 ### OIDC 配置注意事项
 
 - 支持标准的 OpenID Connect Discovery 机制
-- 自动从 `{issuer}/.well-known/openid_configuration` 获取端点信息
+- 自动从 `{issuer}/.well-known/openid-configuration` 获取端点信息
 - 兼容 Azure AD、Google、Auth0 等主流 OIDC 提供商
+- `username-field`：用户信息中用作用户名的字段，默认 `sub`，可配置为 `preferred_username`、工号字段等；未取到值时自动回退 `sub`
+- `default-email-domain`：IdP 不返回 `email` claim 时（如高校 CAS 的 OIDC 端点只释放 `sub`/`name`），使用 `{username}@{default-email-domain}` 合成 email 兜底；与 CAS/LDAP 的同名配置行为一致。不配置且 IdP 无 email 时，首次登录自动注册会报“邮箱或手机号不能为空”
 
 ### OpenID 配置注意事项
 
@@ -504,6 +506,7 @@ bytedesk.custom.login-google-enable=false
 4. **权限范围**：根据需要在第三方平台配置适当的权限范围
 5. **企业防火墙**：确保企业内部网络能够访问第三方认证服务器
 6. **用户映射**：企业级 SSO 需要考虑用户身份映射和权限同步
+7. **认证用户名约定**：GitHub/Google/OIDC 等第三方登录注册时，有 email 的用户 `username` 列等于 email；CAS/LDAP 注册时 `username` 列为第三方账号（如学工号）。JWT 认证时优先按 `username` 列查找，未命中时自动回退按 `email` 查找，两类存量数据均可认证通过（若遇到第三方登录 401，可检查用户表 `username`/`email` 列是否与登录时下发值一致）
 
 ## 测试配置
 
@@ -622,7 +625,7 @@ services:
       BYTEDESK_OAUTH_OPENID_USERNAME_FIELD: "email"
     volumes:
       - bytedesk_data:/data
-    restart: unless-stopped
+ restart: unless-stopped
     networks:
       - bytedesk_network
 

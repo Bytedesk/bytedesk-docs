@@ -37,10 +37,10 @@ Authorization: Bearer <token>
 
 MCP配置已从AI批处理配置中拆分到独立文件：
 
-- `starter/src/main/resources/properties/local/75-mcp.properties`
-- `starter/src/main/resources/properties/noai/75-mcp.properties`
-- `starter/src/main/resources/properties/open/75-mcp.properties`
-- `starter/src/main/resources/properties/prod/75-mcp.properties`
+- `starter/src/main/resources/properties/local/ai-mcp.properties`
+- `starter/src/main/resources/properties/noai/ai-mcp.properties`
+- `starter/src/main/resources/properties/open/ai-mcp.properties`
+- `starter/src/main/resources/properties/prod/ai-mcp.properties`
 
 核心配置建议：
 

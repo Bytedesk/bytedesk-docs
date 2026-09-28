@@ -72,7 +72,7 @@ services:
       - artemis_data:/var/lib/artemis/data  # 数据持久化
     networks:
       - bytedesk-network
-    restart: always     # 自动重启
+ restart: always     # 自动重启
     healthcheck:        # 健康检查
       test: ["CMD", "curl", "--fail", "http://localhost:8161/console/jolokia/read/org.apache.activemq.artemis:broker=\"0.0.0.0\""]
       interval: 30s

@@ -10,11 +10,17 @@ import nin1Image from '/img/nin1.png';
 
 ## 📚 Overview
 
-**Weiyu** is a newly built open-source enterprise-level [multi-tenant](./development/saas.md) team collaboration tool based on AI, integrating multiple functions into one:
+**Weiyu** is a newly built open-source enterprise-level [multi-tenant](./development/saas.md) intelligent team collaboration platform based on AI, providing an integrated cloud contact center / customer service center / service marketing platform that significantly improves communication efficiency between internal employees and external customers.
 
-> [Enterprise IM](modules/team.md), [Online Customer Service](modules/service.md), [Enterprise Knowledge Base/Help Documentation](modules/kbase.md), [Ticket System](modules/ticket.md), [AI Agent](modules/ai.md), [Workflow](modules/workflow.md), [Voice of Customer](modules/voc.md), [Call Center](plugins/freeswitch.md), [Video Customer Service](plugins/video.md), [Customer Management](modules/crm.md), [Training Management](modules/training.md), [Marketing Management](modules/marketing.md), [Open Platform](modules/open.md)
+> [Enterprise IM](modules/team.md), [Intelligent Customer Service](modules/service.md), [Intelligent Ticketing](modules/ticket.md), [Intelligent Phone Customer Service](plugins/freeswitch.md), [Enterprise Knowledge Base](modules/kbase.md), [AI Agent](modules/ai.md), [Forms and Surveys](modules/form.md), [Workflow](modules/workflow.md), [Voice of Customer](modules/voc.md), [Audio Customer Service](plugins/video.md), [Video Customer Service](plugins/video.md), [Video Conference](meet/intro.md), [Customer Management](modules/crm.md), [Customer Service Training](modules/training.md), [Marketing Management](modules/marketing.md), [Public Opinion Management](modules/opinion.md), [Weiyu Docs](office/intro.md), [Open Platform](modules/open.md)
 
 <img src={nin1Image} alt="Weiyu Function Integration" />
+
+---
+
+## Mission
+
+Reduce repetitive customer service work, improve customer service efficiency, and increase customer service satisfaction
 
 ---
 
@@ -180,7 +186,7 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Handles common problems, reducing manual customer service workload
 - Achieves 24-hour uninterrupted service
 
-### 4. [Knowledge Base/Help Center](modules/kbase.md)
+### 4. [Knowledge Base](modules/kbase.md)
 
 📚 **Enterprise Knowledge Management Platform**
 
@@ -196,7 +202,7 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Customizable workflow and priority management
 - Ensures customer problems are resolved timely and effectively
 
-### 6. [Workflow - In Development...](modules/workflow.md)
+### 6. [Workflow](modules/workflow.md)
 
 ⚙️ **Business Process Design Platform**
 
@@ -204,15 +210,15 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Supports custom approval processes, task assignment
 - Status tracking, improving team collaboration efficiency
 
-### 7. [Call Center - In Development...](plugins/freeswitch.md)
+### 7. [Audio Customer Service](plugins/video.md)
 
-☎️ **Full-featured Call System**
+🎧 **Real-time Audio Service Solution**
 
-- Professional call platform based on FreeSwitch
-- Supports incoming call popup, automatic assignment, call recording
-- Data statistics, seamless integration of voice and text services
+- Real-time voice calls based on WebRTC technology
+- Supports one-click voice dialogue and human collaboration transfer
+- Suitable for weak-network environments and quick communication service scenarios
 
-### 8. [Video Customer Service - In Development...](plugins/video.md)
+### 8. [Video Customer Service](plugins/video.md)
 
 📹 **Real-time Video Service Solution**
 
@@ -220,7 +226,23 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Supports one-click video dialogue and screen sharing
 - Suitable for service scenarios requiring intuitive display
 
-### 9. [Voice of Customer - In Development...](modules/voc.md)
+### 9. [Video Conference - In Development...](meet/intro.md)
+
+🎥 **Enterprise Audio and Video Conferencing System**
+
+- Supports multi-party audio/video conferencing, meeting scheduling, and quick joining
+- Provides screen sharing, meeting control, and collaborative communication capabilities
+- Suitable for remote collaboration, online training, and cross-team meeting scenarios
+
+### 10. [Phone Customer Service](plugins/freeswitch.md)
+
+☎️ **Full-featured Call System**
+
+- Professional call platform based on FreeSwitch
+- Supports incoming call popup, automatic assignment, call recording
+- Data statistics, seamless integration of voice and text services
+
+### 11. [Voice of Customer](modules/voc.md)
 
 📣 **Customer Feedback Management System**
 
@@ -228,7 +250,7 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Helps enterprises understand customer needs and pain points
 - Discovers product and service improvement opportunities
 
-### 10. [Customer Management](modules/crm.md)
+### 12. [Customer Management](modules/crm.md)
 
 👥 **Customer Relationship Management System**
 
@@ -236,7 +258,7 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Cross-channel interaction records and follow-up reminders
 - End-to-end collaboration across opportunities, contracts, and orders
 
-### 11. [Training Management](modules/training.md)
+### 13. [Customer Service Training - In Development...](modules/training.md)
 
 🎯 **Service Training and Capability Improvement**
 
@@ -244,7 +266,7 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - AI role-play with quality insights for targeted skill improvement
 - Visualized participation and assessment metrics for better governance
 
-### 12. [Marketing Management](modules/marketing.md)
+### 14. [Marketing Management - In Development...](modules/marketing.md)
 
 📣 **Omni-channel Growth Marketing Platform**
 
@@ -252,7 +274,23 @@ The Weiyu Collaboration Platform is based on modular design, focusing on custome
 - Run segmented outreach and automation to improve conversion efficiency
 - Review campaign performance through dashboards and optimize continuously
 
-### 13. [Open Platform](modules/open.md)
+### 15. [Public Opinion Management - In Development...](modules/opinion.md)
+
+📡 **Whole-web Public Opinion Monitoring and Response Platform**
+
+- Aggregates public opinion information across platforms, identifying brand and event risk signals in real time
+- Supports sentiment analysis, topic clustering, and tiered alerts to improve risk detection efficiency
+- Coordinates PR and customer service response, forming a "monitor-respond-review" closed loop
+
+### 16. [Weiyu Docs](office/intro.md)
+
+📄 **AI Office Document Workspace**
+
+- Supports online creation and editing of Word, Excel, PPT, PDF, and Markdown documents
+- Built-in AI assistant: draft from scratch, polish the whole document, AI formatting, and batch edits, all in one sentence
+- Compatible with real Microsoft Office formats — files edited in Weiyu Docs open cleanly in Office
+
+### 17. [Open Platform](modules/open.md)
 
 🔌 **Enterprise-grade API Open Platform**
 

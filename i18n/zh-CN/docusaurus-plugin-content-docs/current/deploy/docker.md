@@ -5,7 +5,7 @@ sidebar_position: 3
 ---
 
 :::info 试用版License
-需要试用版License？请参考：[问题13：如何申请licenseKey](../faq#问题13如何申请licensekey)
+需要试用版License？请参考：[如何申请licenseKey](../development/license.md)
 :::
 
 ## 系统要求
@@ -33,6 +33,7 @@ git clone https://gitee.com/270580156/bytedesk-docker-compose.git
 cd bytedesk-docker-compose
 
 # 如需自定义环境变量，先复制模板
+# 注意：.env 务必使用 UTF-8 编码保存（推荐无 BOM），且值中不要包含中文全角引号或首尾空格，否则可能导致环境变量解析异常。
 cp .env.example .env
 ```
 
@@ -40,23 +41,33 @@ cp .env.example .env
 
 #### 2.1 服务器IP配置
 
-将 `127.0.0.1` 替换为你的服务器IP地址或域名
+将 `.env` 中的 `127.0.0.1` 替换为你的服务器IP地址或域名（`start.sh` / `stop.sh` 会通过 `--env-file` 自动加载）：
 
-```yaml
+```bash
 # 请将 127.0.0.1 替换为你的服务器IP或域名
-BYTEDESK_UPLOAD_URL: http://你的服务器IP:9003
-BYTEDESK_KBASE_API_URL: http://你的服务器IP:9003
-BYTEDESK_FEATURES_AVATAR_BASE_URL: http://你的服务器IP:9003
+BYTEDESK_UPLOAD_URL=http://你的服务器IP:9003
+BYTEDESK_KBASE_API_URL=http://你的服务器IP:9003
+BYTEDESK_KBASE_HELPCENTER_API_URL=http://你的服务器IP:9003
+BYTEDESK_KBASE_BLOG_API_URL=http://你的服务器IP:9003
+BYTEDESK_FEATURES_AVATAR_BASE_URL=http://你的服务器IP:9003
+
+# 外网可访问的 MQTT WebSocket 完整地址；当 WebSocket 端口（默认 9885）不对外开放（Nginx/反向代理）时配置
+BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL=wss://你的域名/websocket
 ```
+
+> 💡 **提示**：这些变量用于生成上传文件、知识库（帮助中心/博客）和头像的对外访问地址。本地默认值为 `http://127.0.0.1:9003`；生产环境必须改成服务器 IP 或域名，否则浏览器无法访问上传文件和帮助中心页面。
 
 #### 2.2 配置licenseKey
 
-- 并配置 [licenseKey](../development/license.md)：
+在 `.env` 文件中设置 `BYTEDESK_LICENSE_KEY`，申请方式参考 [licenseKey](../development/license.md)：
 
-```yaml
+```bash
 # 官方微语管理后台-》设置-》License-》申请licenseKey
-BYTEDESK_LICENSE_KEY: 
+# 将申请到的 licenseKey 填入下方等号后面
+BYTEDESK_LICENSE_KEY=
 ```
+
+> 💡 **提示**：`start.sh` / `stop.sh` 会通过 `--env-file` 自动加载 `.env`，因此 licenseKey、数据库密码、API Key 等敏感信息统一写入 `.env` 即可，无需直接修改 compose 文件。若未申请 licenseKey，可先留空，系统将以社区版（试用）能力运行。
 
 #### 2.3 云模型配置（智谱AI）
 
@@ -79,27 +90,14 @@ environment:
 ```bash
 # 1) MySQL + Artemis + 标准场景（默认发布组合）
 # 启动
-./start.sh mysql artemis standard all
+./start mysql artemis all
 # 停止
-./stop.sh mysql artemis standard stop all
+./stop mysql artemis stop all
 # 或 停止
-./stop.sh mysql artemis standard down all
+./stop mysql artemis down all
 ```
 
 > 💡 更多组合（PostgreSQL/Oracle、RabbitMQ、noai、call、全量 all）请参考：[Gitee-readme.zh.md](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/readme.zh.md) 或 [Github-readme.zh.md](https://github.com/Bytedesk/bytedesk-docker-compose/blob/main/readme.zh.md)
-
-### 步骤4：下载模型（可选）
-
-如果使用本地模型，需要下载Ollama模型：
-
-```bash
-# 对话模型
-docker exec ollama-bytedesk ollama pull qwen3:0.6b
-# 嵌入模型
-docker exec ollama-bytedesk ollama pull bge-m3:latest
-# 重新排序模型
-docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
-```
 
 ## 访问系统
 
@@ -112,14 +110,11 @@ docker exec ollama-bytedesk ollama pull linux6200/bge-reranker-v2-m3:latest
 
 如果使用域名访问（Nginx/反向代理），则无需特别对外开放 9003/9885，只需要开放 80/443 分别用于 http/https 访问即可。
 
-当 WebSocket 端口（默认 9885）不对外开放时，请增加以下配置，确保前端长连接正常：
-
-```bash
-# 注意替换域名，注意提前在NGINX配置https证书
-BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL: wss://你的域名/websocket
-```
+> 💡 **提示**：当 WebSocket 端口（默认 9885）不对外开放时，请在 `.env` 中配置 `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL`（见上文「2.1 服务器IP配置」），确保前端长连接正常。
 
 ### 登录信息
+
+- 登录之后可以在个人设置中修改默认密码
 
 ```bash
 # 将 127.0.0.1 替换为你的服务器IP

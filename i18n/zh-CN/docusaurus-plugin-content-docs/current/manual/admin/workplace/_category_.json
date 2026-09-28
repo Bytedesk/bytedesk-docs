@@ -1,4 +1,8 @@
 {
   "label": "工作台",
-  "position": 1
+  "position": 18,
+  "link": {
+    "type": "generated-index",
+    "description": "Get started in 5 minutes."
+  }
 }

@@ -7,7 +7,7 @@ sidebar_position: 2
 
 Bytedesk uses the **ELK Stack** (Elasticsearch + Logstash + Kibana) to provide unified log collection, parsing, storage, and visualization. It offers centralized log search, distributed tracing, and operational troubleshooting for developers and DevOps engineers.
 
-[Logstash](https://www.elastic.co/guide/en/logstash/8.18/docker.html) · [Kibana](https://www.elastic.co/guide/en/kibana/8.18/docker.html) · [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/8.18/docker.html)
+[Logstash](https://www.elastic.co/guide/en/logstash/9.4/docker.html) · [Kibana](https://www.elastic.co/guide/en/kibana/9.4/docker.html) · [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/9.4/docker.html)
 
 ## Overview
 
@@ -47,7 +47,7 @@ flowchart LR
 
 ### Output Pattern
 
-Application logs follow a unified pattern (configured in `starter/src/main/resources/properties/noai/40-oauth-ldap-logging.properties`):
+Application logs follow a unified pattern (configured in `starter/src/main/resources/properties/noai/logging.properties`):
 
 ```bash
 [RID:%X{requestId} TRACEID:%X{traceId}]-yyyy-MM-dd HH:mm:ss.SSS-LEVEL PID --- [thread] logger : message
@@ -71,7 +71,7 @@ Example log line:
 
 ## Logstash Pipeline Details
 
-The pipeline configuration is at `deploy/docker/logstash/pipeline/logstash.conf`, with three phases:
+The pipeline configuration is at `deploy/docker/compose/logstash/pipeline/logstash.conf`, with three phases:
 
 ### Input — Log Collection
 
@@ -185,10 +185,10 @@ KIBANA_SERVICE_ACCOUNT_TOKEN=your_token_here
 cd deploy/docker
 
 # Start ELK services only
-docker compose -f compose-base.yaml up -d bytedesk-elasticsearch bytedesk-logstash bytedesk-kibana
+docker compose --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml up -d bytedesk-elasticsearch bytedesk-logstash bytedesk-kibana
 
 # Check service status
-docker compose -f compose-base.yaml ps
+docker compose --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml ps
 ```
 
 ### 3. Verify Services
@@ -318,9 +318,9 @@ Logstash's `multiline` codec merges lines not starting with `[RID:` into the pre
 
 ## Related Resources
 
-- [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/8.18/index.html)
-- [Logstash Documentation](https://www.elastic.co/guide/en/logstash/8.18/index.html)
-- [Kibana Documentation](https://www.elastic.co/guide/en/kibana/8.18/index.html)
+- [Elasticsearch Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/9.4/index.html)
+- [Logstash Documentation](https://www.elastic.co/guide/en/logstash/9.4/index.html)
+- [Kibana Documentation](https://www.elastic.co/guide/en/kibana/9.4/index.html)
 - [Bytedesk System Monitor](./bytedesk-monitor.md)
-- [Online Compose Config - GitHub](https://github.com/Bytedesk/bytedesk-docker-compose/blob/main/docker/compose-base.yaml)
-- [Online Compose Config - Gitee](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/docker/compose-base.yaml)
+- [Online Compose Config - GitHub](https://github.com/Bytedesk/bytedesk-docker-compose/blob/main/docker/compose/compose-elasticsearch.yaml)
+- [Online Compose Config - Gitee](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/docker/compose/compose-elasticsearch.yaml)

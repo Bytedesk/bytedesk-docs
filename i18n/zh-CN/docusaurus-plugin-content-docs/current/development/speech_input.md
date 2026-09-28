@@ -13,7 +13,7 @@ sidebar_position: 55
 
 ### 1.1 `.properties` 配置示例
 
-可在 `starter/src/main/resources/properties/local/70-ai-batch-liquibase.properties`（或你的 profile 对应文件）增加：
+可在 `starter/src/main/resources/properties/local/ai-asr-tts.properties`（或你的 profile 对应文件）增加：
 
 ```properties
 # DashScope 基础配置

@@ -13,3 +13,4 @@ Welcome to Weiyu - An open source customer service system.
 - [Customer Service](manual/admin/service/agent)
 - [Knowledge Base](manual/admin/kbase/helpcenter)
 - [Ticket System](manual/admin/ticket/waiting)
+- [Weiyu Docs (Office Suite)](office/intro.md)

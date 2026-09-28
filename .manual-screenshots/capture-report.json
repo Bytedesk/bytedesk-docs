@@ -1,0 +1,211 @@
+{
+  "generatedAt": "2026-09-11T04:23:31.835Z",
+  "mode": "capture",
+  "repositoryDirectory": "/Users/ningjinpeng/Desktop/Git/Github/private/bytedesk-main",
+  "outputDirectory": "/Users/ningjinpeng/Desktop/Git/Github/private/bytedesk-main/docs/static/img/manual",
+  "services": [
+    {
+      "id": "backend",
+      "url": "http://127.0.0.1:9003/system/health",
+      "state": "ready",
+      "status": 200,
+      "ownership": "external"
+    },
+    {
+      "id": "admin",
+      "url": "http://127.0.0.1:9004/admin/",
+      "state": "ready",
+      "status": 200,
+      "ownership": "external"
+    },
+    {
+      "id": "desktop",
+      "url": "http://127.0.0.1:9005/agent/",
+      "state": "ready",
+      "status": 200,
+      "ownership": "external"
+    },
+    {
+      "id": "visitor",
+      "url": "http://127.0.0.1:9006/chat/",
+      "state": "ready",
+      "status": 200,
+      "ownership": "external"
+    },
+    {
+      "id": "visitorTicket",
+      "url": "http://127.0.0.1:9017/ticket/",
+      "state": "ready",
+      "status": 200,
+      "ownership": "external"
+    }
+  ],
+  "screenshots": [
+    {
+      "id": "admin-login",
+      "service": "admin",
+      "output": "admin/auth/login.png",
+      "outputExists": true,
+      "requiresAuth": false
+    },
+    {
+      "id": "admin-welcome",
+      "service": "admin",
+      "output": "admin/welcome-new.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "admin-team-member",
+      "service": "admin",
+      "output": "admin/team/member-new.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "admin-service-agent",
+      "service": "admin",
+      "output": "admin/service/agent-new.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "admin-ai-model",
+      "service": "admin",
+      "output": "admin/ai/model-new.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "admin-ai-robot",
+      "service": "admin",
+      "output": "admin/ai/robot-new.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "desktop-login",
+      "service": "desktop",
+      "output": "agent/auth/login.png",
+      "outputExists": true,
+      "requiresAuth": false
+    },
+    {
+      "id": "desktop-chat",
+      "service": "desktop",
+      "output": "agent/chat.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "desktop-contact",
+      "service": "desktop",
+      "output": "agent/contact.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "desktop-ticket",
+      "service": "desktop",
+      "output": "agent/ticket.png",
+      "outputExists": false,
+      "requiresAuth": true
+    },
+    {
+      "id": "visitor-chat",
+      "service": "visitor",
+      "output": "chat/gettting_started.png",
+      "outputExists": false,
+      "requiresAuth": false
+    },
+    {
+      "id": "visitor-ticket-list",
+      "service": "visitorTicket",
+      "output": "ticket/gettting_started.png",
+      "outputExists": false,
+      "requiresAuth": false
+    }
+  ],
+  "captureResults": [
+    {
+      "id": "admin-login",
+      "state": "preserved",
+      "output": "admin/auth/login.png"
+    },
+    {
+      "id": "admin-welcome",
+      "state": "created",
+      "output": "admin/welcome-new.png",
+      "url": "http://127.0.0.1:9004/admin/welcome",
+      "bytes": 101249
+    },
+    {
+      "id": "admin-team-member",
+      "state": "created",
+      "output": "admin/team/member-new.png",
+      "url": "http://127.0.0.1:9004/admin/team/member",
+      "bytes": 141515
+    },
+    {
+      "id": "admin-service-agent",
+      "state": "created",
+      "output": "admin/service/agent-new.png",
+      "url": "http://127.0.0.1:9004/admin/service/agent",
+      "bytes": 124522
+    },
+    {
+      "id": "admin-ai-model",
+      "state": "created",
+      "output": "admin/ai/model-new.png",
+      "url": "http://127.0.0.1:9004/admin/ai/model",
+      "bytes": 221047
+    },
+    {
+      "id": "admin-ai-robot",
+      "state": "created",
+      "output": "admin/ai/robot-new.png",
+      "url": "http://127.0.0.1:9004/admin/ai/robot",
+      "bytes": 153875
+    },
+    {
+      "id": "desktop-login",
+      "state": "preserved",
+      "output": "agent/auth/login.png"
+    },
+    {
+      "id": "desktop-chat",
+      "state": "created",
+      "output": "agent/chat.png",
+      "url": "http://127.0.0.1:9005/agent/chat",
+      "bytes": 74909
+    },
+    {
+      "id": "desktop-contact",
+      "state": "created",
+      "output": "agent/contact.png",
+      "url": "http://127.0.0.1:9005/agent/contact",
+      "bytes": 88190
+    },
+    {
+      "id": "desktop-ticket",
+      "state": "created",
+      "output": "agent/ticket.png",
+      "url": "http://127.0.0.1:9005/agent/chat",
+      "bytes": 76008
+    },
+    {
+      "id": "visitor-chat",
+      "state": "created",
+      "output": "chat/gettting_started.png",
+      "url": "http://127.0.0.1:9006/chat/",
+      "bytes": 58117
+    },
+    {
+      "id": "visitor-ticket-list",
+      "state": "created",
+      "output": "ticket/gettting_started.png",
+      "url": "http://127.0.0.1:9017/ticket?org=df_org_uid&sid=df_wg_ticket",
+      "bytes": 41937
+    }
+  ]
+}

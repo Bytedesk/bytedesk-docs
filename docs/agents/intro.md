@@ -17,6 +17,7 @@ The current Agent pages describe the product direction and implementation plan. 
 - [After-sales Agent](./after-sales-agent.md): handles order, logistics, refund, return, warranty, complaint, and ticket follow-up scenarios.
 - [Voice Service Agent](./voice-service-agent.md): connects inbound calls, voice IVR, repair intake, appointment confirmation, ticket dispatch, service callback, and complaint early warning into a service fulfillment loop.
 - [Operations Agent](./operations-agent.md): turns service data into user segments, campaigns, retention actions, and growth insights.
+- [Ask User Question](./ask-user-question.md): a built-in clarification ability that lets the AI agent ask structured multiple-choice questions when it needs more details from the visitor.
 
 ## Product Concept
 

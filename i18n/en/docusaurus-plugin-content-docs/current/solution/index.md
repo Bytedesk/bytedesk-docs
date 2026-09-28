@@ -91,7 +91,16 @@ sidebar_position: 1
 - 智能试驾体验服务
 - 新能源汽车专业服务
 
-## 🛫 旅游酒店行业
+## � Two-Wheeler EV Industry
+
+### [Two-Wheeler EV Smart Customer Service Solution](two-wheeler-ev.md)
+
+- Store locator and roadside assistance dispatch
+- Warranty policy and spare parts inventory Q&A
+- App Bluetooth and smart feature guidance
+- Guided troubleshooting and smart ticket workflow
+
+## �🛫 旅游酒店行业
 
 ### [旅游酒店行业智能客服解决方案](travel.md)
 
@@ -99,6 +108,15 @@ sidebar_position: 1
 - 智能酒店预订服务
 - 智能交通票务服务
 - 目的地智能服务
+
+## ✈️ Aviation Industry
+
+### [Aviation Intelligent Customer Service Solution](aviation.md)
+
+- Multilingual intelligent reception
+- Intelligent intent recognition and routing
+- Intelligent knowledge base parsing
+- One-stop refund and rebooking
 
 ## 🏢 企业协作服务
 

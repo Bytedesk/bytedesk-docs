@@ -1,6 +1,25 @@
 ---
-sidebar_label: Org
-sidebar_position: 4
+sidebar_label: Organization
+sidebar_position: 8
 ---
 
-# Org
+# 組織管理
+
+![組織資訊頁面](/img/manual/admin/team/org.png)
+
+組織頁面用於維護組織資訊與處理加入申請。
+
+## 組織資訊
+
+在「組織資訊」標籤中檢視與編輯組織基本資訊。
+
+## 加入申請
+
+在「加入申請」標籤中處理使用者加入組織的申請：
+
+1. 檢視待處理的加入申請
+2. 同意或拒絕申請
+
+:::note 說明
+加入申請標籤需當前帳號有組織且有相應授權才可見。
+:::

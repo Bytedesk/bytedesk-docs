@@ -1,8 +1,8 @@
 {
-  "label": "会话",
+  "label": "Conversation",
   "position": 1,
   "link": {
     "type": "generated-index",
-    "description": "5分钟快速上手使用 微语AI Agent."
+    "description": "Send messages, use the toolbar, and rate the service."
   }
 }

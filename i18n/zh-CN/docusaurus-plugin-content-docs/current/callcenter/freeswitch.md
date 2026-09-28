@@ -57,7 +57,7 @@ services:
     # 国内镜像（推荐）
     image: registry.cn-hangzhou.aliyuncs.com/bytedesk/freeswitch:latest
     container_name: freeswitch-bytedesk
-    restart: always
+ restart: always
     # 使用 -nf (no fork) 参数在前台运行，避免容器退出
     command: ["freeswitch", "-nf", "-nonat", "-nonatmap"]
     environment:

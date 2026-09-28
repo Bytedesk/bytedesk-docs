@@ -1,6 +1,6 @@
 {
-  "label": "Authentication",
-  "position": 1,
+  "label": "Auth",
+  "position": 16,
   "link": {
     "type": "generated-index",
     "description": "Get started in 5 minutes"

@@ -26,44 +26,44 @@ sidebar_position: 3
 # Enter deploy/docker directory
 cd bytedesk/deploy/docker
 
-# start.sh <db> <mq> <scenario> [all|middleware]
+# start.sh [keywords...] (db/mq/components/target, any order)
 
 # Artemis + MySQL (default)
-./start.sh mysql artemis standard middleware
+./start mysql artemis middleware
 
 # RabbitMQ + MySQL (default)
-./start.sh mysql rabbitmq standard middleware
+./start mysql rabbitmq middleware
 
 # Switch to PostgreSQL
-./start.sh postgresql artemis standard middleware
-./start.sh postgresql rabbitmq standard middleware
+./start postgresql artemis middleware
+./start postgresql rabbitmq middleware
 
 # Switch to Oracle
-./start.sh oracle artemis standard middleware
-./start.sh oracle rabbitmq standard middleware
+./start oracle artemis middleware
+./start oracle rabbitmq middleware
 
 # Middleware only (recommended for source startup, default)
-# ./start.sh mysql artemis standard middleware
-# ./start.sh mysql rabbitmq standard middleware
+# ./start mysql artemis middleware
+# ./start mysql rabbitmq middleware
 
 # Full stack (middleware + bytedesk image)
-# ./start.sh mysql artemis standard all
-# ./start.sh mysql rabbitmq standard all
+# ./start mysql artemis all
+# ./start mysql rabbitmq all
 
-# stop.sh <db> <mq> <scenario> [stop|down] [all|middleware]
-# ./stop.sh mysql artemis standard stop middleware
-# ./stop.sh mysql artemis standard down all
+# stop.sh [stop|down] [keywords...]
+# ./stop mysql artemis stop middleware
+# ./stop mysql artemis down all
 
 # Equivalent native compose commands (first go to deploy/docker)
 # cd deploy/docker
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-rabbitmq.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-rabbitmq.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-rabbitmq.yaml up -d
 # Full stack example (middleware + bytedesk image)
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml -f compose/compose-bytedesk.yaml up -d
 ```
 
 ## Download

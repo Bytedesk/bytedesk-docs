@@ -1,29 +1,50 @@
 ---
-sidebar_label: 登录
+sidebar_label: Login
 sidebar_position: 1
 ---
 
-# 登录
+# Logging in to the Agent Desktop
 
-## 方法一：自定义服务器
+![Agent desktop login page](/img/manual/agent/auth/login.png)
 
-- 登录管理后台
-- 点击左侧菜单栏的`设置` -》`服务器设置` -》复制 服务器地址
-- 打开客户端，登录界面，点击`自定义服务器`，粘贴服务器地址，点击`保存`
-- 返回登录界面，输入用户名和密码即可
+## Login Methods
 
-## 方法二：Web 版客户端
+The workspace supports three login methods, switchable at the top of the login page.
 
-使用方法一获取到服务器地址
+### Account and Password
 
-- 找到 agent/config.json 文件，默认格式如下：
+1. Enter the account and password assigned by your administrator
+2. Accept the privacy policy and terms of service
+3. Click "Login"
 
-```json
-{
-    "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-    "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
-    "htmlHost": "www.weiyuai.cn" // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
-}
-```
+### Phone Number and Verification Code
 
-将 apiHost 和 htmlHost 替换为服务器地址即可
+1. Enter your phone number
+2. Click "Get code", complete the image captcha, and enter the SMS code
+3. Click "Login"
+
+### QR-Code Login
+
+1. Open the scan entry on a signed-in mobile app or authorized application
+2. Scan the QR code on the login page to sign in
+
+## Registration and Password Recovery
+
+- **Register**: unregistered users can tap "Register" and follow the guide to create an account
+- **Forgot password**: tap "Forgot password" and reset via phone number or email verification
+
+## Server Switching
+
+To sign in to a private deployment or another server:
+
+1. Click the "Server switching" entry on the login page
+2. Enter or select the target server address
+3. Save and sign in again
+
+:::note Note
+Server addresses are usually provided by the administrator; if the connection fails, check the network and the address.
+:::
+
+## After Login
+
+After a successful login the system enters the "Chat" workspace and shows the menus and permissions of the account. If some menus are missing, the account lacks the corresponding permissions; contact your administrator.

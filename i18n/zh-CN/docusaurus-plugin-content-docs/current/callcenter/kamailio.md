@@ -95,7 +95,7 @@ services:
  kamailio:
   image: kamailio/kamailio:5.9
   container_name: kamailio-edge
-  restart: always
+ restart: always
   environment:
    - TZ=Asia/Shanghai
   # 如需在容器前台查看日志，使用: command: ["kamailio", "-DD", "-E"]

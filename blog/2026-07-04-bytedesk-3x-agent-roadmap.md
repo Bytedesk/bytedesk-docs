@@ -1,5 +1,5 @@
 ---
-slug: bytedesk-3x-agent-roadmap
+slug: bytedesk-main-agent-roadmap
 title: 微语 3.x 路线图：聚焦 Agent，让 AI 更方便地使用微语
 authors: jackning
 tags: [bytedesk, AI, Agent, 客服, LLM, MCP, Skill]

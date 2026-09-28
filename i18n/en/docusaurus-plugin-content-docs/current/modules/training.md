@@ -4,6 +4,8 @@ description: Integrated customer service and employee training management
 sidebar_position: 10
 ---
 
+<!-- markdownlint-disable MD025 -->
+
 # Weiyu Customer Service & Employee Training
 
 ## Overview

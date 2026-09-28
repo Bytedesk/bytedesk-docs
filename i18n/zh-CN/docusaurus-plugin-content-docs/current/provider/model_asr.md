@@ -170,7 +170,7 @@ docker run -d \
  registry.cn-hangzhou.aliyuncs.com/bytedesk/ttsasr:latest
 ```
 
-如果使用项目自带的 Docker Compose，则 `compose-base.yaml` 已默认包含该镜像服务。
+如果使用项目自带的 Docker Compose，则 `compose/compose-elasticsearch.yaml` 已默认包含该镜像服务。
 
 项目侧对应的配置项如下：
 
@@ -214,8 +214,8 @@ bytedesk.ai.asr.poll-interval-ms=1500
 
 如果项目通过 Docker Compose 部署，那么现在推荐同时关注两部分：
 
-- `compose-base.yaml` 中的 `ttsasr` 本地识别镜像服务
-- `compose-app-bytedesk.yaml` 中 bytedesk 应用容器读取的 ASR 环境变量
+- `compose/compose-elasticsearch.yaml` 中的 `ttsasr` 本地识别镜像服务
+- `compose/compose-bytedesk.yaml` 中 bytedesk 应用容器读取的 ASR 环境变量
 
 其中，基础编排已经默认加入本地 ASR 镜像：
 
@@ -232,7 +232,7 @@ bytedesk-ttsasr:
 - 宿主机可通过 `http://127.0.0.1:18000` 访问 ttsasr 服务
 - Docker 网络内的 bytedesk 应用容器可通过 `http://ttsasr-bytedesk:8000` 访问 ttsasr 服务
 
-对应的 bytedesk 应用容器环境变量例如 [deploy/docker/compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-bytedesk.yaml)：
+对应的 bytedesk 应用容器环境变量例如 [deploy/docker/compose/compose-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-bytedesk.yaml)：
 
 ```yaml
 BYTEDESK_AI_ASR_TTSASR_ENABLED: "true"
@@ -245,7 +245,7 @@ BYTEDESK_AI_ASR_TTSASR_LANGUAGE: auto
 
 ```bash
 cd deploy/docker
-./start.sh mysql artemis standard middleware
+./start mysql artemis middleware
 ```
 
 启动完成后，只要 `ttsasr-bytedesk` 容器健康检查通过，源码启动的后端就可以直接通过 `http://127.0.0.1:18000` 调用本地识别服务。

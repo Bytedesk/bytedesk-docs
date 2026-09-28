@@ -4,6 +4,8 @@ description: 客户关系管理CRM
 sidebar_position: 6
 ---
 
+<!-- markdownlint-disable MD025 -->
+
 # 客户关系管理 CRM/SCRM
 
 ## 📚 概述

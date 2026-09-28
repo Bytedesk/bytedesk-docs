@@ -80,7 +80,7 @@ BYTEDESK_ADMIN_FORCE_VALIDATE_EMAIL=true
 ### 簡訊和郵件服務配置
 
 1. **簡訊服務配置**：微語系統支援阿里雲簡訊服務，用於發送手機驗證碼
-   - 配置參考：[阿里雲簡訊服務配置](../deploy/config#阿里雲簡訊服務配置---手機登入驗證碼)
+   - 配置參考：[阿里雲簡訊服務配置](../deploy/config)
 
 2. **郵件服務配置**：支援透過SMTP或阿里雲郵件服務發送郵箱驗證碼
    - 可配置為Java Mail或阿里雲郵件方式：`bytedesk.features.email-type=javamail` 或 `bytedesk.features.email-type=aliyun`

@@ -77,3 +77,113 @@ Skill:
   label: Skill
   permalink: /skill
   description: Agent skill modules and reusable capability units
+
+SpringBoot:
+  label: SpringBoot
+  permalink: /springboot
+  description: Spring Boot framework
+
+SpringAI:
+  label: SpringAI
+  permalink: /spring-ai
+  description: Spring AI framework
+
+Flowable:
+  label: Flowable
+  permalink: /flowable
+  description: Flowable workflow engine
+
+springdoc:
+  label: springdoc
+  permalink: /springdoc
+  description: springdoc-openapi
+
+Elasticsearch:
+  label: Elasticsearch
+  permalink: /elasticsearch
+  description: Elasticsearch search engine
+
+版本升级:
+  label: Version Upgrade
+  permalink: /version-upgrade
+  description: Version upgrade notes
+
+Upgrade:
+  label: Upgrade
+  permalink: /upgrade
+  description: Version upgrade
+
+PostgreSQL:
+  label: PostgreSQL
+  permalink: /postgresql
+  description: PostgreSQL database related updates
+
+ParadeDB:
+  label: ParadeDB
+  permalink: /paradedb
+  description: ParadeDB search and analytics database related updates
+
+Docker:
+  label: Docker
+  permalink: /docker
+  description: Docker deployment and container runtime updates
+
+版本升級:
+  label: Version Upgrade (TW)
+  permalink: /version-upgrade-tw
+  description: Version upgrade notes (Traditional Chinese)
+
+VOC:
+  label: VOC
+  permalink: /voc
+  description: Voice of Customer
+
+Voice of Customer:
+  label: Voice of Customer
+  permalink: /voice-of-customer
+  description: Voice of Customer feedback management
+
+CSAT:
+  label: CSAT
+  permalink: /csat
+  description: Customer Satisfaction Score
+
+NPS:
+  label: NPS
+  permalink: /nps
+  description: Net Promoter Score
+
+feedback:
+  label: Feedback
+  permalink: /feedback
+  description: Feedback feature
+
+Meet:
+  label: Meet
+  permalink: /meet
+  description: Bytedesk Meet open-source audio & video conferencing
+
+WebRTC:
+  label: WebRTC
+  permalink: /webrtc
+  description: WebRTC real-time audio and video communication
+
+Janus:
+  label: Janus
+  permalink: /janus
+  description: Janus WebRTC server gateway
+
+Open Source:
+  label: Open Source
+  permalink: /open-source
+  description: Open-source software and self-hosting
+
+Feishu:
+  label: Feishu
+  permalink: /feishu
+  description: Feishu (Lark) open platform and channel integration
+
+Kbase:
+  label: Knowledge Base
+  permalink: /kbase
+  description: Bytedesk knowledge base and data source import

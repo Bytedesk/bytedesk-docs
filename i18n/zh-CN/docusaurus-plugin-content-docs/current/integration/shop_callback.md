@@ -1,6 +1,6 @@
 ---
-sidebar_label: 商品/订单回调
-sidebar_position: 2
+sidebar_label: 访客端商品/订单回调
+sidebar_position: 6
 ---
 
 # 商品/订单回调

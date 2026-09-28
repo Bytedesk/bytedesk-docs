@@ -1,22 +1,22 @@
 ---
-sidebar_label: 登录
+sidebar_label: Login
 sidebar_position: 1
 ---
 
-# 登录
+# 登入管理後臺
 
-## 自定义服务器
+![管理後臺登入頁](/img/manual/admin/auth/login.png)
 
-- 登录管理后台
-- 点击左侧菜单栏的`设置` -》`服务器设置` -》复制 服务器地址
-- 找到 admin/config.json 文件，默认格式如下：
+## 登入方式
 
-```json
-{
-    "enabled": false, // false 改为 true。只有修改为 true，下面的 apiHost 和 htmlHost 才能生效
-    "apiHost": "api.weiyuai.cn", // 重要：改为线上 api 地址，如: api.example.com，不能够以 http 开头
-    "htmlHost": "www.weiyuai.cn" // 修改为访问静态网页地址，如: www.example.com，不能够以 http 开头
-}
-```
+管理後臺支援帳號密碼、手機號驗證碼、掃碼等方式登入。
 
-将 apiHost 和 htmlHost 替换为服务器地址即可
+## 登入步驟
+
+1. 開啟管理後臺地址
+2. 輸入管理員帳號與密碼（或選擇其他登入方式）
+3. 登入後進入「工作臺」首頁
+
+:::note 說明
+正式使用前請修改初始密碼，並繫結郵箱與手機號提升帳號安全。
+:::

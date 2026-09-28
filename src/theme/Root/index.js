@@ -47,10 +47,21 @@ export default function Root({children}) {
   // 获取当前语言的文本，如果没有则使用英文作为默认语言
   const currentTexts = texts[currentLocale] || texts.en
 
+  // 在页面 URL 后添加 ?showBytedesk=0 或 ?showBytedesk=false 即可隐藏客服组件
+  // 从 URL 参数中读取 showBytedesk，若为 0 或 false 则隐藏客服组件
+  const shouldHideBytedesk = () => {
+    if (typeof window === 'undefined') return false;
+    const params = new URLSearchParams(window.location.search);
+    const val = params.get('showBytedesk');
+    return val === '0' || val === 'false';
+  };
+  const hideBytedesk = shouldHideBytedesk();
+
   // 配置客服组件
   const config = {
     placement: 'bottom-right',
     autoPopup: false,
+    showToggleViewModeButton: true,
     inviteConfig: {
       show: false,
       text: currentTexts.inviteText,
@@ -58,13 +69,13 @@ export default function Root({children}) {
     marginBottom: 20,
     marginSide: 20,
     bubbleConfig: {
-      show: true,
+      show: !hideBytedesk,
       icon: '👋',
       title: currentTexts.bubbleTitle,
       subtitle: currentTexts.bubbleSubtitle
     },
     buttonConfig: {
-      show: true,
+      show: !hideBytedesk,
     },
     // 文档反馈功能配置
     feedbackConfig: {

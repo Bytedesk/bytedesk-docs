@@ -35,6 +35,7 @@ This document provides detailed explanation of Weiyu server configuration parame
 | `bytedesk.custom.login-scan-enable` | Whether to enable QR code login | `true` | `BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE: true` |
 | `bytedesk.custom.doc-url-show` | Whether to show documentation link | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
 | `bytedesk.custom.doc-url` | Documentation URL address | `https://...` | `BYTEDESK_CUSTOM_DOC_URL: https://www.....` |
+| `bytedesk.custom.show-register-button` | Whether to show the register button on the login page (display-only, does not block the register API; legacy `allow-register` still works) | `false` | `BYTEDESK_CUSTOM_SHOW_REGISTER_BUTTON: false` |
 | `bytedesk.custom.auto-register-on-login` | Whether to auto-create an account when a user logs in with mobile/email and is not registered yet | `true` | `BYTEDESK_CUSTOM_AUTO_REGISTER_ON_LOGIN: true` |
 
 ### Brand Customization Example (Important)

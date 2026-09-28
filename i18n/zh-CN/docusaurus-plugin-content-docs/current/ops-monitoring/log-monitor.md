@@ -7,7 +7,7 @@ sidebar_position: 2
 
 微语（Bytedesk）基于 **ELK Stack**（Elasticsearch + Logstash + Kibana）构建了统一的日志采集、解析、存储与可视化平台，面向开发与运维人员提供集中式日志检索、链路追踪和运维排障能力。
 
-[Logstash](https://www.elastic.co/guide/en/logstash/8.18/docker.html) · [Kibana](https://www.elastic.co/guide/en/kibana/8.18/docker.html) · [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/8.18/docker.html)
+[Logstash](https://www.elastic.co/guide/en/logstash/9.4/docker.html) · [Kibana](https://www.elastic.co/guide/en/kibana/9.4/docker.html) · [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/9.4/docker.html)
 
 ## 概述
 
@@ -49,7 +49,7 @@ flowchart LR
 
 ### 输出格式
 
-应用日志遵循统一的 Pattern（配置于 `starter/src/main/resources/properties/noai/40-oauth-ldap-logging.properties`）：
+应用日志遵循统一的 Pattern（配置于 `starter/src/main/resources/properties/noai/logging.properties`）：
 
 ```bash
 [RID:%X{requestId} TRACEID:%X{traceId}]-yyyy-MM-dd HH:mm:ss.SSS-LEVEL PID --- [thread] logger : message
@@ -187,10 +187,10 @@ KIBANA_SERVICE_ACCOUNT_TOKEN=your_token_here
 cd deploy/docker
 
 # 只启动 ELK 相关服务
-docker compose -f compose-base.yaml up -d bytedesk-elasticsearch bytedesk-logstash bytedesk-kibana
+docker compose --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml up -d bytedesk-elasticsearch bytedesk-logstash bytedesk-kibana
 
 # 查看服务状态
-docker compose -f compose-base.yaml ps
+docker compose --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml ps
 ```
 
 ### 3. 验证服务
@@ -322,9 +322,9 @@ Logstash 的 `multiline` codec 将不以 `[RID:` 开头的行合并到前一条�
 
 ## 相关资源
 
-- [Elasticsearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/8.18/index.html)
-- [Logstash 官方文档](https://www.elastic.co/guide/en/logstash/8.18/index.html)
-- [Kibana 官方文档](https://www.elastic.co/guide/en/kibana/8.18/index.html)
+- [Elasticsearch 官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/9.4/index.html)
+- [Logstash 官方文档](https://www.elastic.co/guide/en/logstash/9.4/index.html)
+- [Kibana 官方文档](https://www.elastic.co/guide/en/kibana/9.4/index.html)
 - [微语系统监控](./bytedesk-monitor.md)
-- [线上 Compose 镜像配置 - GitHub](https://github.com/Bytedesk/bytedesk-docker-compose/blob/main/docker/compose-base.yaml)
-- [线上 Compose 镜像配置 - Gitee](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/docker/compose-base.yaml)
+- [线上 Compose 镜像配置 - GitHub](https://github.com/Bytedesk/bytedesk-docker-compose/blob/main/docker/compose/compose-elasticsearch.yaml)
+- [线上 Compose 镜像配置 - Gitee](https://gitee.com/270580156/bytedesk-docker-compose/blob/master/docker/compose/compose-elasticsearch.yaml)

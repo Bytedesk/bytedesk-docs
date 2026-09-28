@@ -1,8 +1,8 @@
 {
-  "label": "登录授权",
+  "label": "Login & Access",
   "position": 1,
   "link": {
     "type": "generated-index",
-    "description": "5分钟快速上手使用 微语AI Agent."
+    "description": "Sign in anonymously or with an account."
   }
 }

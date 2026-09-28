@@ -54,46 +54,46 @@ If JDK 21 is not installed, please refer to: [JDK 21 Installation Guide](./depen
 cd bytedesk/deploy/docker
 
 # 2. Start dependencies (default MySQL)
-# start.sh <db> <mq> <scenario> [all|middleware]
+# start.sh [keywords...] (db/mq/components/target, any order)
 
 # Artemis + MySQL (default)
-./start.sh mysql artemis standard middleware
+./start mysql artemis middleware
 
 # RabbitMQ + MySQL (default)
-./start.sh mysql rabbitmq standard middleware
+./start mysql rabbitmq middleware
 
 # Stop (keep containers)
-# ./stop.sh mysql artemis standard stop middleware
-# ./stop.sh mysql rabbitmq standard stop middleware
+# ./stop mysql artemis stop middleware
+# ./stop mysql rabbitmq stop middleware
 
 # Remove containers
-# ./stop.sh mysql artemis standard down middleware
-# ./stop.sh mysql rabbitmq standard down middleware
+# ./stop mysql artemis down middleware
+# ./stop mysql rabbitmq down middleware
 
 # 3. Switch to PostgreSQL if needed
 
 # Artemis + PostgreSQL
-./start.sh postgresql artemis standard middleware
+./start postgresql artemis middleware
 
 # RabbitMQ + PostgreSQL
-./start.sh postgresql rabbitmq standard middleware
+./start postgresql rabbitmq middleware
 
 # Artemis + Oracle
-./start.sh oracle artemis standard middleware
+./start oracle artemis middleware
 
 # RabbitMQ + Oracle
-./start.sh oracle rabbitmq standard middleware
+./start oracle rabbitmq middleware
 
 # Middleware only (recommended for source startup, default)
-./start.sh mysql artemis standard middleware
-./start.sh mysql rabbitmq standard middleware
+./start mysql artemis middleware
+./start mysql rabbitmq middleware
 
 # Full stack (middleware + bytedesk image)
-./start.sh mysql artemis standard all
-./start.sh mysql rabbitmq standard all
+./start mysql artemis all
+./start mysql rabbitmq all
 
 # Optional: use PROJECT_NAME env
-# PROJECT_NAME=bytedesk ./start.sh mysql artemis standard middleware
+# PROJECT_NAME=bytedesk ./start mysql artemis middleware
 
 # 4. Equivalent native compose commands
 
@@ -101,25 +101,25 @@ cd bytedesk/deploy/docker
 # cd deploy/docker
 
 # Artemis + MySQL
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml up -d
 
 # Artemis + PostgreSQL
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-artemis.yaml up -d
 
 # RabbitMQ + MySQL
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-rabbitmq.yaml up -d
 
 # RabbitMQ + PostgreSQL
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-rabbitmq.yaml up -d
 
 # Artemis + Oracle
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-artemis.yaml up -d
 
 # RabbitMQ + Oracle
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-oracle.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-oracle.yaml -f compose/compose-rabbitmq.yaml up -d
 
 # Full stack example (middleware + bytedesk image)
-# docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+# docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml -f compose/compose-bytedesk.yaml up -d
 ```
 
 - Or refer to [Install Project Dependencies](./jar.md#dependencies)
@@ -155,7 +155,46 @@ protoc --version
 
 Edit the `starter/src/main/resources/application-dev.properties` file to configure database and Redis connection information: [Please refer to Application Configuration Instructions](./config.md)
 
-### 3.4 Start Project
+### 3.4 Server Address (URL) Configuration
+
+The default access URLs are all `http://127.0.0.1:9003`, which only works for local debugging. When deploying to a server, replace them with your actual server IP address or domain name; otherwise browsers cannot access uploaded files, avatars, knowledge base (help center/blog) and other resources.
+
+These URLs are configured in `starter/src/main/resources/properties/open/upload.properties` (for local debugging, see `properties/local/upload.properties`):
+
+```properties
+# Access URL for uploaded files, change to your actual server address
+bytedesk.upload.url=http://YOUR_SERVER_IP:9003
+# Access URL for avatars, change to your actual server address
+bytedesk.features.avatar-base-url=http://YOUR_SERVER_IP:9003
+# Access URL for the knowledge base, change to your actual server address
+bytedesk.kbase.api-url=http://YOUR_SERVER_IP:9003
+# Access URL for the help center (optional, falls back to bytedesk.kbase.api-url)
+bytedesk.kbase.helpcenter.api-url=http://YOUR_SERVER_IP:9003
+# Access URL for the blog (optional, falls back to bytedesk.kbase.api-url)
+bytedesk.kbase.blog.api-url=http://YOUR_SERVER_IP:9003
+# Visitor ticket page URL (used for direct ticket links in emails)
+bytedesk.custom.ticket-html-url=http://YOUR_SERVER_IP:9003/ticket
+
+# Externally accessible MQTT WebSocket full URL; configure when the WebSocket port (default 9885) is not exposed (Nginx/reverse proxy)
+# bytedesk.custom.mqtt-websocket-url=wss://your-domain.com/websocket
+# Externally accessible upload API URL (full URL, no upload path), for multi-node/reverse-proxy upload scenarios
+# bytedesk.custom.upload-api-url=https://upload.your-domain.com
+```
+
+> 💡 **Tip**: These properties correspond one-to-one with the environment variables in the `.env` file used for Docker deployment (see [Docker Deployment](./docker.md)); for full property details refer to [Application Configuration](./config.md):
+
+| Property | Docker env variable (.env) | Description |
+| --- | --- | --- |
+| `bytedesk.upload.url` | `BYTEDESK_UPLOAD_URL` | Access URL for uploaded files |
+| `bytedesk.features.avatar-base-url` | `BYTEDESK_FEATURES_AVATAR_BASE_URL` | Access URL for avatars |
+| `bytedesk.kbase.api-url` | `BYTEDESK_KBASE_API_URL` | Access URL for the knowledge base |
+| `bytedesk.kbase.helpcenter.api-url` | `BYTEDESK_KBASE_HELPCENTER_API_URL` | Access URL for the help center |
+| `bytedesk.kbase.blog.api-url` | `BYTEDESK_KBASE_BLOG_API_URL` | Access URL for the blog |
+| `bytedesk.custom.ticket-html-url` | `BYTEDESK_CUSTOM_TICKET_HTML_URL` | Visitor ticket page URL |
+| `bytedesk.custom.mqtt-websocket-url` | `BYTEDESK_CUSTOM_MQTT_WEBSOCKET_URL` | External MQTT WebSocket URL (reverse proxy) |
+| `bytedesk.custom.upload-api-url` | `BYTEDESK_CUSTOM_UPLOAD_API_URL` | External upload API URL (multi-node) |
+
+### 3.5 Start Project
 
 ```bash
 # Enter startup module directory

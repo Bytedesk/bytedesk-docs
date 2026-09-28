@@ -30,11 +30,11 @@ git clone https://github.com/Bytedesk/bytedesk.git
 cd bytedesk/deploy/docker
 
 # MySQL + Artemis + standard（僅中介服務）
-docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
+docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml up -d
 
 # 其他組合示例
-docker compose -p bytedesk -f compose-base.yaml -f compose-db-postgresql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml up -d
-docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml up -d
+docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-postgresql.yaml -f compose/compose-artemis.yaml up -d
+docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-rabbitmq.yaml up -d
 ```
 
 ### 因專案預設使用ollama qwen3:0.6b模型，所以需要另外拉取模型
@@ -53,10 +53,10 @@ git clone https://github.com/Bytedesk/bytedesk.git
 cd bytedesk/deploy/docker
 
 # MySQL + Artemis + standard + app（全量）
-docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml up -d
+docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml -f compose/compose-bytedesk.yaml up -d
 
 # RabbitMQ 全量示例
-docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-rabbitmq.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-rabbitmq.yaml up -d
+docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-rabbitmq.yaml -f compose/compose-bytedesk.yaml up -d
 
 # 對話模型
 docker exec ollama-bytedesk ollama pull qwen3:0.6b
@@ -69,24 +69,24 @@ docker exec ollama-bytedesk ollama pull bge-m3:latest
 ```bash
 cd bytedesk/deploy/docker
 
-# 啟動：start.sh <db> <mq> <scenario> [all|middleware]
-./start.sh mysql artemis standard middleware
-./start.sh mysql artemis standard all
-./start.sh postgresql rabbitmq standard all
+# 啟動：start.sh [關鍵字...]（db/mq/元件/目標任意順序組合）
+./start mysql artemis middleware
+./start mysql artemis all
+./start postgresql rabbitmq all
 
-# 停止：stop.sh <db> <mq> <scenario> [stop|down] [all|middleware]
-./stop.sh mysql artemis standard stop all
-./stop.sh mysql artemis standard down middleware
+# 停止：stop.sh [stop|down] [關鍵字...]
+./stop mysql artemis stop all
+./stop mysql artemis down middleware
 ```
 
 ## 停止容器
 
 ```bash
 # 僅中介服務
-docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml stop
+docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml stop
 
 # 全量（中介服務 + bytedesk 映像）
-docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f compose-mq-artemis.yaml -f compose-scenario-standard.yaml -f compose-app-bytedesk.yaml -f compose-app-mq-artemis.yaml stop
+docker compose -p bytedesk --env-file .env -f compose/compose-redis.yaml -f compose/compose-elasticsearch.yaml -f compose/compose-mysql.yaml -f compose/compose-artemis.yaml -f compose/compose-bytedesk.yaml stop
 ```
 
 ## 開放埠
@@ -109,20 +109,16 @@ docker compose -p bytedesk -f compose-base.yaml -f compose-db-mysql.yaml -f comp
 
 ## 編排內容（分層）
 
-- [compose-base.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-base.yaml)
-- [compose-db-mysql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-mysql.yaml)
-- [compose-db-postgresql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-postgresql.yaml)
-- [compose-db-oracle.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-db-oracle.yaml)
-- [compose-mq-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-mq-artemis.yaml)
-- [compose-mq-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-mq-rabbitmq.yaml)
-- [compose-scenario-standard.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-standard.yaml)
-- [compose-scenario-noai.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-noai.yaml)
-- [compose-scenario-call.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-scenario-call.yaml)
-- [compose-app-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-bytedesk.yaml)
-- [compose-app-mq-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-mq-artemis.yaml)
-- [compose-app-mq-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose-app-mq-rabbitmq.yaml)
+- [compose/compose-elasticsearch.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-elasticsearch.yaml)
+- [compose/compose-mysql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-mysql.yaml)
+- [compose/compose-postgresql.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-postgresql.yaml)
+- [compose/compose-oracle.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-oracle.yaml)
+- [compose/compose-artemis.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-artemis.yaml)
+- [compose/compose-rabbitmq.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-rabbitmq.yaml)
+- [compose/compose-freeswitch.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-freeswitch.yaml)
+- [compose/compose-bytedesk.yaml](https://github.com/Bytedesk/bytedesk/blob/main/deploy/docker/compose/compose-bytedesk.yaml)
 
-若使用雲模型（如智譜AI），可在 `compose-app-bytedesk.yaml` 的環境變數中配置：
+若使用雲模型（如智譜AI），可在 `compose/compose-bytedesk.yaml` 的環境變數中配置：
 
 ```yaml
 # 申請智譜AI API Key：https://www.bigmodel.cn/usercenter/proj-mgmt/apikeys

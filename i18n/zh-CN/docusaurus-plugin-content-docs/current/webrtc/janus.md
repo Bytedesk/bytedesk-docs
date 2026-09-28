@@ -23,7 +23,7 @@ Janus 是一个开源的通用 WebRTC 服务器，由 Meetecho 开发。它是�
 
 ### 应用场景
 
-- 视频会议系统
+- 微语会议系统
 - 在线教育平台
 - 直播和录播服务
 - 点对点通信
@@ -285,7 +285,7 @@ services:
             - ./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg:ro
             - ./conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg:ro
             - ./conf/janus.eventhandler.sampleevh.jcfg:/usr/local/etc/janus/janus.eventhandler.sampleevh.jcfg:ro
-        restart: always
+ restart: always
 ```
 
 3）macOS/Windows 方案（端口映射）
@@ -307,7 +307,7 @@ services:
             - ./conf/janus.transport.http.jcfg:/usr/local/etc/janus/janus.transport.http.jcfg:ro
             - ./conf/janus.transport.websockets.jcfg:/usr/local/etc/janus/janus.transport.websockets.jcfg:ro
             - ./conf/janus.jcfg:/usr/local/etc/janus/janus.jcfg:ro
-        restart: always
+ restart: always
 
 # 若你使用的是内置 Nginx 的镜像，并采用 nginx + janus 启动命令，再额外映射对应 Web 端口（例如 80/443 或镜像约定端口）。
 ```

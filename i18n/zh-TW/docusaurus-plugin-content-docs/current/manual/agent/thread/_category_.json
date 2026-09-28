@@ -1,5 +1,6 @@
 {
-  "label": "会话",
+  "key": "manual-agent-thread",
+  "label": "會話",
   "position": 2,
   "link": {
     "type": "generated-index",

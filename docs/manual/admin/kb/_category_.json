@@ -1,0 +1,8 @@
+{
+  "label": "知识库",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Get started with Weiyu in 5 minutes."
+  }
+}

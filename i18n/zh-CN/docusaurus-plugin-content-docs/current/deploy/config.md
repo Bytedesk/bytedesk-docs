@@ -54,7 +54,7 @@ sidebar_position: 7
 | `bytedesk.custom.doc-url-show` | 是否显示文档链接 | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
 | `bytedesk.custom.doc-url` | 文档URL地址 | - | `BYTEDESK_CUSTOM_DOC_URL:` |
 | `bytedesk.custom.lang` | 登录页语言，`zh-CN`/`en-US`/`zh-TW` | `zh-CN` | `BYTEDESK_CUSTOM_LANG: zh-CN` |
-| `bytedesk.custom.allow-register` | 是否允许自助注册 | `true` | `BYTEDESK_CUSTOM_ALLOW_REGISTER: true` |
+| `bytedesk.custom.show-register-button` | 是否显示登录页注册按钮（仅控制显隐，不拦截注册接口；旧名 `allow-register` 仍兼容） | `false` | `BYTEDESK_CUSTOM_SHOW_REGISTER_BUTTON: false` |
 | `bytedesk.custom.auto-register-on-login` | 手机号/邮箱登录时，若用户未注册，是否自动创建账号 | `true` | `BYTEDESK_CUSTOM_AUTO_REGISTER_ON_LOGIN: true` |
 | `bytedesk.custom.force-validate-mobile` | 是否强制验证手机号 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_MOBILE: true` |
 | `bytedesk.custom.force-validate-email` | 是否强制验证邮箱 | `true` | `BYTEDESK_CUSTOM_FORCE_VALIDATE_EMAIL: true` |

@@ -34,6 +34,25 @@ bytedesk.custom.auto-register-on-login=true
 - Method: POST
 - Path: /api/v1/shop/open/onboard
 
+#### 1.1) 訪客端諮詢 URL 拼接說明
+
+完成 `onboard` 對接後，可直接使用返回資料拼接訪客端聊天頁 URL：
+
+- `org`：取自 `shopList[].orgUid`
+- `t`：固定取值，工作組諮詢 `t=1`，一對一客服諮詢 `t=0`
+- `sid`：工作組諮詢取 `shopList[].workgroups[].uid`，一對一客服諮詢取 `shopList[].agents[].uid`
+
+示例：
+
+```text
+https://cdn.weiyuai.cn/chat?org=org_xxx&t=1&sid=wg_xxx
+https://cdn.weiyuai.cn/chat?org=org_xxx&t=0&sid=agent_xxx
+```
+
+可選參數：`lang`（介面語言，如 `zh-cn`、`en`）、`visitorUid`（業務系統使用者唯一 uid）、`goodsInfo` / `orderInfo`（商品/訂單卡片 JSON 字串）。
+
+說明：請將示例中的 `cdn.weiyuai.cn` 替換為自己實際部署的訪客端聊天頁地址；首次 `onboard` 會為店鋪預設建立 1 個客服和 1 個工作組，若陣列有多個元素可按業務需要任選。
+
 ### 2) 透過店鋪 uid 查詢綁定資訊
 
 - Method: GET

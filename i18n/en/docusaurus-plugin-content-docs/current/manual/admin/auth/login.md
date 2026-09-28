@@ -3,20 +3,20 @@ sidebar_label: Login
 sidebar_position: 1
 ---
 
-# Login
+# Logging in to the Admin Console
 
-## Custom Server
+![Admin console login page](/img/manual/admin/auth/login.png)
 
-- Login to admin dashboard
-- Click `Settings` -> `Server Settings` in the left menu -> Copy server address
-- Find admin/config.json file, default format is as follows:
+## Login Methods
 
-```json
-{
-    "enabled": false, // Change false to true. Only when changed to true, the apiHost and htmlHost below will take effect
-    "apiHost": "api.weiyuai.cn", // Important: Change to online api address, like: api.example.com, cannot start with http
-    "htmlHost": "www.weiyuai.cn" // Change to static webpage address, like: www.example.com, cannot start with http
-}
-```
+The admin console supports account/password, phone-number verification code, QR code, and other login methods.
 
-Replace apiHost and htmlHost with your server address
+## Login Steps
+
+1. Open the admin console address
+2. Enter the administrator account and password (or choose another login method)
+3. After login you land on the "Dashboard" page
+
+:::note Note
+Change the initial password before formal use, and bind an email and phone number to improve account security.
+:::

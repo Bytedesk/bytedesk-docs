@@ -8,7 +8,7 @@ sidebar_position: 6
 
 MCP服务用于将微语服务器能力开放给第三方智能体和MCP客户端。启用后，外部工具可以通过标准MCP协议连接微语服务器，发现可用工具，并在权限允许范围内查询客服、知识库、工单、订单、呼叫中心等业务数据。
 
-当前实现已可用于第一期对外接入：已接入Spring AI MCP Server，支持注册现有Spring AI `@Tool`，默认只开放只读查询类工具，同时通过写工具白名单额外放行 `bytedeskTicketCreate`，并通过Bearer Token保护MCP入口。
+当前实现已接入 Spring AI MCP Server，并通过平台注册表统一治理工具暴露。代码中的 `@Tool` / `ToolCallback` 会先同步到 `ToolEntity`，再由 MCP bridge 按 `enabled`、`mcpExposureMode`、`allowedMethods` 决定是否真正暴露给外部 MCP 客户端，同时通过 Bearer Token 保护入口。
 
 ## 启用方式
 
@@ -37,10 +37,10 @@ Authorization: Bearer <token>
 
 MCP配置已从AI批处理配置中拆分到独立文件：
 
-- `starter/src/main/resources/properties/local/75-mcp.properties`
-- `starter/src/main/resources/properties/noai/75-mcp.properties`
-- `starter/src/main/resources/properties/open/75-mcp.properties`
-- `starter/src/main/resources/properties/prod/75-mcp.properties`
+- `starter/src/main/resources/properties/local/ai-mcp.properties`
+- `starter/src/main/resources/properties/noai/ai-mcp.properties`
+- `starter/src/main/resources/properties/open/ai-mcp.properties`
+- `starter/src/main/resources/properties/prod/ai-mcp.properties`
 
 核心配置：
 
@@ -57,13 +57,11 @@ bytedesk.ai.mcp.auth.sse-endpoint=/sse
 bytedesk.ai.mcp.auth.message-endpoint=/mcp/message
 
 bytedesk.ai.mcp.tools.enabled=true
-bytedesk.ai.mcp.tools.read-only=true
-bytedesk.ai.mcp.tools.write-allow-names=bytedeskTicketCreate
 ```
 
 ## 当前开放工具
 
-第一期对外稳定开放两个工具：
+当前默认对外开放的工具取决于平台注册表中的治理配置；首次同步时，查询类工具默认标记为 `READONLY`，显式 `@McpTool` 迁移后的工具默认也会进入平台注册表统一管理。典型对外工具包括：
 
 - `bytedeskKnowledgeSearch`：查询知识库，返回适合智能体消费的结构化检索结果
 - `bytedeskTicketCreate`：创建工单，适合在客服、售后、值班场景中挂单
@@ -97,26 +95,15 @@ bytedesk.ai.mcp.tools.write-allow-names=bytedeskTicketCreate
 
 ## 工具开放策略
 
-默认扫描`com.bytedesk`包下已有的`@Tool`，但只开放查询类工具：
+当前策略不再依赖包扫描白名单和 `allow-names` / `deny-names` 配置，而是以 `ToolEntity` 为唯一治理中心：
 
-```properties
-bytedesk.ai.mcp.tools.enabled=true
-bytedesk.ai.mcp.tools.read-only=true
-bytedesk.ai.mcp.tools.include-packages=com.bytedesk
-bytedesk.ai.mcp.tools.allow-names=
-bytedesk.ai.mcp.tools.deny-names=
-bytedesk.ai.mcp.tools.read-only-include-pattern=.*(Query|Search|Find|Get|List|Count).*
-bytedesk.ai.mcp.tools.exclude-pattern=.*(Create|Update|Delete|Remove|Cancel|Change|Optimize|Reset|Score|Set|Send).*
-bytedesk.ai.mcp.tools.write-allow-names=bytedeskTicketCreate
-```
+- `enabled=false`：工具不会进入 MCP bridge，也不会进入本地 Spring ToolCallback 解析链路。
+- `mcpExposureMode=NONE`：不对外暴露给 MCP。
+- `mcpExposureMode=READONLY`：仅当工具名符合查询类约定（如 `Query` / `Search` / `Find` / `Get` / `List` / `Count`）时对外暴露。
+- `mcpExposureMode=DUAL`：允许对外 MCP 暴露，不受只读命名约束。
+- `allowedMethods`：可进一步限制允许暴露的方法名或运行时工具名，多个值可用逗号或换行分隔。
 
-`allow-names`为空时表示允许所有通过包名、只读规则和排除规则筛选后的工具；填写后只暴露名单中的工具。`deny-names`用于紧急屏蔽指定工具。
-
-`write-allow-names`用于在`read-only=true`时额外开放明确允许的写工具。当前第一期建议只保留：
-
-```properties
-bytedesk.ai.mcp.tools.write-allow-names=bytedeskTicketCreate
-```
+推荐通过超管后台的 ToolTable 管理平台注册工具，再按需刷新平台注册表，使代码与治理配置保持同步。
 
 如果只想开放AI模块，可以将`include-packages`收窄为：
 

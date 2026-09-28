@@ -171,13 +171,13 @@ Focus on:
 
 - [Goods Demo](https://www.weiyuai.cn/reactdemo/)
 - [Goods Information](../integration/goods_info.md)
-- [Goods API](../integration/goods_api.md)
+- [Goods API](../integration/goods_open.md)
 
 ## Order Integration
 
 - [Order Demo](https://www.weiyuai.cn/reactdemo/)
 - [Order Information](../integration/order_info.md)
-- [Order API](../integration/order_api.md)
+- [Order API](../integration/order_open.md)
 
 ## Agent Integration
 

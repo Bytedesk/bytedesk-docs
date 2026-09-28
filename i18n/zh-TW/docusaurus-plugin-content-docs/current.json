@@ -38,5 +38,13 @@
   "sidebar.tutorialSidebar.category.Digital Human Service": {
     "message": "數位人客服",
     "description": "The label for category Digital Human Service in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.AI Agents": {
+    "message": "AI 智慧體",
+    "description": "The label for category AI Agents in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Weiyu Docs": {
+    "message": "微語文件",
+    "description": "The label for category Weiyu Docs in sidebar tutorialSidebar"
   }
 }

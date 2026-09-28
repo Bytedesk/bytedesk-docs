@@ -8,17 +8,21 @@ description: 微语对接 MiniMax 大模型的配置说明和步骤指南
 :::tip 前置条件
 
 - 已部署微语系统
-- 已申请 MiniMax 大模型 API Key（[MiniMax 官网](https://www.minimaxi.com/)）
+- 已申请 MiniMax 大模型 API Key（[MiniMax 官网](https://platform.minimax.io/)）
 :::
 
 ## 配置步骤
 
 ### 1. 获取 API Key
 
-1. 访问 [MiniMax 官网](https://www.minimax.chat/)
+1. 访问 [MiniMax 官网](https://platform.minimax.io/)
 2. 注册并登录 MiniMax 账号
 3. 在控制台创建 API Key
 4. 保存生成的 API Key
+
+:::tip
+MiniMax 通过 Anthropic 兼容 API 提供服务，因此使用 Spring AI Anthropic 客户端连接。详细信息请参考 [MiniMax Anthropic API 文档](https://platform.minimax.io/docs/api-reference/text-anthropic-api)。
+:::
 
 ### 2. 管理后台配置
 
@@ -56,48 +60,35 @@ import ProviderChat from '/img/deploy/provider/provider-chat.png';
 ### Docker 部署配置参数
 
 ```bash
-# MiniMax API 配置
-SPRING_AI_MINIMAX_BASE_URL: https://api.minimax.chat/v1
-SPRING_AI_MINIMAX_API_KEY: 'sk-xxx'                   # 替换为你的 MiniMax API Key
-SPRING_AI_MINIMAX_CHAT_ENABLED: true                  # 启用 MiniMax 对话功能
+# MiniMax API 配置（通过 Anthropic 兼容接口）
+SPRING_AI_MINIMAX_CHAT_ENABLED: true                       # 启用 MiniMax 对话功能
+SPRING_AI_ANTHROPIC_BASE_URL: https://api.minimax.io/anthropic  # Anthropic 兼容端点
+SPRING_AI_ANTHROPIC_API_KEY: 'sk-xxx'                      # 替换为你的 MiniMax API Key
 
 # 模型配置
-SPRING_AI_MINIMAX_CHAT_OPTIONS_MODEL: abab5.5-chat    # 模型名称，按需选择
-SPRING_AI_MINIMAX_CHAT_OPTIONS_TEMPERATURE: 0.7       # 温度参数，控制输出的随机性，范围 0-1
-
-# 功能开关配置
-SPRING_AI_MINIMAX_AUDIO_TRANSCRIPTION_ENABLED: false  # 语音转文字功能
-SPRING_AI_MINIMAX_IMAGE_ENABLED: false                # 图像处理功能
-SPRING_AI_MINIMAX_EMBEDDING_ENABLED: true             # 文本嵌入功能
-SPRING_AI_MINIMAX_AUDIO_SYNTHESIS_ENABLED: false      # 语音合成功能
-SPRING_AI_NACOS_PROMPT_TEMPLATE_ENABLED: false        # Nacos 提示词模板功能
+SPRING_AI_ANTHROPIC_CHAT_MODEL: MiniMax-M3                 # 模型名称，按需选择
+SPRING_AI_ANTHROPIC_CHAT_OPTIONS_TEMPERATURE: 0.7          # 温度参数，控制输出的随机性，范围 0-1
 ```
 
 ### 源码部署配置参数
 
 ```bash
-# MiniMax API 配置
-spring.ai.minimax.base-url=https://api.minimax.chat/v1
-spring.ai.minimax.api-key=sk-xxx                      # 替换为你的 MiniMax API Key
-spring.ai.minimax.chat.enabled=true                   # 启用 MiniMax 对话功能
+# MiniMax API 配置（通过 Anthropic 兼容接口）
+spring.ai.minimax.chat.enabled=true                        # 启用 MiniMax 对话功能
+spring.ai.anthropic.base-url=https://api.minimax.io/anthropic  # Anthropic 兼容端点
+spring.ai.anthropic.api-key=sk-xxx                         # 替换为你的 MiniMax API Key
 
 # 模型配置
-spring.ai.minimax.chat.options.model=abab5.5-chat     # 模型名称，按需选择
-spring.ai.minimax.chat.options.temperature=0.7        # 温度参数，控制输出的随机性，范围 0-1
-spring.ai.minimax.chat.options.topP=3                 # 采样参数
-
-# 功能开关配置
-spring.ai.minimax.audio.transcription.enabled=false   # 语音转文字功能
-spring.ai.minimax.image.enabled=false                 # 图像处理功能
-spring.ai.minimax.embedding.enabled=true              # 文本嵌入功能
-spring.ai.minimax.audio.synthesis.enabled=false       # 语音合成功能
-spring.ai.nacos.prompt.template.enabled=false         # Nacos 提示词模板功能
+spring.ai.anthropic.chat.model=MiniMax-M3                  # 模型名称，按需选择
+spring.ai.anthropic.chat.options.temperature=0.7           # 温度参数，控制输出的随机性，范围 0-1
 ```
 
 :::tip 配置说明
 
 - 将配置文件中的 `sk-xxx` 替换为你获取的 API Key
-- 根据实际需求调整 temperature 和 topP 参数
+- MiniMax 通过 Anthropic 兼容 API 提供服务，base URL 必须设为 `https://api.minimax.io/anthropic`
+- 支持的模型如 `MiniMax-M3`，请参考 [MiniMax 官方文档](https://platform.minimax.io/docs/api-reference/text-anthropic-api) 获取最新模型列表
+- 根据实际需求调整 temperature 参数
 - 根据需求开启或关闭相关功能（语音转文字、图像处理等）
 :::
 

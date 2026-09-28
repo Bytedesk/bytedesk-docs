@@ -70,7 +70,7 @@ services:
       - artemis_data:/var/lib/artemis/data
     networks:
       - bytedesk-network
-    restart: always
+ restart: always
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8161/console/jolokia/read/org.apache.activemq.artemis:broker=\"0.0.0.0\""]
       interval: 30s

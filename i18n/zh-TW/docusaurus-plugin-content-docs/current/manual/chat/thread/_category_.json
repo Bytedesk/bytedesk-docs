@@ -1,6 +1,7 @@
 {
-  "label": "会话",
-  "position": 1,
+  "key": "manual-chat-thread",
+  "label": "會話",
+  "position": 2,
   "link": {
     "type": "generated-index",
     "description": "5分钟快速上手使用 微语AI Agent."

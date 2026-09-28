@@ -5,7 +5,7 @@ sidebar_position: 9
 
 # MiniMax Integration
 
-本頁說明如何將微語對接 MiniMax 模型，用於聊天、embedding 與可選多模態能力。
+本頁說明如何將微語對接 MiniMax 聊天模型，通過 Spring AI Anthropic 相容 API。
 
 :::tip 前置條件
 
@@ -15,7 +15,7 @@ sidebar_position: 9
 
 ## 配置步驟
 
-1. 在 MiniMax 控制台建立 API Key：[https://www.minimax.chat/](https://www.minimax.chat/)
+1. 在 MiniMax 控制台建立 API Key：[https://platform.minimax.io/](https://platform.minimax.io/)
 2. 登入微語管理後台並填入金鑰
 3. 將 MiniMax 設為預設提供商
 4. 產生聊天程式碼並嵌入網站
@@ -27,38 +27,36 @@ sidebar_position: 9
 
 ## 效果展示
 
-完成設定後，微語可使用 MiniMax 支援的 AI 對話。
+完成設定後，微語可通過 Anthropic 相容 API 使用 MiniMax 支援的 AI 對話。
 
 ![MiniMax chat effect](/img/deploy/provider/provider-chat.png)
 
 ## 可選配置
 
 ```bash
-SPRING_AI_MINIMAX_BASE_URL=https://api.minimax.chat/v1
-SPRING_AI_MINIMAX_API_KEY=sk-xxx
 SPRING_AI_MINIMAX_CHAT_ENABLED=true
-SPRING_AI_MINIMAX_CHAT_OPTIONS_MODEL=abab5.5-chat
-SPRING_AI_MINIMAX_CHAT_OPTIONS_TEMPERATURE=0.7
-SPRING_AI_MINIMAX_EMBEDDING_ENABLED=true
+SPRING_AI_ANTHROPIC_BASE_URL=https://api.minimax.io/anthropic
+SPRING_AI_ANTHROPIC_API_KEY=sk-xxx
+SPRING_AI_ANTHROPIC_CHAT_MODEL=MiniMax-M3
+SPRING_AI_ANTHROPIC_CHAT_OPTIONS_TEMPERATURE=0.7
 ```
 
 ```bash
-spring.ai.minimax.base-url=https://api.minimax.chat/v1
-spring.ai.minimax.api-key=sk-xxx
 spring.ai.minimax.chat.enabled=true
-spring.ai.minimax.chat.options.model=abab5.5-chat
-spring.ai.minimax.chat.options.temperature=0.7
-spring.ai.minimax.embedding.enabled=true
+spring.ai.anthropic.base-url=https://api.minimax.io/anthropic
+spring.ai.anthropic.api-key=sk-xxx
+spring.ai.anthropic.chat.model=MiniMax-M3
+spring.ai.anthropic.chat.options.temperature=0.7
 ```
 
 ## 常見問題
 
 1. 金鑰無效：確認 MiniMax 金鑰已啟用。
-2. 功能異常：檢查所需功能開關是否已開啟。
-3. 回應較慢：調整 temperature 或改用較輕量模型。
+2. 端點錯誤：base URL 必須設為 `https://api.minimax.io/anthropic`。
+3. 模型名稱錯誤：請選擇支援 Anthropic 相容 API 的 MiniMax 模型，如 `MiniMax-M3`。
 
 ## 相關資源
 
-- [MiniMax Website](https://www.minimax.chat/)
-- [Spring AI Reference](https://docs.spring.io/spring-ai/reference/api/chat/)
+- [MiniMax Anthropic 相容 API](https://platform.minimax.io/docs/api-reference/text-anthropic-api)
+- [Spring AI Anthropic 參考](https://docs.spring.io/spring-ai/reference/api/chat/anthropic-chat.html)
 - [微語文件中心](/docs/intro)

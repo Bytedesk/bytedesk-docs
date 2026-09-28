@@ -84,7 +84,7 @@ services:
 	opensips:
 		image: opensips/opensips:3.5
 		container_name: opensips-edge
-		restart: always
+ restart: always
 		environment:
 			- TZ=Asia/Shanghai
 		# 如需在容器前台查看日志，可使用: command: ["/usr/sbin/opensips", "-FE", "-f", "/etc/opensips/opensips.cfg"]

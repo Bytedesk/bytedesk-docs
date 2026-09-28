@@ -5,6 +5,8 @@ sidebar_position: 1
 description: 微語數位人客服功能介紹
 ---
 
+<!-- markdownlint-disable MD025 -->
+
 # 數位人客服
 
 微語數位人客服是基於 AI 與虛擬數位人能力打造的新一代智慧客服方案，支援網頁、行動端與呼叫中心等多通路接入。

@@ -123,13 +123,13 @@ sidebar_position: 2
 
 - [商品對接演示](https://www.weiyuai.cn/reactdemo/)
 - [商品資訊](../integration/goods_info.md)
-- [商品介面](../integration/goods_api.md)
+- [商品介面](../integration/goods_open.md)
 
 ## 訂單資訊對接
 
 - [訂單對接演示](https://www.weiyuai.cn/reactdemo/)
 - [訂單資訊](../integration/order_info.md)
-- [訂單介面](../integration/order_api.md)
+- [訂單介面](../integration/order_open.md)
 
 ## 工作組對接
 

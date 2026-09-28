@@ -3,13 +3,13 @@ sidebar_label: Jitsi
 sidebar_position: 13
 ---
 
-# Jitsi 视频会议/视频客服/视频聊天
+# Jitsi 微语会议/视频客服/视频聊天
 
-- [微语视频会议Github](https://github.com/Bytedesk/bytedesk-conference/blob/main/README.zh.md)
+- [微语微语会议Github](https://github.com/Bytedesk/bytedesk-conference/blob/main/README.zh.md)
 
 ## 概述
 
-Jitsi 是一套开源的视频会议解决方案，核心由以下组件构成：
+Jitsi 是一套开源的微语会议解决方案，核心由以下组件构成：
 
 - Prosody：XMPP 服务器，负责信令与鉴权
 - Jicofo：会议协调器，负责房间/桥接管理
@@ -381,4 +381,4 @@ Jibri 用于“合流录制/直播”。建议独立机器/容器部署；一台
 - [Kurento](https://github.com/Kurento/kurento)
 - [Jitsi Dockers](https://hub.docker.com/u/jitsi/)
 - [开发指南](https://jitsi.github.io/handbook/docs/category/developer-guide)
-- [微语视频会议Github](https://github.com/Bytedesk/bytedesk-conference/blob/main/README.zh.md)
+- [微语微语会议Github](https://github.com/Bytedesk/bytedesk-conference/blob/main/README.zh.md)

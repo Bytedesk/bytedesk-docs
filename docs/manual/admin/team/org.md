@@ -1,6 +1,25 @@
 ---
-sidebar_label: Org
-sidebar_position: 4
+sidebar_label: Organization
+sidebar_position: 8
 ---
 
-# Org
+# 组织管理
+
+![组织信息页面](/img/manual/admin/team/org.png)
+
+组织页面用于维护组织信息与处理加入申请。
+
+## 组织信息
+
+在「组织信息」标签中查看与编辑组织基本信息。
+
+## 加入申请
+
+在「加入申请」标签中处理用户加入组织的申请：
+
+1. 查看待处理的加入申请
+2. 同意或拒绝申请
+
+:::note 说明
+加入申请标签需当前账号有组织且有相应授权才可见。
+:::

@@ -136,6 +136,38 @@ URL 接入示例：
 /chat?org=org_demo&t=1&sid=wg_demo&goodsInfo=%7B...%7D
 ```
 
+### 1.2) 访客端咨询 URL 拼接说明
+
+业务系统完成 `onboard` 对接后，可直接使用其返回数据拼接访客端聊天页 URL：
+
+- `org`：取自 `shopList[].orgUid`
+- `t`：固定取值，工作组咨询 `t=1`，一对一客服咨询 `t=0`
+- `sid`：工作组咨询取 `shopList[].workgroups[].uid`，一对一客服咨询取 `shopList[].agents[].uid`
+
+URL 示例：
+
+```text
+/chat?org=org_demo&t=1&sid=wg_demo
+/chat?org=org_demo&t=0&sid=agent_demo
+```
+
+拼接代码示例：
+
+```javascript
+// onboard 返回的 shopList 中按 shopUid 匹配目标店铺后取值
+const shop = shopList.find((item) => item.shopUid === 'shop_demo_001') || shopList[0];
+
+// 工作组咨询：org 取 orgUid，sid 取 workgroups[].uid，固定 t=1
+const workgroupChatUrl = `https://cdn.weiyuai.cn/chat?org=${shop.orgUid}&t=1&sid=${shop.workgroups[0].uid}`;
+
+// 一对一客服咨询：org 取 orgUid，sid 取 agents[].uid，固定 t=0
+const agentChatUrl = `https://cdn.weiyuai.cn/chat?org=${shop.orgUid}&t=0&sid=${shop.agents[0].uid}`;
+```
+
+可选参数：`lang`（界面语言，如 `zh-cn`、`en`）、`visitorUid`（业务系统用户唯一 uid）、`goodsInfo` / `orderInfo`（见上文 1.1 节）。
+
+说明：请将示例中的 `cdn.weiyuai.cn` 替换为自己实际部署的访客端聊天页地址；首次 `onboard` 会为店铺默认创建 1 个客服和 1 个工作组，若数组有多个元素可按业务需要任选。
+
 ### 2) 通过店铺 uid 查询绑定信息
 
 - Method: GET

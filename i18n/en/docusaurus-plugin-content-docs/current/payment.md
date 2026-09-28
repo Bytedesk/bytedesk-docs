@@ -18,32 +18,36 @@ The Weiyu system offers multiple editions to meet the needs of organizations of 
 | **Platform Edition (Most Popular)** | **¥79,800** | **¥32,800/year** | **[Multi-tenant SaaS](./development/saas.md)**, full feature set, **[private deployment package](./deploy/docker.md), source code not included**, unlimited users/customer service agents/bots/knowledge bases, supports [brand customization](./deploy/config.md#custom-configuration) |
 | **Source Code Edition (Popular Among Enterprises)** | Reference module pricing | **Not supported** | **Includes full source code with advanced capabilities**, available for separate module purchase. Includes all Platform Edition capabilities, no need to purchase Enterprise Edition or Platform Edition separately, and purchased modules do not require a license key. Unlike Enterprise Edition, source code can be modified directly and custom development is supported. |
 
-- A perpetual license is a one-time permanent authorization. Annual subscriptions must be renewed every year. Prices exclude tax. If an invoice is required, ordinary invoices add 1% tax and VAT invoices add 1% or 3% tax.
+- A perpetual license is a one-time permanent authorization. Annual subscriptions must be renewed every year. Prices exclude tax (the company is a small-scale taxpayer; if an invoice is required, ordinary invoices add 1% tax and VAT invoices add 1% or 3% tax, optional).
 - The prices above are software prices only and do not include operations or maintenance services.
 - **Tenant note**: One tenant represents one enterprise account. Multiple departments, members, and customer service accounts can be created under one enterprise account. Data between different tenants is isolated and does not affect each other.
 
 ### Online Module Source Code Pricing
 
-- [Instant Messaging Module Source Code Pricing](./price/instant-messaging.md)
-- [Online Module Source Code Pricing](./price/online-module.md)
+- [Instant Messaging Module Source Code Pricing](./price/im.md)
+- [Online Module Source Code Pricing](./price/service.md)
 
 ### Specialized Module Source Code Pricing (Split)
 
 - [Call Center Module Source Code Pricing](./price/call-center.md)
 - [Audio and Video Customer Service Module Source Code Pricing](./price/audio-video-service.md)
-- [Video Conference Module Source Code Pricing](./price/video-conference.md)
+- [Video Conference Module Source Code Pricing](./price/meet.md)
 - [Remote Assistance Module Source Code Pricing](./price/remote-assistance.md)
+- [Weiyu Docs Module Source Code Pricing](./price/office.md)
 
 - Note: Modules can be purchased separately. Tech stack: [java + react](https://www.weiyuai.cn/architecture.html), with frontend-backend separation.
 - The prices above are source code prices only. They do not include secondary customization fees, nor operations and maintenance services. Deployment must be handled by the customer.
 
 ### Purchase Notes
 
-- Default prices exclude tax. If an invoice is required, ordinary invoices add 1% tax and VAT invoices add 1% or 3% tax.
-- Within three months from the purchase date, when upgrading editions, for example from Enterprise Edition to Platform Edition or Source Code Edition, previously paid fees can be credited and only the price difference needs to be paid. After three months, the full amount is required.
-- Free upgrades are included within one year, which must be explicitly confirmed for the Source Code Edition at the time of purchase. After one year, an optional 15% annual maintenance fee covers bug fixes, version upgrades, and remote assistance, excluding operations and maintenance.
-- A 30-day free trial is available. After payment, a 7-day no-reason refund is supported. If source code has already been delivered, refunds are not supported.
-- Custom development services are available at ¥2,000 per person-day.
+- All prices are open and transparent with no hidden fees. **Fixed price, no bargaining**.
+- By default, all prices exclude tax. If an invoice is required, ordinary invoices add 1% tax and VAT invoices add 1% or 3% tax (optional).
+- Within three months from the purchase date, when upgrading editions (e.g., from Enterprise Edition to Platform Edition, or to Source Code Edition), previously paid fees can be credited and only the price difference needs to be paid. After three months, the full amount is required.
+- Free upgrades are included within one year (this must be explicitly confirmed for the Source Code Edition at the time of purchase). After one year, an optional 15% annual maintenance fee applies, including bug fixes and version upgrades (operations not included, assistance only).
+- A 30-day free trial is available. After payment, a 7-day no-reason refund is supported (refunds are not supported if source code or a license has already been delivered). Get a [licenseKey](./development/license.md)
+- Custom development services are available at ¥5,000 per person-day.
+- In principle, no remote or on-site demos are provided. If needed, please refer to the [local deployment documentation](./deploy/docker.md) or log in to the [online demo system](https://www.weiyuai.cn/admin). If you are interested, please [scan the QR code to contact us on WeChat](/img/wechat.png) with the note: Weiyu
+- The developer is an OPC (one-person company). For any suggestions, feedback, or just to make friends, you are always welcome to [scan the QR code to contact us on WeChat](/img/wechat.png) with the note: Weiyu
 
 ## Feature Comparison Table
 
@@ -94,7 +98,7 @@ The Weiyu system offers multiple editions to meet the needs of organizations of 
 | [Blacklist](./development/black.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Leave Message Handling](./development/message_leave.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Product Information](./integration/goods_info.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
-| [Order Integration](./integration/order_api.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Order Integration](./integration/order_open.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Customer Management](./development/crm.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Session Summary](./development/summary.md) | ❌ | ✅ | ✅ | ✅ | ✅ |
 | [Cluster Deployment](./deploy/cluster.md) | ❌ | ✅ | ✅ | ✅ | ✅ |

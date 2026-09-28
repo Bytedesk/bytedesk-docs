@@ -31,6 +31,25 @@ bytedesk.custom.auto-register-on-login=true
 - Method: POST
 - Path: /api/v1/shop/open/onboard
 
+#### 1.1) Visitor chat URL
+
+After onboarding, you can build the visitor chat page URL directly from the onboard response:
+
+- `org`: organization uid, from `shopList[].orgUid`
+- `t`: fixed value, `t=1` for workgroup chat, `t=0` for one-on-one agent chat
+- `sid`: from `shopList[].workgroups[].uid` for workgroup chat (`t=1`), or from `shopList[].agents[].uid` for one-on-one agent chat (`t=0`)
+
+Example:
+
+```text
+https://cdn.weiyuai.cn/chat?org=org_xxx&t=1&sid=wg_xxx
+https://cdn.weiyuai.cn/chat?org=org_xxx&t=0&sid=agent_xxx
+```
+
+Optional params: `lang` (UI language, e.g. `zh-cn`, `en`), `visitorUid` (business user uid), `goodsInfo` / `orderInfo` (goods/order card JSON strings).
+
+Note: replace `cdn.weiyuai.cn` with your own deployed visitor chat page address. The first onboard creates 1 default agent and 1 default workgroup for the shop; if the arrays contain multiple entries, pick any one as needed.
+
 ### 2) Query bindings by shop uid
 
 - Method: GET

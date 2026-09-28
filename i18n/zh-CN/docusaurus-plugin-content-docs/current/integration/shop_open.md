@@ -1,9 +1,21 @@
 ---
-sidebar_label: 店铺对接
+sidebar_label: 店铺信息对接
 sidebar_position: 1
 ---
 
-# 店铺对接
+# 业务系统店铺信息对接
+
+## 重要概念
+
+- `shopUid`：来自业务系统的店铺唯一 uid。微语在店铺（`ShopEntity.shopUid`）、商品（`GoodsEntity.shopUid`）、订单（`OrderEntity.shopUid`）中统一使用它关联业务系统的店铺。
+- `orgUid`：微语组织的唯一标识。一个组织下可拥有多个店铺；`shopUid` 仅在组织内唯一、跨组织不保证唯一，因此通过 `shopUid` 定位店铺时需同时携带 `orgUid`（或在已确定的组织范围内取唯一店铺）。
+- `visitorUid`：来自业务系统的用户唯一 uid。访客端聊天页通过 URL 参数 `visitorUid` 传入；订单数据中的 `visitorUid` 与之对应同一业务用户，客服桌面端展示订单时同样按此 `visitorUid` 过滤。
+- 微语内部各实体另有系统自动生成的记录 `uid` 字段，与上述业务 uid 不同，对接时请勿混用。
+- `onboard` 接口按 `shopUid` 建立「组织 ↔ 店铺」绑定：店铺已存在时复用其所属组织，不存在时新建组织并在其下新建店铺。本页 `onboard` 等接口通过手机号管理店铺接入账号与组织初始化，不负责创建或返回访客的业务 `visitorUid`；访客身份请通过访客端 `visitorUid` 参数对接，订单侧用法详见[订单信息对接](./order_open.md)。
+
+:::tip 提示
+社区版不支持，请升级到企业版或平台版。请替换 [licenseKey](../development/license.md)
+:::
 
 ## 目标
 
@@ -219,6 +231,62 @@ const chatUrl = `https://cdn.weiyuai.cn/chat?${params.toString()}`;
 - 若 `goodsInfo` / `orderInfo` 中显式传入 `navigateToPath`，访客端在微信小程序环境点击卡片时会优先使用该路径
 - 若未传 `navigateToPath`，服务端会回退到默认配置路径 `bytedesk.custom.wechat-mini-program.goods-detail-path` 或 `bytedesk.custom.wechat-mini-program.order-detail-path`
 - 若服务端也未配置，则前端最终回退到内置默认值：商品为 `/pages/goods/detail/index`，订单为 `/pages/order/detail/index`
+
+#### 1.2 访客端咨询 URL 拼接说明
+
+业务系统完成 `onboard` 对接后，可直接使用其返回数据拼接访客端聊天页 URL，将咨询入口嵌入自己的网站或 App。
+
+URL 基础格式：
+
+```text
+https://cdn.weiyuai.cn/chat?org={orgUid}&t={会话类型}&sid={会话目标uid}
+```
+
+参数说明：
+
+- `org`：组织 uid，取自 `onboard` 返回的 `shopList[].orgUid`
+- `t`：会话类型，固定取值：
+  - `t=1`：工作组咨询
+  - `t=0`：一对一客服咨询
+- `sid`：会话目标 uid，按咨询方式取值：
+  - 工作组咨询（`t=1`）：取自 `shopList[].workgroups[].uid`
+  - 一对一客服咨询（`t=0`）：取自 `shopList[].agents[].uid`
+
+工作组咨询 URL 示例：
+
+```text
+https://cdn.weiyuai.cn/chat?org=org_xxx&t=1&sid=wg_xxx
+```
+
+一对一客服咨询 URL 示例：
+
+```text
+https://cdn.weiyuai.cn/chat?org=org_xxx&t=0&sid=agent_xxx
+```
+
+前端拼接代码示例：
+
+```javascript
+// onboard 返回的 shopList 中按 shopUid 匹配目标店铺后取值
+const shop = shopList.find((item) => item.shopUid === 'shop_demo_005') || shopList[0];
+
+// 工作组咨询：org 取 orgUid，sid 取 workgroups[].uid，固定 t=1
+const workgroupChatUrl = `https://cdn.weiyuai.cn/chat?org=${shop.orgUid}&t=1&sid=${shop.workgroups[0].uid}`;
+
+// 一对一客服咨询：org 取 orgUid，sid 取 agents[].uid，固定 t=0
+const agentChatUrl = `https://cdn.weiyuai.cn/chat?org=${shop.orgUid}&t=0&sid=${shop.agents[0].uid}`;
+```
+
+可选参数：
+
+- `lang`：界面语言，如 `zh-cn`、`en`
+- `visitorUid`：业务系统用户唯一 uid，用于客服端关联展示该用户的订单等信息，见开头「重要概念」中 `visitorUid` 说明
+- `goodsInfo` / `orderInfo`：商品/订单卡片 JSON 字符串，用法见上文 1.1 节
+
+说明：
+
+- 请将示例中的 `cdn.weiyuai.cn` 替换为自己实际部署的访客端聊天页地址
+- `onboard` 首次对接时会为店铺默认创建 1 个客服（`agents[0]`）和 1 个工作组（`workgroups[0]`），若数组有多个元素可按业务需要任选
 
 ### 2) 通过店铺 uid 查询绑定信息
 

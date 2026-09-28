@@ -287,14 +287,14 @@ docker exec freeswitch-bytedesk fs_cli -p bytedesk123 -x "show modules" | grep m
 
 ### 環境變數
 
-在 `compose-scenario-call.yaml` 和 `.env` 中透過以下環境變數設定：
+在 `compose/compose-freeswitch.yaml` 和 `.env` 中透過以下環境變數設定：
 
 | 環境變數 | 預設值 | 說明 |
 | ---- | ---- | ---- |
 | `FREESWITCH_QWEN_REALTIME_MEDIA_BRIDGE_ENABLED` | `false` | 是否啟用 Qwen-Audio-Realtime 電話即時媒體橋（需 `mod_audio_stream` 已載入） |
 | `FREESWITCH_QWEN_REALTIME_MEDIA_WS_URL` | `ws://host.docker.internal:9003/visitor/api/v1/call/voice-agent/qwen-realtime/media?output=mod_audio_stream&events=false&model=qwen-audio-3.0-realtime-plus&voice=longanqian&outputSampleRate=24000` | 即時媒體橋 WebSocket 地址 |
 
-### compose-scenario-call.yaml 中的設定
+### compose/compose-freeswitch.yaml 中的設定
 
 ```yaml
 services:

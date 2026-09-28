@@ -13,9 +13,9 @@ import nin1Image from '/img/nin1.png';
 
 ## 📚 概述
 
-**微语**是基于AI全新打造的一款开源企业级[多租户](./development/saas.md)团队智能协同平台，提供一站式客户服务解决方案/客服中心，能够显著提高内部员工和外部客户沟通效率。
+**微语**是基于AI全新打造的一款开源企业级[多租户](./development/saas.md)团队智能协同平台，提供企业IM/客服中心/云联络中心/服务营销一体化平台，能够显著提高内部员工和外部客户沟通效率。
 
-> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能电话客服](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[AI Agent](modules/ai.md)、[表单问卷](modules/form.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[音频客服](plugins/video.md)、[视频客服](plugins/video.md)、[视频会议](meet/intro.md)、[客户管理](modules/crm.md)、[客服培训](modules/training.md)、[营销管理](modules/marketing.md)、[舆情管理](modules/opinion.md)、[开放平台](modules/open.md)
+> [企业IM](modules/team.md)、[智能客服](modules/service.md)、[智能工单](modules/ticket.md)、[智能电话客服](plugins/freeswitch.md)、[企业知识库](modules/kbase.md)、[AI Agent](modules/ai.md)、[表单问卷](modules/form.md)、[工作流](modules/workflow.md)、[客户之声](modules/voc.md)、[音频客服](plugins/video.md)、[视频客服](plugins/video.md)、[微语会议](meet/intro.md)、[客户管理](modules/crm.md)、[客服培训](modules/training.md)、[营销管理](modules/marketing.md)、[舆情管理](modules/opinion.md)、[微语文档](office/intro.md)、[开放平台](modules/open.md)
 
 <img src={nin1Image} alt="微语功能集成" />
 
@@ -229,11 +229,11 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持一键视频对话与屏幕共享
 - 适用于需要直观展示的服务场景
 
-### 9. [视频会议-开发中...](meet/intro.md)
+### 9. [微语会议](meet/intro.md)
 
-🎥 **企业级音视频会议系统**
+🎥 **企业级音微语会议系统**
 
-- 支持多人音视频会议、会议预约与快速入会
+- 支持多人音微语会议、会议预约与快速入会
 - 提供屏幕共享、会议控制与协同沟通能力
 - 适用于远程协作、在线培训与跨团队会议场景
 
@@ -245,7 +245,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 支持来电弹屏、自动分配、通话录音
 - 数据统计，语音与文字服务无缝集成
 
-### 11. [客户之声-开发中...](modules/voc.md)
+### 11. [客户之声](modules/voc.md)
 
 📣 **客户反馈管理系统**
 
@@ -261,7 +261,23 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 全渠道互动记录与跟进提醒
 - 商机、合同、订单全流程协同
 
-### 13. [客服培训-开发中...](modules/training.md)
+### 13. [微语文档](office/intro.md)
+
+📄 **AI办公文档工作台**
+
+- 支持Word、Excel、PPT、PDF、Markdown五类文档的在线创建与编辑
+- 内置AI助手：从零起草、润色全文、AI排版、批量修改，一句话完成
+- 兼容微软Office真实格式，编辑后的文件在Office中打开格式不乱
+
+### 14. [开放平台](modules/open.md)
+
+🔌 **企业级API开放平台**
+
+- 提供完整的RESTful API接口和SDK工具包
+- 支持与第三方系统无缝集成，实现数据互通
+- 多语言SDK支持，简化开发集成流程
+
+### 15. [客服培训-开发中...](modules/training.md)
 
 🎯 **客服培训与能力提升**
 
@@ -269,7 +285,7 @@ import archFrontImage from '/img/arch/arch_front.png';
 - AI陪练结合质检结果，针对薄弱环节定向提升
 - 参与率与考核数据可视化，管理更可控
 
-### 14. [营销管理-开发中...](modules/marketing.md)
+### 16. [营销管理-开发中...](modules/marketing.md)
 
 📣 **社交聚合营销增长平台**
 
@@ -277,18 +293,10 @@ import archFrontImage from '/img/arch/arch_front.png';
 - 自动化触达与分层运营，提升线索培育与转化效率
 - 通过营销看板复盘投放效果，持续优化增长策略
 
-### 15. [舆情管理-开发中...](modules/opinion.md)
+### 17. [舆情管理-开发中...](modules/opinion.md)
 
 📡 **全网舆情监测与应对平台**
 
 - 聚合多平台舆情信息，实时识别品牌与事件风险信号
 - 支持情绪分析、主题聚类与分级预警，提升风险发现效率
 - 联动公关与客服协同处置，形成“监测-响应-复盘”闭环
-
-### 16. [开放平台](modules/open.md)
-
-🔌 **企业级API开放平台**
-
-- 提供完整的RESTful API接口和SDK工具包
-- 支持与第三方系统无缝集成，实现数据互通
-- 多语言SDK支持，简化开发集成流程

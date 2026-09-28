@@ -35,6 +35,7 @@ sidebar_position: 7
 | `bytedesk.custom.login-scan-enable` | 是否啟用掃碼登入 | `true` | `BYTEDESK_CUSTOM_LOGIN_SCAN_ENABLE: true` |
 | `bytedesk.custom.doc-url-show` | 是否顯示文檔連結 | `true` | `BYTEDESK_CUSTOM_DOC_URL_SHOW: true` |
 | `bytedesk.custom.doc-url` | 文檔URL地址 | `https://...` | `BYTEDESK_CUSTOM_DOC_URL: https://www.....` |
+| `bytedesk.custom.show-register-button` | 是否顯示登入頁註冊按鈕（僅控制顯隱，不攔截註冊接口；舊名 `allow-register` 仍相容） | `false` | `BYTEDESK_CUSTOM_SHOW_REGISTER_BUTTON: false` |
 | `bytedesk.custom.auto-register-on-login` | 使用手機號或郵箱登入且使用者尚未註冊時，是否自動建立帳號 | `true` | `BYTEDESK_CUSTOM_AUTO_REGISTER_ON_LOGIN: true` |
 
 ### 品牌自訂配置範例（關鍵）

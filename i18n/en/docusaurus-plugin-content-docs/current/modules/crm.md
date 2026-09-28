@@ -4,6 +4,8 @@ description: Full-lifecycle customer relationship management (CRM/SCRM)
 sidebar_position: 6
 ---
 
+<!-- markdownlint-disable MD025 -->
+
 # Customer Relationship Management CRM/SCRM
 
 ## 📚 Overview

@@ -40,7 +40,7 @@
     <rect x="240" y="180" width="120" height="120" rx="10" fill="#e8f5e9" stroke="#388e3c" stroke-width="2"/>
     <text x="300" y="200" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#1b5e20">多模态增强</text>
     <line x1="260" y1="210" x2="340" y2="210" stroke="#388e3c" stroke-width="1"/>
-    <text x="300" y="230" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1b5e20">- 视频会议支持</text>
+    <text x="300" y="230" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1b5e20">- 微语会议支持</text>
     <text x="300" y="250" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1b5e20">- 图像识别能力</text>
     <text x="300" y="270" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1b5e20">- 智能情感分析</text>
     <text x="300" y="290" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#1b5e20">- 移动端全能力</text>

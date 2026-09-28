@@ -1,5 +1,5 @@
 ---
-slug: bytedesk-3x-agent-roadmap
+slug: bytedesk-main-agent-roadmap
 title: "Bytedesk 3.x Roadmap: Focusing on Agent — Making AI Easier to Use Bytedesk"
 authors: jackning
 tags: [bytedesk, AI, Agent, CustomerService, LLM, MCP, Skill]

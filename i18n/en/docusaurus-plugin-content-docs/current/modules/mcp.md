@@ -37,10 +37,10 @@ If MCP is enabled but `bytedesk.ai.mcp.auth.bearer-token` is empty, the server r
 
 MCP configuration has been split out of the AI batch configuration into standalone files:
 
-- `starter/src/main/resources/properties/local/75-mcp.properties`
-- `starter/src/main/resources/properties/noai/75-mcp.properties`
-- `starter/src/main/resources/properties/open/75-mcp.properties`
-- `starter/src/main/resources/properties/prod/75-mcp.properties`
+- `starter/src/main/resources/properties/local/ai-mcp.properties`
+- `starter/src/main/resources/properties/noai/ai-mcp.properties`
+- `starter/src/main/resources/properties/open/ai-mcp.properties`
+- `starter/src/main/resources/properties/prod/ai-mcp.properties`
 
 ## Tool Exposure Policy
 

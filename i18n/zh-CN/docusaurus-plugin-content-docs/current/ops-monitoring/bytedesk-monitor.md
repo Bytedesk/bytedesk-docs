@@ -57,7 +57,7 @@ cd bytedesk-monitor
 bytedesk starter 已内置 `spring-boot-admin-starter-client` 并配置好自动注册。
 
 ```bash
-cd bytedesk-3x
+cd bytedesk-main
 ./starter/mvnw -f starter/pom.xml spring-boot:run
 ```
 
@@ -138,7 +138,7 @@ services:
             SPRING_SECURITY_USER_NAME: admin
             SPRING_SECURITY_USER_PASSWORD: admin
             TZ: Asia/Shanghai
-        restart: unless-stopped
+ restart: unless-stopped
 ```
 
 启动与停止：
@@ -172,7 +172,7 @@ spring.security.user.password=admin
 
 ### 客户端（本地开发）
 
-在 bytedesk-starter 的 `properties/local/51-jpa-web-actuator.properties` 中添加：
+在 bytedesk-starter 的 `properties/local/actuator.properties` 中添加：
 
 ```properties
 spring.boot.admin.client.url=http://127.0.0.1:9103
